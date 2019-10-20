@@ -1,0 +1,13 @@
+BasedOnStyle: LLVM
+ColumnLimit: 120
+PointerAlignment: Left
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+NamespaceIndentation: All
+AllowShortFunctionsOnASingleLine: None
+IndentCaseLabels: true
+BinPackParameters: false
+BinPackArguments: false
+AlignAfterOpenBracket: DontAlign
+AllowAllParametersOfDeclarationOnNextLine: false

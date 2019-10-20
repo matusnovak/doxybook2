@@ -1,0 +1,21 @@
+[submodule "libs/inja"]
+	path = libs/inja
+	url = https://github.com/pantor/inja.git
+[submodule "libs/json"]
+	path = libs/json
+	url = https://github.com/nlohmann/json.git
+[submodule "libs/argagg"]
+	path = libs/argagg
+	url = https://github.com/vietjtnguyen/argagg.git
+[submodule "libs/tinyxml2"]
+	path = libs/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
+[submodule "libs/fmt"]
+	path = libs/fmt
+	url = https://github.com/fmtlib/fmt.git
+[submodule "libs/dirent"]
+	path = libs/dirent
+	url = https://github.com/tronkko/dirent.git
+[submodule "libs/Catch2"]
+	path = libs/Catch2
+	url = https://github.com/catchorg/Catch2.git

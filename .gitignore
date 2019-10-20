@@ -1,0 +1,9 @@
+build*/
+temp/
+install/
+.vscode/
+.vs/
+*.kdev4
+*~
+cache/
+example/mkdocs/api/*
