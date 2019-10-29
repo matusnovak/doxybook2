@@ -5,6 +5,9 @@ matrix:
       dist: bionic
       language: cpp
       compiler: gcc-8
+      env:
+        - CC=gcc-8
+        - CXX=g++-8
       addons:
         apt:
           sources:
@@ -12,16 +15,16 @@ matrix:
           packages:
             - gcc-8
             - cmake
-            - lcov
-            - curl
-            - valgrind
-            - doxygen
+            - wget
 
     - os: linux
       arch: arm64
       dist: bionic
       language: cpp
       compiler: gcc-8
+      env:
+        - CC=gcc-8
+        - CXX=g++-8
       addons:
         apt:
           sources:
@@ -29,8 +32,7 @@ matrix:
           packages:
             - gcc-8
             - cmake
-            - curl
-            - doxygen
+            - wget
 
     - os: osx
       arch: amd64
@@ -45,11 +47,16 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew install doxygen;
     fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      wget http://doxygen.nl/files/doxygen-1.8.16.linux.bin.tar.gz;
+      tar -xvzf doxygen-1.8.16.linux.bin.tar.gz;
+      sudo cp doxygen-1.8.16/bin/doxygen /usr/local/bin/doxygen;
+      sudo chmod +x /usr/local/bin/doxygen;
+    fi
+  - doxygen -version
 
-script:
-  - ./build.sh || travis_terminate 1;
-  - ./test.sh || travis_terminate 1;
-  - ./package.sh || travis_terminate 1;
+script: 
+  - bash travis.sh || travis_terminate 1;
 
 deploy:
   provider: releases

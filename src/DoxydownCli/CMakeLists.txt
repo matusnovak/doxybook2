@@ -12,7 +12,7 @@ file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 
 # Add the project source files
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
-if (UNIX OR APPLE OR MINGW)
+if (UNIX OR MINGW)
   target_link_libraries(${PROJECT_NAME} PUBLIC -static-libgcc -static-libstdc++)
 endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxydown")

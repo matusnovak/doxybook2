@@ -2,7 +2,15 @@
 
 set -e
 
+# Submodules
 git submodule update --init
+
+# Doxygen xml files
+cd example
+doxygen
+cd ..
+
+# Build
 mkdir build
 cd build
 cmake -G "Unix Makefiles" \
@@ -13,5 +21,11 @@ cmake -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
     -DCMAKE_INSTALL_PATH=../install \
     ..
-cmake --build .
+cmake --build . --target install
 
+# Test
+ctest --verbose
+
+# Package
+cd ../install
+zip ../doxydown-$(gcc -dumpmachine).zip *

@@ -6,6 +6,12 @@
 
 static const std::regex ANCHOR_REGEX("\\_[a-z0-9]{34,67}$");
 
+#ifdef __MINGW32__
+    static const auto US_LOCALE = std::locale("en_US");
+#else
+    static const auto US_LOCALE = std::locale("en_US.utf8");
+#endif
+
 static std::string replaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t pos = 0;
     while ((pos = str.find(from, pos)) != std::string::npos) {
@@ -16,14 +22,13 @@ static std::string replaceAll(std::string str, const std::string& from, const st
 }
 
 std::string Doxydown::TextUtils::title(std::string str) {
-    if (!str.empty()) str[0] = std::toupper(str[0], std::locale("en_US.utf8"));
+    if (!str.empty()) str[0] = std::toupper(str[0], US_LOCALE);
     return str;
 }
 
 extern std::string Doxydown::TextUtils::toLower(std::string str) {
-    const auto locale = std::locale("en_US.utf8");
     for (auto& c : str) {
-        c = std::tolower(c, locale);
+        c = std::tolower(c, US_LOCALE);
     }
     return str;
 }

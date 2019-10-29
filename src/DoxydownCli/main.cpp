@@ -20,6 +20,7 @@ class ConfigArg {
 public:
     virtual argagg::definition createDefinition() const = 0;
     virtual void load(const argagg::parser_results& results) const = 0;
+    virtual ~ConfigArg() = default;
 };
 
 template<typename T>
@@ -35,6 +36,7 @@ public:
           defval(ref),
           optional(optional) {
     }
+    virtual ~ConfigArgTyped() = default;
 
     argagg::definition createDefinition() const override {
         assert(!key.empty());
@@ -74,6 +76,7 @@ public:
           help(std::move(help)),
           defval(ref) {
     }
+    virtual ~ConfigArgTyped() = default;
 
     argagg::definition createDefinition() const override {
         return {
