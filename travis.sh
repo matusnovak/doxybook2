@@ -19,7 +19,7 @@ cmake -G "Unix Makefiles" \
     -DBUILD_TESTING=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
-    -DCMAKE_INSTALL_PATH=../install \
+    -DCMAKE_INSTALL_PREFIX=../install \
     ..
 cmake --build . --target install
 
