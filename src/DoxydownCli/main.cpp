@@ -1,4 +1,4 @@
-#include <string>+
+#include <string>
 #include <argagg/argagg.hpp>
 #include "Log.hpp"
 #include "Generator.hpp"
@@ -41,7 +41,7 @@ public:
 
         return {
             key, {"--" + key},
-            !optional ? "REQUIRED! " + help : "OPTIONAL! " + help + (defval.empty() ? "" : " (default: " + defval + ")"),
+            !optional ? "REQUIRED! " + help : "OPTIONAL! " + help + (!optional ? "" : " (default: \"" + defval + "\")"),
             1
         };
     }
@@ -137,9 +137,9 @@ int main(const int argc, char* argv[]) {
                 "destination ""folder or in their respective folders? For example in Classes/index.md ?"),
             new ConfigArgTyped<std::string>(config.indexFileName,
                 "index-filename", 
-                "What should the index files be named?"
-                "When using Hugo with Learn template this might be needed and set to _index.md"
-                "including index-in-folders=true", 
+                "What should the index files be named? "
+                "When using Hugo with Learn template this might be needed and set to _index.md "
+                "with index-in-folders=true", 
                 true),
             new ConfigArgTyped<std::string>(config.folderClassesName,
                 "folder-classes", 
