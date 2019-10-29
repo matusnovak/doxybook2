@@ -42,7 +42,12 @@ matrix:
         apt:
           packages:
             - cmake
-            - doxygen
+
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      brew install doxygen;
+    fi
+
 script:
   - bash build.sh || travis_terminate 1;
   - bash test.sh || travis_terminate 1;
