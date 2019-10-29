@@ -13,3 +13,4 @@ example/hugo-learn/content/api/*
 !example/mkdocs-readthedocs/docs/api/.gitkeep
 !example/hugo-book/content/api/.gitkeep
 !example/hugo-learn/content/api/.gitkeep
+doxydown-*.zip
