@@ -3,8 +3,6 @@
 #include <sstream>
 #include <algorithm>
 
-#define DELIMITER "\\"
-
 namespace Doxydown {
     namespace Path {
         namespace Detail {
@@ -14,7 +12,11 @@ namespace Doxydown {
             
             template <typename... Args>
             inline void join(std::stringstream& ss, const std::string& first, const Args&... args) {
-                ss << first << DELIMITER;
+#ifdef _WIN32
+                ss << first << "\\";
+#else
+                ss << first << "/";
+#endif
                 Detail::join(ss, args...);
             }
         }
