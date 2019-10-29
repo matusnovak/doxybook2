@@ -34,18 +34,17 @@ static bool isKindAllowedDirs(const std::string& kind) {
 }
 
 Doxydown::Doxygen::Doxygen(std::string path)
-    : inputDir(std::move(path)),
-      index("index") {
+    : index(std::make_shared<Node>("index")),
+      inputDir(std::move(path)) {
+}
 
-    // Initial cache which will be discarded after the step below
-    NodeCacheMap cache;
-
+void Doxydown::Doxygen::load() {
     // Remove entires from index which parent has been updated
-    const auto cleanup = [](Node& node) {
-        auto it = node.getChildren().begin();
-        while (it != node.getChildren().end()) {
-            if (it->get()->getParent() != &node) {
-                node.getChildren().erase(it++);
+    const auto cleanup = [](const NodePtr& node) {
+        auto it = node->children.begin();
+        while (it != node->children.end()) {
+            if (it->get()->parent != node.get()) {
+                node->children.erase(it++);
             } else {
                 ++it;
             }
@@ -62,10 +61,10 @@ Doxydown::Doxygen::Doxygen(std::string path)
         try {
             auto found = cache.find(pair.second);
             if (found == cache.end()) {
-                index.addChild(Node::parse(cache, inputDir, pair.second, false));
-                auto child = index.getChildren().back();
-                if (child->getParent() == nullptr) {
-                    child->setParent(&index);
+                index->children.push_back(Node::parse(cache, inputDir, pair.second, false));
+                auto child = index->children.back();
+                if (child->parent == nullptr) {
+                    child->parent = index.get();
                 }
             }
         } catch (std::exception& e) {
@@ -82,10 +81,10 @@ Doxydown::Doxygen::Doxygen(std::string path)
         try {
             auto found = cache.find(pair.second);
             if (found == cache.end()) {
-                index.addChild(Node::parse(cache, inputDir, pair.second, true));
-                auto child = index.getChildren().back();
-                if (child->getParent() == nullptr) {
-                    child->setParent(&index);
+                index->children.push_back(Node::parse(cache, inputDir, pair.second, true));
+                auto child = index->children.back();
+                if (child->parent == nullptr) {
+                    child->parent = index.get();
                 }
             }
         } catch (std::exception& e) {
@@ -101,10 +100,10 @@ Doxydown::Doxygen::Doxygen(std::string path)
         try {
             auto found = cache.find(pair.second);
             if (found == cache.end()) {
-                index.addChild(Node::parse(cache, inputDir, pair.second, true));
-                auto child = index.getChildren().back();
-                if (child->getParent() == nullptr) {
-                    child->setParent(&index);
+                index->children.push_back(Node::parse(cache, inputDir, pair.second, true));
+                auto child = index->children.back();
+                if (child->parent == nullptr) {
+                    child->parent = index.get();
                 }
             }
         } catch (std::exception& e) {
@@ -112,9 +111,19 @@ Doxydown::Doxygen::Doxygen(std::string path)
         }
     }
     cleanup(index);
+
+    getIndexCache(cache, index);
 }
 
-Doxydown::Doxygen::~Doxygen() {
+void Doxydown::Doxygen::finalize(const Config& config, const TextPrinter& printer) {
+    finalizeRecursively(config, printer, index);
+}
+
+void Doxydown::Doxygen::finalizeRecursively(const Config& config, const TextPrinter& printer, const NodePtr& node) {
+    for (const auto& child : node->children) {
+        child->finalize(config, printer, cache);
+        finalizeRecursively(config, printer, child);
+    }
 }
 
 Doxydown::Doxygen::KindRefidMap Doxydown::Doxygen::getIndexKinds() const {
@@ -132,6 +141,7 @@ Doxydown::Doxygen::KindRefidMap Doxydown::Doxygen::getIndexKinds() const {
         try {
             const auto kind = compound.getAttr("kind");
             const auto refid = compound.getAttr("refid");
+            assert(!refid.empty());
             map.insert(std::make_pair(kind, refid));
 
         } catch (std::exception& e) {
@@ -143,9 +153,18 @@ Doxydown::Doxygen::KindRefidMap Doxydown::Doxygen::getIndexKinds() const {
     return map;
 }
 
-void Doxydown::Doxygen::getIndexCache(CacheMap& cache, Node* parent) const {
-    for (const auto& child : parent->getChildren()) {
-        cache.insert(std::make_pair(child->getRefid(), child.get()));
-        getIndexCache(cache, child.get());
+void Doxydown::Doxygen::getIndexCache(NodeCacheMap& cache, const NodePtr& parent) const {
+    for (const auto& child : parent->children) {
+        cache.insert(std::make_pair(child->refid, child));
+        getIndexCache(cache, child);
+    }
+}
+
+Doxydown::NodePtr Doxydown::Doxygen::find(const std::string& refid) const {
+    try {
+        return cache.at(refid);
+    } catch (std::exception& e) {
+        (void)e;
+        throw EXCEPTION("Failed to find node from cache by refid {}", refid);
     }
 }

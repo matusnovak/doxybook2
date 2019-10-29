@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
-#include <list>
-#include "Xml.hpp"
 #include <vector>
+#include "Xml.hpp"
 
 namespace Doxydown {
     class TextParser {
@@ -17,8 +16,6 @@ namespace Doxydown {
                 TEXT = 0,
                 PARA,
                 PARAS,
-                DETAILEDDESCRIPTION,
-                BRIEFDESCRIPTION,
                 BOLD,
                 EMPHASIS,
                 ULINK,
@@ -26,17 +23,27 @@ namespace Doxydown {
                 COMPUTEROUTPUT,
                 LISTITEM,
                 SIMPLESEC,
-                ITEMIZEDLIST
+                ITEMIZEDLIST,
+                PARAMETERLIST,
+                PARAMETERNAME,
+                PARAMETERITEM,
+                PARAMETERDESCRIPTION,
+                PARAMETERNAMELIST,
+                XREFSECT,
+                XREFTITLE,
+                XREFDESCRIPTION
             };
 
             Type type;
-            std::list<Node> children;
+            std::vector<Node> children;
             std::string data;
+            std::string extra;
         };
 
-        static Node parse(Xml::Element& element);
+        static Node parseParas(const Xml::Element& element);
+        static Node parsePara(const Xml::Element& element);
         static Node::Type strToType(const std::string& str);
     private:
-        static void traverse(std::list<Node*> tree, const Xml::Node& element);
+        static void traverse(std::vector<Node*> tree, const Xml::Node& element);
     };
 }

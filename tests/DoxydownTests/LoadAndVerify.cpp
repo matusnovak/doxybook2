@@ -63,7 +63,33 @@ static const auto klassEngineGraphicsTexture =
 
 static const std::unordered_map<std::string, std::string> parentChildRelationMap = {
     {"namespace_engine", "index"},
+    {"namespace_engine_1ae3918a7bd8220f317f339ebda3295fa7", "namespace_engine"},
+    {"class_engine_1_1_exception", "namespace_engine"},
+    {"class_engine_1_1_exception_1ace265added7ec74ac0fe09b30d442621", "class_engine_1_1_exception"},
+    {"class_engine_1_1_exception_1a697748d2c21a434b4742910b8d4e53d4", "class_engine_1_1_exception"},
+    {"class_engine_1_1_exception_1a4f566b63e5d447cb468d0f89b46bb75c", "class_engine_1_1_exception"},
+    {"class_engine_1_1_exception_1ac25e87274c89524b026998678500dd29", "class_engine_1_1_exception"},
+    {"namespace_engine_1_1_assets", "namespace_engine"},
+    {"class_engine_1_1_assets_1_1_asset", "namespace_engine_1_1_assets"},
+    {"class_engine_1_1_assets_1_1_asset_1af26cbe7f9237ea471f12620b0547ba39", "class_engine_1_1_assets_1_1_asset"},
+    {"class_engine_1_1_assets_1_1_asset_1acb5958d164f0b8ced1638de58b3ea0b0", "class_engine_1_1_assets_1_1_asset"},
+    {"class_engine_1_1_assets_1_1_asset_1aecd651b9312fa89e40d268214576839e", "class_engine_1_1_assets_1_1_asset"},
+    {"class_engine_1_1_assets_1_1_asset_1a10931e97cd354bf1770b3824d0e87029", "class_engine_1_1_assets_1_1_asset"},
+    {"class_engine_1_1_assets_1_1_asset_1ab25cbfe379d57b414b800c0040e7c63c", "class_engine_1_1_assets_1_1_asset"},
+    {"class_engine_1_1_assets_1_1_asset_1a0f49f750cc898cd041d24bad216236a3", "class_engine_1_1_assets_1_1_asset"},
+    {"union_engine_1_1_assets_1_1_asset_1_1_event", "class_engine_1_1_assets_1_1_asset"},
+    {"union_engine_1_1_assets_1_1_asset_1_1_event_1a44fbeef7562e035debdc9e7b67a4a4d3", "union_engine_1_1_assets_1_1_asset_1_1_event"},
+    {"union_engine_1_1_assets_1_1_asset_1_1_event_1a8f9134d4fb444dc5663b84f843f33af9", "union_engine_1_1_assets_1_1_asset_1_1_event"},
+    {"union_engine_1_1_assets_1_1_asset_1_1_event_1ae2d2305926d305273bc1d390b15766f4", "union_engine_1_1_assets_1_1_asset_1_1_event"},
+    {"struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded", "union_engine_1_1_assets_1_1_asset_1_1_event"},
+    {"struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a6df474ccd46caeb0e7ffb2214bb795d3", "struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded"},
+    {"struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a4560959655f932a372e0f9cee598ed1c", "struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded"},
+    {"struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded", "union_engine_1_1_assets_1_1_asset_1_1_event"},
+    {"struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded_1a2bd5af73d6bccab761fc36bc699512f5", "struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded"},
+    {"struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting", "union_engine_1_1_assets_1_1_asset_1_1_event"},
+    {"struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting_1acbeca9e79efb323226a26b82977d36ec", "struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting"},
     {"namespace_engine_1_1_audio", "namespace_engine"},
+    {"namespace_engine_1_1_audio_1afd879d300eefd81460d53b2dd486fdc3", "namespace_engine_1_1_audio"},
     {"class_engine_1_1_audio_1_1_audio_buffer", "namespace_engine_1_1_audio"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3", "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052"},
@@ -73,6 +99,9 @@ static const std::unordered_map<std::string, std::string> parentChildRelationMap
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a6495adba09844fac8eeb0aba86e6f1bf", "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a967d280b5c16d95f2947647dd2ca6cc2", "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1", "class_engine_1_1_audio_1_1_audio_buffer"},
+    {"class_engine_1_1_audio_1_1_audio_buffer_1a85edaa7e5c3ae68dabadd5373890591e", "class_engine_1_1_audio_1_1_audio_buffer"},
+    {"class_engine_1_1_audio_1_1_audio_buffer_1ac2405c9952006b799c0d91e126ced774", "class_engine_1_1_audio_1_1_audio_buffer"},
+    {"class_engine_1_1_audio_1_1_audio_buffer_1ae7ef7f8f4cecc7f19bbe01319f8aa37d", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ab3f8002fc80d9bff50cfb6095e10a721", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1aa89013946a6eb2907227ed4c26f052b9", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a801f334ffcb3d943f1804ea73e1516ea", "class_engine_1_1_audio_1_1_audio_buffer"},
@@ -111,19 +140,20 @@ static const std::unordered_map<std::string, std::string> parentChildRelationMap
     {"class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ace70a5db6685e6d210c3f905a8fa7d4c", "class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
     {"class_engine_1_1_graphics_1_1_texture_1ac00e77b373f4de42a738b6a5f0d5d2ee", "class_engine_1_1_graphics_1_1_texture"},
     {"class_engine_1_1_graphics_1_1_texture_1a65eb15ea929c3e09e18dec43eee8e7de", "class_engine_1_1_graphics_1_1_texture"},
-    {"class_engine_1_1_graphics_1_1_texture_1a9e6d8a16d8f704424f607df35b33d170", "class_engine_1_1_graphics_1_1_texture"},
-    {"class_engine_1_1_graphics_1_1_texture_1ad7f2ae339bbf771135725b8f7d0e5f1e", "class_engine_1_1_graphics_1_1_texture"},
+    {"class_engine_1_1_graphics_1_1_texture_1a2aa720c8a39a34c503b0f9c7c589125d", "class_engine_1_1_graphics_1_1_texture"},
+    {"class_engine_1_1_graphics_1_1_texture_1a7aa1cce1ae133a47d7a8f587ee666ad6", "class_engine_1_1_graphics_1_1_texture"},
     {"class_engine_1_1_graphics_1_1_texture_1a6ee1abf82e30d5300ae8f0c8d922e31a", "class_engine_1_1_graphics_1_1_texture"},
     {"class_engine_1_1_graphics_1_1_texture_1a23af68344fcb00113b6ca7b3483d51d3", "class_engine_1_1_graphics_1_1_texture"},
     {"class_engine_1_1_graphics_1_1_texture_1abb2d22975c917eb2f420534c945cea97", "class_engine_1_1_graphics_1_1_texture"},
+    {"class_engine_1_1_graphics_1_1_texture_1ae0b09c21b3d9d3087cbc507ca62a01e8", "class_engine_1_1_graphics_1_1_texture"},
     {"class_engine_1_1_graphics_1_1_texture2_d", "namespace_engine_1_1_graphics"},
-    {"class_engine_1_1_graphics_1_1_texture2_d_1a72209814e3eb89de883407b036bdcabe", "class_engine_1_1_graphics_1_1_texture2_d"},
+    {"class_engine_1_1_graphics_1_1_texture2_d_1a629378d74ba090e1c803ac407cb4fea5", "class_engine_1_1_graphics_1_1_texture2_d"},
     {"class_engine_1_1_graphics_1_1_texture2_d_1a9c3792d370059e1597226b6718065767", "class_engine_1_1_graphics_1_1_texture2_d"},
     {"class_engine_1_1_graphics_1_1_texture2_d_1a33f483de6390f42c9f50770eb0dea0ee", "class_engine_1_1_graphics_1_1_texture2_d"},
     {"class_engine_1_1_graphics_1_1_texture2_d_1a01bc9c7d79de56ee427850505326c48c", "class_engine_1_1_graphics_1_1_texture2_d"},
     {"class_engine_1_1_graphics_1_1_texture2_d_1aca9fcc8dbbda1fc56be5b1f07afc1aba", "class_engine_1_1_graphics_1_1_texture2_d"},
     {"class_engine_1_1_graphics_1_1_texture3_d", "namespace_engine_1_1_graphics"},
-    {"class_engine_1_1_graphics_1_1_texture3_d_1ab5701e80f5b27ec7f5e02f08a7e8a35a", "class_engine_1_1_graphics_1_1_texture3_d"},
+    {"class_engine_1_1_graphics_1_1_texture3_d_1a2085a15a9a5a755b553652b84e8ee8ab", "class_engine_1_1_graphics_1_1_texture3_d"},
     {"class_engine_1_1_graphics_1_1_texture3_d_1a1c29881151b000a083509a877239403a", "class_engine_1_1_graphics_1_1_texture3_d"},
     {"class_engine_1_1_graphics_1_1_texture3_d_1af602dd82ea87309879808b7f8465604f", "class_engine_1_1_graphics_1_1_texture3_d"},
     {"class_engine_1_1_graphics_1_1_texture3_d_1a8379e2913526715cdf62ce2a4a76f330", "class_engine_1_1_graphics_1_1_texture3_d"},
@@ -138,13 +168,15 @@ static const std::unordered_map<std::string, std::string> parentChildRelationMap
     {"namespace_engine_1_1_utils_1_1_path_1a20779c0c7023ad09e23ae3ce81f36f1f", "namespace_engine_1_1_utils_1_1_path"},
     {"namespace_engine_1_1_utils_1_1_path_1ae52df0e81924b99e45d515f595659628", "namespace_engine_1_1_utils_1_1_path"},
     {"group___engine", "index"},
+    {"group___assets", "group___engine"},
     {"group___audio", "group___engine"},
     {"group___graphics", "group___engine"},
+    {"group___graphics_1gae5b9a93609bed06adb3ce5902791df8a", "group___graphics"},
     {"group___utils", "group___engine"},
+    {"group___utils_1ga175f00127b5cd4fc673a52180eb80eb5", "group___utils"},
     {"dir_d44c64559bbebec7f509842c48db8b23", "index"},
     {"dir_2cd7e651a2b0059902d1cba21662f8f9", "dir_d44c64559bbebec7f509842c48db8b23"},
-    {"_asset_manager_8hpp", "dir_2cd7e651a2b0059902d1cba21662f8f9"},
-    {"_asset_model_8hpp", "dir_2cd7e651a2b0059902d1cba21662f8f9"},
+    {"_asset_8hpp", "dir_2cd7e651a2b0059902d1cba21662f8f9"},
     {"_assets_8hpp", "dir_2cd7e651a2b0059902d1cba21662f8f9"},
     {"dir_4efc9c1854f752659886c9117cbec549", "dir_d44c64559bbebec7f509842c48db8b23"},
     {"_audio_8hpp", "dir_4efc9c1854f752659886c9117cbec549"},
@@ -160,10 +192,14 @@ static const std::unordered_map<std::string, std::string> parentChildRelationMap
     {"_texture3_d_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
     {"dir_2d1d991c66e7a032b2ab80c11328e79c", "dir_d44c64559bbebec7f509842c48db8b23"},
     {"_array_view_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
+    {"_config_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
+    {"group___utils_1ga175f00127b5cd4fc673a52180eb80eb5", "_config_8hpp"},
+    {"_config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0", "_config_8hpp"},
     {"_path_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
     {"_utils_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
     {"_engine_8hpp", "dir_d44c64559bbebec7f509842c48db8b23"},
-    {"_engine_8hpp_1aee3bd62c6c84d746802c115f5d4c1519", "_engine_8hpp"},
+    {"_engine_8hpp_1ae7d52a33d99eaf0d779f82301ce5432f", "_engine_8hpp"},
+    {"_exception_8hpp", "dir_d44c64559bbebec7f509842c48db8b23"}
 };
 
 static void recursiveRefidPrint(const Node& node, const int indent = 0) {
@@ -184,22 +220,13 @@ static bool contains(const std::unordered_map<K, V>& map, const K& key) {
     return map.find(key) != map.end();
 }
 
-static const Node::BaseClass& find(const std::list<Doxydown::Node::BaseClass>& list, const std::string& key) {
+static const Node::ClassReference& find(const Node::ClassReferences& list, const std::string& key) {
     for (const auto& child : list) {
-        if (child.ptr->getRefid() == key) {
+        if (child.refid == key) {
             return child;
         }
     }
-    throw EXCEPTION("Base class not found");
-}
-
-static const Node::DerivedClass& find(const std::list<Doxydown::Node::DerivedClass>& list, const std::string& key) {
-    for (const auto& child : list) {
-        if (child.ptr->getRefid() == key) {
-            return child;
-        }
-    }
-    throw EXCEPTION("Derived class not found");
+    throw EXCEPTION("Class reference {} not found", key);
 }
 
 static void compare(const nlohmann::json& a, const nlohmann::json& b, const std::string& path = ".") {
@@ -247,7 +274,14 @@ static void traverse(const Node& node, const std::function<void(const Node*, con
 }
 
 TEST_CASE("Load everything") {
+    Config config;
+    TextPrinter printer(config);
+    JsonConverter jsonConverter(config, printer);
     Doxygen doxygen(IMPORT_DIR);
+
+    doxygen.load();
+    printer.setCache(&doxygen.getCache());
+    doxygen.finalize(config, printer);
 
     const auto& index = doxygen.getIndex();
     //recursiveRefidPrint(index);
@@ -282,7 +316,7 @@ TEST_CASE("Load everything") {
 
     SECTION("Validate child-parent relation for groups only") {
         traverse(doxygen.getIndex(), [&](const Node* parent, const Node* node) {
-            if (node->getKind() != Node::Kind::GROUP) return;
+            if (node->getKind() != Node::Kind::MODULE) return;
 
             INFO(node->getRefid());
             const auto refid = parentChildRelationMap.at(node->getRefid());
@@ -307,8 +341,8 @@ TEST_CASE("Load everything") {
         CHECK(index.find("group___engine")->findChild("group___utils"));
         CHECK(index.find("group___audio")->getParent()->getRefid() == "group___engine");
         CHECK(index.find("group___utils")->getParent()->getRefid() == "group___engine");
-        CHECK(index.find("group___utils")->getKind() == Node::Kind::GROUP);
-        CHECK(index.find("group___audio")->getKind() == Node::Kind::GROUP);
+        CHECK(index.find("group___utils")->getKind() == Node::Kind::MODULE);
+        CHECK(index.find("group___audio")->getKind() == Node::Kind::MODULE);
         CHECK(index.find("namespace_engine")->getRefid() == "namespace_engine");
         CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_audio"));
         CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_utils"));
@@ -318,24 +352,26 @@ TEST_CASE("Load everything") {
         CHECK(index.find("namespace_engine_1_1_audio")->getName() == "Engine::Audio");
         CHECK(index.find("namespace_engine_1_1_utils")->getName() == "Engine::Utils");
         CHECK(index.find("namespace_engine_1_1_utils_1_1_path")->getName() == "Engine::Utils::Path");
+        CHECK(index.find("class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Node::Kind::TYPEDEF);
     }
 
     SECTION("Classes with inheritance must have base and derived classes") {
-        const auto& base = index.find("class_engine_1_1_graphics_1_1_texture2_d")->getData().baseClasses;
+        const auto& base = index.find("class_engine_1_1_graphics_1_1_texture2_d")->getBaseClasses();
         CHECK(find(base, "class_engine_1_1_graphics_1_1_texture").prot == Node::Visibility::PUBLIC);
 
-        const auto& derived = index.find("class_engine_1_1_graphics_1_1_texture")->getData().derivedClasses;
+        const auto& derived = index.find("class_engine_1_1_graphics_1_1_texture")->getDerivedClasses();
         CHECK(find(derived, "class_engine_1_1_graphics_1_1_texture2_d").prot == Node::Visibility::PUBLIC);
     }
     SECTION("Classes must have valid location data") {
-        const auto& location = index.find("class_engine_1_1_audio_1_1_audio_manager")->getData().location;
+        const auto [data, childrenData] = index.find("class_engine_1_1_audio_1_1_audio_manager")->loadData(config, printer);
+        const auto& location = data.location;
         CHECK(location.file == "include/Audio/AudioManager.hpp");
         CHECK(location.line == 17);
         CHECK(location.column == 1);
     }
-    SECTION("Validate generated JSON with pre-defined one") {
-        auto data = JsonConverter::convert(*index.find("class_engine_1_1_graphics_1_1_texture"));
+    /*SECTION("Validate generated JSON with pre-defined one") {
+        auto data = JsonConverter::convert(*index.find("class_engine_1_1_audio_1_1_audio_buffer"));
         std::cout << data.dump(2) << std::endl;
         //REQUIRE_NOTHROW(compare(klassEngineGraphicsTexture, data));
-    }
+    }*/
 }

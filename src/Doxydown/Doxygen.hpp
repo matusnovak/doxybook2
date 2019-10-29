@@ -8,22 +8,29 @@ namespace Doxydown {
     class Doxygen {
     public:
         explicit Doxygen(std::string path);
-        ~Doxygen();
+
+        void load();
+        void finalize(const Config& config, const TextPrinter& printer);
 
         const Node& getIndex() const {
-            return index;
+            return *index;
+        }
+
+        NodePtr find(const std::string& refid) const;
+
+        const NodeCacheMap& getCache() const {
+            return cache;
         }
     private:
         typedef std::unordered_multimap<std::string, std::string> KindRefidMap;
-        typedef std::unordered_map<std::string, Node*> CacheMap;
 
         KindRefidMap getIndexKinds() const;
+        void getIndexCache(NodeCacheMap& cache, const NodePtr& node) const;
+        void finalizeRecursively(const Config& config, const TextPrinter& printer, const NodePtr& node);
 
-        // Creates map<refid, Node*> and processes node recursively
-        void getIndexCache(CacheMap& cache, Node* node) const;
-
-        std::string inputDir;
         // The root object that holds everything (index.xml)
-        Node index;
+        NodePtr index;
+        NodeCacheMap cache;
+        std::string inputDir;
     };
 }

@@ -18,7 +18,7 @@ namespace Engine {
 				 */
 				UNKNOWN = 0,
 				/*!
-				 * @note Thus primarly this for the best performance!
+				 * @note Use primarly this for the best performance!
 				 */
 				RGBA8,
 				RGB8,
@@ -28,22 +28,30 @@ namespace Engine {
 				RGB32
 			};
 
-			Texture() = default;
-			virtual ~Texture() = 0;
+			explicit Texture(Type type);
+			virtual ~Texture() = default;
 			/*!
 			 * @brief Returns the width of the texture in pixels
+			 * @return Width in pixels
 			 */
 			virtual int getWidth() const = 0;
 			/*!
 			 * @brief Returns the height of the texture in pixels
+			 * @return Height in pixels
 			 */
 			virtual int getHeight() const = 0;
 			/*!
 			 * @brief Returns the depth of the texture in pixels
 			 * @note If this texture is 2D the depth is always 1 pixels
+			 * @return Depth in pixels
 			 */
 			virtual int getDepth() const = 0;
-
+			inline bool isLoaded() const {
+				/*!
+				 * Does some more things
+				 */
+				return loaded;
+			}
 		protected:
 			bool loaded{false};
 			Type type;

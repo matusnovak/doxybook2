@@ -1,0 +1,5 @@
+site_name: Doxydown Example
+theme:
+  name: 'readthedocs'
+markdown_extensions:
+  - admonition

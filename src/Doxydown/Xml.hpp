@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <functional>
+#include <memory>
 
 namespace tinyxml2 {
     class XMLNode;

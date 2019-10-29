@@ -64,7 +64,7 @@ Doxydown::Xml::Element Doxydown::Xml::Element::firstChildElement() const {
 }
 
 Doxydown::Xml::Element Doxydown::Xml::Element::firstChildElement(const std::string& name) const {
-    return Element(ptr->FirstChildElement(name.c_str()));
+    return Element(ptr->FirstChildElement(name.empty() ? nullptr : name.c_str()));
 }
 
 std::string Doxydown::Xml::Element::getAttr(const std::string& name) const {

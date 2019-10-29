@@ -1,9 +1,15 @@
 build*/
 temp/
+example/doxygen/
 install/
 .vscode/
 .vs/
 *.kdev4
 *~
 cache/
-example/mkdocs/api/*
+example/mkdocs-readthedocs/docs/api/*
+example/hugo-book/content/api/*
+example/hugo-learn/content/api/*
+!example/mkdocs-readthedocs/docs/api/.gitkeep
+!example/hugo-book/content/api/.gitkeep
+!example/hugo-learn/content/api/.gitkeep

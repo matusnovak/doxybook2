@@ -1,15 +1,24 @@
 #pragma once
 #include <string>
-#include <sstream>
 #include "TextParser.hpp"
+#include "Config.hpp"
+#include "Node.hpp"
 
 namespace Doxydown {
     class TextPrinter {
     public:
-        static std::string printMarkdown(const TextParser::Node& node);
-        static std::string printPlain(const TextParser::Node& node);
+        explicit TextPrinter(const Config& config);
+
+        std::string printMarkdown(const TextParser::Node& node) const;
+        std::string printPlain(const TextParser::Node& node) const;
+
+        void setCache(const NodeCacheMap* cache) {
+            this->cache = cache;
+        }
     private:
-        static void printMarkdown(std::stringstream& ss, const TextParser::Node& node);
-        static void printPlain(std::stringstream& ss, const TextParser::Node& node);
+        const Config& config;
+        const NodeCacheMap* cache{nullptr};
+        void printMarkdown(std::stringstream& ss, const TextParser::Node& node) const;
+        void printPlain(std::stringstream& ss, const TextParser::Node& node) const;
     };
 }

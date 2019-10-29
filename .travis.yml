@@ -1,0 +1,48 @@
+matrix:
+  include:
+    - os: linux
+      arch: amd64
+      dist: bionic
+      language: cpp
+      compiler: gcc-8
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-8
+            - cmake
+            - lcov
+            - curl
+            - valgrind
+            - doxygen
+
+    - os: linux
+      arch: arm64
+      dist: bionic
+      language: cpp
+      compiler: gcc-8
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-8
+            - cmake
+            - lcov
+            - curl
+            - valgrind
+            - doxygen
+
+    - os: osx
+      arch: amd64
+      language: cpp
+      osx_image: xcode10.2
+      addons:
+        apt:
+          packages:
+            - cmake
+            - doxygen
+script:
+  - bash build.sh || travis_terminate 1;
+  - bash test.sh || travis_terminate 1;

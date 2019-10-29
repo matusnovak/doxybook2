@@ -1,0 +1,8 @@
+baseURL: https://matusnovak.github.io/doxydown/hugo-book
+languageCode: en-us
+title: Doxydown Example
+theme: hugo-book
+disableKinds: ['taxonomy', 'taxonomyTerm']
+disablePathToLower: true
+enableGitInfo: true
+pygmentsCodeFences: true

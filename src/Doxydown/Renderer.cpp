@@ -1,23 +1,91 @@
 #include <chrono>
-#include <iomanip>
 #include <inja/inja.hpp>
+#include <nlohmann/json.hpp>
 #include "Renderer.hpp"
 #include "Exception.hpp"
 #include "Log.hpp"
+#include "TextUtils.hpp"
 
-Doxydown::Renderer::Renderer() : env(std::make_unique<inja::Environment>()) {
+Doxydown::Renderer::Renderer(const Config& config)
+    : config(config),
+      env(std::make_unique<inja::Environment>()) {
+
+    env->add_callback("isEmpty", 1, [](inja::Arguments& args) -> bool {
+        const auto arg = args.at(0)->get<std::string>();
+        return arg.empty();
+    });
     env->add_callback("title", 1, [](inja::Arguments& args) {
-        auto arg = args.at(0)->get<std::string>();
-        if (!arg.empty()) arg[0] = toupper(arg[0]);
-        return arg;
+        const auto arg = args.at(0)->get<std::string>();
+        return TextUtils::title(arg);
     });
     env->add_callback("date", 1, [](inja::Arguments& args) -> std::string {
-        auto arg = args.at(0)->get<std::string>();
-        const auto t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-        char mbstr[100];
-        std::strftime(mbstr, sizeof(mbstr), arg.c_str(), std::localtime(&t));
-        return mbstr;
+        const auto arg = args.at(0)->get<std::string>();
+        return TextUtils::date(arg);
     });
+    env->add_callback("stripNamespace", 1, [](inja::Arguments& args) -> std::string {
+        const auto arg = args.at(0)->get<std::string>();
+        return TextUtils::stripNamespace(arg);
+    });
+    env->add_callback("countProperty", 3, [](inja::Arguments& args) -> int {
+        const auto arr = args.at(0)->get<nlohmann::json>();
+        const auto key = args.at(1)->get<std::string>();
+        const auto value = args.at(2)->get<std::string>();
+        auto count = 0;
+        for (auto it = arr.begin(); it != arr.end(); ++it) {
+            auto& obj = *it;
+            auto val = obj.at(key);
+            if (val == value) count++;
+        }
+        return count;
+    });
+    env->add_callback("countProperty2", 5, [](inja::Arguments& args) -> int {
+        const auto arr = args.at(0)->get<nlohmann::json>();
+        const auto key0 = args.at(1)->get<std::string>();
+        const auto value0 = args.at(2)->get<std::string>();
+        const auto key1 = args.at(3)->get<std::string>();
+        const auto value1 = args.at(4)->get<std::string>();
+        auto count = 0;
+        for (auto it = arr.begin(); it != arr.end(); ++it) {
+            auto& obj = *it;
+            if (obj.at(key0) == value0 && obj.at(key1) == value1) count++;
+        }
+        return count;
+    });
+    env->add_callback("queryProperty", 3, [](inja::Arguments& args) -> nlohmann::json {
+        const auto arr = args.at(0)->get<nlohmann::json>();
+        const auto key = args.at(1)->get<std::string>();
+        const auto value = args.at(2)->get<std::string>();
+        auto ret = nlohmann::json::array();
+        for (auto it = arr.begin(); it != arr.end(); ++it) {
+            auto& obj = *it;
+            if (obj.at(key) == value) {
+                ret.push_back(obj);
+            }
+        }
+        return ret;
+    });
+    env->add_callback("queryProperty2", 5, [](inja::Arguments& args) -> nlohmann::json {
+        const auto arr = args.at(0)->get<nlohmann::json>();
+        const auto key0 = args.at(1)->get<std::string>();
+        const auto value0 = args.at(2)->get<std::string>();
+        const auto key1 = args.at(3)->get<std::string>();
+        const auto value1 = args.at(4)->get<std::string>();
+        auto ret = nlohmann::json::array();
+        for (auto it = arr.begin(); it != arr.end(); ++it) {
+            auto& obj = *it;
+            if (obj.at(key0) == value0 && obj.at(key1) == value1) {
+                ret.push_back(obj);
+            }
+        }
+        return ret;
+    });
+    env->add_callback("render", 2, [=](inja::Arguments& args) -> nlohmann::json {
+        const auto name = args.at(0)->get<std::string>();
+        const auto data = args.at(1)->get<nlohmann::json>();
+        return this->render(name, data);
+    });
+    env->set_trim_blocks(false);
+    env->set_lstrip_blocks(false);
 }
 
 Doxydown::Renderer::~Renderer() = default;
@@ -28,14 +96,32 @@ void Doxydown::Renderer::render(const std::string& name, const std::string& path
         throw EXCEPTION("Template {} not found", name);
     }
 
-    std::fstream file(path, std::ios::out);
-    if (!file) throw EXCEPTION("Failed to open file for writing {}", path);
-    Log::i("Rendering {}", path);
+    const auto absPath = Path::join(config.outputDir, path);
+    std::fstream file(absPath, std::ios::out);
+    if (!file) {
+        throw EXCEPTION("Failed to open file for writing {}", absPath);
+    }
+    Log::i("Rendering {}", absPath);
     try {
         env->render_to(file, *it->second, data);
     } catch (std::exception& e) {
-        throw EXCEPTION("Failed to render template error {}", e.what());
+        throw EXCEPTION("Failed to render template '{}' error {}", name, e.what());
     }
+}
+
+std::string Doxydown::Renderer::render(const std::string& name, const nlohmann::json& data) const {
+    const auto it = templates.find(name);
+    if (it == templates.end()) {
+        throw EXCEPTION("Template {} not found", name);
+    }
+
+    std::stringstream ss;
+    try {
+        env->render_to(ss, *it->second, data);
+    } catch (std::exception& e) {
+        throw EXCEPTION("Failed to render template '{}' error {}", name, e.what());
+    }
+    return ss.str();
 }
 
 void Doxydown::Renderer::addTemplate(const std::string& name, const std::string& src) {
@@ -44,6 +130,6 @@ void Doxydown::Renderer::addTemplate(const std::string& name, const std::string&
         const auto it = templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl)))).first;
         env->include_template(it->first, *it->second);
     } catch (std::exception& e) {
-        throw EXCEPTION("Failed to parse template named {} error {}", name, e.what());
+        throw EXCEPTION("Failed to parse template '{}' error {}", name, e.what());
     }
 }

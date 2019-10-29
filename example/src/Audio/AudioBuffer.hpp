@@ -4,6 +4,12 @@
 namespace Engine {
 	namespace Audio {
 		class AudioManager;
+		class AudioBuffer;
+
+		/*!
+		 * @brief Do something with the buffer
+		 */
+		extern void doSomething(AudioBuffer& buffer);
 
 		/*!
 		 * @brief _A simple audio buffer to hold PCM samples_
@@ -33,7 +39,7 @@ namespace Engine {
 			};
 			typedef Utils::ArrayView<uint8_t> AudioData;
 			/*!
-		     * @details Use this to populate the buffer
+		     * @brief Use this to populate the buffer
  		     */
 			struct TypedAudioData {
 				AudioData buffer;
@@ -50,22 +56,29 @@ namespace Engine {
 			/*!
 		     * @brief Play this buffer
 			 * @param manager Which manager to play the sound with
+			 * @throw Exception If this buffer is already playing
  		     */
 			void play(AudioManager& manager) const;
 			/*!
 		     * @brief Stop this buffer playing
 			 * @param manager Which manager to stop the sound with
+			 * @throw Exception If this buffer is already stopped
  		     */
 			void stop(AudioManager& manager) const;
 			/*!
 		     * @brief Loop this buffer forever
 			 * @param manager Which manager to loop the sound with
 			 * @note This will loop forever until you call stop
+			 * @throw Exception If this buffer is already looping
  		     */
 			void loop(AudioManager& manager) const;
 			void setData(const TypedAudioData& data);
+
+			friend class AudioManager;
+			friend void Audio::doSomething(AudioBuffer& buffer);
 		protected:
 			float* getData();
+			bool playing{false};
 		};
 	}
 }

@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include "Texture.hpp"
 
@@ -8,14 +7,14 @@ namespace Engine {
 		/*!
 		 * @ingroup Graphics
 		 */
-		class Texture3D: public Texture {
-			Texture3D(int width, int height, int depth, uint8_t* data, Texture::Type type);
-			virtual ~Texture3D();
+		class Framebuffer: public Texture {
+		public:
+			Framebuffer(int width, int height);
+			virtual ~Framebuffer();
 
 			int getWidth() const override;
 			int getHeight() const override;
 			int getDepth() const override;
-
 		};
 	}
 }

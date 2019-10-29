@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 
 #include "Texture.hpp"
 
@@ -7,9 +8,10 @@ namespace Engine {
 		/*!
 		 * @ingroup Graphics
 		 */
-		class Texture2D: public Texture {
-			Texture2D(int width, int height, uint8_t* data, Texture::Type type);
-			virtual ~Texture2D();
+		class Texture3D: public Texture {
+		public:
+			Texture3D(int width, int height, int depth, uint8_t* data, Texture::Type type = Texture::Type::RGBA8);
+			virtual ~Texture3D();
 
 			int getWidth() const override;
 			int getHeight() const override;
