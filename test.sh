@@ -4,5 +4,5 @@ set -e
 
 cd example
 doxygen
-cd ..
+cd ../build
 ctest --verbose

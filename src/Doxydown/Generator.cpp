@@ -1,3 +1,10 @@
+#ifdef _WIN32
+#define NOMINMAX
+#include <Windows.h>
+#else
+#include <sys/stat.h>
+#endif
+
 #include <fstream>
 #include "Generator.hpp"
 #include "Doxygen.hpp"
@@ -6,12 +13,6 @@
 #include "Templates.hpp"
 #include "Exception.hpp"
 #include "TextUtils.hpp"
-
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <sys/stat.h>
-#endif
 
 static void createDirectory(const std::string& path) {
 #ifdef _WIN32

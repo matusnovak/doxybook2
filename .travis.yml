@@ -29,9 +29,7 @@ matrix:
           packages:
             - gcc-8
             - cmake
-            - lcov
             - curl
-            - valgrind
             - doxygen
 
     - os: osx
@@ -49,5 +47,14 @@ install:
     fi
 
 script:
-  - bash build.sh || travis_terminate 1;
-  - bash test.sh || travis_terminate 1;
+  - ./build.sh || travis_terminate 1;
+  - ./test.sh || travis_terminate 1;
+  - ./package.sh || travis_terminate 1;
+
+deploy:
+  provider: releases
+  api_key: "$GITHUB_OAUTH_TOKEN"
+  file: "doxydown-$(gcc -dumpmachine).zip"
+  skip_cleanup: true
+  on:
+    tags: true

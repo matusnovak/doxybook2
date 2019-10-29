@@ -109,6 +109,7 @@ static const std::unordered_map<std::string, std::string> parentChildRelationMap
     {"class_engine_1_1_audio_1_1_audio_buffer_1a821933214a00331f80c1c58cee859eec", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a560600772af8cde2fd5dc45e1780789c", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a93722a1dc8b7340e2c9b5e78d50151f5", "class_engine_1_1_audio_1_1_audio_buffer"},
+    {"class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1aca7a68c7803b2e48dc21cce6a3f672f7", "struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data"},
     {"struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ab67e24ae6f8654c77d3fc3060a319e29", "struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data"},

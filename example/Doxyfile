@@ -1,14 +1,23 @@
 DOXYFILE_ENCODING = UTF-8
 PROJECT_NAME = "Doxydown Example"
 OUTPUT_DIRECTORY = doxygen
-GENERATE_HTML = YES
-GENERATE_XML = YES
 GENERATE_LATEX = NO
+
+# The necessary stuff!
+GENERATE_XML = YES
 XML_OUTPUT = xml
 INPUT = src
 RECURSIVE = YES
 FILE_PATTERNS = *.h *.hpp *.md
 EXAMPLE_PATH = examples
 EXAMPLE_PATTERNS = *.cpp
+
+# Html related stuff, optional
 SHOW_NAMESPACES = YES
 EXTRACT_ALL = YES
+GENERATE_HTML = YES
+
+# This is here just so we don't have to mess
+# with dot executable on continous integration.
+CALL_GRAPH = NO
+HAVE_DOT = NO

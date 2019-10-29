@@ -12,7 +12,7 @@ file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 
 # Add the project source files
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
-set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Doxydown")
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxydown")
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src/Doxydown)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 foreach(SOURCE ${SOURCES} ${HEADERS})
