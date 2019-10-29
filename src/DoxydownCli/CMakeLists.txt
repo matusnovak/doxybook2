@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 project(DoxydownCli)
 
+if(UNIX AND NOT APPLE)
+  set(LINUX TRUE)
+endif()
+
 # Clang tidy
 if(USE_CLANG_TIDY)
   set_target_properties(${PROJECT_NAME} PROPERTIES CXX_CLANG_TIDY "clang-tidy;-warnings-as-errors=*;-checks=-*,clang-analyzer-*,-clang-analyzer-alpha*,llvm-*,-llvm-include-order,modernize-*,performance-*,readibility-*,-readability-braces-around-statements,-readability-magic-numbers,-modernize-use-equals-default")
@@ -12,7 +16,7 @@ file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 
 # Add the project source files
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
-if (UNIX OR MINGW)
+if (LINUX OR MINGW)
   target_link_libraries(${PROJECT_NAME} PUBLIC -static-libgcc -static-libstdc++)
 endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxydown")
