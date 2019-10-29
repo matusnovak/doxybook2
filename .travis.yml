@@ -5,13 +5,8 @@ matrix:
       dist: bionic
       language: cpp
       compiler: gcc-8
-      env:
-        - CC=gcc-8
-        - CXX=g++-8
       addons:
         apt:
-          sources:
-            - ubuntu-toolchain-r-test
           packages:
             - gcc-8
             - cmake
@@ -22,13 +17,8 @@ matrix:
       dist: bionic
       language: cpp
       compiler: gcc-8
-      env:
-        - CC=gcc-8
-        - CXX=g++-8
       addons:
         apt:
-          sources:
-            - ubuntu-toolchain-r-test
           packages:
             - gcc-8
             - cmake
