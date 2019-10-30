@@ -49,18 +49,22 @@ install:
       sudo cp doxygen-1.8.16/bin/doxygen /usr/local/bin/doxygen;
       sudo chmod +x /usr/local/bin/doxygen;
     fi
-  - if [[ -z "$TRAVIS_TAG" ]]; then
-      export TRAVIS_TAG=$TRAVIS_COMMIT;
-    fi
   - doxygen -version
 
 script: 
   - bash travis.sh || travis_terminate 1;
+  - stat doxydown.zip
+  - if [[ -n "$TRAVIS_TAG" ]]; then
+      mv doxydown.zip doxydown-$TRAVIS_TAG-$MACHINE.zip;
+    fi
 
 deploy:
   provider: releases
   api_key: "$GITHUB_OAUTH_TOKEN"
-  file: "doxydown-$TRAVIS_TAG-$MACHINE.zip"
+  file_glob: true
+  file: "doxydown-*.zip"
   skip_cleanup: true
   on:
     tags: true
+    repo: matusnovak/doxydown
+    branch: master

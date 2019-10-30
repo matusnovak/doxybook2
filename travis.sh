@@ -28,4 +28,4 @@ ctest --verbose
 
 # Package
 cd ../install
-zip ../doxydown-$TRAVIS_TAG-$MACHINE.zip *
+zip ../doxydown.zip *

@@ -6,7 +6,7 @@
 
 static const std::regex ANCHOR_REGEX("_[a-z0-9]{34,67}$");
 
-#ifdef __MINGW32__
+#if defined(__APPLE__) || defined(__MINGW32__)
     static const auto US_LOCALE = std::locale("en_US");
 #else
     static const auto US_LOCALE = std::locale("en_US.utf8");
