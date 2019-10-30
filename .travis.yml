@@ -3,6 +3,8 @@ matrix:
     - os: linux
       arch: amd64
       dist: bionic
+      env:
+        - MACHINE=linux-amd64
       language: cpp
       compiler: gcc-8
       addons:
@@ -15,6 +17,8 @@ matrix:
     - os: linux
       arch: arm64
       dist: bionic
+      env:
+        - MACHINE=linux-arm64
       language: cpp
       compiler: gcc-8
       addons:
@@ -26,6 +30,8 @@ matrix:
 
     - os: osx
       arch: amd64
+      env:
+        - MACHINE=osx-amd64
       language: cpp
       osx_image: xcode10.2
       addons:
@@ -43,6 +49,9 @@ install:
       sudo cp doxygen-1.8.16/bin/doxygen /usr/local/bin/doxygen;
       sudo chmod +x /usr/local/bin/doxygen;
     fi
+  - if [[ -z "$TRAVIS_TAG" ]]; then
+      export TRAVIS_TAG=$TRAVIS_COMMIT;
+    fi
   - doxygen -version
 
 script: 
@@ -51,7 +60,7 @@ script:
 deploy:
   provider: releases
   api_key: "$GITHUB_OAUTH_TOKEN"
-  file: "doxydown-$(gcc -dumpmachine).zip"
+  file: "doxydown-$TRAVIS_TAG-$MACHINE.zip"
   skip_cleanup: true
   on:
     tags: true

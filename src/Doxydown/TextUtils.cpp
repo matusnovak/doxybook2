@@ -4,7 +4,7 @@
 #include <sstream>
 #include "TextUtils.hpp"
 
-static const std::regex ANCHOR_REGEX("\\_[a-z0-9]{34,67}$");
+static const std::regex ANCHOR_REGEX("_[a-z0-9]{34,67}$");
 
 #ifdef __MINGW32__
     static const auto US_LOCALE = std::locale("en_US");

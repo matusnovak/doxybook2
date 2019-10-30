@@ -7,7 +7,7 @@
 using namespace Doxydown;
 
 static const auto klassEngineGraphicsTexture =
-    R"({
+R"({
   "abstract": true,
   "baseClasses": [
     {
@@ -61,7 +61,148 @@ static const auto klassEngineGraphicsTexture =
   "static": false
 })"_json;
 
-static const std::unordered_map<std::string, std::string> parentChildRelationMap = {
+typedef std::unordered_map<std::string, std::string> RelationMap;
+
+static const RelationMap parentChildRelationMap2 = {
+    {"namespaceEngine", "index"},
+    {"namespaceEngine_1ae3918a7bd8220f317f339ebda3295fa7", "namespaceEngine"},
+    {"classEngine_1_1Exception", "namespaceEngine"},
+    {"classEngine_1_1Exception_1ace265added7ec74ac0fe09b30d442621", "classEngine_1_1Exception"},
+    {"classEngine_1_1Exception_1a697748d2c21a434b4742910b8d4e53d4", "classEngine_1_1Exception"},
+    {"classEngine_1_1Exception_1a4f566b63e5d447cb468d0f89b46bb75c", "classEngine_1_1Exception"},
+    {"classEngine_1_1Exception_1ac25e87274c89524b026998678500dd29", "classEngine_1_1Exception"},
+    {"namespaceEngine_1_1Assets", "namespaceEngine"},
+    {"classEngine_1_1Assets_1_1Asset", "namespaceEngine_1_1Assets"},
+    {"classEngine_1_1Assets_1_1Asset_1af26cbe7f9237ea471f12620b0547ba39", "classEngine_1_1Assets_1_1Asset"},
+    {"classEngine_1_1Assets_1_1Asset_1acb5958d164f0b8ced1638de58b3ea0b0", "classEngine_1_1Assets_1_1Asset"},
+    {"classEngine_1_1Assets_1_1Asset_1aecd651b9312fa89e40d268214576839e", "classEngine_1_1Assets_1_1Asset"},
+    {"classEngine_1_1Assets_1_1Asset_1a10931e97cd354bf1770b3824d0e87029", "classEngine_1_1Assets_1_1Asset"},
+    {"classEngine_1_1Assets_1_1Asset_1ab25cbfe379d57b414b800c0040e7c63c", "classEngine_1_1Assets_1_1Asset"},
+    {"classEngine_1_1Assets_1_1Asset_1a0f49f750cc898cd041d24bad216236a3", "classEngine_1_1Assets_1_1Asset"},
+    {"unionEngine_1_1Assets_1_1Asset_1_1Event", "classEngine_1_1Assets_1_1Asset"},
+    {"unionEngine_1_1Assets_1_1Asset_1_1Event_1a44fbeef7562e035debdc9e7b67a4a4d3", "unionEngine_1_1Assets_1_1Asset_1_1Event"},
+    {"unionEngine_1_1Assets_1_1Asset_1_1Event_1a8f9134d4fb444dc5663b84f843f33af9", "unionEngine_1_1Assets_1_1Asset_1_1Event"},
+    {"unionEngine_1_1Assets_1_1Asset_1_1Event_1ae2d2305926d305273bc1d390b15766f4", "unionEngine_1_1Assets_1_1Asset_1_1Event"},
+    {"structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded", "unionEngine_1_1Assets_1_1Asset_1_1Event"},
+    {"structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a6df474ccd46caeb0e7ffb2214bb795d3", "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded"},
+    {"structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a4560959655f932a372e0f9cee598ed1c", "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded"},
+    {"structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded", "unionEngine_1_1Assets_1_1Asset_1_1Event"},
+    {"structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded_1a2bd5af73d6bccab761fc36bc699512f5", "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded"},
+    {"structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting", "unionEngine_1_1Assets_1_1Asset_1_1Event"},
+    {"structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting_1acbeca9e79efb323226a26b82977d36ec", "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting"},
+    {"namespaceEngine_1_1Audio", "namespaceEngine"},
+    {"namespaceEngine_1_1Audio_1afd879d300eefd81460d53b2dd486fdc3", "namespaceEngine_1_1Audio"},
+    {"classEngine_1_1Audio_1_1AudioBuffer", "namespaceEngine_1_1Audio"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3", "classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052aee9d73311ff0658494edfff14c3ec1e3", "classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052a5f90af42814c0a419d715d43ae54fd7a", "classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052a9003f0c99274c2b98d6804fc0e39bced", "classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052a6495adba09844fac8eeb0aba86e6f1bf", "classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052a967d280b5c16d95f2947647dd2ca6cc2", "classEngine_1_1Audio_1_1AudioBuffer_1ad6d10d04bef7fa259cdd5029697cf052"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a2c08e837f7eac332b2003c0989047ba1", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a85edaa7e5c3ae68dabadd5373890591e", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a8a93ebadfbe0508d87d2605f062b4b7f", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ae7ef7f8f4cecc7f19bbe01319f8aa37d", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1ab3f8002fc80d9bff50cfb6095e10a721", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1aa89013946a6eb2907227ed4c26f052b9", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a801f334ffcb3d943f1804ea73e1516ea", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a387243170ec71207123ae326c7dabd1a", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a821933214a00331f80c1c58cee859eec", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a560600772af8cde2fd5dc45e1780789c", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"classEngine_1_1Audio_1_1AudioBuffer_1a93722a1dc8b7340e2c9b5e78d50151f5", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData", "classEngine_1_1Audio_1_1AudioBuffer"},
+    {"structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData_1aca7a68c7803b2e48dc21cce6a3f672f7", "structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData"},
+    {"structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData_1ab67e24ae6f8654c77d3fc3060a319e29", "structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData"},
+    {"classEngine_1_1Audio_1_1AudioManager", "namespaceEngine_1_1Audio"},
+    {"classEngine_1_1Audio_1_1AudioManager_1a6ddfa33f548bda24e5968f448dd88728", "classEngine_1_1Audio_1_1AudioManager"},
+    {"classEngine_1_1Audio_1_1AudioManager_1aadcf89776de4c18aa2f227628e8a6186", "classEngine_1_1Audio_1_1AudioManager"},
+    {"classEngine_1_1Audio_1_1AudioManager_1ab518e57bc7c039b0ac985c74244ed027", "classEngine_1_1Audio_1_1AudioManager"},
+    {"namespaceEngine_1_1Graphics", "namespaceEngine"},
+    {"group__Graphics_1gae5b9a93609bed06adb3ce5902791df8a", "namespaceEngine_1_1Graphics"},
+    {"classEngine_1_1Graphics_1_1Framebuffer", "namespaceEngine_1_1Graphics"},
+    {"classEngine_1_1Graphics_1_1Framebuffer_1ab66e3d8f549898f3f393cedd8f5ac1ad", "classEngine_1_1Graphics_1_1Framebuffer"},
+    {"classEngine_1_1Graphics_1_1Framebuffer_1a19316bb17e8c78c8272053a1494f9ce8", "classEngine_1_1Graphics_1_1Framebuffer"},
+    {"classEngine_1_1Graphics_1_1Framebuffer_1a97a83fdba1f33cee37553b370be4762c", "classEngine_1_1Graphics_1_1Framebuffer"},
+    {"classEngine_1_1Graphics_1_1Framebuffer_1a41ad5c8ee63a4efabecc26f931300656", "classEngine_1_1Graphics_1_1Framebuffer"},
+    {"classEngine_1_1Graphics_1_1Framebuffer_1a10930c6d923758bc05c1e0958747958e", "classEngine_1_1Graphics_1_1Framebuffer"},
+    {"classEngine_1_1Graphics_1_1Handle", "namespaceEngine_1_1Graphics"},
+    {"classEngine_1_1Graphics_1_1Handle_1a986328747b7527a0c01728f0ae351b28", "classEngine_1_1Graphics_1_1Handle"},
+    {"classEngine_1_1Graphics_1_1Handle_1aab68ea12ecb749124568f6ab3cc414bc", "classEngine_1_1Graphics_1_1Handle"},
+    {"classEngine_1_1Graphics_1_1Handle_1a44c63f895a2ed3c095dfd4a9605a9ee4", "classEngine_1_1Graphics_1_1Handle"},
+    {"classEngine_1_1Graphics_1_1Handle_1a51c68ca867d2e6520f72ff3f55e43a19", "classEngine_1_1Graphics_1_1Handle"},
+    {"classEngine_1_1Graphics_1_1Texture", "namespaceEngine_1_1Graphics"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a696b031073e74bf2cb98e5ef201d4aa3", "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ab4b279046a02077466fa26cabb00c642", "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a165c6379d01617e12de274a3952efa63", "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a50989efe15b375dce8ba3a5714fe2543", "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a1cd42e2af35bdfb43d791f8cecdce4a4", "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ad9e8e4a9228ed56eceb29f0a1223b02b", "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
+    {"classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ace70a5db6685e6d210c3f905a8fa7d4c", "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3"},
+    {"classEngine_1_1Graphics_1_1Texture_1ac00e77b373f4de42a738b6a5f0d5d2ee", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1a65eb15ea929c3e09e18dec43eee8e7de", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1a2aa720c8a39a34c503b0f9c7c589125d", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1a7aa1cce1ae133a47d7a8f587ee666ad6", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1a6ee1abf82e30d5300ae8f0c8d922e31a", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1a23af68344fcb00113b6ca7b3483d51d3", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1abb2d22975c917eb2f420534c945cea97", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture_1ae0b09c21b3d9d3087cbc507ca62a01e8", "classEngine_1_1Graphics_1_1Texture"},
+    {"classEngine_1_1Graphics_1_1Texture2D", "namespaceEngine_1_1Graphics"},
+    {"classEngine_1_1Graphics_1_1Texture2D_1a629378d74ba090e1c803ac407cb4fea5", "classEngine_1_1Graphics_1_1Texture2D"},
+    {"classEngine_1_1Graphics_1_1Texture2D_1a9c3792d370059e1597226b6718065767", "classEngine_1_1Graphics_1_1Texture2D"},
+    {"classEngine_1_1Graphics_1_1Texture2D_1a33f483de6390f42c9f50770eb0dea0ee", "classEngine_1_1Graphics_1_1Texture2D"},
+    {"classEngine_1_1Graphics_1_1Texture2D_1a01bc9c7d79de56ee427850505326c48c", "classEngine_1_1Graphics_1_1Texture2D"},
+    {"classEngine_1_1Graphics_1_1Texture2D_1aca9fcc8dbbda1fc56be5b1f07afc1aba", "classEngine_1_1Graphics_1_1Texture2D"},
+    {"classEngine_1_1Graphics_1_1Texture3D", "namespaceEngine_1_1Graphics"},
+    {"classEngine_1_1Graphics_1_1Texture3D_1a2085a15a9a5a755b553652b84e8ee8ab", "classEngine_1_1Graphics_1_1Texture3D"},
+    {"classEngine_1_1Graphics_1_1Texture3D_1a1c29881151b000a083509a877239403a", "classEngine_1_1Graphics_1_1Texture3D"},
+    {"classEngine_1_1Graphics_1_1Texture3D_1af602dd82ea87309879808b7f8465604f", "classEngine_1_1Graphics_1_1Texture3D"},
+    {"classEngine_1_1Graphics_1_1Texture3D_1a8379e2913526715cdf62ce2a4a76f330", "classEngine_1_1Graphics_1_1Texture3D"},
+    {"classEngine_1_1Graphics_1_1Texture3D_1ada1260ef0cb755e4a283c617fae8b009", "classEngine_1_1Graphics_1_1Texture3D"},
+    {"namespaceEngine_1_1Utils", "namespaceEngine"},
+    {"classEngine_1_1Utils_1_1ArrayView", "namespaceEngine_1_1Utils"},
+    {"classEngine_1_1Utils_1_1ArrayView_1ab73615399bbbb9fd6246fa3982f2cfec", "classEngine_1_1Utils_1_1ArrayView"},
+    {"classEngine_1_1Utils_1_1ArrayView_1a5a726545dac6e3345a746b9f23e7a088", "classEngine_1_1Utils_1_1ArrayView"},
+    {"classEngine_1_1Utils_1_1ArrayView_1a934fde6ed35c2a3c051b11b549214cd6", "classEngine_1_1Utils_1_1ArrayView"},
+    {"classEngine_1_1Utils_1_1ArrayView_1a3079597de87ffeffe28d3cbf144ea8d3", "classEngine_1_1Utils_1_1ArrayView"},
+    {"namespaceEngine_1_1Utils_1_1Path", "namespaceEngine_1_1Utils"},
+    {"namespaceEngine_1_1Utils_1_1Path_1a20779c0c7023ad09e23ae3ce81f36f1f", "namespaceEngine_1_1Utils_1_1Path"},
+    {"namespaceEngine_1_1Utils_1_1Path_1ae52df0e81924b99e45d515f595659628", "namespaceEngine_1_1Utils_1_1Path"},
+    {"group__Engine", "index"},
+    {"group__Assets", "group__Engine"},
+    {"group__Audio", "group__Engine"},
+    {"group__Graphics", "group__Engine"},
+    {"group__Utils", "group__Engine"},
+    {"group__Utils_1ga175f00127b5cd4fc673a52180eb80eb5", "group__Utils"},
+    {"dir_68267d1309a1af8e8297ef4c3efbcdba", "index"},
+    {"dir_e0c1ede47f21c4a643a1257f949f98e0", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"Asset_8hpp", "dir_e0c1ede47f21c4a643a1257f949f98e0"},
+    {"Assets_8hpp", "dir_e0c1ede47f21c4a643a1257f949f98e0"},
+    {"dir_c64386e93f356b78d4612c7b7741707c", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"Audio_8hpp", "dir_c64386e93f356b78d4612c7b7741707c"},
+    {"AudioBuffer_8hpp", "dir_c64386e93f356b78d4612c7b7741707c"},
+    {"AudioManager_8hpp", "dir_c64386e93f356b78d4612c7b7741707c"},
+    {"dir_3419e189e460663ec2c964233bf8dcd6", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"Framebuffer_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"Graphics_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"Handle_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"Renderer_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"Texture_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"Texture2D_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"Texture3D_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"dir_a7363e98f9e0bdd87618633653859815", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"ArrayView_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"Config_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0", "Config_8hpp"},
+    {"Path_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"Utils_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"Engine_8hpp", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"Engine_8hpp_1ae7d52a33d99eaf0d779f82301ce5432f", "Engine_8hpp"},
+    {"Exception_8hpp", "dir_68267d1309a1af8e8297ef4c3efbcdba"}
+};
+
+static const RelationMap parentChildRelationMap1 = {
     {"namespace_engine", "index"},
     {"namespace_engine_1ae3918a7bd8220f317f339ebda3295fa7", "namespace_engine"},
     {"class_engine_1_1_exception", "namespace_engine"},
@@ -287,6 +428,18 @@ TEST_CASE("Load everything") {
     const auto& index = doxygen.getIndex();
     //recursiveRefidPrint(index);
 
+    // Create child <-> parent map
+    /*std::set<std::string> temp;
+    traverse(doxygen.getIndex(), [&](const Node* parent, const Node* node) {
+        if (temp.find(node->getRefid()) == temp.end()) {
+            std::cout << "{\"" << node->getRefid() << "\", \"" << parent->getRefid() << "\"}," << std::endl;
+            temp.insert(node->getRefid());
+        }
+    });*/
+
+    const auto isUpperCase = index.getChildren().begin()->get()->getRefid() == "namespaceEngine";
+    auto& relationMap = isUpperCase ? parentChildRelationMap2 : parentChildRelationMap1;
+
     SECTION("Make sure everyone has a parent") {
         traverse(doxygen.getIndex(), [](const Node* parent, const Node* node) {
             INFO(node->getRefid());
@@ -310,7 +463,7 @@ TEST_CASE("Load everything") {
             if (!Node::isKindLanguage(parent->getKind())) return;
 
             INFO(node->getRefid());
-            const auto refid = parentChildRelationMap.at(node->getRefid());
+            const auto refid = relationMap.at(node->getRefid());
             CHECK(refid == parent->getRefid());
         });
     }
@@ -320,7 +473,7 @@ TEST_CASE("Load everything") {
             if (node->getKind() != Node::Kind::MODULE) return;
 
             INFO(node->getRefid());
-            const auto refid = parentChildRelationMap.at(node->getRefid());
+            const auto refid = relationMap.at(node->getRefid());
             CHECK(refid == parent->getRefid());
         });
     }
@@ -330,45 +483,82 @@ TEST_CASE("Load everything") {
             if (node->getKind() != Node::Kind::FILE && node->getKind() != Node::Kind::DIR) return;
 
             INFO(node->getRefid());
-            const auto refid = parentChildRelationMap.at(node->getRefid());
+            const auto refid = relationMap.at(node->getRefid());
             CHECK(refid == parent->getRefid());
         });
     }
 
     SECTION("Random lookup via find cuntion") {
-        CHECK(index.getRefid() == "index");
-        CHECK(index.find("group___engine")->getRefid() == "group___engine");
-        CHECK(index.find("group___engine")->findChild("group___audio"));
-        CHECK(index.find("group___engine")->findChild("group___utils"));
-        CHECK(index.find("group___audio")->getParent()->getRefid() == "group___engine");
-        CHECK(index.find("group___utils")->getParent()->getRefid() == "group___engine");
-        CHECK(index.find("group___utils")->getKind() == Node::Kind::MODULE);
-        CHECK(index.find("group___audio")->getKind() == Node::Kind::MODULE);
-        CHECK(index.find("namespace_engine")->getRefid() == "namespace_engine");
-        CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_audio"));
-        CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_utils"));
-        CHECK(index.find("namespace_engine_1_1_audio")->getParent()->getRefid() == "namespace_engine");
-        CHECK(index.find("namespace_engine_1_1_utils")->getParent()->getRefid() == "namespace_engine");
-        CHECK(index.find("namespace_engine")->getName() == "Engine");
-        CHECK(index.find("namespace_engine_1_1_audio")->getName() == "Engine::Audio");
-        CHECK(index.find("namespace_engine_1_1_utils")->getName() == "Engine::Utils");
-        CHECK(index.find("namespace_engine_1_1_utils_1_1_path")->getName() == "Engine::Utils::Path");
-        CHECK(index.find("class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Node::Kind::TYPEDEF);
+        if (isUpperCase) {
+            CHECK(index.getRefid() == "index");
+            CHECK(index.find("group__Engine")->getRefid() == "group__Engine");
+            CHECK(index.find("group__Engine")->findChild("group__Audio"));
+            CHECK(index.find("group__Engine")->findChild("group__Utils"));
+            CHECK(index.find("group__Audio")->getParent()->getRefid() == "group__Engine");
+            CHECK(index.find("group__Utils")->getParent()->getRefid() == "group__Engine");
+            CHECK(index.find("group__Utils")->getKind() == Node::Kind::MODULE);
+            CHECK(index.find("group__Audio")->getKind() == Node::Kind::MODULE);
+            CHECK(index.find("namespaceEngine")->getRefid() == "namespaceEngine");
+            CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Audio"));
+            CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Utils"));
+            CHECK(index.find("namespaceEngine_1_1Audio")->getParent()->getRefid() == "namespaceEngine");
+            CHECK(index.find("namespaceEngine_1_1Utils")->getParent()->getRefid() == "namespaceEngine");
+            CHECK(index.find("namespaceEngine")->getName() == "Engine");
+            CHECK(index.find("namespaceEngine_1_1Audio")->getName() == "Engine::Audio");
+            CHECK(index.find("namespaceEngine_1_1Utils")->getName() == "Engine::Utils");
+            CHECK(index.find("namespaceEngine_1_1Utils_1_1Path")->getName() == "Engine::Utils::Path");
+            CHECK(index.find("classEngine_1_1Audio_1_1AudioBuffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Node::Kind::TYPEDEF);
+        } else {
+            CHECK(index.getRefid() == "index");
+            CHECK(index.find("group___engine")->getRefid() == "group___engine");
+            CHECK(index.find("group___engine")->findChild("group___audio"));
+            CHECK(index.find("group___engine")->findChild("group___utils"));
+            CHECK(index.find("group___audio")->getParent()->getRefid() == "group___engine");
+            CHECK(index.find("group___utils")->getParent()->getRefid() == "group___engine");
+            CHECK(index.find("group___utils")->getKind() == Node::Kind::MODULE);
+            CHECK(index.find("group___audio")->getKind() == Node::Kind::MODULE);
+            CHECK(index.find("namespace_engine")->getRefid() == "namespace_engine");
+            CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_audio"));
+            CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_utils"));
+            CHECK(index.find("namespace_engine_1_1_audio")->getParent()->getRefid() == "namespace_engine");
+            CHECK(index.find("namespace_engine_1_1_utils")->getParent()->getRefid() == "namespace_engine");
+            CHECK(index.find("namespace_engine")->getName() == "Engine");
+            CHECK(index.find("namespace_engine_1_1_audio")->getName() == "Engine::Audio");
+            CHECK(index.find("namespace_engine_1_1_utils")->getName() == "Engine::Utils");
+            CHECK(index.find("namespace_engine_1_1_utils_1_1_path")->getName() == "Engine::Utils::Path");
+            CHECK(index.find("class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Node::Kind::TYPEDEF);
+        }
     }
 
     SECTION("Classes with inheritance must have base and derived classes") {
-        const auto& base = index.find("class_engine_1_1_graphics_1_1_texture2_d")->getBaseClasses();
-        CHECK(find(base, "class_engine_1_1_graphics_1_1_texture").prot == Node::Visibility::PUBLIC);
+        if (isUpperCase) {
+            const auto& base = index.find("classEngine_1_1Graphics_1_1Texture2D")->getBaseClasses();
+            CHECK(find(base, "classEngine_1_1Graphics_1_1Texture").prot == Node::Visibility::PUBLIC);
 
-        const auto& derived = index.find("class_engine_1_1_graphics_1_1_texture")->getDerivedClasses();
-        CHECK(find(derived, "class_engine_1_1_graphics_1_1_texture2_d").prot == Node::Visibility::PUBLIC);
+            const auto& derived = index.find("classEngine_1_1Graphics_1_1Texture")->getDerivedClasses();
+            CHECK(find(derived, "classEngine_1_1Graphics_1_1Texture2D").prot == Node::Visibility::PUBLIC);
+        } else {
+            const auto& base = index.find("class_engine_1_1_graphics_1_1_texture2_d")->getBaseClasses();
+            CHECK(find(base, "class_engine_1_1_graphics_1_1_texture").prot == Node::Visibility::PUBLIC);
+
+            const auto& derived = index.find("class_engine_1_1_graphics_1_1_texture")->getDerivedClasses();
+            CHECK(find(derived, "class_engine_1_1_graphics_1_1_texture2_d").prot == Node::Visibility::PUBLIC);
+        }
     }
     SECTION("Classes must have valid location data") {
-        const auto [data, childrenData] = index.find("class_engine_1_1_audio_1_1_audio_manager")->loadData(config, printer);
-        const auto& location = data.location;
-        CHECK(location.file == "include/Audio/AudioManager.hpp");
-        CHECK(location.line == 17);
-        CHECK(location.column == 1);
+        if (isUpperCase) {
+            const auto[data, childrenData] = index.find("classEngine_1_1Audio_1_1AudioManager")->loadData(config, printer);
+            const auto& location = data.location;
+            CHECK(location.file == "src/Audio/AudioManager.hpp");
+            CHECK(location.line == 17);
+            CHECK(location.column == 19);
+        } else {
+            const auto [data, childrenData] = index.find("class_engine_1_1_audio_1_1_audio_manager")->loadData(config, printer);
+            const auto& location = data.location;
+            CHECK(location.file == "src/Audio/AudioManager.hpp");
+            CHECK(location.line == 17);
+            CHECK(location.column == 19);
+        }
     }
     /*SECTION("Validate generated JSON with pre-defined one") {
         auto data = JsonConverter::convert(*index.find("class_engine_1_1_audio_1_1_audio_buffer"));
