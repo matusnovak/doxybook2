@@ -1,3 +1,4 @@
 content/api/*
-site/
+public/
+resources/
 !content/api/.gitkeep
