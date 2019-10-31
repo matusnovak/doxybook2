@@ -49,7 +49,7 @@ jobs:
           name: Tests
           command: |
             cd build
-            ctest -vvv
+            ctest --verbose
 
       - persist_to_workspace:
           root: /tmp/workspace
