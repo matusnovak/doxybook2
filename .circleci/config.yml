@@ -88,5 +88,5 @@ workflows:
     jobs:
       - build
       - examples:
-        requires:
-          - build
+          requires:
+            - build
