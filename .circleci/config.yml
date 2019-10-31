@@ -124,7 +124,7 @@ jobs:
             git config --global user.name "$GITHUB_USER_NAME"
             mv /tmp/workspace/gh-pages ./gh-pages
             # Why the fuck does absolute path not work here?
-            gh-pages --dist gh-pages
+            sudo gh-pages --dist gh-pages
 
 workflows:
   version: 2
