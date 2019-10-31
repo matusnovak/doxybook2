@@ -48,11 +48,16 @@ namespace Doxydown {
         FRIENDS
     };
 
-    template <typename T>
-    extern T toEnum(const std::string& str);
 
-    template <typename T>
-    extern std::string toStr(T value);
+    extern Kind toEnumKind(const std::string& str);
+    extern Type toEnumType(const std::string& str);
+    extern Visibility toEnumVisibility(const std::string& str);
+    extern Virtual toEnumVirtual(const std::string& str);
+
+    extern std::string toStr(Kind value);
+    extern std::string toStr(Type value);
+    extern std::string toStr(Visibility value);
+    extern std::string toStr(Virtual value);
 
     extern bool isKindLanguage(Kind kind);
     extern bool isKindStructured(Kind kind);

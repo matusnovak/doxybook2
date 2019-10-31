@@ -62,7 +62,7 @@ Doxydown::NodePtr Doxydown::Node::parse(NodeCacheMap& cache,
 
     ptr->xmlPath = refidPath;
     ptr->name = assertChild(compounddef, "compoundname").getText();
-    ptr->kind = toEnum<Kind>(compounddef.getAttr("kind"));
+    ptr->kind = toEnumKind(compounddef.getAttr("kind"));
     ptr->empty = false;
     cache.insert(std::make_pair(ptr->refid, ptr));
 
@@ -131,7 +131,7 @@ Doxydown::NodePtr Doxydown::Node::parse(Xml::Element& memberdef, const std::stri
 
     auto ptr = std::make_shared<Node>(refid);
     ptr->name = assertChild(memberdef, "name").getText();
-    ptr->kind = toEnum<Kind>(memberdef.getAttr("kind"));
+    ptr->kind = toEnumKind(memberdef.getAttr("kind"));
     ptr->empty = true;
     ptr->parseBaseInfo(memberdef);
 
@@ -178,7 +178,7 @@ Doxydown::Node::~Node() = default;
 void Doxydown::Node::parseBaseInfo(const Xml::Element& element) {
     const auto briefdescription = assertChild(element, "briefdescription");
     temp->brief = XmlTextParser::parseParas(briefdescription);
-    visibility = toEnum<Visibility>(element.getAttr("prot", "public"));
+    visibility = toEnumVisibility(element.getAttr("prot", "public"));
 
     switch (kind) {
         case Kind::DEFINE: {
@@ -234,8 +234,8 @@ void Doxydown::Node::parseInheritanceInfo(const Xml::Element& element) {
         ClassReference base;
         base.refid = e.getAttr("refid", "");
         base.name = e.getText();
-        base.virt = toEnum<Virtual>(e.getAttr("virt"));
-        base.prot = toEnum<Visibility>(e.getAttr("prot"));
+        base.virt = toEnumVirtual(e.getAttr("virt"));
+        base.prot = toEnumVisibility(e.getAttr("prot"));
         baseClasses.push_back(base);
     });
 
@@ -243,8 +243,8 @@ void Doxydown::Node::parseInheritanceInfo(const Xml::Element& element) {
         ClassReference derived;
         derived.refid = e.getAttr("refid", "");
         derived.name = e.getText();
-        derived.virt = toEnum<Virtual>(e.getAttr("virt"));
-        derived.prot = toEnum<Visibility>(e.getAttr("prot"));
+        derived.virt = toEnumVirtual(e.getAttr("virt"));
+        derived.prot = toEnumVisibility(e.getAttr("prot"));
         derivedClasses.push_back(derived);
     });
 }
@@ -371,7 +371,7 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
     data.isConst = element.getAttr("const", "no") == "yes";
     data.isExplicit = element.getAttr("explicit", "no") == "yes";
     data.isInline = element.getAttr("inline", "no") == "yes";
-    data.virt = toEnum<Virtual>(element.getAttr("virt", "non-virtual"));
+    data.virt = toEnumVirtual(element.getAttr("virt", "non-virtual"));
 
     auto locationElement = element.firstChildElement("location");
     if (locationElement) {
