@@ -14,7 +14,14 @@
 
 static const std::regex ANCHOR_REGEX("_[a-z0-9]{34,67}$");
 
-static const auto US_LOCALE = std::locale("en_US");
+// Really?!
+#if defined(__APPLE__) || defined(__MINGW32__)
+    static const auto US_LOCALE = std::locale("en_US");
+#elif defined(__linux__)
+    static const auto US_LOCALE = std::locale("en-US");
+#else
+    static const auto US_LOCALE = std::locale("en_US.utf8");
+#endif
 
 static std::string replaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t pos = 0;
