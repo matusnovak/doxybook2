@@ -4,14 +4,14 @@
 #include "Xml.hpp"
 
 namespace Doxydown {
-    class TextParser {
+    class XmlTextParser {
     public:
         class Tag;
         typedef std::unique_ptr<Tag> TagPtr;
         typedef std::vector<TagPtr> Children;
 
         struct Node {
-            enum Type {
+            enum class Type {
                 UNKNOWN = -1,
                 TEXT = 0,
                 PARA,
@@ -34,7 +34,7 @@ namespace Doxydown {
                 XREFDESCRIPTION
             };
 
-            Type type;
+            Type type{Type::UNKNOWN};
             std::vector<Node> children;
             std::string data;
             std::string extra;

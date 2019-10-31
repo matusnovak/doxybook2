@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <memory>
+#include <unordered_map>
 #include <nlohmann/json.hpp>
 #include "Config.hpp"
 

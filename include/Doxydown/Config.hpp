@@ -7,14 +7,14 @@ namespace Doxydown {
         std::string outputDir;
 
         // Generate extra JSON for each rendered template
-        bool debugTemplateJson{false};
+        bool debugTemplateJson{true};
+
+        // Convert all refids (including folder names) into lowercase?
+        bool linkLowercase{false};
 
         // Should we put the class, namespace, modules, and files indexes
         // into their respective folders? (Hugo/Learn) needs that!
         bool indexInFolders{false};
-
-        // What should the index files be named?
-        std::string indexFileName{""};
 
         // What is the base URL to prepend all links with?
         std::string baseUrl{""};
@@ -32,6 +32,13 @@ namespace Doxydown {
         std::string folderRelatedPagesName{"Related Pages"};
         std::string folderNamespacesName{"Namespaces"};
 
+        // What are the names of the index files?
+        std::string indexGroupsName{"index_groups"};
+        std::string indexClassesName{"index_classes"};
+        std::string indexFilesName{"index_files"};
+        std::string indexRelatedPagesName{"index_pages"};
+        std::string indexNamespacesName{"index_namespaces"};
+
         // What templates to use for each kind?
         std::string templateKindClass{"kind_class"};
         std::string templateKindStruct{"kind_class"};
@@ -48,4 +55,7 @@ namespace Doxydown {
         std::string templateIndexGroups{"index_groups"};
         std::string templateIndexFiles{"index_files"};
     };
+
+    void loadConfig(Config& config, const std::string& path);
+    void saveConfig(Config& config, const std::string& path);
 }

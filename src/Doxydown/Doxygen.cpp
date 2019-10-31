@@ -1,11 +1,11 @@
 #include <set>
 #include <tinyxml2.h>
-#include "Doxygen.hpp"
-#include "Path.hpp"
-#include "Exception.hpp"
-#include "Log.hpp"
-#include "Xml.hpp"
-#include "Node.hpp"
+#include <Doxydown/Doxygen.hpp>
+#include <Doxydown/Path.hpp>
+#include <Doxydown/Exception.hpp>
+#include <Doxydown/Xml.hpp>
+#include <Doxydown/Node.hpp>
+#include "ExceptionUtils.hpp"
 
 #define ASSERT_FIRST_CHILD_ELEMENT(PARENT, NAME) \
     const auto NAME = PARENT->FirstChildElement(##NAME);\
@@ -33,12 +33,11 @@ static bool isKindAllowedDirs(const std::string& kind) {
     return kind == "dir" || kind == "file";
 }
 
-Doxydown::Doxygen::Doxygen(std::string path)
-    : index(std::make_shared<Node>("index")),
-      inputDir(std::move(path)) {
+Doxydown::Doxygen::Doxygen()
+    : index(std::make_shared<Node>("index")) {
 }
 
-void Doxydown::Doxygen::load() {
+void Doxydown::Doxygen::load(const std::string& inputDir) {
     // Remove entires from index which parent has been updated
     const auto cleanup = [](const NodePtr& node) {
         auto it = node->children.begin();
@@ -54,7 +53,7 @@ void Doxydown::Doxygen::load() {
     // Load basic information about all nodes.
     // This includes refid, brief, and list of members.
     // This won't load detailed documentation or other data! (we will do that later)
-    const auto kindRefidMap = getIndexKinds();
+    const auto kindRefidMap = getIndexKinds(inputDir);
     for (const auto& pair : kindRefidMap) {
         if (!isKindAllowedLanguage(pair.first))
             continue;
@@ -115,28 +114,34 @@ void Doxydown::Doxygen::load() {
     getIndexCache(cache, index);
 }
 
-void Doxydown::Doxygen::finalize(const Config& config, const TextPrinter& printer) {
-    finalizeRecursively(config, printer, index);
+void Doxydown::Doxygen::finalize(const Config& config,
+                                 const TextPrinter& plainPrinter,
+                                 const TextPrinter& markdownPrinter) {
+    finalizeRecursively(config, plainPrinter, markdownPrinter, index);
 }
 
-void Doxydown::Doxygen::finalizeRecursively(const Config& config, const TextPrinter& printer, const NodePtr& node) {
+void Doxydown::Doxygen::finalizeRecursively(const Config& config,
+                                            const TextPrinter& plainPrinter,
+                                            const TextPrinter& markdownPrinter,
+                                            const NodePtr& node) {
+
     for (const auto& child : node->children) {
-        child->finalize(config, printer, cache);
-        finalizeRecursively(config, printer, child);
+        child->finalize(config, plainPrinter, markdownPrinter, cache);
+        finalizeRecursively(config, plainPrinter, markdownPrinter, child);
     }
 }
 
-Doxydown::Doxygen::KindRefidMap Doxydown::Doxygen::getIndexKinds() const {
+Doxydown::Doxygen::KindRefidMap Doxydown::Doxygen::getIndexKinds(const std::string& inputDir) const {
     const auto indexPath = Path::join(inputDir, "index.xml");
     Xml xml(indexPath);
 
     std::unordered_multimap<std::string, std::string> map;
 
     auto root = xml.firstChildElement("doxygenindex");
-    if (!root) throw DOXYGEN_EXCEPTION("Unable to find root element in file {}", indexPath);
+    if (!root) throw EXCEPTION("Unable to find root element in file {}", indexPath);
 
     auto compound = root.firstChildElement("compound");
-    if (!compound) throw DOXYGEN_EXCEPTION("No <compound> element in file {}", indexPath);
+    if (!compound) throw EXCEPTION("No <compound> element in file {}", indexPath);
     while (compound) {
         try {
             const auto kind = compound.getAttr("kind");

@@ -1,8 +1,13 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
-#include "Doxygen.hpp"
-#include "Exception.hpp"
-#include "JsonConverter.hpp"
+#include <fmt/format.h>
+#include <nlohmann/json.hpp>
+#include <Doxydown/Doxygen.hpp>
+#include <Doxydown/Exception.hpp>
+#include <Doxydown/JsonConverter.hpp>
+#include <Doxydown/TextMarkdownPrinter.hpp>
+#include <Doxydown/TextPlainPrinter.hpp>
+#include <ExceptionUtils.hpp>
 
 using namespace Doxydown;
 
@@ -346,8 +351,8 @@ static const RelationMap parentChildRelationMap1 = {
 
 static void recursiveRefidPrint(const Node& node, const int indent = 0) {
     for (const auto& child : node.getChildren()) {
-        if (node.getKind() == Node::Kind::DIR || node.getKind() == Node::Kind::FILE) {
-            if (child->getKind() != Node::Kind::DIR && child->getKind() != Node::Kind::FILE) {
+        if (node.getKind() == Kind::DIR || node.getKind() == Kind::FILE) {
+            if (child->getKind() != Kind::DIR && child->getKind() != Kind::FILE) {
                 continue;
             }
         }
@@ -417,13 +422,13 @@ static void traverse(const Node& node, const std::function<void(const Node*, con
 
 TEST_CASE("Load everything") {
     Config config;
-    TextPrinter printer(config);
-    JsonConverter jsonConverter(config, printer);
-    Doxygen doxygen(IMPORT_DIR);
+    Doxygen doxygen;
+    TextPlainPrinter plainPrinter(config, doxygen);
+    TextMarkdownPrinter markdownPrinter(config, doxygen);
+    JsonConverter jsonConverter(config, plainPrinter, markdownPrinter);
 
-    doxygen.load();
-    printer.setCache(&doxygen.getCache());
-    doxygen.finalize(config, printer);
+    doxygen.load(IMPORT_DIR);
+    doxygen.finalize(config, plainPrinter, markdownPrinter);
 
     const auto& index = doxygen.getIndex();
     //recursiveRefidPrint(index);
@@ -450,7 +455,7 @@ TEST_CASE("Load everything") {
     SECTION("Make sure everyone does not belong to index except root objects") {
         for (const auto& child : doxygen.getIndex().getChildren()) {
             traverse(*child, [&](const Node* parent, const Node* node) {
-                if (!Node::isKindLanguage(parent->getKind())) return;
+                if (!isKindLanguage(parent->getKind())) return;
 
                 INFO(node->getRefid());
                 CHECK(node->getParent() != &doxygen.getIndex());
@@ -460,7 +465,7 @@ TEST_CASE("Load everything") {
 
     SECTION("Validate child-parent relation") {
         traverse(doxygen.getIndex(), [&](const Node* parent, const Node* node) {
-            if (!Node::isKindLanguage(parent->getKind())) return;
+            if (!isKindLanguage(parent->getKind())) return;
 
             INFO(node->getRefid());
             const auto refid = relationMap.at(node->getRefid());
@@ -470,7 +475,7 @@ TEST_CASE("Load everything") {
 
     SECTION("Validate child-parent relation for groups only") {
         traverse(doxygen.getIndex(), [&](const Node* parent, const Node* node) {
-            if (node->getKind() != Node::Kind::MODULE) return;
+            if (node->getKind() != Kind::MODULE) return;
 
             INFO(node->getRefid());
             const auto refid = relationMap.at(node->getRefid());
@@ -480,7 +485,7 @@ TEST_CASE("Load everything") {
 
     SECTION("Validate child-parent relation for files and dirs only") {
         traverse(doxygen.getIndex(), [&](const Node* parent, const Node* node) {
-            if (node->getKind() != Node::Kind::FILE && node->getKind() != Node::Kind::DIR) return;
+            if (node->getKind() != Kind::FILE && node->getKind() != Kind::DIR) return;
 
             INFO(node->getRefid());
             const auto refid = relationMap.at(node->getRefid());
@@ -496,8 +501,8 @@ TEST_CASE("Load everything") {
             CHECK(index.find("group__Engine")->findChild("group__Utils"));
             CHECK(index.find("group__Audio")->getParent()->getRefid() == "group__Engine");
             CHECK(index.find("group__Utils")->getParent()->getRefid() == "group__Engine");
-            CHECK(index.find("group__Utils")->getKind() == Node::Kind::MODULE);
-            CHECK(index.find("group__Audio")->getKind() == Node::Kind::MODULE);
+            CHECK(index.find("group__Utils")->getKind() == Kind::MODULE);
+            CHECK(index.find("group__Audio")->getKind() == Kind::MODULE);
             CHECK(index.find("namespaceEngine")->getRefid() == "namespaceEngine");
             CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Audio"));
             CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Utils"));
@@ -507,7 +512,7 @@ TEST_CASE("Load everything") {
             CHECK(index.find("namespaceEngine_1_1Audio")->getName() == "Engine::Audio");
             CHECK(index.find("namespaceEngine_1_1Utils")->getName() == "Engine::Utils");
             CHECK(index.find("namespaceEngine_1_1Utils_1_1Path")->getName() == "Engine::Utils::Path");
-            CHECK(index.find("classEngine_1_1Audio_1_1AudioBuffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Node::Kind::TYPEDEF);
+            CHECK(index.find("classEngine_1_1Audio_1_1AudioBuffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Kind::TYPEDEF);
         } else {
             CHECK(index.getRefid() == "index");
             CHECK(index.find("group___engine")->getRefid() == "group___engine");
@@ -515,8 +520,8 @@ TEST_CASE("Load everything") {
             CHECK(index.find("group___engine")->findChild("group___utils"));
             CHECK(index.find("group___audio")->getParent()->getRefid() == "group___engine");
             CHECK(index.find("group___utils")->getParent()->getRefid() == "group___engine");
-            CHECK(index.find("group___utils")->getKind() == Node::Kind::MODULE);
-            CHECK(index.find("group___audio")->getKind() == Node::Kind::MODULE);
+            CHECK(index.find("group___utils")->getKind() == Kind::MODULE);
+            CHECK(index.find("group___audio")->getKind() == Kind::MODULE);
             CHECK(index.find("namespace_engine")->getRefid() == "namespace_engine");
             CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_audio"));
             CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_utils"));
@@ -526,34 +531,34 @@ TEST_CASE("Load everything") {
             CHECK(index.find("namespace_engine_1_1_audio")->getName() == "Engine::Audio");
             CHECK(index.find("namespace_engine_1_1_utils")->getName() == "Engine::Utils");
             CHECK(index.find("namespace_engine_1_1_utils_1_1_path")->getName() == "Engine::Utils::Path");
-            CHECK(index.find("class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Node::Kind::TYPEDEF);
+            CHECK(index.find("class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Kind::TYPEDEF);
         }
     }
 
     SECTION("Classes with inheritance must have base and derived classes") {
         if (isUpperCase) {
             const auto& base = index.find("classEngine_1_1Graphics_1_1Texture2D")->getBaseClasses();
-            CHECK(find(base, "classEngine_1_1Graphics_1_1Texture").prot == Node::Visibility::PUBLIC);
+            CHECK(find(base, "classEngine_1_1Graphics_1_1Texture").prot == Visibility::PUBLIC);
 
             const auto& derived = index.find("classEngine_1_1Graphics_1_1Texture")->getDerivedClasses();
-            CHECK(find(derived, "classEngine_1_1Graphics_1_1Texture2D").prot == Node::Visibility::PUBLIC);
+            CHECK(find(derived, "classEngine_1_1Graphics_1_1Texture2D").prot == Visibility::PUBLIC);
         } else {
             const auto& base = index.find("class_engine_1_1_graphics_1_1_texture2_d")->getBaseClasses();
-            CHECK(find(base, "class_engine_1_1_graphics_1_1_texture").prot == Node::Visibility::PUBLIC);
+            CHECK(find(base, "class_engine_1_1_graphics_1_1_texture").prot == Visibility::PUBLIC);
 
             const auto& derived = index.find("class_engine_1_1_graphics_1_1_texture")->getDerivedClasses();
-            CHECK(find(derived, "class_engine_1_1_graphics_1_1_texture2_d").prot == Node::Visibility::PUBLIC);
+            CHECK(find(derived, "class_engine_1_1_graphics_1_1_texture2_d").prot == Visibility::PUBLIC);
         }
     }
     SECTION("Classes must have valid location data") {
         if (isUpperCase) {
-            const auto[data, childrenData] = index.find("classEngine_1_1Audio_1_1AudioManager")->loadData(config, printer);
+            const auto[data, childrenData] = index.find("classEngine_1_1Audio_1_1AudioManager")->loadData(config, plainPrinter, markdownPrinter);
             const auto& location = data.location;
             CHECK(location.file == "src/Audio/AudioManager.hpp");
             CHECK(location.line == 17);
             CHECK(location.column == 19);
         } else {
-            const auto [data, childrenData] = index.find("class_engine_1_1_audio_1_1_audio_manager")->loadData(config, printer);
+            const auto [data, childrenData] = index.find("class_engine_1_1_audio_1_1_audio_manager")->loadData(config, plainPrinter, markdownPrinter);
             const auto& location = data.location;
             CHECK(location.file == "src/Audio/AudioManager.hpp");
             CHECK(location.line == 17);

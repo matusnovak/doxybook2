@@ -1,46 +1,28 @@
-#ifdef _WIN32
-#define NOMINMAX
-#include <Windows.h>
-#else
-#include <sys/stat.h>
-#endif
-
 #include <fstream>
-#include "Generator.hpp"
-#include "Doxygen.hpp"
-#include "Renderer.hpp"
-#include "Path.hpp"
-#include "Templates.hpp"
-#include "Exception.hpp"
-#include "TextUtils.hpp"
+#include <Doxydown/Generator.hpp>
+#include <Doxydown/Doxygen.hpp>
+#include <Doxydown/Renderer.hpp>
+#include <Doxydown/Path.hpp>
+#include <Doxydown/TemplateLoader.hpp>
+#include <Doxydown/Exception.hpp>
+#include <Doxydown/Utils.hpp>
+#include "ExceptionUtils.hpp"
 
-static void createDirectory(const std::string& path) {
-#ifdef _WIN32
-    if (!CreateDirectoryA(path.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError()) {
-        throw EXCEPTION("Failed to create directory {} error {}", path, int(GetLastError()));
-    }
-#else
-    const auto err = mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    if (err != 0 && err != EEXIST) {
-        throw EXCEPTION("Failed to create directory {} error {}", path, err);
-    }
-#endif
-}
 
-std::string Doxydown::Generator::kindToTemplateName(const Node::Kind kind) {
+std::string Doxydown::Generator::kindToTemplateName(const Kind kind) {
     using namespace Doxydown;
     switch (kind) {
-        case Node::Kind::STRUCT:
+        case Kind::STRUCT:
             return config.templateKindStruct;
-        case Node::Kind::INTERFACE:
+        case Kind::INTERFACE:
             return config.templateKindInterface;
-        case Node::Kind::UNION:
+        case Kind::UNION:
             return config.templateKindUnion;
-        case Node::Kind::CLASS:
+        case Kind::CLASS:
             return config.templateKindClass;
-        case Node::Kind::NAMESPACE:
+        case Kind::NAMESPACE:
             return config.templateKindNamespace;
-        case Node::Kind::MODULE:
+        case Kind::MODULE:
             return config.templateKindGroup;
         default: {
             throw EXCEPTION("Unrecognised kind {} please contant the author!", int(kind));
@@ -48,13 +30,13 @@ std::string Doxydown::Generator::kindToTemplateName(const Node::Kind kind) {
     }
 }
 
-Doxydown::Generator::Generator(const Config& config, const JsonConverter& jsonConverter)
+Doxydown::Generator::Generator(const Config& config, const JsonConverter& jsonConverter, const TemplateLoader& templateLoader)
     : config(config),
       jsonConverter(jsonConverter),
       renderer(config) {
 
-    for (const auto& pair : Templates::allTemplates) {
-        renderer.addTemplate(pair.key, pair.content);
+    for (const auto& pair : templateLoader.getTemplates()) {
+        renderer.addTemplate(pair.name, pair.contents);
     }
 }
 
@@ -62,15 +44,13 @@ void Doxydown::Generator::printRecursively(const Node& parent) {
     using namespace Doxydown;
 
     for (const auto& child : parent.getChildren()) {
-        if (child->isStructured() || child->getKind() == Node::Kind::MODULE) {
+        if (child->isStructured() || child->getKind() == Kind::MODULE) {
             nlohmann::json data = jsonConverter.getAsJson(*child);
 
             const auto path = Path::join(
-                Node::typeToFolderName(config, child->getType()),
-                child->getRefid() + ".md"
+                typeToFolderName(config, child->getType()),
+                child->getRefid() + "." + config.fileExt
             );
-
-            dump(path + ".json", data);
 
             renderer.render(
                 kindToTemplateName(child->getKind()),
@@ -83,25 +63,24 @@ void Doxydown::Generator::printRecursively(const Node& parent) {
 }
 
 void Doxydown::Generator::print(const Doxygen& doxygen) {
-    static const std::array<Node::Type, 4> ALL_GROUPS = {
-        Node::Type::CLASSES,
-        Node::Type::NAMESPACES,
-        Node::Type::DIRORFILE,
-        Node::Type::MODULES
+    static const std::array<Type, 4> ALL_GROUPS = {
+        Type::CLASSES,
+        Type::NAMESPACES,
+        Type::DIRORFILE,
+        Type::MODULES
     };
     for (const auto& g : ALL_GROUPS) {
-        createDirectory(Path::join(config.outputDir, Node::typeToFolderName(config, g)));
+        Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
     }
 
     printRecursively(doxygen.getIndex());
 }
 
 void Doxydown::Generator::printIndex(const Doxygen& doxygen, const std::string& name, const Filter& filter) {
-    const auto path = indexToPath(name);
+    const auto path = indexToPath(name) + "." + config.fileExt;
 
     nlohmann::json data;
     data["children"] = buildIndexRecursively(doxygen.getIndex(), filter);
-    dump(path + ".json", data);
     renderer.render(indexToTemplateName(name), path, data);
 }
 
@@ -134,29 +113,18 @@ nlohmann::json Doxydown::Generator::buildIndexRecursively(const Node& node, cons
     return json;
 }
 
-void Doxydown::Generator::dump(const std::string& path, const nlohmann::json& data) {
-    if (!config.debugTemplateJson) return;
-
-    std::ofstream file(Path::join(
-        config.outputDir,
-        path
-    ));
-    file << data.dump(2);
-}
-
 std::string Doxydown::Generator::indexToPath(const std::string& name) {
-    const auto filename = config.indexFileName.empty() ? "index_" + name + ".md" : config.indexFileName + ".md";
     if (name == "classes") {
-        return config.indexInFolders ? config.folderClassesName + "/" + filename : filename;
+        return config.indexInFolders ? config.folderClassesName + "/" + config.indexClassesName : config.indexClassesName;
     }
     if (name == "namespaces") {
-        return config.indexInFolders ? config.folderNamespacesName + "/" + filename : filename;
+        return config.indexInFolders ? config.folderNamespacesName + "/" + config.indexNamespacesName : config.indexNamespacesName;
     }
     if (name == "groups") {
-        return config.indexInFolders ? config.folderGroupsName + "/" + filename : filename;
+        return config.indexInFolders ? config.folderGroupsName + "/" + config.indexGroupsName : config.indexGroupsName;
     }
     if (name == "files") {
-        return config.indexInFolders ? config.folderFilesName + "/" + filename : filename;
+        return config.indexInFolders ? config.folderFilesName + "/" + config.indexFilesName : config.indexFilesName;
     }
     throw EXCEPTION("Index {} not recognised please contact the author", name);
 }

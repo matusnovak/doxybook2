@@ -7,7 +7,7 @@
 namespace Doxydown {
     class JsonConverter {
     public:
-        explicit JsonConverter(const Config& config, const TextPrinter& printer);
+        explicit JsonConverter(const Config& config, const TextPrinter& plainPrinter, const TextPrinter& markdownPrinter);
 
         nlohmann::json convert(const Node::ClassReference& klasse) const;
         nlohmann::json convert(const Node::ClassReferences& klasses) const;
@@ -20,6 +20,7 @@ namespace Doxydown {
         nlohmann::json getAsJson(const Node& node) const;
     private:
         const Config& config;
-        const TextPrinter& printer;
+        const TextPrinter& plainPrinter;
+        const TextPrinter& markdownPrinter;
     };
 }

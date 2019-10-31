@@ -1,16 +1,17 @@
 #pragma once
 #include <unordered_map>
 #include <string>
-#include "TextPrinter.hpp"
 #include "Node.hpp"
 
 namespace Doxydown {
+    class TextPrinter;
+
     class Doxygen {
     public:
-        explicit Doxygen(std::string path);
+        Doxygen();
 
-        void load();
-        void finalize(const Config& config, const TextPrinter& printer);
+        void load(const std::string& inputDir);
+        void finalize(const Config& config, const TextPrinter& plainPrinter, const TextPrinter& markdownPrinter);
 
         const Node& getIndex() const {
             return *index;
@@ -24,13 +25,15 @@ namespace Doxydown {
     private:
         typedef std::unordered_multimap<std::string, std::string> KindRefidMap;
 
-        KindRefidMap getIndexKinds() const;
+        KindRefidMap getIndexKinds(const std::string& inputDir) const;
         void getIndexCache(NodeCacheMap& cache, const NodePtr& node) const;
-        void finalizeRecursively(const Config& config, const TextPrinter& printer, const NodePtr& node);
+        void finalizeRecursively(const Config& config,
+                                 const TextPrinter& plainPrinter,
+                                 const TextPrinter& markdownPrinter,
+                                 const NodePtr& node);
 
         // The root object that holds everything (index.xml)
         NodePtr index;
         NodeCacheMap cache;
-        std::string inputDir;
     };
 }

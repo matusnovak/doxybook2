@@ -1,6 +1,7 @@
 #include <tinyxml2.h>
-#include "Xml.hpp"
-#include "Exception.hpp"
+#include <Doxydown/Xml.hpp>
+#include <Doxydown/Exception.hpp>
+#include "ExceptionUtils.hpp"
 
 Doxydown::Xml::Node::Node(tinyxml2::XMLNode* ptr)
     : ptr(ptr) {
@@ -69,7 +70,7 @@ Doxydown::Xml::Element Doxydown::Xml::Element::firstChildElement(const std::stri
 
 std::string Doxydown::Xml::Element::getAttr(const std::string& name) const {
     const auto str = ptr->Attribute(name.c_str());
-    if (str == nullptr) throw XML_EXCEPTION("Attribute {} does not exist in element {}", name, ptr->Name());
+    if (str == nullptr) throw EXCEPTION("Attribute {} does not exist in element {}", name, ptr->Name());
     return str;
 }
 
@@ -108,7 +109,7 @@ Doxydown::Xml::Xml(const std::string& path) : doc(new tinyxml2::XMLDocument) {
     this->path = path;
     const auto err = doc->LoadFile(path.c_str());
     if (err != tinyxml2::XMLError::XML_SUCCESS) {
-        throw XML_EXCEPTION("{}", doc->ErrorStr());
+        throw EXCEPTION("{}", doc->ErrorStr());
     }
     doc->SetUserData(this);
 }

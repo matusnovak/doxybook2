@@ -1,16 +1,18 @@
 #include <unordered_map>
 #include <functional>
-#include "Node.hpp"
-#include "Xml.hpp"
-#include "Exception.hpp"
-#include "TextParser.hpp"
-#include "TextPrinter.hpp"
-#include "Log.hpp"
-#include "TextUtils.hpp"
+#include <cassert>
+#include <fmt/format.h>
+#include <Doxydown/Node.hpp>
+#include <Doxydown/Exception.hpp>
+#include <Doxydown/XmlTextParser.hpp>
+#include <Doxydown/TextPrinter.hpp>
+#include <Doxydown/Log.hpp>
+#include <Doxydown/Utils.hpp>
+#include "ExceptionUtils.hpp"
 
 class Doxydown::Node::Temp {
 public:
-    TextParser::Node brief;
+    XmlTextParser::Node brief;
 };
 
 static Doxydown::NodePtr findInCache(Doxydown::NodeCacheMap& cache, const std::string& refid) {
@@ -51,7 +53,7 @@ Doxydown::NodePtr Doxydown::Node::parse(NodeCacheMap& cache,
                                         const std::string& inputDir,
                                         const NodePtr& ptr,
                                         const bool isGroupOrFile) {
-    const auto refidPath = Path::join(inputDir, ptr->refid + ".xml");
+    const auto refidPath = Utils::join(inputDir, ptr->refid + ".xml");
     Log::i("Loading {}", refidPath);
     Xml xml(refidPath);
 
@@ -60,7 +62,7 @@ Doxydown::NodePtr Doxydown::Node::parse(NodeCacheMap& cache,
 
     ptr->xmlPath = refidPath;
     ptr->name = assertChild(compounddef, "compoundname").getText();
-    ptr->kind = strToKind(compounddef.getAttr("kind"));
+    ptr->kind = toEnum<Kind>(compounddef.getAttr("kind"));
     ptr->empty = false;
     cache.insert(std::make_pair(ptr->refid, ptr));
 
@@ -129,7 +131,7 @@ Doxydown::NodePtr Doxydown::Node::parse(Xml::Element& memberdef, const std::stri
 
     auto ptr = std::make_shared<Node>(refid);
     ptr->name = assertChild(memberdef, "name").getText();
-    ptr->kind = strToKind(memberdef.getAttr("kind"));
+    ptr->kind = toEnum<Kind>(memberdef.getAttr("kind"));
     ptr->empty = true;
     ptr->parseBaseInfo(memberdef);
 
@@ -151,14 +153,14 @@ Doxydown::NodePtr Doxydown::Node::parse(Xml::Element& memberdef, const std::stri
 
 Doxydown::Xml::Element Doxydown::Node::assertChild(const Xml& xml, const std::string& name) {
     auto child = xml.firstChildElement(name);
-    if (!child) throw DOXYGEN_EXCEPTION("Unable to find <{}> element in root element file {}", name, xml.getPath());
+    if (!child) throw EXCEPTION("Unable to find <{}> element in root element file {}", name, xml.getPath());
     return child;
 }
 
 Doxydown::Xml::Element Doxydown::Node::assertChild(const Xml::Element& xml, const std::string& name) {
     auto child = xml.firstChildElement(name);
     if (!child)
-        throw        DOXYGEN_EXCEPTION(
+        throw EXCEPTION(
         "Unable to find <{}> element in element <{}> line {} file {}",
         name, xml.getName(), xml.getLine(), xml.getDocument().getPath()
     );
@@ -175,7 +177,8 @@ Doxydown::Node::~Node() = default;
 
 void Doxydown::Node::parseBaseInfo(const Xml::Element& element) {
     const auto briefdescription = assertChild(element, "briefdescription");
-    temp->brief = TextParser::parseParas(briefdescription);
+    temp->brief = XmlTextParser::parseParas(briefdescription);
+    visibility = toEnum<Visibility>(element.getAttr("prot", "public"));
 
     switch (kind) {
         case Kind::DEFINE: {
@@ -231,8 +234,8 @@ void Doxydown::Node::parseInheritanceInfo(const Xml::Element& element) {
         ClassReference base;
         base.refid = e.getAttr("refid", "");
         base.name = e.getText();
-        base.virt = strToVirtual(e.getAttr("virt"));
-        base.prot = strToVisibility(e.getAttr("prot"));
+        base.virt = toEnum<Virtual>(e.getAttr("virt"));
+        base.prot = toEnum<Visibility>(e.getAttr("prot"));
         baseClasses.push_back(base);
     });
 
@@ -240,16 +243,19 @@ void Doxydown::Node::parseInheritanceInfo(const Xml::Element& element) {
         ClassReference derived;
         derived.refid = e.getAttr("refid", "");
         derived.name = e.getText();
-        derived.virt = strToVirtual(e.getAttr("virt"));
-        derived.prot = strToVisibility(e.getAttr("prot"));
+        derived.virt = toEnum<Virtual>(e.getAttr("virt"));
+        derived.prot = toEnum<Visibility>(e.getAttr("prot"));
         derivedClasses.push_back(derived);
     });
 }
 
-void Doxydown::Node::finalize(const Config& config, const TextPrinter& printer, const NodeCacheMap& cache) {
+void Doxydown::Node::finalize(const Config& config,
+                              const TextPrinter& plainPrinter,
+                              const TextPrinter& markdownPrinter,
+                              const NodeCacheMap& cache) {
     static const auto anchorMaker = [](const Node& node) {
-        if (!node.isStructured() && node.kind != Node::Kind::MODULE) {
-            return "#" + TextUtils::toLower(kindToStr(node.kind)) + "-" + TextUtils::safeAnchorId(node.name);
+        if (!node.isStructured() && node.kind != Kind::MODULE) {
+            return "#" + Utils::toLower(toStr(node.kind)) + "-" + Utils::safeAnchorId(node.name);
         } else {
             return std::string("");
         }
@@ -265,37 +271,39 @@ void Doxydown::Node::finalize(const Config& config, const TextPrinter& printer, 
             case Kind::FILE:
             case Kind::INTERFACE:
             case Kind::UNION: {
-                return config.baseUrl + "/" + typeToFolderName(config, node.type) + "/" +
-                       TextUtils::stripAnchor(node.refid) + config.linkSuffix +
+                return config.baseUrl + typeToFolderName(config, node.type) + "/" +
+                       Utils::stripAnchor(node.refid) + config.linkSuffix +
                        anchorMaker(node);
             }
             case Kind::ENUMVALUE: {
                 const auto n = node.parent->parent;
-                return config.baseUrl + "/" + typeToFolderName(config, n->type) + "/" +
-                       TextUtils::stripAnchor(n->refid) + config.linkSuffix +
+                return config.baseUrl + typeToFolderName(config, n->type) + "/" +
+                       Utils::stripAnchor(n->refid) + config.linkSuffix +
                        anchorMaker(node);
             }
             default: {
                 const auto n = node.parent;
-                return config.baseUrl + "/" + typeToFolderName(config, n->type) + "/" +
-                       TextUtils::stripAnchor(n->refid) + config.linkSuffix +
+                return config.baseUrl + typeToFolderName(config, n->type) + "/" +
+                       Utils::stripAnchor(n->refid) + config.linkSuffix +
                        anchorMaker(node);
             }
         }
     };
     
     if (temp) {
-        brief = printer.printMarkdown(temp->brief);
-        summary = printer.printPlain(temp->brief);
+        brief = markdownPrinter.print(temp->brief);
+        summary = plainPrinter.print(temp->brief);
         temp.reset();
 
         anchor = anchorMaker(*this);
         url = urlMaker(config, *this);
+        if (config.linkLowercase) url = Utils::toLower(url);
 
         for (auto& klass : baseClasses) {
             if (!klass.refid.empty()) {
                 const auto& ptr = cache.at(klass.refid);
                 klass.url = urlMaker(config, *ptr);
+                if (config.linkLowercase) klass.url = Utils::toLower(klass.url);
             }
         }
 
@@ -303,19 +311,23 @@ void Doxydown::Node::finalize(const Config& config, const TextPrinter& printer, 
             if (!klass.refid.empty()) {
                 const auto& ptr = cache.at(klass.refid);
                 klass.url = urlMaker(config, *ptr);
+                if (config.linkLowercase) klass.url = Utils::toLower(klass.url);
             }
         }
     }
 }
 
-std::tuple<Doxydown::Node::Data, Doxydown::Node::ChildrenData> Doxydown::Node::loadData(const Config& config, const TextPrinter& printer) const {
+Doxydown::Node::LoadDataResult Doxydown::Node::loadData(const Config& config,
+                                                        const TextPrinter& plainPrinter,
+                                                        const TextPrinter& markdownPrinter) const {
+
     Log::i("Parsing {}", xmlPath);
     Xml xml(xmlPath);
 
     auto root = assertChild(xml, "doxygen");
     auto compounddef = assertChild(root, "compounddef");
 
-    auto data = loadData(config, printer, compounddef);
+    auto data = loadData(config, plainPrinter, markdownPrinter, compounddef);
     ChildrenData childrenData;
 
     auto sectiondef = compounddef.firstChildElement("sectiondef");
@@ -325,13 +337,16 @@ std::tuple<Doxydown::Node::Data, Doxydown::Node::ChildrenData> Doxydown::Node::l
             const auto childRefid = memberdef.getAttr("id");
             const auto childPtr = this->findChild(childRefid);
 
-            childrenData.insert(std::make_pair(childPtr.get(), loadData(config, printer, memberdef)));
+            childrenData.insert(std::make_pair(childPtr.get(), loadData(config, plainPrinter, markdownPrinter, memberdef)));
             if (childPtr->kind == Kind::ENUM) {
                 auto enumvalue = memberdef.firstChildElement("enumvalue");
                 while (enumvalue) {
                     const auto enumvalueRefid = enumvalue.getAttr("id");
                     const auto enumvaluePtr = childPtr->findChild(enumvalueRefid);
-                    childrenData.insert(std::make_pair<const Node*, Data>(enumvaluePtr.get(), loadData(config, printer, enumvalue)));
+                    childrenData.insert(std::make_pair<const Node*, Data>(
+                        enumvaluePtr.get(), 
+                        loadData(config, plainPrinter, markdownPrinter, enumvalue))
+                    );
                     enumvalue = enumvalue.nextSiblingElement("enumvalue");
                 }
             }
@@ -344,7 +359,10 @@ std::tuple<Doxydown::Node::Data, Doxydown::Node::ChildrenData> Doxydown::Node::l
     return {data, childrenData};
 }
 
-Doxydown::Node::Data Doxydown::Node::loadData(const Config& config, const TextPrinter& printer, const Xml::Element& element) const {
+Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
+                                              const TextPrinter& plainPrinter,
+                                              const TextPrinter& markdownPrinter,
+                                              const Xml::Element& element) const {
     Data data;
 
     data.isAbstract = element.getAttr("abstract", "no") == "yes";
@@ -353,8 +371,7 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config, const TextPr
     data.isConst = element.getAttr("const", "no") == "yes";
     data.isExplicit = element.getAttr("explicit", "no") == "yes";
     data.isInline = element.getAttr("inline", "no") == "yes";
-    data.visibility = strToVisibility(element.getAttr("prot", "public"));
-    data.virt = strToVirtual(element.getAttr("virt", "non-virtual"));
+    data.virt = toEnum<Virtual>(element.getAttr("virt", "non-virtual"));
 
     auto locationElement = element.firstChildElement("location");
     if (locationElement) {
@@ -372,36 +389,36 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config, const TextPr
     if (definition && definition.hasText()) data.definition = definition.getText();
     auto initializer = element.firstChildElement("initializer");
     if (initializer) {
-        data.initializer = printer.printMarkdown(TextParser::parsePara(initializer));
+        data.initializer = markdownPrinter.print(XmlTextParser::parsePara(initializer));
     }
 
     const auto argsstring = element.firstChildElement("argsstring");
     if (argsstring) {
-        data.argsString = printer.printMarkdown(TextParser::parsePara(argsstring));
+        data.argsString = markdownPrinter.print(XmlTextParser::parsePara(argsstring));
         data.isDefault = data.argsString.find("=default") != std::string::npos;
         data.isDeleted = data.argsString.find("=deleted") != std::string::npos;
     }
 
     const auto detaileddescription = assertChild(element, "detaileddescription");
-    auto detailsParas = TextParser::parseParas(detaileddescription);
+    auto detailsParas = XmlTextParser::parseParas(detaileddescription);
     for (auto& para : detailsParas.children) {
         for (auto it = para.children.begin(); it != para.children.end();) {
             switch (it->type) {
-            case TextParser::Node::Type::SIMPLESEC: {
+            case XmlTextParser::Node::Type::SIMPLESEC: {
                 DetailsSection section;
-                section.text = printer.printMarkdown(*it);
+                section.text = markdownPrinter.print(*it);
                 section.type = it->extra;
                 data.detailsSections.push_back(std::move(section));
                 it = para.children.erase(it);
                 break;
             }
-            case TextParser::Node::Type::XREFSECT: {
+            case XmlTextParser::Node::Type::XREFSECT: {
                 if (it->children.size() == 2 &&
-                    it->children[0].type == TextParser::Node::Type::XREFTITLE &&
-                    it->children[1].type == TextParser::Node::Type::XREFDESCRIPTION) {
+                    it->children[0].type == XmlTextParser::Node::Type::XREFTITLE &&
+                    it->children[1].type == XmlTextParser::Node::Type::XREFDESCRIPTION) {
                     DetailsSection section;
-                    section.text = printer.printMarkdown(it->children[1]);
-                    section.type = printer.printPlain(it->children[0]);
+                    section.text = markdownPrinter.print(it->children[1]);
+                    section.type = markdownPrinter.print(it->children[0]);
                     data.detailsSections.push_back(std::move(section));
                     it = para.children.erase(it);
                 }
@@ -414,9 +431,9 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config, const TextPr
             }
         }
     }
-    data.details = printer.printMarkdown(detailsParas);
+    data.details = markdownPrinter.print(detailsParas);
     const auto inbodydescription = element.firstChildElement("inbodydescription");
-    if (inbodydescription) data.inbody = printer.printMarkdown(TextParser::parseParas(inbodydescription));
+    if (inbodydescription) data.inbody = markdownPrinter.print(XmlTextParser::parseParas(inbodydescription));
 
     const auto includes = element.firstChildElement("includes");
     if (includes) {
@@ -428,9 +445,9 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config, const TextPr
     const auto type = element.firstChildElement("type");
 
     if (type) {
-        const auto typeParas = TextParser::parsePara(type);
-        data.type = printer.printMarkdown(typeParas);
-        data.typePlain = printer.printPlain(typeParas);
+        const auto typeParas = XmlTextParser::parsePara(type);
+        data.type = markdownPrinter.print(typeParas);
+        data.typePlain = plainPrinter.print(typeParas);
         if (data.type.find("friend ") == 0) {
             data.type = data.type.substr(7);
         }
@@ -442,21 +459,21 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config, const TextPr
     auto param = element.firstChildElement("param");
     while (param) {
         Param p;
-        const auto type = param.firstChildElement("type");
+        const auto paramType = param.firstChildElement("type");
         const auto name = param.firstChildElement("declname");
         const auto defval = param.firstChildElement("defval");
-        if (type) {
-            const auto typeParas = TextParser::parsePara(type);
-            p.type = printer.printMarkdown(typeParas);
-            p.typePlain = printer.printPlain(typeParas);
+        if (paramType) {
+            const auto typeParas = XmlTextParser::parsePara(paramType);
+            p.type = markdownPrinter.print(typeParas);
+            p.typePlain = plainPrinter.print(typeParas);
         }
         if (name) {
-            p.name = printer.printMarkdown(TextParser::parsePara(name));
+            p.name = markdownPrinter.print(XmlTextParser::parsePara(name));
         }
         if (defval) {
-            const auto defvalParas = TextParser::parsePara(defval);
-            p.defval = printer.printMarkdown(defvalParas);
-            p.defvalPlain = printer.printPlain(defvalParas);
+            const auto defvalParas = XmlTextParser::parsePara(defval);
+            p.defval = markdownPrinter.print(defvalParas);
+            p.defvalPlain = plainPrinter.print(defvalParas);
         }
         param = param.nextSiblingElement("param");
         data.params.push_back(std::move(p));
@@ -488,222 +505,3 @@ Doxydown::NodePtr Doxydown::Node::findRecursively(const std::string& refid) cons
     return nullptr;
 }
 
-Doxydown::Node::Kind Doxydown::Node::strToKind(const std::string& kind) {
-    static std::unordered_map<std::string, Kind> kinds = {
-        {"define", Kind::DEFINE},
-        {"class", Kind::CLASS},
-        {"namespace", Kind::NAMESPACE},
-        {"struct", Kind::STRUCT},
-        {"interface", Kind::INTERFACE},
-        {"function", Kind::FUNCTION},
-        {"variable", Kind::VARIABLE},
-        {"typedef", Kind::TYPEDEF},
-        {"enum", Kind::ENUM},
-        {"union", Kind::UNION},
-        {"enumvalue", Kind::ENUMVALUE},
-        {"dir", Kind::DIR},
-        {"file", Kind::FILE},
-        {"group", Kind::MODULE},
-        {"friend", Kind::FRIEND}
-    };
-
-    const auto it = kinds.find(kind);
-    if (it == kinds.end()) {
-        throw EXCEPTION("Kind {} not recognised please contact the author", kind);
-    }
-
-    return it->second;
-}
-
-Doxydown::Node::Visibility Doxydown::Node::strToVisibility(const std::string& vis) {
-    static std::unordered_map<std::string, Visibility> values = {
-        {"public", Visibility::PUBLIC},
-        {"protected", Visibility::PROTECTED},
-        {"private", Visibility::PRIVATE},
-    };
-
-    const auto it = values.find(vis);
-    if (it == values.end()) {
-        throw EXCEPTION("Visibility {} not recognised please contact the author", vis);
-    }
-
-    return it->second;
-}
-
-Doxydown::Node::Virtual Doxydown::Node::strToVirtual(const std::string& virt) {
-    static std::unordered_map<std::string, Virtual> values = {
-        {"non-virtual", Virtual::NON_VIRTUAL},
-        {"virtual", Virtual::VIRTUAL},
-        {"pure", Virtual::PURE_VIRTUAL},
-        {"pure-virtual", Virtual::PURE_VIRTUAL},
-    };
-
-    const auto it = values.find(virt);
-    if (it == values.end()) {
-        throw EXCEPTION("Virtual {} not recognised please contact the author", virt);
-    }
-
-    return it->second;
-}
-
-bool Doxydown::Node::isKindStructured(const Kind kind) {
-    switch (kind) {
-        case Kind::CLASS:
-        case Kind::NAMESPACE:
-        case Kind::STRUCT:
-        case Kind::UNION:
-        case Kind::INTERFACE: {
-            return true;
-        }
-        default: {
-            return false;
-        }
-    }
-}
-
-bool Doxydown::Node::isKindLanguage(const Kind kind) {
-    switch (kind) {
-        case Kind::DEFINE:
-        case Kind::CLASS:
-        case Kind::NAMESPACE:
-        case Kind::STRUCT:
-        case Kind::UNION:
-        case Kind::INTERFACE:
-        case Kind::ENUM:
-        case Kind::FUNCTION:
-        case Kind::TYPEDEF:
-        case Kind::FRIEND:
-        case Kind::VARIABLE: {
-            return true;
-        }
-        default: {
-            return false;
-        }
-    }
-}
-
-bool Doxydown::Node::isKindFile(const Kind kind) {
-    switch (kind) {
-        case Kind::DIR:
-        case Kind::FILE: {
-            return true;
-        }
-        default: {
-            return false;
-        }
-    }
-}
-
-std::string Doxydown::Node::kindToStr(const Kind kind) {
-    switch (kind) {
-        case Node::Kind::DEFINE:
-            return "define";
-        case Node::Kind::CLASS:
-            return "class";
-        case Node::Kind::DIR:
-            return "dir";
-        case Node::Kind::ENUM:
-            return "enum";
-        case Node::Kind::ENUMVALUE:
-            return "enumvalue";
-        case Node::Kind::FILE:
-            return "file";
-        case Node::Kind::FUNCTION:
-            return "function";
-        case Node::Kind::MODULE:
-            return "group";
-        case Node::Kind::INDEX:
-            return "index";
-        case Node::Kind::INTERFACE:
-            return "interface";
-        case Node::Kind::NAMESPACE:
-            return "namespace";
-        case Node::Kind::UNION:
-            return "union";
-        case Node::Kind::STRUCT:
-            return "struct";
-        case Node::Kind::VARIABLE:
-            return "variable";
-        case Node::Kind::TYPEDEF:
-            return "typedef";
-        case Node::Kind::FRIEND:
-            return "friend";
-        default: {
-            throw EXCEPTION("Kind {} not recognised please contact the author", int(kind));
-        }
-    }
-}
-
-std::string Doxydown::Node::visibilityToStr(const Visibility prot) {
-    switch (prot) {
-        case Node::Visibility::PUBLIC:
-            return "public";
-        case Node::Visibility::PROTECTED:
-            return "protected";
-        case Node::Visibility::PRIVATE:
-            return "private";
-        default: {
-            throw EXCEPTION("Visibility {} not recognised please contact the author", int(prot));
-        }
-    };
-}
-
-std::string Doxydown::Node::virtualToStr(const Virtual virt) {
-    switch (virt) {
-        case Node::Virtual::NON_VIRTUAL:
-            return "non-virtual";
-        case Node::Virtual::VIRTUAL:
-            return "virtual";
-        case Node::Virtual::PURE_VIRTUAL:
-            return "pure-virtual";
-        default: {
-            throw EXCEPTION("Virtual {} not recognised please contact the author", int(virt));
-        }
-    };
-}
-
-std::string Doxydown::Node::typeToStr(Type type) {
-    switch (type) {
-        case Type::DEFINES:
-            return "defines";
-        case Type::ATTRIBUTES:
-            return "attributes";
-        case Type::FUNCTIONS:
-            return "functions";
-        case Type::CLASSES:
-            return "classes";
-        case Type::NAMESPACES:
-            return "namespaces";
-        case Type::MODULES:
-            return "groups";
-        case Type::TYPES:
-            return "types";
-        case Type::DIRORFILE:
-            return "dirorfile";
-        case Type::FRIENDS:
-            return "friends";
-        default: {
-            throw EXCEPTION("Type {} not recognised please contact the author", int(type));
-        }
-    }
-}
-
-const std::string& Doxydown::Node::typeToFolderName(const Config& config, const Type type) {
-    switch (type) {
-        case Type::MODULES: {
-            return config.folderGroupsName;
-        }
-        case Type::CLASSES: {
-            return config.folderClassesName;
-        }
-        case Type::NAMESPACES: {
-            return config.folderNamespacesName;
-        }
-        case Type::DIRORFILE: {
-            return config.folderFilesName;
-        }
-        default: {
-            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
-        }
-    }
-}

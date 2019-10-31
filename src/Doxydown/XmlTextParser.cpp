@@ -1,10 +1,11 @@
 #include <functional>
 #include <unordered_map>
-#include "TextParser.hpp"
-#include "Log.hpp"
-#include "Exception.hpp"
+#include <Doxydown/XmlTextParser.hpp>
+#include <Doxydown/Log.hpp>
+#include <Doxydown/Exception.hpp>
+#include "ExceptionUtils.hpp"
 
-Doxydown::TextParser::Node::Type Doxydown::TextParser::strToType(const std::string& str) {
+Doxydown::XmlTextParser::Node::Type Doxydown::XmlTextParser::strToType(const std::string& str) {
     static std::unordered_map<std::string, Node::Type> kinds = {
         {"para", Node::Type::PARA},
         {"bold", Node::Type::BOLD},
@@ -39,7 +40,7 @@ Doxydown::TextParser::Node::Type Doxydown::TextParser::strToType(const std::stri
     return it->second;
 }
 
-Doxydown::TextParser::Node Doxydown::TextParser::parseParas(const Xml::Element& element) {
+Doxydown::XmlTextParser::Node Doxydown::XmlTextParser::parseParas(const Xml::Element& element) {
     Node result;
     result.type = Node::Type::PARAS;
     std::vector<Node*> tree = { &result };
@@ -51,7 +52,7 @@ Doxydown::TextParser::Node Doxydown::TextParser::parseParas(const Xml::Element& 
     return result;
 }
 
-Doxydown::TextParser::Node Doxydown::TextParser::parsePara(const Xml::Element& element) {
+Doxydown::XmlTextParser::Node Doxydown::XmlTextParser::parsePara(const Xml::Element& element) {
     Node result;
     result.type = Node::Type::PARA;
     std::vector<Node*> tree = { &result };
@@ -59,7 +60,7 @@ Doxydown::TextParser::Node Doxydown::TextParser::parsePara(const Xml::Element& e
     return result;
 }
 
-void Doxydown::TextParser::traverse(std::vector<Node*> tree, const Xml::Node& element) {
+void Doxydown::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node& element) {
     if (!element) return;
 
     if (element.isElement()) {

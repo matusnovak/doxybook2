@@ -5,62 +5,18 @@
 #include <vector>
 #include <unordered_map>
 #include "Xml.hpp"
-#include "Config.hpp"
+#include "Enums.hpp"
 
 namespace Doxydown {
     class TextPrinter;
-    class Xml;
     class Node;
+    struct Config;
 
     typedef std::shared_ptr<Node> NodePtr;
     typedef std::unordered_map<std::string, NodePtr> NodeCacheMap;
 
     class Node {
     public:
-        enum class Kind {
-            INDEX,
-            DEFINE,
-            CLASS,
-            NAMESPACE,
-            STRUCT,
-            INTERFACE,
-            FUNCTION,
-            VARIABLE,
-            TYPEDEF,
-            FRIEND,
-            ENUM,
-            ENUMVALUE,
-            UNION,
-            DIR,
-            FILE,
-            MODULE
-        };
-
-        enum class Visibility {
-            PUBLIC,
-            PROTECTED,
-            PRIVATE
-        };
-
-        enum class Virtual {
-            NON_VIRTUAL,
-            VIRTUAL,
-            PURE_VIRTUAL
-        };
-
-        enum class Type {
-            NONE,
-            DEFINES,
-            FUNCTIONS,
-            NAMESPACES,
-            CLASSES,
-            ATTRIBUTES,
-            TYPES,
-            DIRORFILE,
-            MODULES,
-            FRIENDS
-        };
-
         typedef std::list<NodePtr> Children;
 
         struct ClassReference {
@@ -103,7 +59,6 @@ namespace Doxydown {
             std::string argsString;
             std::string initializer;
             ClassReferences derivedClasses;
-            Visibility visibility{ Visibility::PUBLIC };
             Virtual virt{ Virtual::NON_VIRTUAL };
             bool isAbstract{ false };
             bool isStatic{ false };
@@ -159,18 +114,6 @@ namespace Doxydown {
             return isKindFile(kind);
         }
 
-        static Kind strToKind(const std::string& kind);
-        static Visibility strToVisibility(const std::string& vis);
-        static Virtual strToVirtual(const std::string& virt);
-        static bool isKindLanguage(Kind kind);
-        static bool isKindStructured(Kind kind);
-        static bool isKindFile(Kind kind);
-        static std::string kindToStr(Kind kind);
-        static std::string visibilityToStr(Visibility prot);
-        static std::string virtualToStr(Virtual virt);
-        static std::string typeToStr(Type grouping);
-        static const std::string& typeToFolderName(const Config& config, Type type);
-
         Kind getKind() const {
             return kind;
         }
@@ -211,6 +154,10 @@ namespace Doxydown {
             return summary;
         }
 
+        Visibility getVisibility() const {
+            return visibility;
+        }
+
         const ClassReferences& getBaseClasses() const {
             return baseClasses;
         }
@@ -227,13 +174,22 @@ namespace Doxydown {
             return anchor;
         }
 
-        void finalize(const Config& config, const TextPrinter& printer, const NodeCacheMap& cache);
-        std::tuple<Data, ChildrenData> loadData(const Config& config, const TextPrinter& printer) const;
+        void finalize(const Config& config,
+                      const TextPrinter& plainPrinter,
+                      const TextPrinter& markdownPrinter,
+                      const NodeCacheMap& cache);
+        typedef std::tuple<Data, ChildrenData> LoadDataResult;
+        LoadDataResult loadData(const Config& config,
+                                const TextPrinter& plainPrinter,
+                                const TextPrinter& markdownPrinter) const;
 
         friend class Doxygen;
     private:
         class Temp;
-        Data loadData(const Config& config, const TextPrinter& printer, const Xml::Element& element) const;
+        Data loadData(const Config& config,
+                      const TextPrinter& plainPrinter,
+                      const TextPrinter& markdownPrinter,
+                      const Xml::Element& element) const;
 
         std::unique_ptr<Temp> temp;
         Kind kind{Kind::INDEX};
@@ -248,6 +204,7 @@ namespace Doxydown {
         std::string xmlPath;
         ClassReferences baseClasses;
         ClassReferences derivedClasses;
+        Visibility visibility{ Visibility::PUBLIC };
         std::string url;
         std::string anchor;
 

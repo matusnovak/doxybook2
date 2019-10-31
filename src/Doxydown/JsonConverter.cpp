@@ -1,12 +1,16 @@
 #include <unordered_set>
-#include "JsonConverter.hpp"
-#include "Exception.hpp"
-#include "TextUtils.hpp"
-#include <set>
+#include <nlohmann/json.hpp>
+#include <Doxydown/JsonConverter.hpp>
+#include <Doxydown/Exception.hpp>
+#include <Doxydown/Utils.hpp>
+#include "ExceptionUtils.hpp"
 
-Doxydown::JsonConverter::JsonConverter(const Config& config, const TextPrinter& printer)
-    : config(config), 
-      printer(printer) {
+Doxydown::JsonConverter::JsonConverter(const Config& config,
+                                       const TextPrinter& plainPrinter,
+                                       const TextPrinter& markdownPrinter)
+    : config(config),
+      plainPrinter(plainPrinter),
+      markdownPrinter(markdownPrinter) {
 
 }
 
@@ -15,8 +19,8 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node::ClassReference& klas
     if (!klass.refid.empty())
         json["refid"] = klass.refid;
     json["name"] = klass.name;
-    json["visibility"] = Node::visibilityToStr(klass.prot);
-    json["virtual"] = Node::virtualToStr(klass.virt);
+    json["visibility"] = toStr(klass.prot);
+    json["virtual"] = toStr(klass.virt);
     if (!klass.url.empty())
         json["url"] = klass.url;
     return json;
@@ -75,12 +79,13 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node& node) const {
     json["refid"] = node.getRefid();
     json["url"] = node.getUrl();
     json["anchor"] = node.getAnchor();
+    json["visibility"] = toStr(node.getVisibility());
     if (!node.getBrief().empty())
         json["brief"] = node.getBrief();
     if (!node.getSummary().empty())
         json["summary"] = node.getSummary();
-    json["kind"] = Node::kindToStr(node.getKind());
-    json["type"] = Node::typeToStr(node.getType());
+    json["kind"] = toStr(node.getKind());
+    json["type"] = toStr(node.getType());
     if (!node.getBaseClasses().empty())
         json["baseClasses"] = convert(node.getBaseClasses());
     if (!node.getDerivedClasses().empty())
@@ -105,18 +110,17 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node& node, const Node::Da
         json["typePlain"] = data.typePlain;
     if (!data.detailsSections.empty())
         json["detailsSections"] = convert(data.detailsSections);
-    if (node.getKind() != Node::Kind::ENUMVALUE) {
+    if (node.getKind() != Kind::ENUMVALUE) {
         json["static"] = data.isStatic;
         json["abstract"] = data.isAbstract;
-        json["visibility"] = Node::visibilityToStr(data.visibility);
         json["const"] = data.isConst;
         json["explicit"] = data.isExplicit;
         json["strong"] = data.isStrong;
         json["inline"] = data.isInline;
     }
-    if (node.getType() == Node::Type::FUNCTIONS || node.getType() == Node::Type::FRIENDS) {
-        json["virtual"] = data.virt == Node::Virtual::VIRTUAL || data.virt == Node::Virtual::PURE_VIRTUAL;
-        json["pureVirtual"] = data.virt == Node::Virtual::PURE_VIRTUAL;
+    if (node.getType() == Type::FUNCTIONS || node.getType() == Type::FRIENDS) {
+        json["virtual"] = data.virt == Virtual::VIRTUAL || data.virt == Virtual::PURE_VIRTUAL;
+        json["pureVirtual"] = data.virt == Virtual::PURE_VIRTUAL;
         json["argsString"] = data.argsString;
         json["default"] = data.isDefault;
         json["deleted"] = data.isDeleted;
@@ -131,27 +135,27 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node& node, const Node::Da
 }
 
 nlohmann::json Doxydown::JsonConverter::getAsJson(const Node& node) const {
-    auto[data, childrenDataMap] = node.loadData(config, printer);
+    auto[data, childrenDataMap] = node.loadData(config, plainPrinter, markdownPrinter);
 
     nlohmann::json json = convert(node);
     nlohmann::json dataJson = convert(node, data);
     json.insert(dataJson.begin(), dataJson.end());
-    if (node.getParent()->getKind() != Node::Kind::INDEX) {
+    if (node.getParent()->getKind() != Kind::INDEX) {
         json["parent"] = convert(*node.getParent());
     } else {
         json["parent"] = nullptr;
     }
 
-    static const std::array<Node::Visibility, 3> ALL_VISIBILITIES =
+    static const std::array<Visibility, 3> ALL_VISIBILITIES =
     {
-        Node::Visibility::PUBLIC, 
-        Node::Visibility::PROTECTED, 
-        Node::Visibility::PRIVATE
+        Visibility::PUBLIC, 
+        Visibility::PROTECTED, 
+        Visibility::PRIVATE
     };
 
     // Find all unique groups (for example, public attributes)
-    std::unordered_set<Node::Type> uniqueTypes;
-    std::unordered_multimap<Node::Type, NodePtr> children;
+    std::unordered_set<Type> uniqueTypes;
+    std::unordered_multimap<Type, NodePtr> children;
     for (const auto& child : node.getChildren()) {
         children.insert(std::make_pair(child->getType(), child));
         uniqueTypes.insert(child->getType());
@@ -161,21 +165,21 @@ nlohmann::json Doxydown::JsonConverter::getAsJson(const Node& node) const {
     for (const auto& visibility : ALL_VISIBILITIES) {
         // attributes, functions, classes...
         for (const auto& type : uniqueTypes) {
-            const auto key = Node::visibilityToStr(visibility) + TextUtils::title(Node::typeToStr(type));
+            const auto key = toStr(visibility) + Utils::title(toStr(type));
             auto arr = nlohmann::json::array();
             const auto range = children.equal_range(type);
             for (auto it = range.first; it != range.second; ++it) {
                 const auto& child = it->second;
 
-                if (!child->isStructured() && child->getKind() != Node::Kind::MODULE) {
+                if (!child->isStructured() && child->getKind() != Kind::MODULE) {
                     try {
                         const auto& childData = childrenDataMap.at(child.get());
-                        if (childData.visibility == visibility) {
+                        if (child->getVisibility() == visibility) {
                             auto childJson = convert(*child);
                             auto childDataJson = convert(*child, childData);
                             childJson.insert(childDataJson.begin(), childDataJson.end());
 
-                            if (child->getKind() == Node::Kind::ENUM) {
+                            if (child->getKind() == Kind::ENUM) {
                                 auto enumvalues = nlohmann::json::array();
                                 for (const auto& enumvalue : child->getChildren()) {
                                     auto enumvalueJson = convert(*enumvalue);
@@ -194,16 +198,18 @@ nlohmann::json Doxydown::JsonConverter::getAsJson(const Node& node) const {
                         throw EXCEPTION("Refid {} this should never happen please contact the author!", child->getRefid());
                     }
                 } else {
-                    arr.push_back(convert(*child));
+                    if (child->getVisibility() == visibility) {
+                        arr.push_back(convert(*child));
+                    }
                 }
             }
 
             if (!arr.empty()) {
-                if (type == Node::Type::FRIENDS) {
+                if (type == Type::FRIENDS) {
                     json["friends"] = std::move(arr);
-                } else if (type == Node::Type::NAMESPACES) {
+                } else if (type == Type::NAMESPACES) {
                     json["namespaces"] = std::move(arr);
-                } else if (type == Node::Type::MODULES) {
+                } else if (type == Type::MODULES) {
                     json["groups"] = std::move(arr);
                 } else {
                     json[key] = std::move(arr);

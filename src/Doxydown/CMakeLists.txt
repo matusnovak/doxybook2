@@ -7,16 +7,15 @@ if(USE_CLANG_TIDY)
 endif()
 
 # Project source files
+set(DOXYDOWN_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../include)
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
-file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
+file(GLOB_RECURSE HEADERS ${DOXYDOWN_INCLUDE_DIR}/Doxydown/*.hpp)
 
 # Add the project source files
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxydown")
+target_include_directories(${PROJECT_NAME} PUBLIC ${DOXYDOWN_INCLUDE_DIR})
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
-foreach(SOURCE ${SOURCES} ${HEADERS})
-  source_group("Sources" FILES ${SOURCE})
-endforeach()
 
 # Clang tidy
 if(USE_CLANG_TIDY)
@@ -40,7 +39,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC fmt tinyxml2 inja json)
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt tinyxml2 inja json termcolor)
 if(MSVC)
-  target_link_libraries(${PROJECT_NAME} PUBLIC dirent)
+  target_link_libraries(${PROJECT_NAME} PRIVATE dirent)
 endif()

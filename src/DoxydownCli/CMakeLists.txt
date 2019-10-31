@@ -22,9 +22,6 @@ endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxydown")
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src/Doxydown)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
-foreach(SOURCE ${SOURCES} ${HEADERS})
-  source_group("Sources" FILES ${SOURCE})
-endforeach()
 
 # Clang tidy
 if(USE_CLANG_TIDY)
@@ -43,6 +40,6 @@ if(MSVC)
 endif()
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE Doxydown)
-target_link_libraries(${PROJECT_NAME} PRIVATE argagg)
+target_link_libraries(${PROJECT_NAME} PRIVATE Doxydown argagg fmt json tinyxml2)
+
 

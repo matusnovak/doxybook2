@@ -1,10 +1,11 @@
 #include <chrono>
 #include <inja/inja.hpp>
-#include <nlohmann/json.hpp>
-#include "Renderer.hpp"
-#include "Exception.hpp"
-#include "Log.hpp"
-#include "TextUtils.hpp"
+#include <fmt/format.h>
+#include <Doxydown/Renderer.hpp>
+#include <Doxydown/Exception.hpp>
+#include <Doxydown/Log.hpp>
+#include <Doxydown/Utils.hpp>
+#include "ExceptionUtils.hpp"
 
 Doxydown::Renderer::Renderer(const Config& config)
     : config(config),
@@ -16,15 +17,15 @@ Doxydown::Renderer::Renderer(const Config& config)
     });
     env->add_callback("title", 1, [](inja::Arguments& args) {
         const auto arg = args.at(0)->get<std::string>();
-        return TextUtils::title(arg);
+        return Utils::title(arg);
     });
     env->add_callback("date", 1, [](inja::Arguments& args) -> std::string {
         const auto arg = args.at(0)->get<std::string>();
-        return TextUtils::date(arg);
+        return Utils::date(arg);
     });
     env->add_callback("stripNamespace", 1, [](inja::Arguments& args) -> std::string {
         const auto arg = args.at(0)->get<std::string>();
-        return TextUtils::stripNamespace(arg);
+        return Utils::stripNamespace(arg);
     });
     env->add_callback("countProperty", 3, [](inja::Arguments& args) -> int {
         const auto arr = args.at(0)->get<nlohmann::json>();
@@ -97,6 +98,11 @@ void Doxydown::Renderer::render(const std::string& name, const std::string& path
     }
 
     const auto absPath = Path::join(config.outputDir, path);
+    if (config.debugTemplateJson) {
+        std::ofstream dump(absPath + ".json");
+        dump << data.dump(2);
+    }
+
     std::fstream file(absPath, std::ios::out);
     if (!file) {
         throw EXCEPTION("Failed to open file for writing {}", absPath);

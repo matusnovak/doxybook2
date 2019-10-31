@@ -25,3 +25,6 @@
 [submodule "example/hugo-learn/themes/hugo-theme-learn"]
 	path = example/hugo-learn/themes/hugo-theme-learn
 	url = https://github.com/matcornic/hugo-theme-learn
+[submodule "libs/termcolor"]
+	path = libs/termcolor
+	url = https://github.com/ikalnytskyi/termcolor.git

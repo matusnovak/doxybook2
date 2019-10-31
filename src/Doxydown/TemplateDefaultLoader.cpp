@@ -1,4 +1,7 @@
-#include "Templates.hpp"
+#include <fstream>
+#include <Doxydown/TemplateDefaultLoader.hpp>
+#include <Doxydown/Utils.hpp>
+#include "ExceptionUtils.hpp"
 
 static const std::string TEMPLATE_HEADER =
 R"(---
@@ -274,14 +277,14 @@ R"({% include "header" %}
 
 static const std::string TEMPLATE_INDEX =
 R"(
-{% for child0 in children %}* **{{child0.kind}} [{{child0.name}}]({{child0.url}})**{% if existsIn(child0, "brief") %}</br>{{child0.brief}}{% endif %}{% if existsIn(child0, "children") %}{% for child1 in child0.children %}
-  * **{{child1.kind}} [{{stripNamespace(child1.name)}}]({{child1.url}})**{% if existsIn(child1, "brief") %}</br>{{child1.brief}}{% endif %}{% if existsIn(child1, "children") %}{% for child2 in child1.children %}
-    * **{{child2.kind}} [{{stripNamespace(child2.name)}}]({{child2.url}})**{% if existsIn(child2, "brief") %}</br>{{child2.brief}}{% endif %}{% if existsIn(child2, "children") %}{% for child3 in child2.children %}
-      * **{{child3.kind}} [{{stripNamespace(child3.name)}}]({{child3.url}})**{% if existsIn(child3, "brief") %}</br>{{child3.brief}}{% endif %}{% if existsIn(child3, "children") %}{% for child4 in child3.children %}
-        * **{{child4.kind}} [{{stripNamespace(child4.name)}}]({{child4.url}})**{% if existsIn(child4, "brief") %}</br>{{child4.brief}}{% endif %}{% if existsIn(child4, "children") %}{% for child5 in child4.children %}
-          * **{{child5.kind}} [{{stripNamespace(child5.name)}}]({{child5.url}})**{% if existsIn(child5, "brief") %}</br>{{child5.brief}}{% endif %}{% if existsIn(child5, "children") %}{% for child6 in child5.children %}
-            * **{{child6.kind}} [{{stripNamespace(child6.name)}}]({{child6.url}})**{% if existsIn(child6, "brief") %}</br>{{child6.brief}}{% endif %}{% if existsIn(child6, "children") %}{% for child7 in child6.children %}
-              * **{{child7.kind}} [{{stripNamespace(child7.name)}}]({{child7.url}})**{% if existsIn(child7, "brief") %}</br>{{child7.brief}}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}
+{% for child0 in children %}  * **{{child0.kind}} [{{child0.name}}]({{child0.url}})**{% if existsIn(child0, "brief") %}</br>{{child0.brief}}{% endif %}{% if existsIn(child0, "children") %}{% for child1 in child0.children %}
+    * **{{child1.kind}} [{{stripNamespace(child1.name)}}]({{child1.url}})**{% if existsIn(child1, "brief") %}</br>{{child1.brief}}{% endif %}{% if existsIn(child1, "children") %}{% for child2 in child1.children %}
+      * **{{child2.kind}} [{{stripNamespace(child2.name)}}]({{child2.url}})**{% if existsIn(child2, "brief") %}</br>{{child2.brief}}{% endif %}{% if existsIn(child2, "children") %}{% for child3 in child2.children %}
+        * **{{child3.kind}} [{{stripNamespace(child3.name)}}]({{child3.url}})**{% if existsIn(child3, "brief") %}</br>{{child3.brief}}{% endif %}{% if existsIn(child3, "children") %}{% for child4 in child3.children %}
+          * **{{child4.kind}} [{{stripNamespace(child4.name)}}]({{child4.url}})**{% if existsIn(child4, "brief") %}</br>{{child4.brief}}{% endif %}{% if existsIn(child4, "children") %}{% for child5 in child4.children %}
+            * **{{child5.kind}} [{{stripNamespace(child5.name)}}]({{child5.url}})**{% if existsIn(child5, "brief") %}</br>{{child5.brief}}{% endif %}{% if existsIn(child5, "children") %}{% for child6 in child5.children %}
+              * **{{child6.kind}} [{{stripNamespace(child6.name)}}]({{child6.url}})**{% if existsIn(child6, "brief") %}</br>{{child6.brief}}{% endif %}{% if existsIn(child6, "children") %}{% for child7 in child6.children %}
+                * **{{child7.kind}} [{{stripNamespace(child7.name)}}]({{child7.url}})**{% if existsIn(child7, "brief") %}</br>{{child7.brief}}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}
 {% endfor %}
 )";
 
@@ -315,19 +318,32 @@ title: Modules
 {% include "footer" %}
 )";
 
-std::vector<Doxydown::Templates::RawTemplate> Doxydown::Templates::allTemplates = {
-    {"header", TEMPLATE_HEADER},
-    {"footer", TEMPLATE_FOOTER},
-    {"member_details", TEMPLATE_MEMBER_DETAILS},
-    {"class_members_tables", TEMPLATE_CLASS_MEMBERS_TABLES},
-    {"class_members_details", TEMPLATE_CLASS_MEMBERS_DETAILS},
-    {"nonclass_members_tables", TEMPLATE_NONCLASS_MEMBERS_TABLES},
-    {"nonclass_members_details", TEMPLATE_NONCLASS_MEMBERS_DETAILS},
-    {"kind_nonclass", TEMPLATE_KIND_NONCLASS},
-    {"kind_class", TEMPLATE_KIND_CLASS},
-    {"kind_group", TEMPLATE_KIND_GROUP},
-    {"index", TEMPLATE_INDEX},
-    {"index_classes", TEMPLATE_INDEX_CLASSES},
-    {"index_namespaces", TEMPLATE_INDEX_NAMESPACES},
-    {"index_groups", TEMPLATE_INDEX_GROUPS},
-};
+Doxydown::TemplateDefaultLoader::TemplateDefaultLoader() {
+    templates = {
+        {"header", TEMPLATE_HEADER},
+        {"footer", TEMPLATE_FOOTER},
+        {"member_details", TEMPLATE_MEMBER_DETAILS},
+        {"class_members_tables", TEMPLATE_CLASS_MEMBERS_TABLES},
+        {"class_members_details", TEMPLATE_CLASS_MEMBERS_DETAILS},
+        {"nonclass_members_tables", TEMPLATE_NONCLASS_MEMBERS_TABLES},
+        {"nonclass_members_details", TEMPLATE_NONCLASS_MEMBERS_DETAILS},
+        {"kind_nonclass", TEMPLATE_KIND_NONCLASS},
+        {"kind_class", TEMPLATE_KIND_CLASS},
+        {"kind_group", TEMPLATE_KIND_GROUP},
+        {"index", TEMPLATE_INDEX},
+        {"index_classes", TEMPLATE_INDEX_CLASSES},
+        {"index_namespaces", TEMPLATE_INDEX_NAMESPACES},
+        {"index_groups", TEMPLATE_INDEX_GROUPS}, 
+    };
+}
+
+void Doxydown::TemplateDefaultLoader::saveAll(const std::string& path) const {
+    for (const auto& tmpl : templates) {
+        const auto tmplPath = Utils::join(path, tmpl.name + ".tmpl");
+        Log::i("Creating default template {}", tmplPath);
+        std::ofstream file(tmplPath);
+        if (!file) throw EXCEPTION("Failed to open file {} for writing", tmplPath);
+
+        file << tmpl.contents;
+    }
+}

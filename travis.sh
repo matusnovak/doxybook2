@@ -28,4 +28,4 @@ ctest --verbose
 
 # Package
 cd ../install
-zip ../doxydown.zip *
+zip -r ../doxydown.zip *

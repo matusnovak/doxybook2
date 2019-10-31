@@ -9,8 +9,10 @@ jobs:
       - run:
           name: Dependencies
           command: |
-            apt-get update
-            apt-get install cmake doxygen -y
+            wget http://doxygen.nl/files/doxygen-1.8.16.linux.bin.tar.gz
+            tar -xvzf doxygen-1.8.16.linux.bin.tar.gz
+            sudo cp doxygen-1.8.16/bin/doxygen /usr/local/bin/doxygen
+            sudo chmod +x /usr/local/bin/doxygen
 
       - run:
           name: Submodules
@@ -21,21 +23,62 @@ jobs:
           name: Compile
           command: |
             mkdir build
+            mkdir /tmp/workspace
             cd build
-            cmake -G "Unix Makefiles" -DDOXYDOWN_TESTS=ON -DCMAKE_BUILD_TYPE=MinSizeRel ..
-            cmake --build .
+            cmake -G "Unix Makefiles" \
+              -DDOXYDOWN_TESTS=ON \
+              -DBUILD_TESTS=OFF \
+              -DBUILD_TESTING=OFF \
+              -DBUILD_SHARED_LIBS=OFF \
+              -DCMAKE_BUILD_TYPE=MinSizeRel \
+              -DCMAKE_INSTALL_PREFIX=/tmp/workspace/doxydown
+            cmake --build . --target install
 
       - run:
           name: Generate Doxygen files
           command: |
             cd example
             doxygen
+            cd ..
+            cp -r doxygen/ /tmp/workspace/
 
       - run:
           name: Tests
           command: |
             cd build
             ctest -vvv
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - doxydown
+            - doxygen
+
+  examples:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Dependencies
+          command: |
+            pip install mkdocs
+            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
+
+      - run:
+          name: MkDocs - Read the docs
+          command: |
+            doxydown \
+              --input /tmp/workspace/doxygen/xml \
+              --output ./example/mkdocs-readthedocs/docs/api \
+              --config ./example/mkdocs-readthedocs/.doxydown/config.json
+            cd ./example/mkdocs-readthedocs
+            mkdocs build
+            mkdir -p /tmp/workspace/gh-pages
+            cp -r ./site /tmp/workspace/gh-pages/mkdocs-readthedocs
 
 workflows:
   version: 2
