@@ -9,6 +9,8 @@ jobs:
       - run:
           name: Dependencies
           command: |
+            apt-get update
+            apt-get install cmake
             wget http://doxygen.nl/files/doxygen-1.8.16.linux.bin.tar.gz
             tar -xvzf doxygen-1.8.16.linux.bin.tar.gz
             cp doxygen-1.8.16/bin/doxygen /usr/local/bin/doxygen
@@ -85,3 +87,6 @@ workflows:
   build_and_test:
     jobs:
       - build
+      - examples:
+        requires:
+          - build
