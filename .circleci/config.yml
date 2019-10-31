@@ -75,6 +75,7 @@ jobs:
       - run:
           name: Original
           command: |
+            mkdir -p /tmp/workspace/gh-pages
             cp -r /tmp/workspace/doxygen/html /tmp/workspace/gh-pages/original
 
       - run:
