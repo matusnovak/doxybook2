@@ -43,7 +43,7 @@ jobs:
             cd example
             doxygen
             cd ..
-            cp -r doxygen/ /tmp/workspace/
+            cp -r example/doxygen/ /tmp/workspace/
 
       - run:
           name: Tests
