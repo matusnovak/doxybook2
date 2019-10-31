@@ -73,16 +73,53 @@ jobs:
             sudo chmod +x /usr/local/bin/doxydown
 
       - run:
+          name: Original
+          command: |
+            cp -r /tmp/workspace/doxygen/html /tmp/workspace/gh-pages/original
+
+      - run:
           name: MkDocs - Read the docs
           command: |
+            cd ./example/mkdocs-readthedocs
+            jq '.baseUrl = "/doxydown/mkdocs-readthedocs/api/"' ./.doxydown/config.json > ./.doxydown/config.json
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./example/mkdocs-readthedocs/docs/api \
-              --config ./example/mkdocs-readthedocs/.doxydown/config.json
-            cd ./example/mkdocs-readthedocs
+              --output ./docs/api \
+              --config ./.doxydown/config.json
             mkdocs build
             mkdir -p /tmp/workspace/gh-pages
             cp -r ./site /tmp/workspace/gh-pages/mkdocs-readthedocs
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - doxydown
+            - doxygen
+            - gh-pages
+  
+  deploy:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - add_ssh_keys:
+          fingerprints:
+            - "bb:06:cb:7a:1c:85:10:4f:85:a7:84:a2:60:2b:62:51"
+
+      - run:
+          name: Dependencies
+          command: |
+            sudo npm install -g gh-pages@2.0.1
+      
+      - run:
+          name: Deploy
+          command: |
+            git config --global user.email "$GITHUB_USER_EMAIL"
+            git config --global user.name "$GITHUB_USER_NAME"
+            gh-pages --dist /tmp/workspace/gh-pages
 
 workflows:
   version: 2
@@ -92,3 +129,10 @@ workflows:
       - examples:
           requires:
             - build
+      - deploy:
+          requires:
+            - examples
+          filters:
+            branches:
+              only:
+                - master
