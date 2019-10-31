@@ -69,7 +69,7 @@ jobs:
           name: Dependencies
           command: |
             sudo apt-get update
-            sudo apt-get install moreutils -y
+            sudo apt-get install moreutils hugo -y
             sudo pip install mkdocs
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
@@ -90,8 +90,19 @@ jobs:
               --output ./docs/api \
               --config ./.doxydown/config.json
             mkdocs build
-            mkdir -p /tmp/workspace/gh-pages
             cp -r ./site /tmp/workspace/gh-pages/mkdocs-readthedocs
+
+      - run:
+          name: Hugo - Learn
+          command: |
+            cd ./example/hugo-learn
+            doxydown \
+              --input /tmp/workspace/doxygen/xml \
+              --output ./docs/api \
+              --config ./.doxydown/config.json \
+              --templates ./.doxydown/templates
+            hugo
+            cp -r ./public /tmp/workspace/gh-pages/hugo-learn
 
       - persist_to_workspace:
           root: /tmp/workspace

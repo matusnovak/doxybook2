@@ -44,10 +44,8 @@ install:
       brew install doxygen;
     fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      wget http://doxygen.nl/files/doxygen-1.8.16.linux.bin.tar.gz;
-      tar -xvzf doxygen-1.8.16.linux.bin.tar.gz;
-      sudo cp doxygen-1.8.16/bin/doxygen /usr/local/bin/doxygen;
-      sudo chmod +x /usr/local/bin/doxygen;
+      sudo apt-get update;
+      sudo apt-get install doxygen -y;
     fi
   - doxygen -version
 
