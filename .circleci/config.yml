@@ -68,6 +68,8 @@ jobs:
       - run:
           name: Dependencies
           command: |
+            sudo apt-get update
+            sudo apt-install moreutils -y
             sudo pip install mkdocs
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
@@ -82,7 +84,7 @@ jobs:
           name: MkDocs - Read the docs
           command: |
             cd ./example/mkdocs-readthedocs
-            jq '.baseUrl = "/doxydown/mkdocs-readthedocs/api/"' ./.doxydown/config.json > ./.doxydown/config.json
+            jq '.baseUrl = "/doxydown/mkdocs-readthedocs/api/"' ./.doxydown/config.json | sponge ./.doxydown/config.json
             doxydown \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs/api \
