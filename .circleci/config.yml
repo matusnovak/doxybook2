@@ -123,6 +123,7 @@ jobs:
             git config --global user.email "$GITHUB_USER_EMAIL"
             git config --global user.name "$GITHUB_USER_NAME"
             mv /tmp/workspace/gh-pages ./dist
+            cp example/index.html ./dist/index.html
             DIST=dist node publish.js
 
 workflows:
