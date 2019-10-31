@@ -115,21 +115,15 @@ jobs:
       - run:
           name: Dependencies
           command: |
-            sudo npm install -g gh-pages@2.0.1
-
-      - run:
-          name: Avoid hosts unknown for github
-          command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+            npm install gh-pages@2.0.1
 
       - run:
           name: Deploy
           command: |
             git config --global user.email "$GITHUB_USER_EMAIL"
             git config --global user.name "$GITHUB_USER_NAME"
-            mv /tmp/workspace/gh-pages ./gh-pages
-            # Why the fuck does absolute path not work here?
-            # And why sudo?!
-            sudo gh-pages --dist gh-pages
+            mv /tmp/workspace/gh-pages ./dist
+            DIST=dist node publish.js
 
 workflows:
   version: 2
