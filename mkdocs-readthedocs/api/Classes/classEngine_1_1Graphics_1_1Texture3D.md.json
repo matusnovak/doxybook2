@@ -1,0 +1,239 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "baseClasses": [
+    {
+      "name": "Engine::Graphics::Texture",
+      "refid": "classEngine_1_1Graphics_1_1Texture",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/",
+      "virtual": "non-virtual",
+      "visibility": "public"
+    }
+  ],
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "includes": "<Texture3D.hpp>",
+  "inline": false,
+  "kind": "class",
+  "location": {
+    "bodyEnd": 20,
+    "bodyFile": "src/Graphics/Texture3D.hpp",
+    "bodyStart": 11,
+    "column": 31,
+    "file": "src/Graphics/Texture3D.hpp",
+    "line": 11
+  },
+  "name": "Engine::Graphics::Texture3D",
+  "parent": {
+    "anchor": "",
+    "kind": "namespace",
+    "name": "Engine::Graphics",
+    "refid": "namespaceEngine_1_1Graphics",
+    "type": "namespaces",
+    "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Graphics/",
+    "visibility": "public"
+  },
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-getdepth",
+      "argsString": "() const override",
+      "brief": "Returns the depth of the texture in pixels. ",
+      "const": true,
+      "default": false,
+      "definition": "int Engine::Graphics::Texture3D::getDepth",
+      "deleted": false,
+      "detailsSections": [
+        {
+          "text": "If this texture is 2D the depth is always 1 pixels ",
+          "type": "note"
+        },
+        {
+          "text": "Depth in pixels ",
+          "type": "return"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 5,
+        "file": "src/Graphics/Texture3D.hpp",
+        "line": 18
+      },
+      "name": "getDepth",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture3D_1ada1260ef0cb755e4a283c617fae8b009",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the depth of the texture in pixels. ",
+      "type": "functions",
+      "typePlain": "int",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getdepth",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-getheight",
+      "argsString": "() const override",
+      "brief": "Returns the height of the texture in pixels. ",
+      "const": true,
+      "default": false,
+      "definition": "int Engine::Graphics::Texture3D::getHeight",
+      "deleted": false,
+      "detailsSections": [
+        {
+          "text": "Height in pixels ",
+          "type": "return"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 5,
+        "file": "src/Graphics/Texture3D.hpp",
+        "line": 17
+      },
+      "name": "getHeight",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture3D_1a8379e2913526715cdf62ce2a4a76f330",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the height of the texture in pixels. ",
+      "type": "functions",
+      "typePlain": "int",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getheight",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-getwidth",
+      "argsString": "() const override",
+      "brief": "Returns the width of the texture in pixels. ",
+      "const": true,
+      "default": false,
+      "definition": "int Engine::Graphics::Texture3D::getWidth",
+      "deleted": false,
+      "detailsSections": [
+        {
+          "text": "Width in pixels ",
+          "type": "return"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 5,
+        "file": "src/Graphics/Texture3D.hpp",
+        "line": 16
+      },
+      "name": "getWidth",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture3D_1af602dd82ea87309879808b7f8465604f",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the width of the texture in pixels. ",
+      "type": "functions",
+      "typePlain": "int",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getwidth",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-~texture3d",
+      "argsString": "()",
+      "const": false,
+      "default": false,
+      "definition": "virtual Engine::Graphics::Texture3D::~Texture3D",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 9,
+        "file": "src/Graphics/Texture3D.hpp",
+        "line": 14
+      },
+      "name": "~Texture3D",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture3D_1a1c29881151b000a083509a877239403a",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-~texture3d",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-texture3d",
+      "argsString": "(int width, int height, int depth, uint8_t *data, Texture::Type type=Texture::Type::RGBA8)",
+      "const": false,
+      "default": false,
+      "definition": "Engine::Graphics::Texture3D::Texture3D",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 1,
+        "file": "src/Graphics/Texture3D.hpp",
+        "line": 13
+      },
+      "name": "Texture3D",
+      "params": [
+        {
+          "name": "width",
+          "type": "int",
+          "typePlain": "int"
+        },
+        {
+          "name": "height",
+          "type": "int",
+          "typePlain": "int"
+        },
+        {
+          "name": "depth",
+          "type": "int",
+          "typePlain": "int"
+        },
+        {
+          "name": "data",
+          "type": "uint8_t *",
+          "typePlain": "uint8_t *"
+        },
+        {
+          "defval": "[Texture::Type::RGBA8](/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/#enumvalue-rgba8)",
+          "defvalPlain": "Texture::Type::RGBA8",
+          "name": "type",
+          "type": "[Texture::Type](/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type)",
+          "typePlain": "Texture::Type"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture3D_1a2085a15a9a5a755b553652b84e8ee8ab",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-texture3d",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "refid": "classEngine_1_1Graphics_1_1Texture3D",
+  "static": false,
+  "strong": false,
+  "type": "classes",
+  "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/",
+  "visibility": "public"
+}

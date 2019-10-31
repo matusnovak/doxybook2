@@ -1,0 +1,43 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "inline": false,
+  "kind": "namespace",
+  "location": {
+    "column": 16,
+    "file": "src/Assets/Asset.hpp",
+    "line": 6
+  },
+  "name": "Engine::Assets",
+  "parent": {
+    "anchor": "",
+    "brief": "This namespace contains all of the necessary engine components. ",
+    "kind": "namespace",
+    "name": "Engine",
+    "refid": "namespaceEngine",
+    "summary": "This namespace contains all of the necessary engine components. ",
+    "type": "namespaces",
+    "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine/",
+    "visibility": "public"
+  },
+  "publicClasses": [
+    {
+      "anchor": "",
+      "kind": "class",
+      "name": "Engine::Assets::Asset",
+      "refid": "classEngine_1_1Assets_1_1Asset",
+      "type": "classes",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Assets_1_1Asset/",
+      "visibility": "public"
+    }
+  ],
+  "refid": "namespaceEngine_1_1Assets",
+  "static": false,
+  "strong": false,
+  "type": "namespaces",
+  "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Assets/",
+  "visibility": "public"
+}

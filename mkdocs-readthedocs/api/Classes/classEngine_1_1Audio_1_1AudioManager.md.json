@@ -1,0 +1,141 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "brief": "An audio manager that _accepts_ multiple **[Audio::AudioBuffer](/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Audio_1_1AudioBuffer/)** instances. ",
+  "const": false,
+  "definition": "",
+  "details": "Lorem Ipsum Donor. Some [Random link with **bold** and _italics_](http://github.com) And the following is a `typewritter` font. And here is some list items:\n\n* First item\n* Second item\n* Third item **with bold text**",
+  "detailsSections": [
+    {
+      "text": "[Audio::AudioBuffer](/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Audio_1_1AudioBuffer/)",
+      "type": "see"
+    }
+  ],
+  "explicit": false,
+  "includes": "<AudioManager.hpp>",
+  "inline": false,
+  "kind": "class",
+  "location": {
+    "bodyEnd": 23,
+    "bodyFile": "src/Audio/AudioManager.hpp",
+    "bodyStart": 17,
+    "column": 19,
+    "file": "src/Audio/AudioManager.hpp",
+    "line": 17
+  },
+  "name": "Engine::Audio::AudioManager",
+  "parent": {
+    "anchor": "",
+    "kind": "namespace",
+    "name": "Engine::Audio",
+    "refid": "namespaceEngine_1_1Audio",
+    "type": "namespaces",
+    "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Audio/",
+    "visibility": "public"
+  },
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-enque",
+      "argsString": "(const AudioBuffer &buffer)",
+      "const": false,
+      "default": false,
+      "definition": "void Engine::Audio::AudioManager::enque",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 6,
+        "file": "src/Audio/AudioManager.hpp",
+        "line": 22
+      },
+      "name": "enque",
+      "params": [
+        {
+          "name": "buffer",
+          "type": "const [AudioBuffer](/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Audio_1_1AudioBuffer/) &",
+          "typePlain": "const AudioBuffer &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Audio_1_1AudioManager_1ab518e57bc7c039b0ac985c74244ed027",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "typePlain": "void",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Audio_1_1AudioManager/#function-enque",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-~audiomanager",
+      "argsString": "()",
+      "const": false,
+      "default": false,
+      "definition": "Engine::Audio::AudioManager::~AudioManager",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 1,
+        "file": "src/Audio/AudioManager.hpp",
+        "line": 20
+      },
+      "name": "~AudioManager",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Audio_1_1AudioManager_1aadcf89776de4c18aa2f227628e8a6186",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Audio_1_1AudioManager/#function-~audiomanager",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-audiomanager",
+      "argsString": "(int numOfChannels=128)",
+      "const": false,
+      "default": false,
+      "definition": "Engine::Audio::AudioManager::AudioManager",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 1,
+        "file": "src/Audio/AudioManager.hpp",
+        "line": 19
+      },
+      "name": "AudioManager",
+      "params": [
+        {
+          "defval": "128",
+          "defvalPlain": "128",
+          "name": "numOfChannels",
+          "type": "int",
+          "typePlain": "int"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Audio_1_1AudioManager_1a6ddfa33f548bda24e5968f448dd88728",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Audio_1_1AudioManager/#function-audiomanager",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "refid": "classEngine_1_1Audio_1_1AudioManager",
+  "static": false,
+  "strong": false,
+  "summary": "An audio manager that accepts multiple Audio::AudioBuffer instances. ",
+  "type": "classes",
+  "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Audio_1_1AudioManager/",
+  "visibility": "public"
+}

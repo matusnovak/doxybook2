@@ -1,0 +1,68 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "includes": "<Asset.hpp>",
+  "inline": false,
+  "kind": "struct",
+  "location": {
+    "bodyEnd": 29,
+    "bodyFile": "src/Assets/Asset.hpp",
+    "bodyStart": 23,
+    "column": 14,
+    "file": "src/Assets/Asset.hpp",
+    "line": 23
+  },
+  "name": "Engine::Assets::Asset::Event::Waiting",
+  "parent": {
+    "anchor": "",
+    "kind": "union",
+    "name": "Engine::Assets::Asset::Event",
+    "refid": "unionEngine_1_1Assets_1_1Asset_1_1Event",
+    "type": "classes",
+    "url": "/doxydown/mkdocs-readthedocs/api/Classes/unionEngine_1_1Assets_1_1Asset_1_1Event/",
+    "visibility": "public"
+  },
+  "publicAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-other",
+      "brief": "The pointer to the other asset this asset is waiting for. ",
+      "const": false,
+      "definition": "Asset* Engine::Assets::Asset::Event::Waiting::other",
+      "detailsSections": [
+        {
+          "text": "May be null ",
+          "type": "note"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Assets/Asset.hpp",
+        "bodyStart": 28,
+        "column": 7,
+        "file": "src/Assets/Asset.hpp",
+        "line": 28
+      },
+      "name": "other",
+      "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting_1acbeca9e79efb323226a26b82977d36ec",
+      "static": false,
+      "strong": false,
+      "summary": "The pointer to the other asset this asset is waiting for. ",
+      "type": "attributes",
+      "typePlain": "Asset *",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting/#variable-other",
+      "visibility": "public"
+    }
+  ],
+  "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting",
+  "static": false,
+  "strong": false,
+  "type": "classes",
+  "url": "/doxydown/mkdocs-readthedocs/api/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting/",
+  "visibility": "public"
+}

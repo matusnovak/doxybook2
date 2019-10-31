@@ -1,0 +1,66 @@
+{
+  "children": [
+    {
+      "anchor": "",
+      "brief": "This namespace contains all of the necessary engine components. ",
+      "children": [
+        {
+          "anchor": "",
+          "kind": "namespace",
+          "name": "Engine::Assets",
+          "refid": "namespaceEngine_1_1Assets",
+          "type": "namespaces",
+          "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Assets/",
+          "visibility": "public"
+        },
+        {
+          "anchor": "",
+          "kind": "namespace",
+          "name": "Engine::Audio",
+          "refid": "namespaceEngine_1_1Audio",
+          "type": "namespaces",
+          "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Audio/",
+          "visibility": "public"
+        },
+        {
+          "anchor": "",
+          "kind": "namespace",
+          "name": "Engine::Graphics",
+          "refid": "namespaceEngine_1_1Graphics",
+          "type": "namespaces",
+          "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Graphics/",
+          "visibility": "public"
+        },
+        {
+          "anchor": "",
+          "children": [
+            {
+              "anchor": "",
+              "brief": "Filesystem path utility functions. ",
+              "kind": "namespace",
+              "name": "Engine::Utils::Path",
+              "refid": "namespaceEngine_1_1Utils_1_1Path",
+              "summary": "Filesystem path utility functions. ",
+              "type": "namespaces",
+              "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Utils_1_1Path/",
+              "visibility": "public"
+            }
+          ],
+          "kind": "namespace",
+          "name": "Engine::Utils",
+          "refid": "namespaceEngine_1_1Utils",
+          "type": "namespaces",
+          "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine_1_1Utils/",
+          "visibility": "public"
+        }
+      ],
+      "kind": "namespace",
+      "name": "Engine",
+      "refid": "namespaceEngine",
+      "summary": "This namespace contains all of the necessary engine components. ",
+      "type": "namespaces",
+      "url": "/doxydown/mkdocs-readthedocs/api/Namespaces/namespaceEngine/",
+      "visibility": "public"
+    }
+  ]
+}

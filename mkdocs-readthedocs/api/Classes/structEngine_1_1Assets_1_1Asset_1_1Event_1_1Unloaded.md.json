@@ -1,0 +1,60 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "includes": "<Asset.hpp>",
+  "inline": false,
+  "kind": "struct",
+  "location": {
+    "bodyEnd": 22,
+    "bodyFile": "src/Assets/Asset.hpp",
+    "bodyStart": 20,
+    "column": 15,
+    "file": "src/Assets/Asset.hpp",
+    "line": 20
+  },
+  "name": "Engine::Assets::Asset::Event::Unloaded",
+  "parent": {
+    "anchor": "",
+    "kind": "union",
+    "name": "Engine::Assets::Asset::Event",
+    "refid": "unionEngine_1_1Assets_1_1Asset_1_1Event",
+    "type": "classes",
+    "url": "/doxydown/mkdocs-readthedocs/api/Classes/unionEngine_1_1Assets_1_1Asset_1_1Event/",
+    "visibility": "public"
+  },
+  "publicAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-success",
+      "const": false,
+      "definition": "bool Engine::Assets::Asset::Event::Unloaded::success",
+      "explicit": false,
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Assets/Asset.hpp",
+        "bodyStart": 21,
+        "column": 6,
+        "file": "src/Assets/Asset.hpp",
+        "line": 21
+      },
+      "name": "success",
+      "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded_1a2bd5af73d6bccab761fc36bc699512f5",
+      "static": false,
+      "strong": false,
+      "type": "attributes",
+      "typePlain": "bool",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded/#variable-success",
+      "visibility": "public"
+    }
+  ],
+  "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded",
+  "static": false,
+  "strong": false,
+  "type": "classes",
+  "url": "/doxydown/mkdocs-readthedocs/api/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded/",
+  "visibility": "public"
+}

@@ -1,0 +1,188 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "brief": "This is a brief description to the graphics group. ",
+  "const": false,
+  "definition": "",
+  "details": "Some detailed description here ",
+  "explicit": false,
+  "inline": false,
+  "kind": "group",
+  "name": "Graphics",
+  "parent": {
+    "anchor": "",
+    "brief": "This is a brief description to the engine group. ",
+    "kind": "group",
+    "name": "Engine",
+    "refid": "group__Engine",
+    "summary": "This is a brief description to the engine group. ",
+    "type": "groups",
+    "url": "/doxydown/mkdocs-readthedocs/api/Modules/group__Engine/",
+    "visibility": "public"
+  },
+  "publicClasses": [
+    {
+      "anchor": "",
+      "baseClasses": [
+        {
+          "name": "Engine::Graphics::Handle",
+          "refid": "classEngine_1_1Graphics_1_1Handle",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Handle/",
+          "virtual": "non-virtual",
+          "visibility": "protected"
+        }
+      ],
+      "brief": "This is a base texture class that serves as a base class for other texture types. ",
+      "derivedClasses": [
+        {
+          "name": "Engine::Graphics::Framebuffer",
+          "refid": "classEngine_1_1Graphics_1_1Framebuffer",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Framebuffer/",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        },
+        {
+          "name": "Engine::Graphics::Texture2D",
+          "refid": "classEngine_1_1Graphics_1_1Texture2D",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture2D/",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        },
+        {
+          "name": "Engine::Graphics::Texture3D",
+          "refid": "classEngine_1_1Graphics_1_1Texture3D",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        }
+      ],
+      "kind": "interface",
+      "name": "Engine::Graphics::Texture",
+      "refid": "classEngine_1_1Graphics_1_1Texture",
+      "summary": "This is a base texture class that serves as a base class for other texture types. ",
+      "type": "classes",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "baseClasses": [
+        {
+          "name": "Engine::Graphics::Texture",
+          "refid": "classEngine_1_1Graphics_1_1Texture",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        }
+      ],
+      "kind": "class",
+      "name": "Engine::Graphics::Texture3D",
+      "refid": "classEngine_1_1Graphics_1_1Texture3D",
+      "type": "classes",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture3D/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "baseClasses": [
+        {
+          "name": "Engine::Graphics::Texture",
+          "refid": "classEngine_1_1Graphics_1_1Texture",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        }
+      ],
+      "kind": "class",
+      "name": "Engine::Graphics::Texture2D",
+      "refid": "classEngine_1_1Graphics_1_1Texture2D",
+      "type": "classes",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture2D/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "derivedClasses": [
+        {
+          "name": "Engine::Graphics::Texture",
+          "refid": "classEngine_1_1Graphics_1_1Texture",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/",
+          "virtual": "non-virtual",
+          "visibility": "protected"
+        }
+      ],
+      "kind": "class",
+      "name": "Engine::Graphics::Handle",
+      "refid": "classEngine_1_1Graphics_1_1Handle",
+      "type": "classes",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Handle/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "baseClasses": [
+        {
+          "name": "Engine::Graphics::Texture",
+          "refid": "classEngine_1_1Graphics_1_1Texture",
+          "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Texture/",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        }
+      ],
+      "kind": "class",
+      "name": "Engine::Graphics::Framebuffer",
+      "refid": "classEngine_1_1Graphics_1_1Framebuffer",
+      "type": "classes",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/classEngine_1_1Graphics_1_1Framebuffer/",
+      "visibility": "public"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-gethandle",
+      "argsString": "(Handle &handle)",
+      "brief": "Some namespace inline function. ",
+      "const": false,
+      "default": false,
+      "definition": "int Engine::Graphics::getHandle",
+      "deleted": false,
+      "explicit": false,
+      "inline": true,
+      "kind": "function",
+      "location": {
+        "bodyEnd": 27,
+        "bodyFile": "src/Graphics/Handle.hpp",
+        "bodyStart": 25,
+        "column": 12,
+        "file": "src/Graphics/Handle.hpp",
+        "line": 25
+      },
+      "name": "getHandle",
+      "params": [
+        {
+          "name": "handle",
+          "type": "Handle &",
+          "typePlain": "Handle &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "group__Graphics_1gae5b9a93609bed06adb3ce5902791df8a",
+      "static": false,
+      "strong": false,
+      "summary": "Some namespace inline function. ",
+      "type": "functions",
+      "typePlain": "int",
+      "url": "/doxydown/mkdocs-readthedocs/api/Modules/group__Graphics/#function-gethandle",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "refid": "group__Graphics",
+  "static": false,
+  "strong": false,
+  "summary": "This is a brief description to the graphics group. ",
+  "type": "groups",
+  "url": "/doxydown/mkdocs-readthedocs/api/Modules/group__Graphics/",
+  "visibility": "public"
+}

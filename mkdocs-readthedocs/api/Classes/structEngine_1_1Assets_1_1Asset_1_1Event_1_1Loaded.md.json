@@ -1,0 +1,84 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "includes": "<Asset.hpp>",
+  "inline": false,
+  "kind": "struct",
+  "location": {
+    "bodyEnd": 19,
+    "bodyFile": "src/Assets/Asset.hpp",
+    "bodyStart": 16,
+    "column": 13,
+    "file": "src/Assets/Asset.hpp",
+    "line": 16
+  },
+  "name": "Engine::Assets::Asset::Event::Loaded",
+  "parent": {
+    "anchor": "",
+    "kind": "union",
+    "name": "Engine::Assets::Asset::Event",
+    "refid": "unionEngine_1_1Assets_1_1Asset_1_1Event",
+    "type": "classes",
+    "url": "/doxydown/mkdocs-readthedocs/api/Classes/unionEngine_1_1Assets_1_1Asset_1_1Event/",
+    "visibility": "public"
+  },
+  "publicAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-usage",
+      "const": false,
+      "definition": "int Engine::Assets::Asset::Event::Loaded::usage",
+      "explicit": false,
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Assets/Asset.hpp",
+        "bodyStart": 18,
+        "column": 5,
+        "file": "src/Assets/Asset.hpp",
+        "line": 18
+      },
+      "name": "usage",
+      "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a4560959655f932a372e0f9cee598ed1c",
+      "static": false,
+      "strong": false,
+      "type": "attributes",
+      "typePlain": "int",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded/#variable-usage",
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#variable-success",
+      "const": false,
+      "definition": "bool Engine::Assets::Asset::Event::Loaded::success",
+      "explicit": false,
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Assets/Asset.hpp",
+        "bodyStart": 17,
+        "column": 6,
+        "file": "src/Assets/Asset.hpp",
+        "line": 17
+      },
+      "name": "success",
+      "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a6df474ccd46caeb0e7ffb2214bb795d3",
+      "static": false,
+      "strong": false,
+      "type": "attributes",
+      "typePlain": "bool",
+      "url": "/doxydown/mkdocs-readthedocs/api/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded/#variable-success",
+      "visibility": "public"
+    }
+  ],
+  "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded",
+  "static": false,
+  "strong": false,
+  "type": "classes",
+  "url": "/doxydown/mkdocs-readthedocs/api/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded/",
+  "visibility": "public"
+}
