@@ -75,6 +75,11 @@ jobs:
             sudo chmod +x /usr/local/bin/doxydown
 
       - run:
+          name: Submodules
+          command: |
+            git submodule update --init
+
+      - run:
           name: Original
           command: |
             mkdir -p /tmp/workspace/gh-pages

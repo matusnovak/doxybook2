@@ -7,7 +7,7 @@ namespace Doxydown {
         std::string outputDir;
 
         // Generate extra JSON for each rendered template
-        bool debugTemplateJson{true};
+        bool debugTemplateJson{false};
 
         // Convert all refids (including folder names) into lowercase?
         bool linkLowercase{false};
