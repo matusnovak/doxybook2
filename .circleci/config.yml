@@ -68,8 +68,9 @@ jobs:
       - run:
           name: Dependencies
           command: |
-            pip install mkdocs
-            cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
+            sudo pip install mkdocs
+            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
+            sudo chmod +x /usr/local/bin/doxydown
 
       - run:
           name: MkDocs - Read the docs
