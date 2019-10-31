@@ -14,15 +14,6 @@
 
 static const std::regex ANCHOR_REGEX("_[a-z0-9]{34,67}$");
 
-// Really?!
-#if defined(__APPLE__) || defined(__MINGW32__)
-    static const auto US_LOCALE = std::locale("en_US");
-#elif defined(__linux__)
-    static const auto US_LOCALE = std::locale("en-US");
-#else
-    static const auto US_LOCALE = std::locale("en_US.utf8");
-#endif
-
 static std::string replaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t pos = 0;
     while ((pos = str.find(from, pos)) != std::string::npos) {
@@ -33,13 +24,13 @@ static std::string replaceAll(std::string str, const std::string& from, const st
 }
 
 std::string Doxydown::Utils::title(std::string str) {
-    if (!str.empty()) str[0] = std::toupper(str[0], US_LOCALE);
+    if (!str.empty()) str[0] = ::toupper(str[0]);
     return str;
 }
 
 extern std::string Doxydown::Utils::toLower(std::string str) {
     for (auto& c : str) {
-        c = std::tolower(c, US_LOCALE);
+        c = ::tolower(c);
     }
     return str;
 }
