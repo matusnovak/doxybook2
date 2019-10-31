@@ -98,7 +98,7 @@ jobs:
             cd ./example/hugo-learn
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./docs/api \
+              --output ./content/api \
               --config ./.doxydown/config.json \
               --templates ./.doxydown/templates
             hugo
