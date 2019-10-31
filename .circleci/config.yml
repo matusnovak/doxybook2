@@ -33,7 +33,8 @@ jobs:
               -DBUILD_TESTING=OFF \
               -DBUILD_SHARED_LIBS=OFF \
               -DCMAKE_BUILD_TYPE=MinSizeRel \
-              -DCMAKE_INSTALL_PREFIX=/tmp/workspace/doxydown
+              -DCMAKE_INSTALL_PREFIX=/tmp/workspace/doxydown \
+              ..
             cmake --build . --target install
 
       - run:
