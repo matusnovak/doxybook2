@@ -69,7 +69,7 @@ jobs:
           name: Dependencies
           command: |
             sudo apt-get update
-            sudo apt-install moreutils -y
+            sudo apt-get install moreutils -y
             sudo pip install mkdocs
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
