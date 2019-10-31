@@ -122,8 +122,10 @@ jobs:
           command: |
             git config --global user.email "$GITHUB_USER_EMAIL"
             git config --global user.name "$GITHUB_USER_NAME"
+            ssh-keyscan -H github.com >> ~/.ssh/known_hosts
             mv /tmp/workspace/gh-pages ./gh-pages
             # Why the fuck does absolute path not work here?
+            # And why sudo?!
             sudo gh-pages --dist gh-pages
 
 workflows:
