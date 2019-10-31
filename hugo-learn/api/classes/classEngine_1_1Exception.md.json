@@ -1,0 +1,165 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "baseClasses": [
+    {
+      "name": "exception",
+      "virtual": "non-virtual",
+      "visibility": "public"
+    }
+  ],
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "includes": "<Exception.hpp>",
+  "inline": false,
+  "kind": "class",
+  "location": {
+    "bodyEnd": 24,
+    "bodyFile": "src/Exception.hpp",
+    "bodyStart": 9,
+    "column": 38,
+    "file": "src/Exception.hpp",
+    "line": 9
+  },
+  "name": "Engine::Exception",
+  "parent": {
+    "anchor": "",
+    "brief": "This namespace contains all of the necessary engine components. ",
+    "kind": "namespace",
+    "name": "Engine",
+    "refid": "namespaceEngine",
+    "summary": "This namespace contains all of the necessary engine components. ",
+    "type": "namespaces",
+    "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine/",
+    "visibility": "public"
+  },
+  "privateAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-msg",
+      "const": false,
+      "definition": "std::string Engine::Exception::msg",
+      "explicit": false,
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Exception.hpp",
+        "bodyStart": 23,
+        "column": 21,
+        "file": "src/Exception.hpp",
+        "line": 23
+      },
+      "name": "msg",
+      "refid": "classEngine_1_1Exception_1ace265added7ec74ac0fe09b30d442621",
+      "static": false,
+      "strong": false,
+      "type": "attributes",
+      "typePlain": "std::string",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/#variable-msg",
+      "visibility": "private"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-what",
+      "argsString": "() const override",
+      "const": true,
+      "default": false,
+      "definition": "const char* Engine::Exception::what",
+      "deleted": false,
+      "explicit": false,
+      "inline": true,
+      "kind": "function",
+      "location": {
+        "bodyEnd": 20,
+        "bodyFile": "src/Exception.hpp",
+        "bodyStart": 18,
+        "column": 20,
+        "file": "src/Exception.hpp",
+        "line": 18
+      },
+      "name": "what",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Exception_1ac25e87274c89524b026998678500dd29",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "typePlain": "const char *",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/#function-what",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-exception",
+      "argsString": "(std::string msg)",
+      "const": false,
+      "default": false,
+      "definition": "Engine::Exception::Exception",
+      "deleted": false,
+      "explicit": true,
+      "inline": true,
+      "kind": "function",
+      "location": {
+        "bodyEnd": 16,
+        "bodyFile": "src/Exception.hpp",
+        "bodyStart": 13,
+        "column": 18,
+        "file": "src/Exception.hpp",
+        "line": 13
+      },
+      "name": "Exception",
+      "params": [
+        {
+          "name": "msg",
+          "type": "std::string",
+          "typePlain": "std::string"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Exception_1a4f566b63e5d447cb468d0f89b46bb75c",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/#function-exception",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-exception",
+      "argsString": "()=default",
+      "const": false,
+      "default": true,
+      "definition": "Engine::Exception::Exception",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 1,
+        "file": "src/Exception.hpp",
+        "line": 11
+      },
+      "name": "Exception",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Exception_1a697748d2c21a434b4742910b8d4e53d4",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/#function-exception",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "refid": "classEngine_1_1Exception",
+  "static": false,
+  "strong": false,
+  "type": "classes",
+  "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/",
+  "visibility": "public"
+}

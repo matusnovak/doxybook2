@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Index on Doxydown Example</title>
+    <link>https://matusnovak.github.io/doxydown/hugo-learn/</link>
+    <description>Recent content in Index on Doxydown Example</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://matusnovak.github.io/doxydown/hugo-learn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Assets Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__assets/</guid>
+      <description>This is a brief description to the assets group. More&amp;hellip;
+Classes     Name     class Asset   union Event    Detailed Description This is a brief description to the assets group.
+Some detailed description here
+Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Audio Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__audio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__audio/</guid>
+      <description>This is a brief description to the audio group. More&amp;hellip;
+Classes     Name     class AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class AudioBuffer A simple audio buffer to hold PCM samples    Detailed Description This is a brief description to the audio group.
+Some detailed description here
+Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__engine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__engine/</guid>
+      <description>This is a brief description to the engine group. More&amp;hellip;
+Groups    Name     Utils This is a brief description to the utils group.   Graphics This is a brief description to the graphics group.   Audio This is a brief description to the audio group.   Assets This is a brief description to the assets group.    Namespaces    Name     Engine This namespace contains all of the necessary engine components.</description>
+    </item>
+    
+    <item>
+      <title>Engine Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine/</guid>
+      <description>This namespace contains all of the necessary engine components.
+Namespaces    Name     Utils   Graphics   Audio   Assets    Classes     Name     class Exception    Functions     Name     functions getVersion()    Detailed Description This namespace contains all of the necessary engine components.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/</guid>
+      <description>Classes     Name     class Asset    Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/</guid>
+      <description>#include &amp;lt;Asset.hpp&amp;gt;
+Public Classes     Name     union Event    Public Functions     Name     functions getEvent() const Returns the current status of the asset.   virtual functions unload() Call this method to unload the asset.   virtual functions load() Call this method to load the asset.   virtual functions ~Asset() =0   functions Asset(const std::string &amp;amp; name)    Public Functions Documentation function getEvent inline const Event &amp;amp; getEvent() const  Returns the current status of the asset.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/unionengine_1_1assets_1_1asset_1_1event/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/unionengine_1_1assets_1_1asset_1_1event/</guid>
+      <description>#include &amp;lt;Asset.hpp&amp;gt;
+Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     attributes waiting   attributes unloaded   attributes loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event::Loaded Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</guid>
+      <description>#include &amp;lt;Asset.hpp&amp;gt;
+Public Attributes     Name     attributes usage   attributes success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event::Unloaded Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</guid>
+      <description>#include &amp;lt;Asset.hpp&amp;gt;
+Public Attributes     Name     attributes success    Public Attributes Documentation variable success bool success;  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event::Waiting Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/</guid>
+      <description>#include &amp;lt;Asset.hpp&amp;gt;
+Public Attributes     Name     attributes other The pointer to the other asset this asset is waiting for.    Public Attributes Documentation variable other Asset * other;  The pointer to the other asset this asset is waiting for.
+Note: May be null
+Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/</guid>
+      <description>Classes     Name     class AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class AudioBuffer A simple audio buffer to hold PCM samples    Functions     Name     functions doSomething(AudioBuffer &amp;amp; buffer) Do something with the buffer.    Functions Documentation function doSomething void doSomething( AudioBuffer &amp;amp; buffer )  Do something with the buffer.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio::AudioBuffer Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/</guid>
+      <description>A simple audio buffer to hold PCM samples More&amp;hellip;
+#include &amp;lt;AudioBuffer.hpp&amp;gt;
+Public Classes     Name     struct TypedAudioData Use this to populate the buffer.    Public Types     Name     typedef types AudioData   enum types Type { UNKNOWN, INT8, INT16, INT24, INT32, FLOAT32 }Different type of audio formats.    Public Functions     Name     functions setData(const TypedAudioData &amp;amp; data)   functions loop(AudioManager &amp;amp; manager) const Loop this buffer forever.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio::AudioBuffer::TypedAudioData Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/</guid>
+      <description>Use this to populate the buffer.
+#include &amp;lt;AudioBuffer.hpp&amp;gt;
+Public Attributes     Name     attributes type   attributes buffer    Public Attributes Documentation variable type Type type;  variable buffer AudioData buffer;  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio::AudioManager Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiomanager/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiomanager/</guid>
+      <description>An audio manager that accepts multiple Audio::AudioBuffer instances. More&amp;hellip;
+#include &amp;lt;AudioManager.hpp&amp;gt;
+Public Functions     Name     functions enque(const AudioBuffer &amp;amp; buffer)   functions ~AudioManager()   functions AudioManager(int numOfChannels =128)    Detailed Description An audio manager that accepts multiple Audio::AudioBuffer instances.
+See: Audio::AudioBuffer
+Lorem Ipsum Donor. Some Random link with bold and italics And the following is a typewritter font. And here is some list items:</description>
+    </item>
+    
+    <item>
+      <title>Engine::Exception Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1exception/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1exception/</guid>
+      <description>#include &amp;lt;Exception.hpp&amp;gt;
+Inherits from exception
+Public Functions     Name     functions what() const   functions Exception(std::string msg)   functions Exception() =default    Public Functions Documentation function what inline const char * what() const  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/</guid>
+      <description>Classes     Name     class Texture3D   class Texture2D   interface Texture This is a base texture class that serves as a base class for other texture types.   class Handle   class Framebuffer    Functions     Name     functions getHandle(Handle &amp;amp; handle) Some namespace inline function.    Functions Documentation function getHandle inline int getHandle( Handle &amp;amp; handle )  Some namespace inline function.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Framebuffer Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/</guid>
+      <description>#include &amp;lt;Framebuffer.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture
+Public Functions     Name     virtual functions getDepth() const Returns the depth of the texture in pixels.   virtual functions getHeight() const Returns the height of the texture in pixels.   virtual functions getWidth() const Returns the width of the texture in pixels.   virtual functions ~Framebuffer()   functions Framebuffer(int width, int height)    Public Functions Documentation function getDepth virtual int getDepth() const  Returns the depth of the texture in pixels.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Handle Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/</guid>
+      <description>#include &amp;lt;Handle.hpp&amp;gt;
+Inherited by Engine::Graphics::Texture
+Public Functions     Name     functions getHandle() const   virtual functions ~Handle() =default   functions Handle() =default    Protected Attributes     Name     attributes handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Texture Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/</guid>
+      <description>This is a base texture class that serves as a base class for other texture types.
+#include &amp;lt;Texture.hpp&amp;gt;
+Inherits from Engine::Graphics::Handle
+Inherited by Engine::Graphics::Framebuffer, Engine::Graphics::Texture2D, Engine::Graphics::Texture3D
+Public Types     Name     enum types Type { UNKNOWN, RGBA8, RGB8, RGBA16, RGB16, RGBA32, RGB32 }    Public Functions     Name     functions isLoaded() const   virtual functions getDepth() const =0 Returns the depth of the texture in pixels.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Texture2D Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture2d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture2d/</guid>
+      <description>#include &amp;lt;Texture2D.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture
+Public Functions     Name     virtual functions getDepth() const Returns the depth of the texture in pixels.   virtual functions getHeight() const Returns the height of the texture in pixels.   virtual functions getWidth() const Returns the width of the texture in pixels.   virtual functions ~Texture2D()   functions Texture2D(int width, int height, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Public Functions Documentation function getDepth virtual int getDepth() const  Returns the depth of the texture in pixels.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Texture3D Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture3d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture3d/</guid>
+      <description>#include &amp;lt;Texture3D.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture
+Public Functions     Name     virtual functions getDepth() const Returns the depth of the texture in pixels.   virtual functions getHeight() const Returns the height of the texture in pixels.   virtual functions getWidth() const Returns the width of the texture in pixels.   virtual functions ~Texture3D()   functions Texture3D(int width, int height, int depth, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Public Functions Documentation function getDepth virtual int getDepth() const  Returns the depth of the texture in pixels.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Utils Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/</guid>
+      <description>Namespaces    Name     Path Filesystem path utility functions.    Classes     Name     class ArrayView Filesystem path utility functions.    Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Utils::ArrayView Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1utils_1_1arrayview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1utils_1_1arrayview/</guid>
+      <description>Filesystem path utility functions. More&amp;hellip;
+#include &amp;lt;ArrayView.hpp&amp;gt;
+Public Functions     Name     virtual functions size() const   virtual functions data() const   virtual functions ~ArrayView() =default   functions ArrayView(const T * src, size_t len)    Detailed Description Filesystem path utility functions.
+Thetype of the data, for example uint8_t
+Public Functions Documentation function size virtual size_t size() const  function data virtual const T * data() const  function ~ArrayView virtual ~ArrayView() =default  function ArrayView ArrayView( const T * src, size_t len )  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Utils::Path Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils_1_1path/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils_1_1path/</guid>
+      <description>Filesystem path utility functions.
+Functions     Name     functions getExtension(const std::string &amp;amp; path)   functions getFilename(const std::string &amp;amp; path)    Functions Documentation function getExtension std::string getExtension( const std::string &amp;amp; path )  function getFilename std::string getFilename( const std::string &amp;amp; path )  Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Graphics Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__graphics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__graphics/</guid>
+      <description>This is a brief description to the graphics group. More&amp;hellip;
+Classes     Name     interface Texture This is a base texture class that serves as a base class for other texture types.   class Texture3D   class Texture2D   class Handle   class Framebuffer    Functions     Name     functions getHandle(Handle &amp;amp; handle) Some namespace inline function.</description>
+    </item>
+    
+    <item>
+      <title>Utils Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__utils/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__utils/</guid>
+      <description>This is a brief description to the utils group. More&amp;hellip;
+Namespaces    Name     Path Filesystem path utility functions.    Classes     Name     class ArrayView Filesystem path utility functions.    Detailed Description This is a brief description to the utils group.
+Some detailed description here
+Created on 2019-10-31</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,54 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "brief": "This is a brief description to the audio group. ",
+  "const": false,
+  "definition": "",
+  "details": "Some detailed description here ",
+  "explicit": false,
+  "inline": false,
+  "kind": "group",
+  "name": "Audio",
+  "parent": {
+    "anchor": "",
+    "brief": "This is a brief description to the engine group. ",
+    "kind": "group",
+    "name": "Engine",
+    "refid": "group__Engine",
+    "summary": "This is a brief description to the engine group. ",
+    "type": "groups",
+    "url": "/doxydown/hugo-learn/api/modules/group__engine/",
+    "visibility": "public"
+  },
+  "publicClasses": [
+    {
+      "anchor": "",
+      "brief": "An audio manager that _accepts_ multiple **[Audio::AudioBuffer](/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/)** instances. ",
+      "kind": "class",
+      "name": "Engine::Audio::AudioManager",
+      "refid": "classEngine_1_1Audio_1_1AudioManager",
+      "summary": "An audio manager that accepts multiple Audio::AudioBuffer instances. ",
+      "type": "classes",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiomanager/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "_A simple audio buffer to hold PCM samples_",
+      "kind": "class",
+      "name": "Engine::Audio::AudioBuffer",
+      "refid": "classEngine_1_1Audio_1_1AudioBuffer",
+      "summary": "A simple audio buffer to hold PCM samples",
+      "type": "classes",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/",
+      "visibility": "public"
+    }
+  ],
+  "refid": "group__Audio",
+  "static": false,
+  "strong": false,
+  "summary": "This is a brief description to the audio group. ",
+  "type": "groups",
+  "url": "/doxydown/hugo-learn/api/modules/group__audio/",
+  "visibility": "public"
+}

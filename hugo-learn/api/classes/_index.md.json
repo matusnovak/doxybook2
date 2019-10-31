@@ -1,0 +1,255 @@
+{
+  "children": [
+    {
+      "anchor": "",
+      "brief": "This namespace contains all of the necessary engine components. ",
+      "children": [
+        {
+          "anchor": "",
+          "children": [
+            {
+              "anchor": "",
+              "children": [
+                {
+                  "anchor": "",
+                  "children": [
+                    {
+                      "anchor": "",
+                      "kind": "struct",
+                      "name": "Engine::Assets::Asset::Event::Loaded",
+                      "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded",
+                      "type": "classes",
+                      "url": "/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/",
+                      "visibility": "public"
+                    },
+                    {
+                      "anchor": "",
+                      "kind": "struct",
+                      "name": "Engine::Assets::Asset::Event::Unloaded",
+                      "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded",
+                      "type": "classes",
+                      "url": "/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/",
+                      "visibility": "public"
+                    },
+                    {
+                      "anchor": "",
+                      "kind": "struct",
+                      "name": "Engine::Assets::Asset::Event::Waiting",
+                      "refid": "structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting",
+                      "type": "classes",
+                      "url": "/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/",
+                      "visibility": "public"
+                    }
+                  ],
+                  "kind": "union",
+                  "name": "Engine::Assets::Asset::Event",
+                  "refid": "unionEngine_1_1Assets_1_1Asset_1_1Event",
+                  "type": "classes",
+                  "url": "/doxydown/hugo-learn/api/classes/unionengine_1_1assets_1_1asset_1_1event/",
+                  "visibility": "public"
+                }
+              ],
+              "kind": "class",
+              "name": "Engine::Assets::Asset",
+              "refid": "classEngine_1_1Assets_1_1Asset",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/",
+              "visibility": "public"
+            }
+          ],
+          "kind": "namespace",
+          "name": "Engine::Assets",
+          "refid": "namespaceEngine_1_1Assets",
+          "type": "namespaces",
+          "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/",
+          "visibility": "public"
+        },
+        {
+          "anchor": "",
+          "children": [
+            {
+              "anchor": "",
+              "brief": "_A simple audio buffer to hold PCM samples_",
+              "children": [
+                {
+                  "anchor": "",
+                  "brief": "Use this to populate the buffer. ",
+                  "kind": "struct",
+                  "name": "Engine::Audio::AudioBuffer::TypedAudioData",
+                  "refid": "structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData",
+                  "summary": "Use this to populate the buffer. ",
+                  "type": "classes",
+                  "url": "/doxydown/hugo-learn/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/",
+                  "visibility": "public"
+                }
+              ],
+              "kind": "class",
+              "name": "Engine::Audio::AudioBuffer",
+              "refid": "classEngine_1_1Audio_1_1AudioBuffer",
+              "summary": "A simple audio buffer to hold PCM samples",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/",
+              "visibility": "public"
+            },
+            {
+              "anchor": "",
+              "brief": "An audio manager that _accepts_ multiple **[Audio::AudioBuffer](/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/)** instances. ",
+              "kind": "class",
+              "name": "Engine::Audio::AudioManager",
+              "refid": "classEngine_1_1Audio_1_1AudioManager",
+              "summary": "An audio manager that accepts multiple Audio::AudioBuffer instances. ",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiomanager/",
+              "visibility": "public"
+            }
+          ],
+          "kind": "namespace",
+          "name": "Engine::Audio",
+          "refid": "namespaceEngine_1_1Audio",
+          "type": "namespaces",
+          "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/",
+          "visibility": "public"
+        },
+        {
+          "anchor": "",
+          "baseClasses": [
+            {
+              "name": "exception",
+              "virtual": "non-virtual",
+              "visibility": "public"
+            }
+          ],
+          "kind": "class",
+          "name": "Engine::Exception",
+          "refid": "classEngine_1_1Exception",
+          "type": "classes",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/",
+          "visibility": "public"
+        },
+        {
+          "anchor": "",
+          "children": [
+            {
+              "anchor": "",
+              "baseClasses": [
+                {
+                  "name": "Engine::Graphics::Texture",
+                  "refid": "classEngine_1_1Graphics_1_1Texture",
+                  "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/",
+                  "virtual": "non-virtual",
+                  "visibility": "public"
+                }
+              ],
+              "kind": "class",
+              "name": "Engine::Graphics::Framebuffer",
+              "refid": "classEngine_1_1Graphics_1_1Framebuffer",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/",
+              "visibility": "public"
+            },
+            {
+              "anchor": "",
+              "derivedClasses": [
+                {
+                  "name": "Engine::Graphics::Texture",
+                  "refid": "classEngine_1_1Graphics_1_1Texture",
+                  "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/",
+                  "virtual": "non-virtual",
+                  "visibility": "protected"
+                }
+              ],
+              "kind": "class",
+              "name": "Engine::Graphics::Handle",
+              "refid": "classEngine_1_1Graphics_1_1Handle",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/",
+              "visibility": "public"
+            },
+            {
+              "anchor": "",
+              "baseClasses": [
+                {
+                  "name": "Engine::Graphics::Texture",
+                  "refid": "classEngine_1_1Graphics_1_1Texture",
+                  "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/",
+                  "virtual": "non-virtual",
+                  "visibility": "public"
+                }
+              ],
+              "kind": "class",
+              "name": "Engine::Graphics::Texture2D",
+              "refid": "classEngine_1_1Graphics_1_1Texture2D",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture2d/",
+              "visibility": "public"
+            },
+            {
+              "anchor": "",
+              "baseClasses": [
+                {
+                  "name": "Engine::Graphics::Texture",
+                  "refid": "classEngine_1_1Graphics_1_1Texture",
+                  "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/",
+                  "virtual": "non-virtual",
+                  "visibility": "public"
+                }
+              ],
+              "kind": "class",
+              "name": "Engine::Graphics::Texture3D",
+              "refid": "classEngine_1_1Graphics_1_1Texture3D",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture3d/",
+              "visibility": "public"
+            }
+          ],
+          "kind": "namespace",
+          "name": "Engine::Graphics",
+          "refid": "namespaceEngine_1_1Graphics",
+          "type": "namespaces",
+          "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/",
+          "visibility": "public"
+        },
+        {
+          "anchor": "",
+          "children": [
+            {
+              "anchor": "",
+              "brief": "Filesystem path utility functions. ",
+              "kind": "class",
+              "name": "Engine::Utils::ArrayView",
+              "refid": "classEngine_1_1Utils_1_1ArrayView",
+              "summary": "Filesystem path utility functions. ",
+              "type": "classes",
+              "url": "/doxydown/hugo-learn/api/classes/classengine_1_1utils_1_1arrayview/",
+              "visibility": "public"
+            },
+            {
+              "anchor": "",
+              "brief": "Filesystem path utility functions. ",
+              "kind": "namespace",
+              "name": "Engine::Utils::Path",
+              "refid": "namespaceEngine_1_1Utils_1_1Path",
+              "summary": "Filesystem path utility functions. ",
+              "type": "namespaces",
+              "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils_1_1path/",
+              "visibility": "public"
+            }
+          ],
+          "kind": "namespace",
+          "name": "Engine::Utils",
+          "refid": "namespaceEngine_1_1Utils",
+          "type": "namespaces",
+          "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/",
+          "visibility": "public"
+        }
+      ],
+      "kind": "namespace",
+      "name": "Engine",
+      "refid": "namespaceEngine",
+      "summary": "This namespace contains all of the necessary engine components. ",
+      "type": "namespaces",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine/",
+      "visibility": "public"
+    }
+  ]
+}

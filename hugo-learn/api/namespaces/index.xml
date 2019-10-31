@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Namespaces on Doxydown Example</title>
+    <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/</link>
+    <description>Recent content in Namespaces on Doxydown Example</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Engine Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine/</guid>
+      <description>This namespace contains all of the necessary engine components.
+Namespaces    Name     Utils   Graphics   Audio   Assets    Classes     Name     class Exception    Functions     Name     functions getVersion()    Detailed Description This namespace contains all of the necessary engine components.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/</guid>
+      <description>Classes     Name     class Asset    Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/</guid>
+      <description>Classes     Name     class AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class AudioBuffer A simple audio buffer to hold PCM samples    Functions     Name     functions doSomething(AudioBuffer &amp;amp; buffer) Do something with the buffer.    Functions Documentation function doSomething void doSomething( AudioBuffer &amp;amp; buffer )  Do something with the buffer.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/</guid>
+      <description>Classes     Name     class Texture3D   class Texture2D   interface Texture This is a base texture class that serves as a base class for other texture types.   class Handle   class Framebuffer    Functions     Name     functions getHandle(Handle &amp;amp; handle) Some namespace inline function.    Functions Documentation function getHandle inline int getHandle( Handle &amp;amp; handle )  Some namespace inline function.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Utils Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/</guid>
+      <description>Namespaces    Name     Path Filesystem path utility functions.    Classes     Name     class ArrayView Filesystem path utility functions.    Created on 2019-10-31</description>
+    </item>
+    
+    <item>
+      <title>Engine::Utils::Path Reference</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils_1_1path/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils_1_1path/</guid>
+      <description>Filesystem path utility functions.
+Functions     Name     functions getExtension(const std::string &amp;amp; path)   functions getFilename(const std::string &amp;amp; path)    Functions Documentation function getExtension std::string getExtension( const std::string &amp;amp; path )  function getFilename std::string getFilename( const std::string &amp;amp; path )  Created on 2019-10-31</description>
+    </item>
+    
+  </channel>
+</rss>

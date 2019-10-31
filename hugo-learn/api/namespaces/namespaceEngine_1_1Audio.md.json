@@ -1,0 +1,94 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "inline": false,
+  "kind": "namespace",
+  "location": {
+    "column": 15,
+    "file": "src/Audio/AudioBuffer.hpp",
+    "line": 5
+  },
+  "name": "Engine::Audio",
+  "parent": {
+    "anchor": "",
+    "brief": "This namespace contains all of the necessary engine components. ",
+    "kind": "namespace",
+    "name": "Engine",
+    "refid": "namespaceEngine",
+    "summary": "This namespace contains all of the necessary engine components. ",
+    "type": "namespaces",
+    "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine/",
+    "visibility": "public"
+  },
+  "publicClasses": [
+    {
+      "anchor": "",
+      "brief": "An audio manager that _accepts_ multiple **[Audio::AudioBuffer](/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/)** instances. ",
+      "kind": "class",
+      "name": "Engine::Audio::AudioManager",
+      "refid": "classEngine_1_1Audio_1_1AudioManager",
+      "summary": "An audio manager that accepts multiple Audio::AudioBuffer instances. ",
+      "type": "classes",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiomanager/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "_A simple audio buffer to hold PCM samples_",
+      "kind": "class",
+      "name": "Engine::Audio::AudioBuffer",
+      "refid": "classEngine_1_1Audio_1_1AudioBuffer",
+      "summary": "A simple audio buffer to hold PCM samples",
+      "type": "classes",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/",
+      "visibility": "public"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-dosomething",
+      "argsString": "(AudioBuffer &buffer)",
+      "brief": "Do something with the buffer. ",
+      "const": false,
+      "default": false,
+      "definition": "void Engine::Audio::doSomething",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 13,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 12
+      },
+      "name": "doSomething",
+      "params": [
+        {
+          "name": "buffer",
+          "type": "[AudioBuffer](/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/) &",
+          "typePlain": "AudioBuffer &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "namespaceEngine_1_1Audio_1afd879d300eefd81460d53b2dd486fdc3",
+      "static": false,
+      "strong": false,
+      "summary": "Do something with the buffer. ",
+      "type": "functions",
+      "typePlain": "void",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/#function-dosomething",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "refid": "namespaceEngine_1_1Audio",
+  "static": false,
+  "strong": false,
+  "type": "namespaces",
+  "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/",
+  "visibility": "public"
+}

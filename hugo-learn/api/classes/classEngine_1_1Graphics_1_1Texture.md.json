@@ -1,0 +1,521 @@
+{
+  "abstract": true,
+  "anchor": "",
+  "baseClasses": [
+    {
+      "name": "Engine::Graphics::Handle",
+      "refid": "classEngine_1_1Graphics_1_1Handle",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/",
+      "virtual": "non-virtual",
+      "visibility": "protected"
+    }
+  ],
+  "brief": "This is a base texture class that serves as a base class for other texture types. ",
+  "const": false,
+  "definition": "",
+  "derivedClasses": [
+    {
+      "name": "Engine::Graphics::Framebuffer",
+      "refid": "classEngine_1_1Graphics_1_1Framebuffer",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/",
+      "virtual": "non-virtual",
+      "visibility": "public"
+    },
+    {
+      "name": "Engine::Graphics::Texture2D",
+      "refid": "classEngine_1_1Graphics_1_1Texture2D",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture2d/",
+      "virtual": "non-virtual",
+      "visibility": "public"
+    },
+    {
+      "name": "Engine::Graphics::Texture3D",
+      "refid": "classEngine_1_1Graphics_1_1Texture3D",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture3d/",
+      "virtual": "non-virtual",
+      "visibility": "public"
+    }
+  ],
+  "explicit": false,
+  "includes": "<Texture.hpp>",
+  "inline": false,
+  "kind": "interface",
+  "location": {
+    "bodyEnd": 58,
+    "bodyFile": "src/Graphics/Texture.hpp",
+    "bodyStart": 13,
+    "column": 31,
+    "file": "src/Graphics/Texture.hpp",
+    "line": 13
+  },
+  "name": "Engine::Graphics::Texture",
+  "parent": {
+    "anchor": "",
+    "kind": "namespace",
+    "name": "Engine::Graphics",
+    "refid": "namespaceEngine_1_1Graphics",
+    "type": "namespaces",
+    "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/",
+    "visibility": "public"
+  },
+  "protectedAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-type",
+      "const": false,
+      "definition": "Type Engine::Graphics::Texture::type",
+      "explicit": false,
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Graphics/Texture.hpp",
+        "bodyStart": 57,
+        "column": 6,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 57
+      },
+      "name": "type",
+      "refid": "classEngine_1_1Graphics_1_1Texture_1a65eb15ea929c3e09e18dec43eee8e7de",
+      "static": false,
+      "strong": false,
+      "type": "attributes",
+      "typePlain": "Type",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#variable-type",
+      "visibility": "protected"
+    },
+    {
+      "abstract": false,
+      "anchor": "#variable-loaded",
+      "const": false,
+      "definition": "bool Engine::Graphics::Texture::loaded",
+      "explicit": false,
+      "initializer": "{false}",
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Graphics/Texture.hpp",
+        "bodyStart": 56,
+        "column": 6,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 56
+      },
+      "name": "loaded",
+      "refid": "classEngine_1_1Graphics_1_1Texture_1ac00e77b373f4de42a738b6a5f0d5d2ee",
+      "static": false,
+      "strong": false,
+      "type": "attributes",
+      "typePlain": "bool",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#variable-loaded",
+      "visibility": "protected"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-isloaded",
+      "argsString": "() const",
+      "const": true,
+      "default": false,
+      "definition": "bool Engine::Graphics::Texture::isLoaded",
+      "deleted": false,
+      "explicit": false,
+      "inbody": "Does some more things",
+      "inline": true,
+      "kind": "function",
+      "location": {
+        "bodyEnd": 54,
+        "bodyFile": "src/Graphics/Texture.hpp",
+        "bodyStart": 49,
+        "column": 13,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 49
+      },
+      "name": "isLoaded",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture_1ae0b09c21b3d9d3087cbc507ca62a01e8",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "typePlain": "bool",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-isloaded",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-getdepth",
+      "argsString": "() const =0",
+      "brief": "Returns the depth of the texture in pixels. ",
+      "const": true,
+      "default": false,
+      "definition": "virtual int Engine::Graphics::Texture::getDepth",
+      "deleted": false,
+      "detailsSections": [
+        {
+          "text": "If this texture is 2D the depth is always 1 pixels ",
+          "type": "note"
+        },
+        {
+          "text": "Depth in pixels ",
+          "type": "return"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 13,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 48
+      },
+      "name": "getDepth",
+      "params": [],
+      "pureVirtual": true,
+      "refid": "classEngine_1_1Graphics_1_1Texture_1abb2d22975c917eb2f420534c945cea97",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the depth of the texture in pixels. ",
+      "type": "functions",
+      "typePlain": "int",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-getdepth",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-getheight",
+      "argsString": "() const =0",
+      "brief": "Returns the height of the texture in pixels. ",
+      "const": true,
+      "default": false,
+      "definition": "virtual int Engine::Graphics::Texture::getHeight",
+      "deleted": false,
+      "detailsSections": [
+        {
+          "text": "Height in pixels ",
+          "type": "return"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 13,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 42
+      },
+      "name": "getHeight",
+      "params": [],
+      "pureVirtual": true,
+      "refid": "classEngine_1_1Graphics_1_1Texture_1a23af68344fcb00113b6ca7b3483d51d3",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the height of the texture in pixels. ",
+      "type": "functions",
+      "typePlain": "int",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-getheight",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-getwidth",
+      "argsString": "() const =0",
+      "brief": "Returns the width of the texture in pixels. ",
+      "const": true,
+      "default": false,
+      "definition": "virtual int Engine::Graphics::Texture::getWidth",
+      "deleted": false,
+      "detailsSections": [
+        {
+          "text": "Width in pixels ",
+          "type": "return"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 13,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 37
+      },
+      "name": "getWidth",
+      "params": [],
+      "pureVirtual": true,
+      "refid": "classEngine_1_1Graphics_1_1Texture_1a6ee1abf82e30d5300ae8f0c8d922e31a",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the width of the texture in pixels. ",
+      "type": "functions",
+      "typePlain": "int",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-getwidth",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-~texture",
+      "argsString": "()=default",
+      "const": false,
+      "default": true,
+      "definition": "virtual Engine::Graphics::Texture::~Texture",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 9,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 32
+      },
+      "name": "~Texture",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture_1a7aa1cce1ae133a47d7a8f587ee666ad6",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-~texture",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-texture",
+      "argsString": "(Type type)",
+      "const": false,
+      "default": false,
+      "definition": "Engine::Graphics::Texture::Texture",
+      "deleted": false,
+      "explicit": true,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 10,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 31
+      },
+      "name": "Texture",
+      "params": [
+        {
+          "name": "type",
+          "type": "[Type](/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enum-type)",
+          "typePlain": "Type"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "classEngine_1_1Graphics_1_1Texture_1a2aa720c8a39a34c503b0f9c7c589125d",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-texture",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "publicTypes": [
+    {
+      "abstract": false,
+      "anchor": "#enum-type",
+      "const": false,
+      "definition": "",
+      "enumvalues": [
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-unknown",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 29,
+            "bodyFile": "src/Graphics/Texture.hpp",
+            "bodyStart": 15,
+            "column": 16,
+            "file": "src/Graphics/Texture.hpp",
+            "line": 15
+          },
+          "name": "UNKNOWN",
+          "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a696b031073e74bf2cb98e5ef201d4aa3",
+          "static": false,
+          "strong": true,
+          "type": "types",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enumvalue-unknown",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-rgba8",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 29,
+            "bodyFile": "src/Graphics/Texture.hpp",
+            "bodyStart": 15,
+            "column": 16,
+            "file": "src/Graphics/Texture.hpp",
+            "line": 15
+          },
+          "name": "RGBA8",
+          "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ab4b279046a02077466fa26cabb00c642",
+          "static": false,
+          "strong": true,
+          "type": "types",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enumvalue-rgba8",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-rgb8",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 29,
+            "bodyFile": "src/Graphics/Texture.hpp",
+            "bodyStart": 15,
+            "column": 16,
+            "file": "src/Graphics/Texture.hpp",
+            "line": 15
+          },
+          "name": "RGB8",
+          "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a165c6379d01617e12de274a3952efa63",
+          "static": false,
+          "strong": true,
+          "type": "types",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enumvalue-rgb8",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-rgba16",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 29,
+            "bodyFile": "src/Graphics/Texture.hpp",
+            "bodyStart": 15,
+            "column": 16,
+            "file": "src/Graphics/Texture.hpp",
+            "line": 15
+          },
+          "name": "RGBA16",
+          "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a50989efe15b375dce8ba3a5714fe2543",
+          "static": false,
+          "strong": true,
+          "type": "types",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enumvalue-rgba16",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-rgb16",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 29,
+            "bodyFile": "src/Graphics/Texture.hpp",
+            "bodyStart": 15,
+            "column": 16,
+            "file": "src/Graphics/Texture.hpp",
+            "line": 15
+          },
+          "name": "RGB16",
+          "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a1cd42e2af35bdfb43d791f8cecdce4a4",
+          "static": false,
+          "strong": true,
+          "type": "types",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enumvalue-rgb16",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-rgba32",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 29,
+            "bodyFile": "src/Graphics/Texture.hpp",
+            "bodyStart": 15,
+            "column": 16,
+            "file": "src/Graphics/Texture.hpp",
+            "line": 15
+          },
+          "name": "RGBA32",
+          "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ad9e8e4a9228ed56eceb29f0a1223b02b",
+          "static": false,
+          "strong": true,
+          "type": "types",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enumvalue-rgba32",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-rgb32",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 29,
+            "bodyFile": "src/Graphics/Texture.hpp",
+            "bodyStart": 15,
+            "column": 16,
+            "file": "src/Graphics/Texture.hpp",
+            "line": 15
+          },
+          "name": "RGB32",
+          "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ace70a5db6685e6d210c3f905a8fa7d4c",
+          "static": false,
+          "strong": true,
+          "type": "types",
+          "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enumvalue-rgb32",
+          "visibility": "public"
+        }
+      ],
+      "explicit": false,
+      "inline": false,
+      "kind": "enum",
+      "location": {
+        "bodyEnd": 29,
+        "bodyFile": "src/Graphics/Texture.hpp",
+        "bodyStart": 15,
+        "column": 16,
+        "file": "src/Graphics/Texture.hpp",
+        "line": 15
+      },
+      "name": "Type",
+      "refid": "classEngine_1_1Graphics_1_1Texture_1a31280bb4ea2ce7bb099d8291ebb41bf3",
+      "static": false,
+      "strong": true,
+      "type": "types",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enum-type",
+      "visibility": "public"
+    }
+  ],
+  "refid": "classEngine_1_1Graphics_1_1Texture",
+  "static": false,
+  "strong": false,
+  "summary": "This is a base texture class that serves as a base class for other texture types. ",
+  "type": "classes",
+  "url": "/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/",
+  "visibility": "public"
+}

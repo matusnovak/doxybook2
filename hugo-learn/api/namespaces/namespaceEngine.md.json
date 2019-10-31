@@ -1,0 +1,128 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "brief": "This namespace contains all of the necessary engine components. ",
+  "const": false,
+  "definition": "",
+  "detailsSections": [
+    {
+      "text": "[Engine::Assets](/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/)",
+      "type": "see"
+    },
+    {
+      "text": "[Engine::Audio](/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/)",
+      "type": "see"
+    },
+    {
+      "text": "[Engine::Graphics](/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/)",
+      "type": "see"
+    },
+    {
+      "text": "[Engine::Utils](/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/)",
+      "type": "see"
+    }
+  ],
+  "explicit": false,
+  "inline": false,
+  "kind": "namespace",
+  "location": {
+    "column": 16,
+    "file": "src/Assets/Asset.hpp",
+    "line": 5
+  },
+  "name": "Engine",
+  "namespaces": [
+    {
+      "anchor": "",
+      "kind": "namespace",
+      "name": "Engine::Utils",
+      "refid": "namespaceEngine_1_1Utils",
+      "type": "namespaces",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "kind": "namespace",
+      "name": "Engine::Graphics",
+      "refid": "namespaceEngine_1_1Graphics",
+      "type": "namespaces",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1graphics/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "kind": "namespace",
+      "name": "Engine::Audio",
+      "refid": "namespaceEngine_1_1Audio",
+      "type": "namespaces",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1audio/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "kind": "namespace",
+      "name": "Engine::Assets",
+      "refid": "namespaceEngine_1_1Assets",
+      "type": "namespaces",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/",
+      "visibility": "public"
+    }
+  ],
+  "parent": null,
+  "publicClasses": [
+    {
+      "anchor": "",
+      "baseClasses": [
+        {
+          "name": "exception",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        }
+      ],
+      "kind": "class",
+      "name": "Engine::Exception",
+      "refid": "classEngine_1_1Exception",
+      "type": "classes",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/",
+      "visibility": "public"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-getversion",
+      "argsString": "()",
+      "const": false,
+      "default": false,
+      "definition": "std::string Engine::getVersion",
+      "deleted": false,
+      "explicit": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 20,
+        "file": "src/Engine.hpp",
+        "line": 27
+      },
+      "name": "getVersion",
+      "params": [],
+      "pureVirtual": false,
+      "refid": "namespaceEngine_1ae3918a7bd8220f317f339ebda3295fa7",
+      "static": false,
+      "strong": false,
+      "type": "functions",
+      "typePlain": "std::string",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine/#function-getversion",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "refid": "namespaceEngine",
+  "static": false,
+  "strong": false,
+  "summary": "This namespace contains all of the necessary engine components. ",
+  "type": "namespaces",
+  "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine/",
+  "visibility": "public"
+}

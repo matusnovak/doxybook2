@@ -1,0 +1,97 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "brief": "This is a brief description to the engine group. ",
+  "const": false,
+  "definition": "",
+  "details": "Some detailed description here ",
+  "explicit": false,
+  "groups": [
+    {
+      "anchor": "",
+      "brief": "This is a brief description to the utils group. ",
+      "kind": "group",
+      "name": "Utils",
+      "refid": "group__Utils",
+      "summary": "This is a brief description to the utils group. ",
+      "type": "groups",
+      "url": "/doxydown/hugo-learn/api/modules/group__utils/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "This is a brief description to the graphics group. ",
+      "kind": "group",
+      "name": "Graphics",
+      "refid": "group__Graphics",
+      "summary": "This is a brief description to the graphics group. ",
+      "type": "groups",
+      "url": "/doxydown/hugo-learn/api/modules/group__graphics/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "This is a brief description to the audio group. ",
+      "kind": "group",
+      "name": "Audio",
+      "refid": "group__Audio",
+      "summary": "This is a brief description to the audio group. ",
+      "type": "groups",
+      "url": "/doxydown/hugo-learn/api/modules/group__audio/",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "This is a brief description to the assets group. ",
+      "kind": "group",
+      "name": "Assets",
+      "refid": "group__Assets",
+      "summary": "This is a brief description to the assets group. ",
+      "type": "groups",
+      "url": "/doxydown/hugo-learn/api/modules/group__assets/",
+      "visibility": "public"
+    }
+  ],
+  "inline": false,
+  "kind": "group",
+  "name": "Engine",
+  "namespaces": [
+    {
+      "anchor": "",
+      "brief": "This namespace contains all of the necessary engine components. ",
+      "kind": "namespace",
+      "name": "Engine",
+      "refid": "namespaceEngine",
+      "summary": "This namespace contains all of the necessary engine components. ",
+      "type": "namespaces",
+      "url": "/doxydown/hugo-learn/api/namespaces/namespaceengine/",
+      "visibility": "public"
+    }
+  ],
+  "parent": null,
+  "publicClasses": [
+    {
+      "anchor": "",
+      "baseClasses": [
+        {
+          "name": "exception",
+          "virtual": "non-virtual",
+          "visibility": "public"
+        }
+      ],
+      "kind": "class",
+      "name": "Engine::Exception",
+      "refid": "classEngine_1_1Exception",
+      "type": "classes",
+      "url": "/doxydown/hugo-learn/api/classes/classengine_1_1exception/",
+      "visibility": "public"
+    }
+  ],
+  "refid": "group__Engine",
+  "static": false,
+  "strong": false,
+  "summary": "This is a brief description to the engine group. ",
+  "type": "groups",
+  "url": "/doxydown/hugo-learn/api/modules/group__engine/",
+  "visibility": "public"
+}
