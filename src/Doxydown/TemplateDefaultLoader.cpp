@@ -20,7 +20,9 @@ static const std::string TEMPLATE_BREADCRUMBS =
 R"({% if exists("moduleBreadcrumbs") %}**/** {% for module in moduleBreadcrumbs %}**[{{module.title}}]({{module.url}})**{% if not loop.is_last %} **/** {% endif %}{% endfor %}{% endif %})";
 
 static const std::string TEMPLATE_FOOTER =
-R"(Created on {{date("%Y-%m-%d")}})";
+R"(-------------------------------
+
+Created on {{date("%Y-%m-%d")}})";
 
 static const std::string TEMPLATE_DETAILS =
 R"({% if exists("brief") %}{{brief}}
@@ -121,13 +123,13 @@ R"({% for base in baseClasses %}
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in base.publicFunctions %}| {% if child.virtual %}virtual {% endif %}{% if exists("type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
+{% for child in base.publicFunctions %}| {% if child.virtual %}virtual {% endif %}{% if existsIn(child, "type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if existsIn(base, "protectedFunctions") %}**Protected Functions inherited from [{{base.name}}]({{base.url}})**
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in base.protectedFunctions %}| {% if child.virtual %}virtual {% endif %}{% if exists("type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
+{% for child in base.protectedFunctions %}| {% if child.virtual %}virtual {% endif %}{% if existsIn(child, "type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if existsIn(base, "publicAttributes") %}**Public Attributes inherited from [{{base.name}}]({{base.url}})**
 
@@ -178,13 +180,13 @@ R"({% if exists("publicClasses") %}## Public Classes
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in publicFunctions %}| {% if child.virtual %}virtual {% endif %}{% if exists("type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
+{% for child in publicFunctions %}| {% if child.virtual %}virtual {% endif %}{% if existsIn(child, "type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if exists("protectedFunctions") %}## Protected Functions
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in protectedFunctions %}| {% if child.virtual %}virtual {% endif %}{% if exists("type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
+{% for child in protectedFunctions %}| {% if child.virtual %}virtual {% endif %}{% if existsIn(child, "type") %}{{child.type}}{% endif %} | **[{{child.name}}]({{child.url}})**({% for param in child.params %}{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}){% if child.const %} const{% endif %}{% if child.override %} override{% endif %}{% if child.default %} =default{% endif %}{% if child.deleted %} =deleted{% endif %}{% if child.pureVirtual %} =0{% endif %} {% if existsIn(child, "brief") %}<br/>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if exists("publicAttributes") %}## Public Attributes
 

@@ -2,3 +2,4 @@ content/api/*
 public/
 resources/
 !content/api/.gitkeep
+!content/api/_index.md

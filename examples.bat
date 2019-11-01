@@ -25,3 +25,8 @@
     --config example/hugo-book/.doxydown/config.json ^
     --templates example/hugo-book/.doxydown/templates
 
+"build\src\DoxydownCli\Debug\doxydown.exe" ^
+    --input example/doxygen/xml ^
+    --output example/vuepress/api ^
+    --config example/vuepress/.doxydown/config.json
+

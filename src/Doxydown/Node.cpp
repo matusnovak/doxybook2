@@ -426,51 +426,51 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
                     if (it->extra == "see") {
                         data.see.push_back(markdownPrinter.print(*it));
                     } else if (it->extra == "return") {
-                        if (!data.returns.empty()) data.returns += "\n\n";
+                        if (!data.returns.empty()) data.returns += " ";
                         data.returns = markdownPrinter.print(*it);
                     } else if (it->extra == "author") {
-                        if (!data.author.empty()) data.author += "\n\n";
+                        if (!data.author.empty()) data.author += " ";
                         data.author = markdownPrinter.print(*it);
                     } else if (it->extra == "authors") {
                         data.authors.push_back(markdownPrinter.print(*it));
                     } else if (it->extra == "version") {
-                        if (!data.version.empty()) data.version += "\n\n";
+                        if (!data.version.empty()) data.version += " ";
                         data.version = markdownPrinter.print(*it);
                     } else if (it->extra == "since") {
-                        if (!data.since.empty()) data.since += "\n\n";
+                        if (!data.since.empty()) data.since += " ";
                         data.since = markdownPrinter.print(*it);
                     } else if (it->extra == "date") {
-                        if (!data.date.empty()) data.date += "\n\n";
+                        if (!data.date.empty()) data.date += " ";
                         data.date = markdownPrinter.print(*it);
                     } else if (it->extra == "note") {
-                        if (!data.note.empty()) data.note += "\n\n";
+                        if (!data.note.empty()) data.note += " ";
                         data.note += markdownPrinter.print(*it);
                     } else if (it->extra == "warning") {
-                        if (!data.warning.empty()) data.warning += "\n\n";
+                        if (!data.warning.empty()) data.warning += " ";
                         data.warning = markdownPrinter.print(*it);
                     } else if (it->extra == "pre") {
-                        if (!data.pre.empty()) data.pre += "\n\n";
+                        if (!data.pre.empty()) data.pre += " ";
                         data.pre = markdownPrinter.print(*it);
                     } else if (it->extra == "post") {
-                        if (!data.post.empty()) data.post += "\n\n";
+                        if (!data.post.empty()) data.post += " ";
                         data.post = markdownPrinter.print(*it);
                     } else if (it->extra == "copyright") {
-                        if (!data.copyright.empty()) data.copyright += "\n\n";
+                        if (!data.copyright.empty()) data.copyright += " ";
                         data.copyright = markdownPrinter.print(*it);
                     } else if (it->extra == "invariant") {
-                        if (!data.invariant.empty()) data.invariant += "\n\n";
+                        if (!data.invariant.empty()) data.invariant += " ";
                         data.invariant = markdownPrinter.print(*it);
                     } else if (it->extra == "remark") {
-                        if (!data.remark.empty()) data.remark += "\n\n";
+                        if (!data.remark.empty()) data.remark += " ";
                         data.remark = markdownPrinter.print(*it);
                     } else if (it->extra == "attention") {
-                        if (!data.attention.empty()) data.attention += "\n\n";
+                        if (!data.attention.empty()) data.attention += " ";
                         data.attention = markdownPrinter.print(*it);
                     } else if (it->extra == "par") {
-                        if (!data.par.empty()) data.par += "\n\n";
+                        if (!data.par.empty()) data.par += " ";
                         data.par = markdownPrinter.print(*it);
                     } else if (it->extra == "rcs") {
-                        if (!data.rcs.empty()) data.rcs += "\n\n";
+                        if (!data.rcs.empty()) data.rcs += " ";
                         data.rcs = markdownPrinter.print(*it);
                     }
                     it = para.children.erase(it);

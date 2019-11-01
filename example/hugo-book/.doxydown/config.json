@@ -1,5 +1,5 @@
 {
-  "baseUrl": "/doxydown/hugo-learn/api/",
+  "baseUrl": "/doxydown/hugo-book/api/",
   "indexInFolders": true,
   "linkSuffix": "/",
   "linkLowercase": true,

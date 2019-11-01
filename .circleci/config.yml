@@ -57,37 +57,26 @@ jobs:
             - doxydown
             - doxygen
 
-  examples:
+  example_mkdocs:
     docker:
       - image: circleci/python:3.7
+
     steps:
       - checkout
+
       - attach_workspace:
           at: /tmp/workspace
 
-      - run:
+    - run:
           name: Dependencies
           command: |
             sudo apt-get update
             sudo apt-get install moreutils -y
-            wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_extended_0.59.1_Linux-64bit.deb
-            sudo dpkg -i hugo_extended_0.59.1_Linux-64bit.deb
             sudo pip install mkdocs mkdocs-material mkdocs-bootstrap
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
 
-      - run:
-          name: Submodules
-          command: |
-            git submodule update --init
-
-      - run:
-          name: Original
-          command: |
-            mkdir -p /tmp/workspace/gh-pages
-            cp -r /tmp/workspace/doxygen/html /tmp/workspace/gh-pages/original
-
-      - run:
+    - run:
           name: MkDocs - ReadTheDocs
           command: |
             cd ./example/mkdocs-readthedocs
@@ -97,7 +86,7 @@ jobs:
               --output ./docs/api \
               --config ./.doxydown/config.json
             mkdocs build
-            cp -r ./site /tmp/workspace/gh-pages/mkdocs-readthedocs
+            cp -r ./site /tmp/workspace/mkdocs-readthedocs
 
       - run:
           name: MkDocs - Material
@@ -109,7 +98,7 @@ jobs:
               --output ./docs/api \
               --config ./.doxydown/config.json
             mkdocs build
-            cp -r ./site /tmp/workspace/gh-pages/mkdocs-material
+            cp -r ./site /tmp/workspace/mkdocs-material
 
       - run:
           name: MkDocs - Bootstrap
@@ -121,7 +110,37 @@ jobs:
               --output ./docs/api \
               --config ./.doxydown/config.json
             mkdocs build
-            cp -r ./site /tmp/workspace/gh-pages/mkdocs-bootstrap
+            cp -r ./site /tmp/workspace/mkdocs-bootstrap
+            
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - mkdocs-bootstrap
+            - mkdocs-material
+            - mkdocs-readthedocs
+
+  example_hugo:
+    docker:
+      - image: circleci/python:3.7
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Dependencies
+          command: |
+            wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_extended_0.59.1_Linux-64bit.deb
+            sudo dpkg -i hugo_extended_0.59.1_Linux-64bit.deb
+            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
+            sudo chmod +x /usr/local/bin/doxydown
+
+      - run:
+          name: Submodules
+          command: |
+            git submodule update --init
 
       - run:
           name: Hugo - Learn
@@ -133,7 +152,7 @@ jobs:
               --config ./.doxydown/config.json \
               --templates ./.doxydown/templates
             hugo
-            cp -r ./public /tmp/workspace/gh-pages/hugo-learn
+            cp -r ./public /tmp/workspace/hugo-learn
 
       - run:
           name: Hugo - Book
@@ -145,14 +164,46 @@ jobs:
               --config ./.doxydown/config.json \
               --templates ./.doxydown/templates
             hugo
-            cp -r ./public /tmp/workspace/gh-pages/hugo-book
+            cp -r ./public /tmp/workspace/hugo-book
 
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - doxydown
-            - doxygen
-            - gh-pages
+            - hugo-learn
+            - hugo-book
+
+  example_vuepress:
+    docker:
+      - image: circleci/node:latest
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Dependencies
+          command: |
+            npm install vuepress -g
+            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
+            sudo chmod +x /usr/local/bin/doxydown
+
+      - run:
+          name: Vuepress
+          command: |
+            cd ./example/vuepress
+            doxydown \
+              --input /tmp/workspace/doxygen/xml \
+              --output ./api \
+              --config ./.doxydown/config.json
+            vuepress build
+            cp -r ./.vuepress/dist /tmp/workspace/vuepress
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - vuepress
   
   deploy:
     docker:
@@ -176,7 +227,13 @@ jobs:
           command: |
             git config --global user.email "$GITHUB_USER_EMAIL"
             git config --global user.name "$GITHUB_USER_NAME"
-            mv /tmp/workspace/gh-pages ./dist
+            cp -r /tmp/workspace/doxygen/html ./dist/original
+            cp -r /tmp/workspace/hugo-learn ./dist/hugo-learn
+            cp -r /tmp/workspace/hugo-book ./dist/hugo-book
+            cp -r /tmp/workspace/mkdocs-bootstrap ./dist/mkdocs-bootstrap
+            cp -r /tmp/workspace/mkdocs-material ./dist/mkdocs-material
+            cp -r /tmp/workspace/mkdocs-readthedocs ./dist/mkdocs-readthedocs
+            cp -r /tmp/workspace/vuepress ./dist/vuepress
             cp example/index.html ./dist/index.html
             DIST=dist node publish.js
 
@@ -185,12 +242,20 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - examples:
+      - example_mkdocs:
+          requires:
+            - build
+      - example_hugo:
+          requires:
+            - build
+      - example_vuepress:
           requires:
             - build
       - deploy:
           requires:
-            - examples
+            - example_mkdocs
+            - example_hugo
+            - example_vuepress
           filters:
             branches:
               only:

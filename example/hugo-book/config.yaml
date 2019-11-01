@@ -2,5 +2,7 @@ baseURL: https://matusnovak.github.io/doxydown/hugo-book
 languageCode: en-us
 title: Doxydown Example
 theme: hugo-book
+pygmentsCodeFences: true
 params:
-  BookSection: api
+  BookMenuBundle: /menu
+
