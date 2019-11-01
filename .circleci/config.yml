@@ -67,7 +67,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
 
-    - run:
+      - run:
           name: Dependencies
           command: |
             sudo apt-get update
@@ -76,7 +76,7 @@ jobs:
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
 
-    - run:
+      - run:
           name: MkDocs - ReadTheDocs
           command: |
             cd ./example/mkdocs-readthedocs
