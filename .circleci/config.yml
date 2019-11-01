@@ -70,8 +70,8 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install moreutils -y
-            wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_0.59.1_Linux-64bit.deb
-            sudo dpkg -i hugo_0.59.1_Linux-64bit.deb
+            wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_extended_0.59.1_Linux-64bit.deb
+            sudo dpkg -i hugo_extended_0.59.1_Linux-64bit.deb
             sudo pip install mkdocs mkdocs-material mkdocs-bootstrap
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
