@@ -70,7 +70,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install moreutils hugo -y
-            sudo pip install mkdocs mkdocs-material mkdocs-bootstrap mkdocs-readthedocs
+            sudo pip install mkdocs mkdocs-material mkdocs-bootstrap
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
 
