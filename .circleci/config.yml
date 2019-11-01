@@ -197,7 +197,7 @@ jobs:
               --input /tmp/workspace/doxygen/xml \
               --output ./api \
               --config ./.doxydown/config.json
-            vuepress build
+            sudo vuepress build
             cp -r ./.vuepress/dist /tmp/workspace/vuepress
 
       - persist_to_workspace:
