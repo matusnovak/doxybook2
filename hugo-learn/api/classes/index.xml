@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Classes on Doxydown Example</title>
@@ -11,171 +11,178 @@
     
     
     <item>
-      <title>Engine::Assets::Asset Reference</title>
+      <title>Engine::Assets::Asset</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/</guid>
-      <description>#include &amp;lt;Asset.hpp&amp;gt;
-Public Classes     Name     union Event    Public Functions     Name     functions getEvent() const Returns the current status of the asset.   virtual functions unload() Call this method to unload the asset.   virtual functions load() Call this method to load the asset.   virtual functions ~Asset() =0   functions Asset(const std::string &amp;amp; name)    Public Functions Documentation function getEvent inline const Event &amp;amp; getEvent() const  Returns the current status of the asset.</description>
+      <description>Engine::Assets::Asset Class Reference
+/ An example game engine / Generic assets
+#include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Classes     Name     union Event    Public Functions     Name      getEvent() const Returns the current status of the asset.   virtual unload() Call this method to unload the asset.   virtual load() Call this method to load the asset.</description>
     </item>
     
     <item>
-      <title>Engine::Assets::Asset::Event Reference</title>
+      <title>Engine::Assets::Asset::Event</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/unionengine_1_1assets_1_1asset_1_1event/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/unionengine_1_1assets_1_1asset_1_1event/</guid>
-      <description>#include &amp;lt;Asset.hpp&amp;gt;
-Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     attributes waiting   attributes unloaded   attributes loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-10-31</description>
+      <description>Engine::Assets::Asset::Event Union Reference
+/ An example game engine / Generic assets
+#include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-11-01</description>
     </item>
     
     <item>
-      <title>Engine::Assets::Asset::Event::Loaded Reference</title>
+      <title>Engine::Assets::Asset::Event::Loaded</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</guid>
-      <description>#include &amp;lt;Asset.hpp&amp;gt;
-Public Attributes     Name     attributes usage   attributes success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-10-31</description>
+      <description>Engine::Assets::Asset::Event::Loaded Struct Reference
+#include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-11-01</description>
     </item>
     
     <item>
-      <title>Engine::Assets::Asset::Event::Unloaded Reference</title>
+      <title>Engine::Assets::Asset::Event::Unloaded</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</guid>
-      <description>#include &amp;lt;Asset.hpp&amp;gt;
-Public Attributes     Name     attributes success    Public Attributes Documentation variable success bool success;  Created on 2019-10-31</description>
+      <description>Engine::Assets::Asset::Event::Unloaded Struct Reference
+#include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Created on 2019-11-01</description>
     </item>
     
     <item>
-      <title>Engine::Assets::Asset::Event::Waiting Reference</title>
+      <title>Engine::Assets::Asset::Event::Waiting</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/</guid>
-      <description>#include &amp;lt;Asset.hpp&amp;gt;
-Public Attributes     Name     attributes other The pointer to the other asset this asset is waiting for.    Public Attributes Documentation variable other Asset * other;  The pointer to the other asset this asset is waiting for.
+      <description>Engine::Assets::Asset::Event::Waiting Struct Reference
+#include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Attributes     Name     Asset * other The pointer to the other asset this asset is waiting for.    Public Attributes Documentation variable other Asset * other;  The pointer to the other asset this asset is waiting for.
 Note: May be null
-Created on 2019-10-31</description>
+Created on 2019-11-01</description>
     </item>
     
     <item>
-      <title>Engine::Audio::AudioBuffer Reference</title>
+      <title>Engine::Audio::AudioBuffer</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiobuffer/</guid>
-      <description>A simple audio buffer to hold PCM samples More&amp;hellip;
-#include &amp;lt;AudioBuffer.hpp&amp;gt;
-Public Classes     Name     struct TypedAudioData Use this to populate the buffer.    Public Types     Name     typedef types AudioData   enum types Type { UNKNOWN, INT8, INT16, INT24, INT32, FLOAT32 }Different type of audio formats.    Public Functions     Name     functions setData(const TypedAudioData &amp;amp; data)   functions loop(AudioManager &amp;amp; manager) const Loop this buffer forever.</description>
+      <description>A simple audio buffer to hold PCM samples</description>
     </item>
     
     <item>
-      <title>Engine::Audio::AudioBuffer::TypedAudioData Reference</title>
+      <title>Engine::Audio::AudioBuffer::TypedAudioData</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/</guid>
-      <description>Use this to populate the buffer.
-#include &amp;lt;AudioBuffer.hpp&amp;gt;
-Public Attributes     Name     attributes type   attributes buffer    Public Attributes Documentation variable type Type type;  variable buffer AudioData buffer;  Created on 2019-10-31</description>
+      <description>Use this to populate the buffer.</description>
     </item>
     
     <item>
-      <title>Engine::Audio::AudioManager Reference</title>
+      <title>Engine::Audio::AudioManager</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiomanager/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1audio_1_1audiomanager/</guid>
-      <description>An audio manager that accepts multiple Audio::AudioBuffer instances. More&amp;hellip;
-#include &amp;lt;AudioManager.hpp&amp;gt;
-Public Functions     Name     functions enque(const AudioBuffer &amp;amp; buffer)   functions ~AudioManager()   functions AudioManager(int numOfChannels =128)    Detailed Description An audio manager that accepts multiple Audio::AudioBuffer instances.
-See: Audio::AudioBuffer
-Lorem Ipsum Donor. Some Random link with bold and italics And the following is a typewritter font. And here is some list items:</description>
+      <description>An audio manager that accepts multiple Audio::AudioBuffer instances.</description>
     </item>
     
     <item>
-      <title>Engine::Exception Reference</title>
+      <title>Engine::Exception</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1exception/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1exception/</guid>
-      <description>#include &amp;lt;Exception.hpp&amp;gt;
+      <description>Engine::Exception Class Reference
+/ An example game engine
+#include &amp;lt;Exception.hpp&amp;gt;
 Inherits from exception
-Public Functions     Name     functions what() const   functions Exception(std::string msg)   functions Exception() =default    Public Functions Documentation function what inline const char * what() const  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-10-31</description>
+Public Functions     Name      what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-11-01</description>
     </item>
     
     <item>
-      <title>Engine::Graphics::Framebuffer Reference</title>
+      <title>Engine::Graphics::Framebuffer</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/</guid>
-      <description>#include &amp;lt;Framebuffer.hpp&amp;gt;
-Inherits from Engine::Graphics::Texture
-Public Functions     Name     virtual functions getDepth() const Returns the depth of the texture in pixels.   virtual functions getHeight() const Returns the height of the texture in pixels.   virtual functions getWidth() const Returns the width of the texture in pixels.   virtual functions ~Framebuffer()   functions Framebuffer(int width, int height)    Public Functions Documentation function getDepth virtual int getDepth() const  Returns the depth of the texture in pixels.</description>
+      <description>Engine::Graphics::Framebuffer Class Reference
+/ An example game engine / Graphical related classes
+#include &amp;lt;Framebuffer.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Framebuffer()    Framebuffer(int width, int height)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
     </item>
     
     <item>
-      <title>Engine::Graphics::Handle Reference</title>
+      <title>Engine::Graphics::Handle</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/</guid>
-      <description>#include &amp;lt;Handle.hpp&amp;gt;
+      <description>Engine::Graphics::Handle Class Reference
+/ An example game engine / Graphical related classes
+#include &amp;lt;Handle.hpp&amp;gt;
+Inherits from
 Inherited by Engine::Graphics::Texture
-Public Functions     Name     functions getHandle() const   virtual functions ~Handle() =default   functions Handle() =default    Protected Attributes     Name     attributes handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-10-31</description>
+Public Functions     Name      getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-11-01</description>
     </item>
     
     <item>
-      <title>Engine::Graphics::Texture Reference</title>
+      <title>Engine::Graphics::Texture</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/</guid>
-      <description>This is a base texture class that serves as a base class for other texture types.
-#include &amp;lt;Texture.hpp&amp;gt;
-Inherits from Engine::Graphics::Handle
-Inherited by Engine::Graphics::Framebuffer, Engine::Graphics::Texture2D, Engine::Graphics::Texture3D
-Public Types     Name     enum types Type { UNKNOWN, RGBA8, RGB8, RGBA16, RGB16, RGBA32, RGB32 }    Public Functions     Name     functions isLoaded() const   virtual functions getDepth() const =0 Returns the depth of the texture in pixels.</description>
+      <description>This is a base texture class that serves as a base class for other texture types.</description>
     </item>
     
     <item>
-      <title>Engine::Graphics::Texture2D Reference</title>
+      <title>Engine::Graphics::Texture2D</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture2d/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture2d/</guid>
-      <description>#include &amp;lt;Texture2D.hpp&amp;gt;
-Inherits from Engine::Graphics::Texture
-Public Functions     Name     virtual functions getDepth() const Returns the depth of the texture in pixels.   virtual functions getHeight() const Returns the height of the texture in pixels.   virtual functions getWidth() const Returns the width of the texture in pixels.   virtual functions ~Texture2D()   functions Texture2D(int width, int height, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Public Functions Documentation function getDepth virtual int getDepth() const  Returns the depth of the texture in pixels.</description>
+      <description>Engine::Graphics::Texture2D Class Reference
+/ An example game engine / Graphical related classes
+#include &amp;lt;Texture2D.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture2D()    Texture2D(int width, int height, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
     </item>
     
     <item>
-      <title>Engine::Graphics::Texture3D Reference</title>
+      <title>Engine::Graphics::Texture3D</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture3d/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture3d/</guid>
-      <description>#include &amp;lt;Texture3D.hpp&amp;gt;
-Inherits from Engine::Graphics::Texture
-Public Functions     Name     virtual functions getDepth() const Returns the depth of the texture in pixels.   virtual functions getHeight() const Returns the height of the texture in pixels.   virtual functions getWidth() const Returns the width of the texture in pixels.   virtual functions ~Texture3D()   functions Texture3D(int width, int height, int depth, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Public Functions Documentation function getDepth virtual int getDepth() const  Returns the depth of the texture in pixels.</description>
+      <description>Engine::Graphics::Texture3D Class Reference
+/ An example game engine / Graphical related classes
+#include &amp;lt;Texture3D.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture3D()    Texture3D(int width, int height, int depth, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
     </item>
     
     <item>
-      <title>Engine::Utils::ArrayView Reference</title>
+      <title>Engine::Utils::ArrayView</title>
       <link>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1utils_1_1arrayview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/classengine_1_1utils_1_1arrayview/</guid>
-      <description>Filesystem path utility functions. More&amp;hellip;
-#include &amp;lt;ArrayView.hpp&amp;gt;
-Public Functions     Name     virtual functions size() const   virtual functions data() const   virtual functions ~ArrayView() =default   functions ArrayView(const T * src, size_t len)    Detailed Description Filesystem path utility functions.
-Thetype of the data, for example uint8_t
-Public Functions Documentation function size virtual size_t size() const  function data virtual const T * data() const  function ~ArrayView virtual ~ArrayView() =default  function ArrayView ArrayView( const T * src, size_t len )  Created on 2019-10-31</description>
+      <description>Filesystem path utility functions.</description>
     </item>
     
   </channel>

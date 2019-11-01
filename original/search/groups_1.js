@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['some_20random_20useful_20utilities_20and_20helpers_211',['Some random useful utilities and helpers',['../group__Utils.html',1,'']]]
+  ['generic_20assets_214',['Generic assets',['../group__Assets.html',1,'']]],
+  ['graphical_20related_20classes_215',['Graphical related classes',['../group__Graphics.html',1,'']]]
 ];

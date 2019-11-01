@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Files on Doxydown Example</title>
+    <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/</link>
+    <description>Recent content in Files on Doxydown Example</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://matusnovak.github.io/doxydown/hugo-learn/api/files/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>src</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_68267d1309a1af8e8297ef4c3efbcdba/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_68267d1309a1af8e8297ef4c3efbcdba/</guid>
+      <description>src Dir Reference
+Directories    Name     src/Utils   src/Graphics   src/Audio   src/Assets    Files    Name     src/Exception.hpp   src/Engine.hpp    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Assets</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_e0c1ede47f21c4a643a1257f949f98e0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_e0c1ede47f21c4a643a1257f949f98e0/</guid>
+      <description>src/Assets Dir Reference
+Files    Name     src/Assets/Assets.hpp   src/Assets/Asset.hpp    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Assets/Asset.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/asset_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/asset_8hpp/</guid>
+      <description>src/Assets/Asset.hpp File Reference
+Namespaces    Name     Engine::Assets   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Assets::Asset::Event::Waiting   struct Engine::Assets::Asset::Event::Unloaded   struct Engine::Assets::Asset::Event::Loaded   union Engine::Assets::Asset::Event   class Engine::Assets::Asset    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Assets/Assets.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/assets_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/assets_8hpp/</guid>
+      <description>src/Assets/Assets.hpp File Reference
+Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Audio</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_c64386e93f356b78d4612c7b7741707c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_c64386e93f356b78d4612c7b7741707c/</guid>
+      <description>src/Audio Dir Reference
+Files    Name     src/Audio/AudioManager.hpp   src/Audio/AudioBuffer.hpp   src/Audio/Audio.hpp    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Audio/Audio.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audio_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audio_8hpp/</guid>
+      <description>src/Audio/Audio.hpp File Reference
+Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Audio/AudioBuffer.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audiobuffer_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audiobuffer_8hpp/</guid>
+      <description>src/Audio/AudioBuffer.hpp File Reference
+Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Audio/AudioManager.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audiomanager_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audiomanager_8hpp/</guid>
+      <description>src/Audio/AudioManager.hpp File Reference
+Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Engine.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/engine_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/engine_8hpp/</guid>
+      <description>src/Engine.hpp File Reference
+Namespaces    Name     Engine This namespace contains all of the necessary engine components.    Functions     Name     std::string someGlobalFunc() Some global extern function.    Functions Documentation function someGlobalFunc std::string someGlobalFunc()  Some global extern function.
+Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Exception.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/exception_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/exception_8hpp/</guid>
+      <description>src/Exception.hpp File Reference
+Namespaces    Name     Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Exception    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_3419e189e460663ec2c964233bf8dcd6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_3419e189e460663ec2c964233bf8dcd6/</guid>
+      <description>src/Graphics Dir Reference
+Files    Name     src/Graphics/Texture3D.hpp   src/Graphics/Texture2D.hpp   src/Graphics/Texture.hpp   src/Graphics/Renderer.hpp   src/Graphics/Handle.hpp   src/Graphics/Graphics.hpp   src/Graphics/Framebuffer.hpp    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics/Framebuffer.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/framebuffer_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/framebuffer_8hpp/</guid>
+      <description>src/Graphics/Framebuffer.hpp File Reference
+Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Framebuffer    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics/Graphics.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/graphics_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/graphics_8hpp/</guid>
+      <description>src/Graphics/Graphics.hpp File Reference
+Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics/Handle.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/handle_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/handle_8hpp/</guid>
+      <description>src/Graphics/Handle.hpp File Reference
+Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Handle    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics/Renderer.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/renderer_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/renderer_8hpp/</guid>
+      <description>src/Graphics/Renderer.hpp File Reference
+Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics/Texture.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture_8hpp/</guid>
+      <description>src/Graphics/Texture.hpp File Reference
+Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics/Texture2D.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture2d_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture2d_8hpp/</guid>
+      <description>src/Graphics/Texture2D.hpp File Reference
+Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Texture2D    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Graphics/Texture3D.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture3d_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture3d_8hpp/</guid>
+      <description>src/Graphics/Texture3D.hpp File Reference
+Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Texture3D    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Utils</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_a7363e98f9e0bdd87618633653859815/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_a7363e98f9e0bdd87618633653859815/</guid>
+      <description>src/Utils Dir Reference
+Files    Name     src/Utils/Utils.hpp   src/Utils/Path.hpp   src/Utils/Log.hpp   src/Utils/Config.hpp   src/Utils/ArrayView.hpp    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Utils/ArrayView.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/arrayview_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/arrayview_8hpp/</guid>
+      <description>src/Utils/ArrayView.hpp File Reference
+Namespaces    Name     Engine::Utils   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Utils/Config.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/config_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/config_8hpp/</guid>
+      <description>src/Utils/Config.hpp File Reference
+Defines     Name      ENGINE_ARCH    ENGINE_VERSION Autogenerated version string by CMake.    Macro Documentation define ENGINE_ARCH #define ENGINE_ARCH &amp;#34;amd64&amp;#34;  define ENGINE_VERSION #define ENGINE_VERSION &amp;#34;v1.0.1&amp;#34;  Autogenerated version string by CMake.
+Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Utils/Log.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/log_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/log_8hpp/</guid>
+      <description>src/Utils/Log.hpp File Reference
+Defines     Name      LOG_DEBUG(MSG, &amp;hellip;)    Macro Documentation define LOG_DEBUG #define LOG_DEBUG(  MSG, ... ) printf(MSG, ##__VA_ARGS__)  Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Utils/Path.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/path_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/path_8hpp/</guid>
+      <description>src/Utils/Path.hpp File Reference
+Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.   Engine::Utils   Engine This namespace contains all of the necessary engine components.    Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>src/Utils/Utils.hpp</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/api/files/utils_8hpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/files/utils_8hpp/</guid>
+      <description>src/Utils/Utils.hpp File Reference
+Created on 2019-11-01</description>
+    </item>
+    
+  </channel>
+</rss>

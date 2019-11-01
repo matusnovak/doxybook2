@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="Engine::Graphics::Framebuffer" />
+<meta property="og:description" content="Engine::Graphics::Framebuffer Class Reference / An example game engine / Graphical related classes
+#include &lt;Framebuffer.hpp&gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Framebuffer()    Framebuffer(int width, int height)    Additional inherited members Public Types inherited from Engine::Graphics::Texture" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1framebuffer/" />
+
+<title>Engine::Graphics::Framebuffer | Doxydown Example</title>
+<link rel="icon" href="/doxydown/hugo-book/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/doxydown/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
+
+
+<script defer src="/doxydown/hugo-book/search.min.4b13d83cc96729162b87bf4adc910a7aba5039c14ee6c076891b8f73ed1cede2.js" integrity="sha256-SxPYPMlnKRYrh79K3JEKerpQOcFO5sB2iRuPc&#43;0c7eI="></script>
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://matusnovak.github.io/doxydown/hugo-book"><span>Doxydown Example</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" placeholder="Search" id="book-search-input" maxlength="64" />
+  <div class="book-search-spinner spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+    
+
+  
+  
+
+
+
+
+
+ 
+  
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/doxydown/hugo-book/api/classes/" >
+      Classes
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/" >
+      Engine::Assets::Asset
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/unionengine_1_1assets_1_1asset_1_1event/" >
+      Engine::Assets::Asset::Event
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/" >
+      Engine::Assets::Asset::Event::Loaded
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/" >
+      Engine::Assets::Asset::Event::Unloaded
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/" >
+      Engine::Assets::Asset::Event::Waiting
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiobuffer/" >
+      Engine::Audio::AudioBuffer
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/" >
+      Engine::Audio::AudioBuffer::TypedAudioData
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiomanager/" >
+      Engine::Audio::AudioManager
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1exception/" >
+      Engine::Exception
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1framebuffer/"  class="active">
+      Engine::Graphics::Framebuffer
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1handle/" >
+      Engine::Graphics::Handle
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture/" >
+      Engine::Graphics::Texture
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture2d/" >
+      Engine::Graphics::Texture2D
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture3d/" >
+      Engine::Graphics::Texture3D
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/classes/classengine_1_1utils_1_1arrayview/" >
+      Engine::Utils::ArrayView
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/doxydown/hugo-book/api/files/" >
+      Files
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/dir_68267d1309a1af8e8297ef4c3efbcdba/" >
+      src
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/dir_e0c1ede47f21c4a643a1257f949f98e0/" >
+      src/Assets
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/asset_8hpp/" >
+      src/Assets/Asset.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/assets_8hpp/" >
+      src/Assets/Assets.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/dir_c64386e93f356b78d4612c7b7741707c/" >
+      src/Audio
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/audio_8hpp/" >
+      src/Audio/Audio.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/audiobuffer_8hpp/" >
+      src/Audio/AudioBuffer.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/audiomanager_8hpp/" >
+      src/Audio/AudioManager.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/engine_8hpp/" >
+      src/Engine.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/exception_8hpp/" >
+      src/Exception.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/dir_3419e189e460663ec2c964233bf8dcd6/" >
+      src/Graphics
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/framebuffer_8hpp/" >
+      src/Graphics/Framebuffer.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/graphics_8hpp/" >
+      src/Graphics/Graphics.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/handle_8hpp/" >
+      src/Graphics/Handle.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/renderer_8hpp/" >
+      src/Graphics/Renderer.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/texture_8hpp/" >
+      src/Graphics/Texture.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/texture2d_8hpp/" >
+      src/Graphics/Texture2D.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/texture3d_8hpp/" >
+      src/Graphics/Texture3D.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/dir_a7363e98f9e0bdd87618633653859815/" >
+      src/Utils
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/arrayview_8hpp/" >
+      src/Utils/ArrayView.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/config_8hpp/" >
+      src/Utils/Config.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/log_8hpp/" >
+      src/Utils/Log.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/path_8hpp/" >
+      src/Utils/Path.hpp
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/files/utils_8hpp/" >
+      src/Utils/Utils.hpp
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/doxydown/hugo-book/api/modules/" >
+      Groups
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/modules/group__engine/" >
+      An example game engine
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/modules/group__audio/" >
+      Audio buffers and devices
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/modules/group__assets/" >
+      Generic assets
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/modules/group__graphics/" >
+      Graphical related classes
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/modules/group__utils/" >
+      Some useful utilities
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+      
+        
+
+  <li >
+    
+      
+
+  <a href="/doxydown/hugo-book/api/namespaces/" >
+      Namespaces
+  </a>
+
+
+    
+
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine/" >
+      Engine
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1assets/" >
+      Engine::Assets
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1audio/" >
+      Engine::Audio
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1graphics/" >
+      Engine::Graphics
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1utils/" >
+      Engine::Utils
+  </a>
+
+</li>
+      
+    
+      
+        <li>
+
+  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1utils_1_1path/" >
+      Engine::Utils::Path
+  </a>
+
+</li>
+      
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+  </ul>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/doxydown/hugo-book/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Engine::Graphics::Framebuffer</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="engine-graphics-framebuffer-class-reference">Engine::Graphics::Framebuffer Class Reference</h1>
+
+<p><strong>/</strong> <strong><a href="/doxydown/hugo-learn/api/modules/group__engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxydown/hugo-learn/api/modules/group__graphics/">Graphical related classes</a></strong></p>
+
+<p><code>#include &lt;Framebuffer.hpp&gt;</code></p>
+
+<p>Inherits from <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a>, <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/">Engine::Graphics::Handle</a></p>
+
+<h2 id="public-functions">Public Functions</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/#function-getdepth">getDepth</a></strong>() const override <br/>Returns the depth of the texture in pixels.</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/#function-getheight">getHeight</a></strong>() const override <br/>Returns the height of the texture in pixels.</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/#function-getwidth">getWidth</a></strong>() const override <br/>Returns the width of the texture in pixels.</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/#function-~framebuffer">~Framebuffer</a></strong>()</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1framebuffer/#function-framebuffer">Framebuffer</a></strong>(int width, int height)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="additional-inherited-members">Additional inherited members</h2>
+
+<p><strong>Public Types inherited from <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>enum</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA8, RGB8, RGBA16, RGB16, RGBA32, RGB32 }</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Public Functions inherited from <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Protected Attributes inherited from <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
+</tr>
+
+<tr>
+<td>bool</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Public Functions inherited from <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/">Engine::Graphics::Handle</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/#function-gethandle">getHandle</a></strong>() const</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/#function-~handle">~Handle</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Protected Attributes inherited from <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/">Engine::Graphics::Handle</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>int</td>
+<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1handle/#variable-handle">handle</a></strong></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+
+<h3 id="function-getdepth">function getDepth</h3>
+
+<pre><code class="language-cpp">virtual int getDepth() const override
+</code></pre>
+
+<p>Returns the depth of the texture in pixels.</p>
+
+<p><strong>Returns</strong>: Depth in pixels</p>
+
+<p><strong>Note</strong>: If this texture is 2D the depth is always 1 pixels</p>
+
+<p><strong>Reimplements</strong>: <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-getdepth">getDepth</a></p>
+
+<h3 id="function-getheight">function getHeight</h3>
+
+<pre><code class="language-cpp">virtual int getHeight() const override
+</code></pre>
+
+<p>Returns the height of the texture in pixels.</p>
+
+<p><strong>Returns</strong>: Height in pixels</p>
+
+<p><strong>Reimplements</strong>: <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-getheight">getHeight</a></p>
+
+<h3 id="function-getwidth">function getWidth</h3>
+
+<pre><code class="language-cpp">virtual int getWidth() const override
+</code></pre>
+
+<p>Returns the width of the texture in pixels.</p>
+
+<p><strong>Returns</strong>: Width in pixels</p>
+
+<p><strong>Reimplements</strong>: <a href="/doxydown/hugo-learn/api/classes/classengine_1_1graphics_1_1texture/#function-getwidth">getWidth</a></p>
+
+<h3 id="function-framebuffer">function ~Framebuffer</h3>
+
+<pre><code class="language-cpp">virtual ~Framebuffer()
+</code></pre>
+
+<h3 id="function-framebuffer-1">function Framebuffer</h3>
+
+<pre><code class="language-cpp">Framebuffer(
+    int width,
+    int height
+)
+</code></pre>
+
+<p>Created on 2019-11-01</p>
+</article>
+
+      
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc levels-6 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#engine-graphics-framebuffer-class-reference">Engine::Graphics::Framebuffer Class Reference</a>
+<ul>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#additional-inherited-members">Additional inherited members</a></li>
+<li><a href="#public-functions-documentation">Public Functions Documentation</a>
+<ul>
+<li><a href="#function-getdepth">function getDepth</a></li>
+<li><a href="#function-getheight">function getHeight</a></li>
+<li><a href="#function-getwidth">function getWidth</a></li>
+<li><a href="#function-framebuffer">function ~Framebuffer</a></li>
+<li><a href="#function-framebuffer-1">function Framebuffer</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

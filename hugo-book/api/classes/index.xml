@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Classes on Doxydown Example</title>
+    <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/</link>
+    <description>Recent content in Classes on Doxydown Example</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://matusnovak.github.io/doxydown/hugo-book/api/classes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Engine::Assets::Asset</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/</guid>
+      <description>Engine::Assets::Asset Class Reference / An example game engine / Generic assets
+#include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Classes     Name     union Event    Public Functions     Name      getEvent() const Returns the current status of the asset.   virtual unload() Call this method to unload the asset.   virtual load() Call this method to load the asset.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/unionengine_1_1assets_1_1asset_1_1event/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/unionengine_1_1assets_1_1asset_1_1event/</guid>
+      <description>Engine::Assets::Asset::Event Union Reference / An example game engine / Generic assets
+#include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event::Loaded</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</guid>
+      <description>Engine::Assets::Asset::Event::Loaded Struct Reference #include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event::Unloaded</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</guid>
+      <description>Engine::Assets::Asset::Event::Unloaded Struct Reference #include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>Engine::Assets::Asset::Event::Waiting</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/</guid>
+      <description>Engine::Assets::Asset::Event::Waiting Struct Reference #include &amp;lt;Asset.hpp&amp;gt;
+Inherits from
+Public Attributes     Name     Asset * other The pointer to the other asset this asset is waiting for.    Public Attributes Documentation variable other Asset * other;  The pointer to the other asset this asset is waiting for.
+Note: May be null
+Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio::AudioBuffer</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiobuffer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiobuffer/</guid>
+      <description>A simple audio buffer to hold PCM samples</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio::AudioBuffer::TypedAudioData</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/</guid>
+      <description>Use this to populate the buffer.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Audio::AudioManager</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiomanager/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiomanager/</guid>
+      <description>An audio manager that accepts multiple Audio::AudioBuffer instances.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Exception</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1exception/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1exception/</guid>
+      <description>Engine::Exception Class Reference / An example game engine
+#include &amp;lt;Exception.hpp&amp;gt;
+Inherits from exception
+Public Functions     Name      what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Framebuffer</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1framebuffer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1framebuffer/</guid>
+      <description>Engine::Graphics::Framebuffer Class Reference / An example game engine / Graphical related classes
+#include &amp;lt;Framebuffer.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Framebuffer()    Framebuffer(int width, int height)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Handle</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1handle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1handle/</guid>
+      <description>Engine::Graphics::Handle Class Reference / An example game engine / Graphical related classes
+#include &amp;lt;Handle.hpp&amp;gt;
+Inherits from
+Inherited by Engine::Graphics::Texture
+Public Functions     Name      getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-11-01</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Texture</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture/</guid>
+      <description>This is a base texture class that serves as a base class for other texture types.</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Texture2D</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture2d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture2d/</guid>
+      <description>Engine::Graphics::Texture2D Class Reference / An example game engine / Graphical related classes
+#include &amp;lt;Texture2D.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture2D()    Texture2D(int width, int height, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+    </item>
+    
+    <item>
+      <title>Engine::Graphics::Texture3D</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture3d/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture3d/</guid>
+      <description>Engine::Graphics::Texture3D Class Reference / An example game engine / Graphical related classes
+#include &amp;lt;Texture3D.hpp&amp;gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture3D()    Texture3D(int width, int height, int depth, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+    </item>
+    
+    <item>
+      <title>Engine::Utils::ArrayView</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1utils_1_1arrayview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1utils_1_1arrayview/</guid>
+      <description>Filesystem path utility functions.</description>
+    </item>
+    
+  </channel>
+</rss>

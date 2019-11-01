@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/</loc>
-    <priority>0</priority>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__engine/</loc>
   </url>
   
   <url>
-    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__assets/</loc>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/</loc>
   </url>
   
   <url>
@@ -17,15 +16,10 @@
   
   <url>
     <loc>https://matusnovak.github.io/doxydown/hugo-learn/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/classes/</loc>
-  </url>
-  
-  <url>
-    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__engine/</loc>
   </url>
   
   <url>
@@ -113,11 +107,15 @@
   </url>
   
   <url>
-    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__graphics/</loc>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/</loc>
   </url>
   
   <url>
-    <loc>https://matusnovak.github.io/doxydown/hugo-learn/</loc>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__assets/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__graphics/</loc>
   </url>
   
   <url>
@@ -125,16 +123,115 @@
   </url>
   
   <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/</loc>
+  </url>
+  
+  <url>
     <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/</loc>
   </url>
   
   <url>
-    <loc>https://matusnovak.github.io/doxydown/hugo-learn/tags/</loc>
-    <priority>0</priority>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__utils/</loc>
   </url>
   
   <url>
-    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/modules/group__utils/</loc>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_68267d1309a1af8e8297ef4c3efbcdba/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_e0c1ede47f21c4a643a1257f949f98e0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/asset_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/assets_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_c64386e93f356b78d4612c7b7741707c/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audio_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audiobuffer_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/audiomanager_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/engine_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/exception_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_3419e189e460663ec2c964233bf8dcd6/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/framebuffer_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/graphics_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/handle_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/renderer_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture2d_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/texture3d_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/dir_a7363e98f9e0bdd87618633653859815/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/arrayview_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/config_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/log_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/path_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/api/files/utils_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxydown/hugo-learn/tags/</loc>
   </url>
   
 </urlset>
