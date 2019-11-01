@@ -68,7 +68,8 @@ R"({
 
 typedef std::unordered_map<std::string, std::string> RelationMap;
 
-static const RelationMap parentChildRelationMap2 = {
+#if defined(__linux__) || defined(__APPLE__)
+static const RelationMap relationMap = {
     {"namespaceEngine", "index"},
     {"namespaceEngine_1ae3918a7bd8220f317f339ebda3295fa7", "namespaceEngine"},
     {"classEngine_1_1Exception", "namespaceEngine"},
@@ -180,6 +181,7 @@ static const RelationMap parentChildRelationMap2 = {
     {"group__Graphics", "group__Engine"},
     {"group__Utils", "group__Engine"},
     {"group__Utils_1ga175f00127b5cd4fc673a52180eb80eb5", "group__Utils"},
+    {"group__Utils_1gac7c70714c30c998f33d7cb5639cec5fc", "group__Utils"},
     {"dir_68267d1309a1af8e8297ef4c3efbcdba", "index"},
     {"dir_e0c1ede47f21c4a643a1257f949f98e0", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
     {"Asset_8hpp", "dir_e0c1ede47f21c4a643a1257f949f98e0"},
@@ -200,14 +202,15 @@ static const RelationMap parentChildRelationMap2 = {
     {"ArrayView_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
     {"Config_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
     {"Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0", "Config_8hpp"},
+    {"Log_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
     {"Path_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
     {"Utils_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
     {"Engine_8hpp", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
     {"Engine_8hpp_1ae7d52a33d99eaf0d779f82301ce5432f", "Engine_8hpp"},
-    {"Exception_8hpp", "dir_68267d1309a1af8e8297ef4c3efbcdba"}
+    {"Exception_8hpp", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
 };
-
-static const RelationMap parentChildRelationMap1 = {
+#else 
+static const RelationMap relationMap = {
     {"namespace_engine", "index"},
     {"namespace_engine_1ae3918a7bd8220f317f339ebda3295fa7", "namespace_engine"},
     {"class_engine_1_1_exception", "namespace_engine"},
@@ -246,7 +249,7 @@ static const RelationMap parentChildRelationMap1 = {
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a967d280b5c16d95f2947647dd2ca6cc2", "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a85edaa7e5c3ae68dabadd5373890591e", "class_engine_1_1_audio_1_1_audio_buffer"},
-    {"class_engine_1_1_audio_1_1_audio_buffer_1ac2405c9952006b799c0d91e126ced774", "class_engine_1_1_audio_1_1_audio_buffer"},
+    {"class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ae7ef7f8f4cecc7f19bbe01319f8aa37d", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ab3f8002fc80d9bff50cfb6095e10a721", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1aa89013946a6eb2907227ed4c26f052b9", "class_engine_1_1_audio_1_1_audio_buffer"},
@@ -255,7 +258,6 @@ static const RelationMap parentChildRelationMap1 = {
     {"class_engine_1_1_audio_1_1_audio_buffer_1a821933214a00331f80c1c58cee859eec", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a560600772af8cde2fd5dc45e1780789c", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a93722a1dc8b7340e2c9b5e78d50151f5", "class_engine_1_1_audio_1_1_audio_buffer"},
-    {"class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1aca7a68c7803b2e48dc21cce6a3f672f7", "struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data"},
     {"struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ab67e24ae6f8654c77d3fc3060a319e29", "struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data"},
@@ -318,36 +320,37 @@ static const RelationMap parentChildRelationMap1 = {
     {"group___assets", "group___engine"},
     {"group___audio", "group___engine"},
     {"group___graphics", "group___engine"},
-    {"group___graphics_1gae5b9a93609bed06adb3ce5902791df8a", "group___graphics"},
     {"group___utils", "group___engine"},
     {"group___utils_1ga175f00127b5cd4fc673a52180eb80eb5", "group___utils"},
-    {"dir_d44c64559bbebec7f509842c48db8b23", "index"},
-    {"dir_2cd7e651a2b0059902d1cba21662f8f9", "dir_d44c64559bbebec7f509842c48db8b23"},
-    {"_asset_8hpp", "dir_2cd7e651a2b0059902d1cba21662f8f9"},
-    {"_assets_8hpp", "dir_2cd7e651a2b0059902d1cba21662f8f9"},
-    {"dir_4efc9c1854f752659886c9117cbec549", "dir_d44c64559bbebec7f509842c48db8b23"},
-    {"_audio_8hpp", "dir_4efc9c1854f752659886c9117cbec549"},
-    {"_audio_buffer_8hpp", "dir_4efc9c1854f752659886c9117cbec549"},
-    {"_audio_manager_8hpp", "dir_4efc9c1854f752659886c9117cbec549"},
-    {"dir_b43dbc6878c2b5c121b79d76cc4886e7", "dir_d44c64559bbebec7f509842c48db8b23"},
-    {"_framebuffer_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
-    {"_graphics_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
-    {"_handle_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
-    {"_renderer_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
-    {"_texture_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
-    {"_texture2_d_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
-    {"_texture3_d_8hpp", "dir_b43dbc6878c2b5c121b79d76cc4886e7"},
-    {"dir_2d1d991c66e7a032b2ab80c11328e79c", "dir_d44c64559bbebec7f509842c48db8b23"},
-    {"_array_view_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
-    {"_config_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
-    {"group___utils_1ga175f00127b5cd4fc673a52180eb80eb5", "_config_8hpp"},
+    {"group___utils_1gac7c70714c30c998f33d7cb5639cec5fc", "group___utils"},
+    {"dir_68267d1309a1af8e8297ef4c3efbcdba", "index"},
+    {"dir_e0c1ede47f21c4a643a1257f949f98e0", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"_asset_8hpp", "dir_e0c1ede47f21c4a643a1257f949f98e0"},
+    {"_assets_8hpp", "dir_e0c1ede47f21c4a643a1257f949f98e0"},
+    {"dir_c64386e93f356b78d4612c7b7741707c", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"_audio_8hpp", "dir_c64386e93f356b78d4612c7b7741707c"},
+    {"_audio_buffer_8hpp", "dir_c64386e93f356b78d4612c7b7741707c"},
+    {"_audio_manager_8hpp", "dir_c64386e93f356b78d4612c7b7741707c"},
+    {"dir_3419e189e460663ec2c964233bf8dcd6", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"_framebuffer_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"_graphics_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"_handle_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"_renderer_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"_texture_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"_texture2_d_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"_texture3_d_8hpp", "dir_3419e189e460663ec2c964233bf8dcd6"},
+    {"dir_a7363e98f9e0bdd87618633653859815", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
+    {"_array_view_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"_config_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
     {"_config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0", "_config_8hpp"},
-    {"_path_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
-    {"_utils_8hpp", "dir_2d1d991c66e7a032b2ab80c11328e79c"},
-    {"_engine_8hpp", "dir_d44c64559bbebec7f509842c48db8b23"},
+    {"_log_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"_path_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"_utils_8hpp", "dir_a7363e98f9e0bdd87618633653859815"},
+    {"_engine_8hpp", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
     {"_engine_8hpp_1ae7d52a33d99eaf0d779f82301ce5432f", "_engine_8hpp"},
-    {"_exception_8hpp", "dir_d44c64559bbebec7f509842c48db8b23"}
+    {"_exception_8hpp", "dir_68267d1309a1af8e8297ef4c3efbcdba"},
 };
+#endif
 
 static void recursiveRefidPrint(const Node& node, const int indent = 0) {
     for (const auto& child : node.getChildren()) {
@@ -425,7 +428,7 @@ TEST_CASE("Load everything") {
     Doxygen doxygen;
     TextPlainPrinter plainPrinter(config, doxygen);
     TextMarkdownPrinter markdownPrinter(config, doxygen);
-    JsonConverter jsonConverter(config, plainPrinter, markdownPrinter);
+    JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
 
     doxygen.load(IMPORT_DIR);
     doxygen.finalize(config, plainPrinter, markdownPrinter);
@@ -433,17 +436,15 @@ TEST_CASE("Load everything") {
     const auto& index = doxygen.getIndex();
     //recursiveRefidPrint(index);
 
-    // Create child <-> parent map
-    /*std::set<std::string> temp;
-    traverse(doxygen.getIndex(), [&](const Node* parent, const Node* node) {
-        if (temp.find(node->getRefid()) == temp.end()) {
-            std::cout << "{\"" << node->getRefid() << "\", \"" << parent->getRefid() << "\"}," << std::endl;
-            temp.insert(node->getRefid());
-        }
-    });*/
-
-    const auto isUpperCase = index.getChildren().begin()->get()->getRefid() == "namespaceEngine";
-    auto& relationMap = isUpperCase ? parentChildRelationMap2 : parentChildRelationMap1;
+    SECTION("print child -> parent relation") {
+        std::set<std::string> temp;
+        traverse(doxygen.getIndex(), [&](const Node* parent, const Node* node) {
+            if (temp.find(node->getRefid()) == temp.end()) {
+                std::cout << "\"" << node->getRefid() << "\" -> \"" << parent->getRefid() << "\"" << std::endl;
+                temp.insert(node->getRefid());
+            }
+        });
+    }
 
     SECTION("Make sure everyone has a parent") {
         traverse(doxygen.getIndex(), [](const Node* parent, const Node* node) {
@@ -494,76 +495,74 @@ TEST_CASE("Load everything") {
     }
 
     SECTION("Random lookup via find cuntion") {
-        if (isUpperCase) {
-            CHECK(index.getRefid() == "index");
-            CHECK(index.find("group__Engine")->getRefid() == "group__Engine");
-            CHECK(index.find("group__Engine")->findChild("group__Audio"));
-            CHECK(index.find("group__Engine")->findChild("group__Utils"));
-            CHECK(index.find("group__Audio")->getParent()->getRefid() == "group__Engine");
-            CHECK(index.find("group__Utils")->getParent()->getRefid() == "group__Engine");
-            CHECK(index.find("group__Utils")->getKind() == Kind::MODULE);
-            CHECK(index.find("group__Audio")->getKind() == Kind::MODULE);
-            CHECK(index.find("namespaceEngine")->getRefid() == "namespaceEngine");
-            CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Audio"));
-            CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Utils"));
-            CHECK(index.find("namespaceEngine_1_1Audio")->getParent()->getRefid() == "namespaceEngine");
-            CHECK(index.find("namespaceEngine_1_1Utils")->getParent()->getRefid() == "namespaceEngine");
-            CHECK(index.find("namespaceEngine")->getName() == "Engine");
-            CHECK(index.find("namespaceEngine_1_1Audio")->getName() == "Engine::Audio");
-            CHECK(index.find("namespaceEngine_1_1Utils")->getName() == "Engine::Utils");
-            CHECK(index.find("namespaceEngine_1_1Utils_1_1Path")->getName() == "Engine::Utils::Path");
-            CHECK(index.find("classEngine_1_1Audio_1_1AudioBuffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Kind::TYPEDEF);
-        } else {
-            CHECK(index.getRefid() == "index");
-            CHECK(index.find("group___engine")->getRefid() == "group___engine");
-            CHECK(index.find("group___engine")->findChild("group___audio"));
-            CHECK(index.find("group___engine")->findChild("group___utils"));
-            CHECK(index.find("group___audio")->getParent()->getRefid() == "group___engine");
-            CHECK(index.find("group___utils")->getParent()->getRefid() == "group___engine");
-            CHECK(index.find("group___utils")->getKind() == Kind::MODULE);
-            CHECK(index.find("group___audio")->getKind() == Kind::MODULE);
-            CHECK(index.find("namespace_engine")->getRefid() == "namespace_engine");
-            CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_audio"));
-            CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_utils"));
-            CHECK(index.find("namespace_engine_1_1_audio")->getParent()->getRefid() == "namespace_engine");
-            CHECK(index.find("namespace_engine_1_1_utils")->getParent()->getRefid() == "namespace_engine");
-            CHECK(index.find("namespace_engine")->getName() == "Engine");
-            CHECK(index.find("namespace_engine_1_1_audio")->getName() == "Engine::Audio");
-            CHECK(index.find("namespace_engine_1_1_utils")->getName() == "Engine::Utils");
-            CHECK(index.find("namespace_engine_1_1_utils_1_1_path")->getName() == "Engine::Utils::Path");
-            CHECK(index.find("class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Kind::TYPEDEF);
-        }
+#if defined(__linux__) || defined(__APPLE__)
+        CHECK(index.getRefid() == "index");
+        CHECK(index.find("group__Engine")->getRefid() == "group__Engine");
+        CHECK(index.find("group__Engine")->findChild("group__Audio"));
+        CHECK(index.find("group__Engine")->findChild("group__Utils"));
+        CHECK(index.find("group__Audio")->getParent()->getRefid() == "group__Engine");
+        CHECK(index.find("group__Utils")->getParent()->getRefid() == "group__Engine");
+        CHECK(index.find("group__Utils")->getKind() == Kind::MODULE);
+        CHECK(index.find("group__Audio")->getKind() == Kind::MODULE);
+        CHECK(index.find("namespaceEngine")->getRefid() == "namespaceEngine");
+        CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Audio"));
+        CHECK(index.find("namespaceEngine")->findChild("namespaceEngine_1_1Utils"));
+        CHECK(index.find("namespaceEngine_1_1Audio")->getParent()->getRefid() == "namespaceEngine");
+        CHECK(index.find("namespaceEngine_1_1Utils")->getParent()->getRefid() == "namespaceEngine");
+        CHECK(index.find("namespaceEngine")->getName() == "Engine");
+        CHECK(index.find("namespaceEngine_1_1Audio")->getName() == "Engine::Audio");
+        CHECK(index.find("namespaceEngine_1_1Utils")->getName() == "Engine::Utils");
+        CHECK(index.find("namespaceEngine_1_1Utils_1_1Path")->getName() == "Engine::Utils::Path");
+        CHECK(index.find("classEngine_1_1Audio_1_1AudioBuffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Kind::TYPEDEF);
+#else
+        CHECK(index.getRefid() == "index");
+        CHECK(index.find("group___engine")->getRefid() == "group___engine");
+        CHECK(index.find("group___engine")->findChild("group___audio"));
+        CHECK(index.find("group___engine")->findChild("group___utils"));
+        CHECK(index.find("group___audio")->getParent()->getRefid() == "group___engine");
+        CHECK(index.find("group___utils")->getParent()->getRefid() == "group___engine");
+        CHECK(index.find("group___utils")->getKind() == Kind::MODULE);
+        CHECK(index.find("group___audio")->getKind() == Kind::MODULE);
+        CHECK(index.find("namespace_engine")->getRefid() == "namespace_engine");
+        CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_audio"));
+        CHECK(index.find("namespace_engine")->findChild("namespace_engine_1_1_utils"));
+        CHECK(index.find("namespace_engine_1_1_audio")->getParent()->getRefid() == "namespace_engine");
+        CHECK(index.find("namespace_engine_1_1_utils")->getParent()->getRefid() == "namespace_engine");
+        CHECK(index.find("namespace_engine")->getName() == "Engine");
+        CHECK(index.find("namespace_engine_1_1_audio")->getName() == "Engine::Audio");
+        CHECK(index.find("namespace_engine_1_1_utils")->getName() == "Engine::Utils");
+        CHECK(index.find("namespace_engine_1_1_utils_1_1_path")->getName() == "Engine::Utils::Path");
+        CHECK(index.find("class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1")->getKind() == Kind::TYPEDEF);
+#endif
     }
 
     SECTION("Classes with inheritance must have base and derived classes") {
-        if (isUpperCase) {
-            const auto& base = index.find("classEngine_1_1Graphics_1_1Texture2D")->getBaseClasses();
-            CHECK(find(base, "classEngine_1_1Graphics_1_1Texture").prot == Visibility::PUBLIC);
+#if defined(__linux__) || defined(__APPLE__)
+        const auto& base = index.find("classEngine_1_1Graphics_1_1Texture2D")->getBaseClasses();
+        CHECK(find(base, "classEngine_1_1Graphics_1_1Texture").prot == Visibility::PUBLIC);
 
-            const auto& derived = index.find("classEngine_1_1Graphics_1_1Texture")->getDerivedClasses();
-            CHECK(find(derived, "classEngine_1_1Graphics_1_1Texture2D").prot == Visibility::PUBLIC);
-        } else {
-            const auto& base = index.find("class_engine_1_1_graphics_1_1_texture2_d")->getBaseClasses();
-            CHECK(find(base, "class_engine_1_1_graphics_1_1_texture").prot == Visibility::PUBLIC);
+        const auto& derived = index.find("classEngine_1_1Graphics_1_1Texture")->getDerivedClasses();
+        CHECK(find(derived, "classEngine_1_1Graphics_1_1Texture2D").prot == Visibility::PUBLIC);
+#else
+        const auto& base = index.find("class_engine_1_1_graphics_1_1_texture2_d")->getBaseClasses();
+        CHECK(find(base, "class_engine_1_1_graphics_1_1_texture").prot == Visibility::PUBLIC);
 
-            const auto& derived = index.find("class_engine_1_1_graphics_1_1_texture")->getDerivedClasses();
-            CHECK(find(derived, "class_engine_1_1_graphics_1_1_texture2_d").prot == Visibility::PUBLIC);
-        }
+        const auto& derived = index.find("class_engine_1_1_graphics_1_1_texture")->getDerivedClasses();
+        CHECK(find(derived, "class_engine_1_1_graphics_1_1_texture2_d").prot == Visibility::PUBLIC);
+#endif
     }
     SECTION("Classes must have valid location data") {
-        if (isUpperCase) {
-            const auto[data, childrenData] = index.find("classEngine_1_1Audio_1_1AudioManager")->loadData(config, plainPrinter, markdownPrinter);
-            const auto& location = data.location;
-            CHECK(location.file == "src/Audio/AudioManager.hpp");
-            CHECK(location.line == 17);
-            CHECK(location.column == 19);
-        } else {
-            const auto [data, childrenData] = index.find("class_engine_1_1_audio_1_1_audio_manager")->loadData(config, plainPrinter, markdownPrinter);
-            const auto& location = data.location;
-            CHECK(location.file == "src/Audio/AudioManager.hpp");
-            CHECK(location.line == 17);
-            CHECK(location.column == 19);
-        }
+#if defined(__linux__) || defined(__APPLE__)
+        const auto[data, childrenData] = index.find("classEngine_1_1Audio_1_1AudioManager")->loadData(config, plainPrinter, markdownPrinter, doxygen.getCache());
+        const auto& location = data.location;
+        CHECK(location.file == "src/Audio/AudioManager.hpp");
+        CHECK(location.line == 17);
+#else
+        const auto [data, childrenData] = index.find("class_engine_1_1_audio_1_1_audio_manager")->loadData(config, plainPrinter, markdownPrinter, doxygen.getCache());
+        const auto& location = data.location;
+        CHECK(location.file == "src/Audio/AudioManager.hpp");
+        CHECK(location.line == 17);
+#endif
     }
     /*SECTION("Validate generated JSON with pre-defined one") {
         auto data = JsonConverter::convert(*index.find("class_engine_1_1_audio_1_1_audio_buffer"));
