@@ -5,7 +5,6 @@
 #include <Doxydown/Utils.hpp>
 #include <Doxydown/Doxygen.hpp>
 #include "ExceptionUtils.hpp"
-#include <iostream>
 
 Doxydown::JsonConverter::JsonConverter(const Config& config,
                                        const Doxygen& doxygen,
@@ -467,9 +466,15 @@ nlohmann::json Doxydown::JsonConverter::getAsJson(const Node& node) const {
                 }
             } catch (std::out_of_range& e) {
                 (void)e;
-                throw EXCEPTION("Refid {} this should never happen please contact the author!", base["refid"]);
+                throw EXCEPTION(
+                    "Refid {} this should never happen please contact the author!", 
+                    base["refid"].get<std::string>()
+                );
             } catch (std::exception& e) {
-                throw EXCEPTION("Something went wrong while processing base class {} of {} error {}", base["refid"], node.getRefid(), e.what());
+                throw EXCEPTION(
+                    "Something went wrong while processing base class {} of {} error {}", 
+                    base["refid"].get<std::string>(), node.getRefid(), e.what()
+                );
             }
         }
     }
