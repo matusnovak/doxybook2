@@ -185,7 +185,7 @@ jobs:
       - run:
           name: Dependencies
           command: |
-            npm install vuepress -g
+            sudo npm install vuepress -g
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
 
