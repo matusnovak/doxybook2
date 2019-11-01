@@ -31,6 +31,7 @@ namespace Doxydown {
                                  const TextPrinter& plainPrinter,
                                  const TextPrinter& markdownPrinter,
                                  const NodePtr& node);
+        void updateGroupPointers(const NodePtr& node);
 
         // The root object that holds everything (index.xml)
         NodePtr index;

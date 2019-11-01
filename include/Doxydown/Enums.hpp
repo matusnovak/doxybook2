@@ -43,7 +43,8 @@ namespace Doxydown {
         CLASSES,
         ATTRIBUTES,
         TYPES,
-        DIRORFILE,
+        DIRS,
+        FILES,
         MODULES,
         FRIENDS
     };

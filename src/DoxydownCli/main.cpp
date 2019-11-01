@@ -9,6 +9,8 @@
 #include <Doxydown/TemplateFolderLoader.hpp>
 #include <Doxydown/Doxygen.hpp>
 #include <Doxydown/Log.hpp>
+#include "Doxydown/Path.hpp"
+#include "Doxydown/Utils.hpp"
 
 static argagg::parser argparser {{
     {
@@ -38,23 +40,41 @@ static argagg::parser argparser {{
     {
         "generate-templates", {"--generate-templates"},
         "Generate template files given a path to folder (folder must exist).", 1
+    },
+    {
+        "debug-templates", {"--debug-templates"},
+        "Debug templates. This will create JSON for each generated template.", 1
     }
 }};
 
 using namespace Doxydown;
 
-static const std::unordered_set<Kind> INDEX_CLASS_FILTER = {
+static const Generator::Filter INDEX_CLASS_FILTER = {
     Kind::NAMESPACE,
     Kind::CLASS,
     Kind::STRUCT,
     Kind::UNION
 };
 
-static const std::unordered_set<Kind> INDEX_NAMESPACES_FILTER = {
+static const Generator::Filter INDEX_NAMESPACES_FILTER = {
     Kind::NAMESPACE
 };
 
-static const std::unordered_set<Kind> INDEX_MODULES_FILTER = {
+static const Generator::Filter INDEX_MODULES_FILTER = {
+    Kind::MODULE
+};
+
+static const Generator::Filter INDEX_FILES_FILTER = {
+    Kind::DIR,
+    Kind::FILE
+};
+
+static const Generator::Filter LANGUAGE_FILTER = {
+    Kind::NAMESPACE,
+    Kind::CLASS,
+    Kind::INTERFACE,
+    Kind::STRUCT,
+    Kind::UNION,
     Kind::MODULE
 };
 
@@ -89,25 +109,42 @@ int main(const int argc, char* argv[]) {
                 loadConfig(config, args["config"].as<std::string>());
             }
 
+            if (args["debug-templates"]) {
+                config.debugTemplateJson = args["debug-templates"].as<std::string>() == "true";
+            }
+
             config.outputDir = args["output"].as<std::string>();
 
             Doxygen doxygen;
             TextMarkdownPrinter markdownPrinter(config, doxygen);
             TextPlainPrinter plainPrinter(config, doxygen);
-            JsonConverter jsonConverter(config, plainPrinter, markdownPrinter);
+            JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
             std::unique_ptr<TemplateLoader> templateLoader = args["templates"]
                                                                  ? std::make_unique<TemplateFolderLoader>(
                                                                      args["templates"].as<std::string>())
                                                                  : std::make_unique<TemplateDefaultLoader>();
             Generator generator(config, jsonConverter, *templateLoader);
 
+            static const std::array<Type, 4> ALL_GROUPS = {
+                Type::CLASSES,
+                Type::NAMESPACES,
+                Type::FILES,
+                Type::MODULES
+            };
+            for (const auto& g : ALL_GROUPS) {
+                Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
+            }
+
             doxygen.load(args["input"].as<std::string>());
             doxygen.finalize(config, plainPrinter, markdownPrinter);
 
-            generator.print(doxygen);
-            generator.printIndex(doxygen, "classes", INDEX_CLASS_FILTER);
-            generator.printIndex(doxygen, "namespaces", INDEX_NAMESPACES_FILTER);
-            generator.printIndex(doxygen, "groups", INDEX_MODULES_FILTER);
+            generator.print(doxygen, LANGUAGE_FILTER);
+            generator.print(doxygen, INDEX_FILES_FILTER);
+
+            generator.printIndex(doxygen, "classes", "Classes", INDEX_CLASS_FILTER);
+            generator.printIndex(doxygen, "namespaces", "Namespaces", INDEX_NAMESPACES_FILTER);
+            generator.printIndex(doxygen, "groups", "Groups", INDEX_MODULES_FILTER);
+            generator.printIndex(doxygen, "files", "Files", INDEX_FILES_FILTER);
         } else {
             std::cerr << argparser;
             return EXIT_FAILURE;

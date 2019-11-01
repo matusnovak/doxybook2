@@ -28,7 +28,12 @@ Doxydown::XmlTextParser::Node::Type Doxydown::XmlTextParser::strToType(const std
         {"xrefsect", Node::Type::XREFSECT},
         {"xreftitle", Node::Type::XREFTITLE},
         {"xrefdescription", Node::Type::XREFDESCRIPTION},
-        {"initializer", Node::Type::PARA}
+        {"initializer", Node::Type::PARA},
+        {"programlisting", Node::Type::PROGRAMLISTING},
+        {"codeline", Node::Type::CODELINE},
+        {"sp", Node::Type::SP},
+        {"highlight", Node::Type::HIGHTLIGHT},
+        {"defname", Node::Type::PARA},
     };
 
     const auto it = kinds.find(str);
@@ -76,12 +81,26 @@ void Doxydown::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node&
                 ptr->extra = e.getAttr("kind");
                 break;
             }
+            case Node::Type::PARAMETERLIST: {
+                ptr->extra = e.getAttr("kind");
+                break;
+            }
             case Node::Type::REF: {
                 ptr->extra = e.getAttr("refid");
                 break;
             }
             case Node::Type::ULINK: {
                 ptr->extra = e.getAttr("url");
+                break;
+            }
+            case Node::Type::XREFSECT: {
+                const auto id = e.getAttr("id");
+                const auto pos = id.find('_');
+                if (pos != std::string::npos) {
+                    ptr->extra = id.substr(0, pos);
+                } else {
+                    ptr->extra = id;
+                }
                 break;
             }
             default: {

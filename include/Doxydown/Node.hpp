@@ -25,6 +25,7 @@ namespace Doxydown {
             Visibility prot;
             Virtual virt;
             std::string url;
+            const Node* ptr{nullptr};
         };
 
         struct Location {
@@ -44,13 +45,13 @@ namespace Doxydown {
             std::string defvalPlain;
         };
 
-        struct DetailsSection {
-            std::string type;
+        struct ParameterListItem {
+            std::string name;
             std::string text;
         };
 
+        typedef std::vector<ParameterListItem> ParameterList;
         typedef std::vector<ClassReference> ClassReferences;
-        typedef std::vector<DetailsSection> DetailsSections;
         typedef std::vector<Param> Params;
 
         struct Data {
@@ -59,7 +60,6 @@ namespace Doxydown {
             std::string argsString;
             std::string initializer;
             ClassReferences derivedClasses;
-            Virtual virt{ Virtual::NON_VIRTUAL };
             bool isAbstract{ false };
             bool isStatic{ false };
             bool isConst{ false };
@@ -68,6 +68,7 @@ namespace Doxydown {
             bool isInline{ false };
             bool isDefault{ false };
             bool isDeleted{ false };
+            bool isOverride{ false };
             Location location;
             std::string details;
             std::string inbody;
@@ -75,7 +76,32 @@ namespace Doxydown {
             std::string type;
             std::string typePlain;
             Params params;
-            DetailsSections detailsSections;
+            Params templateParams;
+            std::vector<std::string> see;
+            std::string returns;
+            std::string author;
+            std::vector<std::string> authors;
+            std::string version;
+            std::string since;
+            std::string date;
+            std::string note;
+            std::string warning;
+            std::string pre;
+            std::string post;
+            std::string copyright;
+            std::string invariant;
+            std::string remark;
+            std::string attention;
+            std::string par;
+            std::string rcs; // What is this?
+            std::vector<std::string> bugs;
+            std::vector<std::string> tests;
+            ParameterList paramList;
+            ParameterList returnsList;
+            ParameterList templateParamsList;
+            ParameterList exceptionsList;
+            const Node* reimplements{nullptr};
+            std::vector<const Node*> reimplementedBy;
         };
 
         typedef std::unordered_map<const Node*, Data> ChildrenData;
@@ -134,6 +160,10 @@ namespace Doxydown {
             return parent;
         }
 
+        const Node* getGroup() const {
+            return group;
+        }
+
         bool isEmpty() const {
             return empty;
         }
@@ -154,8 +184,16 @@ namespace Doxydown {
             return summary;
         }
 
+        const std::string& getTitle() const {
+            return title;
+        }
+
         Visibility getVisibility() const {
             return visibility;
+        }
+
+        Virtual getVirtual() const {
+            return virt;
         }
 
         const ClassReferences& getBaseClasses() const {
@@ -181,7 +219,8 @@ namespace Doxydown {
         typedef std::tuple<Data, ChildrenData> LoadDataResult;
         LoadDataResult loadData(const Config& config,
                                 const TextPrinter& plainPrinter,
-                                const TextPrinter& markdownPrinter) const;
+                                const TextPrinter& markdownPrinter,
+                                const NodeCacheMap& cache) const;
 
         friend class Doxygen;
     private:
@@ -189,7 +228,9 @@ namespace Doxydown {
         Data loadData(const Config& config,
                       const TextPrinter& plainPrinter,
                       const TextPrinter& markdownPrinter,
+                      const NodeCacheMap& cache,
                       const Xml::Element& element) const;
+        ClassReferences getAllBaseClasses(const NodeCacheMap& cache);
 
         std::unique_ptr<Temp> temp;
         Kind kind{Kind::INDEX};
@@ -198,13 +239,16 @@ namespace Doxydown {
         std::string name;
         std::string brief;
         std::string summary;
+        std::string title;
         Node* parent{ nullptr };
+        Node* group{ nullptr };
         Children children;
         bool empty{ true };
         std::string xmlPath;
         ClassReferences baseClasses;
         ClassReferences derivedClasses;
         Visibility visibility{ Visibility::PUBLIC };
+        Virtual virt{ Virtual::NON_VIRTUAL };
         std::string url;
         std::string anchor;
 

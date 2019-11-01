@@ -1,0 +1,12 @@
+site_name: Doxydown Example
+theme:
+  name: 'bootstrap'
+markdown_extensions:
+  - admonition
+nav:
+  - Home: /
+  - Classes: /api/Classes
+  - Namespaces: /api/Namespaces
+  - Modules: /api/Modules
+  - Files: /api/Files
+  - Related Pages: /api/Pages

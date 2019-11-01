@@ -1,0 +1,11 @@
+{
+  "baseUrl": "/doxydown/hugo-learn/api/",
+  "indexInFolders": true,
+  "linkSuffix": "/",
+  "linkLowercase": true,
+  "indexClassesName": "_index",
+  "indexFilesName": "_index",
+  "indexGroupsName": "_index",
+  "indexNamespacesName": "_index",
+  "indexRelatedPagesName": "_index"
+}

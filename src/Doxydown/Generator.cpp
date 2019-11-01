@@ -24,6 +24,10 @@ std::string Doxydown::Generator::kindToTemplateName(const Kind kind) {
             return config.templateKindNamespace;
         case Kind::MODULE:
             return config.templateKindGroup;
+        case Kind::DIR:
+            return config.templateKindDir;
+        case Kind::FILE:
+            return config.templateKindFile;
         default: {
             throw EXCEPTION("Unrecognised kind {} please contant the author!", int(kind));
         }
@@ -40,11 +44,11 @@ Doxydown::Generator::Generator(const Config& config, const JsonConverter& jsonCo
     }
 }
 
-void Doxydown::Generator::printRecursively(const Node& parent) {
+void Doxydown::Generator::printRecursively(const Node& parent, const Filter& filter) {
     using namespace Doxydown;
 
     for (const auto& child : parent.getChildren()) {
-        if (child->isStructured() || child->getKind() == Kind::MODULE) {
+        if (filter.find(child->getKind()) != filter.end()) {
             nlohmann::json data = jsonConverter.getAsJson(*child);
 
             const auto path = Path::join(
@@ -57,30 +61,22 @@ void Doxydown::Generator::printRecursively(const Node& parent) {
                 path,
                 data
             );
-            printRecursively(*child);
+            printRecursively(*child, filter);
         }
     }
 }
 
-void Doxydown::Generator::print(const Doxygen& doxygen) {
-    static const std::array<Type, 4> ALL_GROUPS = {
-        Type::CLASSES,
-        Type::NAMESPACES,
-        Type::DIRORFILE,
-        Type::MODULES
-    };
-    for (const auto& g : ALL_GROUPS) {
-        Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
-    }
-
-    printRecursively(doxygen.getIndex());
+void Doxydown::Generator::print(const Doxygen& doxygen, const Filter& filter) {
+    printRecursively(doxygen.getIndex(), filter);
 }
 
-void Doxydown::Generator::printIndex(const Doxygen& doxygen, const std::string& name, const Filter& filter) {
+void Doxydown::Generator::printIndex(const Doxygen& doxygen, const std::string& name, const std::string& title, const Filter& filter) {
     const auto path = indexToPath(name) + "." + config.fileExt;
 
     nlohmann::json data;
     data["children"] = buildIndexRecursively(doxygen.getIndex(), filter);
+    data["title"] = title;
+    data["name"] = name;
     renderer.render(indexToTemplateName(name), path, data);
 }
 

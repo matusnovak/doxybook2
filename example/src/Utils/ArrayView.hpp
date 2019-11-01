@@ -5,9 +5,9 @@ namespace Engine {
 		/*!
 		 * @brief Filesystem path utility functions
 		 * @ingroup Utils
-		 * @tparam The type of the data, for example uint8_t
+		 * @tparam T The type of the data, for example uint8_t
  		 */
-		template<typename T>
+		template<typename T = uint8_t>
 		class ArrayView {
 		public:
 			ArrayView(const T* src, size_t len);

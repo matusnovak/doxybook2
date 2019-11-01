@@ -42,6 +42,14 @@ void Doxydown::TextMarkdownPrinter::print(std::stringstream& ss, const XmlTextPa
             ss << "`";
             break;
         }
+        case XmlTextParser::Node::Type::PROGRAMLISTING: {
+            ss << "\n\n```cpp\n";
+            break;
+        }
+        case XmlTextParser::Node::Type::SP: {
+            ss << " ";
+            break;
+        }
         default: {
             break;
         }
@@ -82,6 +90,14 @@ void Doxydown::TextMarkdownPrinter::print(std::stringstream& ss, const XmlTextPa
         }
         case XmlTextParser::Node::Type::LISTITEM: {
             ss << "";
+            break;
+        }
+        case XmlTextParser::Node::Type::CODELINE: {
+            ss << "\n";
+            break;
+        }
+        case XmlTextParser::Node::Type::PROGRAMLISTING: {
+            ss << "```\n\n";
             break;
         }
         default: {

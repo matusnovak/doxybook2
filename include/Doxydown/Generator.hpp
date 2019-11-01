@@ -12,9 +12,9 @@ namespace Doxydown {
 
         explicit Generator(const Config& config, const JsonConverter& jsonConverter, const TemplateLoader& templateLoader);
 
-        void print(const Doxygen& doxygen);
-        void printRecursively(const Node& parent);
-        void printIndex(const Doxygen& doxygen, const std::string& name, const Filter& filter);
+        void print(const Doxygen& doxygen, const Filter& filter = {});
+        void printRecursively(const Node& parent, const Filter& filter = {});
+        void printIndex(const Doxygen& doxygen, const std::string& name, const std::string& title, const Filter& filter);
     private:
         std::string kindToTemplateName(Kind kind);
         std::string indexToPath(const std::string& name);

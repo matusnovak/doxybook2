@@ -29,7 +29,7 @@ namespace Doxydown {
         std::string folderGroupsName{"Modules"};
         std::string folderClassesName{"Classes"};
         std::string folderFilesName{"Files"};
-        std::string folderRelatedPagesName{"Related Pages"};
+        std::string folderRelatedPagesName{"Pages"};
         std::string folderNamespacesName{"Namespaces"};
 
         // What are the names of the index files?

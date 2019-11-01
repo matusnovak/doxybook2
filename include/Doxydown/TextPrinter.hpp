@@ -14,6 +14,7 @@ namespace Doxydown {
               doxygen(doxygen) {
 
         }
+        virtual ~TextPrinter() = default;
 
         virtual std::string print(const XmlTextParser::Node& node) const = 0;
 

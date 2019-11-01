@@ -179,6 +179,14 @@ void Doxydown::Node::parseBaseInfo(const Xml::Element& element) {
     const auto briefdescription = assertChild(element, "briefdescription");
     temp->brief = XmlTextParser::parseParas(briefdescription);
     visibility = toEnumVisibility(element.getAttr("prot", "public"));
+    virt = toEnumVirtual(element.getAttr("virt", "non-virtual"));
+
+    const auto title = element.firstChildElement("title");
+    if (title) {
+        this->title = title.getText();
+    } else {
+        this->title = this->name;
+    }
 
     switch (kind) {
         case Kind::DEFINE: {
@@ -218,9 +226,12 @@ void Doxydown::Node::parseBaseInfo(const Xml::Element& element) {
             type = Type::CLASSES;
             break;
         }
-        case Kind::FILE:
+        case Kind::FILE: {
+            type = Type::FILES;
+            break;
+        }
         case Kind::DIR: {
-            type = Type::DIRORFILE;
+            type = Type::DIRS;
             break;
         }
         default: {
@@ -315,11 +326,14 @@ void Doxydown::Node::finalize(const Config& config,
             }
         }
     }
+
+    baseClasses = getAllBaseClasses(cache);
 }
 
 Doxydown::Node::LoadDataResult Doxydown::Node::loadData(const Config& config,
                                                         const TextPrinter& plainPrinter,
-                                                        const TextPrinter& markdownPrinter) const {
+                                                        const TextPrinter& markdownPrinter,
+                                                        const NodeCacheMap& cache) const {
 
     Log::i("Parsing {}", xmlPath);
     Xml xml(xmlPath);
@@ -327,7 +341,7 @@ Doxydown::Node::LoadDataResult Doxydown::Node::loadData(const Config& config,
     auto root = assertChild(xml, "doxygen");
     auto compounddef = assertChild(root, "compounddef");
 
-    auto data = loadData(config, plainPrinter, markdownPrinter, compounddef);
+    auto data = loadData(config, plainPrinter, markdownPrinter, cache, compounddef);
     ChildrenData childrenData;
 
     auto sectiondef = compounddef.firstChildElement("sectiondef");
@@ -337,7 +351,10 @@ Doxydown::Node::LoadDataResult Doxydown::Node::loadData(const Config& config,
             const auto childRefid = memberdef.getAttr("id");
             const auto childPtr = this->findChild(childRefid);
 
-            childrenData.insert(std::make_pair(childPtr.get(), loadData(config, plainPrinter, markdownPrinter, memberdef)));
+            childrenData.insert(std::make_pair(
+                childPtr.get(), 
+                loadData(config, plainPrinter, markdownPrinter, cache, memberdef)
+            ));
             if (childPtr->kind == Kind::ENUM) {
                 auto enumvalue = memberdef.firstChildElement("enumvalue");
                 while (enumvalue) {
@@ -345,7 +362,7 @@ Doxydown::Node::LoadDataResult Doxydown::Node::loadData(const Config& config,
                     const auto enumvaluePtr = childPtr->findChild(enumvalueRefid);
                     childrenData.insert(std::make_pair<const Node*, Data>(
                         enumvaluePtr.get(), 
-                        loadData(config, plainPrinter, markdownPrinter, enumvalue))
+                        loadData(config, plainPrinter, markdownPrinter, cache, enumvalue))
                     );
                     enumvalue = enumvalue.nextSiblingElement("enumvalue");
                 }
@@ -362,6 +379,7 @@ Doxydown::Node::LoadDataResult Doxydown::Node::loadData(const Config& config,
 Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
                                               const TextPrinter& plainPrinter,
                                               const TextPrinter& markdownPrinter,
+                                              const NodeCacheMap& cache,
                                               const Xml::Element& element) const {
     Data data;
 
@@ -371,7 +389,6 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
     data.isConst = element.getAttr("const", "no") == "yes";
     data.isExplicit = element.getAttr("explicit", "no") == "yes";
     data.isInline = element.getAttr("inline", "no") == "yes";
-    data.virt = toEnumVirtual(element.getAttr("virt", "non-virtual"));
 
     auto locationElement = element.firstChildElement("location");
     if (locationElement) {
@@ -397,6 +414,7 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
         data.argsString = markdownPrinter.print(XmlTextParser::parsePara(argsstring));
         data.isDefault = data.argsString.find("=default") != std::string::npos;
         data.isDeleted = data.argsString.find("=deleted") != std::string::npos;
+        data.isOverride = data.argsString.find(" override") != std::string::npos;
     }
 
     const auto detaileddescription = assertChild(element, "detaileddescription");
@@ -405,29 +423,105 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
         for (auto it = para.children.begin(); it != para.children.end();) {
             switch (it->type) {
             case XmlTextParser::Node::Type::SIMPLESEC: {
-                DetailsSection section;
-                section.text = markdownPrinter.print(*it);
-                section.type = it->extra;
-                data.detailsSections.push_back(std::move(section));
-                it = para.children.erase(it);
-                break;
-            }
-            case XmlTextParser::Node::Type::XREFSECT: {
-                if (it->children.size() == 2 &&
-                    it->children[0].type == XmlTextParser::Node::Type::XREFTITLE &&
-                    it->children[1].type == XmlTextParser::Node::Type::XREFDESCRIPTION) {
-                    DetailsSection section;
-                    section.text = markdownPrinter.print(it->children[1]);
-                    section.type = markdownPrinter.print(it->children[0]);
-                    data.detailsSections.push_back(std::move(section));
+                    if (it->extra == "see") {
+                        data.see.push_back(markdownPrinter.print(*it));
+                    } else if (it->extra == "return") {
+                        if (!data.returns.empty()) data.returns += "\n\n";
+                        data.returns = markdownPrinter.print(*it);
+                    } else if (it->extra == "author") {
+                        if (!data.author.empty()) data.author += "\n\n";
+                        data.author = markdownPrinter.print(*it);
+                    } else if (it->extra == "authors") {
+                        data.authors.push_back(markdownPrinter.print(*it));
+                    } else if (it->extra == "version") {
+                        if (!data.version.empty()) data.version += "\n\n";
+                        data.version = markdownPrinter.print(*it);
+                    } else if (it->extra == "since") {
+                        if (!data.since.empty()) data.since += "\n\n";
+                        data.since = markdownPrinter.print(*it);
+                    } else if (it->extra == "date") {
+                        if (!data.date.empty()) data.date += "\n\n";
+                        data.date = markdownPrinter.print(*it);
+                    } else if (it->extra == "note") {
+                        if (!data.note.empty()) data.note += "\n\n";
+                        data.note += markdownPrinter.print(*it);
+                    } else if (it->extra == "warning") {
+                        if (!data.warning.empty()) data.warning += "\n\n";
+                        data.warning = markdownPrinter.print(*it);
+                    } else if (it->extra == "pre") {
+                        if (!data.pre.empty()) data.pre += "\n\n";
+                        data.pre = markdownPrinter.print(*it);
+                    } else if (it->extra == "post") {
+                        if (!data.post.empty()) data.post += "\n\n";
+                        data.post = markdownPrinter.print(*it);
+                    } else if (it->extra == "copyright") {
+                        if (!data.copyright.empty()) data.copyright += "\n\n";
+                        data.copyright = markdownPrinter.print(*it);
+                    } else if (it->extra == "invariant") {
+                        if (!data.invariant.empty()) data.invariant += "\n\n";
+                        data.invariant = markdownPrinter.print(*it);
+                    } else if (it->extra == "remark") {
+                        if (!data.remark.empty()) data.remark += "\n\n";
+                        data.remark = markdownPrinter.print(*it);
+                    } else if (it->extra == "attention") {
+                        if (!data.attention.empty()) data.attention += "\n\n";
+                        data.attention = markdownPrinter.print(*it);
+                    } else if (it->extra == "par") {
+                        if (!data.par.empty()) data.par += "\n\n";
+                        data.par = markdownPrinter.print(*it);
+                    } else if (it->extra == "rcs") {
+                        if (!data.rcs.empty()) data.rcs += "\n\n";
+                        data.rcs = markdownPrinter.print(*it);
+                    }
                     it = para.children.erase(it);
+                    break;
                 }
-                break;
-            }
-            default: {
-                ++it;
-                break;
-            }
+                case XmlTextParser::Node::Type::XREFSECT: {
+                    if (it->children.size() == 2 &&
+                        it->children[0].type == XmlTextParser::Node::Type::XREFTITLE &&
+                        it->children[1].type == XmlTextParser::Node::Type::XREFDESCRIPTION) {
+
+                        if (it->extra == "bug") {
+                            data.bugs.push_back(markdownPrinter.print(it->children[1]));
+                        } else if (it->extra == "test") {
+                            data.tests.push_back(markdownPrinter.print(it->children[1]));
+                        }
+                        it = para.children.erase(it);
+                    }
+                    break;
+                }
+                case XmlTextParser::Node::Type::PARAMETERLIST: {
+                    const auto kind = it->extra;
+                    ParameterList* dst = nullptr;
+                    if (kind == "param") {
+                        dst = &data.paramList;
+                    } else if (kind == "exception") {
+                        dst = &data.exceptionsList;
+                    } else if (kind == "retval") {
+                        dst = &data.returnsList;
+                    } else if (kind == "templateparam") {
+                        dst = &data.templateParamsList;
+                    } else {
+                        break;
+                    }
+
+                    for (const auto& parameteritem : it->children) {
+                        if (parameteritem.children.size() == 2 &&
+                            parameteritem.children[0].type == XmlTextParser::Node::Type::PARAMETERNAMELIST &&
+                            parameteritem.children[1].type == XmlTextParser::Node::Type::PARAMETERDESCRIPTION) {
+                            ParameterListItem item;
+                            item.name = markdownPrinter.print(parameteritem.children[0]);
+                            item.text = markdownPrinter.print(parameteritem.children[1]);
+                            dst->push_back(std::move(item));
+                        }
+                    }
+                    it = para.children.erase(it);
+                    break;
+                }
+                default: {
+                    ++it;
+                    break;
+                }
             }
         }
     }
@@ -435,16 +529,33 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
     const auto inbodydescription = element.firstChildElement("inbodydescription");
     if (inbodydescription) data.inbody = markdownPrinter.print(XmlTextParser::parseParas(inbodydescription));
 
-    const auto includes = element.firstChildElement("includes");
-    if (includes) {
+    if (const auto includes = element.firstChildElement("includes")) {
         if (includes.getAttr("local", "no") == "no")
             data.includes = "<" + includes.getText() + ">";
         else
             data.includes = "\"" + includes.getText() + "\"";
     }
-    const auto type = element.firstChildElement("type");
 
-    if (type) {
+    if (const auto templateparamlist = element.firstChildElement("templateparamlist")) {
+        auto param = templateparamlist.firstChildElement("param");
+        while(param) {
+            const auto type = param.firstChildElement("type");
+            const auto declname = param.firstChildElement("declname");
+            const auto defval = param.firstChildElement("defval");
+            Param templateParam;
+            templateParam.name = declname.getText();
+            templateParam.type = markdownPrinter.print(XmlTextParser::parsePara(type));
+            templateParam.typePlain = plainPrinter.print(XmlTextParser::parsePara(type));
+            if (defval) {
+                templateParam.defval = markdownPrinter.print(XmlTextParser::parsePara(defval));
+                templateParam.defvalPlain = plainPrinter.print(XmlTextParser::parsePara(defval));
+            }
+            data.templateParams.push_back(std::move(templateParam));
+            param = param.nextSiblingElement("param");
+        }
+    }
+
+    if (const auto type = element.firstChildElement("type")) {
         const auto typeParas = XmlTextParser::parsePara(type);
         data.type = markdownPrinter.print(typeParas);
         data.typePlain = plainPrinter.print(typeParas);
@@ -461,6 +572,7 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
         Param p;
         const auto paramType = param.firstChildElement("type");
         const auto name = param.firstChildElement("declname");
+        const auto defname = param.firstChildElement("defname");
         const auto defval = param.firstChildElement("defval");
         if (paramType) {
             const auto typeParas = XmlTextParser::parsePara(paramType);
@@ -469,6 +581,8 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
         }
         if (name) {
             p.name = markdownPrinter.print(XmlTextParser::parsePara(name));
+        } else if (defname) {
+            p.name = markdownPrinter.print(XmlTextParser::parsePara(defname));
         }
         if (defval) {
             const auto defvalParas = XmlTextParser::parsePara(defval);
@@ -477,6 +591,23 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
         }
         param = param.nextSiblingElement("param");
         data.params.push_back(std::move(p));
+    }
+
+    if (auto reimplements = element.firstChildElement("reimplements")) {
+        const auto refid = reimplements.getAttr("refid", "");
+        if (!refid.empty()) {
+            data.reimplements = cache.at(refid).get();
+        }
+    }
+
+    if (auto reimplementedby = element.firstChildElement("reimplementedby")) {
+        while(reimplementedby) {
+            const auto refid = reimplementedby.getAttr("refid", "");
+            if (!refid.empty()) {
+                data.reimplementedBy.push_back(cache.at(refid).get());
+            }
+            reimplementedby = reimplementedby.nextSiblingElement("reimplementedby");
+        }
     }
 
     return data;
@@ -505,3 +636,27 @@ Doxydown::NodePtr Doxydown::Node::findRecursively(const std::string& refid) cons
     return nullptr;
 }
 
+Doxydown::Node::ClassReferences Doxydown::Node::getAllBaseClasses(const NodeCacheMap& cache) {
+    ClassReferences newTemp = baseClasses;
+    
+    for (auto& base : newTemp) {
+        if (!base.refid.empty()) {
+            auto found = cache.at(base.refid);
+            base.ptr = found.get();
+        }
+
+        if (base.ptr) {
+            for (const auto& newBase : const_cast<Node*>(base.ptr)->getAllBaseClasses(cache)) {
+                auto test = std::find_if(newTemp.begin(), newTemp.end(), [&](ClassReference& e) {
+                    return e.refid == newBase.refid;
+                });
+
+                if (test == newTemp.end()) {
+                    newTemp.push_back(newBase);
+                }
+            }
+        }
+    }
+
+    return newTemp;
+}

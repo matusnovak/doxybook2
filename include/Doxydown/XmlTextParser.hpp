@@ -31,7 +31,11 @@ namespace Doxydown {
                 PARAMETERNAMELIST,
                 XREFSECT,
                 XREFTITLE,
-                XREFDESCRIPTION
+                XREFDESCRIPTION,
+                PROGRAMLISTING,
+                CODELINE,
+                SP,
+                HIGHTLIGHT
             };
 
             Type type{Type::UNKNOWN};

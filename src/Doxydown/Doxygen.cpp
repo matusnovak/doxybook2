@@ -112,6 +112,23 @@ void Doxydown::Doxygen::load(const std::string& inputDir) {
     cleanup(index);
 
     getIndexCache(cache, index);
+
+    // Update group pointers
+    updateGroupPointers(index);
+}
+
+void Doxydown::Doxygen::updateGroupPointers(const NodePtr& node) {
+    if (node->kind == Kind::MODULE) {
+        for (const auto& child : node->children) {
+            child->group = node.get();
+        }
+    }
+    
+    for (const auto& child : node->children) {
+        if (child->kind == Kind::MODULE) {
+            updateGroupPointers(child);
+        }
+    }
 }
 
 void Doxydown::Doxygen::finalize(const Config& config,

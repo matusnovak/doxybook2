@@ -70,7 +70,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install moreutils hugo -y
-            sudo pip install mkdocs
+            sudo pip install mkdocs mkdocs-material mkdocs-bootstrap mkdocs-readthedocs
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
 
@@ -86,7 +86,7 @@ jobs:
             cp -r /tmp/workspace/doxygen/html /tmp/workspace/gh-pages/original
 
       - run:
-          name: MkDocs - Read the docs
+          name: MkDocs - ReadTheDocs
           command: |
             cd ./example/mkdocs-readthedocs
             jq '.baseUrl = "/doxydown/mkdocs-readthedocs/api/"' ./.doxydown/config.json | sponge ./.doxydown/config.json
@@ -96,6 +96,30 @@ jobs:
               --config ./.doxydown/config.json
             mkdocs build
             cp -r ./site /tmp/workspace/gh-pages/mkdocs-readthedocs
+
+      - run:
+          name: MkDocs - Material
+          command: |
+            cd ./example/mkdocs-material
+            jq '.baseUrl = "/doxydown/mkdocs-material/api/"' ./.doxydown/config.json | sponge ./.doxydown/config.json
+            doxydown \
+              --input /tmp/workspace/doxygen/xml \
+              --output ./docs/api \
+              --config ./.doxydown/config.json
+            mkdocs build
+            cp -r ./site /tmp/workspace/gh-pages/mkdocs-material
+
+      - run:
+          name: MkDocs - Bootstrap
+          command: |
+            cd ./example/mkdocs-bootstrap
+            jq '.baseUrl = "/doxydown/mkdocs-bootstrap/api/"' ./.doxydown/config.json | sponge ./.doxydown/config.json
+            doxydown \
+              --input /tmp/workspace/doxygen/xml \
+              --output ./docs/api \
+              --config ./.doxydown/config.json
+            mkdocs build
+            cp -r ./site /tmp/workspace/gh-pages/mkdocs-bootstrap
 
       - run:
           name: Hugo - Learn
@@ -108,6 +132,18 @@ jobs:
               --templates ./.doxydown/templates
             hugo
             cp -r ./public /tmp/workspace/gh-pages/hugo-learn
+
+      - run:
+          name: Hugo - Book
+          command: |
+            cd ./example/hugo-book
+            doxydown \
+              --input /tmp/workspace/doxygen/xml \
+              --output ./content/api \
+              --config ./.doxydown/config.json \
+              --templates ./.doxydown/templates
+            hugo
+            cp -r ./public /tmp/workspace/gh-pages/hugo-book
 
       - persist_to_workspace:
           root: /tmp/workspace

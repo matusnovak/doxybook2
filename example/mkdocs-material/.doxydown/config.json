@@ -1,0 +1,10 @@
+{
+  "baseUrl": "/api/",
+  "indexInFolders": true,
+  "linkSuffix": "/",
+  "indexClassesName": "index",
+  "indexFilesName": "index",
+  "indexGroupsName": "index",
+  "indexNamespacesName": "index",
+  "indexRelatedPagesName": "index"
+}

@@ -43,5 +43,3 @@ namespace Doxydown {
         }
     };
 }
-
-#define __FILENAME__ Doxydown::Path::filename(__FILE__)

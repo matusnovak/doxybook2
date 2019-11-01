@@ -23,6 +23,22 @@ namespace Engine {
 		 * @note Some second random note
 		 * @bug Some random bug
 		 * @details Lorem ipsum donor
+		 * @code
+		 * // Some random code
+		 * using namespace Engine;
+		 * 
+		 * Audio::AudioBuffer buffer("path/to/file.wav");
+		 * buffer.play(audioManager);
+		 * @endcode
+		 * More detailed description!
+		 * @code
+		 * // Another code sample
+		 * #include <iostream>
+		 * using namespace Engine;
+		 * Audio::AudioBuffer buffer("path/to/file.wav");
+		 * std::cout << buffer.play(...) << std::endl;
+		 * @endcode
+		 * @todo Some random todo
  		 */
 		class AudioBuffer {
 		public:

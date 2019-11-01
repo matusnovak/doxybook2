@@ -23,9 +23,22 @@ Doxydown::Renderer::Renderer(const Config& config)
         const auto arg = args.at(0)->get<std::string>();
         return Utils::date(arg);
     });
-    env->add_callback("stripNamespace", 1, [](inja::Arguments& args) -> std::string {
-        const auto arg = args.at(0)->get<std::string>();
-        return Utils::stripNamespace(arg);
+    env->add_callback("split", 2, [](inja::Arguments& args) -> nlohmann::json {
+        const auto arg0 = args.at(0)->get<std::string>();
+        const auto arg1 = args.at(1)->get<std::string>();
+        nlohmann::json ret = nlohmann::json::array();
+        for (auto& token : Utils::split(arg0, arg1)) {
+            ret.push_back(std::move(token));
+        }
+        return ret;
+    });
+    env->add_callback("first", 1, [](inja::Arguments& args) -> nlohmann::json {
+        const auto arg = args.at(0)->get<nlohmann::json>();
+        return arg.front();
+    });
+    env->add_callback("last", 1, [](inja::Arguments& args) -> nlohmann::json {
+        const auto arg = args.at(0)->get<nlohmann::json>();
+        return arg.back();
     });
     env->add_callback("countProperty", 3, [](inja::Arguments& args) -> int {
         const auto arr = args.at(0)->get<nlohmann::json>();
@@ -39,19 +52,6 @@ Doxydown::Renderer::Renderer(const Config& config)
         }
         return count;
     });
-    env->add_callback("countProperty2", 5, [](inja::Arguments& args) -> int {
-        const auto arr = args.at(0)->get<nlohmann::json>();
-        const auto key0 = args.at(1)->get<std::string>();
-        const auto value0 = args.at(2)->get<std::string>();
-        const auto key1 = args.at(3)->get<std::string>();
-        const auto value1 = args.at(4)->get<std::string>();
-        auto count = 0;
-        for (auto it = arr.begin(); it != arr.end(); ++it) {
-            auto& obj = *it;
-            if (obj.at(key0) == value0 && obj.at(key1) == value1) count++;
-        }
-        return count;
-    });
     env->add_callback("queryProperty", 3, [](inja::Arguments& args) -> nlohmann::json {
         const auto arr = args.at(0)->get<nlohmann::json>();
         const auto key = args.at(1)->get<std::string>();
@@ -60,21 +60,6 @@ Doxydown::Renderer::Renderer(const Config& config)
         for (auto it = arr.begin(); it != arr.end(); ++it) {
             auto& obj = *it;
             if (obj.at(key) == value) {
-                ret.push_back(obj);
-            }
-        }
-        return ret;
-    });
-    env->add_callback("queryProperty2", 5, [](inja::Arguments& args) -> nlohmann::json {
-        const auto arr = args.at(0)->get<nlohmann::json>();
-        const auto key0 = args.at(1)->get<std::string>();
-        const auto value0 = args.at(2)->get<std::string>();
-        const auto key1 = args.at(3)->get<std::string>();
-        const auto value1 = args.at(4)->get<std::string>();
-        auto ret = nlohmann::json::array();
-        for (auto it = arr.begin(); it != arr.end(); ++it) {
-            auto& obj = *it;
-            if (obj.at(key0) == value0 && obj.at(key1) == value1) {
                 ret.push_back(obj);
             }
         }

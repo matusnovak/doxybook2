@@ -4,6 +4,8 @@
 #include <Doxydown/Path.hpp>
 #include <Doxydown/Log.hpp>
 
+#define __FILENAME__ Doxydown::Path::filename(__FILE__)
+
 #define EXCEPTION(MSG, ...) Doxydown::Exception( \
     fmt::format("Exception at {}:{} ", __FILENAME__, __LINE__) \
     + fmt::format(MSG, ##__VA_ARGS__))

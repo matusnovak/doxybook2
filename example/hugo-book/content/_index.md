@@ -1,6 +1,6 @@
 ---
-title: "Home"
+title: "Index"
 type: docs
 ---
 
-This is a Hugo Book theme
+This is an example of Doxydown markdown output for Hugo Book theme.

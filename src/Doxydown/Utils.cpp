@@ -58,6 +58,22 @@ std::string Doxydown::Utils::stripAnchor(const std::string& str) {
     return ss.str();
 }
 
+std::vector<std::string> Doxydown::Utils::split(const std::string& str, const std::string& delim) {
+    std::vector<std::string> tokens;
+    size_t last = 0;
+    auto pos = str.find(delim);
+    while (pos != std::string::npos) {
+        tokens.push_back(str.substr(last, pos));
+        pos += delim.size();
+        last = pos;
+        pos = str.find(delim, pos);
+    }
+    if (last < str.size()) {
+        tokens.push_back(str.substr(last));
+    }
+    return tokens;
+}
+
 void Doxydown::Utils::createDirectory(const std::string& path) {
 #ifdef _WIN32
     if (!CreateDirectoryA(path.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError()) {

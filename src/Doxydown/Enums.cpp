@@ -47,7 +47,7 @@ std::string Doxydown::toStr(const Kind value) {
         case Kind::FUNCTION:
             return "function";
         case Kind::MODULE:
-            return "group";
+            return "module";
         case Kind::INDEX:
             return "index";
         case Kind::INTERFACE:
@@ -134,7 +134,8 @@ Doxydown::Type Doxydown::toEnumType(const std::string& str) {
         {"attributes", Type::ATTRIBUTES},
         {"classes", Type::CLASSES},
         {"defines", Type::DEFINES},
-        {"files", Type::DIRORFILE},
+        {"files", Type::FILES},
+        {"dirs", Type::DIRS},
         {"friends", Type::FRIENDS},
         {"functions", Type::FUNCTIONS},
         {"modules", Type::MODULES},
@@ -166,8 +167,10 @@ std::string Doxydown::toStr(const Type value) {
             return "groups";
         case Type::TYPES:
             return "types";
-        case Type::DIRORFILE:
+        case Type::FILES:
             return "files";
+        case Type::DIRS:
+            return "dirs";
         case Type::FRIENDS:
             return "friends";
         default: {
@@ -236,7 +239,8 @@ const std::string& Doxydown::typeToFolderName(const Config& config, const Type t
         case Type::NAMESPACES: {
             return config.folderNamespacesName;
         }
-        case Type::DIRORFILE: {
+        case Type::DIRS:
+        case Type::FILES: {
             return config.folderFilesName;
         }
         default: {

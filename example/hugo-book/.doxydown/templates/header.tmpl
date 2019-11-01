@@ -2,6 +2,7 @@
 {% if exists("title") %}title: {{title}}{% else if exists("name") %}title: {{name}}{% endif %}
 {% if exists("summary") %}summary: {{summary}} {% endif%}
 {% include "meta" %}
+type: docs
 ---
 
-{% if exists("kind") %}**{{name}} {{title(kind)}} Reference**{% endif %}
+{% if exists(title) %}# {{title}}{% else if exists("kind") %}# {{name}} {{title(kind)}} Reference{% endif %}
