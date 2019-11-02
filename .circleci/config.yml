@@ -227,6 +227,7 @@ jobs:
           command: |
             git config --global user.email "$GITHUB_USER_EMAIL"
             git config --global user.name "$GITHUB_USER_NAME"
+            mkdir dist
             cp -r /tmp/workspace/doxygen/html ./dist/original
             cp -r /tmp/workspace/hugo-learn ./dist/hugo-learn
             cp -r /tmp/workspace/hugo-book ./dist/hugo-book
