@@ -143,7 +143,7 @@ int main(const int argc, char* argv[]) {
 
             generator.printIndex(doxygen, "classes", "Classes", INDEX_CLASS_FILTER);
             generator.printIndex(doxygen, "namespaces", "Namespaces", INDEX_NAMESPACES_FILTER);
-            generator.printIndex(doxygen, "groups", "Groups", INDEX_MODULES_FILTER);
+            generator.printIndex(doxygen, "groups", "Modules", INDEX_MODULES_FILTER);
             generator.printIndex(doxygen, "files", "Files", INDEX_FILES_FILTER);
         } else {
             std::cerr << argparser;

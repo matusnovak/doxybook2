@@ -1,5 +1,5 @@
 {
-  "baseUrl": "/api/",
+  "baseUrl": "/doxydown/mkdocs-bootstrap/api/",
   "indexInFolders": true,
   "linkSuffix": "/",
   "indexClassesName": "index",

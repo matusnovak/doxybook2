@@ -312,17 +312,13 @@ void Doxydown::Node::finalize(const Config& config,
 
         for (auto& klass : baseClasses) {
             if (!klass.refid.empty()) {
-                const auto& ptr = cache.at(klass.refid);
-                klass.url = urlMaker(config, *ptr);
-                if (config.linkLowercase) klass.url = Utils::toLower(klass.url);
+                klass.ptr = cache.at(klass.refid).get();
             }
         }
 
         for (auto& klass : derivedClasses) {
             if (!klass.refid.empty()) {
-                const auto& ptr = cache.at(klass.refid);
-                klass.url = urlMaker(config, *ptr);
-                if (config.linkLowercase) klass.url = Utils::toLower(klass.url);
+                klass.ptr = cache.at(klass.refid).get();
             }
         }
     }
@@ -640,7 +636,7 @@ Doxydown::Node::ClassReferences Doxydown::Node::getAllBaseClasses(const NodeCach
     ClassReferences newTemp = baseClasses;
     
     for (auto& base : newTemp) {
-        if (!base.refid.empty()) {
+        if (!base.refid.empty() && !base.ptr) {
             auto found = cache.at(base.refid);
             base.ptr = found.get();
         }

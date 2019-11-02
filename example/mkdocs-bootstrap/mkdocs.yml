@@ -5,8 +5,8 @@ markdown_extensions:
   - admonition
 nav:
   - Home: /
-  - Classes: /api/Classes
-  - Namespaces: /api/Namespaces
-  - Modules: /api/Modules
-  - Files: /api/Files
-  - Related Pages: /api/Pages
+  - Classes: /doxydown/mkdocs-bootstrap/api/Classes
+  - Namespaces: /doxydown/mkdocs-bootstrap/api/Namespaces
+  - Modules: /doxydown/mkdocs-bootstrap/api/Modules
+  - Files: /doxydown/mkdocs-bootstrap/api/Files
+  - Related Pages: /doxydown/mkdocs-bootstrap/api/Pages

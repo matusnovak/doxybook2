@@ -1,5 +1,5 @@
 {
-  "baseUrl": "/api/",
+  "baseUrl": "/doxydown/mkdocs-readthedocs/api/",
   "indexInFolders": false,
   "linkSuffix": "/"
 }

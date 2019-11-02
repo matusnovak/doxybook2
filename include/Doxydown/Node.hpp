@@ -24,7 +24,6 @@ namespace Doxydown {
             std::string refid;
             Visibility prot;
             Virtual virt;
-            std::string url;
             const Node* ptr{nullptr};
         };
 

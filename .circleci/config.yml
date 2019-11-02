@@ -71,7 +71,6 @@ jobs:
           name: Dependencies
           command: |
             sudo apt-get update
-            sudo apt-get install moreutils -y
             sudo pip install mkdocs mkdocs-material mkdocs-bootstrap
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
@@ -80,7 +79,6 @@ jobs:
           name: MkDocs - ReadTheDocs
           command: |
             cd ./example/mkdocs-readthedocs
-            jq '.baseUrl = "/doxydown/mkdocs-readthedocs/api/"' ./.doxydown/config.json | sponge ./.doxydown/config.json
             doxydown \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs/api \
@@ -92,7 +90,6 @@ jobs:
           name: MkDocs - Material
           command: |
             cd ./example/mkdocs-material
-            jq '.baseUrl = "/doxydown/mkdocs-material/api/"' ./.doxydown/config.json | sponge ./.doxydown/config.json
             doxydown \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs/api \
@@ -104,7 +101,6 @@ jobs:
           name: MkDocs - Bootstrap
           command: |
             cd ./example/mkdocs-bootstrap
-            jq '.baseUrl = "/doxydown/mkdocs-bootstrap/api/"' ./.doxydown/config.json | sponge ./.doxydown/config.json
             doxydown \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs/api \

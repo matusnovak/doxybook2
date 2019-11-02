@@ -91,7 +91,7 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node& node) const {
         node.getKind() != Kind::DIR) {
 
         json["fullname"] = node.getParent()->getName() + "::" + node.getName();
-    } {
+    } else {
         json["fullname"] = json["name"];
     }
     json["refid"] = node.getRefid();
