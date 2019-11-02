@@ -25,7 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/namespaces/namespaceengine_1_1assets/</guid>
-      <description>Engine::Assets Namespace Reference Classes     Name     class Engine::Assets::Asset    Created on 2019-11-01</description>
+      <description>Engine::Assets Namespace Reference Classes     Name     class Engine::Assets::Asset    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -52,7 +52,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/namespaces/namespaceengine_1_1utils/</guid>
-      <description>Engine::Utils Namespace Reference Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-01</description>
+      <description>Engine::Utils Namespace Reference Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-02</description>
     </item>
     
     <item>

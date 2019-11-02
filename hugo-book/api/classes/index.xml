@@ -19,7 +19,7 @@
       <description>Engine::Assets::Asset Class Reference / An example game engine / Generic assets
 #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Classes     Name     union Event    Public Functions     Name      getEvent() const Returns the current status of the asset.   virtual unload() Call this method to unload the asset.   virtual load() Call this method to load the asset.</description>
+Public Classes     Name     union Event    Public Functions     Name     const Event &amp;amp; getEvent() const Returns the current status of the asset.   virtual void unload() Call this method to unload the asset.   virtual void load() Call this method to load the asset.</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@ Public Classes     Name     union Event    Public Functions     Name      getEve
       <description>Engine::Assets::Asset::Event Union Reference / An example game engine / Generic assets
 #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-11-01</description>
+Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -42,7 +42,7 @@ Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</guid>
       <description>Engine::Assets::Asset::Event::Loaded Struct Reference #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-11-01</description>
+Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@ Public Attributes     Name     int usage   bool success    Public Attributes Doc
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</guid>
       <description>Engine::Assets::Asset::Event::Unloaded Struct Reference #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Created on 2019-11-01</description>
+Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -66,7 +66,7 @@ Public Attributes     Name     bool success    Public Attributes Documentation v
 Inherits from
 Public Attributes     Name     Asset * other The pointer to the other asset this asset is waiting for.    Public Attributes Documentation variable other Asset * other;  The pointer to the other asset this asset is waiting for.
 Note: May be null
-Created on 2019-11-01</description>
+Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -105,7 +105,7 @@ Created on 2019-11-01</description>
       <description>Engine::Exception Class Reference / An example game engine
 #include &amp;lt;Exception.hpp&amp;gt;
 Inherits from exception
-Public Functions     Name      what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-11-01</description>
+Public Functions     Name     const char * what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -117,7 +117,7 @@ Public Functions     Name      what() const override    Exception(std::string ms
       <description>Engine::Graphics::Framebuffer Class Reference / An example game engine / Graphical related classes
 #include &amp;lt;Framebuffer.hpp&amp;gt;
 Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
-Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Framebuffer()    Framebuffer(int width, int height)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels.</description>
     </item>
     
     <item>
@@ -130,7 +130,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
 #include &amp;lt;Handle.hpp&amp;gt;
 Inherits from
 Inherited by Engine::Graphics::Texture
-Public Functions     Name      getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-11-01</description>
+Public Functions     Name     int getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -151,7 +151,7 @@ Public Functions     Name      getHandle() const   virtual ~Handle() =default   
       <description>Engine::Graphics::Texture2D Class Reference / An example game engine / Graphical related classes
 #include &amp;lt;Texture2D.hpp&amp;gt;
 Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
-Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture2D()    Texture2D(int width, int height, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels.</description>
     </item>
     
     <item>
@@ -163,7 +163,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <description>Engine::Graphics::Texture3D Class Reference / An example game engine / Graphical related classes
 #include &amp;lt;Texture3D.hpp&amp;gt;
 Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
-Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture3D()    Texture3D(int width, int height, int depth, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels.</description>
     </item>
     
     <item>

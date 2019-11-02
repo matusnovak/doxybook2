@@ -26,7 +26,7 @@
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1assets/</guid>
       <description>Engine::Assets Namespace Reference
-Classes     Name     class Engine::Assets::Asset    Created on 2019-11-01</description>
+Classes     Name     class Engine::Assets::Asset    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -56,7 +56,7 @@ Classes     Name     class Engine::Graphics::Texture3D   class Engine::Graphics:
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/api/namespaces/namespaceengine_1_1utils/</guid>
       <description>Engine::Utils Namespace Reference
-Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-01</description>
+Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-02</description>
     </item>
     
     <item>

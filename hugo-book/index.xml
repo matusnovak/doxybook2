@@ -43,7 +43,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/namespaces/namespaceengine_1_1assets/</guid>
-      <description>Engine::Assets Namespace Reference Classes     Name     class Engine::Assets::Asset    Created on 2019-11-01</description>
+      <description>Engine::Assets Namespace Reference Classes     Name     class Engine::Assets::Asset    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -55,7 +55,7 @@
       <description>Engine::Assets::Asset Class Reference / An example game engine / Generic assets
 #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Classes     Name     union Event    Public Functions     Name      getEvent() const Returns the current status of the asset.   virtual unload() Call this method to unload the asset.   virtual load() Call this method to load the asset.</description>
+Public Classes     Name     union Event    Public Functions     Name     const Event &amp;amp; getEvent() const Returns the current status of the asset.   virtual void unload() Call this method to unload the asset.   virtual void load() Call this method to load the asset.</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@ Public Classes     Name     union Event    Public Functions     Name      getEve
       <description>Engine::Assets::Asset::Event Union Reference / An example game engine / Generic assets
 #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-11-01</description>
+Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -78,7 +78,7 @@ Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</guid>
       <description>Engine::Assets::Asset::Event::Loaded Struct Reference #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-11-01</description>
+Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ Public Attributes     Name     int usage   bool success    Public Attributes Doc
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</guid>
       <description>Engine::Assets::Asset::Event::Unloaded Struct Reference #include &amp;lt;Asset.hpp&amp;gt;
 Inherits from
-Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Created on 2019-11-01</description>
+Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -102,7 +102,7 @@ Public Attributes     Name     bool success    Public Attributes Documentation v
 Inherits from
 Public Attributes     Name     Asset * other The pointer to the other asset this asset is waiting for.    Public Attributes Documentation variable other Asset * other;  The pointer to the other asset this asset is waiting for.
 Note: May be null
-Created on 2019-11-01</description>
+Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -150,7 +150,7 @@ Created on 2019-11-01</description>
       <description>Engine::Exception Class Reference / An example game engine
 #include &amp;lt;Exception.hpp&amp;gt;
 Inherits from exception
-Public Functions     Name      what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-11-01</description>
+Public Functions     Name     const char * what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -171,7 +171,7 @@ Public Functions     Name      what() const override    Exception(std::string ms
       <description>Engine::Graphics::Framebuffer Class Reference / An example game engine / Graphical related classes
 #include &amp;lt;Framebuffer.hpp&amp;gt;
 Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
-Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Framebuffer()    Framebuffer(int width, int height)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels.</description>
     </item>
     
     <item>
@@ -184,7 +184,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
 #include &amp;lt;Handle.hpp&amp;gt;
 Inherits from
 Inherited by Engine::Graphics::Texture
-Public Functions     Name      getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-11-01</description>
+Public Functions     Name     int getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -205,7 +205,7 @@ Public Functions     Name      getHandle() const   virtual ~Handle() =default   
       <description>Engine::Graphics::Texture2D Class Reference / An example game engine / Graphical related classes
 #include &amp;lt;Texture2D.hpp&amp;gt;
 Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
-Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture2D()    Texture2D(int width, int height, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels.</description>
     </item>
     
     <item>
@@ -217,7 +217,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <description>Engine::Graphics::Texture3D Class Reference / An example game engine / Graphical related classes
 #include &amp;lt;Texture3D.hpp&amp;gt;
 Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
-Public Functions     Name     virtual getDepth() const override Returns the depth of the texture in pixels.   virtual getHeight() const override Returns the height of the texture in pixels.   virtual getWidth() const override Returns the width of the texture in pixels.   virtual ~Texture3D()    Texture3D(int width, int height, int depth, uint8_t * data, Texture::Type type =Texture::Type::RGBA8)    Additional inherited members Public Types inherited from Engine::Graphics::Texture</description>
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels.</description>
     </item>
     
     <item>
@@ -226,7 +226,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/namespaces/namespaceengine_1_1utils/</guid>
-      <description>Engine::Utils Namespace Reference Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-01</description>
+      <description>Engine::Utils Namespace Reference Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -280,7 +280,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/dir_68267d1309a1af8e8297ef4c3efbcdba/</guid>
-      <description>src Dir Reference Directories    Name     src/Utils   src/Graphics   src/Audio   src/Assets    Files    Name     src/Exception.hpp   src/Engine.hpp    Created on 2019-11-01</description>
+      <description>src Dir Reference Directories    Name     src/Utils   src/Graphics   src/Audio   src/Assets    Files    Name     src/Exception.hpp   src/Engine.hpp    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -289,7 +289,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/dir_e0c1ede47f21c4a643a1257f949f98e0/</guid>
-      <description>src/Assets Dir Reference Files    Name     src/Assets/Assets.hpp   src/Assets/Asset.hpp    Created on 2019-11-01</description>
+      <description>src/Assets Dir Reference Files    Name     src/Assets/Assets.hpp   src/Assets/Asset.hpp    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -298,7 +298,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/asset_8hpp/</guid>
-      <description>src/Assets/Asset.hpp File Reference Namespaces    Name     Engine::Assets   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Assets::Asset::Event::Waiting   struct Engine::Assets::Asset::Event::Unloaded   struct Engine::Assets::Asset::Event::Loaded   union Engine::Assets::Asset::Event   class Engine::Assets::Asset    Created on 2019-11-01</description>
+      <description>src/Assets/Asset.hpp File Reference Namespaces    Name     Engine::Assets   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Assets::Asset::Event::Waiting   struct Engine::Assets::Asset::Event::Unloaded   struct Engine::Assets::Asset::Event::Loaded   union Engine::Assets::Asset::Event   class Engine::Assets::Asset    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -307,7 +307,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/assets_8hpp/</guid>
-      <description>src/Assets/Assets.hpp File Reference Created on 2019-11-01</description>
+      <description>src/Assets/Assets.hpp File Reference Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -316,7 +316,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/dir_c64386e93f356b78d4612c7b7741707c/</guid>
-      <description>src/Audio Dir Reference Files    Name     src/Audio/AudioManager.hpp   src/Audio/AudioBuffer.hpp   src/Audio/Audio.hpp    Created on 2019-11-01</description>
+      <description>src/Audio Dir Reference Files    Name     src/Audio/AudioManager.hpp   src/Audio/AudioBuffer.hpp   src/Audio/Audio.hpp    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -325,7 +325,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/audio_8hpp/</guid>
-      <description>src/Audio/Audio.hpp File Reference Created on 2019-11-01</description>
+      <description>src/Audio/Audio.hpp File Reference Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -334,7 +334,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/audiobuffer_8hpp/</guid>
-      <description>src/Audio/AudioBuffer.hpp File Reference Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Created on 2019-11-01</description>
+      <description>src/Audio/AudioBuffer.hpp File Reference Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -343,7 +343,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/audiomanager_8hpp/</guid>
-      <description>src/Audio/AudioManager.hpp File Reference Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.    Created on 2019-11-01</description>
+      <description>src/Audio/AudioManager.hpp File Reference Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -353,7 +353,7 @@ Public Functions     Name     virtual getDepth() const override Returns the dept
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/engine_8hpp/</guid>
       <description>src/Engine.hpp File Reference Namespaces    Name     Engine This namespace contains all of the necessary engine components.    Functions     Name     std::string someGlobalFunc() Some global extern function.    Functions Documentation function someGlobalFunc std::string someGlobalFunc()  Some global extern function.
-Created on 2019-11-01</description>
+Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -362,7 +362,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/exception_8hpp/</guid>
-      <description>src/Exception.hpp File Reference Namespaces    Name     Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Exception    Created on 2019-11-01</description>
+      <description>src/Exception.hpp File Reference Namespaces    Name     Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Exception    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -371,7 +371,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/dir_3419e189e460663ec2c964233bf8dcd6/</guid>
-      <description>src/Graphics Dir Reference Files    Name     src/Graphics/Texture3D.hpp   src/Graphics/Texture2D.hpp   src/Graphics/Texture.hpp   src/Graphics/Renderer.hpp   src/Graphics/Handle.hpp   src/Graphics/Graphics.hpp   src/Graphics/Framebuffer.hpp    Created on 2019-11-01</description>
+      <description>src/Graphics Dir Reference Files    Name     src/Graphics/Texture3D.hpp   src/Graphics/Texture2D.hpp   src/Graphics/Texture.hpp   src/Graphics/Renderer.hpp   src/Graphics/Handle.hpp   src/Graphics/Graphics.hpp   src/Graphics/Framebuffer.hpp    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -380,7 +380,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/framebuffer_8hpp/</guid>
-      <description>src/Graphics/Framebuffer.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Framebuffer    Created on 2019-11-01</description>
+      <description>src/Graphics/Framebuffer.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Framebuffer    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -389,7 +389,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/graphics_8hpp/</guid>
-      <description>src/Graphics/Graphics.hpp File Reference Created on 2019-11-01</description>
+      <description>src/Graphics/Graphics.hpp File Reference Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -398,7 +398,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/handle_8hpp/</guid>
-      <description>src/Graphics/Handle.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Handle    Created on 2019-11-01</description>
+      <description>src/Graphics/Handle.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Handle    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -407,7 +407,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/renderer_8hpp/</guid>
-      <description>src/Graphics/Renderer.hpp File Reference Created on 2019-11-01</description>
+      <description>src/Graphics/Renderer.hpp File Reference Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -416,7 +416,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/texture_8hpp/</guid>
-      <description>src/Graphics/Texture.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.    Created on 2019-11-01</description>
+      <description>src/Graphics/Texture.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -425,7 +425,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/texture2d_8hpp/</guid>
-      <description>src/Graphics/Texture2D.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Texture2D    Created on 2019-11-01</description>
+      <description>src/Graphics/Texture2D.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Texture2D    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -434,7 +434,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/texture3d_8hpp/</guid>
-      <description>src/Graphics/Texture3D.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Texture3D    Created on 2019-11-01</description>
+      <description>src/Graphics/Texture3D.hpp File Reference Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Graphics::Texture3D    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -443,7 +443,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/dir_a7363e98f9e0bdd87618633653859815/</guid>
-      <description>src/Utils Dir Reference Files    Name     src/Utils/Utils.hpp   src/Utils/Path.hpp   src/Utils/Log.hpp   src/Utils/Config.hpp   src/Utils/ArrayView.hpp    Created on 2019-11-01</description>
+      <description>src/Utils Dir Reference Files    Name     src/Utils/Utils.hpp   src/Utils/Path.hpp   src/Utils/Log.hpp   src/Utils/Config.hpp   src/Utils/ArrayView.hpp    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -452,7 +452,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/arrayview_8hpp/</guid>
-      <description>src/Utils/ArrayView.hpp File Reference Namespaces    Name     Engine::Utils   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-01</description>
+      <description>src/Utils/ArrayView.hpp File Reference Namespaces    Name     Engine::Utils   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -461,8 +461,8 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/config_8hpp/</guid>
-      <description>src/Utils/Config.hpp File Reference Defines     Name      ENGINE_ARCH    ENGINE_VERSION Autogenerated version string by CMake.    Macro Documentation define ENGINE_ARCH #define ENGINE_ARCH &amp;quot;amd64&amp;quot;  define ENGINE_VERSION #define ENGINE_VERSION &amp;quot;v1.0.1&amp;quot;  Autogenerated version string by CMake.
-Created on 2019-11-01</description>
+      <description>src/Utils/Config.hpp File Reference Defines     Name      ENGINE_ARCH    ENGINE_VERSION Autogenerated version string by CMake.    Macro Documentation define ENGINE_ARCH #define ENGINE_ARCH &amp;#34;amd64&amp;#34;  define ENGINE_VERSION #define ENGINE_VERSION &amp;#34;v1.0.1&amp;#34;  Autogenerated version string by CMake.
+Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -471,7 +471,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/log_8hpp/</guid>
-      <description>src/Utils/Log.hpp File Reference Defines     Name      LOG_DEBUG(MSG, &amp;hellip;)    Macro Documentation define LOG_DEBUG #define LOG_DEBUG( MSG, ... ) printf(MSG, ##__VA_ARGS__)  Created on 2019-11-01</description>
+      <description>src/Utils/Log.hpp File Reference Defines     Name      LOG_DEBUG(MSG, &amp;hellip;)    Macro Documentation define LOG_DEBUG #define LOG_DEBUG(  MSG, ... ) printf(MSG, ##__VA_ARGS__)  Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -480,7 +480,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/path_8hpp/</guid>
-      <description>src/Utils/Path.hpp File Reference Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.   Engine::Utils   Engine This namespace contains all of the necessary engine components.    Created on 2019-11-01</description>
+      <description>src/Utils/Path.hpp File Reference Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.   Engine::Utils   Engine This namespace contains all of the necessary engine components.    Created on 2019-11-02</description>
     </item>
     
     <item>
@@ -489,7 +489,7 @@ Created on 2019-11-01</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-book/api/files/utils_8hpp/</guid>
-      <description>src/Utils/Utils.hpp File Reference Created on 2019-11-01</description>
+      <description>src/Utils/Utils.hpp File Reference Created on 2019-11-02</description>
     </item>
     
   </channel>

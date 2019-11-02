@@ -7,7 +7,7 @@
 <meta property="og:description" content="Engine::Assets::Asset Class Reference / An example game engine / Generic assets
 #include &lt;Asset.hpp&gt;
 Inherits from
-Public Classes     Name     union Event    Public Functions     Name      getEvent() const Returns the current status of the asset.   virtual unload() Call this method to unload the asset.   virtual load() Call this method to load the asset." />
+Public Classes     Name     union Event    Public Functions     Name     const Event &amp; getEvent() const Returns the current status of the asset.   virtual void unload() Call this method to unload the asset.   virtual void load() Call this method to load the asset." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/" />
 
@@ -18,7 +18,7 @@ Public Classes     Name     union Event    Public Functions     Name      getEve
 <link rel="stylesheet" href="/doxydown/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxydown/hugo-book/search.min.4b13d83cc96729162b87bf4adc910a7aba5039c14ee6c076891b8f73ed1cede2.js" integrity="sha256-SxPYPMlnKRYrh79K3JEKerpQOcFO5sB2iRuPc&#43;0c7eI="></script>
+<script defer src="/doxydown/hugo-book/search.min.6696abf17eafd9a2b351ec50d9591bbfe8ed65da02925f71d74d6595ac46258e.js" integrity="sha256-Zpar8X6v2aKzUexQ2Vkbv&#43;jtZdoCkl9x101llaxGJY4="></script>
 
 <!--
 Made with Book Theme
@@ -50,665 +50,16 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-    
-
-  
-  
-
-
-
-
-
- 
-  
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/doxydown/hugo-book/api/classes/" >
-      Classes
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/"  class="active">
-      Engine::Assets::Asset
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/unionengine_1_1assets_1_1asset_1_1event/" >
-      Engine::Assets::Asset::Event
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/" >
-      Engine::Assets::Asset::Event::Loaded
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/" >
-      Engine::Assets::Asset::Event::Unloaded
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/structengine_1_1assets_1_1asset_1_1event_1_1waiting/" >
-      Engine::Assets::Asset::Event::Waiting
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiobuffer/" >
-      Engine::Audio::AudioBuffer
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/" >
-      Engine::Audio::AudioBuffer::TypedAudioData
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1audio_1_1audiomanager/" >
-      Engine::Audio::AudioManager
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1exception/" >
-      Engine::Exception
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1framebuffer/" >
-      Engine::Graphics::Framebuffer
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1handle/" >
-      Engine::Graphics::Handle
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture/" >
-      Engine::Graphics::Texture
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture2d/" >
-      Engine::Graphics::Texture2D
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1graphics_1_1texture3d/" >
-      Engine::Graphics::Texture3D
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/classes/classengine_1_1utils_1_1arrayview/" >
-      Engine::Utils::ArrayView
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/doxydown/hugo-book/api/files/" >
-      Files
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/dir_68267d1309a1af8e8297ef4c3efbcdba/" >
-      src
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/dir_e0c1ede47f21c4a643a1257f949f98e0/" >
-      src/Assets
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/asset_8hpp/" >
-      src/Assets/Asset.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/assets_8hpp/" >
-      src/Assets/Assets.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/dir_c64386e93f356b78d4612c7b7741707c/" >
-      src/Audio
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/audio_8hpp/" >
-      src/Audio/Audio.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/audiobuffer_8hpp/" >
-      src/Audio/AudioBuffer.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/audiomanager_8hpp/" >
-      src/Audio/AudioManager.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/engine_8hpp/" >
-      src/Engine.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/exception_8hpp/" >
-      src/Exception.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/dir_3419e189e460663ec2c964233bf8dcd6/" >
-      src/Graphics
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/framebuffer_8hpp/" >
-      src/Graphics/Framebuffer.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/graphics_8hpp/" >
-      src/Graphics/Graphics.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/handle_8hpp/" >
-      src/Graphics/Handle.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/renderer_8hpp/" >
-      src/Graphics/Renderer.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/texture_8hpp/" >
-      src/Graphics/Texture.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/texture2d_8hpp/" >
-      src/Graphics/Texture2D.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/texture3d_8hpp/" >
-      src/Graphics/Texture3D.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/dir_a7363e98f9e0bdd87618633653859815/" >
-      src/Utils
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/arrayview_8hpp/" >
-      src/Utils/ArrayView.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/config_8hpp/" >
-      src/Utils/Config.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/log_8hpp/" >
-      src/Utils/Log.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/path_8hpp/" >
-      src/Utils/Path.hpp
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/files/utils_8hpp/" >
-      src/Utils/Utils.hpp
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/doxydown/hugo-book/api/modules/" >
-      Groups
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/modules/group__engine/" >
-      An example game engine
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/modules/group__audio/" >
-      Audio buffers and devices
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/modules/group__assets/" >
-      Generic assets
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/modules/group__graphics/" >
-      Graphical related classes
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/modules/group__utils/" >
-      Some useful utilities
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-      
-        
-
-  <li >
-    
-      
-
-  <a href="/doxydown/hugo-book/api/namespaces/" >
-      Namespaces
-  </a>
-
-
-    
-
-    
-
-
-
-
-  
-  <ul>
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine/" >
-      Engine
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1assets/" >
-      Engine::Assets
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1audio/" >
-      Engine::Audio
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1graphics/" >
-      Engine::Graphics
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1utils/" >
-      Engine::Utils
-  </a>
-
-</li>
-      
-    
-      
-        <li>
-
-  <a href="/doxydown/hugo-book/api/namespaces/namespaceengine_1_1utils_1_1path/" >
-      Engine::Utils::Path
-  </a>
-
-</li>
-      
-    
-  </ul>
-  
-
-
-
-  </li>
-
-
-      
-    
-  </ul>
-  
-
-
-
-  
-
-
-
-
-
-
+    <ul>
+<li><a href="/doxydown/hugo-book/api/"><strong>Api</strong></a>
+
+<ul>
+<li><a href="/doxydown/hugo-book/api/classes/">Classes</a></li>
+<li><a href="/doxydown/hugo-book/api/namespaces/">Namespaces</a></li>
+<li><a href="/doxydown/hugo-book/api/modules/">Modules</a></li>
+<li><a href="/doxydown/hugo-book/api/files/">Files</a></li>
+</ul></li>
+</ul>
 
 
 
@@ -742,7 +93,7 @@ https://github.com/alex-shpak/hugo-book
 
 <h1 id="engine-assets-asset-class-reference">Engine::Assets::Asset Class Reference</h1>
 
-<p><strong>/</strong> <strong><a href="/doxydown/hugo-learn/api/modules/group__engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxydown/hugo-learn/api/modules/group__assets/">Generic assets</a></strong></p>
+<p><strong>/</strong> <strong><a href="/doxydown/hugo-book/api/modules/group__engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxydown/hugo-book/api/modules/group__assets/">Generic assets</a></strong></p>
 
 <p><code>#include &lt;Asset.hpp&gt;</code></p>
 
@@ -761,7 +112,7 @@ https://github.com/alex-shpak/hugo-book
 <tbody>
 <tr>
 <td>union</td>
-<td><strong><a href="/doxydown/hugo-learn/api/classes/unionengine_1_1assets_1_1asset_1_1event/">Event</a></strong></td>
+<td><strong><a href="/doxydown/hugo-book/api/classes/unionengine_1_1assets_1_1asset_1_1event/">Event</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -778,28 +129,28 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
+<td>const <a href="/doxydown/hugo-book/api/classes/unionengine_1_1assets_1_1asset_1_1event/">Event</a> &amp;</td>
+<td><strong><a href="/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/#function-getevent">getEvent</a></strong>() const <br/>Returns the current status of the asset.</td>
+</tr>
+
+<tr>
+<td>virtual void</td>
+<td><strong><a href="/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/#function-unload">unload</a></strong>() <br/>Call this method to unload the asset.</td>
+</tr>
+
+<tr>
+<td>virtual void</td>
+<td><strong><a href="/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/#function-load">load</a></strong>() <br/>Call this method to load the asset.</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/#function-~asset">~Asset</a></strong>() =0</td>
+</tr>
+
+<tr>
 <td></td>
-<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/#function-getevent">getEvent</a></strong>() const <br/>Returns the current status of the asset.</td>
-</tr>
-
-<tr>
-<td>virtual</td>
-<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/#function-unload">unload</a></strong>() <br/>Call this method to unload the asset.</td>
-</tr>
-
-<tr>
-<td>virtual</td>
-<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/#function-load">load</a></strong>() <br/>Call this method to load the asset.</td>
-</tr>
-
-<tr>
-<td>virtual</td>
-<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/#function-~asset">~Asset</a></strong>() =0</td>
-</tr>
-
-<tr>
-<td></td>
-<td><strong><a href="/doxydown/hugo-learn/api/classes/classengine_1_1assets_1_1asset/#function-asset">Asset</a></strong>(const std::string &amp; name)</td>
+<td><strong><a href="/doxydown/hugo-book/api/classes/classengine_1_1assets_1_1asset/#function-asset">Asset</a></strong>(const std::string &amp; name)</td>
 </tr>
 </tbody>
 </table>
@@ -807,41 +158,33 @@ https://github.com/alex-shpak/hugo-book
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
 <h3 id="function-getevent">function getEvent</h3>
-
-<pre><code class="language-cpp">inline const Event &amp; getEvent() const
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">const</span> Event <span style="color:#f92672">&amp;</span> getEvent() <span style="color:#66d9ef">const</span>
+</code></pre></div>
 <p>Returns the current status of the asset.</p>
 
 <p>Use this to determine the state, for example if the assets is being loaded or unloaded.</p>
 
 <h3 id="function-unload">function unload</h3>
-
-<pre><code class="language-cpp">virtual void unload()
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> unload()
+</code></pre></div>
 <p>Call this method to unload the asset.</p>
 
 <h3 id="function-load">function load</h3>
-
-<pre><code class="language-cpp">virtual void load()
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> load()
+</code></pre></div>
 <p>Call this method to load the asset.</p>
 
 <h3 id="function-asset">function ~Asset</h3>
-
-<pre><code class="language-cpp">virtual ~Asset() =0
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Asset() <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</code></pre></div>
 <h3 id="function-asset-1">function Asset</h3>
-
-<pre><code class="language-cpp">explicit Asset(
-    const std::string &amp; name
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> Asset(
+    <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span> name
 )
-</code></pre>
+</code></pre></div>
+<hr />
 
-<p>Created on 2019-11-01</p>
+<p>Created on 2019-11-02</p>
 </article>
 
       
