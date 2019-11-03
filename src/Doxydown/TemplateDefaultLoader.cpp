@@ -13,7 +13,7 @@ R"(---
 {% include "meta" %}
 ---
 
-{% if exists("title") %}# {{title}}{% else if exists("kind") && kind != "page" %}# {{name}} {{title(kind)}} Reference{% endif %}
+{% if exists("title") %}# {{title}}{% else if exists("kind") and kind != "page" %}# {{name}} {{title(kind)}} Reference{% endif %}
 )";
 
 static const std::string TEMPLATE_BREADCRUMBS =
