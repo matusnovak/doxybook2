@@ -82,8 +82,8 @@ void Doxydown::Generator::printIndex(const Doxygen& doxygen, const Type type, co
 
     nlohmann::json data;
     data["children"] = buildIndexRecursively(doxygen.getIndex(), filter);
-    data["title"] = title;
-    data["name"] = title;
+    data["title"] = typeToIndexTitle(config, type);
+    data["name"] = typeToIndexTitle(config, type);
     renderer.render(typeToIndexTemplate(config, type), path, data);
 }
 
