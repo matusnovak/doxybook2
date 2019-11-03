@@ -27,9 +27,10 @@ namespace Engine {
 	extern std::string getVersion();
 }
 
-/*! \mainpage Home
+/*! \mainpage Doxydown Example
 
-This is a mainpage of Doxydown example output.
+This is a mainpage of Doxydown example output. This file is generated from
+`\mainpage` command within `Engine.hpp` file.
 
 ## Images:
 

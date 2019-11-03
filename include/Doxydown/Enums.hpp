@@ -75,4 +75,5 @@ namespace Doxydown {
     extern const std::string& typeToFolderName(const Config& config, Type type);
     extern std::string typeToIndexName(const Config& config, Type type);
     extern std::string typeToIndexTemplate(const Config& config, Type type);
+    extern std::string typeToIndexTitle(const Config& config, Type type);
 }

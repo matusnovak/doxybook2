@@ -14,7 +14,7 @@ namespace Doxydown {
 
         void print(const Doxygen& doxygen, const Filter& filter = {});
         void printRecursively(const Node& parent, const Filter& filter = {});
-        void printIndex(const Doxygen& doxygen, Type type, const std::string& title, const Filter& filter);
+        void printIndex(const Doxygen& doxygen, Type type, const Filter& filter);
     private:
         std::string kindToTemplateName(Kind kind);
         nlohmann::json buildIndexRecursively(const Node& node, const Filter& filter);

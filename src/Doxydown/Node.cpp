@@ -287,10 +287,12 @@ void Doxydown::Node::finalize(const Config& config,
             case Kind::PAGE:
             case Kind::INTERFACE:
             case Kind::UNION: {
-                if (node.refid == config.mainPageName && config.mainPageInRoot) {
-                    return config.baseUrl +
-                        Utils::stripAnchor(node.refid) + config.linkSuffix +
-                        anchorMaker(node);
+                if (node.refid == config.mainPageName) {
+                    if (config.mainPageInRoot) {
+                        return config.baseUrl;
+                    } else {
+                        return config.baseUrl + typeToFolderName(config, node.type);
+                    }
                 }
                 return config.baseUrl + typeToFolderName(config, node.type) + "/" +
                        Utils::stripAnchor(node.refid) + config.linkSuffix +

@@ -77,7 +77,7 @@ void Doxydown::Generator::print(const Doxygen& doxygen, const Filter& filter) {
     printRecursively(doxygen.getIndex(), filter);
 }
 
-void Doxydown::Generator::printIndex(const Doxygen& doxygen, const Type type, const std::string& title, const Filter& filter) {
+void Doxydown::Generator::printIndex(const Doxygen& doxygen, const Type type, const Filter& filter) {
     const auto path = typeToIndexName(config, type) + "." + config.fileExt;
 
     nlohmann::json data;

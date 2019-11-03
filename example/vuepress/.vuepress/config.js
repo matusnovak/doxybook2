@@ -5,11 +5,11 @@ module.exports = {
         sidebar: 'auto',
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'Classes', link: '/api/Classes/' },
-            { text: 'Namespaces', link: '/api/Namespaces/' },
-            { text: 'Modules', link: '/api/Modules/' },
-            { text: 'Files', link: '/api/Files/' },
-            { text: 'Pages', link: '/api/Pages/' },
+            { text: 'Classes', link: '/Classes/' },
+            { text: 'Namespaces', link: '/Namespaces/' },
+            { text: 'Modules', link: '/Modules/' },
+            { text: 'Files', link: '/Files/' },
+            { text: 'Pages', link: '/Pages/' },
         ]
     }
 }

@@ -305,3 +305,28 @@ std::string Doxydown::typeToIndexTemplate(const Config& config, const Type type)
         }
     }
 }
+
+std::string Doxydown::typeToIndexTitle(const Config& config, const Type type) {
+    switch (type) {
+    case Type::MODULES: {
+        return config.indexGroupsTitle;
+    }
+    case Type::CLASSES: {
+        return config.indexClassesTitle;
+    }
+    case Type::NAMESPACES: {
+        return config.indexNamespacesTitle;
+    }
+    case Type::DIRS:
+    case Type::FILES: {
+        return config.indexFilesTitle;
+    }
+    case Type::PAGES: {
+        return config.indexRelatedPagesTitle;
+    }
+    default: {
+        throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
+    }
+    }
+}
+

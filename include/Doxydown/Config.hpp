@@ -69,6 +69,13 @@ namespace Doxydown {
         std::string templateIndexGroups{"index_groups"};
         std::string templateIndexFiles{"index_files"};
         std::string templateIndexRelatedPages{"index_pages"};
+
+        // What should the title be in the index pages?
+        std::string indexClassesTitle{"Classes"};
+        std::string indexNamespacesTitle{"Namespaces"};
+        std::string indexGroupsTitle{"Modules"};
+        std::string indexFilesTitle{"Files"};
+        std::string indexRelatedPagesTitle{"Pages"};
     };
 
     void loadConfig(Config& config, const std::string& path);
