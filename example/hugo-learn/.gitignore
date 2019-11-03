@@ -1,5 +1,0 @@
-content/api/*
-public/
-resources/
-!content/.gitkeep
-!content/_index.md

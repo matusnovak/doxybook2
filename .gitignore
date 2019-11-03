@@ -7,3 +7,10 @@ install/
 *.kdev4
 *~
 doxydown-*.zip
+
+example/**/*.md
+example/**/images/
+example/**/*.json
+example/**/public/
+example/**/resources/
+example/**/dist/

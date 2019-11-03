@@ -274,7 +274,7 @@ std::string Doxydown::typeToIndexName(const Config& config, const Type type) {
             return config.indexInFolders ? config.folderFilesName + "/" + config.indexFilesName : config.indexFilesName;
         }
         case Type::PAGES: {
-            return config.indexInFolders ? config.folderFilesName + "/" + config.indexRelatedPagesName : config.indexRelatedPagesName;
+            return config.indexInFolders ? config.folderRelatedPagesName + "/" + config.indexRelatedPagesName : config.indexRelatedPagesName;
         }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));

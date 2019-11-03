@@ -13,11 +13,11 @@ R"(---
 {% include "meta" %}
 ---
 
-{% if exists("title") %}# {{title}}{% else if exists("kind") %}# {{name}} {{title(kind)}} Reference{% endif %}
+{% if exists("title") %}# {{title}}{% else if exists("kind") && kind != "page" %}# {{name}} {{title(kind)}} Reference{% endif %}
 )";
 
 static const std::string TEMPLATE_BREADCRUMBS =
-R"({% if exists("moduleBreadcrumbs") %}**/** {% for module in moduleBreadcrumbs %}**[{{module.title}}]({{module.url}})**{% if not loop.is_last %} **/** {% endif %}{% endfor %}{% endif %})";
+R"({% if exists("moduleBreadcrumbs") or kind == "module" %}**Module:** {% for module in moduleBreadcrumbs %}**[{{module.title}}]({{module.url}})**{% if not loop.is_last %} **/** {% endif %}{% endfor %}{% endif %}{% if kind == "module" %} **{{title}}**{% endif %})";
 
 static const std::string TEMPLATE_FOOTER =
 R"(-------------------------------
