@@ -4,5 +4,5 @@
 {% include "meta" %}
 ---
 
-{% if exists("kind") and kind == "page" and exists("refid") and refid == "_index" %}# {{title}}{% endif %}
+{% if exists("kind") and kind == "page" %}{% if exists("refid") and refid == "_index" %}# {{title}}{% endif %}{% endif %}
 {% if exists("kind") and kind != "page" %}**{{name}} {{title(kind)}} Reference**{% endif %}
