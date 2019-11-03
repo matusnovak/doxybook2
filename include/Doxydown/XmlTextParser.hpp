@@ -18,12 +18,17 @@ namespace Doxydown {
                 PARAS,
                 BOLD,
                 EMPHASIS,
+                STRIKE,
+                HRULER,
+                IMAGE,
                 ULINK,
                 REF,
                 COMPUTEROUTPUT,
                 LISTITEM,
                 SIMPLESEC,
                 ITEMIZEDLIST,
+                VARIABLELIST,
+                ORDEREDLIST,
                 PARAMETERLIST,
                 PARAMETERNAME,
                 PARAMETERITEM,
@@ -34,8 +39,18 @@ namespace Doxydown {
                 XREFDESCRIPTION,
                 PROGRAMLISTING,
                 CODELINE,
+                TERM,
+                VARLISTENTRY,
+                ANCHOR,
                 SP,
-                HIGHTLIGHT
+                HIGHTLIGHT,
+                SECT1,
+                SECT2,
+                SECT3,
+                SECT4,
+                SECT5,
+                SECT6,
+                TITLE
             };
 
             Type type{Type::UNKNOWN};

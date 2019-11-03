@@ -1,4 +1,4 @@
 resources/
-content/api/*
-!content/api/.gitkeep
-!content/api/_index.md
+content/*
+!content/.gitkeep
+!content/menu/index.md

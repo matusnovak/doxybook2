@@ -28,6 +28,8 @@ std::string Doxydown::Generator::kindToTemplateName(const Kind kind) {
             return config.templateKindDir;
         case Kind::FILE:
             return config.templateKindFile;
+        case Kind::PAGE:
+            return config.templateKindPage;
         default: {
             throw EXCEPTION("Unrecognised kind {} please contant the author!", int(kind));
         }
@@ -51,10 +53,15 @@ void Doxydown::Generator::printRecursively(const Node& parent, const Filter& fil
         if (filter.find(child->getKind()) != filter.end()) {
             nlohmann::json data = jsonConverter.getAsJson(*child);
 
-            const auto path = Path::join(
-                typeToFolderName(config, child->getType()),
-                child->getRefid() + "." + config.fileExt
-            );
+            std::string path;
+            if (child->getKind() == Kind::PAGE && child->getRefid() == config.mainPageName) {
+                path = child->getRefid() + "." + config.fileExt;
+            } else {
+                path = Path::join(
+                    typeToFolderName(config, child->getType()),
+                    child->getRefid() + "." + config.fileExt
+                );
+            }
 
             renderer.render(
                 kindToTemplateName(child->getKind()),
@@ -70,14 +77,14 @@ void Doxydown::Generator::print(const Doxygen& doxygen, const Filter& filter) {
     printRecursively(doxygen.getIndex(), filter);
 }
 
-void Doxydown::Generator::printIndex(const Doxygen& doxygen, const std::string& name, const std::string& title, const Filter& filter) {
-    const auto path = indexToPath(name) + "." + config.fileExt;
+void Doxydown::Generator::printIndex(const Doxygen& doxygen, const Type type, const std::string& title, const Filter& filter) {
+    const auto path = typeToIndexName(config, type) + "." + config.fileExt;
 
     nlohmann::json data;
     data["children"] = buildIndexRecursively(doxygen.getIndex(), filter);
     data["title"] = title;
-    data["name"] = name;
-    renderer.render(indexToTemplateName(name), path, data);
+    data["name"] = title;
+    renderer.render(typeToIndexTemplate(config, type), path, data);
 }
 
 nlohmann::json Doxydown::Generator::buildIndexRecursively(const Node& node, const Filter& filter) {
@@ -107,36 +114,4 @@ nlohmann::json Doxydown::Generator::buildIndexRecursively(const Node& node, cons
     }
 
     return json;
-}
-
-std::string Doxydown::Generator::indexToPath(const std::string& name) {
-    if (name == "classes") {
-        return config.indexInFolders ? config.folderClassesName + "/" + config.indexClassesName : config.indexClassesName;
-    }
-    if (name == "namespaces") {
-        return config.indexInFolders ? config.folderNamespacesName + "/" + config.indexNamespacesName : config.indexNamespacesName;
-    }
-    if (name == "groups") {
-        return config.indexInFolders ? config.folderGroupsName + "/" + config.indexGroupsName : config.indexGroupsName;
-    }
-    if (name == "files") {
-        return config.indexInFolders ? config.folderFilesName + "/" + config.indexFilesName : config.indexFilesName;
-    }
-    throw EXCEPTION("Index {} not recognised please contact the author", name);
-}
-
-std::string Doxydown::Generator::indexToTemplateName(const std::string& name) {
-    if (name == "classes") {
-        return config.templateIndexClasses;
-    }
-    if (name == "namespaces") {
-        return config.templateIndexNamespaces;
-    }
-    if (name == "groups") {
-        return config.templateIndexGroups;
-    }
-    if (name == "files") {
-        return config.templateIndexFiles;
-    }
-    throw EXCEPTION("Index {} not recognised please contact the author", name);
 }

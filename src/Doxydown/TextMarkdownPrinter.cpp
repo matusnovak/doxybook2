@@ -1,53 +1,137 @@
 #include <sstream>
+#include <fstream>
 #include <Doxydown/TextMarkdownPrinter.hpp>
 #include <Doxydown/Utils.hpp>
 #include <Doxydown/Doxygen.hpp>
 
 std::string Doxydown::TextMarkdownPrinter::print(const XmlTextParser::Node& node) const {
-    std::stringstream ss;
-    print(ss, node);
-    auto str = ss.str();
+    PrintData data;
+    print(data, nullptr, &node, nullptr, nullptr);
+    auto str = data.ss.str();
     while (!str.empty() && str.back() == '\n') str.pop_back();
     return str;
 }
 
-void Doxydown::TextMarkdownPrinter::print(std::stringstream& ss, const XmlTextParser::Node& node) const {
-    switch (node.type) {
+void Doxydown::TextMarkdownPrinter::print(PrintData& data,
+                                          const XmlTextParser::Node* parent,
+                                          const XmlTextParser::Node* node,
+                                          const XmlTextParser::Node* previous,
+                                          const XmlTextParser::Node* next) const {
+
+    switch (node->type) {
         case XmlTextParser::Node::Type::TEXT: {
-            ss << node.data;
+            data.ss << node->data;
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::SECT1: {
+            data.ss << "\n# ";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::SECT2: {
+            data.ss << "\n## ";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::SECT3: {
+            data.ss << "\n### ";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::SECT4: {
+            data.ss << "\n#### ";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::SECT5: {
+            data.ss << "\n##### ";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::SECT6: {
+            data.ss << "\n###### ";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::BOLD: {
-            ss << "**";
+            data.ss << "**";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::EMPHASIS: {
-            ss << "_";
+            data.ss << "_";
+            data.eol = false;
             break;
         }
+        case XmlTextParser::Node::Type::STRIKE: {
+            data.ss << "~~";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::VARIABLELIST:
+        case XmlTextParser::Node::Type::ORDEREDLIST:
         case XmlTextParser::Node::Type::ITEMIZEDLIST: {
-            ss << "\n\n";
+            if (data.lists.empty()) data.ss << "\n";
+            data.ss << "\n";
+            data.eol = true;
+            data.lists.push_back({0, node->type == XmlTextParser::Node::Type::ORDEREDLIST});
             break;
         }
         case XmlTextParser::Node::Type::LISTITEM: {
-            ss << "* ";
+            if (data.lists.size() > 1) {
+                data.ss << std::string((data.lists.size() - 1) * 4, ' ');
+            }
+            data.lists.back().counter++;
+            if (data.lists.back().ordered && data.lists.size() == 1) {
+                data.ss << data.lists.back().counter << ". ";
+            } else {
+                data.ss << "* ";
+            }
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::ULINK:
         case XmlTextParser::Node::Type::REF: {
-            ss << "[";
+            data.ss << "[";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::IMAGE: {
+            data.ss << "![" << node->extra << "](" << config.baseUrl << config.imagesFolder << "/" << node->extra << ")";
+            data.eol = false;
+            if (config.copyImages) {
+                std::ifstream src(Utils::join(inputDir, node->extra), std::ios::binary);
+                if (src) {
+                    std::ofstream dst(Utils::join(config.outputDir, config.imagesFolder, node->extra), std::ios::binary);
+                    if (dst) dst << src.rdbuf();
+                }
+            }
             break;
         }
         case XmlTextParser::Node::Type::COMPUTEROUTPUT: {
-            ss << "`";
+            data.ss << "`";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::PROGRAMLISTING: {
-            ss << "\n\n```cpp\n";
+            data.ss << "\n\n```cpp\n";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SP: {
-            ss << " ";
+            data.ss << " ";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::HRULER: {
+            data.ss << "\n\n------------------\n\n";
+            data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::VARLISTENTRY: {
+            data.ss << "\n";
+            data.eol = true;
             break;
         }
         default: {
@@ -55,49 +139,94 @@ void Doxydown::TextMarkdownPrinter::print(std::stringstream& ss, const XmlTextPa
         }
     }
 
-    for (const auto& child : node.children) {
-        print(ss, child);
+    for (size_t i = 0; i < node->children.size(); i++) {
+        const auto childNext = i + 1 < node->children.size() ? &node->children[i + 1] : nullptr;
+        const auto childPrevious = i > 0 ? &node->children[i - 1] : nullptr;
+        print(data, node, &node->children[i], childPrevious, childNext);
     }
 
-    switch (node.type) {
+    switch (node->type) {
+        case XmlTextParser::Node::Type::TITLE: {
+            data.ss << "\n\n";
+            data.eol = true;
+            break;
+        }
         case XmlTextParser::Node::Type::BOLD: {
-            ss << "**";
+            data.ss << "**";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::EMPHASIS: {
-            ss << "_";
+            data.ss << "_";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::STRIKE: {
+            data.ss << "~~";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::ULINK: {
-            ss << "](" << node.extra << ")";
+            data.ss << "](" << node->extra << ")";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::REF: {
-            ss << "]";
-            const auto found = doxygen.getCache().find(node.extra);
+            data.ss << "]";
+            const auto found = doxygen.getCache().find(node->extra);
             if (found != doxygen.getCache().end()) {
-                ss << "(" << found->second->getUrl() << ")";
+                data.ss << "(" << found->second->getUrl() << ")";
             }
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::PARA: {
-            ss << "\n";
+            /*auto c = back(ss);
+            if (c != '\n') {
+                ss << "\n";
+            }
+            if (parent && parent->type == XmlTextParser::Node::Type::LISTITEM) {
+                break;
+            } else {
+                //ss << "\n";
+            }*/
+            if (!data.eol) {
+                data.ss << "\n";
+                data.eol = true;
+            }
             break;
         }
         case XmlTextParser::Node::Type::COMPUTEROUTPUT: {
-            ss << "`";
+            data.ss << "`";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::ITEMIZEDLIST:
+        case XmlTextParser::Node::Type::VARIABLELIST:
+        case XmlTextParser::Node::Type::ORDEREDLIST: {
+            data.lists.pop_back();
             break;
         }
         case XmlTextParser::Node::Type::LISTITEM: {
-            ss << "";
+            /*if (back(ss) != '\n') {
+                ss << "\n";
+            }*/
+            //ss << "\n";
             break;
         }
         case XmlTextParser::Node::Type::CODELINE: {
-            ss << "\n";
+            data.ss << "\n";
+            data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::PROGRAMLISTING: {
-            ss << "```\n\n";
+            data.ss << "```\n\n";
+            data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::VARLISTENTRY: {
+            data.ss << "\n\n";
+            data.eol = true;
             break;
         }
         default: {

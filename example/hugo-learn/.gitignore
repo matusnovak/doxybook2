@@ -1,5 +1,5 @@
 content/api/*
 public/
 resources/
-!content/api/.gitkeep
-!content/api/_index.md
+!content/.gitkeep
+!content/_index.md

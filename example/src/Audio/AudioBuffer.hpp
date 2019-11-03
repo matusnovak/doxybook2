@@ -22,6 +22,7 @@ namespace Engine {
 		 * @note Some random note
 		 * @note Some second random note
 		 * @bug Some random bug
+		 * @bug Some other random bug
 		 * @details Lorem ipsum donor
 		 * @code
 		 * // Some random code

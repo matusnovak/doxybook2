@@ -9,12 +9,25 @@ namespace Doxydown {
         // Generate extra JSON for each rendered template
         bool debugTemplateJson{false};
 
+        // Copy images from the Doxygen xml dir?
+        bool copyImages{true};
+
+        // Where to copy images
+        std::string imagesFolder{"images"};
+
         // Convert all refids (including folder names) into lowercase?
         bool linkLowercase{false};
 
         // Should we put the class, namespace, modules, and files indexes
         // into their respective folders? (Hugo/Learn) needs that!
         bool indexInFolders{false};
+
+        // If mainpage (indexpage) is present, should it be located
+        // in the outputDir folder or in outpurDir/folderRelatedPagesName folder? 
+        bool mainPageInRoot{false};
+
+        // Name of the mainpage (indexpage)
+        std::string mainPageName{"indexpage"};
 
         // What is the base URL to prepend all links with?
         std::string baseUrl{""};
@@ -48,12 +61,14 @@ namespace Doxydown {
         std::string templateKindGroup{"kind_nonclass"};
         std::string templateKindFile{"kind_file"};
         std::string templateKindDir{"kind_file"};
+        std::string templateKindPage{ "kind_page" };
 
         // What templates to use for indexes?
         std::string templateIndexClasses{"index_classes"};
         std::string templateIndexNamespaces{"index_namespaces"};
         std::string templateIndexGroups{"index_groups"};
         std::string templateIndexFiles{"index_files"};
+        std::string templateIndexRelatedPages{"index_pages"};
     };
 
     void loadConfig(Config& config, const std::string& path);

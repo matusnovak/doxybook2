@@ -149,8 +149,6 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node& node, const Node::Da
         json["see"] = convert(data.see);
     if (!data.returns.empty())
         json["returns"] = data.returns;
-    if (!data.author.empty())
-        json["author"] = data.author;
     if (!data.authors.empty())
         json["authors"] = convert(data.authors);
     if (!data.version.empty())
@@ -179,6 +177,12 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node& node, const Node::Da
         json["par"] = data.par;
     if (!data.rcs.empty())
         json["rcs"] = data.rcs;
+    if (!data.todos.empty())
+        json["todos"] = data.todos;
+    if (!data.bugs.empty())
+        json["bugs"] = data.bugs;
+    if (!data.tests.empty())
+        json["tests"] = data.tests;
     if (node.getKind() != Kind::ENUMVALUE) {
         json["static"] = data.isStatic;
         json["abstract"] = data.isAbstract;
@@ -238,7 +242,9 @@ nlohmann::json Doxydown::JsonConverter::convert(const Node& node, const Node::Da
         !data.paramList.empty() ||
         !data.see.empty() ||
         !data.returns.empty() ||
-        !data.author.empty() ||
+        !data.bugs.empty() ||
+        !data.tests.empty() ||
+        !data.todos.empty() ||
         !data.authors.empty() ||
         !data.version.empty() ||
         !data.since.empty() ||

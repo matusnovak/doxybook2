@@ -22,7 +22,7 @@ R"({% if exists("moduleBreadcrumbs") %}**/** {% for module in moduleBreadcrumbs 
 static const std::string TEMPLATE_FOOTER =
 R"(-------------------------------
 
-Created on {{date("%Y-%m-%d")}})";
+Updated on {{date("%e %B %Y at %H:%M:%S %Z")}})";
 
 static const std::string TEMPLATE_DETAILS =
 R"({% if exists("brief") %}{{brief}}
@@ -44,44 +44,82 @@ R"({% if exists("brief") %}{{brief}}
 
 {% for param in templateParamsList %}  * **{{param.name}}** {{param.text}}
 {% endfor %}
-{% endif %}{% if exists("see") %}**See**:
+{% endif %}{% if exists("see") %}**See**: {% if length(see) == 1 %}{{first(see)}}{% else %}
 
 {% for item in see %}  * {{item}}
-{% endfor %}
-{% endif %}{% if exists("returns") %}**Returns**: {{returns}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("returns") %}**Return**: {% if length(returns) == 1 %}{{first(returns)}}{% else %}
 
-{% endif %}{% if exists("author") %}**Author**: {{author}}
-
-{% endif %}{% if exists("authors") %}**Authors**:
+{% for item in returns %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("authors") %}**Author**: {% if length(authors) == 1 %}{{first(authors)}}{% else %}
 
 {% for item in authors %}  * {{item}}
-{% endfor %}
-{% endif %}{% if exists("version") %}**Version**: {{version}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("version") %}**Version**: {% if length(version) == 1 %}{{first(version)}}{% else %}
 
-{% endif %}{% if exists("since") %}**Since**: {{since}}
+{% for item in version %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("since") %}**Since**: {% if length(since) == 1 %}{{first(since)}}{% else %}
 
-{% endif %}{% if exists("date") %}**Date**: {{date}}
+{% for item in since %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("date") %}**Date**: {% if length(date) == 1 %}{{first(date)}}{% else %}
 
-{% endif %}{% if exists("note") %}**Note**: {{note}}
+{% for item in date %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("note") %}**Note**: {% if length(note) == 1 %}{{first(note)}}{% else %}
 
-{% endif %}{% if exists("warning") %}**Warning**: {{warning}}
+{% for item in note %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("bugs") %}**Bug**: {% if length(bugs) == 1 %}{{first(bugs)}}{% else %}
 
-{% endif %}{% if exists("pre") %}**Precondition**: {{pre}}
+{% for item in bugs %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("tests") %}**Test**: {% if length(tests) == 1 %}{{first(tests)}}{% else %}
 
-{% endif %}{% if exists("post") %}**Postcondition**: {{post}}
+{% for item in tests %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("todos") %}**Todo**: {% if length(todos) == 1 %}{{first(todos)}}{% else %}
 
-{% endif %}{% if exists("copyright") %}**Copyright**: {{copyright}}
+{% for item in todos %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("warning") %}**Warning**: {% if length(warning) == 1 %}{{first(warning)}}{% else %}
 
-{% endif %}{% if exists("invariant") %}**Invariant**: {{invariant}}
+{% for item in warning %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("pre") %}**Precondition**: {% if length(pre) == 1 %}{{first(pre)}}{% else %}
 
-{% endif %}{% if exists("remark") %}**Remark**: {{remark}}
+{% for item in pre %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("post") %}**Postcondition**: {% if length(post) == 1 %}{{first(post)}}{% else %}
 
-{% endif %}{% if exists("attention") %}**Attention**: {{attention}}
+{% for item in post %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("copyright") %}**Copyright**: {% if length(copyright) == 1 %}{{first(copyright)}}{% else %}
 
-{% endif %}{% if exists("par") %}**Par**: {{par}}
+{% for item in copyright %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("invariant") %}**Invariant**: {% if length(invariant) == 1 %}{{first(invariant)}}{% else %}
 
-{% endif %}{% if exists("rcs") %}**Rcs**: {{rcs}}
+{% for item in invariant %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("remark") %}**Remark**: {% if length(remark) == 1 %}{{first(remark)}}{% else %}
 
+{% for item in remark %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("attention") %}**Attention**: {% if length(attention) == 1 %}{{first(attention)}}{% else %}
+
+{% for item in attention %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("par") %}**Par**: {% if length(par) == 1 %}{{first(par)}}{% else %}
+
+{% for item in par %}  * {{item}}
+{% endfor %}{% endif %}
+{% endif %}{% if exists("rcs") %}**Rcs**: {% if length(rcs) == 1 %}{{first(rcs)}}{% else %}
+
+{% for item in rcs %}  * {{item}}
+{% endfor %}{% endif %}
 {% endif %}{% if exists("reimplements") %}**Reimplements**: [{{reimplements.fullname}}]({{reimplements.url}})
 
 {% endif %}{% if exists("reimplementedBy") %}**Reimplemented by**: {% for impl in reimplementedBy %}[{{impl.fullname}}]({{impl.url}}){% if not loop.is_last %}, {% endif %}{% endfor %}
@@ -449,6 +487,14 @@ R"({% include "header" %}
 {% include "footer" %}
 )";
 
+static const std::string TEMPLATE_KIND_PAGE =
+R"({% include "header" %}
+
+{% if exists("details") %}{{details}}{% endif %}
+
+{% include "footer" %}
+)";
+
 static const std::string TEMPLATE_INDEX =
 R"(
 {% for child0 in children %}* **{{child0.kind}} [{{child0.title}}]({{child0.url}})**{% if existsIn(child0, "brief") %}</br>{{child0.brief}}{% endif %}{% if existsIn(child0, "children") %}{% for child1 in child0.children %}
@@ -494,6 +540,14 @@ R"({% include "header" %}
 {% include "footer" %}
 )";
 
+static const std::string TEMPLATE_INDEX_PAGES =
+R"({% include "header" %}
+
+{% include "index" %}
+
+{% include "footer" %}
+)";
+
 Doxydown::TemplateDefaultLoader::TemplateDefaultLoader() {
     templates = {
         {"meta", TEMPLATE_META},
@@ -511,11 +565,13 @@ Doxydown::TemplateDefaultLoader::TemplateDefaultLoader() {
         {"kind_class", TEMPLATE_KIND_CLASS},
         {"kind_group", TEMPLATE_KIND_GROUP},
         {"kind_file", TEMPLATE_KIND_FILE},
+        {"kind_page", TEMPLATE_KIND_PAGE},
         {"index", TEMPLATE_INDEX},
         {"index_classes", TEMPLATE_INDEX_CLASSES},
         {"index_namespaces", TEMPLATE_INDEX_NAMESPACES},
         {"index_groups", TEMPLATE_INDEX_GROUPS},
         {"index_files", TEMPLATE_INDEX_FILES},
+        {"index_pages", TEMPLATE_INDEX_PAGES},
     };
 }
 

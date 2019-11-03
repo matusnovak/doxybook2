@@ -234,6 +234,10 @@ void Doxydown::Node::parseBaseInfo(const Xml::Element& element) {
             type = Type::DIRS;
             break;
         }
+        case Kind::PAGE: {
+            type = Type::PAGES;
+            break;
+        }
         default: {
             break;
         }
@@ -280,8 +284,14 @@ void Doxydown::Node::finalize(const Config& config,
             case Kind::MODULE:
             case Kind::DIR:
             case Kind::FILE:
+            case Kind::PAGE:
             case Kind::INTERFACE:
             case Kind::UNION: {
+                if (node.refid == config.mainPageName && config.mainPageInRoot) {
+                    return config.baseUrl +
+                        Utils::stripAnchor(node.refid) + config.linkSuffix +
+                        anchorMaker(node);
+                }
                 return config.baseUrl + typeToFolderName(config, node.type) + "/" +
                        Utils::stripAnchor(node.refid) + config.linkSuffix +
                        anchorMaker(node);
@@ -415,112 +425,102 @@ Doxydown::Node::Data Doxydown::Node::loadData(const Config& config,
 
     const auto detaileddescription = assertChild(element, "detaileddescription");
     auto detailsParas = XmlTextParser::parseParas(detaileddescription);
-    for (auto& para : detailsParas.children) {
-        for (auto it = para.children.begin(); it != para.children.end();) {
-            switch (it->type) {
-            case XmlTextParser::Node::Type::SIMPLESEC: {
-                    if (it->extra == "see") {
-                        data.see.push_back(markdownPrinter.print(*it));
-                    } else if (it->extra == "return") {
-                        if (!data.returns.empty()) data.returns += " ";
-                        data.returns = markdownPrinter.print(*it);
-                    } else if (it->extra == "author") {
-                        if (!data.author.empty()) data.author += " ";
-                        data.author = markdownPrinter.print(*it);
-                    } else if (it->extra == "authors") {
-                        data.authors.push_back(markdownPrinter.print(*it));
-                    } else if (it->extra == "version") {
-                        if (!data.version.empty()) data.version += " ";
-                        data.version = markdownPrinter.print(*it);
-                    } else if (it->extra == "since") {
-                        if (!data.since.empty()) data.since += " ";
-                        data.since = markdownPrinter.print(*it);
-                    } else if (it->extra == "date") {
-                        if (!data.date.empty()) data.date += " ";
-                        data.date = markdownPrinter.print(*it);
-                    } else if (it->extra == "note") {
-                        if (!data.note.empty()) data.note += " ";
-                        data.note += markdownPrinter.print(*it);
-                    } else if (it->extra == "warning") {
-                        if (!data.warning.empty()) data.warning += " ";
-                        data.warning = markdownPrinter.print(*it);
-                    } else if (it->extra == "pre") {
-                        if (!data.pre.empty()) data.pre += " ";
-                        data.pre = markdownPrinter.print(*it);
-                    } else if (it->extra == "post") {
-                        if (!data.post.empty()) data.post += " ";
-                        data.post = markdownPrinter.print(*it);
-                    } else if (it->extra == "copyright") {
-                        if (!data.copyright.empty()) data.copyright += " ";
-                        data.copyright = markdownPrinter.print(*it);
-                    } else if (it->extra == "invariant") {
-                        if (!data.invariant.empty()) data.invariant += " ";
-                        data.invariant = markdownPrinter.print(*it);
-                    } else if (it->extra == "remark") {
-                        if (!data.remark.empty()) data.remark += " ";
-                        data.remark = markdownPrinter.print(*it);
-                    } else if (it->extra == "attention") {
-                        if (!data.attention.empty()) data.attention += " ";
-                        data.attention = markdownPrinter.print(*it);
-                    } else if (it->extra == "par") {
-                        if (!data.par.empty()) data.par += " ";
-                        data.par = markdownPrinter.print(*it);
-                    } else if (it->extra == "rcs") {
-                        if (!data.rcs.empty()) data.rcs += " ";
-                        data.rcs = markdownPrinter.print(*it);
-                    }
-                    it = para.children.erase(it);
-                    break;
-                }
-                case XmlTextParser::Node::Type::XREFSECT: {
-                    if (it->children.size() == 2 &&
-                        it->children[0].type == XmlTextParser::Node::Type::XREFTITLE &&
-                        it->children[1].type == XmlTextParser::Node::Type::XREFDESCRIPTION) {
-
-                        if (it->extra == "bug") {
-                            data.bugs.push_back(markdownPrinter.print(it->children[1]));
-                        } else if (it->extra == "test") {
-                            data.tests.push_back(markdownPrinter.print(it->children[1]));
+    if (kind != Kind::PAGE) {
+        for (auto& para : detailsParas.children) {
+            for (auto it = para.children.begin(); it != para.children.end();) {
+                switch (it->type) {
+                case XmlTextParser::Node::Type::SIMPLESEC: {
+                        if (it->extra == "see") {
+                            data.see.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "return") {
+                            data.returns.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "author") {
+                            data.authors.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "authors") {
+                            data.authors.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "version") {
+                            data.version.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "since") {
+                            data.since.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "date") {
+                            data.date.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "note") {
+                            data.note.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "warning") {
+                            data.warning.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "pre") {
+                            data.pre.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "post") {
+                            data.post.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "copyright") {
+                            data.copyright.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "invariant") {
+                            data.invariant.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "remark") {
+                            data.remark.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "attention") {
+                            data.attention.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "par") {
+                            data.par.push_back(markdownPrinter.print(*it));
+                        } else if (it->extra == "rcs") {
+                            data.rcs.push_back(markdownPrinter.print(*it));
                         }
                         it = para.children.erase(it);
-                    }
-                    break;
-                }
-                case XmlTextParser::Node::Type::PARAMETERLIST: {
-                    const auto kind = it->extra;
-                    ParameterList* dst = nullptr;
-                    if (kind == "param") {
-                        dst = &data.paramList;
-                    } else if (kind == "exception") {
-                        dst = &data.exceptionsList;
-                    } else if (kind == "retval") {
-                        dst = &data.returnsList;
-                    } else if (kind == "templateparam") {
-                        dst = &data.templateParamsList;
-                    } else {
                         break;
                     }
+                    case XmlTextParser::Node::Type::XREFSECT: {
+                        if (it->children.size() == 2 &&
+                            it->children[0].type == XmlTextParser::Node::Type::XREFTITLE &&
+                            it->children[1].type == XmlTextParser::Node::Type::XREFDESCRIPTION) {
 
-                    for (const auto& parameteritem : it->children) {
-                        if (parameteritem.children.size() == 2 &&
-                            parameteritem.children[0].type == XmlTextParser::Node::Type::PARAMETERNAMELIST &&
-                            parameteritem.children[1].type == XmlTextParser::Node::Type::PARAMETERDESCRIPTION) {
-                            ParameterListItem item;
-                            item.name = markdownPrinter.print(parameteritem.children[0]);
-                            item.text = markdownPrinter.print(parameteritem.children[1]);
-                            dst->push_back(std::move(item));
+                            if (it->extra == "bug") {
+                                data.bugs.push_back(markdownPrinter.print(it->children[1]));
+                            } else if (it->extra == "test") {
+                                data.tests.push_back(markdownPrinter.print(it->children[1]));
+                            } else if (it->extra == "todo") {
+                                data.todos.push_back(markdownPrinter.print(it->children[1]));
+                            }
+                            it = para.children.erase(it);
                         }
+                        break;
                     }
-                    it = para.children.erase(it);
-                    break;
-                }
-                default: {
-                    ++it;
-                    break;
+                    case XmlTextParser::Node::Type::PARAMETERLIST: {
+                        const auto kind = it->extra;
+                        ParameterList* dst = nullptr;
+                        if (kind == "param") {
+                            dst = &data.paramList;
+                        } else if (kind == "exception") {
+                            dst = &data.exceptionsList;
+                        } else if (kind == "retval") {
+                            dst = &data.returnsList;
+                        } else if (kind == "templateparam") {
+                            dst = &data.templateParamsList;
+                        } else {
+                            break;
+                        }
+
+                        for (const auto& parameteritem : it->children) {
+                            if (parameteritem.children.size() == 2 &&
+                                parameteritem.children[0].type == XmlTextParser::Node::Type::PARAMETERNAMELIST &&
+                                parameteritem.children[1].type == XmlTextParser::Node::Type::PARAMETERDESCRIPTION) {
+                                ParameterListItem item;
+                                item.name = markdownPrinter.print(parameteritem.children[0]);
+                                item.text = markdownPrinter.print(parameteritem.children[1]);
+                                dst->push_back(std::move(item));
+                            }
+                        }
+                        it = para.children.erase(it);
+                        break;
+                    }
+                    default: {
+                        ++it;
+                        break;
+                    }
                 }
             }
         }
     }
+
     data.details = markdownPrinter.print(detailsParas);
     const auto inbodydescription = element.firstChildElement("inbodydescription");
     if (inbodydescription) data.inbody = markdownPrinter.print(XmlTextParser::parseParas(inbodydescription));

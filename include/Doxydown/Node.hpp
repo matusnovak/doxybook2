@@ -77,24 +77,24 @@ namespace Doxydown {
             Params params;
             Params templateParams;
             std::vector<std::string> see;
-            std::string returns;
-            std::string author;
+            std::vector<std::string> returns;
             std::vector<std::string> authors;
-            std::string version;
-            std::string since;
-            std::string date;
-            std::string note;
-            std::string warning;
-            std::string pre;
-            std::string post;
-            std::string copyright;
-            std::string invariant;
-            std::string remark;
-            std::string attention;
-            std::string par;
-            std::string rcs; // What is this?
+            std::vector<std::string> version;
+            std::vector<std::string> since;
+            std::vector<std::string> date;
+            std::vector<std::string> note;
+            std::vector<std::string> warning;
+            std::vector<std::string> pre;
+            std::vector<std::string> post;
+            std::vector<std::string> copyright;
+            std::vector<std::string> invariant;
+            std::vector<std::string> remark;
+            std::vector<std::string> attention;
+            std::vector<std::string> par;
+            std::vector<std::string> rcs; // What is this?
             std::vector<std::string> bugs;
             std::vector<std::string> tests;
+            std::vector<std::string> todos;
             ParameterList paramList;
             ParameterList returnsList;
             ParameterList templateParamsList;
@@ -234,7 +234,7 @@ namespace Doxydown {
         std::unique_ptr<Temp> temp;
         Kind kind{Kind::INDEX};
         Type type{ Type::NONE};
-        const std::string refid;
+        std::string refid;
         std::string name;
         std::string brief;
         std::string summary;

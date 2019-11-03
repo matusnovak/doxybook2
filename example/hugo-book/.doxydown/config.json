@@ -1,5 +1,5 @@
 {
-  "baseUrl": "/doxydown/hugo-book/api/",
+  "baseUrl": "/doxydown/hugo-book/",
   "indexInFolders": true,
   "linkSuffix": "/",
   "linkLowercase": true,
@@ -7,5 +7,7 @@
   "indexFilesName": "_index",
   "indexGroupsName": "_index",
   "indexNamespacesName": "_index",
-  "indexRelatedPagesName": "_index"
+  "indexRelatedPagesName": "_index",
+  "mainPageInRoot": true,
+  "mainPageName": "_index"
 }

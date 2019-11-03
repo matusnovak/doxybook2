@@ -9,6 +9,7 @@ namespace Engine {
 		 * other texture types.
 		 * @interface Texture
 		 * @ingroup Graphics
+		 * @bug This has some **weird** bug too!
 		 */
 		class Texture: protected Handle {
 		public:

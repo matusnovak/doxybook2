@@ -3,3 +3,4 @@ theme:
   name: 'readthedocs'
 markdown_extensions:
   - admonition
+  - pymdownx.tilde

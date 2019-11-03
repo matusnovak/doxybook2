@@ -8,10 +8,11 @@ namespace Doxydown {
 
     class Doxygen {
     public:
-        Doxygen();
+        explicit Doxygen(const Config& config);
+        virtual ~Doxygen() = default;
 
         void load(const std::string& inputDir);
-        void finalize(const Config& config, const TextPrinter& plainPrinter, const TextPrinter& markdownPrinter);
+        void finalize(const TextPrinter& plainPrinter, const TextPrinter& markdownPrinter);
 
         const Node& getIndex() const {
             return *index;
@@ -27,12 +28,12 @@ namespace Doxydown {
 
         KindRefidMap getIndexKinds(const std::string& inputDir) const;
         void getIndexCache(NodeCacheMap& cache, const NodePtr& node) const;
-        void finalizeRecursively(const Config& config,
-                                 const TextPrinter& plainPrinter,
+        void finalizeRecursively(const TextPrinter& plainPrinter,
                                  const TextPrinter& markdownPrinter,
                                  const NodePtr& node);
         void updateGroupPointers(const NodePtr& node);
 
+        const Config& config;
         // The root object that holds everything (index.xml)
         NodePtr index;
         NodeCacheMap cache;

@@ -81,7 +81,7 @@ jobs:
             cd ./example/mkdocs-readthedocs
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./docs/api \
+              --output ./docs \
               --config ./.doxydown/config.json
             mkdocs build
             cp -r ./site /tmp/workspace/mkdocs-readthedocs
@@ -92,7 +92,7 @@ jobs:
             cd ./example/mkdocs-material
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./docs/api \
+              --output ./docs \
               --config ./.doxydown/config.json
             mkdocs build
             cp -r ./site /tmp/workspace/mkdocs-material
@@ -103,7 +103,7 @@ jobs:
             cd ./example/mkdocs-bootstrap
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./docs/api \
+              --output ./docs \
               --config ./.doxydown/config.json
             mkdocs build
             cp -r ./site /tmp/workspace/mkdocs-bootstrap
@@ -144,7 +144,7 @@ jobs:
             cd ./example/hugo-learn
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./content/api \
+              --output ./content \
               --config ./.doxydown/config.json \
               --templates ./.doxydown/templates
             hugo
@@ -156,7 +156,7 @@ jobs:
             cd ./example/hugo-book
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./content/api \
+              --output ./content \
               --config ./.doxydown/config.json \
               --templates ./.doxydown/templates
             hugo
@@ -191,7 +191,7 @@ jobs:
             cd ./example/vuepress
             doxydown \
               --input /tmp/workspace/doxygen/xml \
-              --output ./api \
+              --output . \
               --config ./.doxydown/config.json
             sudo vuepress build
             cp -r ./.vuepress/dist /tmp/workspace/vuepress

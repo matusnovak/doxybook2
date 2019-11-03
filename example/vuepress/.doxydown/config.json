@@ -1,10 +1,12 @@
 {
-  "baseUrl": "/api/",
+  "baseUrl": "/doxydown/vuepress/",
   "indexInFolders": true,
   "linkLowercase": false,
   "indexClassesName": "index",
   "indexFilesName": "index",
   "indexGroupsName": "index",
   "indexNamespacesName": "index",
-  "indexRelatedPagesName": "index"
+  "indexRelatedPagesName": "index",
+  "mainPageInRoot": true,
+  "mainPageName": "index"
 }

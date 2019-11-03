@@ -19,7 +19,8 @@ Doxydown::Kind Doxydown::toEnumKind(const std::string& str) {
         {"dir", Kind::DIR},
         {"file", Kind::FILE},
         {"group", Kind::MODULE},
-        {"friend", Kind::FRIEND}
+        {"friend", Kind::FRIEND},
+        {"page", Kind::PAGE}
     };
 
     const auto it = kinds.find(str);
@@ -64,6 +65,8 @@ std::string Doxydown::toStr(const Kind value) {
             return "typedef";
         case Kind::FRIEND:
             return "friend";
+        case Kind::PAGE:
+            return "page";
         default: {
             throw EXCEPTION("Kind {} not recognised please contact the author", int(value));
         }
@@ -141,6 +144,7 @@ Doxydown::Type Doxydown::toEnumType(const std::string& str) {
         {"modules", Type::MODULES},
         {"namespaces", Type::NAMESPACES},
         {"types", Type::TYPES},
+        {"pages", Type::PAGES},
     };
 
     const auto it = values.find(str);
@@ -173,6 +177,8 @@ std::string Doxydown::toStr(const Type value) {
             return "dirs";
         case Type::FRIENDS:
             return "friends";
+        case Type::PAGES:
+            return "pages";
         default: {
             throw EXCEPTION("Type {} not recognised please contact the author", int(value));
         }
@@ -242,6 +248,57 @@ const std::string& Doxydown::typeToFolderName(const Config& config, const Type t
         case Type::DIRS:
         case Type::FILES: {
             return config.folderFilesName;
+        }
+        case Type::PAGES: {
+            return config.folderRelatedPagesName;
+        }
+        default: {
+            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
+        }
+    }
+}
+
+std::string Doxydown::typeToIndexName(const Config& config, const Type type) {
+    switch (type) {
+        case Type::MODULES: {
+            return config.indexInFolders ? config.folderGroupsName + "/" + config.indexGroupsName : config.indexGroupsName;
+        }
+        case Type::CLASSES: {
+            return config.indexInFolders ? config.folderClassesName + "/" + config.indexClassesName : config.indexClassesName;
+        }
+        case Type::NAMESPACES: {
+            return config.indexInFolders ? config.folderNamespacesName + "/" + config.indexNamespacesName : config.indexNamespacesName;
+        }
+        case Type::DIRS:
+        case Type::FILES: {
+            return config.indexInFolders ? config.folderFilesName + "/" + config.indexFilesName : config.indexFilesName;
+        }
+        case Type::PAGES: {
+            return config.indexInFolders ? config.folderFilesName + "/" + config.indexRelatedPagesName : config.indexRelatedPagesName;
+        }
+        default: {
+            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
+        }
+    }
+}
+
+std::string Doxydown::typeToIndexTemplate(const Config& config, const Type type) {
+    switch (type) {
+        case Type::MODULES: {
+            return config.templateIndexGroups;
+        }
+        case Type::CLASSES: {
+            return config.templateIndexClasses;
+        }
+        case Type::NAMESPACES: {
+            return config.templateIndexNamespaces;
+        }
+        case Type::DIRS:
+        case Type::FILES: {
+            return config.templateIndexFiles;
+        }
+        case Type::PAGES: {
+            return config.templateIndexRelatedPages;
         }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));

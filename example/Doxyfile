@@ -21,3 +21,5 @@ GENERATE_HTML = YES
 # with dot executable on continous integration.
 CALL_GRAPH = NO
 HAVE_DOT = NO
+
+IMAGE_PATH = images

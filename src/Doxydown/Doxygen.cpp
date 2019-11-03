@@ -5,6 +5,7 @@
 #include <Doxydown/Exception.hpp>
 #include <Doxydown/Xml.hpp>
 #include <Doxydown/Node.hpp>
+#include <Doxydown/Config.hpp>
 #include "ExceptionUtils.hpp"
 
 #define ASSERT_FIRST_CHILD_ELEMENT(PARENT, NAME) \
@@ -33,8 +34,13 @@ static bool isKindAllowedDirs(const std::string& kind) {
     return kind == "dir" || kind == "file";
 }
 
-Doxydown::Doxygen::Doxygen()
-    : index(std::make_shared<Node>("index")) {
+static bool isKindAllowedPages(const std::string& kind) {
+    return kind == "page";
+}
+
+Doxydown::Doxygen::Doxygen(const Config& config)
+    : config(config),
+      index(std::make_shared<Node>("index")) {
 }
 
 void Doxydown::Doxygen::load(const std::string& inputDir) {
@@ -111,6 +117,28 @@ void Doxydown::Doxygen::load(const std::string& inputDir) {
     }
     cleanup(index);
 
+    // Lastly, pages
+    for (const auto& pair : kindRefidMap) {
+        if (!isKindAllowedPages(pair.first))
+            continue;
+        try {
+            auto found = cache.find(pair.second);
+            if (found == cache.end()) {
+                index->children.push_back(Node::parse(cache, inputDir, pair.second, true));
+                auto child = index->children.back();
+                if (child->parent == nullptr) {
+                    child->parent = index.get();
+                }
+                if (child->refid == "indexpage") {
+                    child->refid = config.mainPageName;
+                }
+            }
+        } catch (std::exception& e) {
+            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
+        }
+    }
+    cleanup(index);
+
     getIndexCache(cache, index);
 
     // Update group pointers
@@ -131,20 +159,18 @@ void Doxydown::Doxygen::updateGroupPointers(const NodePtr& node) {
     }
 }
 
-void Doxydown::Doxygen::finalize(const Config& config,
-                                 const TextPrinter& plainPrinter,
+void Doxydown::Doxygen::finalize(const TextPrinter& plainPrinter,
                                  const TextPrinter& markdownPrinter) {
-    finalizeRecursively(config, plainPrinter, markdownPrinter, index);
+    finalizeRecursively(plainPrinter, markdownPrinter, index);
 }
 
-void Doxydown::Doxygen::finalizeRecursively(const Config& config,
-                                            const TextPrinter& plainPrinter,
+void Doxydown::Doxygen::finalizeRecursively(const TextPrinter& plainPrinter,
                                             const TextPrinter& markdownPrinter,
                                             const NodePtr& node) {
 
     for (const auto& child : node->children) {
         child->finalize(config, plainPrinter, markdownPrinter, cache);
-        finalizeRecursively(config, plainPrinter, markdownPrinter, child);
+        finalizeRecursively(plainPrinter, markdownPrinter, child);
     }
 }
 

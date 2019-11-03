@@ -43,7 +43,7 @@ static argagg::parser argparser {{
     },
     {
         "debug-templates", {"--debug-templates"},
-        "Debug templates. This will create JSON for each generated template.", 1
+        "Debug templates. This will create JSON for each generated template.", 0
     }
 }};
 
@@ -78,6 +78,10 @@ static const Generator::Filter LANGUAGE_FILTER = {
     Kind::MODULE
 };
 
+static const Generator::Filter INDEX_FILES_PAGES = {
+    Kind::PAGE
+};
+
 int main(const int argc, char* argv[]) {
     try {
         Config config;
@@ -110,13 +114,13 @@ int main(const int argc, char* argv[]) {
             }
 
             if (args["debug-templates"]) {
-                config.debugTemplateJson = args["debug-templates"].as<std::string>() == "true";
+                config.debugTemplateJson = true;
             }
 
             config.outputDir = args["output"].as<std::string>();
 
-            Doxygen doxygen;
-            TextMarkdownPrinter markdownPrinter(config, doxygen);
+            Doxygen doxygen(config);
+            TextMarkdownPrinter markdownPrinter(config, args["input"].as<std::string>(), doxygen);
             TextPlainPrinter plainPrinter(config, doxygen);
             JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
             std::unique_ptr<TemplateLoader> templateLoader = args["templates"]
@@ -125,26 +129,30 @@ int main(const int argc, char* argv[]) {
                                                                  : std::make_unique<TemplateDefaultLoader>();
             Generator generator(config, jsonConverter, *templateLoader);
 
-            static const std::array<Type, 4> ALL_GROUPS = {
+            static const std::array<Type, 5> ALL_GROUPS = {
                 Type::CLASSES,
                 Type::NAMESPACES,
                 Type::FILES,
-                Type::MODULES
+                Type::MODULES,
+                Type::PAGES
             };
             for (const auto& g : ALL_GROUPS) {
                 Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
             }
+            Utils::createDirectory(Path::join(config.outputDir, config.imagesFolder));
 
             doxygen.load(args["input"].as<std::string>());
-            doxygen.finalize(config, plainPrinter, markdownPrinter);
+            doxygen.finalize(plainPrinter, markdownPrinter);
 
             generator.print(doxygen, LANGUAGE_FILTER);
             generator.print(doxygen, INDEX_FILES_FILTER);
+            generator.print(doxygen, INDEX_FILES_PAGES);
 
-            generator.printIndex(doxygen, "classes", "Classes", INDEX_CLASS_FILTER);
-            generator.printIndex(doxygen, "namespaces", "Namespaces", INDEX_NAMESPACES_FILTER);
-            generator.printIndex(doxygen, "groups", "Modules", INDEX_MODULES_FILTER);
-            generator.printIndex(doxygen, "files", "Files", INDEX_FILES_FILTER);
+            generator.printIndex(doxygen, Type::CLASSES, "Classes", INDEX_CLASS_FILTER);
+            generator.printIndex(doxygen, Type::NAMESPACES, "Namespaces", INDEX_NAMESPACES_FILTER);
+            generator.printIndex(doxygen, Type::MODULES, "Modules", INDEX_MODULES_FILTER);
+            generator.printIndex(doxygen, Type::FILES, "Files", INDEX_FILES_FILTER);
+            generator.printIndex(doxygen, Type::PAGES, "Pages", INDEX_FILES_PAGES);
         } else {
             std::cerr << argparser;
             return EXIT_FAILURE;

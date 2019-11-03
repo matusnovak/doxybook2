@@ -1,10 +1,12 @@
 {
-  "baseUrl": "/doxydown/mkdocs-material/api/",
+  "baseUrl": "/doxydown/mkdocs-material/",
   "indexInFolders": true,
   "linkSuffix": "/",
   "indexClassesName": "index",
   "indexFilesName": "index",
   "indexGroupsName": "index",
   "indexNamespacesName": "index",
-  "indexRelatedPagesName": "index"
+  "indexRelatedPagesName": "index",
+  "mainPageInRoot": true,
+  "mainPageName": "index"
 }

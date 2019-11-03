@@ -10,10 +10,18 @@ Doxydown::XmlTextParser::Node::Type Doxydown::XmlTextParser::strToType(const std
         {"para", Node::Type::PARA},
         {"bold", Node::Type::BOLD},
         {"emphasis", Node::Type::EMPHASIS},
+        {"strike", Node::Type::STRIKE},
+        {"hruler", Node::Type::HRULER},
+        {"image", Node::Type::IMAGE},
         {"ulink", Node::Type::ULINK},
         {"ref", Node::Type::REF},
         {"listitem", Node::Type::LISTITEM},
         {"itemizedlist", Node::Type::ITEMIZEDLIST},
+        {"variablelist", Node::Type::VARIABLELIST},
+        {"orderedlist", Node::Type::ORDEREDLIST},
+        {"varlistentry", Node::Type::VARLISTENTRY},
+        {"term", Node::Type::TERM},
+        {"anchor", Node::Type::ANCHOR},
         {"simplesect", Node::Type::SIMPLESEC},
         {"computeroutput", Node::Type::COMPUTEROUTPUT},
         {"parameterdescription", Node::Type::PARAMETERDESCRIPTION},
@@ -34,6 +42,13 @@ Doxydown::XmlTextParser::Node::Type Doxydown::XmlTextParser::strToType(const std
         {"sp", Node::Type::SP},
         {"highlight", Node::Type::HIGHTLIGHT},
         {"defname", Node::Type::PARA},
+        {"title", Node::Type::TITLE},
+        {"sect1", Node::Type::SECT1},
+        {"sect2", Node::Type::SECT2},
+        {"sect3", Node::Type::SECT3},
+        {"sect4", Node::Type::SECT4},
+        {"sect5", Node::Type::SECT5},
+        {"sect6", Node::Type::SECT6},
     };
 
     const auto it = kinds.find(str);
@@ -49,10 +64,10 @@ Doxydown::XmlTextParser::Node Doxydown::XmlTextParser::parseParas(const Xml::Ele
     Node result;
     result.type = Node::Type::PARAS;
     std::vector<Node*> tree = { &result };
-    auto para = element.firstChildElement("para");
+    auto para = element.firstChildElement();
     while (para) {
         traverse(tree, para.asNode());
-        para = para.nextSiblingElement("para");
+        para = para.nextSiblingElement();
     }
     return result;
 }
@@ -91,6 +106,10 @@ void Doxydown::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node&
             }
             case Node::Type::ULINK: {
                 ptr->extra = e.getAttr("url");
+                break;
+            }
+            case Node::Type::IMAGE: {
+                ptr->extra = e.getAttr("name");
                 break;
             }
             case Node::Type::XREFSECT: {

@@ -1,5 +1,0 @@
----
-title: "API"
-type: docs
----
-

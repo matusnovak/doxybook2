@@ -20,7 +20,8 @@ namespace Doxydown {
         UNION,
         DIR,
         FILE,
-        MODULE
+        MODULE,
+        PAGE
     };
 
     enum class Visibility {
@@ -46,9 +47,17 @@ namespace Doxydown {
         DIRS,
         FILES,
         MODULES,
-        FRIENDS
+        FRIENDS,
+        PAGES
     };
 
+    enum class FolderCategory {
+        CLASSES,
+        NAMESPACES,
+        MODULES,
+        PAGES,
+        FILES
+    };
 
     extern Kind toEnumKind(const std::string& str);
     extern Type toEnumType(const std::string& str);
@@ -64,4 +73,6 @@ namespace Doxydown {
     extern bool isKindStructured(Kind kind);
     extern bool isKindFile(Kind kind);
     extern const std::string& typeToFolderName(const Config& config, Type type);
+    extern std::string typeToIndexName(const Config& config, Type type);
+    extern std::string typeToIndexTemplate(const Config& config, Type type);
 }
