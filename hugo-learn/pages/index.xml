@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Doxydown Example</title>
+    <link>https://matusnovak.github.io/doxydown/hugo-learn/pages/</link>
+    <description>Recent content in Pages on Doxydown Example</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://matusnovak.github.io/doxydown/hugo-learn/pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Advanced Usage</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/pages/advanced/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/advanced/</guid>
+      <description>Advanced Usage This page is for advanced users. Make sure you have first read the introduction.
+Updated on 3 November 2019 at 17:54:42 UTC</description>
+    </item>
+    
+    <item>
+      <title>Bug List</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/pages/bug/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/bug/</guid>
+      <description>Bug List Class Engine::Audio::AudioBuffer
+ Some random bug Some other random bug
+  Class Engine::Graphics::Texture
+ This has some weird bug too!  Updated on 3 November 2019 at 17:54:42 UTC</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/pages/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/intro/</guid>
+      <description>Introduction This page introduces the user to the topic. Now you can proceed to the advanced section.
+Updated on 3 November 2019 at 17:54:42 UTC</description>
+    </item>
+    
+    <item>
+      <title>Test List</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/pages/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/test/</guid>
+      <description>Test List Class Engine::Audio::AudioBuffer
+ Some random test description  Updated on 3 November 2019 at 17:54:42 UTC</description>
+    </item>
+    
+    <item>
+      <title>Todo List</title>
+      <link>https://matusnovak.github.io/doxydown/hugo-learn/pages/todo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/todo/</guid>
+      <description>Todo List Class Engine::Audio::AudioBuffer
+ Some random todo  Updated on 3 November 2019 at 17:54:42 UTC</description>
+    </item>
+    
+  </channel>
+</rss>
