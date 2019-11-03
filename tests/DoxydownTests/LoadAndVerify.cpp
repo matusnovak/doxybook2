@@ -425,13 +425,14 @@ static void traverse(const Node& node, const std::function<void(const Node*, con
 
 TEST_CASE("Load everything") {
     Config config;
-    Doxygen doxygen;
+    config.copyImages = false;
+    Doxygen doxygen(config);
     TextPlainPrinter plainPrinter(config, doxygen);
-    TextMarkdownPrinter markdownPrinter(config, doxygen);
+    TextMarkdownPrinter markdownPrinter(config, IMPORT_DIR, doxygen);
     JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
 
     doxygen.load(IMPORT_DIR);
-    doxygen.finalize(config, plainPrinter, markdownPrinter);
+    doxygen.finalize(plainPrinter, markdownPrinter);
 
     const auto& index = doxygen.getIndex();
     //recursiveRefidPrint(index);
