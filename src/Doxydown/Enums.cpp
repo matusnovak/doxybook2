@@ -258,22 +258,21 @@ const std::string& Doxydown::typeToFolderName(const Config& config, const Type t
     }
 }
 
-std::string Doxydown::typeToIndexName(const Config& config, const Type type) {
+std::string Doxydown::typeToIndexName(const Config& config, const FolderCategory type) {
     switch (type) {
-        case Type::MODULES: {
+        case FolderCategory::MODULES: {
             return config.indexInFolders ? config.folderGroupsName + "/" + config.indexGroupsName : config.indexGroupsName;
         }
-        case Type::CLASSES: {
+        case FolderCategory::CLASSES: {
             return config.indexInFolders ? config.folderClassesName + "/" + config.indexClassesName : config.indexClassesName;
         }
-        case Type::NAMESPACES: {
+        case FolderCategory::NAMESPACES: {
             return config.indexInFolders ? config.folderNamespacesName + "/" + config.indexNamespacesName : config.indexNamespacesName;
         }
-        case Type::DIRS:
-        case Type::FILES: {
+        case FolderCategory::FILES: {
             return config.indexInFolders ? config.folderFilesName + "/" + config.indexFilesName : config.indexFilesName;
         }
-        case Type::PAGES: {
+        case FolderCategory::PAGES: {
             return config.indexInFolders ? config.folderRelatedPagesName + "/" + config.indexRelatedPagesName : config.indexRelatedPagesName;
         }
         default: {
@@ -282,22 +281,21 @@ std::string Doxydown::typeToIndexName(const Config& config, const Type type) {
     }
 }
 
-std::string Doxydown::typeToIndexTemplate(const Config& config, const Type type) {
+std::string Doxydown::typeToIndexTemplate(const Config& config, const FolderCategory type) {
     switch (type) {
-        case Type::MODULES: {
+        case FolderCategory::MODULES: {
             return config.templateIndexGroups;
         }
-        case Type::CLASSES: {
+        case FolderCategory::CLASSES: {
             return config.templateIndexClasses;
         }
-        case Type::NAMESPACES: {
+        case FolderCategory::NAMESPACES: {
             return config.templateIndexNamespaces;
         }
-        case Type::DIRS:
-        case Type::FILES: {
+        case FolderCategory::FILES: {
             return config.templateIndexFiles;
         }
-        case Type::PAGES: {
+        case FolderCategory::PAGES: {
             return config.templateIndexRelatedPages;
         }
         default: {
@@ -306,22 +304,21 @@ std::string Doxydown::typeToIndexTemplate(const Config& config, const Type type)
     }
 }
 
-std::string Doxydown::typeToIndexTitle(const Config& config, const Type type) {
+std::string Doxydown::typeToIndexTitle(const Config& config, const FolderCategory type) {
     switch (type) {
-    case Type::MODULES: {
+    case FolderCategory::MODULES: {
         return config.indexGroupsTitle;
     }
-    case Type::CLASSES: {
+    case FolderCategory::CLASSES: {
         return config.indexClassesTitle;
     }
-    case Type::NAMESPACES: {
+    case FolderCategory::NAMESPACES: {
         return config.indexNamespacesTitle;
     }
-    case Type::DIRS:
-    case Type::FILES: {
+    case FolderCategory::FILES: {
         return config.indexFilesTitle;
     }
-    case Type::PAGES: {
+    case FolderCategory::PAGES: {
         return config.indexRelatedPagesTitle;
     }
     default: {

@@ -199,6 +199,40 @@ jobs:
           root: /tmp/workspace
           paths:
             - vuepress
+
+  example_gitbook:
+    docker:
+      - image: circleci/node:latest
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Dependencies
+          command: |
+            sudo npm install gitbook-cli gitbook-summary -g
+            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
+            sudo chmod +x /usr/local/bin/doxydown
+
+      - run:
+          name: GitBook
+          command: |
+            cd ./example/gitbook
+            doxydown \
+              --input /tmp/workspace/doxygen/xml \
+              --output . \
+              --config ./.doxydown/config.json
+            book sm -i "_book" -i "book" -i "node_modules"
+            gitbook build
+            cp -r ./_book /tmp/workspace/gitbook
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - gitbook
   
   deploy:
     docker:
@@ -230,6 +264,7 @@ jobs:
             cp -r /tmp/workspace/mkdocs-material ./dist/mkdocs-material
             cp -r /tmp/workspace/mkdocs-readthedocs ./dist/mkdocs-readthedocs
             cp -r /tmp/workspace/vuepress ./dist/vuepress
+            cp -r /tmp/workspace/gitbook ./dist/gitbook
             cp example/index.html ./dist/index.html
             DIST=dist node publish.js
 
@@ -247,11 +282,15 @@ workflows:
       - example_vuepress:
           requires:
             - build
+      - example_gitbook:
+          requires:
+            - build
       - deploy:
           requires:
             - example_mkdocs
             - example_hugo
             - example_vuepress
+            - example_gitbook
           filters:
             branches:
               only:

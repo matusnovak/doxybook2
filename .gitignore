@@ -14,3 +14,8 @@ example/**/*.json
 example/**/public/
 example/**/resources/
 example/**/dist/
+node_modules/
+_book/
+!package-lock.json
+!book.json
+!config.json

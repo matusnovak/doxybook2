@@ -1,0 +1,13 @@
+{
+  "baseUrl": "/doxydown/gitbook/",
+  "indexInFolders": true,
+  "linkSuffix": ".md",
+  "linkLowercase": false,
+  "indexClassesName": "README",
+  "indexFilesName": "README",
+  "indexGroupsName": "README",
+  "indexNamespacesName": "README",
+  "indexRelatedPagesName": "README",
+  "mainPageInRoot": true,
+  "mainPageName": "README"
+}

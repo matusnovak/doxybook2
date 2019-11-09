@@ -148,11 +148,11 @@ int main(const int argc, char* argv[]) {
             generator.print(doxygen, INDEX_FILES_FILTER);
             generator.print(doxygen, INDEX_FILES_PAGES);
 
-            generator.printIndex(doxygen, Type::CLASSES, INDEX_CLASS_FILTER);
-            generator.printIndex(doxygen, Type::NAMESPACES, INDEX_NAMESPACES_FILTER);
-            generator.printIndex(doxygen, Type::MODULES, INDEX_MODULES_FILTER);
-            generator.printIndex(doxygen, Type::FILES, INDEX_FILES_FILTER);
-            generator.printIndex(doxygen, Type::PAGES, INDEX_FILES_PAGES);
+            generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER);
+            generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER);
+            generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER);
+            generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER);
+            generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_FILES_PAGES);
         } else {
             std::cerr << argparser;
             return EXIT_FAILURE;
