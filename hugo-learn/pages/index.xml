@@ -16,8 +16,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/advanced/</guid>
-      <description>Advanced Usage This page is for advanced users. Make sure you have first read the introduction.
-Updated on 3 November 2019 at 17:54:42 UTC</description>
+      <description>This page is for advanced users. Make sure you have first read the introduction.
+Updated on 9 November 2019 at 16:59:50 UTC</description>
     </item>
     
     <item>
@@ -26,10 +26,10 @@ Updated on 3 November 2019 at 17:54:42 UTC</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/bug/</guid>
-      <description>Bug List Class Engine::Audio::AudioBuffer
+      <description>Class Engine::Audio::AudioBuffer
  Some random bug Some other random bug
   Class Engine::Graphics::Texture
- This has some weird bug too!  Updated on 3 November 2019 at 17:54:42 UTC</description>
+ This has some weird bug too!  Updated on 9 November 2019 at 16:59:50 UTC</description>
     </item>
     
     <item>
@@ -38,8 +38,8 @@ Updated on 3 November 2019 at 17:54:42 UTC</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/intro/</guid>
-      <description>Introduction This page introduces the user to the topic. Now you can proceed to the advanced section.
-Updated on 3 November 2019 at 17:54:42 UTC</description>
+      <description>This page introduces the user to the topic. Now you can proceed to the advanced section.
+Updated on 9 November 2019 at 16:59:50 UTC</description>
     </item>
     
     <item>
@@ -48,8 +48,8 @@ Updated on 3 November 2019 at 17:54:42 UTC</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/test/</guid>
-      <description>Test List Class Engine::Audio::AudioBuffer
- Some random test description  Updated on 3 November 2019 at 17:54:42 UTC</description>
+      <description>Class Engine::Audio::AudioBuffer
+ Some random test description  Updated on 9 November 2019 at 16:59:50 UTC</description>
     </item>
     
     <item>
@@ -58,8 +58,8 @@ Updated on 3 November 2019 at 17:54:42 UTC</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxydown/hugo-learn/pages/todo/</guid>
-      <description>Todo List Class Engine::Audio::AudioBuffer
- Some random todo  Updated on 3 November 2019 at 17:54:42 UTC</description>
+      <description>Class Engine::Audio::AudioBuffer
+ Some random todo  Updated on 9 November 2019 at 16:59:50 UTC</description>
     </item>
     
   </channel>
