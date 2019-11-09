@@ -213,7 +213,7 @@ jobs:
       - run:
           name: Dependencies
           command: |
-            sudo npm install gitbook-cli gitbook-summary -g
+            sudo npm install gitbook-cli -g
             sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
             sudo chmod +x /usr/local/bin/doxydown
 
@@ -224,8 +224,9 @@ jobs:
             doxydown \
               --input /tmp/workspace/doxygen/xml \
               --output . \
-              --config ./.doxydown/config.json
-            book sm -i "_book" -i "book" -i "node_modules"
+              --config ./.doxydown/config.json \
+              --summary-input SUMMARY.md.tmpl \
+              --summary-output SUMMARY.md
             gitbook build
             cp -r ./_book /tmp/workspace/gitbook
 

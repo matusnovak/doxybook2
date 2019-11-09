@@ -44,6 +44,14 @@ static argagg::parser argparser {{
     {
         "debug-templates", {"--debug-templates"},
         "Debug templates. This will create JSON for each generated template.", 0
+    },
+    {
+        "summary-input", {"--summary-input"},
+        "Path to the summary input file. This file must contain \"{{doxygen}}\" string.", 1
+    },
+    {
+        "summary-output", {"--summary-output"},
+        "Where to generate summary file. This file will be created. Not a directory!", 1
     }
 }};
 
@@ -143,6 +151,21 @@ int main(const int argc, char* argv[]) {
 
             doxygen.load(args["input"].as<std::string>());
             doxygen.finalize(plainPrinter, markdownPrinter);
+
+            if (args["summary-input"] && args["summary-output"]) {
+                generator.summary(
+                    doxygen, 
+                    args["summary-input"].as<std::string>(), 
+                    args["summary-output"].as<std::string>(),
+                    {
+                        {FolderCategory::CLASSES, INDEX_CLASS_FILTER},
+                        {FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER},
+                        {FolderCategory::MODULES, INDEX_MODULES_FILTER},
+                        {FolderCategory::FILES, INDEX_FILES_FILTER},
+                        {FolderCategory::PAGES, INDEX_FILES_PAGES}
+                    }
+                );
+            }
 
             generator.print(doxygen, LANGUAGE_FILTER);
             generator.print(doxygen, INDEX_FILES_FILTER);

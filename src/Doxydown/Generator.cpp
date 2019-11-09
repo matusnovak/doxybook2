@@ -46,9 +46,74 @@ Doxydown::Generator::Generator(const Config& config, const JsonConverter& jsonCo
     }
 }
 
-void Doxydown::Generator::printRecursively(const Node& parent, const Filter& filter) {
-    using namespace Doxydown;
+void Doxydown::Generator::summary(const Doxygen& doxygen,
+                                  const std::string& inputFile,
+                                  const std::string& outputFile,
+                                  const std::vector<SummarySection>& sections) {
 
+    std::ifstream input(inputFile);
+    if (!input) {
+        throw EXCEPTION("File {} failed to open for reading", inputFile);
+    }
+
+    std::ofstream output(outputFile);
+    if (!output) {
+        throw EXCEPTION("File {} failed to open for writing", outputFile);
+    }
+
+    static const auto compare = [](const char* a, const char* b) {
+        while (*a && *b) {
+            if (*a++ != *b++) return false;
+        }
+        return true;
+    };
+
+    std::string tmpl((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
+    auto offset = tmpl.size();
+    size_t indent = 0;
+    for (size_t i = 0; i < tmpl.size(); i++) {
+        const auto& c = tmpl[i];
+        if (compare(&tmpl[i], "{{doxygen}}")) {
+            offset = i;
+            break;
+        }
+        if (c == ' ') indent++;
+        else indent = 0;
+    }
+
+    std::stringstream ss;
+
+    for (const auto& section : sections) {
+        const auto name = typeToIndexTitle(config, section.type);
+        const auto path = typeToIndexName(config, section.type) + "." + config.fileExt;
+        ss << std::string(indent, ' ') << "* [" << name << "](" << path << ")\n";
+        summaryRecursive(ss, indent + 2, name, doxygen.getIndex(), section.filter);
+    }
+
+    output << tmpl.substr(0, offset);
+
+    output << ss.str().substr(indent);
+
+    if (offset + ::strlen("{{doxygen}}") < tmpl.size()) {
+        output << tmpl.substr(offset + ::strlen("{{doxygen}}"));
+    }
+}
+
+void Doxydown::Generator::summaryRecursive(std::stringstream& ss,
+                                           const int indent,
+                                           const std::string& folderName,
+                                           const Node& node,
+                                           const Filter& filter) {
+
+    for (const auto& child : node.getChildren()) {
+        if (filter.find(child->getKind()) != filter.end()) {
+            ss << std::string(indent, ' ') << "* [" << child->getName() << "](" << folderName << "/" << child->getRefid() << ".md)\n";
+            summaryRecursive(ss, indent, folderName, *child, filter);
+        }
+    }
+}
+
+void Doxydown::Generator::printRecursively(const Node& parent, const Filter& filter) {
     for (const auto& child : parent.getChildren()) {
         if (filter.find(child->getKind()) != filter.end()) {
             nlohmann::json data = jsonConverter.getAsJson(*child);

@@ -1,7 +1,7 @@
 {
   "baseUrl": "/doxydown/gitbook/",
   "indexInFolders": true,
-  "linkSuffix": ".md",
+  "linkSuffix": ".html",
   "linkLowercase": false,
   "indexClassesName": "README",
   "indexFilesName": "README",
