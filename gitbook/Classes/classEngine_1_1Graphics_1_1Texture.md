@@ -86,7 +86,29 @@ interface Engine::Graphics::Texture;
 This is a base texture class that serves as a base class for other texture types. 
 
 
+
+
+
+
+
+
+
+
+
+
 **Bug**: This has some **weird** bug too! 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,6 +136,28 @@ enum Type {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Public Functions Documentation
 
 ### function isLoaded
@@ -121,6 +165,28 @@ enum Type {
 ```cpp
 inline bool isLoaded() const
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,8 +203,30 @@ virtual int getDepth() const =0
 Returns the depth of the texture in pixels. 
 
 
+
+
+
+
 **Return**: Depth in pixels 
+
+
+
+
+
 **Note**: If this texture is 2D the depth is always 1 pixels 
+
+
+
+
+
+
+
+
+
+
+
+
+
 **Reimplemented by**: [Engine::Graphics::Framebuffer::getDepth](/Classes/classEngine_1_1Graphics_1_1Framebuffer.md#function-getdepth), [Engine::Graphics::Texture3D::getDepth](/Classes/classEngine_1_1Graphics_1_1Texture3D.md#function-getdepth), [Engine::Graphics::Texture2D::getDepth](/Classes/classEngine_1_1Graphics_1_1Texture2D.md#function-getdepth)
 
 
@@ -153,7 +241,29 @@ virtual int getHeight() const =0
 Returns the height of the texture in pixels. 
 
 
+
+
+
+
 **Return**: Height in pixels 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 **Reimplemented by**: [Engine::Graphics::Framebuffer::getHeight](/Classes/classEngine_1_1Graphics_1_1Framebuffer.md#function-getheight), [Engine::Graphics::Texture3D::getHeight](/Classes/classEngine_1_1Graphics_1_1Texture3D.md#function-getheight), [Engine::Graphics::Texture2D::getHeight](/Classes/classEngine_1_1Graphics_1_1Texture2D.md#function-getheight)
 
 
@@ -168,7 +278,29 @@ virtual int getWidth() const =0
 Returns the width of the texture in pixels. 
 
 
+
+
+
+
 **Return**: Width in pixels 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 **Reimplemented by**: [Engine::Graphics::Framebuffer::getWidth](/Classes/classEngine_1_1Graphics_1_1Framebuffer.md#function-getwidth), [Engine::Graphics::Texture3D::getWidth](/Classes/classEngine_1_1Graphics_1_1Texture3D.md#function-getwidth), [Engine::Graphics::Texture2D::getWidth](/Classes/classEngine_1_1Graphics_1_1Texture2D.md#function-getwidth)
 
 
@@ -179,6 +311,28 @@ Returns the width of the texture in pixels.
 ```cpp
 virtual ~Texture() =default
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -201,6 +355,28 @@ explicit Texture(
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Protected Attributes Documentation
 
 ### variable type
@@ -208,6 +384,28 @@ explicit Texture(
 ```cpp
 Type type;
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -228,6 +426,28 @@ bool loaded {false};
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -------------------------------
 
-Updated on  9 November 2019 at 18:41:32 UTC
+Updated on 10 November 2019 at 22:25:54 UTC

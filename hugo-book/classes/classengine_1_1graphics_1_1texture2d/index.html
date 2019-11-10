@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="Engine::Graphics::Texture2D" />
+<meta property="og:description" content="Engine::Graphics::Texture2D Module: An example game engine / Graphical related classes
+#include &lt;Texture2D.hpp&gt;
+Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://matusnovak.github.io/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture2d/" />
+
+<title>Engine::Graphics::Texture2D | Doxydown Example</title>
+<link rel="icon" href="/doxydown/hugo-book/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/doxydown/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
+
+
+<script defer src="/doxydown/hugo-book/search.min.4e76d9fbcb92890b7abfa921871376cec84080ad9d431cd7d49fa5b57fe8125c.js" integrity="sha256-TnbZ&#43;8uSiQt6v6khhxN2zshAgK2dQxzX1J&#43;ltX/oElw="></script>
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://matusnovak.github.io/doxydown/hugo-book"><span>Doxydown Example</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" placeholder="Search" id="book-search-input" maxlength="64" />
+  <div class="book-search-spinner spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+    
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/doxydown/hugo-book/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Engine::Graphics::Texture2D</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="engine-graphics-texture2d">Engine::Graphics::Texture2D</h1>
+
+<p><strong>Module:</strong> <strong><a href="/doxydown/hugo-book/modules/group__engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxydown/hugo-book/modules/group__graphics/">Graphical related classes</a></strong></p>
+
+<p><code>#include &lt;Texture2D.hpp&gt;</code></p>
+
+<p>Inherits from <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a>, <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1handle/">Engine::Graphics::Handle</a></p>
+
+<h2 id="public-functions">Public Functions</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>virtual int</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getdepth">getDepth</a></strong>() const override <br>Returns the depth of the texture in pixels.</td>
+</tr>
+
+<tr>
+<td>virtual int</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getheight">getHeight</a></strong>() const override <br>Returns the height of the texture in pixels.</td>
+</tr>
+
+<tr>
+<td>virtual int</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getwidth">getWidth</a></strong>() const override <br>Returns the width of the texture in pixels.</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-~texture2d">~Texture2D</a></strong>()</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-texture2d">Texture2D</a></strong>(int width, int height, uint8_t * data, <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Texture::Type</a> type =<a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#enumvalue-rgba8">Texture::Type::RGBA8</a>)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="additional-inherited-members">Additional inherited members</h2>
+
+<p><strong>Public Types inherited from <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>enum</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA8, RGB8, RGBA16, RGB16, RGBA32, RGB32 }</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Public Functions inherited from <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>bool</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Protected Attributes inherited from <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/">Engine::Graphics::Texture</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
+</tr>
+
+<tr>
+<td>bool</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Public Functions inherited from <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1handle/">Engine::Graphics::Handle</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>int</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-gethandle">getHandle</a></strong>() const</td>
+</tr>
+
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-~handle">~Handle</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Protected Attributes inherited from <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1handle/">Engine::Graphics::Handle</a></strong></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>int</td>
+<td><strong><a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1handle/#variable-handle">handle</a></strong></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+
+<h3 id="function-getdepth">function getDepth</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getDepth() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>
+</code></pre></div>
+<p>Returns the depth of the texture in pixels.</p>
+
+<p><strong>Return</strong>: Depth in pixels</p>
+
+<p><strong>Note</strong>: If this texture is 2D the depth is always 1 pixels</p>
+
+<p><strong>Reimplements</strong>: <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getdepth">Engine::Graphics::Texture::getDepth</a></p>
+
+<h3 id="function-getheight">function getHeight</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getHeight() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>
+</code></pre></div>
+<p>Returns the height of the texture in pixels.</p>
+
+<p><strong>Return</strong>: Height in pixels</p>
+
+<p><strong>Reimplements</strong>: <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getheight">Engine::Graphics::Texture::getHeight</a></p>
+
+<h3 id="function-getwidth">function getWidth</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getWidth() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>
+</code></pre></div>
+<p>Returns the width of the texture in pixels.</p>
+
+<p><strong>Return</strong>: Width in pixels</p>
+
+<p><strong>Reimplements</strong>: <a href="/doxydown/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getwidth">Engine::Graphics::Texture::getWidth</a></p>
+
+<h3 id="function-texture2d">function ~Texture2D</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Texture2D()
+</code></pre></div>
+<h3 id="function-texture2d-1">function Texture2D</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Texture2D(
+    <span style="color:#66d9ef">int</span> width,
+    <span style="color:#66d9ef">int</span> height,
+    <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> data,
+    Texture<span style="color:#f92672">::</span>Type type <span style="color:#f92672">=</span>Texture<span style="color:#f92672">::</span>Type<span style="color:#f92672">::</span>RGBA8
+)
+</code></pre></div>
+<hr />
+
+<p>Updated on 10 November 2019 at 22:25:43 UTC</p>
+</article>
+
+      
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc levels-6 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#engine-graphics-texture2d">Engine::Graphics::Texture2D</a>
+<ul>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#additional-inherited-members">Additional inherited members</a></li>
+<li><a href="#public-functions-documentation">Public Functions Documentation</a>
+<ul>
+<li><a href="#function-getdepth">function getDepth</a></li>
+<li><a href="#function-getheight">function getHeight</a></li>
+<li><a href="#function-getwidth">function getWidth</a></li>
+<li><a href="#function-texture2d">function ~Texture2D</a></li>
+<li><a href="#function-texture2d-1">function Texture2D</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+
+  
+</body>
+
+</html>
