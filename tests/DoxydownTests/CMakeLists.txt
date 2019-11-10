@@ -30,15 +30,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Doxydown Catch2 fmt json)
 
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 target_compile_definitions(${PROJECT_NAME} PRIVATE IMPORT_DIR="${CMAKE_SOURCE_DIR}/example/doxygen/xml")
-
-# Copy additional files
-file(GLOB JSONS ${CMAKE_CURRENT_SOURCE_DIR}/*.json)
-foreach(JSON ${JSONS})
-  get_filename_component(FILENAME, ${JSON} NAME)
-  add_custom_command(
-          TARGET ${PROJECT_NAME} POST_BUILD
-          COMMAND ${CMAKE_COMMAND} -E copy
-                  ${JSON}
-                  ${CMAKE_CURRENT_BINARY_DIR}/${FILENAME}
-  )
-endforeach()

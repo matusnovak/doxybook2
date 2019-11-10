@@ -517,15 +517,4 @@ TEST_CASE("Load everything") {
         CHECK(location.line == 17);
 #endif
     }
-    SECTION("Validate generated JSON with pre-defined one") {
-#if defined(__linux__) || defined(__APPLE__)
-        const auto json = jsonFile("classEngine_1_1Audio_1_1AudioBuffer.json");
-        auto data = jsonConverter.getAsJson(*index.find("classEngine_1_1Audio_1_1AudioBuffer"));
-#else
-        const auto json = jsonFile("class_engine_1_1_audio_1_1_audio_buffer.json");
-        auto data = jsonConverter.getAsJson(*index.find("classEngine_1_1Audio_1_1AudioBuffer"));
-#endif
-        std::cout << data.dump(2) << std::endl;
-        REQUIRE_NOTHROW(compare(json, data));
-    }
 }
