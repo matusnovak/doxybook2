@@ -269,9 +269,17 @@ void Doxydown::Node::finalize(const Config& config,
                               const TextPrinter& markdownPrinter,
                               const NodeCacheMap& cache) {
     // Sort children
-    children.sort([](const NodePtr& a, const NodePtr& b) {
-        return a->getName() > b->getName();
-    });
+    if (config.sort) {
+#ifdef _MSC_VER
+        children.sort([](const NodePtr& a, const NodePtr& b) {
+            return a->getName() < b->getName();
+        });
+#else
+        children.sort([](const NodePtr& a, const NodePtr& b) {
+            return a->getName() > b->getName();
+        });
+#endif
+    }
 
     static const auto anchorMaker = [](const Node& node) {
         if (!node.isStructured() && node.kind != Kind::MODULE) {

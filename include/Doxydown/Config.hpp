@@ -12,6 +12,9 @@ namespace Doxydown {
         // Put all stuff into categorized folders or everything into destination folder?
         bool useFolders{true};
 
+        // Sort alphabetically
+        bool sort{false};
+
         // Copy images from the Doxygen xml dir?
         bool copyImages{true};
 
