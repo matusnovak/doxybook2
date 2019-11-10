@@ -96,7 +96,7 @@ void Doxydown::Renderer::render(const std::string& name, const std::string& path
     try {
         env->render_to(file, *it->second, data);
     } catch (std::exception& e) {
-        throw EXCEPTION("Failed to render template '{}' error {}", name, e.what());
+        throw EXCEPTION("Render template '{}' error {}", name, e.what());
     }
 }
 

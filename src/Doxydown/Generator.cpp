@@ -36,7 +36,9 @@ std::string Doxydown::Generator::kindToTemplateName(const Kind kind) {
     }
 }
 
-Doxydown::Generator::Generator(const Config& config, const JsonConverter& jsonConverter, const TemplateLoader& templateLoader)
+Doxydown::Generator::Generator(const Config& config,
+                               const JsonConverter& jsonConverter,
+                               const TemplateLoader& templateLoader)
     : config(config),
       jsonConverter(jsonConverter),
       renderer(config) {
@@ -87,7 +89,7 @@ void Doxydown::Generator::summary(const Doxygen& doxygen,
         const auto name = typeToIndexTitle(config, section.type);
         const auto path = typeToIndexName(config, section.type) + "." + config.fileExt;
         ss << std::string(indent, ' ') << "* [" << name << "](" << path << ")\n";
-        summaryRecursive(ss, indent + 2, name, doxygen.getIndex(), section.filter);
+        summaryRecursive(ss, indent + 2, name, doxygen.getIndex(), section.filter, section.skip);
     }
 
     output << tmpl.substr(0, offset);
@@ -103,56 +105,126 @@ void Doxydown::Generator::summaryRecursive(std::stringstream& ss,
                                            const int indent,
                                            const std::string& folderName,
                                            const Node& node,
-                                           const Filter& filter) {
+                                           const Filter& filter,
+                                           const Filter& skip) {
 
     for (const auto& child : node.getChildren()) {
         if (filter.find(child->getKind()) != filter.end()) {
-            ss << std::string(indent, ' ') << "* [" << child->getName() << "](" << folderName << "/" << child->getRefid() << ".md)\n";
-            summaryRecursive(ss, indent, folderName, *child, filter);
+            if (skip.find(child->getKind()) == skip.end()) {
+                ss << std::string(indent, ' ') << "* [" << child->getName() << "](" << folderName << "/" << child->
+                    getRefid() << ".md)\n";
+            }
+            summaryRecursive(ss, indent, folderName, *child, filter, skip);
         }
     }
 }
 
-void Doxydown::Generator::printRecursively(const Node& parent, const Filter& filter) {
+void Doxydown::Generator::printRecursively(const Node& parent, const Filter& filter, const Filter& skip) {
     for (const auto& child : parent.getChildren()) {
         if (filter.find(child->getKind()) != filter.end()) {
-            nlohmann::json data = jsonConverter.getAsJson(*child);
+            if (skip.find(child->getKind()) == skip.end()) {
+                nlohmann::json data = jsonConverter.getAsJson(*child);
 
-            std::string path;
-            if (child->getKind() == Kind::PAGE && child->getRefid() == config.mainPageName) {
-                path = child->getRefid() + "." + config.fileExt;
-            } else {
-                path = Path::join(
-                    typeToFolderName(config, child->getType()),
-                    child->getRefid() + "." + config.fileExt
+                std::string path;
+                if (child->getKind() == Kind::PAGE && child->getRefid() == config.mainPageName) {
+                    path = child->getRefid() + "." + config.fileExt;
+                } else if (config.useFolders) {
+                    path = Path::join(
+                        typeToFolderName(config, child->getType()),
+                        child->getRefid() + "." + config.fileExt
+                    );
+                } else {
+                    path = child->getRefid() + "." + config.fileExt;
+                }
+
+                renderer.render(
+                    kindToTemplateName(child->getKind()),
+                    path,
+                    data
                 );
             }
-
-            renderer.render(
-                kindToTemplateName(child->getKind()),
-                path,
-                data
-            );
-            printRecursively(*child, filter);
+            printRecursively(*child, filter, skip);
         }
     }
 }
 
-void Doxydown::Generator::print(const Doxygen& doxygen, const Filter& filter) {
-    printRecursively(doxygen.getIndex(), filter);
+void Doxydown::Generator::jsonRecursively(const Node& parent, const Filter& filter, const Filter& skip) {
+    for (const auto& child : parent.getChildren()) {
+        if (filter.find(child->getKind()) != filter.end()) {
+            if (skip.find(child->getKind()) == skip.end()) {
+                nlohmann::json data = jsonConverter.getAsJson(*child);
+
+                const auto path = Path::join(
+                    config.outputDir,
+                    child->getRefid() + ".json"
+                );
+
+                Log::i("Rendering {}", path);
+                std::ofstream file(path);
+                if (!file) throw EXCEPTION("File {} failed to open for writing", path);
+
+                file << data.dump(2);
+            }
+            jsonRecursively(*child, filter, skip);
+        }
+    }
 }
 
-void Doxydown::Generator::printIndex(const Doxygen& doxygen, const FolderCategory type, const Filter& filter) {
+void Doxydown::Generator::print(const Doxygen& doxygen, const Filter& filter, const Filter& skip) {
+    printRecursively(doxygen.getIndex(), filter, skip);
+}
+
+void Doxydown::Generator::json(const Doxygen& doxygen, const Filter& filter, const Filter& skip) {
+    jsonRecursively(doxygen.getIndex(), filter, skip);
+}
+
+void Doxydown::Generator::manifest(const Doxygen& doxygen) {
+    auto data = manifestRecursively(doxygen.getIndex());
+    const auto path = Path::join(
+        config.outputDir,
+        "manifest.json"
+    );
+
+    Log::i("Rendering {}", path);
+    std::ofstream file(path);
+    if (!file) throw EXCEPTION("File {} failed to open for writing", path);
+
+    file << data.dump(2);
+}
+
+nlohmann::json Doxydown::Generator::manifestRecursively(const Node& node) {
+    auto ret = nlohmann::json::array();
+    for (const auto& child : node.getChildren()) {
+        nlohmann::json data;
+        data["kind"] = toStr(child->getKind());
+        data["name"] = child->getName();
+        if (child->getKind() == Kind::MODULE)
+            data["title"] = child->getTitle();
+        data["url"] = child->getUrl();
+
+        ret.push_back(std::move(data));
+        auto test = manifestRecursively(*child);
+        if (!test.empty()) {
+            ret.back()["children"] = std::move(test);
+        }
+    }
+    return ret;
+}
+
+void Doxydown::Generator::printIndex(const Doxygen& doxygen,
+                                     const FolderCategory type,
+                                     const Filter& filter,
+                                     const Filter& skip) {
     const auto path = typeToIndexName(config, type) + "." + config.fileExt;
 
     nlohmann::json data;
-    data["children"] = buildIndexRecursively(doxygen.getIndex(), filter);
+    data["children"] = buildIndexRecursively(doxygen.getIndex(), filter, skip);
     data["title"] = typeToIndexTitle(config, type);
     data["name"] = typeToIndexTitle(config, type);
     renderer.render(typeToIndexTemplate(config, type), path, data);
 }
 
-nlohmann::json Doxydown::Generator::buildIndexRecursively(const Node& node, const Filter& filter) {
+nlohmann::json Doxydown::Generator::buildIndexRecursively(const Node& node, const Filter& filter, const Filter& skip) {
     auto json = nlohmann::json::array();
     std::vector<const Node*> sorted;
     sorted.reserve(node.getChildren().size());
@@ -170,7 +242,7 @@ nlohmann::json Doxydown::Generator::buildIndexRecursively(const Node& node, cons
     for (const auto& child : sorted) {
         auto data = jsonConverter.convert(*child);
 
-        auto test = buildIndexRecursively(*child, filter);
+        auto test = buildIndexRecursively(*child, filter, skip);
         if (!test.empty()) {
             data["children"] = std::move(test);
         }

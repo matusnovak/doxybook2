@@ -98,12 +98,16 @@ void Doxydown::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::IMAGE: {
-            data.ss << "![" << node->extra << "](" << config.baseUrl << config.imagesFolder << "/" << node->extra << ")";
+            const auto prefix = config.baseUrl + config.imagesFolder;
+            data.ss << "![" << node->extra << "](" << prefix << (prefix.empty() ? "" : "/") << node->extra << ")";
             data.eol = false;
             if (config.copyImages) {
                 std::ifstream src(Utils::join(inputDir, node->extra), std::ios::binary);
-                if (src) {
+                if (src && config.useFolders && !config.imagesFolder.empty()) {
                     std::ofstream dst(Utils::join(config.outputDir, config.imagesFolder, node->extra), std::ios::binary);
+                    if (dst) dst << src.rdbuf();
+                } else if (src) {
+                    std::ofstream dst(Utils::join(config.outputDir, node->extra), std::ios::binary);
                     if (dst) dst << src.rdbuf();
                 }
             }

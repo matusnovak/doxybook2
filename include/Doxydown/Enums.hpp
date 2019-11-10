@@ -72,7 +72,7 @@ namespace Doxydown {
     extern bool isKindLanguage(Kind kind);
     extern bool isKindStructured(Kind kind);
     extern bool isKindFile(Kind kind);
-    extern const std::string& typeToFolderName(const Config& config, Type type);
+    extern std::string typeToFolderName(const Config& config, Type type);
     extern std::string typeToIndexName(const Config& config, FolderCategory type);
     extern std::string typeToIndexTemplate(const Config& config, FolderCategory type);
     extern std::string typeToIndexTitle(const Config& config, FolderCategory type);

@@ -30,3 +30,13 @@
     --output example/vuepress ^
     --config example/vuepress/.doxydown/config.json
 
+"build\src\DoxydownCli\Debug\doxydown.exe" ^
+    --input example/doxygen/xml ^
+    --output example/gitbook ^
+    --config example/gitbook/.doxydown/config.json
+
+"build\src\DoxydownCli\Debug\doxydown.exe" ^
+    --input example/doxygen/xml ^
+    --output example/json ^
+    --json \
+    --config-data "{""linkSuffix:"" """"}"

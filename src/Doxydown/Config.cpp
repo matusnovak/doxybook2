@@ -46,6 +46,7 @@ static const std::vector<ConfigArg> configArgs = {
     ConfigArg(&Doxydown::Config::linkSuffix, "linkSuffix"),
     ConfigArg(&Doxydown::Config::linkLowercase, "linkLowercase"),
     ConfigArg(&Doxydown::Config::copyImages, "copyImages"),
+    ConfigArg(&Doxydown::Config::useFolders, "useFolders"),
     ConfigArg(&Doxydown::Config::imagesFolder, "imagesFolder"),
     ConfigArg(&Doxydown::Config::mainPageName, "mainPageName"),
     ConfigArg(&Doxydown::Config::mainPageInRoot, "mainPageInRoot"),
@@ -80,10 +81,26 @@ void Doxydown::loadConfig(Config& config, const std::string& path) {
     std::ifstream file(path);
     if (!file) throw EXCEPTION("Failed to open file {} for reading", path);
     std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    const auto json = nlohmann::json::parse(str);
+    try {
+        const auto json = nlohmann::json::parse(str);
 
-    for (const auto& arg : configArgs) {
-        arg.loadFunc(arg, config, json);
+        for (const auto& arg : configArgs) {
+            arg.loadFunc(arg, config, json);
+        }
+    } catch (std::exception& e) {
+        throw EXCEPTION("Failed to pase config error {}", e.what());
+    }
+}
+
+void Doxydown::loadConfigData(Config& config, const std::string& src) {
+    try {
+        const auto json = nlohmann::json::parse(src);
+
+        for (const auto& arg : configArgs) {
+            arg.loadFunc(arg, config, json);
+        }
+    } catch (std::exception& e) {
+        throw EXCEPTION("Failed to pase config error {}", e.what());
     }
 }
 

@@ -268,11 +268,24 @@ void Doxydown::Node::finalize(const Config& config,
                               const TextPrinter& plainPrinter,
                               const TextPrinter& markdownPrinter,
                               const NodeCacheMap& cache) {
+    // Sort children
+    children.sort([](const NodePtr& a, const NodePtr& b) {
+        return a->getName() > b->getName();
+    });
+
     static const auto anchorMaker = [](const Node& node) {
         if (!node.isStructured() && node.kind != Kind::MODULE) {
             return "#" + Utils::toLower(toStr(node.kind)) + "-" + Utils::safeAnchorId(node.name);
         } else {
             return std::string("");
+        }
+    };
+
+    static const auto urlFolderMaker = [](const Config& config, const Node& node) {
+        if (config.useFolders) {
+            return config.baseUrl + typeToFolderName(config, node.type) + "/";
+        } else {
+            return config.baseUrl;
         }
     };
 
@@ -291,22 +304,22 @@ void Doxydown::Node::finalize(const Config& config,
                     if (config.mainPageInRoot) {
                         return config.baseUrl;
                     } else {
-                        return config.baseUrl + typeToFolderName(config, node.type);
+                        return urlFolderMaker(config, node);
                     }
                 }
-                return config.baseUrl + typeToFolderName(config, node.type) + "/" +
+                return urlFolderMaker(config, node) +
                        Utils::stripAnchor(node.refid) + config.linkSuffix +
                        anchorMaker(node);
             }
             case Kind::ENUMVALUE: {
                 const auto n = node.parent->parent;
-                return config.baseUrl + typeToFolderName(config, n->type) + "/" +
+                return urlFolderMaker(config, *n) +
                        Utils::stripAnchor(n->refid) + config.linkSuffix +
                        anchorMaker(node);
             }
             default: {
                 const auto n = node.parent;
-                return config.baseUrl + typeToFolderName(config, n->type) + "/" +
+                return urlFolderMaker(config, *n) +
                        Utils::stripAnchor(n->refid) + config.linkSuffix +
                        anchorMaker(node);
             }

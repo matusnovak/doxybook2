@@ -1,0 +1,801 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "authors": [
+    "Matus Novak "
+  ],
+  "baseClasses": null,
+  "brief": "_A simple audio buffer to hold PCM samples_",
+  "bugs": [
+    "Some random bug \nSome other random bug "
+  ],
+  "category": "classes",
+  "const": false,
+  "date": [
+    "2017-2019 "
+  ],
+  "definition": "",
+  "details": "\nLorem ipsum donor \n\n```cpp\n// Some random code\nusing namespace Engine;\n\nAudio::AudioBuffer buffer(\"path/to/file.wav\");\nbuffer.play(audioManager);\n```\n\n More detailed description! \n\n```cpp\n// Another code sample\n#include <iostream>\nusing namespace Engine;\nAudio::AudioBuffer buffer(\"path/to/file.wav\");\nstd::cout << buffer.play(...) << std::endl;\n```",
+  "explicit": false,
+  "friends": [
+    {
+      "abstract": false,
+      "anchor": "#friend-audiomanager",
+      "argsString": "",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "friend class AudioManager",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::AudioManager",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "location": {
+        "bodyFile": "src/Audio/AudioBuffer.hpp",
+        "bodyStart": 94,
+        "column": 1,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 94
+      },
+      "name": "AudioManager",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a85edaa7e5c3ae68dabadd5373890591e",
+      "static": false,
+      "strong": false,
+      "title": "AudioManager",
+      "type": "class",
+      "typePlain": "class",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#friend-audiomanager",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-audiodosomething",
+      "argsString": "(AudioBuffer &buffer)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "void Audio::doSomething",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::Audio::doSomething",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "location": {
+        "column": 13,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 95
+      },
+      "name": "Audio::doSomething",
+      "override": false,
+      "params": [
+        {
+          "name": "buffer",
+          "type": "[AudioBuffer](Classes/class_engine_1_1_audio_1_1_audio_buffer.md) &",
+          "typePlain": "AudioBuffer &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f",
+      "static": false,
+      "strong": false,
+      "title": "Audio::doSomething",
+      "type": "void",
+      "typePlain": "void",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#friend-audiodosomething",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "fullname": "Engine::Audio::AudioBuffer",
+  "hasAdditionalMembers": false,
+  "hasDetails": true,
+  "includes": "<AudioBuffer.hpp>",
+  "inline": false,
+  "kind": "class",
+  "location": {
+    "bodyEnd": 99,
+    "bodyFile": "src/Audio/AudioBuffer.hpp",
+    "bodyStart": 44,
+    "column": 18,
+    "file": "src/Audio/AudioBuffer.hpp",
+    "line": 44
+  },
+  "module": {
+    "anchor": "",
+    "brief": "This is a brief description to the audio group. ",
+    "category": "groups",
+    "fullname": "Audio",
+    "kind": "module",
+    "name": "Audio",
+    "refid": "group___audio",
+    "summary": "This is a brief description to the audio group. ",
+    "title": "Audio buffers and devices",
+    "url": "Modules/group___audio.md",
+    "visibility": "public"
+  },
+  "moduleBreadcrumbs": [
+    {
+      "anchor": "",
+      "brief": "This is a brief description to the engine group. ",
+      "category": "groups",
+      "fullname": "Engine",
+      "kind": "module",
+      "name": "Engine",
+      "refid": "group___engine",
+      "summary": "This is a brief description to the engine group. ",
+      "title": "An example game engine",
+      "url": "Modules/group___engine.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "This is a brief description to the audio group. ",
+      "category": "groups",
+      "fullname": "Audio",
+      "kind": "module",
+      "name": "Audio",
+      "refid": "group___audio",
+      "summary": "This is a brief description to the audio group. ",
+      "title": "Audio buffers and devices",
+      "url": "Modules/group___audio.md",
+      "visibility": "public"
+    }
+  ],
+  "name": "Engine::Audio::AudioBuffer",
+  "note": [
+    "Some random note ",
+    "Some second random note "
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "",
+    "category": "namespaces",
+    "fullname": "Engine::Audio",
+    "kind": "namespace",
+    "name": "Engine::Audio",
+    "refid": "namespace_engine_1_1_audio",
+    "title": "Engine::Audio",
+    "url": "Namespaces/namespace_engine_1_1_audio.md",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "",
+      "brief": "This namespace contains all of the necessary engine components. ",
+      "category": "namespaces",
+      "fullname": "Engine",
+      "kind": "namespace",
+      "name": "Engine",
+      "refid": "namespace_engine",
+      "summary": "This namespace contains all of the necessary engine components. ",
+      "title": "Engine",
+      "url": "Namespaces/namespace_engine.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "Engine::Audio",
+      "kind": "namespace",
+      "name": "Engine::Audio",
+      "refid": "namespace_engine_1_1_audio",
+      "title": "Engine::Audio",
+      "url": "Namespaces/namespace_engine_1_1_audio.md",
+      "visibility": "public"
+    }
+  ],
+  "pre": [
+    "First initialize the system. "
+  ],
+  "protectedAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-playing",
+      "category": "attributes",
+      "const": false,
+      "definition": "bool Engine::Audio::AudioBuffer::playing",
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::playing",
+      "hasDetails": false,
+      "initializer": "{false}",
+      "inline": false,
+      "kind": "variable",
+      "location": {
+        "bodyFile": "src/Audio/AudioBuffer.hpp",
+        "bodyStart": 98,
+        "column": 6,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 98
+      },
+      "name": "playing",
+      "override": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ae7ef7f8f4cecc7f19bbe01319f8aa37d",
+      "static": false,
+      "strong": false,
+      "title": "playing",
+      "type": "bool",
+      "typePlain": "bool",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#variable-playing",
+      "visibility": "protected"
+    }
+  ],
+  "protectedFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-getdata",
+      "argsString": "()",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "float* Engine::Audio::AudioBuffer::getData",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::getData",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 7,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 97
+      },
+      "name": "getData",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a93722a1dc8b7340e2c9b5e78d50151f5",
+      "static": false,
+      "strong": false,
+      "title": "getData",
+      "type": "float *",
+      "typePlain": "float *",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#function-getdata",
+      "virtual": false,
+      "visibility": "protected"
+    }
+  ],
+  "publicClasses": [
+    {
+      "anchor": "",
+      "brief": "Use this to populate the buffer. ",
+      "category": "classes",
+      "fullname": "Engine::Audio::AudioBuffer::TypedAudioData",
+      "kind": "struct",
+      "name": "Engine::Audio::AudioBuffer::TypedAudioData",
+      "refid": "struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data",
+      "summary": "Use this to populate the buffer. ",
+      "title": "Engine::Audio::AudioBuffer::TypedAudioData",
+      "url": "Classes/struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data.md",
+      "visibility": "public"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-~audiobuffer",
+      "argsString": "()=default",
+      "brief": "[Audio::AudioBuffer](Classes/class_engine_1_1_audio_1_1_audio_buffer.md) destructor. ",
+      "category": "functions",
+      "const": false,
+      "default": true,
+      "definition": "virtual Engine::Audio::AudioBuffer::~AudioBuffer",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::~AudioBuffer",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 9,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 72
+      },
+      "name": "~AudioBuffer",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1aa89013946a6eb2907227ed4c26f052b9",
+      "static": false,
+      "strong": false,
+      "summary": "Audio::AudioBuffer destructor. ",
+      "title": "~AudioBuffer",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#function-~audiobuffer",
+      "virtual": true,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-stop",
+      "argsString": "(AudioManager &manager) const",
+      "brief": "Stop this buffer playing. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void Engine::Audio::AudioBuffer::stop",
+      "deleted": false,
+      "exceptionsList": [
+        {
+          "name": "[Exception](Classes/class_engine_1_1_exception.md)",
+          "text": "If this buffer is already stopped "
+        }
+      ],
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::stop",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 6,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 84
+      },
+      "name": "stop",
+      "override": false,
+      "paramList": [
+        {
+          "name": "manager",
+          "text": "Which manager to stop the sound with "
+        }
+      ],
+      "params": [
+        {
+          "name": "manager",
+          "type": "[AudioManager](Classes/class_engine_1_1_audio_1_1_audio_manager.md) &",
+          "typePlain": "AudioManager &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a387243170ec71207123ae326c7dabd1a",
+      "static": false,
+      "strong": false,
+      "summary": "Stop this buffer playing. ",
+      "title": "stop",
+      "type": "void",
+      "typePlain": "void",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#function-stop",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-setdata",
+      "argsString": "(const TypedAudioData &data)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "void Engine::Audio::AudioBuffer::setData",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::setData",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 6,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 92
+      },
+      "name": "setData",
+      "override": false,
+      "params": [
+        {
+          "name": "data",
+          "type": "const [TypedAudioData](Classes/struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data.md) &",
+          "typePlain": "const TypedAudioData &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a560600772af8cde2fd5dc45e1780789c",
+      "static": false,
+      "strong": false,
+      "title": "setData",
+      "type": "void",
+      "typePlain": "void",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#function-setdata",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-play",
+      "argsString": "(AudioManager &manager) const",
+      "brief": "Play this buffer. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void Engine::Audio::AudioBuffer::play",
+      "deleted": false,
+      "exceptionsList": [
+        {
+          "name": "[Exception](Classes/class_engine_1_1_exception.md)",
+          "text": "If this buffer is already playing "
+        }
+      ],
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::play",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 6,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 78
+      },
+      "name": "play",
+      "override": false,
+      "paramList": [
+        {
+          "name": "manager",
+          "text": "Which manager to play the sound with "
+        }
+      ],
+      "params": [
+        {
+          "name": "manager",
+          "type": "[AudioManager](Classes/class_engine_1_1_audio_1_1_audio_manager.md) &",
+          "typePlain": "AudioManager &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a801f334ffcb3d943f1804ea73e1516ea",
+      "static": false,
+      "strong": false,
+      "summary": "Play this buffer. ",
+      "title": "play",
+      "type": "void",
+      "typePlain": "void",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#function-play",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-loop",
+      "argsString": "(AudioManager &manager) const",
+      "brief": "Loop this buffer forever. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void Engine::Audio::AudioBuffer::loop",
+      "deleted": false,
+      "exceptionsList": [
+        {
+          "name": "[Exception](Classes/class_engine_1_1_exception.md)",
+          "text": "If this buffer is already looping "
+        }
+      ],
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::loop",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 6,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 91
+      },
+      "name": "loop",
+      "note": [
+        "This will loop forever until you call stop "
+      ],
+      "override": false,
+      "paramList": [
+        {
+          "name": "manager",
+          "text": "Which manager to loop the sound with "
+        }
+      ],
+      "params": [
+        {
+          "name": "manager",
+          "type": "[AudioManager](Classes/class_engine_1_1_audio_1_1_audio_manager.md) &",
+          "typePlain": "AudioManager &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a821933214a00331f80c1c58cee859eec",
+      "static": false,
+      "strong": false,
+      "summary": "Loop this buffer forever. ",
+      "title": "loop",
+      "type": "void",
+      "typePlain": "void",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#function-loop",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-audiobuffer",
+      "argsString": "(const std::string &filename)",
+      "brief": "Constructor for [Audio::AudioBuffer](Classes/class_engine_1_1_audio_1_1_audio_buffer.md). ",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Engine::Audio::AudioBuffer::AudioBuffer",
+      "deleted": false,
+      "explicit": true,
+      "fullname": "Engine::Audio::AudioBuffer::AudioBuffer",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "location": {
+        "column": 10,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 68
+      },
+      "name": "AudioBuffer",
+      "override": false,
+      "params": [
+        {
+          "name": "filename",
+          "type": "const std::string &",
+          "typePlain": "const std::string &"
+        }
+      ],
+      "pureVirtual": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ab3f8002fc80d9bff50cfb6095e10a721",
+      "static": false,
+      "strong": false,
+      "summary": "Constructor for Audio::AudioBuffer. ",
+      "title": "AudioBuffer",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#function-audiobuffer",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "publicTypes": [
+    {
+      "abstract": false,
+      "anchor": "#enum-type",
+      "brief": "Different type of audio formats. ",
+      "category": "types",
+      "const": false,
+      "definition": "",
+      "enumvalues": [
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-unknown",
+          "category": "types",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "fullname": "Type::UNKNOWN",
+          "hasDetails": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 56,
+            "bodyFile": "src/Audio/AudioBuffer.hpp",
+            "bodyStart": 49,
+            "column": 16,
+            "file": "src/Audio/AudioBuffer.hpp",
+            "line": 49
+          },
+          "name": "UNKNOWN",
+          "override": false,
+          "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3",
+          "static": false,
+          "strong": true,
+          "title": "UNKNOWN",
+          "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#enumvalue-unknown",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-int8",
+          "category": "types",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "fullname": "Type::INT8",
+          "hasDetails": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 56,
+            "bodyFile": "src/Audio/AudioBuffer.hpp",
+            "bodyStart": 49,
+            "column": 16,
+            "file": "src/Audio/AudioBuffer.hpp",
+            "line": 49
+          },
+          "name": "INT8",
+          "override": false,
+          "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052aee9d73311ff0658494edfff14c3ec1e3",
+          "static": false,
+          "strong": true,
+          "title": "INT8",
+          "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#enumvalue-int8",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-int32",
+          "category": "types",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "fullname": "Type::INT32",
+          "hasDetails": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 56,
+            "bodyFile": "src/Audio/AudioBuffer.hpp",
+            "bodyStart": 49,
+            "column": 16,
+            "file": "src/Audio/AudioBuffer.hpp",
+            "line": 49
+          },
+          "name": "INT32",
+          "override": false,
+          "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a6495adba09844fac8eeb0aba86e6f1bf",
+          "static": false,
+          "strong": true,
+          "title": "INT32",
+          "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#enumvalue-int32",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-int24",
+          "category": "types",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "fullname": "Type::INT24",
+          "hasDetails": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 56,
+            "bodyFile": "src/Audio/AudioBuffer.hpp",
+            "bodyStart": 49,
+            "column": 16,
+            "file": "src/Audio/AudioBuffer.hpp",
+            "line": 49
+          },
+          "name": "INT24",
+          "override": false,
+          "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a9003f0c99274c2b98d6804fc0e39bced",
+          "static": false,
+          "strong": true,
+          "title": "INT24",
+          "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#enumvalue-int24",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-int16",
+          "category": "types",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "fullname": "Type::INT16",
+          "hasDetails": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 56,
+            "bodyFile": "src/Audio/AudioBuffer.hpp",
+            "bodyStart": 49,
+            "column": 16,
+            "file": "src/Audio/AudioBuffer.hpp",
+            "line": 49
+          },
+          "name": "INT16",
+          "override": false,
+          "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a5f90af42814c0a419d715d43ae54fd7a",
+          "static": false,
+          "strong": true,
+          "title": "INT16",
+          "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#enumvalue-int16",
+          "visibility": "public"
+        },
+        {
+          "abstract": false,
+          "anchor": "#enumvalue-float32",
+          "category": "types",
+          "const": false,
+          "definition": "",
+          "explicit": false,
+          "fullname": "Type::FLOAT32",
+          "hasDetails": false,
+          "inline": false,
+          "kind": "enumvalue",
+          "location": {
+            "bodyEnd": 56,
+            "bodyFile": "src/Audio/AudioBuffer.hpp",
+            "bodyStart": 49,
+            "column": 16,
+            "file": "src/Audio/AudioBuffer.hpp",
+            "line": 49
+          },
+          "name": "FLOAT32",
+          "override": false,
+          "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a967d280b5c16d95f2947647dd2ca6cc2",
+          "static": false,
+          "strong": true,
+          "title": "FLOAT32",
+          "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#enumvalue-float32",
+          "visibility": "public"
+        }
+      ],
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::Type",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "enum",
+      "location": {
+        "bodyEnd": 56,
+        "bodyFile": "src/Audio/AudioBuffer.hpp",
+        "bodyStart": 49,
+        "column": 16,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 49
+      },
+      "name": "Type",
+      "override": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052",
+      "static": false,
+      "strong": true,
+      "summary": "Different type of audio formats. ",
+      "title": "Type",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#enum-type",
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#typedef-audiodata",
+      "category": "types",
+      "const": false,
+      "definition": "typedef Utils::ArrayView<uint8_t> Engine::Audio::AudioBuffer::AudioData",
+      "explicit": false,
+      "fullname": "Engine::Audio::AudioBuffer::AudioData",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "typedef",
+      "location": {
+        "bodyFile": "src/Audio/AudioBuffer.hpp",
+        "bodyStart": 57,
+        "column": 26,
+        "file": "src/Audio/AudioBuffer.hpp",
+        "line": 57
+      },
+      "name": "AudioData",
+      "override": false,
+      "refid": "class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1",
+      "static": false,
+      "strong": false,
+      "title": "AudioData",
+      "type": "[Utils::ArrayView](Classes/class_engine_1_1_utils_1_1_array_view.md)< uint8_t >",
+      "typePlain": "Utils::ArrayView< uint8_t >",
+      "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md#typedef-audiodata",
+      "visibility": "public"
+    }
+  ],
+  "refid": "class_engine_1_1_audio_1_1_audio_buffer",
+  "static": false,
+  "strong": false,
+  "summary": "A simple audio buffer to hold PCM samples",
+  "tests": [
+    "Some random test description "
+  ],
+  "title": "Engine::Audio::AudioBuffer",
+  "todos": [
+    "Some random todo "
+  ],
+  "url": "Classes/class_engine_1_1_audio_1_1_audio_buffer.md",
+  "visibility": "public",
+  "warning": [
+    "Some random warning "
+  ]
+}

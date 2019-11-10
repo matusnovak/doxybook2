@@ -11,60 +11,6 @@
 
 using namespace Doxydown;
 
-static const auto klassEngineGraphicsTexture =
-R"({
-  "abstract": true,
-  "baseClasses": [
-    {
-      "brief": "",
-      "kind": "class",
-      "name": "Engine::Graphics::Handle",
-      "prot": "protected",
-      "refid": "class_engine_1_1_graphics_1_1_handle",
-      "virt": "non-virtual"
-    }
-  ],
-  "brief": "This is a base texture class that serves as a base class for other texture types. ",
-  "derivedClasses": [
-    {
-      "brief": "",
-      "kind": "class",
-      "name": "Engine::Graphics::Framebuffer",
-      "prot": "public",
-      "refid": "class_engine_1_1_graphics_1_1_framebuffer",
-      "virt": "non-virtual"
-    },
-    {
-      "brief": "",
-      "kind": "class",
-      "name": "Engine::Graphics::Texture2D",
-      "prot": "public",
-      "refid": "class_engine_1_1_graphics_1_1_texture2_d",
-      "virt": "non-virtual"
-    },
-    {
-      "brief": "",
-      "kind": "class",
-      "name": "Engine::Graphics::Texture3D",
-      "prot": "public",
-      "refid": "class_engine_1_1_graphics_1_1_texture3_d",
-      "virt": "non-virtual"
-    }
-  ],
-  "kind": "interface",
-  "location": {
-    "bodyEnd": 34,
-    "bodyFile": "include/Graphics/Texture.hpp",
-    "bodyStart": 13,
-    "column": 1,
-    "file": "include/Graphics/Texture.hpp",
-    "line": 13
-  },
-  "name": "Engine::Graphics::Texture",
-  "prot": "public",
-  "refid": "class_engine_1_1_graphics_1_1_texture",
-  "static": false
-})"_json;
 
 typedef std::unordered_map<std::string, std::string> RelationMap;
 
@@ -423,6 +369,12 @@ static void traverse(const Node& node, const std::function<void(const Node*, con
     }
 }
 
+static nlohmann::json jsonFile(const std::string& path) {
+    std::ifstream file(path);
+    std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    return nlohmann::json::parse(str);
+}
+
 TEST_CASE("Load everything") {
     Config config;
     config.copyImages = false;
@@ -565,9 +517,14 @@ TEST_CASE("Load everything") {
         CHECK(location.line == 17);
 #endif
     }
-    /*SECTION("Validate generated JSON with pre-defined one") {
-        auto data = JsonConverter::convert(*index.find("class_engine_1_1_audio_1_1_audio_buffer"));
-        std::cout << data.dump(2) << std::endl;
-        //REQUIRE_NOTHROW(compare(klassEngineGraphicsTexture, data));
-    }*/
+    SECTION("Validate generated JSON with pre-defined one") {
+#if defined(__linux__) || defined(__APPLE__)
+        const auto json = jsonFile("classEngine_1_1Audio_1_1AudioBuffer.json");
+        auto data = jsonConverter.getAsJson(*index.find("classEngine_1_1Audio_1_1AudioBuffer"));
+#else
+        const auto json = jsonFile("class_engine_1_1_audio_1_1_audio_buffer.json");
+        auto data = jsonConverter.getAsJson(*index.find("class_engine_1_1_audio_1_1_audio_buffer"));
+#endif
+        REQUIRE_NOTHROW(compare(json, data));
+    }
 }

@@ -234,7 +234,9 @@ bool Doxydown::isKindFile(const Kind kind) {
     }
 }
 
-const std::string& Doxydown::typeToFolderName(const Config& config, const Type type) {
+std::string Doxydown::typeToFolderName(const Config& config, const Type type) {
+    if (!config.useFolders) return "";
+
     switch (type) {
         case Type::MODULES: {
             return config.folderGroupsName;
@@ -261,19 +263,29 @@ const std::string& Doxydown::typeToFolderName(const Config& config, const Type t
 std::string Doxydown::typeToIndexName(const Config& config, const FolderCategory type) {
     switch (type) {
         case FolderCategory::MODULES: {
-            return config.indexInFolders ? config.folderGroupsName + "/" + config.indexGroupsName : config.indexGroupsName;
+            return config.indexInFolders && config.useFolders
+                       ? config.folderGroupsName + "/" + config.indexGroupsName
+                       : config.indexGroupsName;
         }
         case FolderCategory::CLASSES: {
-            return config.indexInFolders ? config.folderClassesName + "/" + config.indexClassesName : config.indexClassesName;
+            return config.indexInFolders && config.useFolders
+                       ? config.folderClassesName + "/" + config.indexClassesName
+                       : config.indexClassesName;
         }
         case FolderCategory::NAMESPACES: {
-            return config.indexInFolders ? config.folderNamespacesName + "/" + config.indexNamespacesName : config.indexNamespacesName;
+            return config.indexInFolders && config.useFolders
+                       ? config.folderNamespacesName + "/" + config.indexNamespacesName
+                       : config.indexNamespacesName;
         }
         case FolderCategory::FILES: {
-            return config.indexInFolders ? config.folderFilesName + "/" + config.indexFilesName : config.indexFilesName;
+            return config.indexInFolders && config.useFolders
+                       ? config.folderFilesName + "/" + config.indexFilesName
+                       : config.indexFilesName;
         }
         case FolderCategory::PAGES: {
-            return config.indexInFolders ? config.folderRelatedPagesName + "/" + config.indexRelatedPagesName : config.indexRelatedPagesName;
+            return config.indexInFolders && config.useFolders
+                       ? config.folderRelatedPagesName + "/" + config.indexRelatedPagesName
+                       : config.indexRelatedPagesName;
         }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
@@ -306,24 +318,24 @@ std::string Doxydown::typeToIndexTemplate(const Config& config, const FolderCate
 
 std::string Doxydown::typeToIndexTitle(const Config& config, const FolderCategory type) {
     switch (type) {
-    case FolderCategory::MODULES: {
-        return config.indexGroupsTitle;
-    }
-    case FolderCategory::CLASSES: {
-        return config.indexClassesTitle;
-    }
-    case FolderCategory::NAMESPACES: {
-        return config.indexNamespacesTitle;
-    }
-    case FolderCategory::FILES: {
-        return config.indexFilesTitle;
-    }
-    case FolderCategory::PAGES: {
-        return config.indexRelatedPagesTitle;
-    }
-    default: {
-        throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
-    }
+        case FolderCategory::MODULES: {
+            return config.indexGroupsTitle;
+        }
+        case FolderCategory::CLASSES: {
+            return config.indexClassesTitle;
+        }
+        case FolderCategory::NAMESPACES: {
+            return config.indexNamespacesTitle;
+        }
+        case FolderCategory::FILES: {
+            return config.indexFilesTitle;
+        }
+        case FolderCategory::PAGES: {
+            return config.indexRelatedPagesTitle;
+        }
+        default: {
+            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
+        }
     }
 }
 

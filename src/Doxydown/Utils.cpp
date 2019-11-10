@@ -9,6 +9,7 @@
 #include <chrono>
 #include <regex>
 #include <sstream>
+#include <dirent.h>
 #include <Doxydown/Utils.hpp>
 #include "ExceptionUtils.hpp"
 
@@ -75,6 +76,12 @@ std::vector<std::string> Doxydown::Utils::split(const std::string& str, const st
 }
 
 void Doxydown::Utils::createDirectory(const std::string& path) {
+    auto* dir = opendir(path.c_str());
+    if (dir) {
+        closedir(dir);
+        return;
+    }
+
 #ifdef _WIN32
     if (!CreateDirectoryA(path.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError()) {
         throw EXCEPTION("Failed to create directory {} error {}", path, int(GetLastError()));

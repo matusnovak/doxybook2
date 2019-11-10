@@ -157,7 +157,8 @@ jobs:
             doxydown \
               --input /tmp/workspace/doxygen/xml \
               --output ./content \
-              --config ./.doxydown/config.json 
+              --config ./.doxydown/config.json \
+              --templates ./.doxydown/templates
             hugo
             cp -r ./public /tmp/workspace/hugo-book
 

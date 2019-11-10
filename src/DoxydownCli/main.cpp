@@ -9,8 +9,8 @@
 #include <Doxydown/TemplateFolderLoader.hpp>
 #include <Doxydown/Doxygen.hpp>
 #include <Doxydown/Log.hpp>
-#include "Doxydown/Path.hpp"
-#include "Doxydown/Utils.hpp"
+#include <Doxydown/Path.hpp>
+#include <Doxydown/Utils.hpp>
 
 static argagg::parser argparser {{
     {
@@ -26,6 +26,10 @@ static argagg::parser argparser {{
         "Path to the target folder where to generate markdown files", 1
     },
     {
+        "json", {"-j", "--json"},
+        "Generate JSON only, no markdown, into the output path. This will also generate index.json.", 0
+    },
+    {
         "config", {"-c", "--config"},
         "Optional path to a config json file.", 1
     },
@@ -39,7 +43,7 @@ static argagg::parser argparser {{
     },
     {
         "generate-templates", {"--generate-templates"},
-        "Generate template files given a path to folder (folder must exist).", 1
+        "Generate template files given a path to a target folder.", 1
     },
     {
         "debug-templates", {"--debug-templates"},
@@ -62,6 +66,10 @@ static const Generator::Filter INDEX_CLASS_FILTER = {
     Kind::CLASS,
     Kind::STRUCT,
     Kind::UNION
+};
+
+static const Generator::Filter INDEX_CLASS_FILTER_SKIP = {
+    Kind::NAMESPACE
 };
 
 static const Generator::Filter INDEX_NAMESPACES_FILTER = {
@@ -121,8 +129,17 @@ int main(const int argc, char* argv[]) {
                 loadConfig(config, args["config"].as<std::string>());
             }
 
+            if (args["config-data"]) {
+                loadConfigData(config, args["config-data"].as<std::string>());
+            }
+
             if (args["debug-templates"]) {
                 config.debugTemplateJson = true;
+            }
+
+            if (args["json"]) {
+                config.useFolders = false;
+                config.imagesFolder = "";
             }
 
             config.outputDir = args["output"].as<std::string>();
@@ -137,45 +154,60 @@ int main(const int argc, char* argv[]) {
                                                                  : std::make_unique<TemplateDefaultLoader>();
             Generator generator(config, jsonConverter, *templateLoader);
 
-            static const std::array<Type, 5> ALL_GROUPS = {
-                Type::CLASSES,
-                Type::NAMESPACES,
-                Type::FILES,
-                Type::MODULES,
-                Type::PAGES
-            };
-            for (const auto& g : ALL_GROUPS) {
-                Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
+            if (config.useFolders) {
+                static const std::array<Type, 5> ALL_GROUPS = {
+                    Type::CLASSES,
+                    Type::NAMESPACES,
+                    Type::FILES,
+                    Type::MODULES,
+                    Type::PAGES
+                };
+                for (const auto& g : ALL_GROUPS) {
+                    Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
+                }
+                if (!config.imagesFolder.empty()) {
+                    Utils::createDirectory(Path::join(config.outputDir, config.imagesFolder));
+                }
             }
-            Utils::createDirectory(Path::join(config.outputDir, config.imagesFolder));
 
+            Log::i("Loading...");
             doxygen.load(args["input"].as<std::string>());
+            Log::i("Finalizing...");
             doxygen.finalize(plainPrinter, markdownPrinter);
+            Log::i("Rendering...");
 
-            if (args["summary-input"] && args["summary-output"]) {
-                generator.summary(
-                    doxygen, 
-                    args["summary-input"].as<std::string>(), 
-                    args["summary-output"].as<std::string>(),
-                    {
-                        {FolderCategory::CLASSES, INDEX_CLASS_FILTER},
-                        {FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER},
-                        {FolderCategory::MODULES, INDEX_MODULES_FILTER},
-                        {FolderCategory::FILES, INDEX_FILES_FILTER},
-                        {FolderCategory::PAGES, INDEX_FILES_PAGES}
-                    }
-                );
+            if (args["json"]) {
+                generator.json(doxygen, LANGUAGE_FILTER, {});
+                generator.json(doxygen, INDEX_FILES_FILTER, {});
+                generator.json(doxygen, INDEX_FILES_PAGES, {});
+
+                generator.manifest(doxygen);
+            } else {
+                if (args["summary-input"] && args["summary-output"]) {
+                    generator.summary(
+                        doxygen, 
+                        args["summary-input"].as<std::string>(), 
+                        args["summary-output"].as<std::string>(),
+                        {
+                            {FolderCategory::CLASSES, INDEX_CLASS_FILTER, INDEX_CLASS_FILTER_SKIP},
+                            {FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {}},
+                            {FolderCategory::MODULES, INDEX_MODULES_FILTER, {}},
+                            {FolderCategory::FILES, INDEX_FILES_FILTER, {}},
+                            {FolderCategory::PAGES, INDEX_FILES_PAGES, {}}
+                        }
+                    );
+                }
+
+                generator.print(doxygen, LANGUAGE_FILTER, {});
+                generator.print(doxygen, INDEX_FILES_FILTER, {});
+                generator.print(doxygen, INDEX_FILES_PAGES, {});
+
+                generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER, {});
+                generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {});
+                generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER, {});
+                generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER, {});
+                generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_FILES_PAGES, {});
             }
-
-            generator.print(doxygen, LANGUAGE_FILTER);
-            generator.print(doxygen, INDEX_FILES_FILTER);
-            generator.print(doxygen, INDEX_FILES_PAGES);
-
-            generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER);
-            generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER);
-            generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER);
-            generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER);
-            generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_FILES_PAGES);
         } else {
             std::cerr << argparser;
             return EXIT_FAILURE;
