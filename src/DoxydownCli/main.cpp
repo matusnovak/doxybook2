@@ -34,6 +34,10 @@ static argagg::parser argparser {{
         "Optional path to a config json file.", 1
     },
     {
+        "config-data", {"--config-data"},
+        "Optional json data to override config.", 1
+    },
+    {
         "templates", {"-t", "--templates"},
         "Optional path to a folder with templates.", 1
     },
