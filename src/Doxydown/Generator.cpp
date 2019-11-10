@@ -204,15 +204,9 @@ nlohmann::json Doxydown::Generator::manifestRecursively(const Node& node) {
 
         ret.push_back(std::move(data));
 
-        if (node.isStructured() &&
-            node.getParent()->getKind() != Kind::PAGE && 
-            node.getParent()->getKind() != Kind::DIR && 
-            node.getParent()->getKind() != Kind::MODULE) {
-
-            auto test = manifestRecursively(*child);
-            if (!test.empty()) {
-                ret.back()["children"] = std::move(test);
-            }
+        auto test = manifestRecursively(*child);
+        if (!test.empty()) {
+            ret.back()["children"] = std::move(test);
         }
     }
     return ret;
