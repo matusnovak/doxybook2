@@ -29,7 +29,7 @@ build_script:
   - cmd: cd build & cmake --build . --target INSTALL --config "MinSizeRel" || exit 1
 
 test_script:
-  - cmd: cd example & doxygen || exit 1 & cd ..
+  - cmd: cd example & "C:\Program Files\doxygen\bin\doxygen.exe" || exit 1 & cd ..
   - cmd: cd build & ctest --verbose -C "MinSizeRel" || exit 1
 
 before_deploy:
