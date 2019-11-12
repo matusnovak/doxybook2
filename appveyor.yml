@@ -26,7 +26,7 @@ install:
   - cmd: cd build & cmake -G %GENERATOR% -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DBUILD_TESTS=OFF -DDOXYBOOK_STATIC_STDLIB=ON -DDOXYBOOK_TESTS=ON -DCMAKE_INSTALL_PREFIX="..\install" -DCMAKE_BUILD_TYPE=MinSizeRel .. || exit 1
 
 build_script:
-  - cmd: cd build & cmake --build . --target INSTALL -C "MinSizeRel" || exit 1
+  - cmd: cd build & cmake --build . --target INSTALL --config "MinSizeRel" || exit 1
 
 test_script:
   - cmd: cd example & doxygen || exit 1 & cd ..
