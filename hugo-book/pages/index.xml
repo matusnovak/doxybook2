@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pages on Doxydown Example</title>
-    <link>https://matusnovak.github.io/doxydown/hugo-book/pages/</link>
-    <description>Recent content in Pages on Doxydown Example</description>
+    <title>Pages on Doxybook2 Example</title>
+    <link>https://matusnovak.github.io/doxybook2/hugo-book/pages/</link>
+    <description>Recent content in Pages on Doxybook2 Example</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://matusnovak.github.io/doxydown/hugo-book/pages/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://matusnovak.github.io/doxybook2/hugo-book/pages/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Advanced Usage</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-book/pages/advanced/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-book/pages/advanced/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-book/pages/advanced/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/advanced/</guid>
       <description>Advanced Usage This page is for advanced users. Make sure you have first read the introduction.
-Updated on 10 November 2019 at 22:25:43 UTC</description>
+Updated on 12 November 2019 at 20:17:08 UTC</description>
     </item>
     
     <item>
       <title>Bug List</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-book/pages/bug/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-book/pages/bug/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-book/pages/bug/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/bug/</guid>
       <description>Bug List Class Engine::Audio::AudioBuffer
  Some random bug Some other random bug
   Class Engine::Graphics::Texture
- This has some weird bug too!  Updated on 10 November 2019 at 22:25:43 UTC</description>
+ This has some weird bug too!  Updated on 12 November 2019 at 20:17:08 UTC</description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-book/pages/intro/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-book/pages/intro/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-book/pages/intro/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/intro/</guid>
       <description>Introduction This page introduces the user to the topic. Now you can proceed to the advanced section.
-Updated on 10 November 2019 at 22:25:43 UTC</description>
+Updated on 12 November 2019 at 20:17:08 UTC</description>
     </item>
     
     <item>
       <title>Test List</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-book/pages/test/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-book/pages/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-book/pages/test/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/test/</guid>
       <description>Test List Class Engine::Audio::AudioBuffer
- Some random test description  Updated on 10 November 2019 at 22:25:43 UTC</description>
+ Some random test description  Updated on 12 November 2019 at 20:17:08 UTC</description>
     </item>
     
     <item>
       <title>Todo List</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-book/pages/todo/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-book/pages/todo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-book/pages/todo/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/todo/</guid>
       <description>Todo List Class Engine::Audio::AudioBuffer
- Some random todo  Updated on 10 November 2019 at 22:25:43 UTC</description>
+ Some random todo  Updated on 12 November 2019 at 20:17:08 UTC</description>
     </item>
     
   </channel>

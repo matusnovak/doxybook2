@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Modules on Doxydown Example</title>
-    <link>https://matusnovak.github.io/doxydown/hugo-learn/modules/</link>
-    <description>Recent content in Modules on Doxydown Example</description>
+    <title>Modules on Doxybook2 Example</title>
+    <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/</link>
+    <description>Recent content in Modules on Doxybook2 Example</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://matusnovak.github.io/doxydown/hugo-learn/modules/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://matusnovak.github.io/doxybook2/hugo-learn/modules/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>An example game engine</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__engine/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__engine/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__engine/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__engine/</guid>
       <description>This is a brief description to the engine group.</description>
     </item>
     
     <item>
       <title>Audio buffers and devices</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__audio/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__audio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__audio/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__audio/</guid>
       <description>This is a brief description to the audio group.</description>
     </item>
     
     <item>
       <title>Generic assets</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__assets/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__assets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__assets/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__assets/</guid>
       <description>This is a brief description to the assets group.</description>
     </item>
     
     <item>
       <title>Graphical related classes</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__graphics/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__graphics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__graphics/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__graphics/</guid>
       <description>This is a brief description to the graphics group.</description>
     </item>
     
     <item>
       <title>Some useful utilities</title>
-      <link>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__utils/</link>
+      <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__utils/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://matusnovak.github.io/doxydown/hugo-learn/modules/group__utils/</guid>
+      <guid>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__utils/</guid>
       <description>This is a brief description to the utils group.</description>
     </item>
     

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['doxydown_20example_222',['Doxydown Example',['../index.html',1,'']]]
+  ['doxybook2_20example_222',['Doxybook2 Example',['../index.html',1,'']]]
 ];
