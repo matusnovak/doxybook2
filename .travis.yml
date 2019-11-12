@@ -53,7 +53,7 @@ script:
   - bash travis.sh || travis_terminate 1;
   - stat doxybook2.zip
   - if [[ -n "$TRAVIS_TAG" ]]; then
-      mv doxybook2.zip doxybook2-$TRAVIS_TAG-$MACHINE.zip;
+      mv doxybook2.zip doxybook2-$MACHINE-$TRAVIS_TAG.zip;
     fi
 
 deploy:

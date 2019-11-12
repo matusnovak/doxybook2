@@ -19,7 +19,7 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 if (LINUX OR MINGW)
   target_link_libraries(${PROJECT_NAME} PUBLIC -static-libgcc -static-libstdc++)
 endif()
-set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxybook")
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxybook2")
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src/Doxybook)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 

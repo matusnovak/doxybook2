@@ -10,11 +10,20 @@ cd example
 doxygen
 cd ..
 
+if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+  DOXYBOOK_TESTS=ON
+  DOXYBOOK_STATIC_STDLIB=ON
+else
+  DOXYBOOK_TESTS=OFF
+  DOXYBOOK_STATIC_STDLIB=OFF
+fi
+
 # Build
 mkdir build
 cd build
 cmake -G "Unix Makefiles" \
-    -DDOXYDOWN_TESTS=ON \
+    -DDOXYBOOK_TESTS=$DOXYBOOK_TESTS \
+    -DDOXYBOOK_STATIC_STDLIB=$DOXYBOOK_STATIC_STDLIB \
     -DBUILD_TESTS=OFF \
     -DBUILD_TESTING=OFF \
     -DBUILD_SHARED_LIBS=OFF \
@@ -24,7 +33,9 @@ cmake -G "Unix Makefiles" \
 cmake --build . --target install
 
 # Test
-ctest --verbose
+if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+  ctest --verbose
+fi
 
 # Package
 cd ../install
