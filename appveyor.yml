@@ -23,14 +23,14 @@ install:
   - cmd: git submodule update --init
   - cmd: mkdir build
   - cmd: choco install doxygen.install -y
-  - cmd: cd build & cmake -G %GENERATOR% -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DBUILD_TESTS=OFF -DDOXYBOOK_STATIC_STDLIB=ON -DDOXYBOOK_TESTS=ON -DCMAKE_INSTALL_PREFIX="..\install" -DCMAKE_BUILD_TYPE=MinSizeRel .. || exit 1
+  - cmd: cd build & cmake -G %GENERATOR% -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DBUILD_TESTS=OFF -DDOXYBOOK_STATIC_STDLIB=ON -DDOXYBOOK_TESTS=ON -DCMAKE_INSTALL_PREFIX="..\install" -DCMAKE_BUILD_TYPE=MinSizeRel .. || exit 1 & cd ..
 
 build_script:
-  - cmd: cd build & cmake --build . --target INSTALL --config "MinSizeRel" || exit 1
+  - cmd: cd build & cmake --build . --target INSTALL --config "MinSizeRel" || exit 1 & cd ..
 
 test_script:
   - cmd: cd example & "C:\Program Files\doxygen\bin\doxygen.exe" || exit 1 & cd ..
-  - cmd: cd build & ctest --verbose -C "MinSizeRel" || exit 1
+  - cmd: cd build & ctest --verbose -C "MinSizeRel" || exit 1 & cd ..
 
 before_deploy:
   - cmd: if defined APPVEYOR_REPO_TAG_NAME 7z.exe a "doxybook2-windows-%ARCH%-%APPVEYOR_REPO_TAG_NAME%.zip" .\install\* || exit 1
