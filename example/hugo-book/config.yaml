@@ -1,6 +1,6 @@
-baseURL: https://matusnovak.github.io/doxydown/hugo-book
+baseURL: https://matusnovak.github.io/doxybook2/hugo-book
 languageCode: en-us
-title: Doxydown Example
+title: Doxybook2 Example
 theme: hugo-book
 pygmentsCodeFences: true
 params:

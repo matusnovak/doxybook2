@@ -1,4 +1,4 @@
-# Doxydown
+# Doxybook2
 
 Doxygen XML to Markdown (or JSON) converter.
 

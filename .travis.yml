@@ -51,18 +51,18 @@ install:
 
 script: 
   - bash travis.sh || travis_terminate 1;
-  - stat doxydown.zip
+  - stat doxybook2.zip
   - if [[ -n "$TRAVIS_TAG" ]]; then
-      mv doxydown.zip doxydown-$TRAVIS_TAG-$MACHINE.zip;
+      mv doxybook2.zip doxybook2-$TRAVIS_TAG-$MACHINE.zip;
     fi
 
 deploy:
   provider: releases
   api_key: "$GITHUB_OAUTH_TOKEN"
   file_glob: true
-  file: "doxydown-*.zip"
+  file: "doxybook2-*.zip"
   skip_cleanup: true
   on:
     tags: true
-    repo: matusnovak/doxydown
+    repo: matusnovak/doxybook2
     branch: master

@@ -1,6 +1,6 @@
-baseURL: https://matusnovak.github.io/doxydown/hugo-learn
+baseURL: https://matusnovak.github.io/doxybook2/hugo-learn
 languageCode: en-us
-title: Doxydown Example
+title: Doxybook2 Example
 theme: hugo-theme-learn
 pygmentsUseClasses: false
 pygmentsCodeFences: true

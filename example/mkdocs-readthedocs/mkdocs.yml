@@ -1,4 +1,4 @@
-site_name: Doxydown Example
+site_name: Doxybook2 Example
 theme:
   name: 'readthedocs'
 markdown_extensions:

@@ -6,7 +6,7 @@ install/
 .vs/
 *.kdev4
 *~
-doxydown-*.zip
+doxybook2-*.zip
 
 example/**/*.md
 example/**/images/

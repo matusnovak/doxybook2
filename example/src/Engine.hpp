@@ -27,9 +27,9 @@ namespace Engine {
 	extern std::string getVersion();
 }
 
-/*! \mainpage Doxydown Example
+/*! \mainpage Doxybook2 Example
 
-This is a mainpage of Doxydown example output. This file is generated from
+This is a mainpage of Doxybook2 example output. This file is generated from
 `\mainpage` command within `Engine.hpp` file.
 
 ## Images:
@@ -66,7 +66,7 @@ This is a mainpage of Doxydown example output. This file is generated from
 
 ## Hyper links:
 
-- [GitHub repository](https://github.com/matusnovak/doxydown)
+- [GitHub repository](https://github.com/matusnovak/doxybook2)
 
 ## Code blocks:
 

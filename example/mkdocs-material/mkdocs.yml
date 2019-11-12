@@ -1,12 +1,12 @@
-site_name: Doxydown Example
+site_name: Doxybook2 Example
 theme:
   name: 'material'
 markdown_extensions:
   - admonition
 nav:
-  - Home: /doxydown/mkdocs-bootstrap/
-  - Classes: /doxydown/mkdocs-bootstrap/Classes
-  - Namespaces: /doxydown/mkdocs-bootstrap/Namespaces
-  - Modules: /doxydown/mkdocs-bootstrap/Modules
-  - Files: /doxydown/mkdocs-bootstrap/Files
-  - Related Pages: /doxydown/mkdocs-bootstrap/Pages
+  - Home: /doxybook2/mkdocs-bootstrap/
+  - Classes: /doxybook2/mkdocs-bootstrap/Classes
+  - Namespaces: /doxybook2/mkdocs-bootstrap/Namespaces
+  - Modules: /doxybook2/mkdocs-bootstrap/Modules
+  - Files: /doxybook2/mkdocs-bootstrap/Files
+  - Related Pages: /doxybook2/mkdocs-bootstrap/Pages

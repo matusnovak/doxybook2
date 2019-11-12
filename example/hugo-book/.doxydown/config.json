@@ -1,5 +1,5 @@
 {
-  "baseUrl": "/doxydown/hugo-book/",
+  "baseUrl": "/doxybook2/hugo-book/",
   "indexInFolders": true,
   "linkSuffix": "/",
   "linkLowercase": true,

@@ -1,0 +1,28 @@
+version: '{build}'
+branches:
+  except:
+    - gh-pages
+platform: Any CPU
+environment:
+  matrix:
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    COMPILER: mingw
+    TOOLSET: w64-mingw32
+    ARCH: x86_64
+    GENERATOR: '"MinGW Makefiles"'
+    MINGW_DIR_BIN: C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin
+    CMAKE_C_COMPILER: C:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/gcc.exe
+    CMAKE_CXX_COMPILER: C:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe
+install:
+  - cmd: git submodule update --init
+  - cmd: mkdir build
+  - cmd: set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+  - cmd: set PATH=%MINGW_DIR_BIN%;%PATH%
+build_script:
+  - cmd: cd build & cmake -G %GENERATOR% -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DBUILD_TESTS=OFF -DDOXYBOOK_STATIC_STDLIB=ON -DDOXYBOOK_TESTS=ON .. || exit 1
+
+build_script:
+  - cmd: cd build & cmake --build . || exit 1
+
+test_script:
+  - cmd: cd build & ctest --verbose || exit 1

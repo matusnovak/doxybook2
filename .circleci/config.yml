@@ -33,7 +33,7 @@ jobs:
               -DBUILD_TESTING=OFF \
               -DBUILD_SHARED_LIBS=OFF \
               -DCMAKE_BUILD_TYPE=MinSizeRel \
-              -DCMAKE_INSTALL_PREFIX=/tmp/workspace/doxydown \
+              -DCMAKE_INSTALL_PREFIX=/tmp/workspace/doxybook2 \
               ..
             cmake --build . --target install
 
@@ -54,7 +54,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - doxydown
+            - doxybook2
             - doxygen
 
   example_mkdocs:
@@ -72,17 +72,17 @@ jobs:
           command: |
             sudo apt-get update
             sudo pip install mkdocs mkdocs-material mkdocs-bootstrap
-            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
-            sudo chmod +x /usr/local/bin/doxydown
+            sudo cp /tmp/workspace/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
+            sudo chmod +x /usr/local/bin/doxybook2
 
       - run:
           name: MkDocs - ReadTheDocs
           command: |
             cd ./example/mkdocs-readthedocs
-            doxydown \
+            doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs \
-              --config ./.doxydown/config.json
+              --config ./.doxybook2/config.json
             mkdocs build
             cp -r ./site /tmp/workspace/mkdocs-readthedocs
 
@@ -90,10 +90,10 @@ jobs:
           name: MkDocs - Material
           command: |
             cd ./example/mkdocs-material
-            doxydown \
+            doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs \
-              --config ./.doxydown/config.json
+              --config ./.doxybook2/config.json
             mkdocs build
             cp -r ./site /tmp/workspace/mkdocs-material
 
@@ -101,10 +101,10 @@ jobs:
           name: MkDocs - Bootstrap
           command: |
             cd ./example/mkdocs-bootstrap
-            doxydown \
+            doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs \
-              --config ./.doxydown/config.json
+              --config ./.doxybook2/config.json
             mkdocs build
             cp -r ./site /tmp/workspace/mkdocs-bootstrap
             
@@ -130,8 +130,8 @@ jobs:
           command: |
             wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_extended_0.59.1_Linux-64bit.deb
             sudo dpkg -i hugo_extended_0.59.1_Linux-64bit.deb
-            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
-            sudo chmod +x /usr/local/bin/doxydown
+            sudo cp /tmp/workspace/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
+            sudo chmod +x /usr/local/bin/doxybook2
 
       - run:
           name: Submodules
@@ -142,11 +142,11 @@ jobs:
           name: Hugo - Learn
           command: |
             cd ./example/hugo-learn
-            doxydown \
+            doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output ./content \
-              --config ./.doxydown/config.json \
-              --templates ./.doxydown/templates
+              --config ./.doxybook2/config.json \
+              --templates ./.doxybook2/templates
             hugo
             cp -r ./public /tmp/workspace/hugo-learn
 
@@ -154,11 +154,11 @@ jobs:
           name: Hugo - Book
           command: |
             cd ./example/hugo-book
-            doxydown \
+            doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output ./content \
-              --config ./.doxydown/config.json \
-              --templates ./.doxydown/templates
+              --config ./.doxybook2/config.json \
+              --templates ./.doxybook2/templates
             hugo
             cp -r ./public /tmp/workspace/hugo-book
 
@@ -182,17 +182,17 @@ jobs:
           name: Dependencies
           command: |
             sudo npm install vuepress -g
-            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
-            sudo chmod +x /usr/local/bin/doxydown
+            sudo cp /tmp/workspace/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
+            sudo chmod +x /usr/local/bin/doxybook2
 
       - run:
           name: Vuepress
           command: |
             cd ./example/vuepress
-            doxydown \
+            doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output . \
-              --config ./.doxydown/config.json
+              --config ./.doxybook2/config.json
             sudo vuepress build
             cp -r ./.vuepress/dist /tmp/workspace/vuepress
 
@@ -215,17 +215,17 @@ jobs:
           name: Dependencies
           command: |
             sudo npm install gitbook-cli -g
-            sudo cp /tmp/workspace/doxydown/bin/doxydown /usr/local/bin/doxydown
-            sudo chmod +x /usr/local/bin/doxydown
+            sudo cp /tmp/workspace/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
+            sudo chmod +x /usr/local/bin/doxybook2
 
       - run:
           name: GitBook
           command: |
             cd ./example/gitbook
-            doxydown \
+            doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output . \
-              --config ./.doxydown/config.json \
+              --config ./.doxybook2/config.json \
               --summary-input SUMMARY.md.tmpl \
               --summary-output SUMMARY.md
             gitbook build
