@@ -6,33 +6,36 @@ branches:
 
 environment:
   matrix:
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-    COMPILER: mingw
-    TOOLSET: w64-mingw32
-    ARCH: x86_64
-    GENERATOR: '"MinGW Makefiles"'
-    MINGW_DIR_BIN: C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin
-    CMAKE_C_COMPILER: C:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/gcc.exe
-    CMAKE_CXX_COMPILER: C:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    COMPILER: msvc
+    MINGW_DIR_BIN: ''
+    TOOLSET: vc15
+    ARCH: win32
+    GENERATOR: '"Visual Studio 15 2017"'
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    COMPILER: msvc
+    MINGW_DIR_BIN: ''
+    TOOLSET: vc15
+    ARCH: win64
+    GENERATOR: '"Visual Studio 15 2017 Win64"'
 
 install:
   - cmd: git submodule update --init
   - cmd: mkdir build
   - cmd: choco install doxygen.install -y
-  - cmd: set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-  - cmd: set PATH=%MINGW_DIR_BIN%;%PATH%
   - cmd: cd build & cmake -G %GENERATOR% -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DBUILD_TESTS=OFF -DDOXYBOOK_STATIC_STDLIB=ON -DDOXYBOOK_TESTS=ON -DCMAKE_INSTALL_PREFIX="..\install" -DCMAKE_BUILD_TYPE=MinSizeRel .. || exit 1
 
 build_script:
-  - cmd: cd build & cmake --build . --target install || exit 1
+  - cmd: cd build & cmake --build . --target INSTALL -C "MinSizeRel" || exit 1
 
 test_script:
-  - cmd: cd build & ctest --verbose || exit 1
+  - cmd: cd example & doxygen || exit 1 & cd ..
+  - cmd: cd build & ctest --verbose -C "MinSizeRel" || exit 1
 
 before_deploy:
   - cmd: if defined APPVEYOR_REPO_TAG_NAME 7z.exe a "doxybook2-windows-%ARCH%-%APPVEYOR_REPO_TAG_NAME%.zip" .\install\* || exit 1
   - ps: appveyor SetVariable -Name APPVEYOR_REPO_COMMIT_MESSAGE -Value (git log -1 --pretty=%B)
-  
+
 deploy:
   tag: $(appveyor_repo_tag_name)
   release: '$(appveyor_repo_tag_name)'
@@ -45,4 +48,4 @@ deploy:
     secure: v0O1cgji7Mq0HR1/JXfNHuq6UfShlRHB30VIcE2rECanDDm9OzdzMCe9s7L48Ofv
   on:
     branch: master
-    appveyor_repo_tag: false
+    APPVEYOR_REPO_TAG: true
