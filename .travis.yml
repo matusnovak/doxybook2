@@ -56,9 +56,14 @@ script:
       mv doxybook2.zip doxybook2-$MACHINE-$TRAVIS_TAG.zip;
     fi
 
+before_deploy:
+  - export COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+
 deploy:
   provider: releases
   api_key: "$GITHUB_OAUTH_TOKEN"
+  name: "$TRAVIS_TAG"
+  body: "$COMMIT_MESSAGE"
   file_glob: true
   file: "doxybook2-*.zip"
   skip_cleanup: true
