@@ -1,73 +1,62 @@
 matrix:
   include:
-    - os: linux
-      arch: amd64
-      dist: bionic
-      env:
-        - MACHINE=linux-amd64
-      language: cpp
-      compiler: gcc-8
-      addons:
-        apt:
-          packages:
-            - gcc-8
-            - cmake
-            - wget
-
-    - os: linux
-      arch: arm64
-      dist: bionic
-      env:
-        - MACHINE=linux-arm64
-      language: cpp
-      compiler: gcc-8
-      addons:
-        apt:
-          packages:
-            - gcc-8
-            - cmake
-            - wget
-
-    - os: osx
-      arch: amd64
-      env:
-        - MACHINE=osx-amd64
-      language: cpp
-      osx_image: xcode10.2
-      addons:
-        apt:
-          packages:
-            - cmake
-
+  - os: linux
+    arch: amd64
+    dist: bionic
+    env:
+      - MACHINE=linux-amd64
+    language: cpp
+    compiler: gcc-8
+    addons:
+      apt:
+        packages:
+          - gcc-8
+          - cmake
+          - wget
+  - os: linux
+    arch: arm64
+    dist: bionic
+    env:
+      - MACHINE=linux-arm64
+    language: cpp
+    compiler: gcc-8
+    addons:
+      apt:
+        packages:
+          - gcc-8
+          - cmake
+          - wget
+  - os: osx
+    arch: amd64
+    env:
+      - MACHINE=osx-amd64
+    language: cpp
+    osx_image: xcode10.2
+    addons:
+      apt:
+        packages:
+          - cmake
+env:
+  global:
+    secure: rWpj3l9/tHcU7nCKDy9Q24ZRyi6RCI6YOKNwfYzNsKTfVqNkqsRHhFfGX/z3gm345nRNPMPYLELb0rS4ZTsusuVup1CmuiO7LD8Krpki+HRDQKn/IpS8JOP4tyolIN/vk6vrTA+Z1mQghmJ9EW9AXqsFhxRQeraby0wHrSrzA2RcqJqXSyj39+Ji4ceeCc4IlrSYlKVjUIoNk5aK7IGWio0MwqWQY+NYrRx5cE4jZrI4f6+0S5mi5J6pxqIOrtdgN9WNFMjtgwjyKOjz2eu9tMD81pWzrvFhEHZwwRkG/JAPBniA2HzMygF2Y/rR/id3Cx3N8EBBDSIucuVKDxolheRvnMnIe7z4oSkE3stXY46z/FVFj/5Yu0aFpebTeozn2waB09GHybgbdmYdQHyCsdCqDPsiVoUVnReTQ2Px7ryQezmEJuPvMPvfOYqwjiFkmf7OYyUCUUBGmWEDX6hMFkuRuglC9hc0AkSEaXKP7mDiKDlDQ9vreNZHeW3mPvOLXkH6WFgjNpXvdkuXBeHMUxgjwiIzWAd9OLFyLx7K4LvUVcP6b56BcPPFbT0HtMFHTqEoFOonGAbBh6SbF/MSsqPwmiEk7G/Q3h72C1yprL4fNSNHQ2fEhy+4PkojnyRoUsaxgTmUOAG75tqETLlPApiO8dMhwPw/zB0BCdOUUAo=
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew install doxygen;
-    fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get update;
-      sudo apt-get install doxygen zip unzip -y;
-    fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install doxygen; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; sudo apt-get install doxygen zip unzip -y; fi
   - doxygen -version
-
-script: 
+script:
   - bash travis.sh || travis_terminate 1;
   - stat doxybook2.zip
-  - if [[ -n "$TRAVIS_TAG" ]]; then
-      mv doxybook2.zip doxybook2-$MACHINE-$TRAVIS_TAG.zip;
-    fi
-
+  - if [[ -n "$TRAVIS_TAG" ]]; then mv doxybook2.zip doxybook2-$MACHINE-$TRAVIS_TAG.zip; fi
 before_deploy:
   - export COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-
 deploy:
   provider: releases
   api_key: "$GITHUB_OAUTH_TOKEN"
   name: "$TRAVIS_TAG"
   body: "$COMMIT_MESSAGE"
   file_glob: true
-  file: "doxybook2-*.zip"
+  file: doxybook2-*.zip
   skip_cleanup: true
   on:
     tags: true
     repo: matusnovak/doxybook2
-    branch: master

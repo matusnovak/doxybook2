@@ -370,7 +370,7 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
     };
 
     auto hasAdditionalMembers = false;
-    if (!json["baseClasses"].empty()) {
+    if (!node.getBaseClasses().empty()) {
         for (auto& base : json["baseClasses"]) {
             if (base["refid"].empty())
                 continue;

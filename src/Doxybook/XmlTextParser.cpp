@@ -49,6 +49,7 @@ Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const s
         {"sect4", Node::Type::SECT4},
         {"sect5", Node::Type::SECT5},
         {"sect6", Node::Type::SECT6},
+        {"heading", Node::Type::SECT1}
     };
 
     const auto it = kinds.find(str);
@@ -90,6 +91,33 @@ void Doxybook2::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node
         tree.back()->children.push_back(std::move(node));
         const auto ptr = &tree.back()->children.back();
         tree.push_back(ptr);
+
+        if (e.getName() == "heading") {
+            const auto level = std::stoi(e.getAttr("level", "1"));
+            switch (level) {
+                case 1:
+                    ptr->type = Node::Type::SECT1;
+                    break;
+                case 2:
+                    ptr->type = Node::Type::SECT2;
+                    break;
+                case 3:
+                    ptr->type = Node::Type::SECT3;
+                    break;
+                case 4:
+                    ptr->type = Node::Type::SECT4;
+                    break;
+                case 5:
+                    ptr->type = Node::Type::SECT5;
+                    break;
+                case 6:
+                    ptr->type = Node::Type::SECT6;
+                    break;
+                default:
+                    ptr->type = Node::Type::SECT1; 
+                    break;
+            }
+        }
 
         switch(ptr->type) {
             case Node::Type::SIMPLESEC: {
