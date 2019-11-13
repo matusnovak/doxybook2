@@ -47,13 +47,12 @@ script:
   - bash travis.sh || travis_terminate 1;
   - stat doxybook2.zip
   - if [[ -n "$TRAVIS_TAG" ]]; then mv doxybook2.zip doxybook2-$MACHINE-$TRAVIS_TAG.zip; fi
-before_deploy:
-  - export COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+
 deploy:
   provider: releases
   api_key: "$GITHUB_OAUTH_TOKEN"
   name: "$TRAVIS_TAG"
-  body: "$COMMIT_MESSAGE"
+  body: "Release for commit $TRAVIS_COMMIT"
   file_glob: true
   file: doxybook2-*.zip
   skip_cleanup: true

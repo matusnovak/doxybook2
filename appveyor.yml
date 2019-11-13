@@ -29,9 +29,6 @@ test_script:
   - cmd: cd example & "C:\Program Files\doxygen\bin\doxygen.exe" || exit 1 & cd ..
   - cmd: cd build & ctest --verbose -C "MinSizeRel" || exit 1 & cd ..
 
-before_deploy:
-  - ps: appveyor SetVariable -Name APPVEYOR_REPO_COMMIT_MESSAGE -Value (git log -1 --pretty=%B)
-
 artifacts:
   - path: doxybook2-*.zip
     name: Compiled
@@ -39,7 +36,7 @@ artifacts:
 deploy:
   tag: $(APPVEYOR_REPO_TAG_NAME)
   release: '$(APPVEYOR_REPO_TAG_NAME)'
-  description: '$(APPVEYOR_REPO_COMMIT_MESSAGE)'
+  description: 'Release for commit $(APPVEYOR_REPO_COMMIT)'
   provider: GitHub
   artifact: /.*\.zip/
   draft: false
