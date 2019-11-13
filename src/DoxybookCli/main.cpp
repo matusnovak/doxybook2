@@ -50,7 +50,7 @@ static argagg::parser argparser {{
         "Generate template files given a path to a target folder.", 1
     },
     {
-        "debug-templates", {"--debug-templates"},
+        "debug-templates", {"-d", "--debug-templates"},
         "Debug templates. This will create JSON for each generated template.", 0
     },
     {

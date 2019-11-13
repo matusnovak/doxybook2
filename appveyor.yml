@@ -23,13 +23,13 @@ install:
 
 build_script:
   - cmd: cd build & cmake --build . --target INSTALL --config "MinSizeRel" || exit 1 & cd ..
+  - cmd: if defined APPVEYOR_REPO_TAG_NAME 7z.exe a "doxybook2-windows-%ARCH%-%APPVEYOR_REPO_TAG_NAME%.zip" .\install\* || exit 1
 
 test_script:
   - cmd: cd example & "C:\Program Files\doxygen\bin\doxygen.exe" || exit 1 & cd ..
   - cmd: cd build & ctest --verbose -C "MinSizeRel" || exit 1 & cd ..
 
 before_deploy:
-  - cmd: if defined APPVEYOR_REPO_TAG_NAME 7z.exe a "doxybook2-windows-%ARCH%-%APPVEYOR_REPO_TAG_NAME%.zip" .\install\* || exit 1
   - ps: appveyor SetVariable -Name APPVEYOR_REPO_COMMIT_MESSAGE -Value (git log -1 --pretty=%B)
 
 artifacts:

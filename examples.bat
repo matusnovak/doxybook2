@@ -1,3 +1,7 @@
+cd example
+doxygen
+cd ..
+
 "build\src\Doxybook2Cli\Debug\doxybook2.exe" ^
     --input example/doxygen/xml ^
     --output example/mkdocs-readthedocs/docs ^
