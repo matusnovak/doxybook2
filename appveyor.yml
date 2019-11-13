@@ -8,14 +8,10 @@ environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     COMPILER: msvc
-    MINGW_DIR_BIN: ''
-    TOOLSET: vc15
     ARCH: win32
     GENERATOR: '"Visual Studio 15 2017"'
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     COMPILER: msvc
-    MINGW_DIR_BIN: ''
-    TOOLSET: vc15
     ARCH: win64
     GENERATOR: '"Visual Studio 15 2017 Win64"'
 
@@ -36,9 +32,13 @@ before_deploy:
   - cmd: if defined APPVEYOR_REPO_TAG_NAME 7z.exe a "doxybook2-windows-%ARCH%-%APPVEYOR_REPO_TAG_NAME%.zip" .\install\* || exit 1
   - ps: appveyor SetVariable -Name APPVEYOR_REPO_COMMIT_MESSAGE -Value (git log -1 --pretty=%B)
 
+artifacts:
+  - path: doxybook2-*.zip
+    name: Compiled
+
 deploy:
-  tag: $(appveyor_repo_tag_name)
-  release: '$(appveyor_repo_tag_name)'
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+  release: '$(APPVEYOR_REPO_TAG_NAME)'
   description: '$(APPVEYOR_REPO_COMMIT_MESSAGE)'
   provider: GitHub
   artifact: /.*\.zip/
