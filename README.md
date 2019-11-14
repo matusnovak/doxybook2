@@ -337,7 +337,7 @@ The following is a list of config properties, their default value, and descripti
 | JSON Key | Default Value | Description |
 | -------- | ------------- | ----------- |
 | `copyImages` | `true` | Automatically copy images added into doxygen documentation via `@image`. These images will be copied into folder defined by `imagesFolder` |
-| `sort` | `true` | Sort everything alphabetically |
+| `sort` | `false` | Sort everything alphabetically. If set to false, the order will stay the same as the order in the Doxygen XML files. |
 | `imagesFolder` | `"images"` | Name of the folder where to copy images. This folder will be automatically created in the output path defined by `--output`. Leave this empty string if you want all of the images to be stored in the root directory (the output directory). |
 | `linkLowercase` | `false` | Convert all markdown links (only links to other markdown files, the C++ related stuff) into lowercase format. Hugo need this to set to `true`. |
 | `indexInFolders` | `false` | Part of the generated markdown output are extra index files. These are more of a list of classes, namespaces, modules, etc. By default these are stored in the root directory (the output diectory). Set to true if you want them to be generated in their respective folders (i.e. class index in Classes folder, etc.) | 

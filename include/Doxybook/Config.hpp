@@ -13,7 +13,7 @@ namespace Doxybook2 {
         bool useFolders{true};
 
         // Sort alphabetically
-        bool sort{true};
+        bool sort{false};
 
         // Copy images from the Doxygen xml dir?
         bool copyImages{true};
