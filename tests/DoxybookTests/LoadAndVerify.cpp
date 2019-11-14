@@ -193,6 +193,7 @@ static const RelationMap relationMap = {
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052aab97c2f5d9a173a78b47802dce7a1806", "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a2dea92647909a0657c5ca657d92ff0c2", "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3", "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052"},
+    {"class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a2c08e837f7eac332b2003c0989047ba1", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a85edaa7e5c3ae68dabadd5373890591e", "class_engine_1_1_audio_1_1_audio_buffer"},
     {"class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f", "class_engine_1_1_audio_1_1_audio_buffer"},
