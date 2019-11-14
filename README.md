@@ -21,7 +21,6 @@ _[Screenshot taken from here](https://matusnovak.github.io/doxybook2/hugo-learn/
   * [Command line arguments](#Command-line-arguments)
   * [GitBook specific usage](#GitBook-specific-usage)
   * [Generating JSON only](#Generating-JSON-only)
-  * [As a library](#As-a-library)
 * [Config](#Config)
   * [Generate default config](#Generate-default-config)
   * [Config usage](#Config-usage)
@@ -31,6 +30,7 @@ _[Screenshot taken from here](https://matusnovak.github.io/doxybook2/hugo-learn/
   * [Generate default templates](#Generate-default-templates)
   * [Using template](#Using-template)
   * [Debugging templates](#Debugging-templates)
+* [Use as a library](#As-a-library)
 * [Contributing](#Contributing)
 * [Issues](#Issues)
 * [License](#License)
@@ -236,66 +236,6 @@ You can generate JSON only files (no Markdown) by adding `--json` to the command
 doxybook2 --input ... --output ... --json
 ```
 
-### As a library
-
-You can use this tool as a C++ library. There is a pre-compiled binary executable, static library, and header files on GitHub release page. Simply add `libdoxybook.a` into your program and provide an include path to the `include` folder. You can also include the root `CMakeLists.txt` file in this repository and compile it yourself. You will also need to link `nlohmann/json`, `tinyxml2`, and `fmtlib/fmt`. The API documentation will be added in the future, but here is a simple example to get your started:
-
-```cpp
-#include <nlohmann/json.hpp>
-#include <Doxybook/Doxygen.hpp>
-#include <Doxybook/Exception.hpp>
-#include <Doxybook/JsonConverter.hpp>
-#include <Doxybook/TextMarkdownPrinter.hpp>
-#include <Doxybook/TextPlainPrinter.hpp>
-
-int main() {
-    using namespace Doxybook;
-
-    // Where the XML files are stored
-    std::string inputDir = "...";
-
-    // Config file, override any properties you want
-    Config config;
-    config.copyImages = false;
-
-    // The class that will take care of parsing XML files
-    Doxygen doxygen(config);
-
-    // There two are used to convert the XML text into markdown (or plain) text.
-    // For example: <para><strong>Hello</strong></para> is converted into **Hello**
-    TextPlainPrinter plainPrinter(config, doxygen);
-    TextMarkdownPrinter markdownPrinter(config, inputDir, doxygen);
-
-    // This is optional and can be used to convert the data in Node
-    // into nlohmann/json
-    JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
-
-    // Load and parse the XML files, may take few seconds
-    doxygen.load(inputDir);
-    doxygen.finalize(plainPrinter, markdownPrinter);
-
-    // Get the index, this holds hierarchical data. 
-    // If a class belongs to a namespace, the index will hold the namespace object,
-    // but the namespace object will hold the class, not the index.
-    const Node& index = doxygen.getIndex();
-
-    // Recursive find function via refid. The refid is from the XML files.
-    const Node* audioBuffer = index.find("class_engine_1_1_audio_1_1_audio_buffer");
-    const Node* audioBufferConstructor = index.find("classEngine_1_1Audio_1_1AudioBuffer_1ab3f8002fc80d9bff50cfb6095e10a721");
-    audioBufferConstructor->getName(); // Returns "AudioBuffer"
-
-    // Get detailed data of this specific class
-    // std::tuple<Node::Data, Node::ChildrenData>
-    auto [data, childrenDataMap] = audioBuffer->loadData(config, plainPrinter, markdownPrinter, doxygen.getCache());
-
-    // The "data" is type of Node::Data which contains
-    // detailed data for this specific class.
-    // The "childrenDataMap" is the same thing, but stored as an unordered map
-    // where a key is a pointer to the child (the class' function for example) data.
-    auto constructorData& = childrenDataMap.at(audioBufferConstructor);
-}
-```
-
 ## Config
 
 All of the GitBook, MkDocs, VuePress, Hugo static site generators are slighlty different. For example, GitBook resolves markdown links at compile time, and they have to end with `.md` while MkDocs requires that the links end with a forward slash `/`. Using the config you can override this behavior. Only the properties you specify in this JSON file will be overwritten in the application.
@@ -437,6 +377,66 @@ Only the templates for `kind_xyz` and `index_xyz` specified in the config are re
 You can add `--debug-templates` into the command line (with no arguments) and a JSON file will be created alongside each markdown file. For example, if a markdown file `group___engine.md` will be created, the JSON will be created as `group___engine.md.json`.
 
 Why is this useful and why JSON? The JSON is the container between C++ data and the [inja](https://github.com/pantor/inja) template engine. So inside the template you may find something as this: `{% for param in params %}...{% endfor %}`. This `params` variable is extracted from the JSON. This is also the exact same JSON generated in the JSON-only output. The JSON is simply put into the render function of the inja template engine. 
+
+## Use as a library
+
+You can use this tool as a C++ library. There is a pre-compiled binary executable, static library, and header files on GitHub release page. Simply add `libdoxybook.a` into your program and provide an include path to the `include` folder. You can also include the root `CMakeLists.txt` file in this repository and compile it yourself. You will also need to link `nlohmann/json`, `tinyxml2`, and `fmtlib/fmt`. The API documentation will be added in the future, but here is a simple example to get your started:
+
+```cpp
+#include <nlohmann/json.hpp>
+#include <Doxybook/Doxygen.hpp>
+#include <Doxybook/Exception.hpp>
+#include <Doxybook/JsonConverter.hpp>
+#include <Doxybook/TextMarkdownPrinter.hpp>
+#include <Doxybook/TextPlainPrinter.hpp>
+
+int main() {
+    using namespace Doxybook;
+
+    // Where the XML files are stored
+    std::string inputDir = "...";
+
+    // Config file, override any properties you want
+    Config config;
+    config.copyImages = false;
+
+    // The class that will take care of parsing XML files
+    Doxygen doxygen(config);
+
+    // There two are used to convert the XML text into markdown (or plain) text.
+    // For example: <para><strong>Hello</strong></para> is converted into **Hello**
+    TextPlainPrinter plainPrinter(config, doxygen);
+    TextMarkdownPrinter markdownPrinter(config, inputDir, doxygen);
+
+    // This is optional and can be used to convert the data in Node
+    // into nlohmann/json
+    JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
+
+    // Load and parse the XML files, may take few seconds
+    doxygen.load(inputDir);
+    doxygen.finalize(plainPrinter, markdownPrinter);
+
+    // Get the index, this holds hierarchical data. 
+    // If a class belongs to a namespace, the index will hold the namespace object,
+    // but the namespace object will hold the class, not the index.
+    const Node& index = doxygen.getIndex();
+
+    // Recursive find function via refid. The refid is from the XML files.
+    const Node* audioBuffer = index.find("class_engine_1_1_audio_1_1_audio_buffer");
+    const Node* audioBufferConstructor = index.find("classEngine_1_1Audio_1_1AudioBuffer_1ab3f8002fc80d9bff50cfb6095e10a721");
+    audioBufferConstructor->getName(); // Returns "AudioBuffer"
+
+    // Get detailed data of this specific class
+    // std::tuple<Node::Data, Node::ChildrenData>
+    auto [data, childrenDataMap] = audioBuffer->loadData(config, plainPrinter, markdownPrinter, doxygen.getCache());
+
+    // The "data" is type of Node::Data which contains
+    // detailed data for this specific class.
+    // The "childrenDataMap" is the same thing, but stored as an unordered map
+    // where a key is a pointer to the child (the class' function for example) data.
+    auto constructorData& = childrenDataMap.at(audioBufferConstructor);
+}
+```
 
 ## Contributing
 
