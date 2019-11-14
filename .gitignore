@@ -19,3 +19,4 @@ _book/
 !package-lock.json
 !book.json
 !config.json
+!menu.md
