@@ -464,7 +464,7 @@ R"({% include "header" %}
 ```cpp{% if exists("templateParams") %}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif %}{% if not loop.is_last %},
 {% endif %}{% endfor %}>{% endif %}
-{{kind}} {{name}};
+{% if kind == "interface" %}class{% else %}{{kind}}{% endif %} {{name}};
 ```
 
 {% include "details" %}{% endif %}
@@ -506,10 +506,25 @@ R"({% include "header" %}
 
 {% include "nonclass_members_details" %}
 
+{% if exists("programlisting")%}## Source code
+
+```cpp
+{{programlisting}}
+```
+{% endif %}
+
 {% include "footer" %}
 )";
 
 static const std::string TEMPLATE_KIND_PAGE =
+R"({% include "header" %}
+
+{% if exists("details") %}{{details}}{% endif %}
+
+{% include "footer" %}
+)";
+
+static const std::string TEMPLATE_KIND_EXAMPLE =
 R"({% include "header" %}
 
 {% if exists("details") %}{{details}}{% endif %}
@@ -570,6 +585,14 @@ R"({% include "header" %}
 {% include "footer" %}
 )";
 
+static const std::string TEMPLATE_INDEX_EXAMPLES =
+R"({% include "header" %}
+
+{% include "index" %}
+
+{% include "footer" %}
+)";
+
 Doxybook2::TemplateDefaultLoader::TemplateDefaultLoader() {
     templates = {
         {"meta", TEMPLATE_META},
@@ -588,12 +611,14 @@ Doxybook2::TemplateDefaultLoader::TemplateDefaultLoader() {
         {"kind_group", TEMPLATE_KIND_GROUP},
         {"kind_file", TEMPLATE_KIND_FILE},
         {"kind_page", TEMPLATE_KIND_PAGE},
+        {"kind_example", TEMPLATE_KIND_EXAMPLE},
         {"index", TEMPLATE_INDEX},
         {"index_classes", TEMPLATE_INDEX_CLASSES},
         {"index_namespaces", TEMPLATE_INDEX_NAMESPACES},
         {"index_groups", TEMPLATE_INDEX_GROUPS},
         {"index_files", TEMPLATE_INDEX_FILES},
         {"index_pages", TEMPLATE_INDEX_PAGES},
+        {"index_examples", TEMPLATE_INDEX_EXAMPLES},
     };
 }
 

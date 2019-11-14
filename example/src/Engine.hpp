@@ -85,6 +85,10 @@ This manual is divided in the following sections:
 - \subpage intro
 - \subpage advanced "Advanced usage"
 
+## Snippet:
+
+\snippet example-1.cpp TestTest
+
 */
 
 //-----------------------------------------------------------
@@ -100,3 +104,9 @@ Now you can proceed to the \ref advanced "advanced section".
 This page is for advanced users.
 Make sure you have first read \ref intro "the introduction".
 */
+
+/*! 
+ * @example example-1.cpp
+ * @brief This is an example
+ * @details This is detailed docummentation
+ */

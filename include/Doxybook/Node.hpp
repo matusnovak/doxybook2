@@ -101,6 +101,7 @@ namespace Doxybook2 {
             ParameterList exceptionsList;
             const Node* reimplements{nullptr};
             std::vector<const Node*> reimplementedBy;
+            std::string programlisting;
         };
 
         typedef std::unordered_map<const Node*, Data> ChildrenData;

@@ -238,6 +238,10 @@ void Doxybook2::Node::parseBaseInfo(const Xml::Element& element) {
             type = Type::PAGES;
             break;
         }
+        case Kind::EXAMPLE: {
+            type = Type::EXAMPLES;
+            break;
+        }
         default: {
             break;
         }
@@ -307,6 +311,7 @@ void Doxybook2::Node::finalize(const Config& config,
             case Kind::FILE:
             case Kind::PAGE:
             case Kind::INTERFACE:
+            case Kind::EXAMPLE:
             case Kind::UNION: {
                 if (node.refid == config.mainPageName) {
                     if (config.mainPageInRoot) {
@@ -627,6 +632,10 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
             }
             reimplementedby = reimplementedby.nextSiblingElement("reimplementedby");
         }
+    }
+
+    if (const auto programlisting = element.firstChildElement("programlisting")) {
+        data.programlisting = plainPrinter.print(XmlTextParser::parseParas(programlisting));
     }
 
     return data;

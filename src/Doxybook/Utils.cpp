@@ -59,6 +59,43 @@ std::string Doxybook2::Utils::stripAnchor(const std::string& str) {
     return ss.str();
 }
 
+std::string Doxybook2::Utils::escape(std::string str) {
+    auto contains = false;
+    for (const auto& c : str) {
+        switch(c) {
+            case '>':
+            case '<':
+            case '_':
+            case '*': {
+                contains = true;
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+
+    if (!contains) return str;
+    
+    std::string ret;
+    ret.resize(str.size() * 2);
+    auto* dst = &ret[0];
+    for (const auto& c : str) {
+        switch(c) {
+            case '_':
+            case '*': {
+                *dst++ = '\\';
+            }
+            default: {
+                *dst++ = c;
+            }
+        }
+    }
+
+    return replaceAll(replaceAll(ret, "<", "&lt;"), ">", "&gt;");
+}
+
 std::vector<std::string> Doxybook2::Utils::split(const std::string& str, const std::string& delim) {
     std::vector<std::string> tokens;
     size_t last = 0;

@@ -68,6 +68,7 @@ using namespace Doxybook2;
 static const Generator::Filter INDEX_CLASS_FILTER = {
     Kind::NAMESPACE,
     Kind::CLASS,
+    Kind::INTERFACE,
     Kind::STRUCT,
     Kind::UNION
 };
@@ -98,8 +99,12 @@ static const Generator::Filter LANGUAGE_FILTER = {
     Kind::MODULE
 };
 
-static const Generator::Filter INDEX_FILES_PAGES = {
+static const Generator::Filter INDEX_PAGES_FILTER = {
     Kind::PAGE
+};
+
+static const Generator::Filter INDEX_EXAMPLES_FILTER = {
+    Kind::EXAMPLE
 };
 
 int main(const int argc, char* argv[]) {
@@ -159,12 +164,13 @@ int main(const int argc, char* argv[]) {
             Generator generator(config, jsonConverter, *templateLoader);
 
             if (config.useFolders) {
-                static const std::array<Type, 5> ALL_GROUPS = {
+                static const std::array<Type, 6> ALL_GROUPS = {
                     Type::CLASSES,
                     Type::NAMESPACES,
                     Type::FILES,
                     Type::MODULES,
-                    Type::PAGES
+                    Type::PAGES,
+                    Type::EXAMPLES
                 };
                 for (const auto& g : ALL_GROUPS) {
                     Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
@@ -183,7 +189,7 @@ int main(const int argc, char* argv[]) {
             if (args["json"]) {
                 generator.json(doxygen, LANGUAGE_FILTER, {});
                 generator.json(doxygen, INDEX_FILES_FILTER, {});
-                generator.json(doxygen, INDEX_FILES_PAGES, {});
+                generator.json(doxygen, INDEX_PAGES_FILTER, {});
 
                 generator.manifest(doxygen);
             } else {
@@ -197,20 +203,23 @@ int main(const int argc, char* argv[]) {
                             {FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {}},
                             {FolderCategory::MODULES, INDEX_MODULES_FILTER, {}},
                             {FolderCategory::FILES, INDEX_FILES_FILTER, {}},
-                            {FolderCategory::PAGES, INDEX_FILES_PAGES, {}}
+                            {FolderCategory::PAGES, INDEX_PAGES_FILTER, {}},
+                            {FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {}}
                         }
                     );
                 }
 
                 generator.print(doxygen, LANGUAGE_FILTER, {});
                 generator.print(doxygen, INDEX_FILES_FILTER, {});
-                generator.print(doxygen, INDEX_FILES_PAGES, {});
+                generator.print(doxygen, INDEX_PAGES_FILTER, {});
+                generator.print(doxygen, INDEX_EXAMPLES_FILTER, {});
 
                 generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER, {});
                 generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {});
                 generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER, {});
                 generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_FILES_PAGES, {});
+                generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_PAGES_FILTER, {});
+                generator.printIndex(doxygen, FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {});
             }
         } else {
             std::cerr << argparser;

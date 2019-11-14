@@ -9,7 +9,7 @@ XML_OUTPUT = xml
 INPUT = src
 RECURSIVE = YES
 FILE_PATTERNS = *.h *.hpp *.md
-EXAMPLE_PATH = examples
+EXAMPLE_PATH = src-other
 EXAMPLE_PATTERNS = *.cpp
 
 # Html related stuff, optional

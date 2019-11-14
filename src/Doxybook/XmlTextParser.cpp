@@ -150,6 +150,10 @@ void Doxybook2::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node
                 }
                 break;
             }
+            case Node::Type::PROGRAMLISTING: {
+                ptr->extra = e.getAttr("filename", "");
+                break;
+            }
             default: {
                 break;
             }

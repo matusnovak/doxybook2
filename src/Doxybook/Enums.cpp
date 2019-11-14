@@ -20,7 +20,8 @@ Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
         {"file", Kind::FILE},
         {"group", Kind::MODULE},
         {"friend", Kind::FRIEND},
-        {"page", Kind::PAGE}
+        {"page", Kind::PAGE},
+        {"example", Kind::EXAMPLE}
     };
 
     const auto it = kinds.find(str);
@@ -67,6 +68,8 @@ std::string Doxybook2::toStr(const Kind value) {
             return "friend";
         case Kind::PAGE:
             return "page";
+        case Kind::EXAMPLE:
+            return "example";
         default: {
             throw EXCEPTION("Kind {} not recognised please contact the author", int(value));
         }
@@ -145,6 +148,7 @@ Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
         {"namespaces", Type::NAMESPACES},
         {"types", Type::TYPES},
         {"pages", Type::PAGES},
+        {"examples", Type::EXAMPLES},
     };
 
     const auto it = values.find(str);
@@ -179,6 +183,8 @@ std::string Doxybook2::toStr(const Type value) {
             return "friends";
         case Type::PAGES:
             return "pages";
+        case Type::EXAMPLES:
+            return "examples";
         default: {
             throw EXCEPTION("Type {} not recognised please contact the author", int(value));
         }
@@ -254,6 +260,9 @@ std::string Doxybook2::typeToFolderName(const Config& config, const Type type) {
         case Type::PAGES: {
             return config.folderRelatedPagesName;
         }
+        case Type::EXAMPLES: {
+            return config.folderExamplesName;
+        }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
@@ -287,6 +296,11 @@ std::string Doxybook2::typeToIndexName(const Config& config, const FolderCategor
                        ? config.folderRelatedPagesName + "/" + config.indexRelatedPagesName
                        : config.indexRelatedPagesName;
         }
+        case FolderCategory::EXAMPLES: {
+            return config.indexInFolders && config.useFolders
+                       ? config.folderExamplesName + "/" + config.indexExamplesName
+                       : config.indexExamplesName;
+        }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
@@ -310,6 +324,9 @@ std::string Doxybook2::typeToIndexTemplate(const Config& config, const FolderCat
         case FolderCategory::PAGES: {
             return config.templateIndexRelatedPages;
         }
+        case FolderCategory::EXAMPLES: {
+            return config.templateIndexExamples;
+        }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
@@ -332,6 +349,9 @@ std::string Doxybook2::typeToIndexTitle(const Config& config, const FolderCatego
         }
         case FolderCategory::PAGES: {
             return config.indexRelatedPagesTitle;
+        }
+        case FolderCategory::EXAMPLES: {
+            return config.indexExamplesTitle;
         }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));

@@ -143,10 +143,18 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         }
     }
 
-    for (size_t i = 0; i < node->children.size(); i++) {
-        const auto childNext = i + 1 < node->children.size() ? &node->children[i + 1] : nullptr;
-        const auto childPrevious = i > 0 ? &node->children[i - 1] : nullptr;
-        print(data, node, &node->children[i], childPrevious, childNext);
+    switch (node->type) {
+        case XmlTextParser::Node::Type::PROGRAMLISTING: {
+            programlisting(data.ss, *node);
+            break;
+        }
+        default: {
+            for (size_t i = 0; i < node->children.size(); i++) {
+                const auto childNext = i + 1 < node->children.size() ? &node->children[i + 1] : nullptr;
+                const auto childPrevious = i > 0 ? &node->children[i - 1] : nullptr;
+                print(data, node, &node->children[i], childPrevious, childNext);
+            }
+        }
     }
 
     switch (node->type) {
@@ -225,6 +233,9 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         }
         case XmlTextParser::Node::Type::PROGRAMLISTING: {
             data.ss << "```\n\n";
+            if (!node->extra.empty()) {
+                data.ss << "_Filename: " << node->extra << "_\n\n";
+            }
             data.eol = true;
             break;
         }
@@ -238,3 +249,34 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         }
     }
 }
+
+void Doxybook2::TextMarkdownPrinter::programlisting(std::stringstream& ss, const XmlTextParser::Node& node) const {
+    switch (node.type) {
+        case XmlTextParser::Node::Type::TEXT: {
+            ss << node.data;
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+
+    for (const auto& child : node.children) {
+        programlisting(ss, child);
+    }
+
+    switch (node.type) {
+        case XmlTextParser::Node::Type::CODELINE: {
+            ss << "\n";
+            break;
+        }
+        case XmlTextParser::Node::Type::SP: {
+            ss << " ";
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+

@@ -30,6 +30,8 @@ std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
             return config.templateKindFile;
         case Kind::PAGE:
             return config.templateKindPage;
+        case Kind::EXAMPLE:
+            return config.templateKindExample;
         default: {
             throw EXCEPTION("Unrecognised kind {} please contant the author!", int(kind));
         }
@@ -109,6 +111,9 @@ void Doxybook2::Generator::summaryRecursive(std::stringstream& ss,
                                            const Filter& skip) {
 
     for (const auto& child : node.getChildren()) {
+        if (child->getKind() == Kind::PAGE && child->getRefid() == config.mainPageName) {
+            continue;
+        }
         if (filter.find(child->getKind()) != filter.end()) {
             if (skip.find(child->getKind()) == skip.end()) {
                 ss << std::string(indent, ' ') << "* [" << child->getName() << "](" << folderName << "/" << child->

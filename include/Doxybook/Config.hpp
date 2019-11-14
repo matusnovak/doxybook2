@@ -13,7 +13,7 @@ namespace Doxybook2 {
         bool useFolders{true};
 
         // Sort alphabetically
-        bool sort{false};
+        bool sort{true};
 
         // Copy images from the Doxygen xml dir?
         bool copyImages{true};
@@ -50,6 +50,7 @@ namespace Doxybook2 {
         std::string folderFilesName{"Files"};
         std::string folderRelatedPagesName{"Pages"};
         std::string folderNamespacesName{"Namespaces"};
+        std::string folderExamplesName{"Examples"};
 
         // What are the names of the index files?
         std::string indexGroupsName{"index_groups"};
@@ -57,6 +58,7 @@ namespace Doxybook2 {
         std::string indexFilesName{"index_files"};
         std::string indexRelatedPagesName{"index_pages"};
         std::string indexNamespacesName{"index_namespaces"};
+        std::string indexExamplesName{"index_examples"};
 
         // What templates to use for each kind?
         std::string templateKindClass{"kind_class"};
@@ -67,7 +69,8 @@ namespace Doxybook2 {
         std::string templateKindGroup{"kind_nonclass"};
         std::string templateKindFile{"kind_file"};
         std::string templateKindDir{"kind_file"};
-        std::string templateKindPage{ "kind_page" };
+        std::string templateKindPage{"kind_page"};
+        std::string templateKindExample{"kind_page"};
 
         // What templates to use for indexes?
         std::string templateIndexClasses{"index_classes"};
@@ -75,6 +78,7 @@ namespace Doxybook2 {
         std::string templateIndexGroups{"index_groups"};
         std::string templateIndexFiles{"index_files"};
         std::string templateIndexRelatedPages{"index_pages"};
+        std::string templateIndexExamples{"index_examples"};
 
         // What should the title be in the index pages?
         std::string indexClassesTitle{"Classes"};
@@ -82,6 +86,7 @@ namespace Doxybook2 {
         std::string indexGroupsTitle{"Modules"};
         std::string indexFilesTitle{"Files"};
         std::string indexRelatedPagesTitle{"Pages"};
+        std::string indexExamplesTitle{"Examples"};
     };
 
     void loadConfig(Config& config, const std::string& path);

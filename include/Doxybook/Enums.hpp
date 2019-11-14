@@ -21,7 +21,8 @@ namespace Doxybook2 {
         DIR,
         FILE,
         MODULE,
-        PAGE
+        PAGE,
+        EXAMPLE
     };
 
     enum class Visibility {
@@ -48,7 +49,8 @@ namespace Doxybook2 {
         FILES,
         MODULES,
         FRIENDS,
-        PAGES
+        PAGES,
+        EXAMPLES
     };
 
     enum class FolderCategory {
@@ -56,7 +58,8 @@ namespace Doxybook2 {
         NAMESPACES,
         MODULES,
         PAGES,
-        FILES
+        FILES,
+        EXAMPLES
     };
 
     extern Kind toEnumKind(const std::string& str);

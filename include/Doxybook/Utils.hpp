@@ -42,6 +42,7 @@ namespace Doxybook2 {
             }
         }
 
+        extern std::string escape(std::string str);
         extern std::string title(std::string str);
         extern std::string toLower(std::string str);
         extern std::string safeAnchorId(std::string str);

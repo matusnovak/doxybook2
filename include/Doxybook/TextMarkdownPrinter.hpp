@@ -28,6 +28,7 @@ namespace Doxybook2 {
                    const XmlTextParser::Node* node,
                    const XmlTextParser::Node* previous,
                    const XmlTextParser::Node* next) const;
+        void programlisting(std::stringstream& ss, const XmlTextParser::Node& node) const;
 
         std::string inputDir;
     };

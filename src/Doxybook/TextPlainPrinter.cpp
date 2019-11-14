@@ -24,4 +24,18 @@ void Doxybook2::TextPlainPrinter::print(std::stringstream& ss, const XmlTextPars
     for (const auto& child : node.children) {
         print(ss, child);
     }
+
+    switch (node.type) {
+        case XmlTextParser::Node::Type::CODELINE: {
+            ss << "\n";
+            break;
+        }
+        case XmlTextParser::Node::Type::SP: {
+            ss << " ";
+            break;
+        }
+        default: {
+            break;
+        }
+    }
 }

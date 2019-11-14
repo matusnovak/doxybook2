@@ -38,6 +38,10 @@ static bool isKindAllowedPages(const std::string& kind) {
     return kind == "page";
 }
 
+static bool isKindAllowedExamples(const std::string& kind) {
+    return kind == "example";
+}
+
 Doxybook2::Doxygen::Doxygen(const Config& config)
     : config(config),
       index(std::make_shared<Node>("index")) {
@@ -117,7 +121,7 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
     }
     cleanup(index);
 
-    // Lastly, pages
+    // Next, pages
     for (const auto& pair : kindRefidMap) {
         if (!isKindAllowedPages(pair.first))
             continue;
@@ -138,6 +142,24 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
         }
     }
     cleanup(index);
+
+    // Lastly, examples (we don't need to sort these ones)
+    for (const auto& pair : kindRefidMap) {
+        if (!isKindAllowedExamples(pair.first))
+            continue;
+        try {
+            auto found = cache.find(pair.second);
+            if (found == cache.end()) {
+                index->children.push_back(Node::parse(cache, inputDir, pair.second, true));
+                auto child = index->children.back();
+                if (child->parent == nullptr) {
+                    child->parent = index.get();
+                }
+            }
+        } catch (std::exception& e) {
+            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
+        }
+    }
 
     getIndexCache(cache, index);
 

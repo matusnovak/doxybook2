@@ -337,6 +337,7 @@ The following is a list of config properties, their default value, and descripti
 | JSON Key | Default Value | Description |
 | -------- | ------------- | ----------- |
 | `copyImages` | `true` | Automatically copy images added into doxygen documentation via `@image`. These images will be copied into folder defined by `imagesFolder` |
+| `sort` | `true` | Sort everything alphabetically |
 | `imagesFolder` | `"images"` | Name of the folder where to copy images. This folder will be automatically created in the output path defined by `--output`. Leave this empty string if you want all of the images to be stored in the root directory (the output directory). |
 | `linkLowercase` | `false` | Convert all markdown links (only links to other markdown files, the C++ related stuff) into lowercase format. Hugo need this to set to `true`. |
 | `indexInFolders` | `false` | Part of the generated markdown output are extra index files. These are more of a list of classes, namespaces, modules, etc. By default these are stored in the root directory (the output diectory). Set to true if you want them to be generated in their respective folders (i.e. class index in Classes folder, etc.) | 
@@ -355,6 +356,7 @@ The following are a list of config properties that specify the names of the fold
 | `folderFilesName` | `"Files"` | 
 | `folderRelatedPagesName` | `"Pages"` | 
 | `folderNamespacesName` | `"Namespaces"` | 
+| `folderExamplesName` | `"Examples"` | 
 
 The following is a list of config properties that specify the filenames of the indexes. For example, an index/list of all classes will use `index_classes` filename followed by `fileExt` extension name.
 
@@ -365,6 +367,7 @@ The following is a list of config properties that specify the filenames of the i
 | `indexFilesName` | `"index_files"` | 
 | `indexRelatedPagesName` | `"index_pages"` | 
 | `indexNamespacesName` | `"index_namespaces"` | 
+| `indexExamplesName` | `"index_examples"` | 
 
 The following are config properties that specify what template to use for each specific C++ kind. A kind is just a type of the C++ thing (class, namespace, etc.). This also includes properties for files, directories, pages, and modules (alias groups). These templates can be overwritten via `--templates /path/to/templates-folder`.
 
@@ -379,6 +382,7 @@ The following are config properties that specify what template to use for each s
 | `templateKindFile` | `"kind_file"` | 
 | `templateKindDir` | `"kind_file"` | 
 | `templateKindPage` | `"kind_page"` |
+| `templateKindExample` | `"kind_example"` |
 
 Same as above, but these are related to the index/list files.
 
@@ -389,6 +393,7 @@ Same as above, but these are related to the index/list files.
 | `templateIndexGroups` | `"index_groups"` | 
 | `templateIndexFiles` | `"index_files"` | 
 | `templateIndexRelatedPages` | `"index_pages"` | 
+| `templateIndexExamples` | `"index_examples"` | 
 
 These properties define the title to use in the templates specified above.
 
@@ -399,6 +404,7 @@ These properties define the title to use in the templates specified above.
 | `indexGroupsTitle` | `"Modules"` | 
 | `indexFilesTitle` | `"Files"` | 
 | `indexRelatedPagesTitle` | `"Pages"` | 
+| `indexExamplesTitle` | `"Examples"` |
 
 ## Templates
 

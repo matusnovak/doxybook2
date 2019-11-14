@@ -217,6 +217,9 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node, const Node::D
         }
         json["reimplementedBy"] = std::move(arr);
     }
+    if (!data.programlisting.empty()) {
+        json["programlisting"] = data.programlisting;
+    }
     if (!data.location.file.empty())
         json["location"] = convert(data.location);
     if (!data.returnsList.empty())

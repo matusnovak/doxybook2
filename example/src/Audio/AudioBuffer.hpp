@@ -48,11 +48,11 @@ namespace Engine {
  		     */
 			enum class Type {
 				UNKNOWN = 0,
-				INT8 = 1 << 1,
-				INT16 = 1 << 2,
-				INT24 = 1 << 3,
-				INT32 = 1 << 4,
-				FLOAT32 = 1 << 5
+				INT_8 = 1 << 1,
+				INT_16 = 1 << 2,
+				INT_24 = 1 << 3,
+				INT_32 = 1 << 4,
+				FLOAT_32 = 1 << 5
 			};
 			typedef Utils::ArrayView<uint8_t> AudioData;
 			/*!

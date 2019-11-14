@@ -12,3 +12,13 @@
 #include "Config.hpp"
 #include "Log.hpp"
 
+namespace Engine {
+	namespace Utils {
+		/*!
+		 * @ingroup Utils
+		 */
+		inline void name_with_underscores(const std::string& arg) {
+			(void)arg;
+		}
+	}
+}

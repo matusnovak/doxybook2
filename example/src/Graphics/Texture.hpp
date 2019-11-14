@@ -10,6 +10,7 @@ namespace Engine {
 		 * @interface Texture
 		 * @ingroup Graphics
 		 * @bug This has some **weird** bug too!
+		 * @include example-1.cpp
 		 */
 		class Texture: protected Handle {
 		public:
@@ -21,12 +22,12 @@ namespace Engine {
 				/*!
 				 * @note Use primarly this for the best performance!
 				 */
-				RGBA8,
-				RGB8,
-				RGBA16,
-				RGB16,
-				RGBA32,
-				RGB32
+				RGBA_8,
+				RGB_8,
+				RGBA_16,
+				RGB_16,
+				RGBA_32,
+				RGB_32
 			};
 
 			explicit Texture(Type type);
