@@ -83,6 +83,7 @@
         <li class="main active"><a href="#srcgraphicstexture3dhpp">src/Graphics/Texture3D.hpp</a></li>
             <li><a href="#namespaces">Namespaces</a></li>
             <li><a href="#classes">Classes</a></li>
+            <li><a href="#source-code">Source code</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -97,10 +98,10 @@
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine_1_1Graphics/">Engine::Graphics</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
 </tr>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine_1_1Graphics/">Engine::Graphics</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -119,8 +120,30 @@
 </tr>
 </tbody>
 </table>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+#pragma once
+
+#include &quot;Texture.hpp&quot;
+
+namespace Engine {
+    namespace Graphics {
+        class Texture3D: public Texture {
+        public:
+            Texture3D(int width, int height, int depth, uint8_t* data, Texture::Type type = Texture::Type::RGBA8);
+            virtual ~Texture3D();
+
+            int getWidth() const override;
+            int getHeight() const override;
+            int getDepth() const override;
+
+        };
+    }
+}
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:04 UTC</p></div>
+<p>Updated on 14 November 2019 at 21:07:51 UTC</p></div>
         </div>
 
         <footer class="col-md-12">

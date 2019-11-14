@@ -270,6 +270,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    Source code
+  </a>
+  
+</li>
+      
       
       
       
@@ -316,8 +323,33 @@
 </tr>
 </tbody>
 </table>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+#include &lt;exception&gt;
+#include &lt;string&gt;
+
+namespace Engine {
+    class Exception: public std::exception {
+    public:
+        Exception() = default;
+
+        explicit Exception(std::string msg)
+            : msg(std::move(msg)) {
+
+        }
+
+        const char* what() const throw() override {
+            return msg.c_str();
+        }
+
+    private:
+        std::string msg;
+    };
+}
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:03 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:50 UTC</p>
                 
                   
                 

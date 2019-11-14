@@ -270,6 +270,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    Source code
+  </a>
+  
+</li>
+      
       
       
       
@@ -297,10 +304,10 @@
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine_1_1Audio/">Engine::Audio</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
 </tr>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
+<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine_1_1Audio/">Engine::Audio</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -315,12 +322,30 @@
 <tbody>
 <tr>
 <td>class</td>
-<td><strong><a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioManager/">Engine::Audio::AudioManager</a></strong> <br>An audio manager that <em>accepts</em> multiple <strong><a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a></strong> instances.</td>
+<td><strong><a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioManager/">Engine::Audio::AudioManager</a></strong> <br>An audio manager that <em>accepts</em> multiple <strong><a href="">Audio::AudioBuffer</a></strong> instances.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+
+#include &quot;AudioBuffer.hpp&quot;
+
+namespace Engine {
+    namespace Audio {
+        class AudioManager final {
+        public:
+            AudioManager(int numOfChannels = 128);
+            ~AudioManager();
+
+            void enque(const AudioBuffer&amp; buffer);
+        };
+    }
+}
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:03 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:50 UTC</p>
                 
                   
                 

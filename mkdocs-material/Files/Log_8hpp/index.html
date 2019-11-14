@@ -283,6 +283,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    Source code
+  </a>
+  
+</li>
+      
       
       
       
@@ -324,8 +331,15 @@
 ) printf(MSG, ##__VA_ARGS__)
 </code></pre>
 
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+#include &lt;stdio.h&gt;
+
+#define LOG_DEBUG(MSG, ...) printf(MSG, ##__VA_ARGS__)
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:03 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:50 UTC</p>
                 
                   
                 

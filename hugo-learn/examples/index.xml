@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Examples on Doxybook2 Example</title>
+    <link>https://matusnovak.github.io/doxybook2/hugo-learn/examples/</link>
+    <description>Recent content in Examples on Doxybook2 Example</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://matusnovak.github.io/doxybook2/hugo-learn/examples/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>example-1.cpp</title>
+      <link>https://matusnovak.github.io/doxybook2/hugo-learn/examples/example-1_8cpp-example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxybook2/hugo-learn/examples/example-1_8cpp-example/</guid>
+      <description>This is an example.</description>
+    </item>
+    
+  </channel>
+</rss>

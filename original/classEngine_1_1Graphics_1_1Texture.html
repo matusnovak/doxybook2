@@ -96,13 +96,13 @@ Inheritance diagram for Engine::Graphics::Texture:</div>
 Public Types</h2></td></tr>
 <tr class="memitem:a31280bb4ea2ce7bb099d8291ebb41bf3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3">Type</a> { <br />
 &#160;&#160;<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3a696b031073e74bf2cb98e5ef201d4aa3">Type::UNKNOWN</a> = 0, 
-<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3ab4b279046a02077466fa26cabb00c642">Type::RGBA8</a>, 
-<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3a165c6379d01617e12de274a3952efa63">Type::RGB8</a>, 
-<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3a50989efe15b375dce8ba3a5714fe2543">Type::RGBA16</a>, 
+<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3ac0182f4ea7c5e9b625c36eae16149ccc">Type::RGBA_8</a>, 
+<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3aa23cde681dadb7db981dc69ef3b1eb5b">Type::RGB_8</a>, 
+<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3ac6324250e415ea439a02714b399179a6">Type::RGBA_16</a>, 
 <br />
-&#160;&#160;<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3a1cd42e2af35bdfb43d791f8cecdce4a4">Type::RGB16</a>, 
-<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3ad9e8e4a9228ed56eceb29f0a1223b02b">Type::RGBA32</a>, 
-<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3ace70a5db6685e6d210c3f905a8fa7d4c">Type::RGB32</a>
+&#160;&#160;<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3a33ba5e65ee977da3cbdbdca56a054a01">Type::RGB_16</a>, 
+<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3aab36754052ec07e2737b63f43cc214f1">Type::RGBA_32</a>, 
+<a class="el" href="classEngine_1_1Graphics_1_1Texture.html#a31280bb4ea2ce7bb099d8291ebb41bf3a542b7a8cf84322d8b6d6ce98a6d86d84">Type::RGB_32</a>
 <br />
  }</td></tr>
 <tr class="separator:a31280bb4ea2ce7bb099d8291ebb41bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,7 +148,23 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is a base texture class that serves as a base class for other texture types. </p>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000002">Bug:</a></b></dt><dd>This has some <b>weird</b> bug too! </dd></dl>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Engine_8hpp.html">Engine.hpp</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// A dummy example </span></div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    <span class="comment">// Create pixels buffer</span></div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span> pixels = std::make_unique&lt;uint8_t[]&gt;(<span class="keyword">new</span> uint8_t[1024*1024*3]);</div>
+<div class="line">    fillData(*pixels, <span class="stringliteral">&quot;path/to/texture.png&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Create a texture out of the pixels</span></div>
+<div class="line">    <a class="code" href="classEngine_1_1Graphics_1_1Texture2D.html">Engine::Graphics::Texture2D</a> texture(1024, 1024, *data);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Done</span></div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a31280bb4ea2ce7bb099d8291ebb41bf3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31280bb4ea2ce7bb099d8291ebb41bf3">&#9670;&nbsp;</a></span>Type</h2>
 
@@ -171,13 +187,13 @@ Additional Inherited Members</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3a696b031073e74bf2cb98e5ef201d4aa3"></a>UNKNOWN&#160;</td><td class="fielddoc"><dl class="section note"><dt>Note</dt><dd>This should probably never occur </dd></dl>
 </td></tr>
-<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3ab4b279046a02077466fa26cabb00c642"></a>RGBA8&#160;</td><td class="fielddoc"><dl class="section note"><dt>Note</dt><dd>Use primarly this for the best performance! </dd></dl>
+<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3ac0182f4ea7c5e9b625c36eae16149ccc"></a>RGBA_8&#160;</td><td class="fielddoc"><dl class="section note"><dt>Note</dt><dd>Use primarly this for the best performance! </dd></dl>
 </td></tr>
-<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3a165c6379d01617e12de274a3952efa63"></a>RGB8&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3a50989efe15b375dce8ba3a5714fe2543"></a>RGBA16&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3a1cd42e2af35bdfb43d791f8cecdce4a4"></a>RGB16&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3ad9e8e4a9228ed56eceb29f0a1223b02b"></a>RGBA32&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3ace70a5db6685e6d210c3f905a8fa7d4c"></a>RGB32&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3aa23cde681dadb7db981dc69ef3b1eb5b"></a>RGB_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3ac6324250e415ea439a02714b399179a6"></a>RGBA_16&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3a33ba5e65ee977da3cbdbdca56a054a01"></a>RGB_16&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3aab36754052ec07e2737b63f43cc214f1"></a>RGBA_32&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a31280bb4ea2ce7bb099d8291ebb41bf3a542b7a8cf84322d8b6d6ce98a6d86d84"></a>RGB_32&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -401,6 +417,8 @@ Additional Inherited Members</h2></td></tr>
 <li>src/Graphics/<a class="el" href="Texture_8hpp_source.html">Texture.hpp</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassEngine_1_1Graphics_1_1Texture2D_html"><div class="ttname"><a href="classEngine_1_1Graphics_1_1Texture2D.html">Engine::Graphics::Texture2D</a></div><div class="ttdef"><b>Definition:</b> Texture2D.hpp:10</div></div>
+<div class="ttc" id="aEngine_8hpp_html"><div class="ttname"><a href="Engine_8hpp.html">Engine.hpp</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

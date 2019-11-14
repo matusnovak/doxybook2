@@ -60,6 +60,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../../index_examples/">Examples</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../../index_files/">Files</a>
 	    </li>
           
@@ -147,6 +152,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">Examples</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Examples/example-1_8cpp-example/">example-1.cpp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Files</span>
     <ul class="subnav">
                 <li class="">
@@ -165,6 +181,8 @@
             <li><a class="toctree-l4" href="#namespaces">Namespaces</a></li>
         
             <li><a class="toctree-l4" href="#classes">Classes</a></li>
+        
+            <li><a class="toctree-l4" href="#source-code">Source code</a></li>
         
         </ul>
     
@@ -393,10 +411,10 @@
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Assets/">Engine::Assets</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
 </tr>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Assets/">Engine::Assets</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -410,8 +428,16 @@
 </thead>
 <tbody>
 <tr>
+<td>class</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Assets_1_1Asset/">Engine::Assets::Asset</a></strong></td>
+</tr>
+<tr>
+<td>union</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/unionEngine_1_1Assets_1_1Asset_1_1Event/">Engine::Assets::Asset::Event</a></strong></td>
+</tr>
+<tr>
 <td>struct</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting/">Engine::Assets::Asset::Event::Waiting</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded/">Engine::Assets::Asset::Event::Loaded</a></strong></td>
 </tr>
 <tr>
 <td>struct</td>
@@ -419,20 +445,49 @@
 </tr>
 <tr>
 <td>struct</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded/">Engine::Assets::Asset::Event::Loaded</a></strong></td>
-</tr>
-<tr>
-<td>union</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/unionEngine_1_1Assets_1_1Asset_1_1Event/">Engine::Assets::Asset::Event</a></strong></td>
-</tr>
-<tr>
-<td>class</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Assets_1_1Asset/">Engine::Assets::Asset</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting/">Engine::Assets::Asset::Event::Waiting</a></strong></td>
 </tr>
 </tbody>
 </table>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+#include &lt;queue&gt;
+#include &lt;string&gt;
+
+namespace Engine {
+    namespace Assets {
+        class Asset {
+        public:
+            union Event {
+                struct Loaded {
+                    bool success;
+                    int usage;
+                } loaded;
+                struct Unloaded {
+                    bool success;
+                } unloaded;
+                struct Waiting {
+                    Asset* other;
+                } waiting;
+            };
+
+            explicit Asset(const std::string&amp; name);
+            virtual ~Asset() = 0;
+
+            virtual void load();
+            virtual void unload();
+            const Event&amp; getEvent() const {
+                return event;
+            }
+        private:
+            Event event;
+        };
+    }
+}
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:02 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:49 UTC</p>
               
             </div>
           </div>

@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.666968e9f1bc4b9ae852f497f6366f5c9e6b65330142e2dd7183a7458ab03eeb.js" integrity="sha256-Zmlo6fG8S5roUvSX9jZvXJ5rZTMBQuLdcYOnRYqwPus="></script>
+<script defer src="/doxybook2/hugo-book/search.min.14c552544015db173bbf34e2c00b583229213388f6fa017826e96a9804b2ed24.js" integrity="sha256-FMVSVEAV2xc7vzTiwAtYMikhM4j2&#43;gF4JulqmASy7SQ="></script>
 
 <link rel="alternate" type="application/rss+xml" href="https://matusnovak.github.io/doxybook2/hugo-book/index.xml" title="Doxybook2 Example" />
 <!--
@@ -169,9 +169,27 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/doxybook2/hugo-book/pages/advanced/#page-advanced">Advanced usage</a></li>
 </ul>
 
+<h2 id="snippet">Snippet:</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Engine.hpp&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// A dummy example 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#75715e">// Create pixels buffer
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> pixels <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>make_unique<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span>[]<span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">new</span> <span style="color:#66d9ef">uint8_t</span>[<span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">3</span>]);
+    fillData(<span style="color:#f92672">*</span>pixels, <span style="color:#e6db74">&#34;path/to/texture.png&#34;</span>);
+
+    <span style="color:#75715e">// Create a texture out of the pixels
+</span><span style="color:#75715e"></span>    Engine<span style="color:#f92672">::</span>Graphics<span style="color:#f92672">::</span>Texture2D texture(<span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">1024</span>, <span style="color:#f92672">*</span>data);
+
+    <span style="color:#75715e">// Done
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+<p><em>Filename: example-1.cpp</em></p>
+
 <hr />
 
-<p>Updated on 13 November 2019 at 21:55:19 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:48 UTC</p>
 </article>
 
       
@@ -194,6 +212,7 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="#hyper-links">Hyper links:</a></li>
 <li><a href="#code-blocks">Code blocks:</a></li>
 <li><a href="#subpages">Subpages:</a></li>
+<li><a href="#snippet">Snippet:</a></li>
 </ul></li>
 </ul>
 </nav>

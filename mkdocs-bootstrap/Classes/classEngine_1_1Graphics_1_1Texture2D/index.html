@@ -102,6 +102,10 @@
 </thead>
 <tbody>
 <tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-texture2d">Texture2D</a></strong>(int width, int height, uint8_t * data, <a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Texture::Type</a> type =Texture::Type::RGBA8)</td>
+</tr>
+<tr>
 <td>virtual int</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-getdepth">getDepth</a></strong>() const override <br>Returns the depth of the texture in pixels.</td>
 </tr>
@@ -117,10 +121,6 @@
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-~texture2d">~Texture2D</a></strong>()</td>
 </tr>
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-texture2d">Texture2D</a></strong>(int width, int height, uint8_t * data, <a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Texture::Type</a> type =<a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enumvalue-rgba8">Texture::Type::RGBA8</a>)</td>
-</tr>
 </tbody>
 </table>
 <h2 id="additional-inherited-members">Additional inherited members</h2>
@@ -135,7 +135,7 @@
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA8, RGB8, RGBA16, RGB16, RGBA32, RGB32 }</td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></strong> { UNKNOWN, RGB_8, RGB_32, RGB_16, RGBA_8, RGBA_32, RGBA_16 }</td>
 </tr>
 </tbody>
 </table>
@@ -149,16 +149,16 @@
 </thead>
 <tbody>
 <tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
+</tr>
+<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-~texture">~Texture</a></strong>() =default</td>
-</tr>
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
 </tr>
 </tbody>
 </table>
@@ -172,12 +172,12 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
-</tr>
-<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#variable-loaded">loaded</a></strong></td>
+</tr>
+<tr>
+<td><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -191,16 +191,16 @@
 </thead>
 <tbody>
 <tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
+</tr>
+<tr>
 <td>int</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-~handle">~Handle</a></strong>() =default</td>
-</tr>
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 </tbody>
 </table>
@@ -220,6 +220,15 @@
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-texture2d">function Texture2D</h3>
+<pre><code class="cpp">Texture2D(
+    int width,
+    int height,
+    uint8_t * data,
+    Texture::Type type =Texture::Type::RGBA8
+)
+</code></pre>
+
 <h3 id="function-getdepth">function getDepth</h3>
 <pre><code class="cpp">virtual int getDepth() const override
 </code></pre>
@@ -242,21 +251,12 @@
 <p>Returns the width of the texture in pixels. </p>
 <p><strong>Return</strong>: Width in pixels </p>
 <p><strong>Reimplements</strong>: <a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-getwidth">Engine::Graphics::Texture::getWidth</a></p>
-<h3 id="function-texture2d">function ~Texture2D</h3>
+<h3 id="function-texture2d_1">function ~Texture2D</h3>
 <pre><code class="cpp">virtual ~Texture2D()
 </code></pre>
 
-<h3 id="function-texture2d_1">function Texture2D</h3>
-<pre><code class="cpp">Texture2D(
-    int width,
-    int height,
-    uint8_t * data,
-    Texture::Type type =Texture::Type::RGBA8
-)
-</code></pre>
-
 <hr />
-<p>Updated on 13 November 2019 at 21:55:04 UTC</p></div>
+<p>Updated on 14 November 2019 at 21:07:51 UTC</p></div>
         </div>
 
         <footer class="col-md-12">

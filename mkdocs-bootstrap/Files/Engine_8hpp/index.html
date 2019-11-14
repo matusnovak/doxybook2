@@ -84,6 +84,7 @@
             <li><a href="#namespaces">Namespaces</a></li>
             <li><a href="#functions">Functions</a></li>
             <li><a href="#functions-documentation">Functions Documentation</a></li>
+            <li><a href="#source-code">Source code</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -123,8 +124,27 @@
 </code></pre>
 
 <p>Some global extern function. </p>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">
+#include &quot;Assets/Assets.hpp&quot;
+#include &quot;Audio/Audio.hpp&quot;
+#include &quot;Graphics/Graphics.hpp&quot;
+#include &quot;Utils/Utils.hpp&quot;
+#include &quot;Exception.hpp&quot;
+
+extern std::string someGlobalFunc();
+
+namespace Engine {
+    extern std::string getVersion();
+}
+
+//-----------------------------------------------------------
+
+//-----------------------------------------------------------
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:04 UTC</p></div>
+<p>Updated on 14 November 2019 at 21:07:51 UTC</p></div>
         </div>
 
         <footer class="col-md-12">

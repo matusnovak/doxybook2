@@ -60,6 +60,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../../index_examples/">Examples</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../../index_files/">Files</a>
 	    </li>
           
@@ -175,6 +180,17 @@
                 <li class="">
                     
     <a class="" href="../unionEngine_1_1Assets_1_1Asset_1_1Event/">Engine::Assets::Asset::Event</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Examples</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Examples/example-1_8cpp-example/">example-1.cpp</a>
                 </li>
     </ul>
 	    </li>
@@ -437,7 +453,7 @@
 </tr>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#enum-type">Type</a></strong> { UNKNOWN, INT8, INT16, INT24, INT32, FLOAT32 }<br>Different type of audio formats.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#enum-type">Type</a></strong> { UNKNOWN, INT_8, INT_32, INT_24, INT_16, FLOAT_32 }<br>Different type of audio formats.</td>
 </tr>
 </tbody>
 </table>
@@ -451,8 +467,8 @@
 </thead>
 <tbody>
 <tr>
-<td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> &amp; data)</td>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename) <br>Constructor for <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>.</td>
 </tr>
 <tr>
 <td>void</td>
@@ -460,19 +476,19 @@
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-stop">stop</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const <br>Stop this buffer playing.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-play">play</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const <br>Play this buffer.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-play">play</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const <br>Play this buffer.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> &amp; data)</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-stop">stop</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const <br>Stop this buffer playing.</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-~audiobuffer">~AudioBuffer</a></strong>() =default <br><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor.</td>
-</tr>
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename) <br>Constructor for <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -567,22 +583,23 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 <h3 id="enum-type">enum Type</h3>
 <pre><code class="cpp">enum Type {
     UNKNOWN,
-    INT8,
-    INT16,
-    INT24,
-    INT32,
-    FLOAT32
+    INT_8,
+    INT_32,
+    INT_24,
+    INT_16,
+    FLOAT_32
 }
 </code></pre>
 
 <p>Different type of audio formats. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-setdata">function setData</h3>
-<pre><code class="cpp">void setData(
-    const TypedAudioData &amp; data
+<h3 id="function-audiobuffer">function AudioBuffer</h3>
+<pre><code class="cpp">explicit AudioBuffer(
+    const std::string &amp; filename
 )
 </code></pre>
 
+<p>Constructor for <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>. </p>
 <h3 id="function-loop">function loop</h3>
 <pre><code class="cpp">void loop(
     AudioManager &amp; manager
@@ -595,17 +612,6 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 <li><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already looping </li>
 </ul>
 <p><strong>Note</strong>: This will loop forever until you call stop </p>
-<h3 id="function-stop">function stop</h3>
-<pre><code class="cpp">void stop(
-    AudioManager &amp; manager
-) const
-</code></pre>
-
-<p>Stop this buffer playing. </p>
-<p><strong>Exceptions</strong>: </p>
-<ul>
-<li><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already stopped </li>
-</ul>
 <h3 id="function-play">function play</h3>
 <pre><code class="cpp">void play(
     AudioManager &amp; manager
@@ -617,18 +623,28 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 <ul>
 <li><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already playing </li>
 </ul>
-<h3 id="function-audiobuffer">function ~AudioBuffer</h3>
+<h3 id="function-setdata">function setData</h3>
+<pre><code class="cpp">void setData(
+    const TypedAudioData &amp; data
+)
+</code></pre>
+
+<h3 id="function-stop">function stop</h3>
+<pre><code class="cpp">void stop(
+    AudioManager &amp; manager
+) const
+</code></pre>
+
+<p>Stop this buffer playing. </p>
+<p><strong>Exceptions</strong>: </p>
+<ul>
+<li><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already stopped </li>
+</ul>
+<h3 id="function-audiobuffer_1">function ~AudioBuffer</h3>
 <pre><code class="cpp">virtual ~AudioBuffer() =default
 </code></pre>
 
 <p><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor. </p>
-<h3 id="function-audiobuffer_1">function AudioBuffer</h3>
-<pre><code class="cpp">explicit AudioBuffer(
-    const std::string &amp; filename
-)
-</code></pre>
-
-<p>Constructor for <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>. </p>
 <h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
 <h3 id="function-getdata">function getData</h3>
 <pre><code class="cpp">float * getData()
@@ -651,7 +667,7 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 </code></pre>
 
 <hr />
-<p>Updated on 13 November 2019 at 21:55:02 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:49 UTC</p>
               
             </div>
           </div>

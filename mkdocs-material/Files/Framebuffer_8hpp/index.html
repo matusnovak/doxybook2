@@ -270,6 +270,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    Source code
+  </a>
+  
+</li>
+      
       
       
       
@@ -297,10 +304,10 @@
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine_1_1Graphics/">Engine::Graphics</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
 </tr>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
+<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine_1_1Graphics/">Engine::Graphics</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -319,8 +326,28 @@
 </tr>
 </tbody>
 </table>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+
+#include &quot;Texture.hpp&quot;
+
+namespace Engine {
+    namespace Graphics {
+        class Framebuffer: public Texture {
+        public:
+            Framebuffer(int width, int height);
+            virtual ~Framebuffer();
+
+            int getWidth() const override;
+            int getHeight() const override;
+            int getDepth() const override;
+        };
+    }
+}
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:03 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:50 UTC</p>
                 
                   
                 

@@ -298,6 +298,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#snippet" class="md-nav__link">
+    Snippet:
+  </a>
+  
+</li>
+      
       
       
       
@@ -382,8 +389,26 @@ int main(int argc, char** argv) {
 <li><a href="/doxybook2/mkdocs-material/Pages/intro/#page-intro">Introduction</a></li>
 <li><a href="/doxybook2/mkdocs-material/Pages/advanced/#page-advanced">Advanced usage</a></li>
 </ul>
+<h2 id="snippet">Snippet:</h2>
+<pre><code class="cpp">#include &quot;Engine.hpp&quot;
+
+// A dummy example 
+int main() {
+    // Create pixels buffer
+    const auto pixels = std::make_unique&lt;uint8_t[]&gt;(new uint8_t[1024*1024*3]);
+    fillData(*pixels, &quot;path/to/texture.png&quot;);
+
+    // Create a texture out of the pixels
+    Engine::Graphics::Texture2D texture(1024, 1024, *data);
+
+    // Done
+    return 0;
+}
+</code></pre>
+
+<p><em>Filename: example-1.cpp</em></p>
 <hr />
-<p>Updated on 13 November 2019 at 21:55:03 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:50 UTC</p>
                 
                   
                 

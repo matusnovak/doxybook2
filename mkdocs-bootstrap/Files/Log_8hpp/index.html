@@ -83,6 +83,7 @@
         <li class="main active"><a href="#srcutilsloghpp">src/Utils/Log.hpp</a></li>
             <li><a href="#defines">Defines</a></li>
             <li><a href="#macro-documentation">Macro Documentation</a></li>
+            <li><a href="#source-code">Source code</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -111,8 +112,15 @@
 ) printf(MSG, ##__VA_ARGS__)
 </code></pre>
 
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+#include &lt;stdio.h&gt;
+
+#define LOG_DEBUG(MSG, ...) printf(MSG, ##__VA_ARGS__)
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:04 UTC</p></div>
+<p>Updated on 14 November 2019 at 21:07:51 UTC</p></div>
         </div>
 
         <footer class="col-md-12">

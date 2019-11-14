@@ -253,6 +253,29 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#namespaces" class="md-nav__link">
+    Namespaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    Source code
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -265,8 +288,41 @@
                 
                 
                 <h1 id="srcutilsutilshpp">src/Utils/Utils.hpp</h1>
+<h2 id="namespaces">Namespaces</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
+</tr>
+<tr>
+<td><strong><a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine_1_1Utils/">Engine::Utils</a></strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+
+#include &quot;Path.hpp&quot;
+#include &quot;ArrayView.hpp&quot;
+#include &quot;Config.hpp&quot;
+#include &quot;Log.hpp&quot;
+
+namespace Engine {
+    namespace Utils {
+        inline void name_with_underscores(const std::string&amp; arg) {
+            (void)arg;
+        }
+    }
+}
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:03 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:50 UTC</p>
                 
                   
                 

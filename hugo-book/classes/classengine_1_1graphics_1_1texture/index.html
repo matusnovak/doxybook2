@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.666968e9f1bc4b9ae852f497f6366f5c9e6b65330142e2dd7183a7458ab03eeb.js" integrity="sha256-Zmlo6fG8S5roUvSX9jZvXJ5rZTMBQuLdcYOnRYqwPus="></script>
+<script defer src="/doxybook2/hugo-book/search.min.14c552544015db173bbf34e2c00b583229213388f6fa017826e96a9804b2ed24.js" integrity="sha256-FMVSVEAV2xc7vzTiwAtYMikhM4j2&#43;gF4JulqmASy7SQ="></script>
 
 <!--
 Made with Book Theme
@@ -103,7 +103,7 @@ https://github.com/alex-shpak/hugo-book
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA8, RGB8, RGBA16, RGB16, RGBA32, RGB32 }</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGB_8, RGB_32, RGB_16, RGBA_8, RGBA_32, RGBA_16 }</td>
 </tr>
 </tbody>
 </table>
@@ -120,8 +120,8 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
 </tr>
 
 <tr>
@@ -140,13 +140,13 @@ https://github.com/alex-shpak/hugo-book
 </tr>
 
 <tr>
-<td>virtual</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
+<td>virtual</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
 </tr>
 </tbody>
 </table>
@@ -163,13 +163,13 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
 </tr>
 
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
+<td><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -188,6 +188,11 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
+</tr>
+
+<tr>
 <td>int</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
@@ -195,11 +200,6 @@ https://github.com/alex-shpak/hugo-book
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-~handle">~Handle</a></strong>() =default</td>
-</tr>
-
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 </tbody>
 </table>
@@ -223,32 +223,50 @@ https://github.com/alex-shpak/hugo-book
 </table>
 
 <h2 id="detailed-description">Detailed Description</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">interface Engine<span style="color:#f92672">::</span>Graphics<span style="color:#f92672">::</span>Texture;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Engine</span><span style="color:#f92672">::</span>Graphics<span style="color:#f92672">::</span>Texture;
 </code></pre></div>
 <p>This is a base texture class that serves as a base class for other texture types.</p>
 
 <p><strong>Bug</strong>: This has some <strong>weird</strong> bug too!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Engine.hpp&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// A dummy example 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#75715e">// Create pixels buffer
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> pixels <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>make_unique<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span>[]<span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">new</span> <span style="color:#66d9ef">uint8_t</span>[<span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">3</span>]);
+    fillData(<span style="color:#f92672">*</span>pixels, <span style="color:#e6db74">&#34;path/to/texture.png&#34;</span>);
+
+    <span style="color:#75715e">// Create a texture out of the pixels
+</span><span style="color:#75715e"></span>    Engine<span style="color:#f92672">::</span>Graphics<span style="color:#f92672">::</span>Texture2D texture(<span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">1024</span>, <span style="color:#f92672">*</span>data);
+
+    <span style="color:#75715e">// Done
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+<p><em>Filename: example-1.cpp</em></p>
 
 <h2 id="public-types-documentation">Public Types Documentation</h2>
 
 <h3 id="enum-type">enum Type</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Type</span> {
     UNKNOWN,
-    RGBA8,
-    RGB8,
-    RGBA16,
-    RGB16,
-    RGBA32,
-    RGB32
+    RGB_8,
+    RGB_32,
+    RGB_16,
+    RGBA_8,
+    RGBA_32,
+    RGBA_16
 }
 </code></pre></div>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
-<h3 id="function-isloaded">function isLoaded</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> isLoaded() <span style="color:#66d9ef">const</span>
+<h3 id="function-texture">function Texture</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> Texture(
+    Type type
+)
 </code></pre></div>
-<p>Does some more things</p>
-
 <h3 id="function-getdepth">function getDepth</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getDepth() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
 </code></pre></div>
@@ -278,25 +296,25 @@ https://github.com/alex-shpak/hugo-book
 
 <p><strong>Reimplemented by</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture3d/#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
 
-<h3 id="function-texture">function ~Texture</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Texture() <span style="color:#f92672">=</span><span style="color:#66d9ef">default</span>
+<h3 id="function-isloaded">function isLoaded</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> isLoaded() <span style="color:#66d9ef">const</span>
 </code></pre></div>
-<h3 id="function-texture-1">function Texture</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> Texture(
-    Type type
-)
+<p>Does some more things</p>
+
+<h3 id="function-texture-1">function ~Texture</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Texture() <span style="color:#f92672">=</span><span style="color:#66d9ef">default</span>
 </code></pre></div>
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
 
-<h3 id="variable-type">variable type</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Type type;
-</code></pre></div>
 <h3 id="variable-loaded">variable loaded</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">bool</span> loaded {false};
 </code></pre></div>
+<h3 id="variable-type">variable type</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Type type;
+</code></pre></div>
 <hr />
 
-<p>Updated on 13 November 2019 at 21:55:19 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:48 UTC</p>
 </article>
 
       
@@ -323,17 +341,17 @@ https://github.com/alex-shpak/hugo-book
 </ul></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
-<li><a href="#function-isloaded">function isLoaded</a></li>
+<li><a href="#function-texture">function Texture</a></li>
 <li><a href="#function-getdepth">function getDepth</a></li>
 <li><a href="#function-getheight">function getHeight</a></li>
 <li><a href="#function-getwidth">function getWidth</a></li>
-<li><a href="#function-texture">function ~Texture</a></li>
-<li><a href="#function-texture-1">function Texture</a></li>
+<li><a href="#function-isloaded">function isLoaded</a></li>
+<li><a href="#function-texture-1">function ~Texture</a></li>
 </ul></li>
 <li><a href="#protected-attributes-documentation">Protected Attributes Documentation</a>
 <ul>
-<li><a href="#variable-type">variable type</a></li>
 <li><a href="#variable-loaded">variable loaded</a></li>
+<li><a href="#variable-type">variable type</a></li>
 </ul></li>
 </ul></li>
 </ul>

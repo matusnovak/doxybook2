@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="src/Utils/ArrayView.hpp" />
-<meta property="og:description" content="src/Utils/ArrayView.hpp Namespaces    Name     Engine::Utils   Engine This namespace contains all of the necessary engine components.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Updated on 13 November 2019 at 21:55:19 UTC" />
+<meta property="og:description" content="src/Utils/ArrayView.hpp Namespaces    Name     Engine This namespace contains all of the necessary engine components.   Engine::Utils    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Source code #pragma once  namespace Engine { namespace Utils { template&lt;typename T = uint8_t&gt; class ArrayView { public: ArrayView(const T* src, size_t len); virtual ~ArrayView() = default; virtual const T* data() const; virtual size_t size() const; }; } }  Updated on 14 November 2019 at 21:07:48 UTC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/files/arrayview_8hpp/" />
 
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.666968e9f1bc4b9ae852f497f6366f5c9e6b65330142e2dd7183a7458ab03eeb.js" integrity="sha256-Zmlo6fG8S5roUvSX9jZvXJ5rZTMBQuLdcYOnRYqwPus="></script>
+<script defer src="/doxybook2/hugo-book/search.min.14c552544015db173bbf34e2c00b583229213388f6fa017826e96a9804b2ed24.js" integrity="sha256-FMVSVEAV2xc7vzTiwAtYMikhM4j2&#43;gF4JulqmASy7SQ="></script>
 
 <!--
 Made with Book Theme
@@ -91,11 +91,11 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td><strong><a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1utils/">Engine::Utils</a></strong></td>
+<td><strong><a href="/doxybook2/hugo-book/namespaces/namespaceengine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
 </tr>
 
 <tr>
-<td><strong><a href="/doxybook2/hugo-book/namespaces/namespaceengine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
+<td><strong><a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1utils/">Engine::Utils</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -118,9 +118,26 @@ https://github.com/alex-shpak/hugo-book
 </tbody>
 </table>
 
+<h2 id="source-code">Source code</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#pragma once
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> Engine {
+    <span style="color:#66d9ef">namespace</span> Utils {
+        <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T <span style="color:#f92672">=</span> <span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ArrayView</span> {
+        <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+            ArrayView(<span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> src, size_t len);
+            <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>ArrayView() <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+
+            <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">const</span> T<span style="color:#f92672">*</span> <span style="color:#a6e22e">data</span>() <span style="color:#66d9ef">const</span>;
+            <span style="color:#66d9ef">virtual</span> size_t <span style="color:#a6e22e">size</span>() <span style="color:#66d9ef">const</span>;
+        };
+    }
+}
+</code></pre></div>
 <hr />
 
-<p>Updated on 13 November 2019 at 21:55:19 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:48 UTC</p>
 </article>
 
       
@@ -138,6 +155,7 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li><a href="#namespaces">Namespaces</a></li>
 <li><a href="#classes">Classes</a></li>
+<li><a href="#source-code">Source code</a></li>
 </ul></li>
 </ul>
 </nav>

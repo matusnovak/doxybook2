@@ -60,6 +60,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../../index_examples/">Examples</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../../index_files/">Files</a>
 	    </li>
           
@@ -141,6 +146,17 @@
                 <li class="">
                     
     <a class="" href="../../Classes/unionEngine_1_1Assets_1_1Asset_1_1Event/">Engine::Assets::Asset::Event</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Examples</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Examples/example-1_8cpp-example/">example-1.cpp</a>
                 </li>
     </ul>
 	    </li>
@@ -229,6 +245,8 @@
             <li><a class="toctree-l4" href="#namespaces">Namespaces</a></li>
         
             <li><a class="toctree-l4" href="#classes">Classes</a></li>
+        
+            <li><a class="toctree-l4" href="#source-code">Source code</a></li>
         
         </ul>
     
@@ -393,10 +411,10 @@
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Graphics/">Engine::Graphics</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
 </tr>
 <tr>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine/">Engine</a></strong> <br>This namespace contains all of the necessary engine components.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Graphics/">Engine::Graphics</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -415,8 +433,43 @@
 </tr>
 </tbody>
 </table>
+<h2 id="source-code">Source code</h2>
+<pre><code class="cpp">#pragma once
+
+#include &quot;Handle.hpp&quot;
+
+namespace Engine {
+    namespace Graphics {
+        class Texture: protected Handle {
+        public:
+            enum class Type {
+                UNKNOWN = 0,
+                RGBA_8,
+                RGB_8,
+                RGBA_16,
+                RGB_16,
+                RGBA_32,
+                RGB_32
+            };
+
+            explicit Texture(Type type);
+            virtual ~Texture() = default;
+            virtual int getWidth() const = 0;
+            virtual int getHeight() const = 0;
+            virtual int getDepth() const = 0;
+            inline bool isLoaded() const {
+                return loaded;
+            }
+        protected:
+            bool loaded{false};
+            Type type;
+        };
+    }
+}
+</code></pre>
+
 <hr />
-<p>Updated on 13 November 2019 at 21:55:02 UTC</p>
+<p>Updated on 14 November 2019 at 21:07:49 UTC</p>
               
             </div>
           </div>
