@@ -12,18 +12,18 @@
     <title>Engine::Graphics::Texture3D :: Doxybook2 Example</title>
 
     
-    <link href="/doxybook2/hugo-learn/css/nucleus.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hybrid.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/theme.css?1573767070" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1573767070" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/nucleus.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hybrid.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/theme.css?1573769109" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1573769109" rel="stylesheet">
     
 
-    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1573767070"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1573769109"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1573767070"></script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1573767070"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1573769109"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1573769109"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/matusnovak.github.io\/doxybook2\/hugo-learn";
     
 </script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1573767070"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1573769109"></script>
 
     
   </div>
@@ -1411,11 +1411,11 @@
 <li><a href="#additional-inherited-members">Additional inherited members</a></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
-<li><a href="#function-texture3d">function Texture3D</a></li>
 <li><a href="#function-getdepth">function getDepth</a></li>
 <li><a href="#function-getheight">function getHeight</a></li>
 <li><a href="#function-getwidth">function getWidth</a></li>
-<li><a href="#function-texture3d-1">function ~Texture3D</a></li>
+<li><a href="#function-texture3d">function ~Texture3D</a></li>
+<li><a href="#function-texture3d-1">function Texture3D</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1465,11 +1465,6 @@
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture3d/#function-texture3d">Texture3D</a></strong>(int width, int height, int depth, uint8_t * data, <a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Texture::Type</a> type =Texture::Type::RGBA8)</td>
-</tr>
-
-<tr>
 <td>virtual int</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture3d/#function-getdepth">getDepth</a></strong>() const override <br>Returns the depth of the texture in pixels.</td>
 </tr>
@@ -1487,6 +1482,11 @@
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture3d/#function-~texture3d">~Texture3D</a></strong>()</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture3d/#function-texture3d">Texture3D</a></strong>(int width, int height, int depth, uint8_t * data, <a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Texture::Type</a> type =Texture::Type::RGBA8)</td>
 </tr>
 </tbody>
 </table>
@@ -1506,7 +1506,7 @@
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGB_8, RGB_32, RGB_16, RGBA_8, RGBA_32, RGBA_16 }</td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA_8, RGB_8, RGBA_16, RGB_16, RGBA_32, RGB_32 }</td>
 </tr>
 </tbody>
 </table>
@@ -1523,11 +1523,6 @@
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
-</tr>
-
-<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
@@ -1535,6 +1530,11 @@
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
 </tr>
 </tbody>
 </table>
@@ -1551,13 +1551,13 @@
 
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
+<td><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
 </tr>
 
 <tr>
-<td><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -1574,11 +1574,6 @@
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
-</tr>
-
-<tr>
 <td>int</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
@@ -1586,6 +1581,11 @@
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1handle/#function-~handle">~Handle</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 </tbody>
 </table>
@@ -1610,15 +1610,6 @@
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
-<h3 id="function-texture3d">function Texture3D</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">Texture3D</span><span style="color:#000;font-weight:bold">(</span>
-    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">width</span><span style="color:#000;font-weight:bold">,</span>
-    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">height</span><span style="color:#000;font-weight:bold">,</span>
-    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">depth</span><span style="color:#000;font-weight:bold">,</span>
-    <span style="color:#204a87;font-weight:bold">uint8_t</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">data</span><span style="color:#000;font-weight:bold">,</span>
-    <span style="color:#000">Texture</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Type</span> <span style="color:#000">type</span> <span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">Texture</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Type</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">RGBA8</span>
-<span style="color:#000;font-weight:bold">)</span>
-</code></pre></div>
 <h3 id="function-getdepth">function getDepth</h3>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">getDepth</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#204a87;font-weight:bold">override</span>
 </code></pre></div>
@@ -1648,12 +1639,21 @@
 
 <p><strong>Reimplements</strong>: <a href="/doxybook2/hugo-learn/classes/classengine_1_1graphics_1_1texture/#function-getwidth">Engine::Graphics::Texture::getWidth</a></p>
 
-<h3 id="function-texture3d-1">function ~Texture3D</h3>
+<h3 id="function-texture3d">function ~Texture3D</h3>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">Texture3D</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div>
+<h3 id="function-texture3d-1">function Texture3D</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">Texture3D</span><span style="color:#000;font-weight:bold">(</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">width</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">height</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">depth</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#204a87;font-weight:bold">uint8_t</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">data</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#000">Texture</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Type</span> <span style="color:#000">type</span> <span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">Texture</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Type</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">RGBA8</span>
+<span style="color:#000;font-weight:bold">)</span>
 </code></pre></div>
 <hr />
 
-<p>Updated on 14 November 2019 at 21:31:10 UTC</p>
+<p>Updated on 14 November 2019 at 22:05:09 UTC</p>
 
 
 <footer class=" footline" >
@@ -2709,19 +2709,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1573767070"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1573767070"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1573767070"></script>
-    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1573767070"></script>
-    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1573767070"></script>
-    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1573767070"></script>
+    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1573769109"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1573769109"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1573769109"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1573769109"></script>
+    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1573769109"></script>
+    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1573769109"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1573767070"></script>
-    <script src="/doxybook2/hugo-learn/js/learn.js?1573767070"></script>
-    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1573767070"></script>
+    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1573769109"></script>
+    <script src="/doxybook2/hugo-learn/js/learn.js?1573769109"></script>
+    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1573769109"></script>
 
-    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1573767070" rel="stylesheet" />
-    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1573767070"></script>
+    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1573769109" rel="stylesheet" />
+    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1573769109"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

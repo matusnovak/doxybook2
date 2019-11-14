@@ -7,7 +7,7 @@
 <meta property="og:description" content="Engine::Graphics::Framebuffer Module: An example game engine / Graphical related classes
 #include &lt;Framebuffer.hpp&gt;
 Inherits from Engine::Graphics::Texture, Engine::Graphics::Handle
-Public Functions     Name      Framebuffer(int width, int height)   virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels." />
+Public Functions     Name     virtual int getDepth() const override Returns the depth of the texture in pixels.   virtual int getHeight() const override Returns the height of the texture in pixels.   virtual int getWidth() const override Returns the width of the texture in pixels." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/" />
 
@@ -18,7 +18,7 @@ Public Functions     Name      Framebuffer(int width, int height)   virtual int 
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.22ea6469302195a475c5a39d1029a191795a91832ee29540a9ab39503ad2a794.js" integrity="sha256-IupkaTAhlaR1xaOdECmhkXlakYMu4pVAqas5UDrSp5Q="></script>
+<script defer src="/doxybook2/hugo-book/search.min.395cadeb6fac97302caff291110d2b1f78313fc3696ca1e6586133712ac3bc7f.js" integrity="sha256-OVyt62&#43;slzAsr/KREQ0rH3gxP8NpbKHmWGEzcSrDvH8="></script>
 
 <!--
 Made with Book Theme
@@ -109,11 +109,6 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-framebuffer">Framebuffer</a></strong>(int width, int height)</td>
-</tr>
-
-<tr>
 <td>virtual int</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-getdepth">getDepth</a></strong>() const override <br>Returns the depth of the texture in pixels.</td>
 </tr>
@@ -131,6 +126,11 @@ https://github.com/alex-shpak/hugo-book
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-~framebuffer">~Framebuffer</a></strong>()</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-framebuffer">Framebuffer</a></strong>(int width, int height)</td>
 </tr>
 </tbody>
 </table>
@@ -150,7 +150,7 @@ https://github.com/alex-shpak/hugo-book
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGB_8, RGB_32, RGB_16, RGBA_8, RGBA_32, RGBA_16 }</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA_8, RGB_8, RGBA_16, RGB_16, RGBA_32, RGB_32 }</td>
 </tr>
 </tbody>
 </table>
@@ -167,11 +167,6 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
-</tr>
-
-<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
@@ -179,6 +174,11 @@ https://github.com/alex-shpak/hugo-book
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
 </tr>
 </tbody>
 </table>
@@ -195,13 +195,13 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
+<td><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
 </tr>
 
 <tr>
-<td><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -218,11 +218,6 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
-</tr>
-
-<tr>
 <td>int</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
@@ -230,6 +225,11 @@ https://github.com/alex-shpak/hugo-book
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-~handle">~Handle</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 </tbody>
 </table>
@@ -254,12 +254,6 @@ https://github.com/alex-shpak/hugo-book
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
-<h3 id="function-framebuffer">function Framebuffer</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Framebuffer(
-    <span style="color:#66d9ef">int</span> width,
-    <span style="color:#66d9ef">int</span> height
-)
-</code></pre></div>
 <h3 id="function-getdepth">function getDepth</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getDepth() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">override</span>
 </code></pre></div>
@@ -289,12 +283,18 @@ https://github.com/alex-shpak/hugo-book
 
 <p><strong>Reimplements</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getwidth">Engine::Graphics::Texture::getWidth</a></p>
 
-<h3 id="function-framebuffer-1">function ~Framebuffer</h3>
+<h3 id="function-framebuffer">function ~Framebuffer</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Framebuffer()
+</code></pre></div>
+<h3 id="function-framebuffer-1">function Framebuffer</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Framebuffer(
+    <span style="color:#66d9ef">int</span> width,
+    <span style="color:#66d9ef">int</span> height
+)
 </code></pre></div>
 <hr />
 
-<p>Updated on 14 November 2019 at 21:31:11 UTC</p>
+<p>Updated on 14 November 2019 at 22:05:10 UTC</p>
 </article>
 
       
@@ -314,11 +314,11 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="#additional-inherited-members">Additional inherited members</a></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
-<li><a href="#function-framebuffer">function Framebuffer</a></li>
 <li><a href="#function-getdepth">function getDepth</a></li>
 <li><a href="#function-getheight">function getHeight</a></li>
 <li><a href="#function-getwidth">function getWidth</a></li>
-<li><a href="#function-framebuffer-1">function ~Framebuffer</a></li>
+<li><a href="#function-framebuffer">function ~Framebuffer</a></li>
+<li><a href="#function-framebuffer-1">function Framebuffer</a></li>
 </ul></li>
 </ul></li>
 </ul>

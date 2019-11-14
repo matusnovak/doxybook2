@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="Engine::Assets::Asset" />
 <meta property="og:description" content="Engine::Assets::Asset Module: An example game engine / Generic assets
 #include &lt;Asset.hpp&gt;
-Public Classes     Name     union Event    Public Functions     Name      Asset(const std::string &amp; name)   const Event &amp; getEvent() const Returns the current status of the asset.   virtual void load() Call this method to load the asset.   virtual void unload() Call this method to unload the asset." />
+Public Classes     Name     union Event    Public Functions     Name     const Event &amp; getEvent() const Returns the current status of the asset.   virtual void unload() Call this method to unload the asset.   virtual void load() Call this method to load the asset." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/classes/classengine_1_1assets_1_1asset/" />
 
@@ -17,7 +17,7 @@ Public Classes     Name     union Event    Public Functions     Name      Asset(
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.22ea6469302195a475c5a39d1029a191795a91832ee29540a9ab39503ad2a794.js" integrity="sha256-IupkaTAhlaR1xaOdECmhkXlakYMu4pVAqas5UDrSp5Q="></script>
+<script defer src="/doxybook2/hugo-book/search.min.395cadeb6fac97302caff291110d2b1f78313fc3696ca1e6586133712ac3bc7f.js" integrity="sha256-OVyt62&#43;slzAsr/KREQ0rH3gxP8NpbKHmWGEzcSrDvH8="></script>
 
 <!--
 Made with Book Theme
@@ -124,18 +124,8 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1assets_1_1asset/#function-asset">Asset</a></strong>(const std::string &amp; name)</td>
-</tr>
-
-<tr>
 <td>const <a href="/doxybook2/hugo-book/classes/unionengine_1_1assets_1_1asset_1_1event/">Event</a> &amp;</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1assets_1_1asset/#function-getevent">getEvent</a></strong>() const <br>Returns the current status of the asset.</td>
-</tr>
-
-<tr>
-<td>virtual void</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1assets_1_1asset/#function-load">load</a></strong>() <br>Call this method to load the asset.</td>
 </tr>
 
 <tr>
@@ -144,19 +134,24 @@ https://github.com/alex-shpak/hugo-book
 </tr>
 
 <tr>
+<td>virtual void</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1assets_1_1asset/#function-load">load</a></strong>() <br>Call this method to load the asset.</td>
+</tr>
+
+<tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1assets_1_1asset/#function-~asset">~Asset</a></strong>() =0</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1assets_1_1asset/#function-asset">Asset</a></strong>(const std::string &amp; name)</td>
 </tr>
 </tbody>
 </table>
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
-<h3 id="function-asset">function Asset</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> Asset(
-    <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span> name
-)
-</code></pre></div>
 <h3 id="function-getevent">function getEvent</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">const</span> Event <span style="color:#f92672">&amp;</span> getEvent() <span style="color:#66d9ef">const</span>
 </code></pre></div>
@@ -164,22 +159,27 @@ https://github.com/alex-shpak/hugo-book
 
 <p>Use this to determine the state, for example if the assets is being loaded or unloaded.</p>
 
-<h3 id="function-load">function load</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> load()
-</code></pre></div>
-<p>Call this method to load the asset.</p>
-
 <h3 id="function-unload">function unload</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> unload()
 </code></pre></div>
 <p>Call this method to unload the asset.</p>
 
-<h3 id="function-asset-1">function ~Asset</h3>
+<h3 id="function-load">function load</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> load()
+</code></pre></div>
+<p>Call this method to load the asset.</p>
+
+<h3 id="function-asset">function ~Asset</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Asset() <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</code></pre></div>
+<h3 id="function-asset-1">function Asset</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> Asset(
+    <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string <span style="color:#f92672">&amp;</span> name
+)
 </code></pre></div>
 <hr />
 
-<p>Updated on 14 November 2019 at 21:31:11 UTC</p>
+<p>Updated on 14 November 2019 at 22:05:10 UTC</p>
 </article>
 
       
@@ -199,11 +199,11 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="#public-functions">Public Functions</a></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
-<li><a href="#function-asset">function Asset</a></li>
 <li><a href="#function-getevent">function getEvent</a></li>
-<li><a href="#function-load">function load</a></li>
 <li><a href="#function-unload">function unload</a></li>
-<li><a href="#function-asset-1">function ~Asset</a></li>
+<li><a href="#function-load">function load</a></li>
+<li><a href="#function-asset">function ~Asset</a></li>
+<li><a href="#function-asset-1">function Asset</a></li>
 </ul></li>
 </ul></li>
 </ul>

@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.22ea6469302195a475c5a39d1029a191795a91832ee29540a9ab39503ad2a794.js" integrity="sha256-IupkaTAhlaR1xaOdECmhkXlakYMu4pVAqas5UDrSp5Q="></script>
+<script defer src="/doxybook2/hugo-book/search.min.395cadeb6fac97302caff291110d2b1f78313fc3696ca1e6586133712ac3bc7f.js" integrity="sha256-OVyt62&#43;slzAsr/KREQ0rH3gxP8NpbKHmWGEzcSrDvH8="></script>
 
 <!--
 Made with Book Theme
@@ -90,7 +90,7 @@ https://github.com/alex-shpak/hugo-book
 
 <p><strong>Module:</strong> <strong><a href="/doxybook2/hugo-book/modules/group__engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxybook2/hugo-book/modules/group__audio/">Audio buffers and devices</a></strong></p>
 
-<p>An audio manager that <em>accepts</em> multiple <strong>[Audio::AudioBuffer]()</strong> instances.  <a href="#detailed-description">More&hellip;</a></p>
+<p>An audio manager that <em>accepts</em> multiple <strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/">Audio::AudioBuffer</a></strong> instances.  <a href="#detailed-description">More&hellip;</a></p>
 
 <p><code>#include &lt;AudioManager.hpp&gt;</code></p>
 
@@ -106,11 +106,6 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiomanager/#function-audiomanager">AudioManager</a></strong>(int numOfChannels =128)</td>
-</tr>
-
-<tr>
 <td>void</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiomanager/#function-enque">enque</a></strong>(const <a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/">AudioBuffer</a> &amp; buffer)</td>
 </tr>
@@ -119,13 +114,18 @@ https://github.com/alex-shpak/hugo-book
 <td></td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiomanager/#function-~audiomanager">~AudioManager</a></strong>()</td>
 </tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiomanager/#function-audiomanager">AudioManager</a></strong>(int numOfChannels =128)</td>
+</tr>
 </tbody>
 </table>
 
 <h2 id="detailed-description">Detailed Description</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Engine</span><span style="color:#f92672">::</span>Audio<span style="color:#f92672">::</span>AudioManager;
 </code></pre></div>
-<p>An audio manager that <em>accepts</em> multiple <strong>[Audio::AudioBuffer]()</strong> instances.</p>
+<p>An audio manager that <em>accepts</em> multiple <strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/">Audio::AudioBuffer</a></strong> instances.</p>
 
 <p><strong>See</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/">Audio::AudioBuffer</a></p>
 
@@ -139,22 +139,22 @@ https://github.com/alex-shpak/hugo-book
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
-<h3 id="function-audiomanager">function AudioManager</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">AudioManager(
-    <span style="color:#66d9ef">int</span> numOfChannels <span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>
-)
-</code></pre></div>
 <h3 id="function-enque">function enque</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> enque(
     <span style="color:#66d9ef">const</span> AudioBuffer <span style="color:#f92672">&amp;</span> buffer
 )
 </code></pre></div>
-<h3 id="function-audiomanager-1">function ~AudioManager</h3>
+<h3 id="function-audiomanager">function ~AudioManager</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#f92672">~</span>AudioManager()
+</code></pre></div>
+<h3 id="function-audiomanager-1">function AudioManager</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">AudioManager(
+    <span style="color:#66d9ef">int</span> numOfChannels <span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>
+)
 </code></pre></div>
 <hr />
 
-<p>Updated on 14 November 2019 at 21:31:11 UTC</p>
+<p>Updated on 14 November 2019 at 22:05:10 UTC</p>
 </article>
 
       
@@ -174,9 +174,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="#detailed-description">Detailed Description</a></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
-<li><a href="#function-audiomanager">function AudioManager</a></li>
 <li><a href="#function-enque">function enque</a></li>
-<li><a href="#function-audiomanager-1">function ~AudioManager</a></li>
+<li><a href="#function-audiomanager">function ~AudioManager</a></li>
+<li><a href="#function-audiomanager-1">function AudioManager</a></li>
 </ul></li>
 </ul></li>
 </ul>

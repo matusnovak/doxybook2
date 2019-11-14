@@ -113,7 +113,7 @@
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></strong> { UNKNOWN, RGB_8, RGB_32, RGB_16, RGBA_8, RGBA_32, RGBA_16 }</td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA_8, RGB_8, RGBA_16, RGB_16, RGBA_32, RGB_32 }</td>
 </tr>
 </tbody>
 </table>
@@ -127,8 +127,8 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 <tr>
 <td>virtual int</td>
@@ -143,12 +143,12 @@
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-getwidth">getWidth</a></strong>() const =0 <br>Returns the width of the texture in pixels.</td>
 </tr>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
-</tr>
-<tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-~texture">~Texture</a></strong>() =default</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
 </tr>
 </tbody>
 </table>
@@ -162,12 +162,12 @@
 </thead>
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#variable-loaded">loaded</a></strong></td>
-</tr>
-<tr>
 <td><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture/#variable-loaded">loaded</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -182,16 +182,16 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
-</tr>
-<tr>
 <td>int</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-~handle">~Handle</a></strong>() =default</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 </tbody>
 </table>
@@ -239,22 +239,21 @@ int main() {
 <h3 id="enum-type">enum Type</h3>
 <pre><code class="cpp">enum Type {
     UNKNOWN,
-    RGB_8,
-    RGB_32,
-    RGB_16,
     RGBA_8,
+    RGB_8,
+    RGBA_16,
+    RGB_16,
     RGBA_32,
-    RGBA_16
+    RGB_32
 }
 </code></pre>
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-texture">function Texture</h3>
-<pre><code class="cpp">explicit Texture(
-    Type type
-)
+<h3 id="function-isloaded">function isLoaded</h3>
+<pre><code class="cpp">inline bool isLoaded() const
 </code></pre>
 
+<p>Does some more things</p>
 <h3 id="function-getdepth">function getDepth</h3>
 <pre><code class="cpp">virtual int getDepth() const =0
 </code></pre>
@@ -277,26 +276,27 @@ int main() {
 <p>Returns the width of the texture in pixels. </p>
 <p><strong>Return</strong>: Width in pixels </p>
 <p><strong>Reimplemented by</strong>: <a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
-<h3 id="function-isloaded">function isLoaded</h3>
-<pre><code class="cpp">inline bool isLoaded() const
-</code></pre>
-
-<p>Does some more things</p>
-<h3 id="function-texture_1">function ~Texture</h3>
+<h3 id="function-texture">function ~Texture</h3>
 <pre><code class="cpp">virtual ~Texture() =default
 </code></pre>
 
-<h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
-<h3 id="variable-loaded">variable loaded</h3>
-<pre><code class="cpp">bool loaded {false};
+<h3 id="function-texture_1">function Texture</h3>
+<pre><code class="cpp">explicit Texture(
+    Type type
+)
 </code></pre>
 
+<h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
 <h3 id="variable-type">variable type</h3>
 <pre><code class="cpp">Type type;
 </code></pre>
 
+<h3 id="variable-loaded">variable loaded</h3>
+<pre><code class="cpp">bool loaded {false};
+</code></pre>
+
 <hr />
-<p>Updated on 14 November 2019 at 21:31:01 UTC</p></div>
+<p>Updated on 14 November 2019 at 22:05:16 UTC</p></div>
         </div>
 
         <footer class="col-md-12">

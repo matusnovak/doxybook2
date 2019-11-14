@@ -415,10 +415,6 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-framebuffer">Framebuffer</a></strong>(int width, int height)</td>
-</tr>
-<tr>
 <td>virtual int</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getdepth">getDepth</a></strong>() const override <br>Returns the depth of the texture in pixels.</td>
 </tr>
@@ -434,6 +430,10 @@
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-~framebuffer">~Framebuffer</a></strong>()</td>
 </tr>
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-framebuffer">Framebuffer</a></strong>(int width, int height)</td>
+</tr>
 </tbody>
 </table>
 <h2 id="additional-inherited-members">Additional inherited members</h2>
@@ -448,7 +448,7 @@
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></strong> { UNKNOWN, RGB_8, RGB_32, RGB_16, RGBA_8, RGBA_32, RGBA_16 }</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></strong> { UNKNOWN, RGBA_8, RGB_8, RGBA_16, RGB_16, RGBA_32, RGB_32 }</td>
 </tr>
 </tbody>
 </table>
@@ -462,16 +462,16 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
-</tr>
-<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-~texture">~Texture</a></strong>() =default</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
 </tr>
 </tbody>
 </table>
@@ -485,12 +485,12 @@
 </thead>
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#variable-loaded">loaded</a></strong></td>
-</tr>
-<tr>
 <td><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#variable-loaded">loaded</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -504,16 +504,16 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
-</tr>
-<tr>
 <td>int</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-~handle">~Handle</a></strong>() =default</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 </tbody>
 </table>
@@ -533,13 +533,6 @@
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-framebuffer">function Framebuffer</h3>
-<pre><code class="cpp">Framebuffer(
-    int width,
-    int height
-)
-</code></pre>
-
 <h3 id="function-getdepth">function getDepth</h3>
 <pre><code class="cpp">virtual int getDepth() const override
 </code></pre>
@@ -562,12 +555,19 @@
 <p>Returns the width of the texture in pixels. </p>
 <p><strong>Return</strong>: Width in pixels </p>
 <p><strong>Reimplements</strong>: <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-getwidth">Engine::Graphics::Texture::getWidth</a></p>
-<h3 id="function-framebuffer_1">function ~Framebuffer</h3>
+<h3 id="function-framebuffer">function ~Framebuffer</h3>
 <pre><code class="cpp">virtual ~Framebuffer()
 </code></pre>
 
+<h3 id="function-framebuffer_1">function Framebuffer</h3>
+<pre><code class="cpp">Framebuffer(
+    int width,
+    int height
+)
+</code></pre>
+
 <hr />
-<p>Updated on 14 November 2019 at 21:30:58 UTC</p>
+<p>Updated on 14 November 2019 at 22:05:13 UTC</p>
               
             </div>
           </div>

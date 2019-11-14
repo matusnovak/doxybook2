@@ -26,7 +26,7 @@
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1assets/</guid>
       <description>Engine::Assets Namespace Reference
-Classes     Name     class Engine::Assets::Asset    Updated on 14 November 2019 at 21:31:10 UTC</description>
+Classes     Name     class Engine::Assets::Asset    Updated on 14 November 2019 at 22:05:09 UTC</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@ Classes     Name     class Engine::Assets::Asset    Updated on 14 November 2019 
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1audio/</guid>
       <description>Engine::Audio Namespace Reference
-Classes     Name     class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples   class Engine::Audio::AudioManager An audio manager that accepts multiple [Audio::AudioBuffer]() instances.    Functions     Name     void doSomething(AudioBuffer &amp;amp; buffer) Do something with the buffer.    Functions Documentation function doSomething void doSomething( AudioBuffer &amp;amp; buffer )  Do something with the buffer.</description>
+Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Functions     Name     void doSomething(AudioBuffer &amp;amp; buffer) Do something with the buffer.    Functions Documentation function doSomething void doSomething( AudioBuffer &amp;amp; buffer )  Do something with the buffer.</description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ Classes     Name     class Engine::Audio::AudioBuffer A simple audio buffer to h
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1graphics/</guid>
       <description>Engine::Graphics Namespace Reference
-Classes     Name     class Engine::Graphics::Framebuffer   class Engine::Graphics::Handle   interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.   class Engine::Graphics::Texture2D   class Engine::Graphics::Texture3D    Functions     Name     int getHandle(Handle &amp;amp; handle) Some namespace inline function.    Functions Documentation function getHandle inline int getHandle( Handle &amp;amp; handle )  Some namespace inline function.</description>
+Classes     Name     class Engine::Graphics::Texture3D   class Engine::Graphics::Texture2D   interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.   class Engine::Graphics::Handle   class Engine::Graphics::Framebuffer    Functions     Name     int getHandle(Handle &amp;amp; handle) Some namespace inline function.    Functions Documentation function getHandle inline int getHandle( Handle &amp;amp; handle )  Some namespace inline function.</description>
     </item>
     
     <item>
@@ -56,7 +56,7 @@ Classes     Name     class Engine::Graphics::Framebuffer   class Engine::Graphic
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1utils/</guid>
       <description>Engine::Utils Namespace Reference
-Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 14 November 2019 at 21:31:10 UTC</description>
+Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 14 November 2019 at 22:05:09 UTC</description>
     </item>
     
     <item>
