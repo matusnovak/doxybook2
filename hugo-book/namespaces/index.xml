@@ -25,7 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1assets/</guid>
-      <description>Engine::Assets Classes     Name     class Engine::Assets::Asset    Updated on 14 November 2019 at 22:05:10 UTC</description>
+      <description>Engine::Assets Classes     Name     class Engine::Assets::Asset    Updated on 17 November 2019 at 13:13:31 UTC</description>
     </item>
     
     <item>
@@ -52,7 +52,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1utils/</guid>
-      <description>Engine::Utils Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 14 November 2019 at 22:05:10 UTC</description>
+      <description>Engine::Utils Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 17 November 2019 at 13:13:31 UTC</description>
     </item>
     
     <item>

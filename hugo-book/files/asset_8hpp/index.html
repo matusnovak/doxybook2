@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="src/Assets/Asset.hpp" />
-<meta property="og:description" content="src/Assets/Asset.hpp Namespaces    Name     Engine::Assets   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Assets::Asset::Event::Waiting   struct Engine::Assets::Asset::Event::Unloaded   struct Engine::Assets::Asset::Event::Loaded   union Engine::Assets::Asset::Event   class Engine::Assets::Asset    Source code #pragma once #include &lt;queue&gt;#include &lt;string&gt; namespace Engine { namespace Assets { class Asset { public: union Event { struct Loaded { bool success; int usage; } loaded; struct Unloaded { bool success; } unloaded; struct Waiting { Asset* other; } waiting; }; explicit Asset(const std::string&amp; name); virtual ~Asset() = 0; virtual void load(); virtual void unload(); const Event&amp; getEvent() const { return event; } private: Event event; }; } }  Updated on 14 November 2019 at 22:05:10 UTC" />
+<meta property="og:description" content="src/Assets/Asset.hpp Namespaces    Name     Engine::Assets   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Assets::Asset::Event::Waiting   struct Engine::Assets::Asset::Event::Unloaded   struct Engine::Assets::Asset::Event::Loaded   union Engine::Assets::Asset::Event   class Engine::Assets::Asset    Source code #pragma once #include &lt;queue&gt;#include &lt;string&gt; namespace Engine { namespace Assets { class Asset { public: union Event { struct Loaded { bool success; int usage; } loaded; struct Unloaded { bool success; } unloaded; struct Waiting { Asset* other; } waiting; }; explicit Asset(const std::string&amp; name); virtual ~Asset() = 0; virtual void load(); virtual void unload(); const Event&amp; getEvent() const { return event; } private: Event event; }; } }  Updated on 17 November 2019 at 13:13:31 UTC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/files/asset_8hpp/" />
 
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.395cadeb6fac97302caff291110d2b1f78313fc3696ca1e6586133712ac3bc7f.js" integrity="sha256-OVyt62&#43;slzAsr/KREQ0rH3gxP8NpbKHmWGEzcSrDvH8="></script>
+<script defer src="/doxybook2/hugo-book/search.min.d2b0831436bbc30821ea0dea34f5b5538779f64e3564e94e66620fa4d2ce5ba9.js" integrity="sha256-0rCDFDa7wwgh6g3qNPW1U4d59k41ZOlOZmIPpNLOW6k="></script>
 
 <!--
 Made with Book Theme
@@ -184,7 +184,7 @@ https://github.com/alex-shpak/hugo-book
 </code></pre></div>
 <hr />
 
-<p>Updated on 14 November 2019 at 22:05:10 UTC</p>
+<p>Updated on 17 November 2019 at 13:13:31 UTC</p>
 </article>
 
       
