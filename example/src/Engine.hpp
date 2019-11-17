@@ -89,6 +89,13 @@ This manual is divided in the following sections:
 
 \snippet example-1.cpp TestTest
 
+## Table:
+
+First Header  | Second Header | Third Header 
+------------- | ------------- | -------------
+Content Cell  | Content Cell  | Content Cell 
+Content Cell  | Content Cell  | Content Cell 
+
 */
 
 //-----------------------------------------------------------

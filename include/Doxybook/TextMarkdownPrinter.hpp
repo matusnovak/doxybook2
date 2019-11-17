@@ -21,6 +21,7 @@ namespace Doxybook2 {
             int indent{0};
             std::list<ListData> lists;
             bool eol{false};
+            bool tableHeader{false};
         };
 
         void print(PrintData& data,

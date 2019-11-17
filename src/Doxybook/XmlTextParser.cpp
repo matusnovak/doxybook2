@@ -49,7 +49,15 @@ Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const s
         {"sect4", Node::Type::SECT4},
         {"sect5", Node::Type::SECT5},
         {"sect6", Node::Type::SECT6},
-        {"heading", Node::Type::SECT1}
+        {"heading", Node::Type::SECT1},
+        {"superscript", Node::Type::SUPERSCRIPT},
+        {"nonbreakablespace", Node::Type::NONBREAKSPACE},
+        {"table", Node::Type::TABLE},
+        {"row", Node::Type::TABLE_ROW},
+        {"entry", Node::Type::TABLE_CELL},
+        {"verbatim", Node::Type::VERBATIM},
+        {"lsquo", Node::Type::SQUO},
+        {"rsquo", Node::Type::SQUO}
     };
 
     const auto it = kinds.find(str);
@@ -138,6 +146,10 @@ void Doxybook2::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node
             }
             case Node::Type::IMAGE: {
                 ptr->extra = e.getAttr("name");
+                break;
+            }
+            case Node::Type::TABLE: {
+                ptr->extra = e.getAttr("cols", "");
                 break;
             }
             case Node::Type::XREFSECT: {

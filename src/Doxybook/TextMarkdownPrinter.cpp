@@ -123,6 +123,11 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             data.eol = false;
             break;
         }
+        case XmlTextParser::Node::Type::VERBATIM: {
+            data.ss << "\n\n```\n";
+            data.eol = false;
+            break;
+        }
         case XmlTextParser::Node::Type::SP: {
             data.ss << " ";
             data.eol = false;
@@ -136,6 +141,36 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         case XmlTextParser::Node::Type::VARLISTENTRY: {
             data.ss << "\n";
             data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::SUPERSCRIPT: {
+            data.ss << "<sup>";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::NONBREAKSPACE: {
+            data.ss << "&nbsp;";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::TABLE: {
+            data.ss << "\n";
+            data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::TABLE_ROW: {
+            data.ss << "|";
+            data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::TABLE_CELL: {
+            data.ss << " ";
+            data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::SQUO: {
+            data.ss << "\"";
+            data.eol = false;
             break;
         }
         default: {
@@ -193,18 +228,19 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::PARA: {
-            /*auto c = back(ss);
-            if (c != '\n') {
-                ss << "\n";
+            if (parent && parent->type == XmlTextParser::Node::Type::TABLE_CELL) {
+                break;
             }
             if (parent && parent->type == XmlTextParser::Node::Type::LISTITEM) {
-                break;
+                if (!data.eol) {
+                    data.ss << "\n";
+                    data.eol = true;
+                }
             } else {
-                //ss << "\n";
-            }*/
-            if (!data.eol) {
-                data.ss << "\n";
-                data.eol = true;
+                if (!data.eol) {
+                    data.ss << "\n\n";
+                    data.eol = true;
+                }
             }
             break;
         }
@@ -220,10 +256,6 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::LISTITEM: {
-            /*if (back(ss) != '\n') {
-                ss << "\n";
-            }*/
-            //ss << "\n";
             break;
         }
         case XmlTextParser::Node::Type::CODELINE: {
@@ -239,9 +271,42 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             data.eol = true;
             break;
         }
+        case XmlTextParser::Node::Type::VERBATIM: {
+            data.ss << "```\n\n";
+            data.eol = true;
+            break;
+        }
         case XmlTextParser::Node::Type::VARLISTENTRY: {
             data.ss << "\n\n";
             data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::SUPERSCRIPT: {
+            data.ss << "</sup>";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::TABLE: {
+            data.ss << "\n\n";
+            data.eol = true;
+            data.tableHeader = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::TABLE_ROW: {
+            if (!data.tableHeader) {
+                data.ss << "\n| ";
+                for (size_t i = 0; i < node->children.size(); i++) {
+                    data.ss << " -------- |";
+                }
+                data.tableHeader = true;
+            }
+            data.ss << "\n";
+            data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::TABLE_CELL: {
+            data.ss << " |";
+            data.eol = false;
             break;
         }
         default: {

@@ -50,7 +50,14 @@ namespace Doxybook2 {
                 SECT4,
                 SECT5,
                 SECT6,
-                TITLE
+                TITLE,
+                SUPERSCRIPT,
+                NONBREAKSPACE,
+                TABLE,
+                TABLE_ROW,
+                TABLE_CELL,
+                VERBATIM,
+                SQUO
             };
 
             Type type{Type::UNKNOWN};
