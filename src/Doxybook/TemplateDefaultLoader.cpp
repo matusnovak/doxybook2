@@ -159,13 +159,13 @@ R"({% for base in baseClasses %}
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in base.publicClasses %}| {{child.kind}} | **[{{last(split(child.name, "::"))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
+{% for child in base.publicClasses %}| {{child.kind}} | **[{{last(stripNamespace(child.name))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if existsIn(base, "protectedClasses") %}**Protected Classes inherited from [{{base.name}}]({{base.url}})**
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in base.protectedClasses %}| {{child.kind}} | **[{{last(split(child.name, "::"))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
+{% for child in base.protectedClasses %}| {{child.kind}} | **[{{last(stripNamespace(child.name))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if existsIn(base, "publicTypes") %}**Public Types inherited from [{{base.name}}]({{base.url}})**
 
@@ -216,13 +216,13 @@ R"({% if exists("publicClasses") %}## Public Classes
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in publicClasses %}| {{child.kind}} | **[{{last(split(child.name, "::"))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
+{% for child in publicClasses %}| {{child.kind}} | **[{{last(stripNamespace(child.name))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if exists("protectedClasses") %}## Protected Classes
 
 |                | Name           |
 | -------------- | -------------- |
-{% for child in protectedClasses %}| {{child.kind}} | **[{{last(split(child.name, "::"))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
+{% for child in protectedClasses %}| {{child.kind}} | **[{{last(stripNamespace(child.name))}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
 {% endfor %}{% endif %}
 {% if exists("publicTypes") %}## Public Types
 
@@ -535,13 +535,13 @@ R"({% include "header" %}
 static const std::string TEMPLATE_INDEX =
 R"(
 {% for child0 in children %}* **{{child0.kind}} [{{child0.title}}]({{child0.url}})**{% if existsIn(child0, "brief") %}<br>{{child0.brief}}{% endif %}{% if existsIn(child0, "children") %}{% for child1 in child0.children %}
-    * **{{child1.kind}} [{{last(split(child1.title, "::"))}}]({{child1.url}})**{% if existsIn(child1, "brief") %}<br>{{child1.brief}}{% endif %}{% if existsIn(child1, "children") %}{% for child2 in child1.children %}
-        * **{{child2.kind}} [{{last(split(child2.title, "::"))}}]({{child2.url}})**{% if existsIn(child2, "brief") %}<br>{{child2.brief}}{% endif %}{% if existsIn(child2, "children") %}{% for child3 in child2.children %}
-            * **{{child3.kind}} [{{last(split(child3.title, "::"))}}]({{child3.url}})**{% if existsIn(child3, "brief") %}<br>{{child3.brief}}{% endif %}{% if existsIn(child3, "children") %}{% for child4 in child3.children %}
-                * **{{child4.kind}} [{{last(split(child4.title, "::"))}}]({{child4.url}})**{% if existsIn(child4, "brief") %}<br>{{child4.brief}}{% endif %}{% if existsIn(child4, "children") %}{% for child5 in child4.children %}
-                    * **{{child5.kind}} [{{last(split(child5.title, "::"))}}]({{child5.url}})**{% if existsIn(child5, "brief") %}<br>{{child5.brief}}{% endif %}{% if existsIn(child5, "children") %}{% for child6 in child5.children %}
-                        * **{{child6.kind}} [{{last(split(child6.title, "::"))}}]({{child6.url}})**{% if existsIn(child6, "brief") %}<br>{{child6.brief}}{% endif %}{% if existsIn(child6, "children") %}{% for child7 in child6.children %}
-                            * **{{child7.kind}} [{{last(split(child7.title, "::"))}}]({{child7.url}})**{% if existsIn(child7, "brief") %}<br>{{child7.brief}}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}
+    * **{{child1.kind}} [{{last(stripNamespace(child1.title))}}]({{child1.url}})**{% if existsIn(child1, "brief") %}<br>{{child1.brief}}{% endif %}{% if existsIn(child1, "children") %}{% for child2 in child1.children %}
+        * **{{child2.kind}} [{{last(stripNamespace(child2.title))}}]({{child2.url}})**{% if existsIn(child2, "brief") %}<br>{{child2.brief}}{% endif %}{% if existsIn(child2, "children") %}{% for child3 in child2.children %}
+            * **{{child3.kind}} [{{last(stripNamespace(child3.title))}}]({{child3.url}})**{% if existsIn(child3, "brief") %}<br>{{child3.brief}}{% endif %}{% if existsIn(child3, "children") %}{% for child4 in child3.children %}
+                * **{{child4.kind}} [{{last(stripNamespace(child4.title))}}]({{child4.url}})**{% if existsIn(child4, "brief") %}<br>{{child4.brief}}{% endif %}{% if existsIn(child4, "children") %}{% for child5 in child4.children %}
+                    * **{{child5.kind}} [{{last(stripNamespace(child5.title))}}]({{child5.url}})**{% if existsIn(child5, "brief") %}<br>{{child5.brief}}{% endif %}{% if existsIn(child5, "children") %}{% for child6 in child5.children %}
+                        * **{{child6.kind}} [{{last(stripNamespace(child6.title))}}]({{child6.url}})**{% if existsIn(child6, "brief") %}<br>{{child6.brief}}{% endif %}{% if existsIn(child6, "children") %}{% for child7 in child6.children %}
+                            * **{{child7.kind}} [{{last(stripNamespace(child7.title))}}]({{child7.url}})**{% if existsIn(child7, "brief") %}<br>{{child7.brief}}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}{% endfor %}{% endif %}
 {% endfor %}
 )";
 

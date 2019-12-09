@@ -9,6 +9,7 @@
 #include <Doxybook/Log.hpp>
 #include <Doxybook/Utils.hpp>
 #include "ExceptionUtils.hpp"
+#include <iostream>
 
 class Doxybook2::Node::Temp {
 public:
@@ -56,6 +57,10 @@ Doxybook2::NodePtr Doxybook2::Node::parse(NodeCacheMap& cache,
     const auto refidPath = Utils::join(inputDir, ptr->refid + ".xml");
     Log::i("Loading {}", refidPath);
     Xml xml(refidPath);
+
+    if (ptr->refid == "structwrenbind17_1_1_foreign_klass_impl_1_1_foreign_getter_details_3_01_r_07_t_1_1_5_08_07_08_01const_00_01_fn_01_4") {
+        std::cout << "stop" << std::endl;
+    }
 
     auto root = assertChild(xml, "doxygen");
     auto compounddef = assertChild(root, "compounddef");
@@ -386,7 +391,7 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
             const auto childPtr = this->findChild(childRefid);
 
             childrenData.insert(std::make_pair(
-                childPtr.get(), 
+                childPtr.get()->getRefid(), 
                 loadData(config, plainPrinter, markdownPrinter, cache, memberdef)
             ));
             if (childPtr->kind == Kind::ENUM) {
@@ -394,8 +399,8 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
                 while (enumvalue) {
                     const auto enumvalueRefid = enumvalue.getAttr("id");
                     const auto enumvaluePtr = childPtr->findChild(enumvalueRefid);
-                    childrenData.insert(std::make_pair<const Node*, Data>(
-                        enumvaluePtr.get(), 
+                    childrenData.insert(std::make_pair<std::string, Data>(
+                        std::string(enumvaluePtr.get()->getRefid()),
                         loadData(config, plainPrinter, markdownPrinter, cache, enumvalue))
                     );
                     enumvalue = enumvalue.nextSiblingElement("enumvalue");
@@ -564,10 +569,14 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
         auto param = templateparamlist.firstChildElement("param");
         while(param) {
             const auto type = param.firstChildElement("type");
+            if (!type) continue;
+
             const auto declname = param.firstChildElement("declname");
             const auto defval = param.firstChildElement("defval");
             Param templateParam;
-            templateParam.name = declname.getText();
+            if (declname) {
+                templateParam.name = declname.getText();
+            }
             templateParam.type = markdownPrinter.print(XmlTextParser::parsePara(type));
             templateParam.typePlain = plainPrinter.print(XmlTextParser::parsePara(type));
             if (defval) {

@@ -27,6 +27,10 @@ Doxybook2::Renderer::Renderer(const Config& config)
         const auto arg = args.at(0)->get<std::string>();
         return Utils::date(arg);
     });
+    env->add_callback("stripNamespace", 1, [](inja::Arguments& args) -> std::string {
+        const auto arg = args.at(0)->get<std::string>();
+        return Utils::stripNamespace(arg);
+    });
     env->add_callback("split", 2, [](inja::Arguments& args) -> nlohmann::json {
         const auto arg0 = args.at(0)->get<std::string>();
         const auto arg1 = args.at(1)->get<std::string>();

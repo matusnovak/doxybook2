@@ -104,7 +104,7 @@ namespace Doxybook2 {
             std::string programlisting;
         };
 
-        typedef std::unordered_map<const Node*, Data> ChildrenData;
+        typedef std::unordered_map<std::string, Data> ChildrenData;
 
         // Parse root xml objects (classes, structs, etc)
         static NodePtr parse(NodeCacheMap& cache,

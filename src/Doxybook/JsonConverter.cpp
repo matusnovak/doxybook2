@@ -5,6 +5,7 @@
 #include <Doxybook/Utils.hpp>
 #include <nlohmann/json.hpp>
 #include <unordered_set>
+#include <iostream>
 
 Doxybook2::JsonConverter::JsonConverter(const Config& config,
     const Doxygen& doxygen,
@@ -309,7 +310,11 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                         child->getKind() != Kind::FILE) {
 
                         try {
-                            const auto& childData = childrenDataMap.at(child.get());
+                            auto it = childrenDataMap.find(child.get()->getRefid());
+                            if (it == childrenDataMap.end()) {
+                                throw EXCEPTION("Child {} not found in data map", child.get()->getRefid());
+                            }
+                            const auto& childData = it->second;
                             if (child->getVisibility() == visibility) {
                                 auto childJson = convert(*child);
                                 auto childDataJson = convert(*child, childData);
@@ -319,7 +324,11 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                                     auto enumvalues = nlohmann::json::array();
                                     for (const auto& enumvalue : child->getChildren()) {
                                         auto enumvalueJson = convert(*enumvalue);
-                                        const auto& enumvalueData = childrenDataMap.at(child.get());
+                                        const auto eit = childrenDataMap.find(enumvalue.get()->getRefid());
+                                        if (eit == childrenDataMap.end()) {
+                                            throw EXCEPTION("Child {} not found in data map", child.get()->getRefid());
+                                        }
+                                        const auto& enumvalueData = eit->second;
                                         auto enumvalueDataJson = convert(*enumvalue, enumvalueData);
                                         enumvalueJson.insert(childDataJson.begin(), childDataJson.end());
                                         enumvalues.push_back(std::move(enumvalueJson));
@@ -332,8 +341,9 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                         } catch (std::out_of_range& e) {
                             (void)e;
                             throw EXCEPTION(
-                                "Refid {} this should never happen please contact the author!", 
-                                child->getRefid()
+                                "Refid {} this should never happen please contact the author! Error: {}", 
+                                child->getRefid(),
+                                e.what()
                             );
                         }
                     } else {
@@ -409,7 +419,11 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
 
                             if (!child->isStructured() && child->getKind() != Kind::MODULE) {
                                 try {
-                                    const auto& childData = baseChildrenDataMap.at(child.get());
+                                    const auto it = baseChildrenDataMap.find(child.get()->getRefid());
+                                    if (it == baseChildrenDataMap.end()) {
+                                        throw EXCEPTION("Child {} not found in data map", child.get()->getRefid());
+                                    }
+                                    const auto& childData = it->second;
                                     if (child->getVisibility() == visibility) {
                                         auto childJson = convert(*child);
                                         auto childDataJson = convert(*child, childData);
@@ -419,7 +433,11 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                                             auto enumvalues = nlohmann::json::array();
                                             for (const auto& enumvalue : child->getChildren()) {
                                                 auto enumvalueJson = convert(*enumvalue);
-                                                const auto& enumvalueData = baseChildrenDataMap.at(child.get());
+                                                const auto eit = baseChildrenDataMap.find(enumvalue.get()->getRefid());
+                                                if (eit == baseChildrenDataMap.end()) {
+                                                    throw EXCEPTION("Child {} not found in data map", child.get()->getRefid());
+                                                }
+                                                const auto& enumvalueData = it->second;
                                                 auto enumvalueDataJson = convert(*enumvalue, enumvalueData);
                                                 enumvalueJson.insert(childDataJson.begin(), childDataJson.end());
                                                 enumvalues.push_back(std::move(enumvalueJson));

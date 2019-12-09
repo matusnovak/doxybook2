@@ -48,9 +48,40 @@ std::string Doxybook2::Utils::date(const std::string& format) {
 }
 
 std::string Doxybook2::Utils::stripNamespace(const std::string& str) {
-    const auto pos = str.find_last_of("::");
-    if (pos != std::string::npos) return str.substr(pos + 1);
-    return str;
+    auto inside = 0;
+    size_t count = 0;
+    size_t offset = std::string::npos;
+    for (const auto& c : str) {
+        switch (c) {
+            case '(':
+            case '[':
+            case '<': {
+                inside++;
+                break;
+            }
+            case ')':
+            case ']':
+            case '>': {
+                inside--;
+                break;
+            }
+            case ':': {
+                if (inside == 0) {
+                    offset = count + 1;
+                }
+            }
+            default: {
+                break;
+            }
+        }
+        count++;
+    }
+
+    if (offset != std::string::npos) {
+        return str.substr(offset);
+    } else {
+        return str;
+    }
 }
 
 std::string Doxybook2::Utils::stripAnchor(const std::string& str) {
