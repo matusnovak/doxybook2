@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
+        
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Doxybook2 Example</title>
+        <title>Modules - Doxybook2 Example</title>
     <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/base.css" rel="stylesheet">
@@ -25,53 +25,45 @@
     <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="..">Doxybook2 Example</a>
-                </div>
+                <a class="navbar-brand" href="..">Doxybook2 Example</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li >
-                                <a href="/doxybook2/mkdocs-bootstrap/">Home</a>
+                            <li class="navitem">
+                                <a href="/doxybook2/mkdocs-bootstrap/" class="nav-link">Home</a>
                             </li>
-                            <li >
-                                <a href="/doxybook2/mkdocs-bootstrap/Classes">Classes</a>
+                            <li class="navitem">
+                                <a href="/doxybook2/mkdocs-bootstrap/Classes" class="nav-link">Classes</a>
                             </li>
-                            <li >
-                                <a href="/doxybook2/mkdocs-bootstrap/Namespaces">Namespaces</a>
+                            <li class="navitem">
+                                <a href="/doxybook2/mkdocs-bootstrap/Namespaces" class="nav-link">Namespaces</a>
                             </li>
-                            <li >
-                                <a href="/doxybook2/mkdocs-bootstrap/Modules">Modules</a>
+                            <li class="navitem">
+                                <a href="/doxybook2/mkdocs-bootstrap/Modules" class="nav-link">Modules</a>
                             </li>
-                            <li >
-                                <a href="/doxybook2/mkdocs-bootstrap/Files">Files</a>
+                            <li class="navitem">
+                                <a href="/doxybook2/mkdocs-bootstrap/Files" class="nav-link">Files</a>
                             </li>
-                            <li >
-                                <a href="/doxybook2/mkdocs-bootstrap/Pages">Related Pages</a>
+                            <li class="navitem">
+                                <a href="/doxybook2/mkdocs-bootstrap/Pages" class="nav-link">Related Pages</a>
                             </li>
-                            <li >
-                                <a href="/doxybook2/mkdocs-bootstrap/Examples">Examples</a>
+                            <li class="navitem">
+                                <a href="/doxybook2/mkdocs-bootstrap/Examples" class="nav-link">Examples</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -81,12 +73,26 @@
         </div>
 
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#modules">Modules</a></li>
-    </ul>
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#modules" class="nav-link">Modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-                <div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
 
 <h1 id="modules">Modules</h1>
 <ul>
@@ -99,7 +105,8 @@
 </li>
 </ul>
 <hr />
-<p>Updated on  9 December 2019 at 18:15:39 UTC</p></div>
+<p>Updated on 29 February 2020 at 09:17:50 UTC</p></div>
+            </div>
         </div>
 
         <footer class="col-md-12">
@@ -113,19 +120,19 @@
         <script src="../js/base.js" defer></script>
         <script src="../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
             </div>
             <div class="modal-body">
                 <p>
                     From here you can search these documents. Enter
                     your search terms below.
                 </p>
-                <form role="form">
+                <form>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
@@ -136,12 +143,12 @@
             </div>
         </div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -179,8 +186,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.0.4
-Build Date UTC : 2019-12-09 18:15:39
--->
