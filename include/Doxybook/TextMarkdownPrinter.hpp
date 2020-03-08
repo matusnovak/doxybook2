@@ -1,16 +1,16 @@
 #pragma once
 #include "TextPrinter.hpp"
-
+#include <sstream>
 namespace Doxybook2 {
     class TextMarkdownPrinter : public TextPrinter {
-    public:
+      public:
         explicit TextMarkdownPrinter(const Config& config, std::string inputDir, const Doxygen& doxygen)
             : TextPrinter(config, doxygen), inputDir(std::move(inputDir)) {
-
         }
 
         std::string print(const XmlTextParser::Node& node) const override;
-    private:
+
+      private:
         struct ListData {
             int counter{0};
             bool ordered{false};
@@ -25,12 +25,12 @@ namespace Doxybook2 {
         };
 
         void print(PrintData& data,
-                   const XmlTextParser::Node* parent,
-                   const XmlTextParser::Node* node,
-                   const XmlTextParser::Node* previous,
-                   const XmlTextParser::Node* next) const;
+            const XmlTextParser::Node* parent,
+            const XmlTextParser::Node* node,
+            const XmlTextParser::Node* previous,
+            const XmlTextParser::Node* next) const;
         void programlisting(std::stringstream& ss, const XmlTextParser::Node& node) const;
 
         std::string inputDir;
     };
-}
+} // namespace Doxybook2
