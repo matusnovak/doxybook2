@@ -48,7 +48,7 @@ Doxybook2::Doxygen::Doxygen(const Config& config)
 }
 
 void Doxybook2::Doxygen::load(const std::string& inputDir) {
-    // Remove entires from index which parent has been updated
+    // Remove entires from the index when the parent has been updated
     const auto cleanup = [](const NodePtr& node) {
         auto it = node->children.begin();
         while (it != node->children.end()) {
@@ -60,9 +60,9 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
         }
     };
 
-    // Load basic information about all nodes.
-    // This includes refid, brief, and list of members.
-    // This won't load detailed documentation or other data! (we will do that later)
+    // Load basic information about all nodes
+    // This includes refid, brief, and list of members
+    // This won't load detailed documentation or other data! (We will do that later)
     const auto kindRefidMap = getIndexKinds(inputDir);
     for (const auto& pair : kindRefidMap) {
         if (!isKindAllowedLanguage(pair.first))

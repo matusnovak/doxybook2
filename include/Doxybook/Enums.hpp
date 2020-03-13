@@ -62,6 +62,8 @@ namespace Doxybook2 {
         EXAMPLES
     };
 
+    // Declarations of external functions in the Doxybook2 namespace
+    // The "extern" specifier allows for the Type of the function to be declared here and defined somewhere else in the program
     extern Kind toEnumKind(const std::string& str);
     extern Type toEnumType(const std::string& str);
     extern Visibility toEnumVisibility(const std::string& str);

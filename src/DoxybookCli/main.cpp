@@ -12,6 +12,9 @@
 #include <iostream>
 #include <string>
 
+// For the command line inputs create an argagg-based help menu
+// Format is as follows:
+// { "name of the option", { short identifier, long identifier }, "message to display in help menu", the number of arguments the option expects}
 static argagg::parser argparser{{{"help", {"-h", "--help"}, "Shows this help message", 0},
     {"input", {"-i", "--input"}, "Path to the generated Doxygen XML folder. Must contain index.xml!", 1},
     {"output", {"-o", "--output"}, "Path to the target folder where to generate markdown files", 1},

@@ -9,6 +9,7 @@
 #include "ExceptionUtils.hpp"
 
 
+// Changethe provided kind to a template name
 std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
     using namespace Doxybook2;
     switch (kind) {
@@ -33,7 +34,7 @@ std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
         case Kind::EXAMPLE:
             return config.templateKindExample;
         default: {
-            throw EXCEPTION("Unrecognised kind {} please contant the author!", int(kind));
+            throw EXCEPTION("Unrecognised kind {} please contact the author!", int(kind));
         }
     }
 }
@@ -45,6 +46,7 @@ Doxybook2::Generator::Generator(const Config& config,
       jsonConverter(jsonConverter),
       renderer(config) {
 
+    // For all objects in the provided templateLoader object, get the templates and add them to the renderer
     for (const auto& pair : templateLoader.getTemplates()) {
         renderer.addTemplate(pair.name, pair.contents);
     }

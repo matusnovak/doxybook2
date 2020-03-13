@@ -6,20 +6,27 @@
 #include "TemplateLoader.hpp"
 
 namespace Doxybook2 {
+
+    // Declaration of the Generator class
     class Generator {
     public:
+
+        // The "Filter" Type is a std::unordered_set<Kind>
         typedef std::unordered_set<Kind> Filter;
 
+        // Declaration of the SummarySection struct
         struct SummarySection {
             FolderCategory type;
             Filter filter;
             Filter skip;
         };
 
+        // An explicit Generator declaration; requires that the compiler not change the types due to a compiler-based assumption of human error
         explicit Generator(const Config& config,
                            const JsonConverter& jsonConverter,
                            const TemplateLoader& templateLoader);
 
+        // 
         void print(const Doxygen& doxygen, const Filter& filter, const Filter& skip);
         void json(const Doxygen& doxygen, const Filter& filter, const Filter& skip);
         void manifest(const Doxygen& doxygen);
