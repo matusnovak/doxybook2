@@ -1,13 +1,12 @@
+#include "ExceptionUtils.hpp"
+#include <Doxybook/Exception.hpp>
+#include <Doxybook/Log.hpp>
+#include <Doxybook/XmlTextParser.hpp>
 #include <functional>
 #include <unordered_map>
-#include <Doxybook/XmlTextParser.hpp>
-#include <Doxybook/Log.hpp>
-#include <Doxybook/Exception.hpp>
-#include "ExceptionUtils.hpp"
 
 Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const std::string& str) {
-    static std::unordered_map<std::string, Node::Type> kinds = {
-        {"para", Node::Type::PARA},
+    static std::unordered_map<std::string, Node::Type> kinds = {{"para", Node::Type::PARA},
         {"bold", Node::Type::BOLD},
         {"emphasis", Node::Type::EMPHASIS},
         {"strike", Node::Type::STRIKE},
@@ -57,7 +56,10 @@ Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const s
         {"entry", Node::Type::TABLE_CELL},
         {"verbatim", Node::Type::VERBATIM},
         {"lsquo", Node::Type::SQUO},
-        {"rsquo", Node::Type::SQUO}
+        {"linebreak", Node::Type::LINEBREAK},
+        {"ndash", Node::Type::NDASH},
+        {"mdash", Node::Type::MDASH},
+        {"onlyfor", Node::Type::ONLYFOR}
     };
 
     const auto it = kinds.find(str);
@@ -72,7 +74,7 @@ Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const s
 Doxybook2::XmlTextParser::Node Doxybook2::XmlTextParser::parseParas(const Xml::Element& element) {
     Node result;
     result.type = Node::Type::PARAS;
-    std::vector<Node*> tree = { &result };
+    std::vector<Node*> tree = {&result};
     auto para = element.firstChildElement();
     while (para) {
         traverse(tree, para.asNode());
@@ -84,13 +86,14 @@ Doxybook2::XmlTextParser::Node Doxybook2::XmlTextParser::parseParas(const Xml::E
 Doxybook2::XmlTextParser::Node Doxybook2::XmlTextParser::parsePara(const Xml::Element& element) {
     Node result;
     result.type = Node::Type::PARA;
-    std::vector<Node*> tree = { &result };
+    std::vector<Node*> tree = {&result};
     traverse(tree, element.asNode());
     return result;
 }
 
 void Doxybook2::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node& element) {
-    if (!element) return;
+    if (!element)
+        return;
 
     if (element.isElement()) {
         const auto& e = element.asElement();
@@ -122,12 +125,12 @@ void Doxybook2::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node
                     ptr->type = Node::Type::SECT6;
                     break;
                 default:
-                    ptr->type = Node::Type::SECT1; 
+                    ptr->type = Node::Type::SECT1;
                     break;
             }
         }
 
-        switch(ptr->type) {
+        switch (ptr->type) {
             case Node::Type::SIMPLESEC: {
                 ptr->extra = e.getAttr("kind");
                 break;
@@ -183,7 +186,6 @@ void Doxybook2::XmlTextParser::traverse(std::vector<Node*> tree, const Xml::Node
             }
         } else {
             const auto text = element.getText();
-
         }
     }
 

@@ -57,7 +57,11 @@ namespace Doxybook2 {
                 TABLE_ROW,
                 TABLE_CELL,
                 VERBATIM,
-                SQUO
+                SQUO,
+                NDASH,
+                MDASH,
+                LINEBREAK,
+                ONLYFOR,
             };
 
             Type type{Type::UNKNOWN};

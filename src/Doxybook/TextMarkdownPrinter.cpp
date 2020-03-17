@@ -1,22 +1,23 @@
-#include <sstream>
-#include <fstream>
+#include <Doxybook/Doxygen.hpp>
 #include <Doxybook/TextMarkdownPrinter.hpp>
 #include <Doxybook/Utils.hpp>
-#include <Doxybook/Doxygen.hpp>
+#include <fstream>
+#include <sstream>
 
 std::string Doxybook2::TextMarkdownPrinter::print(const XmlTextParser::Node& node) const {
     PrintData data;
     print(data, nullptr, &node, nullptr, nullptr);
     auto str = data.ss.str();
-    while (!str.empty() && str.back() == '\n') str.pop_back();
+    while (!str.empty() && str.back() == '\n')
+        str.pop_back();
     return str;
 }
 
 void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
-                                          const XmlTextParser::Node* parent,
-                                          const XmlTextParser::Node* node,
-                                          const XmlTextParser::Node* previous,
-                                          const XmlTextParser::Node* next) const {
+    const XmlTextParser::Node* parent,
+    const XmlTextParser::Node* node,
+    const XmlTextParser::Node* previous,
+    const XmlTextParser::Node* next) const {
 
     switch (node->type) {
         case XmlTextParser::Node::Type::TEXT: {
@@ -72,7 +73,8 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         case XmlTextParser::Node::Type::VARIABLELIST:
         case XmlTextParser::Node::Type::ORDEREDLIST:
         case XmlTextParser::Node::Type::ITEMIZEDLIST: {
-            if (data.lists.empty()) data.ss << "\n";
+            if (data.lists.empty())
+                data.ss << "\n";
             data.ss << "\n";
             data.eol = true;
             data.lists.push_back({0, node->type == XmlTextParser::Node::Type::ORDEREDLIST});
@@ -104,11 +106,14 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             if (config.copyImages) {
                 std::ifstream src(Utils::join(inputDir, node->extra), std::ios::binary);
                 if (src && config.useFolders && !config.imagesFolder.empty()) {
-                    std::ofstream dst(Utils::join(config.outputDir, config.imagesFolder, node->extra), std::ios::binary);
-                    if (dst) dst << src.rdbuf();
+                    std::ofstream dst(
+                        Utils::join(config.outputDir, config.imagesFolder, node->extra), std::ios::binary);
+                    if (dst)
+                        dst << src.rdbuf();
                 } else if (src) {
                     std::ofstream dst(Utils::join(config.outputDir, node->extra), std::ios::binary);
-                    if (dst) dst << src.rdbuf();
+                    if (dst)
+                        dst << src.rdbuf();
                 }
             }
             break;
@@ -170,6 +175,26 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         }
         case XmlTextParser::Node::Type::SQUO: {
             data.ss << "\"";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::NDASH: {
+            data.ss << "&ndash;";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::MDASH: {
+            data.ss << "&mdash;";
+            data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::LINEBREAK: {
+            data.ss << "\n";
+            data.eol = true;
+            break;
+        }
+        case XmlTextParser::Node::Type::ONLYFOR: {
+            data.ss << "(";
             data.eol = false;
             break;
         }
@@ -309,6 +334,11 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             data.eol = false;
             break;
         }
+        case XmlTextParser::Node::Type::ONLYFOR: {
+            data.ss << ")";
+            data.eol = false;
+            break;
+        }
         default: {
             break;
         }
@@ -344,4 +374,3 @@ void Doxybook2::TextMarkdownPrinter::programlisting(std::stringstream& ss, const
         }
     }
 }
-
