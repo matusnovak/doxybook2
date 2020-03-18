@@ -1,18 +1,18 @@
-#include <unordered_map>
-#include <functional>
+#include "ExceptionUtils.hpp"
+#include <Doxybook/Exception.hpp>
+#include <Doxybook/Log.hpp>
+#include <Doxybook/Node.hpp>
+#include <Doxybook/TextPrinter.hpp>
+#include <Doxybook/Utils.hpp>
+#include <Doxybook/XmlTextParser.hpp>
 #include <cassert>
 #include <fmt/format.h>
-#include <Doxybook/Node.hpp>
-#include <Doxybook/Exception.hpp>
-#include <Doxybook/XmlTextParser.hpp>
-#include <Doxybook/TextPrinter.hpp>
-#include <Doxybook/Log.hpp>
-#include <Doxybook/Utils.hpp>
-#include "ExceptionUtils.hpp"
+#include <functional>
 #include <iostream>
+#include <unordered_map>
 
 class Doxybook2::Node::Temp {
-public:
+  public:
     XmlTextParser::Node brief;
 };
 
@@ -26,9 +26,9 @@ static Doxybook2::NodePtr findInCache(Doxybook2::NodeCacheMap& cache, const std:
 }
 
 static Doxybook2::NodePtr findOrCreate(const std::string& inputDir,
-                                      Doxybook2::NodeCacheMap& cache,
-                                      const std::string& refid,
-                                      const bool isGroupOrFile) {
+    Doxybook2::NodeCacheMap& cache,
+    const std::string& refid,
+    const bool isGroupOrFile) {
     auto found = findInCache(cache, refid);
     if (found) {
         if (found->isEmpty()) {
@@ -42,23 +42,22 @@ static Doxybook2::NodePtr findOrCreate(const std::string& inputDir,
 }
 
 Doxybook2::NodePtr Doxybook2::Node::parse(NodeCacheMap& cache,
-                                        const std::string& inputDir,
-                                        const std::string& refid,
-                                        const bool isGroupOrFile) {
+    const std::string& inputDir,
+    const std::string& refid,
+    const bool isGroupOrFile) {
     assert(!refid.empty());
     const auto ptr = std::make_shared<Node>(refid);
     return parse(cache, inputDir, ptr, isGroupOrFile);
 }
 
-Doxybook2::NodePtr Doxybook2::Node::parse(NodeCacheMap& cache,
-                                        const std::string& inputDir,
-                                        const NodePtr& ptr,
-                                        const bool isGroupOrFile) {
+Doxybook2::NodePtr
+Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const NodePtr& ptr, const bool isGroupOrFile) {
     const auto refidPath = Utils::join(inputDir, ptr->refid + ".xml");
     Log::i("Loading {}", refidPath);
     Xml xml(refidPath);
 
-    if (ptr->refid == "structwrenbind17_1_1_foreign_klass_impl_1_1_foreign_getter_details_3_01_r_07_t_1_1_5_08_07_08_01const_00_01_fn_01_4") {
+    if (ptr->refid == "structwrenbind17_1_1_foreign_klass_impl_1_1_foreign_getter_details_3_01_r_07_t_1_1_5_08_07_08_"
+                      "01const_00_01_fn_01_4") {
         std::cout << "stop" << std::endl;
     }
 
@@ -85,7 +84,8 @@ Doxybook2::NodePtr Doxybook2::Node::parse(NodeCacheMap& cache,
             if (isGroupOrFile) {
                 // Only update child's parent if this is a group and the member has
                 // just been created (not in cache)
-                if (!found) child->parent = ptr.get();
+                if (!found)
+                    child->parent = ptr.get();
             } else {
                 // Only update child's parent if we are not processing directories
                 if (isKindLanguage(ptr->kind) && isKindLanguage(child->kind)) {
@@ -105,10 +105,8 @@ Doxybook2::NodePtr Doxybook2::Node::parse(NodeCacheMap& cache,
             ptr->children.push_back(child);
 
             // Only update child's parent if we are not processing directories
-            if (!isGroupOrFile ||
-                (isGroupOrFile && child->kind == Kind::MODULE) ||
-                (isGroupOrFile && child->kind == Kind::FILE) ||
-                (isGroupOrFile && child->kind == Kind::DIR)) {
+            if (!isGroupOrFile || (isGroupOrFile && child->kind == Kind::MODULE) ||
+                (isGroupOrFile && child->kind == Kind::FILE) || (isGroupOrFile && child->kind == Kind::DIR)) {
                 child->parent = ptr.get();
             }
         });
@@ -158,31 +156,34 @@ Doxybook2::NodePtr Doxybook2::Node::parse(Xml::Element& memberdef, const std::st
 
 Doxybook2::Xml::Element Doxybook2::Node::assertChild(const Xml& xml, const std::string& name) {
     auto child = xml.firstChildElement(name);
-    if (!child) throw EXCEPTION("Unable to find <{}> element in root element file {}", name, xml.getPath());
+    if (!child)
+        throw EXCEPTION("Unable to find <{}> element in root element file {}", name, xml.getPath());
     return child;
 }
 
 Doxybook2::Xml::Element Doxybook2::Node::assertChild(const Xml::Element& xml, const std::string& name) {
     auto child = xml.firstChildElement(name);
     if (!child)
-        throw EXCEPTION(
-        "Unable to find <{}> element in element <{}> line {} file {}",
-        name, xml.getName(), xml.getLine(), xml.getDocument().getPath()
-    );
+        throw EXCEPTION("Unable to find <{}> element in element <{}> line {} file {}",
+            name,
+            xml.getName(),
+            xml.getLine(),
+            xml.getDocument().getPath());
     return child;
 }
 
-Doxybook2::Node::Node(const std::string& refid)
-    : temp(new Temp),
-      refid(refid) {
-
+Doxybook2::Node::Node(const std::string& refid) : temp(new Temp), refid(refid) {
 }
 
 Doxybook2::Node::~Node() = default;
 
 void Doxybook2::Node::parseBaseInfo(const Xml::Element& element) {
-    const auto briefdescription = assertChild(element, "briefdescription");
-    temp->brief = XmlTextParser::parseParas(briefdescription);
+    const auto briefdescription = element.firstChildElement("briefdescription");
+    if (briefdescription) {
+        temp->brief = XmlTextParser::parseParas(briefdescription);
+    } else {
+        temp->brief.type = XmlTextParser::Node::Type::PARAS;
+    }
     visibility = toEnumVisibility(element.getAttr("prot", "public"));
     virt = toEnumVirtual(element.getAttr("virt", "non-virtual"));
 
@@ -274,19 +275,15 @@ void Doxybook2::Node::parseInheritanceInfo(const Xml::Element& element) {
 }
 
 void Doxybook2::Node::finalize(const Config& config,
-                              const TextPrinter& plainPrinter,
-                              const TextPrinter& markdownPrinter,
-                              const NodeCacheMap& cache) {
+    const TextPrinter& plainPrinter,
+    const TextPrinter& markdownPrinter,
+    const NodeCacheMap& cache) {
     // Sort children
     if (config.sort) {
 #ifdef _MSC_VER
-        children.sort([](const NodePtr& a, const NodePtr& b) {
-            return a->getName() < b->getName();
-        });
+        children.sort([](const NodePtr& a, const NodePtr& b) { return a->getName() < b->getName(); });
 #else
-        children.sort([](const NodePtr& a, const NodePtr& b) {
-            return a->getName() > b->getName();
-        });
+        children.sort([](const NodePtr& a, const NodePtr& b) { return a->getName() > b->getName(); });
 #endif
     }
 
@@ -325,25 +322,22 @@ void Doxybook2::Node::finalize(const Config& config,
                         return urlFolderMaker(config, node);
                     }
                 }
-                return urlFolderMaker(config, node) +
-                       Utils::stripAnchor(node.refid) + config.linkSuffix +
+                return urlFolderMaker(config, node) + Utils::stripAnchor(node.refid) + config.linkSuffix +
                        anchorMaker(node);
             }
             case Kind::ENUMVALUE: {
                 const auto n = node.parent->parent;
-                return urlFolderMaker(config, *n) +
-                       Utils::stripAnchor(n->refid) + config.linkSuffix +
+                return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
                        anchorMaker(node);
             }
             default: {
                 const auto n = node.parent;
-                return urlFolderMaker(config, *n) +
-                       Utils::stripAnchor(n->refid) + config.linkSuffix +
+                return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
                        anchorMaker(node);
             }
         }
     };
-    
+
     if (temp) {
         brief = markdownPrinter.print(temp->brief);
         summary = plainPrinter.print(temp->brief);
@@ -351,7 +345,8 @@ void Doxybook2::Node::finalize(const Config& config,
 
         anchor = anchorMaker(*this);
         url = urlMaker(config, *this);
-        if (config.linkLowercase) url = Utils::toLower(url);
+        if (config.linkLowercase)
+            url = Utils::toLower(url);
 
         for (auto& klass : baseClasses) {
             if (!klass.refid.empty()) {
@@ -370,9 +365,9 @@ void Doxybook2::Node::finalize(const Config& config,
 }
 
 Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
-                                                        const TextPrinter& plainPrinter,
-                                                        const TextPrinter& markdownPrinter,
-                                                        const NodeCacheMap& cache) const {
+    const TextPrinter& plainPrinter,
+    const TextPrinter& markdownPrinter,
+    const NodeCacheMap& cache) const {
 
     Log::i("Parsing {}", xmlPath);
     Xml xml(xmlPath);
@@ -391,18 +386,14 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
             const auto childPtr = this->findChild(childRefid);
 
             childrenData.insert(std::make_pair(
-                childPtr.get()->getRefid(), 
-                loadData(config, plainPrinter, markdownPrinter, cache, memberdef)
-            ));
+                childPtr.get()->getRefid(), loadData(config, plainPrinter, markdownPrinter, cache, memberdef)));
             if (childPtr->kind == Kind::ENUM) {
                 auto enumvalue = memberdef.firstChildElement("enumvalue");
                 while (enumvalue) {
                     const auto enumvalueRefid = enumvalue.getAttr("id");
                     const auto enumvaluePtr = childPtr->findChild(enumvalueRefid);
-                    childrenData.insert(std::make_pair<std::string, Data>(
-                        std::string(enumvaluePtr.get()->getRefid()),
-                        loadData(config, plainPrinter, markdownPrinter, cache, enumvalue))
-                    );
+                    childrenData.insert(std::make_pair<std::string, Data>(std::string(enumvaluePtr.get()->getRefid()),
+                        loadData(config, plainPrinter, markdownPrinter, cache, enumvalue)));
                     enumvalue = enumvalue.nextSiblingElement("enumvalue");
                 }
             }
@@ -416,10 +407,10 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
 }
 
 Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
-                                              const TextPrinter& plainPrinter,
-                                              const TextPrinter& markdownPrinter,
-                                              const NodeCacheMap& cache,
-                                              const Xml::Element& element) const {
+    const TextPrinter& plainPrinter,
+    const TextPrinter& markdownPrinter,
+    const NodeCacheMap& cache,
+    const Xml::Element& element) const {
     Data data;
 
     data.isAbstract = element.getAttr("abstract", "no") == "yes";
@@ -440,9 +431,11 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
     }
 
     auto argsString = element.firstChildElement("argsstring");
-    if (argsString && argsString.hasText()) data.argsString = argsString.getText();
+    if (argsString && argsString.hasText())
+        data.argsString = argsString.getText();
     auto definition = element.firstChildElement("definition");
-    if (definition && definition.hasText()) data.definition = definition.getText();
+    if (definition && definition.hasText())
+        data.definition = definition.getText();
     auto initializer = element.firstChildElement("initializer");
     if (initializer) {
         data.initializer = markdownPrinter.print(XmlTextParser::parsePara(initializer));
@@ -462,7 +455,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
         for (auto& para : detailsParas.children) {
             for (auto it = para.children.begin(); it != para.children.end();) {
                 switch (it->type) {
-                case XmlTextParser::Node::Type::SIMPLESEC: {
+                    case XmlTextParser::Node::Type::SIMPLESEC: {
                         if (it->extra == "see") {
                             data.see.push_back(markdownPrinter.print(*it));
                         } else if (it->extra == "return") {
@@ -502,8 +495,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
                         break;
                     }
                     case XmlTextParser::Node::Type::XREFSECT: {
-                        if (it->children.size() == 2 &&
-                            it->children[0].type == XmlTextParser::Node::Type::XREFTITLE &&
+                        if (it->children.size() == 2 && it->children[0].type == XmlTextParser::Node::Type::XREFTITLE &&
                             it->children[1].type == XmlTextParser::Node::Type::XREFDESCRIPTION) {
 
                             if (it->extra == "bug") {
@@ -556,7 +548,8 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
 
     data.details = markdownPrinter.print(detailsParas);
     const auto inbodydescription = element.firstChildElement("inbodydescription");
-    if (inbodydescription) data.inbody = markdownPrinter.print(XmlTextParser::parseParas(inbodydescription));
+    if (inbodydescription)
+        data.inbody = markdownPrinter.print(XmlTextParser::parseParas(inbodydescription));
 
     if (const auto includes = element.firstChildElement("includes")) {
         if (includes.getAttr("local", "no") == "no")
@@ -567,9 +560,10 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
 
     if (const auto templateparamlist = element.firstChildElement("templateparamlist")) {
         auto param = templateparamlist.firstChildElement("param");
-        while(param) {
+        while (param) {
             const auto type = param.firstChildElement("type");
-            if (!type) continue;
+            if (!type)
+                continue;
 
             const auto declname = param.firstChildElement("declname");
             const auto defval = param.firstChildElement("defval");
@@ -634,7 +628,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
     }
 
     if (auto reimplementedby = element.firstChildElement("reimplementedby")) {
-        while(reimplementedby) {
+        while (reimplementedby) {
             const auto refid = reimplementedby.getAttr("refid", "");
             if (!refid.empty()) {
                 data.reimplementedBy.push_back(cache.at(refid).get());
@@ -652,7 +646,8 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
 
 Doxybook2::NodePtr Doxybook2::Node::findChild(const std::string& refid) const {
     for (const auto& ptr : children) {
-        if (ptr->refid == refid) return ptr;
+        if (ptr->refid == refid)
+            return ptr;
     }
 
     throw EXCEPTION("Refid {} not found in {}", refid, this->refid);
@@ -660,22 +655,28 @@ Doxybook2::NodePtr Doxybook2::Node::findChild(const std::string& refid) const {
 
 Doxybook2::NodePtr Doxybook2::Node::find(const std::string& refid) const {
     auto test = findRecursively(refid);
-    if (!test) throw EXCEPTION("Refid {} not found in {}", refid, this->refid);
+    if (!test)
+        throw EXCEPTION("Refid {} not found in {}", refid, this->refid);
     return test;
 }
 
 Doxybook2::NodePtr Doxybook2::Node::findRecursively(const std::string& refid) const {
     for (auto it = children.begin(); it != children.end(); ++it) {
-        if (it->get()->refid == refid) return *it;
+        if (it->get()->refid == refid)
+            return *it;
         auto test = it->get()->findRecursively(refid);
-        if (test) return test;
+        if (test)
+            return test;
     }
     return nullptr;
 }
 
 Doxybook2::Node::ClassReferences Doxybook2::Node::getAllBaseClasses(const NodeCacheMap& cache) {
-    ClassReferences newTemp = baseClasses;
-    
+    std::list<ClassReference> newTemp;
+    for (auto& base : baseClasses) {
+        newTemp.push_back(base);
+    }
+
     for (auto& base : newTemp) {
         if (!base.refid.empty() && !base.ptr) {
             auto found = cache.at(base.refid);
@@ -684,9 +685,8 @@ Doxybook2::Node::ClassReferences Doxybook2::Node::getAllBaseClasses(const NodeCa
 
         if (base.ptr) {
             for (const auto& newBase : const_cast<Node*>(base.ptr)->getAllBaseClasses(cache)) {
-                auto test = std::find_if(newTemp.begin(), newTemp.end(), [&](ClassReference& e) {
-                    return e.refid == newBase.refid;
-                });
+                auto test = std::find_if(
+                    newTemp.begin(), newTemp.end(), [&](ClassReference& e) { return e.refid == newBase.refid; });
 
                 if (test == newTemp.end()) {
                     newTemp.push_back(newBase);
@@ -695,5 +695,9 @@ Doxybook2::Node::ClassReferences Doxybook2::Node::getAllBaseClasses(const NodeCa
         }
     }
 
-    return newTemp;
+    ClassReferences result;
+    for (auto& base : newTemp) {
+        result.push_back(base);
+    }
+    return result;
 }
