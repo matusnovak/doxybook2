@@ -178,8 +178,12 @@ Doxybook2::Node::Node(const std::string& refid) : temp(new Temp), refid(refid) {
 Doxybook2::Node::~Node() = default;
 
 void Doxybook2::Node::parseBaseInfo(const Xml::Element& element) {
-    const auto briefdescription = assertChild(element, "briefdescription");
-    temp->brief = XmlTextParser::parseParas(briefdescription);
+    const auto briefdescription = element.firstChildElement("briefdescription");
+    if (briefdescription) {
+        temp->brief = XmlTextParser::parseParas(briefdescription);
+    } else {
+        temp->brief.type = XmlTextParser::Node::Type::PARAS;
+    }
     visibility = toEnumVisibility(element.getAttr("prot", "public"));
     virt = toEnumVirtual(element.getAttr("virt", "non-virtual"));
 
