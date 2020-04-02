@@ -43,6 +43,12 @@ cd ..
 
 "build\src\DoxybookCli\Debug\doxybook2.exe" ^
     --input example/doxygen/xml ^
+    --output example/docsify/content ^
+    --config example/docsify/.doxybook/config.json ^
+    --templates example/docsify/.doxybook/templates
+
+"build\src\DoxybookCli\Debug\doxybook2.exe" ^
+    --input example/doxygen/xml ^
     --output example/json ^
     --json ^
     --config-data "{""linkSuffix:"" """"}"

@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/uxhq9f3awnjsephc/branch/master?svg=true)](https://ci.appveyor.com/project/matusnovak/doxybook2/branch/master) [![Build Status](https://travis-ci.com/matusnovak/doxybook2.svg?branch=master)](https://travis-ci.com/matusnovak/doxybook2) [![CircleCI](https://circleci.com/gh/matusnovak/doxybook2/tree/master.svg?style=svg)](https://circleci.com/gh/matusnovak/doxybook2/tree/master)
 
-Doxygen XML to Markdown (or JSON) converter. Generate beautiful C++ documentation by converting Doxygen XML output into markdown pages via [MkDocs](https://www.mkdocs.org/), [Hugo](https://gohugo.io/), [VuePress](https://vuepress.vuejs.org/), [GitBook](https://github.com/GitbookIO/gitbook), or your custom generator. Comes with optional templating mechanism and extensive configuration file.
+Doxygen XML to Markdown (or JSON) converter. Generate beautiful C++ documentation by converting Doxygen XML output into markdown pages via [MkDocs](https://www.mkdocs.org/), [Hugo](https://gohugo.io/), [VuePress](https://vuepress.vuejs.org/), [GitBook](https://github.com/GitbookIO/gitbook), [Docsify](https://docsify.js.org/#/), or your custom generator. Comes with optional templating mechanism and extensive configuration file.
 
 ![Screenshot - Hugo Learn](screenshots/screenshot_hugo_learn.jpg)
 
@@ -68,6 +68,10 @@ This project is not perfect and I will never claim it will be. It does its job a
 ### [GitBook](https://github.com/GitbookIO/gitbook) with default theme ([Link](https://matusnovak.github.io/doxybook2/original/classEngine_1_1Audio_1_1AudioBuffer.html))
 
 ![Screenshot - GitBook](screenshots/screenshot_gitbook_default.jpg)
+
+### [Docsify](https://docsify.js.org/#/) with default theme (no link)
+
+![Screenshot - Docsify](screenshots/screenshot_docsify_default.jpg)
 </details>
 
 ## Examples
@@ -81,6 +85,7 @@ This project is not perfect and I will never claim it will be. It does its job a
 | [Link](https://matusnovak.github.io/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Bootstrap](http://mkdocs.github.io/mkdocs-bootstrap/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-bootstrap/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/vuepress/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [VuePress](https://vuepress.vuejs.org/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) | 
 | [Link](https://matusnovak.github.io/doxybook2/gitbook/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [GitBook](https://github.com/GitbookIO/gitbook) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) |
+| N/A | [Docsify](https://docsify.js.org/#/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/docsify/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/original/classEngine_1_1Audio_1_1AudioBuffer.html) | Original Doxygen | N/A | N/A |
 
 Source markdown files for these examples above: <https://github.com/matusnovak/doxybook2/tree/gh-pages>
@@ -91,11 +96,11 @@ First, compile the doxybook2 and then run `examples.bat` or `examples.sh` in the
 
 ## Requirements
 
-This tool has been compiled and tested on Windows (win32 and win64), Linux (amd64 and arm64), and OSX (amd64). Using any other architecture, such as power PC, is not guaranteed to work. You will also need Doxygen 1.8.16 or newer. Doxygen 1.8.15 is supported but I do not recommend it. Windows arm64 not tested and not supported at this moment. No dependencies, simply download the executable file from the GitHub release page.
+This tool has been compiled and tested on Windows (win32 and win64), Linux (amd64 and arm64), and OSX (amd64). Using any other architecture, such as power PC, is not guaranteed to work. You will also need Doxygen 1.8.16 or newer. Doxygen 1.8.15 is supported but I do not recommend it. Windows arm64 not tested and not supported at this moment. No dependencies, simply download the executable file from the GitHub release page. If using Windows, you will need [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
 
 ## Install
 
-Go to https://github.com/matusnovak/doxybook2/releases and download the precompiled binary in the zip file for your target platform. `doxybook2-linux-arm64` should work out of the box on Raspberry Pi, and the windows version needs [Visual C++ redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). The binary file `doxybook2.exe` is located in the `bin` folder in the zip file. Put it somewhere in your system and add it to the `PATH`. That's it. 
+Go to https://github.com/matusnovak/doxybook2/releases and download the precompiled binary in the zip file for your target platform. `doxybook2-linux-arm64` should work out of the box on Raspberry Pi, and the windows version needs [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). The binary file `doxybook2.exe` is located in the `bin` folder in the zip file. Put it somewhere in your system and add it to the `PATH`. That's it. 
 
 ## Install from source
 
@@ -422,8 +427,8 @@ int main() {
     const Node& index = doxygen.getIndex();
 
     // Recursive find function via refid. The refid is from the XML files.
-    const Node* audioBuffer = index.find("class_engine_1_1_audio_1_1_audio_buffer");
-    const Node* audioBufferConstructor = index.find("classEngine_1_1Audio_1_1AudioBuffer_1ab3f8002fc80d9bff50cfb6095e10a721");
+    const auto audioBuffer = index.find("class_engine_1_1_audio_1_1_audio_buffer");
+    const auto audioBufferConstructor = index.find("classEngine_1_1Audio_1_1AudioBuffer_1ab3f8002fc80d9bff50cfb6095e10a721");
     audioBufferConstructor->getName(); // Returns "AudioBuffer"
 
     // Get detailed data of this specific class
@@ -449,7 +454,7 @@ Got any questions or found a bug? Feel free to submit them to the GitHub issues 
 ## License
 
 ```
-Copyright (c) 2019 Matus Novak email@matusnovak.com
+Copyright (c) 2019-2020 Matus Novak email@matusnovak.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
