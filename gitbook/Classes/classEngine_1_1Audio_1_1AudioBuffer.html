@@ -1037,12 +1037,16 @@
 </thead>
 <tbody>
 <tr>
-<td>typedef <a href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt; uint8_t &gt;</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#typedef-audiodata">AudioData</a></strong></td>
+<td>typedef <a href="classEngine_1_1Audio_1_1AudioBuffer.html#using-audiodata">AudioData</a>&lt; uint8_t &gt;</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#typedef-audiodata8u">AudioData8U</a></strong></td>
+</tr>
+<tr>
+<td>template \<typename t="" \="">&lt;/br&gt;using <a href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt; T &gt;</typename></td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#using-audiodata">AudioData</a></strong></td>
 </tr>
 <tr>
 <td>enum</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#enum-type">Type</a></strong> { UNKNOWN, INT_8, INT_16, INT_24, INT_32, FLOAT_32 }<br>Different type of audio formats.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }<br>Different type of audio formats.</td>
 </tr>
 </tbody>
 </table>
@@ -1055,6 +1059,14 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a>[] data, size_t size)</td>
+</tr>
+<tr>
+<td>template \<size_t size\="">&lt;/br&gt;void</size_t></td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdatamultiple">setDataMultiple</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[Size])</td>
+</tr>
 <tr>
 <td>void</td>
 <td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> &amp; data)</td>
@@ -1162,21 +1174,62 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; buffer.play(...) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
 </code></pre>
 <h2 id="public-types-documentation">Public Types Documentation</h2>
-<h3 id="typedef-audiodata">typedef AudioData</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">typedef</span> Utils::ArrayView&lt; <span class="hljs-keyword">uint8_t</span> &gt; AudioData;
+<h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">typedef</span> AudioData&lt;<span class="hljs-keyword">uint8_t</span>&gt; Engine::Audio::AudioBuffer::AudioData8U;
+</code></pre>
+<h3 id="using-audiodata">using AudioData</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T &gt;
+<span class="hljs-keyword">using</span> Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 </code></pre>
 <h3 id="enum-type">enum Type</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">enum</span> Type {
-    UNKNOWN,
-    INT_8,
-    INT_16,
-    INT_24,
-    INT_32,
-    FLOAT_32
-}
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Enumerator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNKNOWN = 0</td>
+<td>Dont use this</td>
+</tr>
+<tr>
+<td>INT_8 = 1 &lt;&lt; 1</td>
+<td>8-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_16 = 1 &lt;&lt; 2</td>
+<td>16-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_24 = 1 &lt;&lt; 3</td>
+<td>24-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_32 = 1 &lt;&lt; 4</td>
+<td>32-bit signed integer</td>
+</tr>
+<tr>
+<td>FLOAT_32 = 1 &lt;&lt; 5</td>
+<td>32-bit float</td>
+</tr>
+</tbody>
+</table>
 <p>Different type of audio formats. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-setdata">function setData</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setData</span><span class="hljs-params">(
+    <span class="hljs-keyword">const</span> TypedAudioData[] data,
+    size_t size
+)</span>
+</span></code></pre>
+<h3 id="function-setdatamultiple">function setDataMultiple</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">size_t</span> Size&gt;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDataMultiple</span><span class="hljs-params">(
+    <span class="hljs-keyword">const</span> TypedAudioData data[Size]
+)</span>
+</span></code></pre>
 <h3 id="function-setdata">function setData</h3>
 <pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setData</span><span class="hljs-params">(
     <span class="hljs-keyword">const</span> TypedAudioData &amp; data
@@ -1241,7 +1294,7 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 <pre><code class="lang-cpp"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">class</span> AudioManager;
 </code></pre>
 <hr>
-<p>Updated on 18 March 2020 at 21:25:12 UTC</p>
+<p>Updated on  2 April 2020 at 17:30:13 UTC</p>
 
                                 
                                 </section>
@@ -1285,7 +1338,7 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2020-03-18T21:25:12.125Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-18T21:25:50.383Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2020-04-02T17:30:13.496Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-02T17:30:37.376Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

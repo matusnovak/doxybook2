@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.a2250abbca53e0919829e1cbfe3ff7db5b48e6f8dc3fda1ca81bab6dddfda69e.js" integrity="sha256-oiUKu8pT4JGYKeHL/j/321tI5vjcP9ocqBurbd39pp4="></script>
+<script defer src="/doxybook2/hugo-book/search.min.b6a0de333d7830032c10c1711d6f8c5f5cdbec7b3809b25635bc01e25d40f189.js" integrity="sha256-tqDeMz14MAMsEMFxHW&#43;MX1zb7Hs4CbJWNbwB4l1A8Yk="></script>
 
 <!--
 Made with Book Theme
@@ -124,13 +124,18 @@ https://github.com/alex-shpak/hugo-book
 
 <tbody>
 <tr>
-<td>typedef <a href="/doxybook2/hugo-book/classes/classengine_1_1utils_1_1arrayview/">Utils::ArrayView</a>&lt; uint8_t &gt;</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#typedef-audiodata">AudioData</a></strong></td>
+<td>typedef <a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#using-audiodata">AudioData</a>&lt; uint8_t &gt;</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#typedef-audiodata8u">AudioData8U</a></strong></td>
+</tr>
+
+<tr>
+<td>template &lt;typename T &gt;</br>using <a href="/doxybook2/hugo-book/classes/classengine_1_1utils_1_1arrayview/">Utils::ArrayView</a>&lt; T &gt;</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#using-audiodata">AudioData</a></strong></td>
 </tr>
 
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#enum-type">Type</a></strong> { UNKNOWN, INT_8, INT_16, INT_24, INT_32, FLOAT_32 }<br>Different type of audio formats.</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }<br>Different type of audio formats.</td>
 </tr>
 </tbody>
 </table>
@@ -146,6 +151,16 @@ https://github.com/alex-shpak/hugo-book
 </thead>
 
 <tbody>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/hugo-book/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/">TypedAudioData</a>[] data, size_t size)</td>
+</tr>
+
+<tr>
+<td>template &lt;size_t Size&gt;</br>void</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#function-setdatamultiple">setDataMultiple</a></strong>(const <a href="/doxybook2/hugo-book/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/">TypedAudioData</a> data[Size])</td>
+</tr>
+
 <tr>
 <td>void</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/hugo-book/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/">TypedAudioData</a> &amp; data)</td>
@@ -281,24 +296,73 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 </code></pre></div>
 <h2 id="public-types-documentation">Public Types Documentation</h2>
 
-<h3 id="typedef-audiodata">typedef AudioData</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">typedef</span> Utils<span style="color:#f92672">::</span>ArrayView<span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">&gt;</span> AudioData;
+<h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">typedef</span> AudioData<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;</span> Engine<span style="color:#f92672">::</span>Audio<span style="color:#f92672">::</span>AudioBuffer<span style="color:#f92672">::</span>AudioData8U;
+</code></pre></div>
+<h3 id="using-audiodata">using AudioData</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T <span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">using</span> Engine<span style="color:#f92672">::</span>Audio<span style="color:#f92672">::</span>AudioBuffer<span style="color:#f92672">::</span>AudioData <span style="color:#f92672">=</span>  Utils<span style="color:#f92672">::</span>ArrayView<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>;
 </code></pre></div>
 <h3 id="enum-type">enum Type</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Type</span> {
-    UNKNOWN,
-    INT_8,
-    INT_16,
-    INT_24,
-    INT_32,
-    FLOAT_32
-}
-</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Enumerator</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>UNKNOWN = 0</td>
+<td>Dont use this</td>
+</tr>
+
+<tr>
+<td>INT_8 = 1 &lt;&lt; 1</td>
+<td>8-bit signed integer</td>
+</tr>
+
+<tr>
+<td>INT_16 = 1 &lt;&lt; 2</td>
+<td>16-bit signed integer</td>
+</tr>
+
+<tr>
+<td>INT_24 = 1 &lt;&lt; 3</td>
+<td>24-bit signed integer</td>
+</tr>
+
+<tr>
+<td>INT_32 = 1 &lt;&lt; 4</td>
+<td>32-bit signed integer</td>
+</tr>
+
+<tr>
+<td>FLOAT_32 = 1 &lt;&lt; 5</td>
+<td>32-bit float</td>
+</tr>
+</tbody>
+</table>
+
 <p>Different type of audio formats.</p>
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
 <h3 id="function-setdata">function setData</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> setData(
+    <span style="color:#66d9ef">const</span> TypedAudioData[] data,
+    size_t size
+)
+</code></pre></div>
+<h3 id="function-setdatamultiple">function setDataMultiple</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>size_t Size<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> setDataMultiple(
+    <span style="color:#66d9ef">const</span> TypedAudioData data[Size]
+)
+</code></pre></div>
+<h3 id="function-setdata-1">function setData</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> setData(
     <span style="color:#66d9ef">const</span> TypedAudioData <span style="color:#f92672">&amp;</span> data
 )
@@ -378,7 +442,7 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 </code></pre></div>
 <hr />
 
-<p>Updated on 18 March 2020 at 21:24:55 UTC</p>
+<p>Updated on  2 April 2020 at 17:30:09 UTC</p>
 </article>
 
       
@@ -403,12 +467,15 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 <li><a href="#detailed-description">Detailed Description</a></li>
 <li><a href="#public-types-documentation">Public Types Documentation</a>
 <ul>
-<li><a href="#typedef-audiodata">typedef AudioData</a></li>
+<li><a href="#typedef-audiodata8u">typedef AudioData8U</a></li>
+<li><a href="#using-audiodata">using AudioData</a></li>
 <li><a href="#enum-type">enum Type</a></li>
 </ul></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
 <li><a href="#function-setdata">function setData</a></li>
+<li><a href="#function-setdatamultiple">function setDataMultiple</a></li>
+<li><a href="#function-setdata-1">function setData</a></li>
 <li><a href="#function-loop">function loop</a></li>
 <li><a href="#function-stop">function stop</a></li>
 <li><a href="#function-play">function play</a></li>

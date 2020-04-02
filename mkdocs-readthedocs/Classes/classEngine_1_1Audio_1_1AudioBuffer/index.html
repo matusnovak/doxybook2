@@ -97,7 +97,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#public-types-documentation">Public Types Documentation</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#typedef-audiodata">typedef AudioData</a>
+    <li class="toctree-l3"><a class="reference internal" href="#typedef-audiodata8u">typedef AudioData8U</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-audiodata">using AudioData</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#enum-type">enum Type</a>
     </li>
@@ -106,6 +108,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#public-functions-documentation">Public Functions Documentation</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#function-setdata">function setData</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-setdatamultiple">function setDataMultiple</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-setdata_1">function setData</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#function-loop">function loop</a>
     </li>
@@ -330,12 +336,16 @@
 </thead>
 <tbody>
 <tr>
-<td>typedef <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Utils_1_1ArrayView/">Utils::ArrayView</a>&lt; uint8_t &gt;</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#typedef-audiodata">AudioData</a></strong></td>
+<td>typedef <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#using-audiodata">AudioData</a>&lt; uint8_t &gt;</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#typedef-audiodata8u">AudioData8U</a></strong></td>
+</tr>
+<tr>
+<td>template \&lt;typename T ></br>using <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Utils_1_1ArrayView/">Utils::ArrayView</a>&lt; T &gt;</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#using-audiodata">AudioData</a></strong></td>
 </tr>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#enum-type">Type</a></strong> { UNKNOWN, INT_8, INT_16, INT_24, INT_32, FLOAT_32 }<br>Different type of audio formats.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }<br>Different type of audio formats.</td>
 </tr>
 </tbody>
 </table>
@@ -348,6 +358,14 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a>[] data, size_t size)</td>
+</tr>
+<tr>
+<td>template \&lt;size_t Size></br>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdatamultiple">setDataMultiple</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> data[Size])</td>
+</tr>
 <tr>
 <td>void</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> &amp; data)</td>
@@ -458,24 +476,67 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 </code></pre>
 
 <h2 id="public-types-documentation">Public Types Documentation</h2>
-<h3 id="typedef-audiodata">typedef AudioData</h3>
-<pre><code class="cpp">typedef Utils::ArrayView&lt; uint8_t &gt; AudioData;
+<h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
+<pre><code class="cpp">typedef AudioData&lt;uint8_t&gt; Engine::Audio::AudioBuffer::AudioData8U;
+</code></pre>
+
+<h3 id="using-audiodata">using AudioData</h3>
+<pre><code class="cpp">template &lt;typename T &gt;
+using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 </code></pre>
 
 <h3 id="enum-type">enum Type</h3>
-<pre><code class="cpp">enum Type {
-    UNKNOWN,
-    INT_8,
-    INT_16,
-    INT_24,
-    INT_32,
-    FLOAT_32
-}
-</code></pre>
-
+<table>
+<thead>
+<tr>
+<th>Enumerator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNKNOWN = 0</td>
+<td>Dont use this</td>
+</tr>
+<tr>
+<td>INT_8 = 1 &lt;&lt; 1</td>
+<td>8-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_16 = 1 &lt;&lt; 2</td>
+<td>16-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_24 = 1 &lt;&lt; 3</td>
+<td>24-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_32 = 1 &lt;&lt; 4</td>
+<td>32-bit signed integer</td>
+</tr>
+<tr>
+<td>FLOAT_32 = 1 &lt;&lt; 5</td>
+<td>32-bit float</td>
+</tr>
+</tbody>
+</table>
 <p>Different type of audio formats. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 <h3 id="function-setdata">function setData</h3>
+<pre><code class="cpp">void setData(
+    const TypedAudioData[] data,
+    size_t size
+)
+</code></pre>
+
+<h3 id="function-setdatamultiple">function setDataMultiple</h3>
+<pre><code class="cpp">template &lt;size_t Size&gt;
+inline void setDataMultiple(
+    const TypedAudioData data[Size]
+)
+</code></pre>
+
+<h3 id="function-setdata_1">function setData</h3>
 <pre><code class="cpp">void setData(
     const TypedAudioData &amp; data
 )
@@ -549,7 +610,7 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 </code></pre>
 
 <hr />
-<p>Updated on 18 March 2020 at 21:25:06 UTC</p>
+<p>Updated on  2 April 2020 at 17:30:50 UTC</p>
               
             </div>
           </div>

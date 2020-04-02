@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="src/Audio/AudioBuffer.hpp" />
-<meta property="og:description" content="src/Audio/AudioBuffer.hpp Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Source code #pragma once #include &#34;../Utils/ArrayView.hpp&#34; namespace Engine { namespace Audio { class AudioManager; class AudioBuffer; extern void doSomething(AudioBuffer&amp; buffer); class AudioBuffer { public: enum class Type { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }; typedef Utils::ArrayView&lt;uint8_t&gt; AudioData; struct TypedAudioData { AudioData buffer; Type type; }; explicit AudioBuffer(const std::string&amp; filename); virtual ~AudioBuffer() = default; void play(AudioManager&amp; manager) const; void stop(AudioManager&amp; manager) const; void loop(AudioManager&amp; manager) const; void setData(const TypedAudioData&amp; data); friend class AudioManager; friend void Audio::doSomething(AudioBuffer&amp; buffer); protected: float* getData(); bool playing{false}; }; } }  Updated on 18 March 2020 at 21:24:55 UTC" />
+<meta property="og:description" content="src/Audio/AudioBuffer.hpp Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Source code #pragma once #include &#34;../Utils/ArrayView.hpp&#34; namespace Engine { namespace Audio { class AudioManager; class AudioBuffer; extern void doSomething(AudioBuffer&amp; buffer); class AudioBuffer { public: enum class Type { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }; template &lt;typename T&gt; using AudioData = Utils::ArrayView&lt;T&gt;; typedef AudioData&lt;uint8_t&gt; AudioData8U; struct TypedAudioData { AudioData8U buffer; Type type; }; explicit AudioBuffer(const std::string&amp; filename); virtual ~AudioBuffer() = default; void play(AudioManager&amp; manager) const; void stop(AudioManager&amp; manager) const; void loop(AudioManager&amp; manager) const; void setData(const TypedAudioData&amp; data); template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData[Size] data) { } void setData(const TypedAudioData[] data, size_t size); friend class AudioManager; friend void Audio::doSomething(AudioBuffer&amp; buffer); protected: float* getData(); bool playing{false}; }; } // namespace Audio } // namespace Engine  Updated on 2 April 2020 at 17:30:09 UTC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/files/audiobuffer_8hpp/" />
 
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.a2250abbca53e0919829e1cbfe3ff7db5b48e6f8dc3fda1ca81bab6dddfda69e.js" integrity="sha256-oiUKu8pT4JGYKeHL/j/321tI5vjcP9ocqBurbd39pp4="></script>
+<script defer src="/doxybook2/hugo-book/search.min.b6a0de333d7830032c10c1711d6f8c5f5cdbec7b3809b25635bc01e25d40f189.js" integrity="sha256-tqDeMz14MAMsEMFxHW&#43;MX1zb7Hs4CbJWNbwB4l1A8Yk="></script>
 
 <!--
 Made with Book Theme
@@ -143,7 +143,7 @@ https://github.com/alex-shpak/hugo-book
         <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSomething</span>(AudioBuffer<span style="color:#f92672">&amp;</span> buffer);
 
         <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AudioBuffer</span> {
-        <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+          <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
             <span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Type</span> {
                 UNKNOWN <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,
                 INT_8 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>,
@@ -152,9 +152,10 @@ https://github.com/alex-shpak/hugo-book
                 INT_32 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>,
                 FLOAT_32 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">5</span>
             };
-            <span style="color:#66d9ef">typedef</span> Utils<span style="color:#f92672">::</span>ArrayView<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;</span> AudioData;
+            <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">using</span> AudioData <span style="color:#f92672">=</span> Utils<span style="color:#f92672">::</span>ArrayView<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>;
+            <span style="color:#66d9ef">typedef</span> AudioData<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;</span> AudioData8U;
             <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TypedAudioData</span> {
-                AudioData buffer;
+                AudioData8U buffer;
                 Type type;
             };
             <span style="color:#66d9ef">explicit</span> <span style="color:#a6e22e">AudioBuffer</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> filename);
@@ -164,18 +165,24 @@ https://github.com/alex-shpak/hugo-book
             <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>(AudioManager<span style="color:#f92672">&amp;</span> manager) <span style="color:#66d9ef">const</span>;
             <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setData</span>(<span style="color:#66d9ef">const</span> TypedAudioData<span style="color:#f92672">&amp;</span> data);
 
+            <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>size_t Size<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> setDataMultiple(<span style="color:#66d9ef">const</span> TypedAudioData[Size] data) {
+            }
+
+            <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setData</span>(<span style="color:#66d9ef">const</span> TypedAudioData[] data, size_t size);
+
             <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AudioManager</span>;
             <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">void</span> Audio<span style="color:#f92672">::</span>doSomething(AudioBuffer<span style="color:#f92672">&amp;</span> buffer);
-        <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+
+          <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
             <span style="color:#66d9ef">float</span><span style="color:#f92672">*</span> getData();
             <span style="color:#66d9ef">bool</span> playing{false};
         };
-    }
-}
-</code></pre></div>
+    } <span style="color:#75715e">// namespace Audio
+</span><span style="color:#75715e"></span>} <span style="color:#75715e">// namespace Engine
+</span></code></pre></div>
 <hr />
 
-<p>Updated on 18 March 2020 at 21:24:55 UTC</p>
+<p>Updated on  2 April 2020 at 17:30:09 UTC</p>
 </article>
 
       

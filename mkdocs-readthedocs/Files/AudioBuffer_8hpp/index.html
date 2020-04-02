@@ -297,7 +297,7 @@ namespace Engine {
         extern void doSomething(AudioBuffer&amp; buffer);
 
         class AudioBuffer {
-        public:
+          public:
             enum class Type {
                 UNKNOWN = 0,
                 INT_8 = 1 &lt;&lt; 1,
@@ -306,9 +306,10 @@ namespace Engine {
                 INT_32 = 1 &lt;&lt; 4,
                 FLOAT_32 = 1 &lt;&lt; 5
             };
-            typedef Utils::ArrayView&lt;uint8_t&gt; AudioData;
+            template &lt;typename T&gt; using AudioData = Utils::ArrayView&lt;T&gt;;
+            typedef AudioData&lt;uint8_t&gt; AudioData8U;
             struct TypedAudioData {
-                AudioData buffer;
+                AudioData8U buffer;
                 Type type;
             };
             explicit AudioBuffer(const std::string&amp; filename);
@@ -318,18 +319,24 @@ namespace Engine {
             void loop(AudioManager&amp; manager) const;
             void setData(const TypedAudioData&amp; data);
 
+            template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData[Size] data) {
+            }
+
+            void setData(const TypedAudioData[] data, size_t size);
+
             friend class AudioManager;
             friend void Audio::doSomething(AudioBuffer&amp; buffer);
-        protected:
+
+          protected:
             float* getData();
             bool playing{false};
         };
-    }
-}
+    } // namespace Audio
+} // namespace Engine
 </code></pre>
 
 <hr />
-<p>Updated on 18 March 2020 at 21:25:06 UTC</p>
+<p>Updated on  2 April 2020 at 17:30:50 UTC</p>
               
             </div>
           </div>

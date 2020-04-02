@@ -103,8 +103,11 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ad6d10d04bef7fa259cdd5029697cf052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Different type of audio formats.  <a href="classEngine_1_1Audio_1_1AudioBuffer.html#ad6d10d04bef7fa259cdd5029697cf052">More...</a><br /></td></tr>
 <tr class="separator:ad6d10d04bef7fa259cdd5029697cf052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c08e837f7eac332b2003c0989047ba1"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a2c08e837f7eac332b2003c0989047ba1">AudioData</a></td></tr>
-<tr class="separator:a2c08e837f7eac332b2003c0989047ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a443d235077d5716d4b2b4f013052adf4"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a443d235077d5716d4b2b4f013052adf4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a443d235077d5716d4b2b4f013052adf4">AudioData</a> = <a class="el" href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt; T &gt;</td></tr>
+<tr class="separator:a443d235077d5716d4b2b4f013052adf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b215df4d151a7e92de8b5a6abdbe8a0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a443d235077d5716d4b2b4f013052adf4">AudioData</a>&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a7b215df4d151a7e92de8b5a6abdbe8a0">AudioData8U</a></td></tr>
+<tr class="separator:a7b215df4d151a7e92de8b5a6abdbe8a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -125,6 +128,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a821933214a00331f80c1c58cee859eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a560600772af8cde2fd5dc45e1780789c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a560600772af8cde2fd5dc45e1780789c">setData</a> (const <a class="el" href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> &amp;data)</td></tr>
 <tr class="separator:a560600772af8cde2fd5dc45e1780789c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2638a0252ef80a2d3cb3c5932df3c83"><td class="memTemplParams" colspan="2">template&lt;size_t Size&gt; </td></tr>
+<tr class="memitem:ae2638a0252ef80a2d3cb3c5932df3c83"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#ae2638a0252ef80a2d3cb3c5932df3c83">setDataMultiple</a> (const <a class="el" href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a>[Size] data)</td></tr>
+<tr class="separator:ae2638a0252ef80a2d3cb3c5932df3c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457036b75735061701ccf1adbad747ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a457036b75735061701ccf1adbad747ce">setData</a> (const <a class="el" href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a>[] data, size_t size)</td></tr>
+<tr class="separator:a457036b75735061701ccf1adbad747ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -168,14 +176,30 @@ Some second random note </dd></dl>
 <div class="line">std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;</div>
 </div><!-- fragment --> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Some random todo </dd></dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a2c08e837f7eac332b2003c0989047ba1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c08e837f7eac332b2003c0989047ba1">&#9670;&nbsp;</a></span>AudioData</h2>
+<a id="a443d235077d5716d4b2b4f013052adf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a443d235077d5716d4b2b4f013052adf4">&#9670;&nbsp;</a></span>AudioData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a443d235077d5716d4b2b4f013052adf4">Engine::Audio::AudioBuffer::AudioData</a> =  <a class="el" href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt;T&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b215df4d151a7e92de8b5a6abdbe8a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b215df4d151a7e92de8b5a6abdbe8a0">&#9670;&nbsp;</a></span>AudioData8U</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt;uint8_t&gt; <a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a2c08e837f7eac332b2003c0989047ba1">Engine::Audio::AudioBuffer::AudioData</a></td>
+          <td class="memname">typedef <a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a443d235077d5716d4b2b4f013052adf4">AudioData</a>&lt;uint8_t&gt; <a class="el" href="classEngine_1_1Audio_1_1AudioBuffer.html#a7b215df4d151a7e92de8b5a6abdbe8a0">Engine::Audio::AudioBuffer::AudioData8U</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -205,12 +229,18 @@ Some second random note </dd></dl>
 
 <p>Different type of audio formats. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3"></a>UNKNOWN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a2dea92647909a0657c5ca657d92ff0c2"></a>INT_8&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a6c4baecc05d360b290e07c50131c7fc2"></a>INT_16&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a1b20706298a204bb53fae40ad0c97bbf"></a>INT_24&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052aab97c2f5d9a173a78b47802dce7a1806"></a>INT_32&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a34429544f281bc1e40ec5525cff2a060"></a>FLOAT_32&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3"></a>UNKNOWN&#160;</td><td class="fielddoc"><p>Dont use this </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a2dea92647909a0657c5ca657d92ff0c2"></a>INT_8&#160;</td><td class="fielddoc"><p>8-bit signed integer </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a6c4baecc05d360b290e07c50131c7fc2"></a>INT_16&#160;</td><td class="fielddoc"><p>16-bit signed integer </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a1b20706298a204bb53fae40ad0c97bbf"></a>INT_24&#160;</td><td class="fielddoc"><p>24-bit signed integer </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052aab97c2f5d9a173a78b47802dce7a1806"></a>INT_32&#160;</td><td class="fielddoc"><p>32-bit signed integer </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad6d10d04bef7fa259cdd5029697cf052a34429544f281bc1e40ec5525cff2a060"></a>FLOAT_32&#160;</td><td class="fielddoc"><p>32-bit float </p>
+</td></tr>
 </table>
 
 </div>
@@ -363,7 +393,7 @@ Some second random note </dd></dl>
 </div>
 </div>
 <a id="a560600772af8cde2fd5dc45e1780789c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a560600772af8cde2fd5dc45e1780789c">&#9670;&nbsp;</a></span>setData()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a560600772af8cde2fd5dc45e1780789c">&#9670;&nbsp;</a></span>setData() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -376,6 +406,62 @@ Some second random note </dd></dl>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a457036b75735061701ccf1adbad747ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a457036b75735061701ccf1adbad747ce">&#9670;&nbsp;</a></span>setData() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::Audio::AudioBuffer::setData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a>[]&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2638a0252ef80a2d3cb3c5932df3c83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2638a0252ef80a2d3cb3c5932df3c83">&#9670;&nbsp;</a></span>setDataMultiple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Size&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::Audio::AudioBuffer::setDataMultiple </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a>&#160;</td>
+          <td class="paramname"><em>data</em>[Size]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
