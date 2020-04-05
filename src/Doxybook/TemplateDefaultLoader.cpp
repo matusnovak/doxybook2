@@ -328,9 +328,9 @@ static const std::string TEMPLATE_MEMBER_DETAILS =
 {% for param in params %}    {{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif %}{% if not loop.is_last %},{% endif %}
 {% endfor %}){% else %}(){% endif %}{% if const %} const{% endif %}{% if override %} override{% endif %}{% if default %} =default{% endif %}{% if deleted %} =deleted{% endif %}{% if pureVirtual %} =0{% endif %}
 ```{% endif %}{% if kind == "enum" %}
-| Enumerator | Description |
-| ---------- | ----------- |
-{% for enumvalue in enumvalues %}| {{enumvalue.name}}{% if existsIn(enumvalue, "initializer") %} {{enumvalue.initializer}}{% endif %} | {% if existsIn(enumvalue, "brief") %}{{enumvalue.brief}}{% endif %} {% if existsIn(enumvalue, "details") %}{{enumvalue.details}}{% endif %} |
+| Enumerator | Value | Description |
+| ---------- | ----- | ----------- |
+{% for enumvalue in enumvalues %}| {{enumvalue.name}} | {% if existsIn(enumvalue, "initializer") %}{{replace(enumvalue.initializer, "= ", "")}}{% endif %} | {% if existsIn(enumvalue, "brief") %}{{enumvalue.brief}}{% endif %} {% if existsIn(enumvalue, "details") %}{{enumvalue.details}}{% endif %} |
 {% endfor %}
 {% endif %}{% if kind == "variable" %}```cpp
 {% if static %}static {% endif %}{% if exists("typePlain") %}{{typePlain}} {% endif %}{{name}}{% if exists("initializer") %} {{initializer}}{% endif %};
