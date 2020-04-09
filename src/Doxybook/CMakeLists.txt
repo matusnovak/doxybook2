@@ -39,7 +39,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt tinyxml2 inja json termcolor)
+target_link_libraries(${PROJECT_NAME} PUBLIC fmt tinyxml2 inja json termcolor)
 if(MSVC)
   target_link_libraries(${PROJECT_NAME} PRIVATE dirent)
 endif()
