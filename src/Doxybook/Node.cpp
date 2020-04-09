@@ -79,6 +79,13 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
             const auto childRefid = memberdef.getAttr("id");
             const auto found = findInCache(cache, childRefid);
             const auto child = found ? found : Node::parse(memberdef, childRefid);
+            const auto definition = memberdef.firstChildElement("definition");
+            if (definition) {
+                const auto defStr = definition.getText();
+                if (defStr.find("using ") == 0) {
+                    child->kind = Kind::USING;
+                }
+            }
             ptr->children.push_back(child);
 
             if (isGroupOrFile) {
@@ -147,6 +154,7 @@ Doxybook2::NodePtr Doxybook2::Node::parse(Xml::Element& memberdef, const std::st
             value->empty = false;
             value->parent = ptr.get();
             value->parseBaseInfo(enumvalue);
+            value->parseBaseInfo(enumvalue);
             ptr->children.push_back(value);
             enumvalue = enumvalue.nextSiblingElement("enumvalue");
         }
@@ -213,6 +221,7 @@ void Doxybook2::Node::parseBaseInfo(const Xml::Element& element) {
         }
         case Kind::ENUMVALUE:
         case Kind::ENUM:
+        case Kind::USING:
         case Kind::TYPEDEF: {
             type = Type::TYPES;
             break;
@@ -601,6 +610,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
         const auto name = param.firstChildElement("declname");
         const auto defname = param.firstChildElement("defname");
         const auto defval = param.firstChildElement("defval");
+        const auto arr = param.firstChildElement("array");
         if (paramType) {
             const auto typeParas = XmlTextParser::parsePara(paramType);
             p.type = markdownPrinter.print(typeParas);
@@ -610,6 +620,9 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
             p.name = markdownPrinter.print(XmlTextParser::parsePara(name));
         } else if (defname) {
             p.name = markdownPrinter.print(XmlTextParser::parsePara(defname));
+        }
+        if (arr) {
+            p.name += arr.getText();
         }
         if (defval) {
             const auto defvalParas = XmlTextParser::parsePara(defval);

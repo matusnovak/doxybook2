@@ -1,15 +1,13 @@
-#include <chrono>
-#include <inja/inja.hpp>
-#include <fmt/format.h>
-#include <Doxybook/Renderer.hpp>
+#include "ExceptionUtils.hpp"
 #include <Doxybook/Exception.hpp>
 #include <Doxybook/Log.hpp>
+#include <Doxybook/Renderer.hpp>
 #include <Doxybook/Utils.hpp>
-#include "ExceptionUtils.hpp"
+#include <chrono>
+#include <fmt/format.h>
+#include <inja/inja.hpp>
 
-Doxybook2::Renderer::Renderer(const Config& config)
-    : config(config),
-      env(std::make_unique<inja::Environment>()) {
+Doxybook2::Renderer::Renderer(const Config& config) : config(config), env(std::make_unique<inja::Environment>()) {
 
     env->add_callback("isEmpty", 1, [](inja::Arguments& args) -> bool {
         const auto arg = args.at(0)->get<std::string>();
@@ -56,7 +54,8 @@ Doxybook2::Renderer::Renderer(const Config& config)
         for (auto it = arr.begin(); it != arr.end(); ++it) {
             auto& obj = *it;
             auto val = obj.at(key);
-            if (val == value) count++;
+            if (val == value)
+                count++;
         }
         return count;
     });
@@ -77,6 +76,18 @@ Doxybook2::Renderer::Renderer(const Config& config)
         const auto name = args.at(0)->get<std::string>();
         const auto data = args.at(1)->get<nlohmann::json>();
         return this->render(name, data);
+    });
+    env->add_callback("replace", 3, [=](inja::Arguments& args) -> nlohmann::json {
+        auto str = args.at(0)->get<std::string>();
+        const auto what = args.at(1)->get<std::string>();
+        const auto sub = args.at(2)->get<std::string>();
+
+        std::string::size_type n = 0;
+        while ((n = str.find(what, n)) != std::string::npos) {
+            str.replace(n, what.size(), sub);
+            n += sub.size();
+        }
+        return str;
     });
     env->set_trim_blocks(false);
     env->set_lstrip_blocks(false);

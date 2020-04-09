@@ -330,7 +330,7 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                                         }
                                         const auto& enumvalueData = eit->second;
                                         auto enumvalueDataJson = convert(*enumvalue, enumvalueData);
-                                        enumvalueJson.insert(childDataJson.begin(), childDataJson.end());
+                                        enumvalueJson.insert(enumvalueDataJson.begin(), enumvalueDataJson.end());
                                         enumvalues.push_back(std::move(enumvalueJson));
                                     }
                                     childJson["enumvalues"] = std::move(enumvalues);
@@ -439,7 +439,7 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                                                 }
                                                 const auto& enumvalueData = it->second;
                                                 auto enumvalueDataJson = convert(*enumvalue, enumvalueData);
-                                                enumvalueJson.insert(childDataJson.begin(), childDataJson.end());
+                                                enumvalueJson.insert(enumvalueDataJson.begin(), enumvalueDataJson.end());
                                                 enumvalues.push_back(std::move(enumvalueJson));
                                             }
                                             childJson["enumvalues"] = std::move(enumvalues);

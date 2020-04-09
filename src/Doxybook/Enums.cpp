@@ -1,11 +1,10 @@
-#include <unordered_map>
-#include <Doxybook/Enums.hpp>
-#include <Doxybook/Config.hpp>
 #include "ExceptionUtils.hpp"
+#include <Doxybook/Config.hpp>
+#include <Doxybook/Enums.hpp>
+#include <unordered_map>
 
 Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
-    static std::unordered_map<std::string, Kind> kinds = {
-        {"define", Kind::DEFINE},
+    static std::unordered_map<std::string, Kind> kinds = {{"define", Kind::DEFINE},
         {"class", Kind::CLASS},
         {"namespace", Kind::NAMESPACE},
         {"struct", Kind::STRUCT},
@@ -13,6 +12,7 @@ Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
         {"function", Kind::FUNCTION},
         {"variable", Kind::VARIABLE},
         {"typedef", Kind::TYPEDEF},
+        {"using", Kind::USING},
         {"enum", Kind::ENUM},
         {"union", Kind::UNION},
         {"enumvalue", Kind::ENUMVALUE},
@@ -21,8 +21,7 @@ Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
         {"group", Kind::MODULE},
         {"friend", Kind::FRIEND},
         {"page", Kind::PAGE},
-        {"example", Kind::EXAMPLE}
-    };
+        {"example", Kind::EXAMPLE}};
 
     const auto it = kinds.find(str);
     if (it == kinds.end()) {
@@ -64,6 +63,8 @@ std::string Doxybook2::toStr(const Kind value) {
             return "variable";
         case Kind::TYPEDEF:
             return "typedef";
+        case Kind::USING:
+            return "using";
         case Kind::FRIEND:
             return "friend";
         case Kind::PAGE:
@@ -191,7 +192,6 @@ std::string Doxybook2::toStr(const Type value) {
     }
 }
 
-
 bool Doxybook2::isKindStructured(const Kind kind) {
     switch (kind) {
         case Kind::CLASS:
@@ -218,6 +218,7 @@ bool Doxybook2::isKindLanguage(const Kind kind) {
         case Kind::ENUM:
         case Kind::FUNCTION:
         case Kind::TYPEDEF:
+        case Kind::USING:
         case Kind::FRIEND:
         case Kind::VARIABLE: {
             return true;
@@ -241,7 +242,8 @@ bool Doxybook2::isKindFile(const Kind kind) {
 }
 
 std::string Doxybook2::typeToFolderName(const Config& config, const Type type) {
-    if (!config.useFolders) return "";
+    if (!config.useFolders)
+        return "";
 
     switch (type) {
         case Type::MODULES: {
@@ -272,14 +274,12 @@ std::string Doxybook2::typeToFolderName(const Config& config, const Type type) {
 std::string Doxybook2::typeToIndexName(const Config& config, const FolderCategory type) {
     switch (type) {
         case FolderCategory::MODULES: {
-            return config.indexInFolders && config.useFolders
-                       ? config.folderGroupsName + "/" + config.indexGroupsName
-                       : config.indexGroupsName;
+            return config.indexInFolders && config.useFolders ? config.folderGroupsName + "/" + config.indexGroupsName
+                                                              : config.indexGroupsName;
         }
         case FolderCategory::CLASSES: {
-            return config.indexInFolders && config.useFolders
-                       ? config.folderClassesName + "/" + config.indexClassesName
-                       : config.indexClassesName;
+            return config.indexInFolders && config.useFolders ? config.folderClassesName + "/" + config.indexClassesName
+                                                              : config.indexClassesName;
         }
         case FolderCategory::NAMESPACES: {
             return config.indexInFolders && config.useFolders
@@ -287,9 +287,8 @@ std::string Doxybook2::typeToIndexName(const Config& config, const FolderCategor
                        : config.indexNamespacesName;
         }
         case FolderCategory::FILES: {
-            return config.indexInFolders && config.useFolders
-                       ? config.folderFilesName + "/" + config.indexFilesName
-                       : config.indexFilesName;
+            return config.indexInFolders && config.useFolders ? config.folderFilesName + "/" + config.indexFilesName
+                                                              : config.indexFilesName;
         }
         case FolderCategory::PAGES: {
             return config.indexInFolders && config.useFolders
@@ -358,4 +357,3 @@ std::string Doxybook2::typeToIndexTitle(const Config& config, const FolderCatego
         }
     }
 }
-

@@ -14,6 +14,7 @@ namespace Doxybook2 {
         FUNCTION,
         VARIABLE,
         TYPEDEF,
+        USING,
         FRIEND,
         ENUM,
         ENUMVALUE,
@@ -25,17 +26,9 @@ namespace Doxybook2 {
         EXAMPLE
     };
 
-    enum class Visibility {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE
-    };
+    enum class Visibility { PUBLIC, PROTECTED, PRIVATE };
 
-    enum class Virtual {
-        NON_VIRTUAL,
-        VIRTUAL,
-        PURE_VIRTUAL
-    };
+    enum class Virtual { NON_VIRTUAL, VIRTUAL, PURE_VIRTUAL };
 
     enum class Type {
         NONE,
@@ -53,14 +46,7 @@ namespace Doxybook2 {
         EXAMPLES
     };
 
-    enum class FolderCategory {
-        CLASSES,
-        NAMESPACES,
-        MODULES,
-        PAGES,
-        FILES,
-        EXAMPLES
-    };
+    enum class FolderCategory { CLASSES, NAMESPACES, MODULES, PAGES, FILES, EXAMPLES };
 
     // Declarations of external functions in the Doxybook2 namespace
     // The "extern" specifier allows for the Type of the function to be declared here and defined somewhere else in the program
@@ -81,4 +67,4 @@ namespace Doxybook2 {
     extern std::string typeToIndexName(const Config& config, FolderCategory type);
     extern std::string typeToIndexTemplate(const Config& config, FolderCategory type);
     extern std::string typeToIndexTitle(const Config& config, FolderCategory type);
-}
+} // namespace Doxybook2

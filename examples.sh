@@ -45,6 +45,12 @@ cd ..
 
 ./build/src/DoxybookCli/doxybook2 \
     --input example/doxygen/xml \
+    --output example/docsify \
+    --config example/docsify/.doxybook/config.json \
+    --templates example/docsify/.doxybook/templates
+
+./build/src/DoxybookCli/doxybook2 \
+    --input example/doxygen/xml \
     --output example/json \
     --json \
     --config-data '{"linkSuffix:" ""}'
