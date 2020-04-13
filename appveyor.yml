@@ -18,7 +18,7 @@ environment:
 install:
   - cmd: git submodule update --init
   - cmd: mkdir build
-  - cmd: choco install doxygen.install -y
+  - cmd: choco install doxygen.install --version 1.8.15 -y
   - cmd: cd build & cmake -G %GENERATOR% -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DBUILD_TESTS=OFF -DDOXYBOOK_STATIC_STDLIB=ON -DDOXYBOOK_TESTS=ON -DCMAKE_INSTALL_PREFIX="..\install" -DCMAKE_BUILD_TYPE=MinSizeRel .. || exit 1 & cd ..
 
 build_script:
