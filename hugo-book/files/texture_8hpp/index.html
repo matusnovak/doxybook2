@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="src/Graphics/Texture.hpp" />
-<meta property="og:description" content="src/Graphics/Texture.hpp Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.    Source code #pragma once  #include &#34;Handle.hpp&#34; namespace Engine { namespace Graphics { class Texture: protected Handle { public: enum class Type { UNKNOWN = 0, RGBA_8, RGB_8, RGBA_16, RGB_16, RGBA_32, RGB_32 }; explicit Texture(Type type); virtual ~Texture() = default; virtual int getWidth() const = 0; virtual int getHeight() const = 0; virtual int getDepth() const = 0; inline bool isLoaded() const { return loaded; } protected: bool loaded{false}; Type type; }; } }  Updated on 13 April 2020 at 19:38:48 UTC" />
+<meta property="og:description" content="src/Graphics/Texture.hpp Namespaces    Name     Engine::Graphics   Engine This namespace contains all of the necessary engine components.    Classes     Name     interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.    Source code #pragma once  #include &#34;Handle.hpp&#34; namespace Engine { namespace Graphics { class Texture : protected Handle { public: enum class Type { UNKNOWN = 0, RGBA_8, RGB_8, RGBA_16, RGB_16, RGBA_32, RGB_32 }; explicit Texture(Type type); virtual ~Texture() = default; virtual int getWidth() const = 0; virtual int getHeight() const = 0; virtual int getDepth() const = 0; inline bool isLoaded() const { return loaded; } protected: bool loaded{false}; Type type; }; } // namespace Graphics } // namespace Engine  Updated on 21 April 2020 at 20:12:39 UTC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/files/texture_8hpp/" />
 
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.29db5eeba7271383168e77425024b9dcc0ba846f08c06f03dd9019874212a983.js" integrity="sha256-Kdte66cnE4MWjndCUCS53MC6hG8IwG8D3ZAZh0ISqYM="></script>
+<script defer src="/doxybook2/hugo-book/search.min.f2b5b3b18b10a0cfa5622c25e8a299dbcbb684912e770a44ebff4e90835a3513.js" integrity="sha256-8rWzsYsQoM&#43;lYiwl6KKZ28u2hJEudwpE6/9OkINaNRM="></script>
 
 <!--
 Made with Book Theme
@@ -133,8 +133,8 @@ https://github.com/alex-shpak/hugo-book
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">namespace</span> Engine {
     <span style="color:#66d9ef">namespace</span> Graphics {
-        <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Texture</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">protected</span> Handle {
-        <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Texture</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">protected</span> Handle {
+          <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
             <span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Type</span> {
                 UNKNOWN <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,
                 RGBA_8,
@@ -153,16 +153,17 @@ https://github.com/alex-shpak/hugo-book
             <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">isLoaded</span>() <span style="color:#66d9ef">const</span> {
                 <span style="color:#66d9ef">return</span> loaded;
             }
-        <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+
+          <span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
             <span style="color:#66d9ef">bool</span> loaded{false};
             Type type;
         };
-    }
-}
-</code></pre></div>
+    } <span style="color:#75715e">// namespace Graphics
+</span><span style="color:#75715e"></span>} <span style="color:#75715e">// namespace Engine
+</span></code></pre></div>
 <hr />
 
-<p>Updated on 13 April 2020 at 19:38:48 UTC</p>
+<p>Updated on 21 April 2020 at 20:12:39 UTC</p>
 </article>
 
       

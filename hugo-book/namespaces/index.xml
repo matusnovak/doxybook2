@@ -25,7 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1assets/</guid>
-      <description>Engine::Assets Classes     Name     class Engine::Assets::Asset    Updated on 13 April 2020 at 19:38:48 UTC</description>
+      <description>Engine::Assets Classes     Name     class Engine::Assets::Asset    Updated on 21 April 2020 at 20:12:39 UTC</description>
     </item>
     
     <item>
@@ -43,7 +43,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1graphics/</guid>
-      <description>Engine::Graphics Classes     Name     class Engine::Graphics::Texture3D   class Engine::Graphics::Texture2D   interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.   class Engine::Graphics::Handle   class Engine::Graphics::Framebuffer    Functions     Name     int getHandle(Handle &amp;amp; handle) Some namespace inline function.    Functions Documentation function getHandle inline int getHandle( Handle &amp;amp; handle )  Some namespace inline function.</description>
+      <description>Engine::Graphics Classes     Name     class Engine::Graphics::Texture3D Some deprecated class.   class Engine::Graphics::Texture2D   interface Engine::Graphics::Texture This is a base texture class that serves as a base class for other texture types.   class Engine::Graphics::Handle   class Engine::Graphics::Framebuffer    Functions     Name     int getHandle(Handle &amp;amp; handle) Some namespace inline function.    Functions Documentation function getHandle inline int getHandle( Handle &amp;amp; handle )  Some namespace inline function.</description>
     </item>
     
     <item>
@@ -52,7 +52,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1utils/</guid>
-      <description>Engine::Utils Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 13 April 2020 at 19:38:48 UTC</description>
+      <description>Engine::Utils Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 21 April 2020 at 20:12:39 UTC</description>
     </item>
     
     <item>

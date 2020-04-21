@@ -206,6 +206,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../Pages/bug/">Bug List</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Pages/deprecated/">Deprecated List</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../Pages/intro/">Introduction</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../Pages/test/">Test List</a>
@@ -277,7 +279,7 @@
 <tbody>
 <tr>
 <td>class</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture3D/">Engine::Graphics::Texture3D</a></strong></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture3D/">Engine::Graphics::Texture3D</a></strong> <br>Some deprecated class.</td>
 </tr>
 </tbody>
 </table>
@@ -289,22 +291,21 @@
 
 namespace Engine {
     namespace Graphics {
-        class Texture3D: public Texture {
-        public:
+        class Texture3D : public Texture {
+          public:
             Texture3D(int width, int height, int depth, uint8_t* data, Texture::Type type = Texture::Type::RGBA8);
             virtual ~Texture3D();
 
             int getWidth() const override;
             int getHeight() const override;
             int getDepth() const override;
-
         };
-    }
-}
+    } // namespace Graphics
+} // namespace Engine
 </code></pre>
 
 <hr />
-<p>Updated on 13 April 2020 at 19:39:05 UTC</p>
+<p>Updated on 21 April 2020 at 20:13:02 UTC</p>
               
             </div>
           </div>

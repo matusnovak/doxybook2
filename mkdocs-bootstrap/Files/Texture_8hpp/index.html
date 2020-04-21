@@ -145,8 +145,8 @@
 
 namespace Engine {
     namespace Graphics {
-        class Texture: protected Handle {
-        public:
+        class Texture : protected Handle {
+          public:
             enum class Type {
                 UNKNOWN = 0,
                 RGBA_8,
@@ -165,16 +165,17 @@ namespace Engine {
             inline bool isLoaded() const {
                 return loaded;
             }
-        protected:
+
+          protected:
             bool loaded{false};
             Type type;
         };
-    }
-}
+    } // namespace Graphics
+} // namespace Engine
 </code></pre>
 
 <hr />
-<p>Updated on 13 April 2020 at 19:39:08 UTC</p></div>
+<p>Updated on 21 April 2020 at 20:13:05 UTC</p></div>
             </div>
         </div>
 

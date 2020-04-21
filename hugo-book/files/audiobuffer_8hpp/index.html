@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="src/Audio/AudioBuffer.hpp" />
-<meta property="og:description" content="src/Audio/AudioBuffer.hpp Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Source code #pragma once #include &#34;../Utils/ArrayView.hpp&#34; namespace Engine { namespace Audio { class AudioManager; class AudioBuffer; extern void doSomething(AudioBuffer&amp; buffer); class AudioBuffer { public: enum class Type { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }; template &lt;typename T&gt; using AudioData = Utils::ArrayView&lt;T&gt;; typedef AudioData&lt;uint8_t&gt; AudioData8U; struct TypedAudioData { AudioData8U buffer; Type type; }; explicit AudioBuffer(const std::string&amp; filename); virtual ~AudioBuffer() = default; void play(AudioManager&amp; manager) const; void stop(AudioManager&amp; manager) const; void loop(AudioManager&amp; manager) const; void setData(const TypedAudioData&amp; data); template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData[Size] data) { } void setData(const TypedAudioData[] data, size_t size); friend class AudioManager; friend void Audio::doSomething(AudioBuffer&amp; buffer); protected: float* getData(); bool playing{false}; }; } // namespace Audio } // namespace Engine  Updated on 13 April 2020 at 19:38:48 UTC" />
+<meta property="og:description" content="src/Audio/AudioBuffer.hpp Namespaces    Name     Engine::Audio   Engine This namespace contains all of the necessary engine components.    Classes     Name     struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Source code #pragma once #include &#34;../Utils/ArrayView.hpp&#34; namespace Engine { namespace Audio { class AudioManager; class AudioBuffer; extern void doSomething(AudioBuffer&amp; buffer); class AudioBuffer { public: enum class Type { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }; template &lt;typename T&gt; using AudioData = Utils::ArrayView&lt;T&gt;; typedef AudioData&lt;uint8_t&gt; AudioData8U; struct TypedAudioData { AudioData8U buffer; Type type; }; explicit AudioBuffer(const std::string&amp; filename); virtual ~AudioBuffer() = default; void play(AudioManager&amp; manager) const; void stop(AudioManager&amp; manager) const; void loop(AudioManager&amp; manager) const; void setData(const TypedAudioData&amp; data); template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData[Size] data) { } void setData(const TypedAudioData[] data, size_t size); friend class AudioManager; friend void Audio::doSomething(AudioBuffer&amp; buffer); protected: float* getData(); bool playing{false}; }; } // namespace Audio } // namespace Engine  Updated on 21 April 2020 at 20:12:39 UTC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/files/audiobuffer_8hpp/" />
 
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.29db5eeba7271383168e77425024b9dcc0ba846f08c06f03dd9019874212a983.js" integrity="sha256-Kdte66cnE4MWjndCUCS53MC6hG8IwG8D3ZAZh0ISqYM="></script>
+<script defer src="/doxybook2/hugo-book/search.min.f2b5b3b18b10a0cfa5622c25e8a299dbcbb684912e770a44ebff4e90835a3513.js" integrity="sha256-8rWzsYsQoM&#43;lYiwl6KKZ28u2hJEudwpE6/9OkINaNRM="></script>
 
 <!--
 Made with Book Theme
@@ -182,7 +182,7 @@ https://github.com/alex-shpak/hugo-book
 </span></code></pre></div>
 <hr />
 
-<p>Updated on 13 April 2020 at 19:38:48 UTC</p>
+<p>Updated on 21 April 2020 at 20:12:39 UTC</p>
 </article>
 
       
