@@ -46,6 +46,10 @@ static const std::string TEMPLATE_DETAILS =
 {% for param in templateParamsList %}  * **{{param.name}}** {{param.text}}
 {% endfor %}
 {% endif %}
+{% if exists("deprecated") %}**Deprecated**: 
+
+{{deprecated}}
+{% endif %}
 {% if exists("see") %}**See**: {% if length(see) == 1 %}{{first(see)}}{% else %}
 
 {% for item in see %}  * {{item}}

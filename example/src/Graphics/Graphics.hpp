@@ -4,7 +4,7 @@
  * @defgroup Graphics Graphical related classes
  * @brief This is a brief description to the graphics group
  * @details Some detailed description here
- * @ingroup Engine 
+ * @ingroup Engine
  */
 
 #include "Framebuffer.hpp"

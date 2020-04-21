@@ -21,3 +21,4 @@ _book/
 !config.json
 !menu.md
 !_navbar.md
+CMakeSettings.json

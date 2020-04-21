@@ -1,11 +1,11 @@
 #pragma once
-#include <string>
-#include <memory>
-#include <list>
-#include <vector>
-#include <unordered_map>
-#include "Xml.hpp"
 #include "Enums.hpp"
+#include "Xml.hpp"
+#include <list>
+#include <memory>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 namespace Doxybook2 {
     class TextPrinter;
@@ -16,7 +16,7 @@ namespace Doxybook2 {
     typedef std::unordered_map<std::string, NodePtr> NodeCacheMap;
 
     class Node {
-    public:
+      public:
         typedef std::list<NodePtr> Children;
 
         struct ClassReference {
@@ -59,21 +59,22 @@ namespace Doxybook2 {
             std::string argsString;
             std::string initializer;
             ClassReferences derivedClasses;
-            bool isAbstract{ false };
-            bool isStatic{ false };
-            bool isConst{ false };
-            bool isExplicit{ false };
-            bool isStrong{ false };
-            bool isInline{ false };
-            bool isDefault{ false };
-            bool isDeleted{ false };
-            bool isOverride{ false };
+            bool isAbstract{false};
+            bool isStatic{false};
+            bool isConst{false};
+            bool isExplicit{false};
+            bool isStrong{false};
+            bool isInline{false};
+            bool isDefault{false};
+            bool isDeleted{false};
+            bool isOverride{false};
             Location location;
             std::string details;
             std::string inbody;
             std::string includes;
             std::string type;
             std::string typePlain;
+            std::string deprecated;
             Params params;
             Params templateParams;
             std::vector<std::string> see;
@@ -107,19 +108,13 @@ namespace Doxybook2 {
         typedef std::unordered_map<std::string, Data> ChildrenData;
 
         // Parse root xml objects (classes, structs, etc)
-        static NodePtr parse(NodeCacheMap& cache,
-                             const std::string& inputDir,
-                             const std::string& refid,
-                             bool isGroupOrFile);
+        static NodePtr
+        parse(NodeCacheMap& cache, const std::string& inputDir, const std::string& refid, bool isGroupOrFile);
 
-        static NodePtr parse(NodeCacheMap& cache,
-                             const std::string& inputDir,
-                             const NodePtr& ptr,
-                             bool isGroupOrFile);
+        static NodePtr parse(NodeCacheMap& cache, const std::string& inputDir, const NodePtr& ptr, bool isGroupOrFile);
 
         // Parse member xml objects (functions, enums, etc)
-        static NodePtr parse(Xml::Element& memberdef,
-                             const std::string& refid);
+        static NodePtr parse(Xml::Element& memberdef, const std::string& refid);
 
         explicit Node(const std::string& refid);
         ~Node();
@@ -213,42 +208,43 @@ namespace Doxybook2 {
         }
 
         void finalize(const Config& config,
-                      const TextPrinter& plainPrinter,
-                      const TextPrinter& markdownPrinter,
-                      const NodeCacheMap& cache);
+            const TextPrinter& plainPrinter,
+            const TextPrinter& markdownPrinter,
+            const NodeCacheMap& cache);
         typedef std::tuple<Data, ChildrenData> LoadDataResult;
         LoadDataResult loadData(const Config& config,
-                                const TextPrinter& plainPrinter,
-                                const TextPrinter& markdownPrinter,
-                                const NodeCacheMap& cache) const;
+            const TextPrinter& plainPrinter,
+            const TextPrinter& markdownPrinter,
+            const NodeCacheMap& cache) const;
 
         friend class Doxygen;
-    private:
+
+      private:
         class Temp;
         Data loadData(const Config& config,
-                      const TextPrinter& plainPrinter,
-                      const TextPrinter& markdownPrinter,
-                      const NodeCacheMap& cache,
-                      const Xml::Element& element) const;
+            const TextPrinter& plainPrinter,
+            const TextPrinter& markdownPrinter,
+            const NodeCacheMap& cache,
+            const Xml::Element& element) const;
         ClassReferences getAllBaseClasses(const NodeCacheMap& cache);
 
         std::unique_ptr<Temp> temp;
         Kind kind{Kind::INDEX};
-        Type type{ Type::NONE};
+        Type type{Type::NONE};
         std::string refid;
         std::string name;
         std::string brief;
         std::string summary;
         std::string title;
-        Node* parent{ nullptr };
-        Node* group{ nullptr };
+        Node* parent{nullptr};
+        Node* group{nullptr};
         Children children;
-        bool empty{ true };
+        bool empty{true};
         std::string xmlPath;
         ClassReferences baseClasses;
         ClassReferences derivedClasses;
-        Visibility visibility{ Visibility::PUBLIC };
-        Virtual virt{ Virtual::NON_VIRTUAL };
+        Visibility visibility{Visibility::PUBLIC};
+        Virtual virt{Virtual::NON_VIRTUAL};
         std::string url;
         std::string anchor;
 
@@ -258,4 +254,4 @@ namespace Doxybook2 {
         static Xml::Element assertChild(const Xml::Element& xml, const std::string& name);
         static Xml::Element assertChild(const Xml& xml, const std::string& name);
     };
-}
+} // namespace Doxybook2

@@ -113,6 +113,10 @@ namespace Engine {
             template <size_t Size> void setDataMultiple(const TypedAudioData[Size] data) {
             }
 
+            /*!
+             * @brief Some deprecated function
+             * @deprecated Use the AudioBuffer::setDataMultiple instead
+             */
             void setData(const TypedAudioData[] data, size_t size);
 
             friend class AudioManager;

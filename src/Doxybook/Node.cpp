@@ -513,6 +513,8 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
                                 data.tests.push_back(markdownPrinter.print(it->children[1]));
                             } else if (it->extra == "todo") {
                                 data.todos.push_back(markdownPrinter.print(it->children[1]));
+                            } else if (it->extra == "deprecated") {
+                                data.deprecated = markdownPrinter.print(it->children[1]);
                             }
                             it = para.children.erase(it);
                         }

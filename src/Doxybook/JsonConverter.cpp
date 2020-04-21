@@ -3,9 +3,9 @@
 #include <Doxybook/Exception.hpp>
 #include <Doxybook/JsonConverter.hpp>
 #include <Doxybook/Utils.hpp>
+#include <iostream>
 #include <nlohmann/json.hpp>
 #include <unordered_set>
-#include <iostream>
 
 Doxybook2::JsonConverter::JsonConverter(const Config& config,
     const Doxygen& doxygen,
@@ -179,6 +179,8 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node, const Node::D
         json["bugs"] = data.bugs;
     if (!data.tests.empty())
         json["tests"] = data.tests;
+    if (!data.deprecated.empty())
+        json["deprecated"] = data.deprecated;
     if (node.getKind() != Kind::ENUMVALUE) {
         json["static"] = data.isStatic;
         json["abstract"] = data.isAbstract;
@@ -238,7 +240,7 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node, const Node::D
                          !data.authors.empty() || !data.version.empty() || !data.since.empty() || !data.date.empty() ||
                          !data.note.empty() || !data.warning.empty() || !data.pre.empty() || !data.post.empty() ||
                          !data.copyright.empty() || !data.invariant.empty() || !data.remark.empty() ||
-                         !data.attention.empty() || !data.par.empty() || !data.rcs.empty();
+                         !data.attention.empty() || !data.par.empty() || !data.rcs.empty() || !data.deprecated.empty();
     return json;
 }
 
@@ -340,11 +342,9 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                             }
                         } catch (std::out_of_range& e) {
                             (void)e;
-                            throw EXCEPTION(
-                                "Refid {} this should never happen please contact the author! Error: {}", 
+                            throw EXCEPTION("Refid {} this should never happen please contact the author! Error: {}",
                                 child->getRefid(),
-                                e.what()
-                            );
+                                e.what());
                         }
                     } else {
                         if (child->getVisibility() == visibility) {
@@ -435,11 +435,13 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                                                 auto enumvalueJson = convert(*enumvalue);
                                                 const auto eit = baseChildrenDataMap.find(enumvalue.get()->getRefid());
                                                 if (eit == baseChildrenDataMap.end()) {
-                                                    throw EXCEPTION("Child {} not found in data map", child.get()->getRefid());
+                                                    throw EXCEPTION(
+                                                        "Child {} not found in data map", child.get()->getRefid());
                                                 }
                                                 const auto& enumvalueData = it->second;
                                                 auto enumvalueDataJson = convert(*enumvalue, enumvalueData);
-                                                enumvalueJson.insert(enumvalueDataJson.begin(), enumvalueDataJson.end());
+                                                enumvalueJson.insert(
+                                                    enumvalueDataJson.begin(), enumvalueDataJson.end());
                                                 enumvalues.push_back(std::move(enumvalueJson));
                                             }
                                             childJson["enumvalues"] = std::move(enumvalues);
@@ -449,10 +451,8 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                                     }
                                 } catch (std::out_of_range& e) {
                                     (void)e;
-                                    throw EXCEPTION(
-                                        "Refid {} this should never happen please contact the author!",
-                                        child->getRefid()
-                                    );
+                                    throw EXCEPTION("Refid {} this should never happen please contact the author!",
+                                        child->getRefid());
                                 }
                             } else {
                                 if (child->getVisibility() == visibility) {
@@ -478,15 +478,12 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
             } catch (std::out_of_range& e) {
                 (void)e;
                 throw EXCEPTION(
-                    "Refid {} this should never happen please contact the author!", 
-                    base["refid"].get<std::string>()
-                );
+                    "Refid {} this should never happen please contact the author!", base["refid"].get<std::string>());
             } catch (std::exception& e) {
                 throw EXCEPTION("Something went wrong while processing base class {} of {} error {}",
                     base["refid"].get<std::string>(),
                     node.getRefid(),
-                    e.what()
-                );
+                    e.what());
             }
         }
     }

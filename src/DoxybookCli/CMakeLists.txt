@@ -44,6 +44,6 @@ if(MSVC)
 endif()
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE Doxybook2 argagg fmt json tinyxml2)
+target_link_libraries(${PROJECT_NAME} PUBLIC Doxybook2 argagg)
 
 
