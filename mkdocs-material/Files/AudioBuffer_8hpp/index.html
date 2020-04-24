@@ -342,7 +342,7 @@ namespace Engine {
         extern void doSomething(AudioBuffer&amp; buffer);
 
         class AudioBuffer {
-          public:
+        public:
             enum class Type {
                 UNKNOWN = 0,
                 INT_8 = 1 &lt;&lt; 1,
@@ -364,10 +364,10 @@ namespace Engine {
             void loop(AudioManager&amp; manager) const;
             void setData(const TypedAudioData&amp; data);
 
-            template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData[Size] data) {
+            template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData data[Size]) {
             }
 
-            void setData(const TypedAudioData[] data, size_t size);
+            void setData(const TypedAudioData data[], size_t size);
 
             friend class AudioManager;
             friend void Audio::doSomething(AudioBuffer&amp; buffer);
@@ -376,7 +376,7 @@ namespace Engine {
 
             void setCallback2(Callback2 callback, void* user);
 
-          protected:
+        protected:
             float* getData();
             bool playing{false};
         };
@@ -385,7 +385,7 @@ namespace Engine {
 </code></pre>
 
 <hr />
-<p>Updated on 24 April 2020 at 18:19:04 UTC</p>
+<p>Updated on 24 April 2020 at 19:29:56 UTC</p>
                 
                   
                 

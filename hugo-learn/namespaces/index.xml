@@ -26,7 +26,7 @@
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1assets/</guid>
       <description>Engine::Assets Namespace Reference
-Classes     Name     class Engine::Assets::Asset    Updated on 24 April 2020 at 18:19:00 UTC</description>
+Classes     Name     class Engine::Assets::Asset    Updated on 24 April 2020 at 19:29:39 UTC</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@ Classes     Name     class Engine::Assets::Asset    Updated on 24 April 2020 at 
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1audio/</guid>
       <description>Engine::Audio Namespace Reference
-Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Types     Name     using int(*)(AudioBuffer &amp;amp;buffer, size_t offset, void *user) Callback2 Some callback function pointer type definition.   typedef int(* Callback Some callback function pointer type definition.</description>
+Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Types     Name     using int(*)(AudioBuffer &amp;amp;buffer, size_t offset, void *user) Callback2 Some callback function pointer type definition.   typedef int(*)(AudioBuffer &amp;amp;buffer, size_t offset) Callback Some callback function pointer type definition.</description>
     </item>
     
     <item>
@@ -56,7 +56,7 @@ Classes     Name     class Engine::Graphics::Texture3D Some deprecated class.   
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1utils/</guid>
       <description>Engine::Utils Namespace Reference
-Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 24 April 2020 at 18:19:01 UTC</description>
+Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 24 April 2020 at 19:29:39 UTC</description>
     </item>
     
     <item>
