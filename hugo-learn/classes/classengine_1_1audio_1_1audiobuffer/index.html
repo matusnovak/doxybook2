@@ -12,18 +12,18 @@
     <title>Engine::Audio::AudioBuffer :: Doxybook2 Example</title>
 
     
-    <link href="/doxybook2/hugo-learn/css/nucleus.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hybrid.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/theme.css?1587499959" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1587499959" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/nucleus.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hybrid.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/theme.css?1587752341" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1587752341" rel="stylesheet">
     
 
-    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1587499959"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1587752341"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1587499959"></script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1587499959"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1587752341"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1587752341"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/matusnovak.github.io\/doxybook2\/hugo-learn";
     
 </script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1587499959"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1587752341"></script>
 
     
   </div>
@@ -1441,6 +1441,8 @@
 </ul></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
+<li><a href="#function-setcallback2">function setCallback2</a></li>
+<li><a href="#function-setcallback">function setCallback</a></li>
 <li><a href="#function-setdata">function setData</a></li>
 <li><a href="#function-setdatamultiple">function setDataMultiple</a></li>
 <li><a href="#function-setdata-1">function setData</a></li>
@@ -1556,6 +1558,16 @@
 </thead>
 
 <tbody>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1audio_1_1audiobuffer/#function-setcallback2">setCallback2</a></strong>(<a href="/doxybook2/hugo-learn/namespaces/namespaceengine_1_1audio/#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
+</tr>
+
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1audio_1_1audiobuffer/#function-setcallback">setCallback</a></strong>(<a href="/doxybook2/hugo-learn/namespaces/namespaceengine_1_1audio/#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
+</tr>
+
 <tr>
 <td>void</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1audio_1_1audiobuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/hugo-learn/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/">TypedAudioData</a>[] data, size_t size) <br>Some deprecated function.</td>
@@ -1762,6 +1774,41 @@
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
+<h3 id="function-setcallback2">function setCallback2</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">setCallback2</span><span style="color:#000;font-weight:bold">(</span>
+    <span style="color:#000">Callback2</span> <span style="color:#000">callback</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">user</span>
+<span style="color:#000;font-weight:bold">)</span>
+</code></pre></div>
+<p>Set the callback function.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>callback</strong> The callback function pointer</li>
+</ul>
+
+<p><strong>See</strong>: <a href="/doxybook2/hugo-learn/namespaces/namespaceengine_1_1audio/#typedef-callback">Audio::Callback</a></p>
+
+<h3 id="function-setcallback">function setCallback</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">setCallback</span><span style="color:#000;font-weight:bold">(</span>
+    <span style="color:#000">Callback</span> <span style="color:#000">callback</span>
+<span style="color:#000;font-weight:bold">)</span>
+</code></pre></div>
+<p>Set the callback function.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>callback</strong> The callback function pointer</li>
+</ul>
+
+<p><strong>Deprecated</strong>:</p>
+
+<p>Use the <a href="/doxybook2/hugo-learn/classes/classengine_1_1audio_1_1audiobuffer/#function-setcallback2">AudioBuffer::setCallback2</a> instead</p>
+
+<p><strong>See</strong>: <a href="/doxybook2/hugo-learn/namespaces/namespaceengine_1_1audio/#typedef-callback">Audio::Callback</a></p>
+
 <h3 id="function-setdata">function setData</h3>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">setData</span><span style="color:#000;font-weight:bold">(</span>
     <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">TypedAudioData</span><span style="color:#000;font-weight:bold">[]</span> <span style="color:#000">data</span><span style="color:#000;font-weight:bold">,</span>
@@ -1792,6 +1839,12 @@
 </code></pre></div>
 <p>Loop this buffer forever.</p>
 
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>manager</strong> Which manager to loop the sound with</li>
+</ul>
+
 <p><strong>Exceptions</strong>:</p>
 
 <ul>
@@ -1807,6 +1860,12 @@
 </code></pre></div>
 <p>Stop this buffer playing.</p>
 
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>manager</strong> Which manager to stop the sound with</li>
+</ul>
+
 <p><strong>Exceptions</strong>:</p>
 
 <ul>
@@ -1819,6 +1878,12 @@
 <span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">const</span>
 </code></pre></div>
 <p>Play this buffer.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>manager</strong> Which manager to play the sound with</li>
+</ul>
 
 <p><strong>Exceptions</strong>:</p>
 
@@ -1860,7 +1925,7 @@
 </code></pre></div>
 <hr />
 
-<p>Updated on 21 April 2020 at 20:12:39 UTC</p>
+<p>Updated on 24 April 2020 at 18:19:01 UTC</p>
 
 
 <footer class=" footline" >
@@ -2932,19 +2997,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1587499959"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1587499959"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1587499959"></script>
-    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1587499959"></script>
-    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1587499959"></script>
-    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1587499959"></script>
+    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1587752341"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1587752341"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1587752341"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1587752341"></script>
+    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1587752341"></script>
+    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1587752341"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1587499959"></script>
-    <script src="/doxybook2/hugo-learn/js/learn.js?1587499959"></script>
-    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1587499959"></script>
+    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1587752341"></script>
+    <script src="/doxybook2/hugo-learn/js/learn.js?1587752341"></script>
+    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1587752341"></script>
 
-    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1587499959" rel="stylesheet" />
-    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1587499959"></script>
+    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1587752341" rel="stylesheet" />
+    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1587752341"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

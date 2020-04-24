@@ -195,6 +195,14 @@
 <tbody>
 <tr>
 <td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">setCallback2</a></strong>(<a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine_1_1Audio/#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback">setCallback</a></strong>(<a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
+</tr>
+<tr>
+<td>void</td>
 <td><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-bootstrap/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a>[] data, size_t size) <br>Some deprecated function.</td>
 </tr>
 <tr>
@@ -364,6 +372,33 @@ using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 </table>
 <p>Different type of audio formats. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-setcallback2">function setCallback2</h3>
+<pre><code class="cpp">void setCallback2(
+    Callback2 callback,
+    void * user
+)
+</code></pre>
+
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>See</strong>: <a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
+<h3 id="function-setcallback">function setCallback</h3>
+<pre><code class="cpp">void setCallback(
+    Callback callback
+)
+</code></pre>
+
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>Deprecated</strong>: </p>
+<p>Use the <a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">AudioBuffer::setCallback2</a> instead </p>
+<p><strong>See</strong>: <a href="/doxybook2/mkdocs-bootstrap/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
 <h3 id="function-setdata">function setData</h3>
 <pre><code class="cpp">void setData(
     const TypedAudioData[] data,
@@ -394,6 +429,10 @@ inline void setDataMultiple(
 </code></pre>
 
 <p>Loop this buffer forever. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to loop the sound with </li>
+</ul>
 <p><strong>Exceptions</strong>: </p>
 <ul>
 <li><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already looping </li>
@@ -406,6 +445,10 @@ inline void setDataMultiple(
 </code></pre>
 
 <p>Stop this buffer playing. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to stop the sound with </li>
+</ul>
 <p><strong>Exceptions</strong>: </p>
 <ul>
 <li><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already stopped </li>
@@ -417,6 +460,10 @@ inline void setDataMultiple(
 </code></pre>
 
 <p>Play this buffer. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to play the sound with </li>
+</ul>
 <p><strong>Exceptions</strong>: </p>
 <ul>
 <li><strong><a href="/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already playing </li>
@@ -455,7 +502,7 @@ inline void setDataMultiple(
 </code></pre>
 
 <hr />
-<p>Updated on 21 April 2020 at 20:13:05 UTC</p></div>
+<p>Updated on 24 April 2020 at 18:19:06 UTC</p></div>
             </div>
         </div>
 

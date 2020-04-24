@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="Engine::Audio" />
-<meta property="og:description" content="Engine::Audio Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Functions     Name     void doSomething(AudioBuffer &amp; buffer) Do something with the buffer.    Functions Documentation function doSomething void doSomething( AudioBuffer &amp; buffer )  Do something with the buffer." />
+<meta property="og:description" content="Engine::Audio Classes     Name     class Engine::Audio::AudioManager An audio manager that accepts multiple Audio::AudioBuffer instances.   class Engine::Audio::AudioBuffer A simple audio buffer to hold PCM samples    Types     Name     using int(*)(AudioBuffer &amp;buffer, size_t offset, void *user) Callback2 Some callback function pointer type definition.   typedef int(* Callback Some callback function pointer type definition." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/" />
 
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.f2b5b3b18b10a0cfa5622c25e8a299dbcbb684912e770a44ebff4e90835a3513.js" integrity="sha256-8rWzsYsQoM&#43;lYiwl6KKZ28u2hJEudwpE6/9OkINaNRM="></script>
+<script defer src="/doxybook2/hugo-book/search.min.e189cb4b02f58c2f263d30fbaa4b90c2c8477ee2061189851566d80455ecea29.js" integrity="sha256-4YnLSwL1jC8mPTD7qkuQwshHfuIGEYmFFWbYBFXs6ik="></script>
 
 <!--
 Made with Book Theme
@@ -111,6 +111,29 @@ https://github.com/alex-shpak/hugo-book
 </tbody>
 </table>
 
+<h2 id="types">Types</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>using int(*)(<a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/">AudioBuffer</a> &amp;buffer, size_t offset, void *user)</td>
+<td><strong><a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/#using-callback2">Callback2</a></strong> <br>Some callback function pointer type definition.</td>
+</tr>
+
+<tr>
+<td>typedef int(*</td>
+<td><strong><a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/#typedef-callback">Callback</a></strong> <br>Some callback function pointer type definition.</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="functions">Functions</h2>
 
 <table>
@@ -129,6 +152,37 @@ https://github.com/alex-shpak/hugo-book
 </tbody>
 </table>
 
+<h2 id="types-documentation">Types Documentation</h2>
+
+<h3 id="using-callback2">using Callback2</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> Engine<span style="color:#f92672">::</span>Audio<span style="color:#f92672">::</span>Callback2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">int</span> (<span style="color:#f92672">*</span>)(AudioBuffer<span style="color:#f92672">&amp;</span> buffer, size_t offset, <span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> user);
+</code></pre></div>
+<p>Some callback function pointer type definition.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>buffer</strong> The buffer this callback is called from</li>
+<li><strong>offset</strong> The offset of the buffer currently playing</li>
+<li><strong>user</strong> User specific data</li>
+</ul>
+
+<h3 id="typedef-callback">typedef Callback</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">typedef</span> <span style="color:#a6e22e">int</span>(<span style="color:#f92672">*</span> Engine<span style="color:#f92672">::</span>Audio<span style="color:#f92672">::</span>Callback) (AudioBuffer <span style="color:#f92672">&amp;</span>buffer, size_t offset);
+</code></pre></div>
+<p>Some callback function pointer type definition.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>buffer</strong> The buffer this callback is called from</li>
+<li><strong>offset</strong> The offset of the buffer currently playing</li>
+</ul>
+
+<p><strong>Deprecated</strong>:</p>
+
+<p>Use the <a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/#using-callback2">Audio::Callback2</a> instead</p>
+
 <h2 id="functions-documentation">Functions Documentation</h2>
 
 <h3 id="function-dosomething">function doSomething</h3>
@@ -140,7 +194,7 @@ https://github.com/alex-shpak/hugo-book
 
 <hr />
 
-<p>Updated on 21 April 2020 at 20:12:39 UTC</p>
+<p>Updated on 24 April 2020 at 18:19:01 UTC</p>
 </article>
 
       
@@ -157,7 +211,13 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="#engine-audio">Engine::Audio</a>
 <ul>
 <li><a href="#classes">Classes</a></li>
+<li><a href="#types">Types</a></li>
 <li><a href="#functions">Functions</a></li>
+<li><a href="#types-documentation">Types Documentation</a>
+<ul>
+<li><a href="#using-callback2">using Callback2</a></li>
+<li><a href="#typedef-callback">typedef Callback</a></li>
+</ul></li>
 <li><a href="#functions-documentation">Functions Documentation</a>
 <ul>
 <li><a href="#function-dosomething">function doSomething</a></li>

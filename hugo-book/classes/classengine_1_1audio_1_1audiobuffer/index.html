@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.f2b5b3b18b10a0cfa5622c25e8a299dbcbb684912e770a44ebff4e90835a3513.js" integrity="sha256-8rWzsYsQoM&#43;lYiwl6KKZ28u2hJEudwpE6/9OkINaNRM="></script>
+<script defer src="/doxybook2/hugo-book/search.min.e189cb4b02f58c2f263d30fbaa4b90c2c8477ee2061189851566d80455ecea29.js" integrity="sha256-4YnLSwL1jC8mPTD7qkuQwshHfuIGEYmFFWbYBFXs6ik="></script>
 
 <!--
 Made with Book Theme
@@ -151,6 +151,16 @@ https://github.com/alex-shpak/hugo-book
 </thead>
 
 <tbody>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#function-setcallback2">setCallback2</a></strong>(<a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
+</tr>
+
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#function-setcallback">setCallback</a></strong>(<a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
+</tr>
+
 <tr>
 <td>void</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/hugo-book/classes/structengine_1_1audio_1_1audiobuffer_1_1typedaudiodata/">TypedAudioData</a>[] data, size_t size) <br>Some deprecated function.</td>
@@ -357,6 +367,41 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 
+<h3 id="function-setcallback2">function setCallback2</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> setCallback2(
+    Callback2 callback,
+    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> user
+)
+</code></pre></div>
+<p>Set the callback function.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>callback</strong> The callback function pointer</li>
+</ul>
+
+<p><strong>See</strong>: <a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/#typedef-callback">Audio::Callback</a></p>
+
+<h3 id="function-setcallback">function setCallback</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> setCallback(
+    Callback callback
+)
+</code></pre></div>
+<p>Set the callback function.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>callback</strong> The callback function pointer</li>
+</ul>
+
+<p><strong>Deprecated</strong>:</p>
+
+<p>Use the <a href="/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/#function-setcallback2">AudioBuffer::setCallback2</a> instead</p>
+
+<p><strong>See</strong>: <a href="/doxybook2/hugo-book/namespaces/namespaceengine_1_1audio/#typedef-callback">Audio::Callback</a></p>
+
 <h3 id="function-setdata">function setData</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> setData(
     <span style="color:#66d9ef">const</span> TypedAudioData[] data,
@@ -387,6 +432,12 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 </code></pre></div>
 <p>Loop this buffer forever.</p>
 
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>manager</strong> Which manager to loop the sound with</li>
+</ul>
+
 <p><strong>Exceptions</strong>:</p>
 
 <ul>
@@ -402,6 +453,12 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 </code></pre></div>
 <p>Stop this buffer playing.</p>
 
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>manager</strong> Which manager to stop the sound with</li>
+</ul>
+
 <p><strong>Exceptions</strong>:</p>
 
 <ul>
@@ -414,6 +471,12 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 ) <span style="color:#66d9ef">const</span>
 </code></pre></div>
 <p>Play this buffer.</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<ul>
+<li><strong>manager</strong> Which manager to play the sound with</li>
+</ul>
 
 <p><strong>Exceptions</strong>:</p>
 
@@ -455,7 +518,7 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 </code></pre></div>
 <hr />
 
-<p>Updated on 21 April 2020 at 20:12:39 UTC</p>
+<p>Updated on 24 April 2020 at 18:19:01 UTC</p>
 </article>
 
       
@@ -486,6 +549,8 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 </ul></li>
 <li><a href="#public-functions-documentation">Public Functions Documentation</a>
 <ul>
+<li><a href="#function-setcallback2">function setCallback2</a></li>
+<li><a href="#function-setcallback">function setCallback</a></li>
 <li><a href="#function-setdata">function setData</a></li>
 <li><a href="#function-setdatamultiple">function setDataMultiple</a></li>
 <li><a href="#function-setdata-1">function setData</a></li>

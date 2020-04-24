@@ -1074,6 +1074,14 @@
 <tbody>
 <tr>
 <td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">setCallback2</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback">setCallback</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
+</tr>
+<tr>
+<td>void</td>
 <td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a>[] data, size_t size) <br>Some deprecated function.</td>
 </tr>
 <tr>
@@ -1238,6 +1246,31 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 </table>
 <p>Different type of audio formats. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-setcallback2">function setCallback2</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback2</span><span class="hljs-params">(
+    Callback2 callback,
+    <span class="hljs-keyword">void</span> * user
+)</span>
+</span></code></pre>
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>See</strong>: <a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Audio::Callback</a></p>
+<h3 id="function-setcallback">function setCallback</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback</span><span class="hljs-params">(
+    Callback callback
+)</span>
+</span></code></pre>
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>Deprecated</strong>: </p>
+<p>Use the <a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">AudioBuffer::setCallback2</a> instead </p>
+<p><strong>See</strong>: <a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Audio::Callback</a></p>
 <h3 id="function-setdata">function setData</h3>
 <pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setData</span><span class="hljs-params">(
     <span class="hljs-keyword">const</span> TypedAudioData[] data,
@@ -1264,6 +1297,10 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 )</span> <span class="hljs-keyword">const</span>
 </span></code></pre>
 <p>Loop this buffer forever. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to loop the sound with </li>
+</ul>
 <p><strong>Exceptions</strong>: </p>
 <ul>
 <li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already looping </li>
@@ -1275,6 +1312,10 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 )</span> <span class="hljs-keyword">const</span>
 </span></code></pre>
 <p>Stop this buffer playing. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to stop the sound with </li>
+</ul>
 <p><strong>Exceptions</strong>: </p>
 <ul>
 <li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already stopped </li>
@@ -1285,6 +1326,10 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 )</span> <span class="hljs-keyword">const</span>
 </span></code></pre>
 <p>Play this buffer. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to play the sound with </li>
+</ul>
 <p><strong>Exceptions</strong>: </p>
 <ul>
 <li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already playing </li>
@@ -1317,7 +1362,7 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 <pre><code class="lang-cpp"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">class</span> AudioManager;
 </code></pre>
 <hr>
-<p>Updated on 21 April 2020 at 20:12:34 UTC</p>
+<p>Updated on 24 April 2020 at 18:18:44 UTC</p>
 
                                 
                                 </section>
@@ -1361,7 +1406,7 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2020-04-21T20:12:34.180Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-21T20:12:57.546Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","what":"what","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2020-04-24T18:18:44.710Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T18:19:10.015Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

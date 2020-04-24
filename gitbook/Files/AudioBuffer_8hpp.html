@@ -1066,6 +1066,10 @@
         <span class="hljs-keyword">class</span> AudioManager;
         <span class="hljs-keyword">class</span> AudioBuffer;
 
+        <span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(*Callback)</span><span class="hljs-params">(AudioBuffer&amp; buffer, size_t offset)</span></span>;
+
+        <span class="hljs-keyword">using</span> Callback2 = <span class="hljs-keyword">int</span> (*)(AudioBuffer&amp; buffer, <span class="hljs-keyword">size_t</span> offset, <span class="hljs-keyword">void</span>* user);
+
         <span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doSomething</span><span class="hljs-params">(AudioBuffer&amp; buffer)</span></span>;
 
         <span class="hljs-keyword">class</span> AudioBuffer {
@@ -1099,6 +1103,10 @@
             <span class="hljs-keyword">friend</span> <span class="hljs-keyword">class</span> AudioManager;
             <span class="hljs-keyword">friend</span> <span class="hljs-keyword">void</span> Audio::doSomething(AudioBuffer&amp; buffer);
 
+            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback</span><span class="hljs-params">(Callback callback)</span></span>;
+
+            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback2</span><span class="hljs-params">(Callback2 callback, <span class="hljs-keyword">void</span>* user)</span></span>;
+
           <span class="hljs-keyword">protected</span>:
             <span class="hljs-function"><span class="hljs-keyword">float</span>* <span class="hljs-title">getData</span><span class="hljs-params">()</span></span>;
             <span class="hljs-keyword">bool</span> playing{<span class="hljs-literal">false</span>};
@@ -1107,7 +1115,7 @@
 } <span class="hljs-comment">// namespace Engine</span>
 </code></pre>
 <hr>
-<p>Updated on 21 April 2020 at 20:12:34 UTC</p>
+<p>Updated on 24 April 2020 at 18:18:44 UTC</p>
 
                                 
                                 </section>
@@ -1151,7 +1159,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"AudioBuffer.hpp","level":"1.1.4.7","depth":3,"next":{"title":"AudioManager.hpp","level":"1.1.4.8","depth":3,"path":"Files/AudioManager_8hpp.md","ref":"Files/AudioManager_8hpp.md","articles":[]},"previous":{"title":"Audio.hpp","level":"1.1.4.6","depth":3,"path":"Files/Audio_8hpp.md","ref":"Files/Audio_8hpp.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Files/AudioBuffer_8hpp.md","mtime":"2020-04-21T20:12:34.200Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-21T20:12:57.546Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"AudioBuffer.hpp","what":"what","level":"1.1.4.7","depth":3,"next":{"title":"AudioManager.hpp","level":"1.1.4.8","depth":3,"path":"Files/AudioManager_8hpp.md","ref":"Files/AudioManager_8hpp.md","articles":[]},"previous":{"title":"Audio.hpp","level":"1.1.4.6","depth":3,"path":"Files/Audio_8hpp.md","ref":"Files/Audio_8hpp.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Files/AudioBuffer_8hpp.md","mtime":"2020-04-24T18:18:44.742Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T18:19:10.015Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
