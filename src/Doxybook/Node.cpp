@@ -12,7 +12,7 @@
 #include <unordered_map>
 
 class Doxybook2::Node::Temp {
-  public:
+public:
     XmlTextParser::Node brief;
 };
 
@@ -394,8 +394,16 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
             const auto childRefid = memberdef.getAttr("id");
             const auto childPtr = this->findChild(childRefid);
 
-            childrenData.insert(std::make_pair(
-                childPtr.get()->getRefid(), loadData(config, plainPrinter, markdownPrinter, cache, memberdef)));
+            const auto it = childrenData
+                                .insert(std::make_pair(childPtr.get()->getRefid(),
+                                    loadData(config, plainPrinter, markdownPrinter, cache, memberdef)))
+                                .first;
+
+            if (childPtr->kind == Kind::TYPEDEF) {
+                it->second.type += it->second.argsString;
+                it->second.typePlain += it->second.argsString;
+            }
+
             if (childPtr->kind == Kind::ENUM) {
                 auto enumvalue = memberdef.firstChildElement("enumvalue");
                 while (enumvalue) {
@@ -602,6 +610,11 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
         }
         if (data.typePlain.find("friend ") == 0) {
             data.typePlain = data.typePlain.substr(7);
+        }
+
+        if (this->kind == Kind::TYPEDEF) {
+            data.type += data.argsString;
+            data.typePlain += data.argsString;
         }
     }
 
