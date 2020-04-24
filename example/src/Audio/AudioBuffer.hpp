@@ -58,7 +58,7 @@ namespace Engine {
          * @todo Some random todo
          */
         class AudioBuffer {
-          public:
+        public:
             /*!
              * @brief Different type of audio formats
              */
@@ -126,14 +126,14 @@ namespace Engine {
             void loop(AudioManager& manager) const;
             void setData(const TypedAudioData& data);
 
-            template <size_t Size> void setDataMultiple(const TypedAudioData[Size] data) {
+            template <size_t Size> void setDataMultiple(const TypedAudioData data[Size]) {
             }
 
             /*!
              * @brief Some deprecated function
              * @deprecated Use the AudioBuffer::setDataMultiple instead
              */
-            void setData(const TypedAudioData[] data, size_t size);
+            void setData(const TypedAudioData data[], size_t size);
 
             friend class AudioManager;
             friend void Audio::doSomething(AudioBuffer& buffer);
@@ -153,7 +153,7 @@ namespace Engine {
              */
             void setCallback2(Callback2 callback, void* user);
 
-          protected:
+        protected:
             float* getData();
             bool playing{false};
         };
