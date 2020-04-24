@@ -1,9 +1,8 @@
+#include <Doxybook/DefaultTemplates.hpp>
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Generator.hpp>
 #include <Doxybook/Log.hpp>
 #include <Doxybook/Path.hpp>
-#include <Doxybook/TemplateDefaultLoader.hpp>
-#include <Doxybook/TemplateFolderLoader.hpp>
 #include <Doxybook/TextMarkdownPrinter.hpp>
 #include <Doxybook/TextPlainPrinter.hpp>
 #include <Doxybook/Utils.hpp>
@@ -76,7 +75,7 @@ int main(const int argc, char* argv[]) {
         }
 
         if (args["generate-templates"]) {
-            TemplateDefaultLoader().saveAll(args["generate-templates"].as<std::string>());
+            saveDefaultTemplates(args["generate-templates"].as<std::string>());
             return EXIT_SUCCESS;
         }
 
@@ -110,10 +109,13 @@ int main(const int argc, char* argv[]) {
             TextMarkdownPrinter markdownPrinter(config, args["input"].as<std::string>(), doxygen);
             TextPlainPrinter plainPrinter(config, doxygen);
             JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
-            std::unique_ptr<TemplateLoader> templateLoader =
-                args["templates"] ? std::make_unique<TemplateFolderLoader>(args["templates"].as<std::string>())
-                                  : std::make_unique<TemplateDefaultLoader>();
-            Generator generator(config, jsonConverter, *templateLoader);
+
+            std::optional<std::string> templatesPath;
+            if (args["templates"]) {
+                templatesPath = args["templates"].as<std::string>();
+            }
+
+            Generator generator(config, jsonConverter, templatesPath);
 
             if (config.useFolders) {
                 static const std::array<Type, 6> ALL_GROUPS = {

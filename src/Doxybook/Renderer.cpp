@@ -1,13 +1,76 @@
+#define NOMINMAX 1
 #include "ExceptionUtils.hpp"
+#include <Doxybook/DefaultTemplates.hpp>
 #include <Doxybook/Exception.hpp>
 #include <Doxybook/Log.hpp>
 #include <Doxybook/Renderer.hpp>
 #include <Doxybook/Utils.hpp>
 #include <chrono>
+#include <dirent.h>
 #include <fmt/format.h>
 #include <inja/inja.hpp>
+#include <set>
+#include <unordered_set>
 
-Doxybook2::Renderer::Renderer(const Config& config) : config(config), env(std::make_unique<inja::Environment>()) {
+#ifdef _WIN32
+static const std::string SEPARATOR = "\\";
+#else
+static const std::string SEPARATOR = "/";
+#endif
+
+static std::string trimPath(std::string path) {
+    while (path.back() == '/') {
+        path.pop_back();
+    }
+    while (path.back() == '\\') {
+        path.pop_back();
+    }
+    if (path.find(".\\") == 0) {
+        path = path.substr(2);
+    }
+    if (path.find("./") == 0) {
+        path = path.substr(2);
+    }
+    return path;
+}
+
+static void directoryIterator(const std::string& path, const std::function<void(const std::string&)>& callback) {
+    auto dir = opendir(path.c_str());
+    if (dir == nullptr) {
+        throw EXCEPTION("Failed to read directory {}", path);
+    }
+
+    const auto p = trimPath(path);
+    auto ent = readdir((DIR*)dir);
+    while (ent != nullptr) {
+        const auto file = std::string(ent->d_name);
+        if (file.size() > 4 && file.find(".tmpl") == file.size() - 5) {
+            callback(p + SEPARATOR + file);
+        }
+        ent = readdir((DIR*)dir);
+    }
+}
+
+static std::string filename(const std::string& path) {
+    const auto found = path.find_last_of("/\\");
+    if (found == std::string::npos) {
+        return path;
+    }
+    return path.substr(found + 1);
+}
+
+static std::string basename(const std::string& path) {
+    const auto str = filename(path);
+    const auto found = str.find_last_of('.');
+    if (found == std::string::npos) {
+        return str;
+    }
+    return str.substr(0, found);
+}
+
+Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::string>& templatesPath)
+    : config(config), env(std::make_unique<inja::Environment>(
+                          templatesPath.has_value() ? trimPath(templatesPath.value()) + SEPARATOR : "./")) {
 
     env->add_callback("isEmpty", 1, [](inja::Arguments& args) -> bool {
         const auto arg = args.at(0)->get<std::string>();
@@ -91,6 +154,162 @@ Doxybook2::Renderer::Renderer(const Config& config) : config(config), env(std::m
     });
     env->set_trim_blocks(false);
     env->set_lstrip_blocks(false);
+
+    // These are the templates we will be using.
+    // So we don't load other templates that will never get used!
+    std::unordered_set<std::string> templatesToLoad = {config.templateIndexClasses,
+        config.templateIndexExamples,
+        config.templateIndexFiles,
+        config.templateIndexGroups,
+        config.templateIndexNamespaces,
+        config.templateIndexRelatedPages,
+        config.templateKindClass,
+        config.templateKindExample,
+        config.templateKindFile,
+        config.templateKindGroup,
+        config.templateKindDir,
+        config.templateKindNamespace,
+        config.templateKindPage,
+        config.templateKindUnion,
+        config.templateKindInterface,
+        config.templateKindStruct};
+
+    // This is a list of other templates found in the templates directory (if supplied)
+    std::unordered_map<std::string, std::string> otherTemplates;
+    std::string includePrefix = "";
+
+    if (templatesPath.has_value()) {
+        includePrefix = trimPath(templatesPath.value()) + SEPARATOR;
+
+        /*for (auto& p : std::filesystem::directory_iterator(templatesPath.value())) {
+            const auto file = std::filesystem::path(p);
+            const auto name = file.stem().string();
+
+            if (file.extension() == ".tmpl") {
+                otherTemplates.insert(std::make_pair(name, file));
+            }
+        }*/
+        directoryIterator(includePrefix, [&](const std::string& file) {
+            const auto name = basename(file);
+            otherTemplates.insert(std::make_pair(name, file));
+        });
+    }
+
+    Log::i("Using lookup template path: '{}'", includePrefix);
+
+    // Recursive template loader with dependencies.
+    // Thanks to C++17 we can use recursive lambdas.
+    std::set<std::string> loaded;
+    const std::function<void(const std::string&, bool)> loadDependency = [&](const std::string& name,
+                                                                             const bool include) {
+        // Check if this template has been loaded.
+        if (loaded.find(name) != loaded.end()) {
+            return;
+        }
+
+        // Find the template in the list of default templates
+        // and in the list of provided templates via "--templates <path>" argument.
+        const auto oit = otherTemplates.find(name);
+        const auto dit = defaultTemplates.find(name);
+
+        try {
+            // Recursively load the dependencies but only if this
+            // template is available in the list of default templates.
+            //
+            // This is useful if you have a custom template "meta.tmpl"
+            // that is used by some other default template.
+            //
+            // Or you have a custom template "kind_class.tmpl" but uses custom
+            // template "header" that is not provided and therefore should be
+            // loaded from the list of default templates.
+            //
+            // We want to ensure that the default templates and custom templates
+            // can coexist.
+            if (dit != defaultTemplates.end()) {
+                for (const auto& dep : dit->second.dependencies) {
+                    loadDependency(dep, true);
+                }
+            }
+
+            // The template has been found in the provided template path (i.e. "--templates <path>")
+            if (oit != otherTemplates.end()) {
+                Log::i("Parsing template: '{}' from file: '{}'", name, oit->second);
+
+                // Parse the template.
+                // The inja library will load all of the other templates
+                // that are specified by {% include "<name>" %} in the tmpl file.
+                // These includes are automatically resolved based on the provided template path (i.e. "--templates
+                // <path>") Thanks to providing the templates path to the constructor of inja::Environment
+                auto tmpl = env->parse_template(filename(oit->second));
+                const auto it =
+                    templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl)))).first;
+
+                // Only include the dependencies.
+                // This is needed if a default template is parsed via env->parse
+                // and wants to include some other template. We need to let inja know about that template before parsing
+                // it.
+                if (include) {
+                    env->include_template(name, *it->second);
+                    env->include_template(includePrefix + name, *it->second);
+                }
+
+            } else if (dit != defaultTemplates.end()) {
+                Log::i("Parsing template: '{}' from default", name);
+
+                // Parse the template from the list of default templates.
+                // This won't do any automatic resolving of {% include "<name>" %}
+                // and therefore we have to do env->include_template(<name>, <ref>)
+                auto tmpl = env->parse(dit->second.src);
+                const auto it =
+                    templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl)))).first;
+
+                // Same as above
+                if (include) {
+                    env->include_template(name, *it->second);
+                    env->include_template(includePrefix + name, *it->second);
+                }
+            } else {
+                throw EXCEPTION("No template provided for: '{}'", name);
+            }
+
+            // Remember that we have parsed this template.
+            loaded.insert(name);
+        } catch (std::exception& e) {
+            throw EXCEPTION("Failed to load template: '{}' error: {}", name, e.what());
+        }
+    };
+
+    // Load all of the required templates specified by the config.
+    for (const auto& name : templatesToLoad) {
+        loadDependency(name, false);
+    }
+
+    // Load all of the other templates in the directory that were not loaded in the loop above.
+    // Because of the custom function {{render("<name>", data)}} provided in the template renderer,
+    // as an alternative to {% include <name> %},
+    // we have to load all of the other templates too!
+    //
+    // The render function will not automatically resolve the template by the argument "<name>"
+    // so we have to ensure that the template is provided upfront.
+    //
+    // This is different from the {% include "<name>" %} which does resolving automatically.
+    for (const auto& pair : otherTemplates) {
+        const auto& name = pair.first;
+        const auto& file = pair.second;
+
+        // Check if this template has been already loaded.
+        if (loaded.find(name) != loaded.end()) {
+            return;
+        }
+
+        try {
+            Log::i("Parsing template: '{}' from file: '{}'", name, file);
+            auto tmpl = env->parse_template(file);
+            templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl))));
+        } catch (std::exception& e) {
+            throw EXCEPTION("Failed to load template: '{}' error: {}", name, e.what());
+        }
+    }
 }
 
 Doxybook2::Renderer::~Renderer() = default;
@@ -132,14 +351,4 @@ std::string Doxybook2::Renderer::render(const std::string& name, const nlohmann:
         throw EXCEPTION("Failed to render template '{}' error {}", name, e.what());
     }
     return ss.str();
-}
-
-void Doxybook2::Renderer::addTemplate(const std::string& name, const std::string& src) {
-    try {
-        inja::Template tmpl = env->parse(src);
-        const auto it = templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl)))).first;
-        env->include_template(it->first, *it->second);
-    } catch (std::exception& e) {
-        throw EXCEPTION("Failed to parse template '{}' error {}", name, e.what());
-    }
 }

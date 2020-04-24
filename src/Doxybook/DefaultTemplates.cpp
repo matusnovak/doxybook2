@@ -1,5 +1,5 @@
 #include "ExceptionUtils.hpp"
-#include <Doxybook/TemplateDefaultLoader.hpp>
+#include <Doxybook/DefaultTemplates.hpp>
 #include <Doxybook/Utils.hpp>
 #include <fstream>
 
@@ -10,6 +10,7 @@ static const std::string TEMPLATE_HEADER =
 {% if exists("title") %}title: {{title}}{% else if exists("name") %}title: {{name}}{% endif %}
 {% if exists("summary") %}summary: {{summary}} {% endif%}
 {% include "meta" %}
+what: what
 ---
 
 {% if exists("title") %}# {{title}}{% else if exists("kind") and kind != "page" %}# {{name}} {{title(kind)}} Reference{% endif %}
@@ -26,9 +27,9 @@ Updated on {{date("%e %B %Y at %H:%M:%S %Z")}})";
 static const std::string TEMPLATE_DETAILS =
     R"({% if exists("brief") %}{{brief}}
 {% endif %}
-{% if exists("paramsList") %}**Parameters**: 
+{% if exists("paramList") %}**Parameters**: 
 
-{% for param in paramsList %}  * **{{param.name}}** {{param.text}}
+{% for param in paramList %}  * **{{param.name}}** {{param.text}}
 {% endfor %}
 {% endif %}
 {% if exists("returnsList") %}**Returns**: 
@@ -601,43 +602,51 @@ static const std::string TEMPLATE_INDEX_EXAMPLES =
 {% include "footer" %}
 )";
 
-Doxybook2::TemplateDefaultLoader::TemplateDefaultLoader() {
-    templates = {
-        {"meta", TEMPLATE_META},
-        {"header", TEMPLATE_HEADER},
-        {"footer", TEMPLATE_FOOTER},
-        {"details", TEMPLATE_DETAILS},
-        {"breadcrumbs", TEMPLATE_BREADCRUMBS},
-        {"member_details", TEMPLATE_MEMBER_DETAILS},
-        {"class_members_tables", TEMPLATE_CLASS_MEMBERS_TABLES},
-        {"class_members_inherited_tables", TEMPLATE_CLASS_MEMBERS_INHERITED_TABLES},
-        {"class_members_details", TEMPLATE_CLASS_MEMBERS_DETAILS},
-        {"nonclass_members_tables", TEMPLATE_NONCLASS_MEMBERS_TABLES},
-        {"nonclass_members_details", TEMPLATE_NONCLASS_MEMBERS_DETAILS},
-        {"kind_nonclass", TEMPLATE_KIND_NONCLASS},
-        {"kind_class", TEMPLATE_KIND_CLASS},
-        {"kind_group", TEMPLATE_KIND_GROUP},
-        {"kind_file", TEMPLATE_KIND_FILE},
-        {"kind_page", TEMPLATE_KIND_PAGE},
-        {"kind_example", TEMPLATE_KIND_EXAMPLE},
-        {"index", TEMPLATE_INDEX},
-        {"index_classes", TEMPLATE_INDEX_CLASSES},
-        {"index_namespaces", TEMPLATE_INDEX_NAMESPACES},
-        {"index_groups", TEMPLATE_INDEX_GROUPS},
-        {"index_files", TEMPLATE_INDEX_FILES},
-        {"index_pages", TEMPLATE_INDEX_PAGES},
-        {"index_examples", TEMPLATE_INDEX_EXAMPLES},
-    };
-}
+std::unordered_map<std::string, Doxybook2::DefaultTemplate> Doxybook2::defaultTemplates = {
+    {"meta", {TEMPLATE_META, {}}},
+    {"header", {TEMPLATE_HEADER, {"meta"}}},
+    {"footer", {TEMPLATE_FOOTER, {}}},
+    {"details", {TEMPLATE_DETAILS, {}}},
+    {"breadcrumbs", {TEMPLATE_BREADCRUMBS, {}}},
+    {"member_details", {TEMPLATE_MEMBER_DETAILS, {"details"}}},
+    {"class_members_tables", {TEMPLATE_CLASS_MEMBERS_TABLES, {}}},
+    {"class_members_inherited_tables", {TEMPLATE_CLASS_MEMBERS_INHERITED_TABLES, {}}},
+    {"class_members_details", {TEMPLATE_CLASS_MEMBERS_DETAILS, {"member_details"}}},
+    {"nonclass_members_tables", {TEMPLATE_NONCLASS_MEMBERS_TABLES, {}}},
+    {"nonclass_members_details", {TEMPLATE_NONCLASS_MEMBERS_DETAILS, {"member_details"}}},
+    {"index", {TEMPLATE_INDEX, {}}},
+    {"kind_nonclass",
+        {TEMPLATE_KIND_NONCLASS,
+            {"header", "breadcrumbs", "nonclass_members_tables", "nonclass_members_details", "footer"}}},
+    {"kind_class",
+        {TEMPLATE_KIND_CLASS,
+            {"header",
+                "breadcrumbs",
+                "class_members_tables",
+                "class_members_inherited_tables",
+                "class_members_details",
+                "footer"}}},
+    {"kind_group",
+        {TEMPLATE_KIND_GROUP,
+            {"header", "breadcrumbs", "nonclass_members_tables", "nonclass_members_details", "footer"}}},
+    {"kind_file", {TEMPLATE_KIND_FILE, {"header", "nonclass_members_tables", "nonclass_members_details", "footer"}}},
+    {"kind_page", {TEMPLATE_KIND_PAGE, {"header", "details", "footer"}}},
+    {"kind_example", {TEMPLATE_KIND_EXAMPLE, {"header", "details", "footer"}}},
+    {"index_classes", {TEMPLATE_INDEX_CLASSES, {"header", "index", "footer"}}},
+    {"index_namespaces", {TEMPLATE_INDEX_NAMESPACES, {"header", "index", "footer"}}},
+    {"index_groups", {TEMPLATE_INDEX_GROUPS, {"header", "index", "footer"}}},
+    {"index_files", {TEMPLATE_INDEX_FILES, {"header", "index", "footer"}}},
+    {"index_pages", {TEMPLATE_INDEX_PAGES, {"header", "index", "footer"}}},
+    {"index_examples", {TEMPLATE_INDEX_EXAMPLES, {"header", "index", "footer"}}}};
 
-void Doxybook2::TemplateDefaultLoader::saveAll(const std::string& path) const {
-    for (const auto& tmpl : templates) {
-        const auto tmplPath = Utils::join(path, tmpl.name + ".tmpl");
+void Doxybook2::saveDefaultTemplates(const std::string& path) {
+    for (const auto& tmpl : defaultTemplates) {
+        const auto tmplPath = Utils::join(path, tmpl.first + ".tmpl");
         Log::i("Creating default template {}", tmplPath);
         std::ofstream file(tmplPath);
         if (!file)
             throw EXCEPTION("Failed to open file {} for writing", tmplPath);
 
-        file << tmpl.contents;
+        file << tmpl.second.src;
     }
 }

@@ -15,7 +15,7 @@ file(GLOB_RECURSE HEADERS ${DOXYDOWN_INCLUDE_DIR}/Doxybook/*.hpp)
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxybook2")
 target_include_directories(${PROJECT_NAME} PUBLIC ${DOXYDOWN_INCLUDE_DIR})
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 
 # Clang tidy
 if(USE_CLANG_TIDY)

@@ -21,7 +21,7 @@ if (LINUX OR MINGW)
 endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxybook2")
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src/Doxybook)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 
 # Clang tidy
 if(USE_CLANG_TIDY)

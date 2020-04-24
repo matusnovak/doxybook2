@@ -5,6 +5,7 @@ IndentWidth: 4
 TabWidth: 4
 UseTab: Never
 NamespaceIndentation: All
+AccessModifierOffset: -4
 AllowShortFunctionsOnASingleLine: None
 IndentCaseLabels: true
 BinPackParameters: false

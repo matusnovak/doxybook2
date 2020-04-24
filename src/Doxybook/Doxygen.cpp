@@ -1,28 +1,22 @@
+#include "ExceptionUtils.hpp"
+#include <Doxybook/Config.hpp>
+#include <Doxybook/Doxygen.hpp>
+#include <Doxybook/Exception.hpp>
+#include <Doxybook/Node.hpp>
+#include <Doxybook/Path.hpp>
+#include <Doxybook/Xml.hpp>
+#include <cassert>
 #include <set>
 #include <tinyxml2.h>
-#include <Doxybook/Doxygen.hpp>
-#include <Doxybook/Path.hpp>
-#include <Doxybook/Exception.hpp>
-#include <Doxybook/Xml.hpp>
-#include <Doxybook/Node.hpp>
-#include <Doxybook/Config.hpp>
-#include "ExceptionUtils.hpp"
 
-#define ASSERT_FIRST_CHILD_ELEMENT(PARENT, NAME) \
-    const auto NAME = PARENT->FirstChildElement(##NAME);\
-    if (NAME == nullptr) throw DOXYGEN_EXCEPTION("Element {} not found in parent {} file {}", NAME, PARENT->Name(), inputDir);
+#define ASSERT_FIRST_CHILD_ELEMENT(PARENT, NAME)                                                                       \
+    const auto NAME = PARENT->FirstChildElement(##NAME);                                                               \
+    if (NAME == nullptr)                                                                                               \
+        throw DOXYGEN_EXCEPTION("Element {} not found in parent {} file {}", NAME, PARENT->Name(), inputDir);
 
 static bool isKindAllowedLanguage(const std::string& kind) {
     static std::set<std::string> values = {
-        "namespace",
-        "class",
-        "struct",
-        "interface",
-        "function",
-        "variable",
-        "typedef",
-        "enum"
-    };
+        "namespace", "class", "struct", "interface", "function", "variable", "typedef", "enum"};
     return values.find(kind) != values.end();
 }
 
@@ -42,9 +36,7 @@ static bool isKindAllowedExamples(const std::string& kind) {
     return kind == "example";
 }
 
-Doxybook2::Doxygen::Doxygen(const Config& config)
-    : config(config),
-      index(std::make_shared<Node>("index")) {
+Doxybook2::Doxygen::Doxygen(const Config& config) : config(config), index(std::make_shared<Node>("index")) {
 }
 
 void Doxybook2::Doxygen::load(const std::string& inputDir) {
@@ -173,7 +165,7 @@ void Doxybook2::Doxygen::updateGroupPointers(const NodePtr& node) {
             child->group = node.get();
         }
     }
-    
+
     for (const auto& child : node->children) {
         if (child->kind == Kind::MODULE) {
             updateGroupPointers(child);
@@ -181,14 +173,13 @@ void Doxybook2::Doxygen::updateGroupPointers(const NodePtr& node) {
     }
 }
 
-void Doxybook2::Doxygen::finalize(const TextPrinter& plainPrinter,
-                                 const TextPrinter& markdownPrinter) {
+void Doxybook2::Doxygen::finalize(const TextPrinter& plainPrinter, const TextPrinter& markdownPrinter) {
     finalizeRecursively(plainPrinter, markdownPrinter, index);
 }
 
 void Doxybook2::Doxygen::finalizeRecursively(const TextPrinter& plainPrinter,
-                                            const TextPrinter& markdownPrinter,
-                                            const NodePtr& node) {
+    const TextPrinter& markdownPrinter,
+    const NodePtr& node) {
 
     for (const auto& child : node->children) {
         child->finalize(config, plainPrinter, markdownPrinter, cache);
@@ -203,10 +194,12 @@ Doxybook2::Doxygen::KindRefidMap Doxybook2::Doxygen::getIndexKinds(const std::st
     std::unordered_multimap<std::string, std::string> map;
 
     auto root = xml.firstChildElement("doxygenindex");
-    if (!root) throw EXCEPTION("Unable to find root element in file {}", indexPath);
+    if (!root)
+        throw EXCEPTION("Unable to find root element in file {}", indexPath);
 
     auto compound = root.firstChildElement("compound");
-    if (!compound) throw EXCEPTION("No <compound> element in file {}", indexPath);
+    if (!compound)
+        throw EXCEPTION("No <compound> element in file {}", indexPath);
     while (compound) {
         try {
             const auto kind = compound.getAttr("kind");

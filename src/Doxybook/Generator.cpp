@@ -1,13 +1,11 @@
-#include <fstream>
-#include <Doxybook/Generator.hpp>
-#include <Doxybook/Doxygen.hpp>
-#include <Doxybook/Renderer.hpp>
-#include <Doxybook/Path.hpp>
-#include <Doxybook/TemplateLoader.hpp>
-#include <Doxybook/Exception.hpp>
-#include <Doxybook/Utils.hpp>
 #include "ExceptionUtils.hpp"
-
+#include <Doxybook/Doxygen.hpp>
+#include <Doxybook/Exception.hpp>
+#include <Doxybook/Generator.hpp>
+#include <Doxybook/Path.hpp>
+#include <Doxybook/Renderer.hpp>
+#include <Doxybook/Utils.hpp>
+#include <fstream>
 
 std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
     using namespace Doxybook2;
@@ -39,21 +37,15 @@ std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
 }
 
 Doxybook2::Generator::Generator(const Config& config,
-                               const JsonConverter& jsonConverter,
-                               const TemplateLoader& templateLoader)
-    : config(config),
-      jsonConverter(jsonConverter),
-      renderer(config) {
-
-    for (const auto& pair : templateLoader.getTemplates()) {
-        renderer.addTemplate(pair.name, pair.contents);
-    }
+    const JsonConverter& jsonConverter,
+    const std::optional<std::string>& templatesPath)
+    : config(config), jsonConverter(jsonConverter), renderer(config, templatesPath) {
 }
 
 void Doxybook2::Generator::summary(const Doxygen& doxygen,
-                                  const std::string& inputFile,
-                                  const std::string& outputFile,
-                                  const std::vector<SummarySection>& sections) {
+    const std::string& inputFile,
+    const std::string& outputFile,
+    const std::vector<SummarySection>& sections) {
 
     std::ifstream input(inputFile);
     if (!input) {
@@ -67,7 +59,8 @@ void Doxybook2::Generator::summary(const Doxygen& doxygen,
 
     static const auto compare = [](const char* a, const char* b) {
         while (*a && *b) {
-            if (*a++ != *b++) return false;
+            if (*a++ != *b++)
+                return false;
         }
         return true;
     };
@@ -81,8 +74,10 @@ void Doxybook2::Generator::summary(const Doxygen& doxygen,
             offset = i;
             break;
         }
-        if (c == ' ') indent++;
-        else indent = 0;
+        if (c == ' ')
+            indent++;
+        else
+            indent = 0;
     }
 
     std::stringstream ss;
@@ -104,11 +99,11 @@ void Doxybook2::Generator::summary(const Doxygen& doxygen,
 }
 
 void Doxybook2::Generator::summaryRecursive(std::stringstream& ss,
-                                           const int indent,
-                                           const std::string& folderName,
-                                           const Node& node,
-                                           const Filter& filter,
-                                           const Filter& skip) {
+    const int indent,
+    const std::string& folderName,
+    const Node& node,
+    const Filter& filter,
+    const Filter& skip) {
 
     for (const auto& child : node.getChildren()) {
         if (child->getKind() == Kind::PAGE && child->getRefid() == config.mainPageName) {
@@ -116,8 +111,8 @@ void Doxybook2::Generator::summaryRecursive(std::stringstream& ss,
         }
         if (filter.find(child->getKind()) != filter.end()) {
             if (skip.find(child->getKind()) == skip.end()) {
-                ss << std::string(indent, ' ') << "* [" << child->getName() << "](" << folderName << "/" << child->
-                    getRefid() << ".md)\n";
+                ss << std::string(indent, ' ') << "* [" << child->getName() << "](" << folderName << "/"
+                   << child->getRefid() << ".md)\n";
             }
             summaryRecursive(ss, indent, folderName, *child, filter, skip);
         }
@@ -135,18 +130,12 @@ void Doxybook2::Generator::printRecursively(const Node& parent, const Filter& fi
                     path = child->getRefid() + "." + config.fileExt;
                 } else if (config.useFolders) {
                     path = Path::join(
-                        typeToFolderName(config, child->getType()),
-                        child->getRefid() + "." + config.fileExt
-                    );
+                        typeToFolderName(config, child->getType()), child->getRefid() + "." + config.fileExt);
                 } else {
                     path = child->getRefid() + "." + config.fileExt;
                 }
 
-                renderer.render(
-                    kindToTemplateName(child->getKind()),
-                    path,
-                    data
-                );
+                renderer.render(kindToTemplateName(child->getKind()), path, data);
             }
             printRecursively(*child, filter, skip);
         }
@@ -159,14 +148,12 @@ void Doxybook2::Generator::jsonRecursively(const Node& parent, const Filter& fil
             if (skip.find(child->getKind()) == skip.end()) {
                 nlohmann::json data = jsonConverter.getAsJson(*child);
 
-                const auto path = Path::join(
-                    config.outputDir,
-                    child->getRefid() + ".json"
-                );
+                const auto path = Path::join(config.outputDir, child->getRefid() + ".json");
 
                 Log::i("Rendering {}", path);
                 std::ofstream file(path);
-                if (!file) throw EXCEPTION("File {} failed to open for writing", path);
+                if (!file)
+                    throw EXCEPTION("File {} failed to open for writing", path);
 
                 file << data.dump(2);
             }
@@ -185,14 +172,12 @@ void Doxybook2::Generator::json(const Doxygen& doxygen, const Filter& filter, co
 
 void Doxybook2::Generator::manifest(const Doxygen& doxygen) {
     auto data = manifestRecursively(doxygen.getIndex());
-    const auto path = Path::join(
-        config.outputDir,
-        "manifest.json"
-    );
+    const auto path = Path::join(config.outputDir, "manifest.json");
 
     Log::i("Rendering {}", path);
     std::ofstream file(path);
-    if (!file) throw EXCEPTION("File {} failed to open for writing", path);
+    if (!file)
+        throw EXCEPTION("File {} failed to open for writing", path);
 
     file << data.dump(2);
 }
@@ -218,9 +203,9 @@ nlohmann::json Doxybook2::Generator::manifestRecursively(const Node& node) {
 }
 
 void Doxybook2::Generator::printIndex(const Doxygen& doxygen,
-                                     const FolderCategory type,
-                                     const Filter& filter,
-                                     const Filter& skip) {
+    const FolderCategory type,
+    const Filter& filter,
+    const Filter& skip) {
     const auto path = typeToIndexName(config, type) + "." + config.fileExt;
 
     nlohmann::json data;
@@ -241,9 +226,8 @@ nlohmann::json Doxybook2::Generator::buildIndexRecursively(const Node& node, con
         }
     }
 
-    std::sort(sorted.begin(), sorted.end(), [](const Node* a, const Node* b) -> bool {
-        return a->getName() < b->getName();
-    });
+    std::sort(
+        sorted.begin(), sorted.end(), [](const Node* a, const Node* b) -> bool { return a->getName() < b->getName(); });
 
     for (const auto& child : sorted) {
         auto data = jsonConverter.convert(*child);

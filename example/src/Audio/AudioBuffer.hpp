@@ -7,6 +7,22 @@ namespace Engine {
         class AudioBuffer;
 
         /*!
+         * @brief Some callback function pointer type definition
+         * @param buffer The buffer this callback is called from
+         * @param offset The offset of the buffer currently playing
+         * @deprecated Use the Audio::Callback2 instead
+         */
+        typedef int (*Callback)(AudioBuffer& buffer, size_t offset);
+
+        /*!
+         * @brief Some callback function pointer type definition
+         * @param buffer The buffer this callback is called from
+         * @param offset The offset of the buffer currently playing
+         * @param user User specific data
+         */
+        using Callback2 = int (*)(AudioBuffer& buffer, size_t offset, void* user);
+
+        /*!
          * @brief Do something with the buffer
          */
         extern void doSomething(AudioBuffer& buffer);
@@ -121,6 +137,21 @@ namespace Engine {
 
             friend class AudioManager;
             friend void Audio::doSomething(AudioBuffer& buffer);
+
+            /*!
+             * @brief Set the callback function
+             * @see Audio::Callback
+             * @param callback The callback function pointer
+             * @deprecated Use the AudioBuffer::setCallback2 instead
+             */
+            void setCallback(Callback callback);
+
+            /*!
+             * @brief Set the callback function
+             * @see Audio::Callback
+             * @param callback The callback function pointer
+             */
+            void setCallback2(Callback2 callback, void* user);
 
           protected:
             float* getData();
