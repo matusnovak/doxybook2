@@ -304,8 +304,8 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
 
         try {
             Log::i("Parsing template: '{}' from file: '{}'", name, file);
-            auto tmpl = env->parse_template(file);
-            templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl))));
+            auto tmpl = env->parse_template(name + ".tmpl");
+            templates.insert(std::make_pair(name + ".tmpl", std::make_unique<inja::Template>(std::move(tmpl))));
         } catch (std::exception& e) {
             throw EXCEPTION("Failed to load template: '{}' error: {}", name, e.what());
         }
