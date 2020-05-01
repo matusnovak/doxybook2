@@ -10,7 +10,6 @@ static const std::string TEMPLATE_HEADER =
 {% if exists("title") %}title: {{title}}{% else if exists("name") %}title: {{name}}{% endif %}
 {% if exists("summary") %}summary: {{summary}} {% endif%}
 {% include "meta" %}
-what: what
 ---
 
 {% if exists("title") %}# {{title}}{% else if exists("kind") and kind != "page" %}# {{name}} {{title(kind)}} Reference{% endif %}
