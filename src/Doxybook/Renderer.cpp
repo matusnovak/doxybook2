@@ -181,14 +181,6 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
     if (templatesPath.has_value()) {
         includePrefix = trimPath(templatesPath.value()) + SEPARATOR;
 
-        /*for (auto& p : std::filesystem::directory_iterator(templatesPath.value())) {
-            const auto file = std::filesystem::path(p);
-            const auto name = file.stem().string();
-
-            if (file.extension() == ".tmpl") {
-                otherTemplates.insert(std::make_pair(name, file));
-            }
-        }*/
         directoryIterator(includePrefix, [&](const std::string& file) {
             const auto name = basename(file);
             otherTemplates.insert(std::make_pair(name, file));
@@ -299,7 +291,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
 
         // Check if this template has been already loaded.
         if (loaded.find(name) != loaded.end()) {
-            return;
+            continue;
         }
 
         try {
