@@ -376,9 +376,9 @@ doxybook2 --input ... --output ... --templates /path/to/folder
 
 Just as the config, if the folder does not contain a specific template, the default one will be used. For example, Hugo (Book theme) needs an extra `type: docs` in the header of the markdown. The folder `example/hugo-book/.doxybook/templates` contains a single template template file named `meta.tmpl`. This template is used by `header` template which is then further used by the `kind_class`, `kind_namespace`, and so on. There are no other template files in that example directory, therefore the default ones will be used.
 
-To use custom templates, simply add them to to the directory specified by the `--templates <dir>`. Then, 
+To use custom templates, simply add them to to the directory specified by the `--templates <dir>`.
 
-**The following are core templates that are needed to generate the output.** All of these templates are defined by the configuration file (see section "Config values" above). For example, the config key `templateKindGroup` is by default `kind_nonclass`.
+**The following are core templates that are needed to generate the output.** All of these templates are defined by the configuration file (see section "Config values" above). For example, the config key `templateKindGroup` is by default `kind_nonclass`, therefore the render engine expects `kind_nonclass.tmpl` in your templates folder (if exists).
 
 * templateIndexExamples
 * templateIndexFiles
@@ -413,11 +413,11 @@ To use custom templates, simply add them to to the directory specified by the `-
 
 First, generate the default templates (this simply copies them from the executable file to the destination directory) by running `doxybook --generate-templates <dir>`. Let's say you want to override the fooder with some custom markdown. Find the `footer.tmpl` file and change the contents with whatever you want. You can delete the rest of the templates that you have not modified. Now run the executable with the `--templates <dir>` option. This will use your custom `footer.tmpl`. 
 
-When the doxybook runs, the list of templates that are loaded is printed to the terminal right at the beginning. For example, if the template is loaded from your folder, it will print `Parsing template: 'footer' from file: '/path/to/templates/footer.tmpl`. If the template is loaded from the executable file itself (the default templates), it will print instead the following: `Parsing template: 'footer' from default`.
+When the doxybook runs, the list of templates that are loaded is printed to the terminal right at the beginning. For example, if the template is loaded from your folder, it will print `Parsing template: 'footer' from file: '/path/to/templates/footer.tmpl`. If the template is loaded from the executable file itself (the default templates), it will print the following: `Parsing template: 'footer' from default` instead.
 
-Now, let's say that you want to change how enums are printed (the enum table that has Enumerator, Value, and Description columns). This is located in the `member_details` template. This template is used as `{{ render("member_details", child) }}` inside of `class_members_details` and `nonclass_members_details` templates. 
+Now, let's say that you want to change how enums are printed (the enum table that has Enumerator, Value, and Description columns). This is located in the `member_details` template. This template is used as `{{ render("member_details", child) }}` inside of `class_members_details` and `nonclass_members_details` templates. So you only need to run `doxybook --generate-templates <dir>` and only keep `member_details.tmpl` and change it however you want.
 
-Why `render` instead of `include`? The `include` is a keyword from the inja template engine to insert the child template file. All of the variables that are accessible in the parent template are also accessible in the child template being included. The render method has a different context, meaning that you can pass in subset of the data accessible in the parent template. In this case, the `class_members_details` has a JSON data that also has an array `publicTypes` (if the class/struct has any public types). By default the `class_members_details` has something like this:
+Why `render` instead of `include`? The `include` is a keyword from the inja template engine to insert the child template file. All of the variables that are accessible in the parent template are also accessible in the child template being included. Think of it as copy pasting the contents of the child template and putting them into the parent template. The render method has a different context (global data). This means that you can pass in subset of the data accessible in the parent template. In this case, the `class_members_details` has a JSON data that also has an array `publicTypes` (if the class/struct has any public types). By default the `class_members_details` has something like this:
 
 ```
 {% for child in publicTypes %}
