@@ -70,7 +70,7 @@ static std::string basename(const std::string& path) {
 
 Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::string>& templatesPath)
     : config(config), env(std::make_unique<inja::Environment>(
-                          templatesPath.has_value() ? trimPath(templatesPath.value()) + SEPARATOR : "./")) {
+                          templatesPath.has_value() ? trimPath(*templatesPath) + SEPARATOR : "./")) {
 
     env->add_callback("isEmpty", 1, [](inja::Arguments& args) -> bool {
         const auto arg = args.at(0)->get<std::string>();
@@ -179,7 +179,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
     std::string includePrefix = "";
 
     if (templatesPath.has_value()) {
-        includePrefix = trimPath(templatesPath.value()) + SEPARATOR;
+        includePrefix = trimPath(*templatesPath) + SEPARATOR;
 
         directoryIterator(includePrefix, [&](const std::string& file) {
             const auto name = basename(file);
