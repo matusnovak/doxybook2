@@ -11,7 +11,17 @@
 #include <iostream>
 #include <string>
 
+#define xstr(a) str(a)
+#define str(a) #a
+
+#ifdef VERSION
+static const std::string version = xstr(VERSION);
+#else
+static const std::string version = "unknown";
+#endif
+
 static argagg::parser argparser{{{"help", {"-h", "--help"}, "Shows this help message", 0},
+    {"version", {"-v", "--version"}, "Shows the version", 0},
     {"input", {"-i", "--input"}, "Path to the generated Doxygen XML folder. Must contain index.xml!", 1},
     {"output", {"-o", "--output"}, "Path to the target folder where to generate markdown files", 1},
     {"json",
@@ -69,17 +79,22 @@ int main(const int argc, char* argv[]) {
             return EXIT_SUCCESS;
         }
 
-        if (args["generate-config"]) {
+        else if (args["version"]) {
+            std::cerr << version;
+            return EXIT_SUCCESS;
+        }
+
+        else if (args["generate-config"]) {
             saveConfig(config, args["generate-config"].as<std::string>());
             return EXIT_SUCCESS;
         }
 
-        if (args["generate-templates"]) {
+        else if (args["generate-templates"]) {
             saveDefaultTemplates(args["generate-templates"].as<std::string>());
             return EXIT_SUCCESS;
         }
 
-        if (args["output"]) {
+        else if (args["output"]) {
             if (!args["input"]) {
                 std::cerr << "You need to provide input path!" << std::endl;
                 std::cerr << argparser;

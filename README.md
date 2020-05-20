@@ -155,6 +155,8 @@ I highly suggest reading through the [Config](#config) or looking into `example/
 Debug\doxybook2.exe
     -h, --help
         Shows this help message
+    -v, --version
+        Shows the version
     -i, --input
         Path to the generated Doxygen XML folder. Must contain index.xml!
     -o, --output
