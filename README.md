@@ -57,9 +57,9 @@ This project is not perfect and I will never claim it will be. It does its job a
 
 ![Screenshot - MkDocs Material](screenshots/screenshot_mkdocs_material.jpg)
 
-### [MkDocs](https://www.mkdocs.org/) with [Bootstrap](http://mkdocs.github.io/mkdocs-bootstrap/) theme ([Link](https://matusnovak.github.io/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Audio_1_1AudioBuffer/) )
+### [MkDocs](https://www.mkdocs.org/) with [Bootswatch](http://mkdocs.github.io/mkdocs-bootswatch/) theme ([Link](https://matusnovak.github.io/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/) )
 
-![Screenshot - MkDocs Bootstrap](screenshots/screenshot_mkdocs_bootstrap.jpg)
+![Screenshot - MkDocs Bootswatch](screenshots/screenshot_mkdocs_bootswatch.jpg)
 
 ### [VuePress](https://vuepress.vuejs.org/) with default theme ([Link](https://matusnovak.github.io/doxybook2/vuepress/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) )
 
@@ -82,7 +82,7 @@ This project is not perfect and I will never claim it will be. It does its job a
 | [Link](https://matusnovak.github.io/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/) | [Hugo](https://gohugo.io/) | [Book](https://themes.gohugo.io/hugo-book/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/hugo-book/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [ReadTheDocs](https://mkdocs.readthedocs.io/en/stable/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-readthedocs/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Material](https://squidfunk.github.io/mkdocs-material/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-material/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/mkdocs-bootstrap/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Bootstrap](http://mkdocs.github.io/mkdocs-bootstrap/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-bootstrap/.doxybook) |
+| [Link](https://matusnovak.github.io/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Bootswatch](http://mkdocs.github.io/mkdocs-bootswatch/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-bootswatch/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/vuepress/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [VuePress](https://vuepress.vuejs.org/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) | 
 | [Link](https://matusnovak.github.io/doxybook2/gitbook/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [GitBook](https://github.com/GitbookIO/gitbook) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) |
 | N/A | [Docsify](https://docsify.js.org/#/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/docsify/.doxybook) |
@@ -273,10 +273,12 @@ Sample config files are provided in the examples folder for each generator and t
 * Hugo + Book theme - `example/hugo-book/.doxybook/config.json`
 * MkDocs + ReadTheDocs theme - `example/mkdocs-readthedocs/.doxybook/config.json`
 * MkDocs + Material theme - `example/mkdocs-material/.doxybook/config.json`
-* MkDocs + Bootstrap theme - `example/mkdocs-bootstrap/.doxybook/config.json`
+* MkDocs + Bootswatch theme - `example/mkdocs-bootswatch/.doxybook/config.json`
 * VuePress + default theme - `example/vuepress/.doxybook/config.json`
 * GitBook + default theme - `example/gitbook/.doxybook/config.json`
 * Docsify + default theme - `example/docsify/.doxybook/config.json`
+
+**NOTE:** The configuration json files for MkDocs have a base url set, for example `"baseUrl": "/doxybook2/mkdocs-bootswatch/"`. This is needed for publishing documentation from this repository to gh-pages. If you want to run the MkDocs examples locally, make sure you change the baseUrl to `/` as `"baseUrl": "/"`! If you don't change that, you will get 404. Otherwise start a http server with a `/doxybook2/mkdocs-bootswatch` prefix.
 
 ### Config values
 
@@ -291,7 +293,7 @@ The following is a list of config properties, their default value, and descripti
 | `indexInFolders` | `false` | Part of the generated markdown output are extra index files. These are more of a list of classes, namespaces, modules, etc. By default these are stored in the root directory (the output diectory). Set to true if you want them to be generated in their respective folders (i.e. class index in Classes folder, etc.) | 
 | `mainPageInRoot` | `false` | If a mainpage is defined by Doxygen, then this file will be generated in `Pages/mainpage.md` path. If you want to make it into `index.md` as the root of your website, then set this to true with `mainPageName` set to `"index"`. |
 | `mainPageName` | `"indexpage"` | If a mainpage is defined by Doxygen, then this file will be saved as `indexpage`. |
-| `baseUrl` | `""` | A prefix to put in front of all markdown links (only links to other markdown files). See `linkLowercase` and `linkSuffix` as well. Note hat MkDocs, VuePress, and Hugo will need explicit baseUrl while GitBook uses no base url. |
+| `baseUrl` | `""` | A prefix to put in front of all markdown links (only links to other markdown files). See `linkLowercase` and `linkSuffix` as well. Note hat MkDocs and Hugo will need explicit baseUrl while GitBook uses no base url. VuePress needs this set to `/`. |
 | `linkSuffix` | `".md"` | The suffix to put after all of the markdown links (only links to other markdown files). If using GitBook, leave this to `".md"`, but MkDocs and Hugo needs `"/"` instead. |
 | `fileExt` | `"md"` | The file extension to use when generating markdown files. |
 

@@ -71,7 +71,7 @@ jobs:
           name: Dependencies
           command: |
             sudo apt-get update
-            sudo pip install mkdocs mkdocs-material mkdocs-bootstrap
+            sudo pip install mkdocs mkdocs-material mkdocs-bootswatch
             sudo cp /tmp/workspace/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
             sudo chmod +x /usr/local/bin/doxybook2
 
@@ -98,20 +98,20 @@ jobs:
             cp -r ./site /tmp/workspace/mkdocs-material
 
       - run:
-          name: MkDocs - Bootstrap
+          name: MkDocs - Bootswatch
           command: |
-            cd ./example/mkdocs-bootstrap
+            cd ./example/mkdocs-bootswatch
             doxybook2 \
               --input /tmp/workspace/doxygen/xml \
               --output ./docs \
               --config ./.doxybook/config.json
             mkdocs build
-            cp -r ./site /tmp/workspace/mkdocs-bootstrap
+            cp -r ./site /tmp/workspace/mkdocs-bootswatch
             
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - mkdocs-bootstrap
+            - mkdocs-bootswatch
             - mkdocs-material
             - mkdocs-readthedocs
 
@@ -262,7 +262,7 @@ jobs:
             cp -r /tmp/workspace/doxygen/html ./dist/original
             cp -r /tmp/workspace/hugo-learn ./dist/hugo-learn
             cp -r /tmp/workspace/hugo-book ./dist/hugo-book
-            cp -r /tmp/workspace/mkdocs-bootstrap ./dist/mkdocs-bootstrap
+            cp -r /tmp/workspace/mkdocs-bootswatch ./dist/mkdocs-bootswatch
             cp -r /tmp/workspace/mkdocs-material ./dist/mkdocs-material
             cp -r /tmp/workspace/mkdocs-readthedocs ./dist/mkdocs-readthedocs
             cp -r /tmp/workspace/vuepress ./dist/vuepress

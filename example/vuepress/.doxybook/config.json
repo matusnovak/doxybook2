@@ -1,5 +1,5 @@
 {
-  "baseUrl": "/doxybook2/vuepress/",
+  "baseUrl": "/",
   "indexInFolders": true,
   "linkLowercase": false,
   "indexClassesName": "index",

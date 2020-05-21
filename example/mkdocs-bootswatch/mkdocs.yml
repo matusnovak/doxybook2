@@ -1,6 +1,6 @@
 site_name: Doxybook2 Example
 theme:
-  name: 'bootstrap'
+  name: 'flatly'
 markdown_extensions:
   - admonition
 nav:
