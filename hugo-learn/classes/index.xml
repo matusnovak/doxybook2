@@ -31,7 +31,7 @@ Public Classes     Name     union Event    Public Functions     Name     const E
       <description>Engine::Assets::Asset::Event Union Reference
 Module: An example game engine / Generic assets
 #include &amp;lt;Asset.hpp&amp;gt;
-Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Updated on 21 May 2020 at 18:29:00 UTC</description>
+Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    Public Attributes     Name     struct Engine::Assets::Asset::Event::Waiting waiting   struct Engine::Assets::Asset::Event::Unloaded unloaded   struct Engine::Assets::Asset::Event::Loaded loaded    Public Attributes Documentation variable waiting struct Engine::Assets::Asset::Event::Waiting waiting;  variable unloaded struct Engine::Assets::Asset::Event::Unloaded unloaded;  variable loaded struct Engine::Assets::Asset::Event::Loaded loaded;  Updated on 24 May 2020 at 19:46:35 UTC</description>
     </item>
     
     <item>
@@ -42,7 +42,7 @@ Public Classes     Name     struct Waiting   struct Unloaded   struct Loaded    
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/classes/structengine_1_1assets_1_1asset_1_1event_1_1loaded/</guid>
       <description>Engine::Assets::Asset::Event::Loaded Struct Reference
 #include &amp;lt;Asset.hpp&amp;gt;
-Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Updated on 21 May 2020 at 18:29:00 UTC</description>
+Public Attributes     Name     int usage   bool success    Public Attributes Documentation variable usage int usage;  variable success bool success;  Updated on 24 May 2020 at 19:46:35 UTC</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@ Public Attributes     Name     int usage   bool success    Public Attributes Doc
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/classes/structengine_1_1assets_1_1asset_1_1event_1_1unloaded/</guid>
       <description>Engine::Assets::Asset::Event::Unloaded Struct Reference
 #include &amp;lt;Asset.hpp&amp;gt;
-Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Updated on 21 May 2020 at 18:29:00 UTC</description>
+Public Attributes     Name     bool success    Public Attributes Documentation variable success bool success;  Updated on 24 May 2020 at 19:46:35 UTC</description>
     </item>
     
     <item>
@@ -66,7 +66,7 @@ Public Attributes     Name     bool success    Public Attributes Documentation v
 #include &amp;lt;Asset.hpp&amp;gt;
 Public Attributes     Name     Asset * other The pointer to the other asset this asset is waiting for.    Public Attributes Documentation variable other Asset * other;  The pointer to the other asset this asset is waiting for.
 Note: May be null
-Updated on 21 May 2020 at 18:29:00 UTC</description>
+Updated on 24 May 2020 at 19:46:35 UTC</description>
     </item>
     
     <item>
@@ -106,7 +106,7 @@ Updated on 21 May 2020 at 18:29:00 UTC</description>
 Module: An example game engine
 #include &amp;lt;Exception.hpp&amp;gt;
 Inherits from exception
-Public Functions     Name     const char * what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Updated on 21 May 2020 at 18:29:00 UTC</description>
+Public Functions     Name     const char * what() const override    Exception(std::string msg)    Exception() =default    Public Functions Documentation function what inline const char * what() const override  function Exception inline explicit Exception( std::string msg )  function Exception Exception() =default  Updated on 24 May 2020 at 19:46:35 UTC</description>
     </item>
     
     <item>
@@ -132,7 +132,7 @@ Public Functions     Name     virtual int getDepth() const override Returns the 
 Module: An example game engine / Graphical related classes
 #include &amp;lt;Handle.hpp&amp;gt;
 Inherited by Engine::Graphics::Texture
-Public Functions     Name     int getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Updated on 21 May 2020 at 18:29:00 UTC</description>
+Public Functions     Name     int getHandle() const   virtual ~Handle() =default    Handle() =default    Protected Attributes     Name     int handle    Public Functions Documentation function getHandle inline int getHandle() const  function ~Handle virtual ~Handle() =default  function Handle Handle() =default  Protected Attributes Documentation variable handle int handle;  Updated on 24 May 2020 at 19:46:35 UTC</description>
     </item>
     
     <item>
