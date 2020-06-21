@@ -37,7 +37,7 @@ extern std::string Doxybook2::Utils::toLower(std::string str) {
 }
 
 std::string Doxybook2::Utils::safeAnchorId(std::string str) {
-    return replaceAll(toLower(std::move(str)), "::", "");
+    return replaceAll(replaceAll(toLower(std::move(str)), "::", ""), " ", "-");
 }
 
 std::string Doxybook2::Utils::date(const std::string& format) {
