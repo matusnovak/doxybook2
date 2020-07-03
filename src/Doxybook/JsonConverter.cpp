@@ -7,6 +7,18 @@
 #include <nlohmann/json.hpp>
 #include <unordered_set>
 
+static bool isFunctionType(const Doxybook2::Type type) {
+    switch (type) {
+        case Doxybook2::Type::FUNCTIONS:
+        case Doxybook2::Type::FRIENDS:
+        case Doxybook2::Type::SIGNALS:
+        case Doxybook2::Type::SLOTS:
+            return true;
+        default:
+            return false;
+    }
+}
+
 Doxybook2::JsonConverter::JsonConverter(const Config& config,
     const Doxygen& doxygen,
     const TextPrinter& plainPrinter,
@@ -94,7 +106,7 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node) const {
     json["url"] = node.getUrl();
     json["anchor"] = node.getAnchor();
     json["visibility"] = toStr(node.getVisibility());
-    if (node.getType() == Type::FUNCTIONS || node.getType() == Type::FRIENDS) {
+    if (isFunctionType(node.getType())) {
         json["virtual"] = node.getVirtual() == Virtual::VIRTUAL || node.getVirtual() == Virtual::PURE_VIRTUAL;
         json["pureVirtual"] = node.getVirtual() == Virtual::PURE_VIRTUAL;
     }
@@ -190,7 +202,7 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node, const Node::D
         json["inline"] = data.isInline;
         json["override"] = data.isOverride;
     }
-    if (node.getType() == Type::FUNCTIONS || node.getType() == Type::FRIENDS) {
+    if (isFunctionType(node.getType())) {
         json["argsString"] = data.argsString;
         json["default"] = data.isDefault;
         json["deleted"] = data.isDeleted;

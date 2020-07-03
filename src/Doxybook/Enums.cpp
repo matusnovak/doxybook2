@@ -21,7 +21,9 @@ Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
         {"group", Kind::MODULE},
         {"friend", Kind::FRIEND},
         {"page", Kind::PAGE},
-        {"example", Kind::EXAMPLE}};
+        {"example", Kind::EXAMPLE},
+        {"signal", Kind::SIGNAL},
+        {"slot", Kind::SLOT}};
 
     const auto it = kinds.find(str);
     if (it == kinds.end()) {
@@ -71,6 +73,10 @@ std::string Doxybook2::toStr(const Kind value) {
             return "page";
         case Kind::EXAMPLE:
             return "example";
+        case Kind::SIGNAL:
+            return "signal";
+        case Kind::SLOT:
+            return "slot";
         default: {
             throw EXCEPTION("Kind {} not recognised please contact the author", int(value));
         }
@@ -137,8 +143,7 @@ std::string Doxybook2::toStr(const Visibility value) {
 }
 
 Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
-    static std::unordered_map<std::string, Type> values = {
-        {"attributes", Type::ATTRIBUTES},
+    static std::unordered_map<std::string, Type> values = {{"attributes", Type::ATTRIBUTES},
         {"classes", Type::CLASSES},
         {"defines", Type::DEFINES},
         {"files", Type::FILES},
@@ -150,7 +155,8 @@ Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
         {"types", Type::TYPES},
         {"pages", Type::PAGES},
         {"examples", Type::EXAMPLES},
-    };
+        {"signals", Type::SIGNALS},
+        {"slots", Type::SLOTS}};
 
     const auto it = values.find(str);
     if (it == values.end()) {
@@ -186,6 +192,10 @@ std::string Doxybook2::toStr(const Type value) {
             return "pages";
         case Type::EXAMPLES:
             return "examples";
+        case Type::SIGNALS:
+            return "signals";
+        case Type::SLOTS:
+            return "slots";
         default: {
             throw EXCEPTION("Type {} not recognised please contact the author", int(value));
         }
@@ -220,7 +230,9 @@ bool Doxybook2::isKindLanguage(const Kind kind) {
         case Kind::TYPEDEF:
         case Kind::USING:
         case Kind::FRIEND:
-        case Kind::VARIABLE: {
+        case Kind::VARIABLE:
+        case Kind::SIGNAL:
+        case Kind::SLOT: {
             return true;
         }
         default: {

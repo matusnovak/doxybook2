@@ -257,6 +257,14 @@ void Doxybook2::Node::parseBaseInfo(const Xml::Element& element) {
             type = Type::EXAMPLES;
             break;
         }
+        case Kind::SIGNAL: {
+            type = Type::SIGNALS;
+            break;
+        }
+        case Kind::SLOT: {
+            type = Type::SLOTS;
+            break;
+        }
         default: {
             break;
         }

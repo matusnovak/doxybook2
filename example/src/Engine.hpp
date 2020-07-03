@@ -9,6 +9,7 @@
 #include "Exception.hpp"
 #include "Graphics/Graphics.hpp"
 #include "Utils/Utils.hpp"
+#include "Gui/Gui.hpp"
 
 /*!
  * @brief Some global extern function

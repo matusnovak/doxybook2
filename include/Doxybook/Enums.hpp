@@ -23,7 +23,9 @@ namespace Doxybook2 {
         FILE,
         MODULE,
         PAGE,
-        EXAMPLE
+        EXAMPLE,
+        SIGNAL,
+        SLOT
     };
 
     enum class Visibility { PUBLIC, PROTECTED, PRIVATE };
@@ -43,7 +45,9 @@ namespace Doxybook2 {
         MODULES,
         FRIENDS,
         PAGES,
-        EXAMPLES
+        EXAMPLES,
+        SIGNALS,
+        SLOTS
     };
 
     enum class FolderCategory { CLASSES, NAMESPACES, MODULES, PAGES, FILES, EXAMPLES };

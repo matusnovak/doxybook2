@@ -16,7 +16,7 @@
 
 static bool isKindAllowedLanguage(const std::string& kind) {
     static std::set<std::string> values = {
-        "namespace", "class", "struct", "interface", "function", "variable", "typedef", "enum"};
+        "namespace", "class", "struct", "interface", "function", "variable", "typedef", "enum", "slot", "signal"};
     return values.find(kind) != values.end();
 }
 
