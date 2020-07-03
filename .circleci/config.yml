@@ -170,7 +170,7 @@ jobs:
 
   example_vuepress:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:10
 
     steps:
       - checkout
@@ -203,7 +203,7 @@ jobs:
 
   example_gitbook:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:10
 
     steps:
       - checkout
@@ -238,7 +238,7 @@ jobs:
   
   deploy:
     docker:
-      - image: circleci/node
+      - image: circleci/node:10
     steps:
       - checkout
       - attach_workspace:
