@@ -1,0 +1,98 @@
+name: build
+on:
+  push:
+    branches:
+      - '*'
+#    tags:
+#      - '*'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  build_and_test:
+    name: ${{ matrix.os }}-release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: windows-latest
+            triplet: x64-windows
+            vcpkg_dir: 'C:\vcpkg'
+            generator: 'Visual Studio 16 2019'
+            arch: '-A x64'
+          - os: windows-latest
+            triplet: x86-windows
+            vcpkg_dir: 'C:\vcpkg'
+            generator: 'Visual Studio 16 2019'
+            arch: '-A Win32'
+          - os: ubuntu-latest
+            triplet: x64-linux
+            vcpkg_dir: '/usr/local/share/vcpkg'
+            generator: 'Unix Makefiles'
+            arch: ''
+          - os: macos-latest
+            triplet: x64-macos
+            vcpkg_dir: '/usr/local/share/vcpkg'
+            generator: 'Unix Makefiles'
+            arch: ''
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Install AWS CLI
+        uses: chrislennon/action-aws-cli@v1.1
+
+      - name: Cache vcpkg
+        uses: actions/cache@v2
+        with:
+          path: '${{ matrix.vcpkg_dir }}/installed'
+          key: vcpkg-${{ matrix.triplet }}-${{ hashFiles('vcpkg.txt') }}
+          restore-keys: |
+            vcpkg-${{ matrix.triplet }}-
+
+      - name: Install vcpkg packages
+        shell: bash
+        run: |
+          vcpkg install --triplet ${{ matrix.triplet }} $(cat vcpkg.txt)
+
+      - name: Configure
+        env:
+          VCPKG_DIR: '${{ matrix.vcpkg_dir }}'
+        shell: bash
+        run: |
+          mkdir build
+          mkdir install
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            cmake -B ./build -G "${{ matrix.generator }}" ${{ matrix.arch }} -DCMAKE_INSTALL_PREFIX=./install -DCMAKE_BUILD_TYPE=MinSizeRel -DDOXYBOOK_TESTS=ON .
+          else
+            export CC=/usr/bin/gcc-9
+            export CXX=/usr/bin/g++-9
+            cmake -B ./build -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=./install -DCMAKE_BUILD_TYPE=MinSizeRel -DDOXYBOOK_TESTS=ON .
+          fi
+
+      - name: Compile
+        run: cmake --build ./build --config MinSizeRel
+
+      - name: Package
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            7z a -r doxybook2.zip ./install
+          else
+            cd ./install
+            zip -r ./../doxybook2.zip *
+            cd ..
+          fi
+          mv -v ./doxybook2.zip ./upload/doxybook2-${{ matrix.triplet }}-$(git describe --always).zip
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: Release
+          path: upload

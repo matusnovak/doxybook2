@@ -1,10 +1,5 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 project(Doxybook2)
-
-# Clang tidy
-if(USE_CLANG_TIDY)
-  set_target_properties(${PROJECT_NAME} PROPERTIES CXX_CLANG_TIDY "clang-tidy;-warnings-as-errors=*;-checks=-*,clang-analyzer-*,-clang-analyzer-alpha*,llvm-*,-llvm-include-order,modernize-*,performance-*,readibility-*,-readability-braces-around-statements,-readability-magic-numbers,-modernize-use-equals-default")
-endif()
 
 # Project source files
 set(DOXYDOWN_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../include)
@@ -16,16 +11,6 @@ add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxybook2")
 target_include_directories(${PROJECT_NAME} PUBLIC ${DOXYDOWN_INCLUDE_DIR})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
-
-# Clang tidy
-if(USE_CLANG_TIDY)
-  set_target_properties(${PROJECT_NAME} PROPERTIES CXX_CLANG_TIDY "clang-tidy;-warnings-as-errors=*;-checks=-*,clang-analyzer-*,-clang-analyzer-alpha*,llvm-*,-llvm-include-order,modernize-*,performance-*,readibility-*,-readability-braces-around-statements,-readability-magic-numbers,-modernize-use-equals-default")
-endif()
-
-# Multiprocessor compilation
-if(MSVC)
-  target_compile_options(${PROJECT_NAME} PRIVATE "/MP")
-endif()
 
 # Install
 install(TARGETS ${PROJECT_NAME}
@@ -39,7 +24,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC fmt tinyxml2 inja json termcolor)
+target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only tinyxml2::tinyxml2 pantor::inja Rang::Rang nlohmann_json nlohmann_json::nlohmann_json)
 if(MSVC)
-  target_link_libraries(${PROJECT_NAME} PRIVATE dirent)
+  target_link_libraries(${PROJECT_NAME} PRIVATE Dirent::Dirent)
 endif()
