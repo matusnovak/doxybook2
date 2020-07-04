@@ -49,9 +49,6 @@ jobs:
         with:
           submodules: true
 
-      - name: Install AWS CLI
-        uses: chrislennon/action-aws-cli@v1.1
-
       - name: Cache vcpkg
         uses: actions/cache@v2
         with:
