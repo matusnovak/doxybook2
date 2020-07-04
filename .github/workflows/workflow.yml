@@ -21,20 +21,24 @@ jobs:
           - os: windows-latest
             triplet: x64-windows
             vcpkg_dir: 'C:\vcpkg'
+            suffix: 'windows-win32'
             generator: 'Visual Studio 16 2019'
             arch: '-A x64'
           - os: windows-latest
             triplet: x86-windows
             vcpkg_dir: 'C:\vcpkg'
+            suffix: 'windows-win64'
             generator: 'Visual Studio 16 2019'
             arch: '-A Win32'
           - os: ubuntu-latest
             triplet: x64-linux
+            suffix: 'linux-x86_64'
             vcpkg_dir: '/usr/local/share/vcpkg'
             generator: 'Unix Makefiles'
             arch: ''
           - os: macos-latest
-            triplet: x64-macos
+            triplet: x64-amd64
+            suffix: 'osx-x86_64'
             vcpkg_dir: '/usr/local/share/vcpkg'
             generator: 'Unix Makefiles'
             arch: ''
@@ -89,7 +93,12 @@ jobs:
           fi
 
       - name: Compile
-        run: cmake --build ./build --config MinSizeRel
+        run: |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            cmake --build ./build --target INSTALL --config MinSizeRel
+          else
+            cmake --build ./build --target install --config MinSizeRel
+          fi
 
       - name: Package
         shell: bash
@@ -101,7 +110,7 @@ jobs:
             zip -r ./../doxybook2.zip *
             cd ..
           fi
-          mv -v ./doxybook2.zip ./upload/doxybook2-${{ matrix.triplet }}-$(git describe --always).zip
+          mv -v ./doxybook2.zip ./upload/doxybook2-${{ matrix.suffix }}-$(git describe --always).zip
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
