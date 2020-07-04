@@ -62,18 +62,30 @@ jobs:
           vcpkg install --triplet ${{ matrix.triplet }} $(cat vcpkg.txt)
 
       - name: Configure
-        env:
-          VCPKG_DIR: '${{ matrix.vcpkg_dir }}'
         shell: bash
         run: |
           mkdir build
           mkdir install
           if [ "$RUNNER_OS" == "Windows" ]; then
-            cmake -B ./build -G "${{ matrix.generator }}" ${{ matrix.arch }} -DCMAKE_INSTALL_PREFIX=./install -DCMAKE_BUILD_TYPE=MinSizeRel -DDOXYBOOK_TESTS=ON .
+            cmake \
+              -B ./build \
+              -G "${{ matrix.generator }}" ${{ matrix.arch }} \
+              -DCMAKE_INSTALL_PREFIX=./install \
+              -DCMAKE_BUILD_TYPE=MinSizeRel \
+              -DDOXYBOOK_TESTS=ON \
+              -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
+              .
           else
             export CC=/usr/bin/gcc-9
             export CXX=/usr/bin/g++-9
-            cmake -B ./build -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=./install -DCMAKE_BUILD_TYPE=MinSizeRel -DDOXYBOOK_TESTS=ON .
+            cmake \
+              -B ./build \
+              -G "${{ matrix.generator }}" \
+              -DCMAKE_INSTALL_PREFIX=./install \
+              -DCMAKE_BUILD_TYPE=MinSizeRel \
+              -DDOXYBOOK_TESTS=ON \
+              -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
+              .
           fi
 
       - name: Compile
