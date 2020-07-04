@@ -3,15 +3,15 @@ on:
   push:
     branches:
       - '*'
-#    tags:
-#      - '*'
+    tags:
+      - '*'
   pull_request:
     branches:
       - 'master'
 
 jobs:
   build_and_test:
-    name: ${{ matrix.os }}-release
+    name: ${{ matrix.triplet }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -113,9 +113,14 @@ jobs:
         shell: bash
         run: |
           mkdir release
-          cd ./install
-          zip -r ./../doxybook2.zip *
-          cd ..
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            ls ./install
+            7z a -r doxybook2.zip ./install/*
+          else
+            cd ./install
+            zip -r ./../doxybook2.zip *
+            cd ..
+          fi
           mv -v ./doxybook2.zip ./release/doxybook2-${{ matrix.suffix }}-$(git describe --always).zip
 
       - name: Upload artifacts
