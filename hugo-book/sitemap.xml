@@ -111,6 +111,14 @@
   </url>
   
   <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1gui/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-book/classes/classengine_1_1gui_1_1guiwidget/</loc>
+  </url>
+  
+  <url>
     <loc>https://matusnovak.github.io/doxybook2/hugo-book/namespaces/namespaceengine_1_1utils/</loc>
   </url>
   
@@ -156,6 +164,10 @@
   
   <url>
     <loc>https://matusnovak.github.io/doxybook2/hugo-book/pages/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-book/modules/group__gui/</loc>
   </url>
   
   <url>
@@ -232,6 +244,18 @@
   
   <url>
     <loc>https://matusnovak.github.io/doxybook2/hugo-book/files/texture3d_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-book/files/dir_b5ac5e964c12a6b13a9d28feb9f3d3ed/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-book/files/gui_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-book/files/guiwidget_8hpp/</loc>
   </url>
   
   <url>

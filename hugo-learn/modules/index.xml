@@ -47,6 +47,15 @@
     </item>
     
     <item>
+      <title>Some gui related stuff and whatever</title>
+      <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__gui/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__gui/</guid>
+      <description>This is a brief description to the gui group.</description>
+    </item>
+    
+    <item>
       <title>Some useful utilities</title>
       <link>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__utils/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

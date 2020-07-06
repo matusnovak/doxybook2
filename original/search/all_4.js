@@ -11,6 +11,7 @@ var searchData=
   ['exception_34',['Exception',['../classEngine_1_1Exception.html',1,'Engine::Exception'],['../classEngine_1_1Exception.html#a697748d2c21a434b4742910b8d4e53d4',1,'Engine::Exception::Exception()=default'],['../classEngine_1_1Exception.html#a4f566b63e5d447cb468d0f89b46bb75c',1,'Engine::Exception::Exception(std::string msg)']]],
   ['exception_2ehpp_35',['Exception.hpp',['../Exception_8hpp.html',1,'']]],
   ['graphics_36',['Graphics',['../namespaceEngine_1_1Graphics.html',1,'Engine']]],
-  ['path_37',['Path',['../namespaceEngine_1_1Utils_1_1Path.html',1,'Engine::Utils']]],
-  ['utils_38',['Utils',['../namespaceEngine_1_1Utils.html',1,'Engine']]]
+  ['gui_37',['Gui',['../namespaceEngine_1_1Gui.html',1,'Engine']]],
+  ['path_38',['Path',['../namespaceEngine_1_1Utils_1_1Path.html',1,'Engine::Utils']]],
+  ['utils_39',['Utils',['../namespaceEngine_1_1Utils.html',1,'Engine']]]
 ];

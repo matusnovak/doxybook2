@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="Engine::Gui::GuiWidget" />
+<meta property="og:description" content="Some generic gui widget class." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/classes/classengine_1_1gui_1_1guiwidget/" />
+
+<title>Engine::Gui::GuiWidget | Doxybook2 Example</title>
+<link rel="icon" href="/doxybook2/hugo-book/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/doxybook2/hugo-book/book.min.92b28337361d2bcca5e0ffaff5092dda7140e89d9a7a7a4dcc6055fd7d702ace.css" integrity="sha256-krKDNzYdK8yl4P&#43;v9Qkt2nFA6J2aenpNzGBV/X1wKs4=">
+
+
+<script defer src="/doxybook2/hugo-book/search.min.bbdf0416375a3b616b1571f37bf61a589c670577eaec0b42e891e930b1a4ece9.js" integrity="sha256-u98EFjdaO2FrFXHze/YaWJxnBXfq7AtC6JHpMLGk7Ok="></script>
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://matusnovak.github.io/doxybook2/hugo-book"><span>Doxybook2 Example</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" placeholder="Search" id="book-search-input" maxlength="64" />
+  <div class="book-search-spinner spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+    <ul>
+<li><a href="/doxybook2/hugo-book/classes/">Classes</a></li>
+<li><a href="/doxybook2/hugo-book/namespaces/">Namespaces</a></li>
+<li><a href="/doxybook2/hugo-book/modules/">Modules</a></li>
+<li><a href="/doxybook2/hugo-book/files/">Files</a></li>
+<li><a href="/doxybook2/hugo-book/pages/">Pages</a></li>
+<li><a href="/doxybook2/hugo-book/examples/">Examples</a></li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/doxybook2/hugo-book/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Engine::Gui::GuiWidget</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="engine-gui-guiwidget">Engine::Gui::GuiWidget</h1>
+
+<p><strong>Module:</strong> <strong><a href="/doxybook2/hugo-book/modules/group__engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxybook2/hugo-book/modules/group__gui/">Some gui related stuff and whatever</a></strong></p>
+
+<p>Some generic gui widget class.</p>
+
+<p><code>#include &lt;GuiWidget.hpp&gt;</code></p>
+
+<h2 id="public-slots">Public Slots</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1gui_1_1guiwidget/#slot-myslot">mySlot</a></strong>(QObject * object, int a, bool b)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="public-signals">Public Signals</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1gui_1_1guiwidget/#signal-mysignal">mySignal</a></strong>(QObject * object, int a, bool b)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="public-functions">Public Functions</h2>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1gui_1_1guiwidget/#function-~guiwidget">~GuiWidget</a></strong>() =default</td>
+</tr>
+
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1gui_1_1guiwidget/#function-guiwidget">GuiWidget</a></strong>(QObject * parent)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="public-slots-documentation">Public Slots Documentation</h2>
+
+<h3 id="slot-myslot">slot mySlot</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> mySlot(
+    QObject <span style="color:#f92672">*</span> object,
+    <span style="color:#66d9ef">int</span> a,
+    <span style="color:#66d9ef">bool</span> b
+)
+</code></pre></div>
+<h2 id="public-signals-documentation">Public Signals Documentation</h2>
+
+<h3 id="signal-mysignal">signal mySignal</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> mySignal(
+    QObject <span style="color:#f92672">*</span> object,
+    <span style="color:#66d9ef">int</span> a,
+    <span style="color:#66d9ef">bool</span> b
+)
+</code></pre></div>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+
+<h3 id="function-guiwidget">function ~GuiWidget</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>GuiWidget() <span style="color:#f92672">=</span><span style="color:#66d9ef">default</span>
+</code></pre></div>
+<h3 id="function-guiwidget-1">function GuiWidget</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> GuiWidget(
+    QObject <span style="color:#f92672">*</span> parent
+)
+</code></pre></div>
+<hr />
+
+<p>Updated on  6 July 2020 at 17:38:30 UTC</p>
+</article>
+
+      
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc levels-6 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#engine-gui-guiwidget">Engine::Gui::GuiWidget</a>
+<ul>
+<li><a href="#public-slots">Public Slots</a></li>
+<li><a href="#public-signals">Public Signals</a></li>
+<li><a href="#public-functions">Public Functions</a></li>
+<li><a href="#public-slots-documentation">Public Slots Documentation</a>
+<ul>
+<li><a href="#slot-myslot">slot mySlot</a></li>
+</ul></li>
+<li><a href="#public-signals-documentation">Public Signals Documentation</a>
+<ul>
+<li><a href="#signal-mysignal">signal mySignal</a></li>
+</ul></li>
+<li><a href="#public-functions-documentation">Public Functions Documentation</a>
+<ul>
+<li><a href="#function-guiwidget">function ~GuiWidget</a></li>
+<li><a href="#function-guiwidget-1">function GuiWidget</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+
+  
+</body>
+
+</html>

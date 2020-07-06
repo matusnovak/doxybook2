@@ -107,6 +107,14 @@
   </url>
   
   <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1gui/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-learn/classes/classengine_1_1gui_1_1guiwidget/</loc>
+  </url>
+  
+  <url>
     <loc>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1utils/</loc>
   </url>
   
@@ -152,6 +160,10 @@
   
   <url>
     <loc>https://matusnovak.github.io/doxybook2/hugo-learn/pages/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-learn/modules/group__gui/</loc>
   </url>
   
   <url>
@@ -228,6 +240,18 @@
   
   <url>
     <loc>https://matusnovak.github.io/doxybook2/hugo-learn/files/texture3d_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-learn/files/dir_b5ac5e964c12a6b13a9d28feb9f3d3ed/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-learn/files/gui_8hpp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://matusnovak.github.io/doxybook2/hugo-learn/files/guiwidget_8hpp/</loc>
   </url>
   
   <url>
