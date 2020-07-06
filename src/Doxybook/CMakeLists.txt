@@ -35,7 +35,7 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include
-  DESTINATION include FILES_MATCHING PATTERN "*.hpp"
+  DESTINATION . FILES_MATCHING PATTERN "*.hpp"
 )
 
 # Libraries
