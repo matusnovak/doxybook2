@@ -1,6 +1,6 @@
 # Doxybook2
 
-[![Build status](https://ci.appveyor.com/api/projects/status/uxhq9f3awnjsephc/branch/master?svg=true)](https://ci.appveyor.com/project/matusnovak/doxybook2/branch/master) [![Build Status](https://travis-ci.com/matusnovak/doxybook2.svg?branch=master)](https://travis-ci.com/matusnovak/doxybook2) [![CircleCI](https://circleci.com/gh/matusnovak/doxybook2/tree/master.svg?style=svg)](https://circleci.com/gh/matusnovak/doxybook2/tree/master)
+[![build](https://github.com/matusnovak/doxybook2/workflows/build/badge.svg)](https://github.com/matusnovak/doxybook2/actions) [![downloads](https://img.shields.io/github/downloads/matusnovak/doxybook2/total)](https://github.com/matusnovak/doxybook2/releases) [![release](https://img.shields.io/github/v/release/matusnovak/doxybook2)](https://github.com/matusnovak/doxybook2/releases) ![activity](https://img.shields.io/github/commit-activity/y/matusnovak/doxybook2)
 
 Doxygen XML to Markdown (or JSON) converter. Generate beautiful C++ documentation by converting Doxygen XML output into markdown pages via [MkDocs](https://www.mkdocs.org/), [Hugo](https://gohugo.io/), [VuePress](https://vuepress.vuejs.org/), [GitBook](https://github.com/GitbookIO/gitbook), [Docsify](https://docsify.js.org/#/), or your custom generator. Also comes with an optional templating mechanism and extensive configuration file.
 
