@@ -1,6 +1,6 @@
 # Doxybook2
 
-[![Build status](https://ci.appveyor.com/api/projects/status/uxhq9f3awnjsephc/branch/master?svg=true)](https://ci.appveyor.com/project/matusnovak/doxybook2/branch/master) [![Build Status](https://travis-ci.com/matusnovak/doxybook2.svg?branch=master)](https://travis-ci.com/matusnovak/doxybook2) [![CircleCI](https://circleci.com/gh/matusnovak/doxybook2/tree/master.svg?style=svg)](https://circleci.com/gh/matusnovak/doxybook2/tree/master)
+[![build](https://github.com/matusnovak/doxybook2/workflows/build/badge.svg)](https://github.com/matusnovak/doxybook2/actions) [![downloads](https://img.shields.io/github/downloads/matusnovak/doxybook2/total)](https://github.com/matusnovak/doxybook2/releases) [![release](https://img.shields.io/github/v/release/matusnovak/doxybook2)](https://github.com/matusnovak/doxybook2/releases)
 
 Doxygen XML to Markdown (or JSON) converter. Generate beautiful C++ documentation by converting Doxygen XML output into markdown pages via [MkDocs](https://www.mkdocs.org/), [Hugo](https://gohugo.io/), [VuePress](https://vuepress.vuejs.org/), [GitBook](https://github.com/GitbookIO/gitbook), [Docsify](https://docsify.js.org/#/), or your custom generator. Also comes with an optional templating mechanism and extensive configuration file.
 
@@ -96,7 +96,7 @@ First, compile the doxybook2 and then run `examples.bat` or `examples.sh` in the
 
 ## Requirements
 
-This tool has been compiled and tested on Windows (win32 and win64), Linux (amd64 and arm64), and OSX (amd64). Using any other architecture, such as power PC, is not guaranteed to work. You will also need Doxygen 1.8.16 or newer. Doxygen 1.8.15 is supported but I do not recommend it. Windows arm64 is not tested and not supported at this moment. No extra dependencies needed (everything is done via git submodules), simply download the executable file from the GitHub release page. If using Windows, you will need [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
+This tool has been compiled and tested on Windows (win32 and win64), Linux (amd64 and arm64), and OSX (amd64). Using any other architecture, such as power PC, is not guaranteed to work. You will also need Doxygen 1.8.16 or newer. Doxygen 1.8.15 is supported but I do not recommend it. Windows arm64 is not tested and not supported at this moment. No extra OS dependencies needed (everything is done via git vcpkg as linked statically), simply download the executable file from the GitHub release page. If using Windows, you will need [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
 
 ## Install
 
@@ -106,27 +106,29 @@ Go to https://github.com/matusnovak/doxybook2/releases and download the precompi
 
 You will need [CMake](https://cmake.org/) at least version 3.0 and a C++17 compiler. The recommended setup is to use GCC 8.1.0 either amd64 or arm64 (for Linux or Raspberry Pi), XCode xcode10.2 or newer (for Mac OSX), Visual Studio 2015 or newer either Win32 or Win64 (for Windows), or MinGW-w64 8.1.0 or newer either i686 or x86_64 (for Wndows).
 
+You will also need to install [vcpkg](https://github.com/microsoft/vcpkg).
+
 ```bash
-# Download the project and all of the submodules
+# Clone the project
 git clone https://github.com/matusnovak/doxybook2.git
 cd doxybook2
-git submodule update --init
 
-# Configure the project
+# Install dependencies via vcpkg
+# The 'vcpkg.txt' file contains the list of dependencies to install
+vcpkg install --triplet x64-linux $(cat vcpkg.txt)
+
+# Configure the project and use vcpkg toolchain
 mkdir build
-cd build
-cmake -G "Unix Makefiles" \
-    -DDOXYBOOK_TESTS=OFF \
-    -DDOXYBOOK_STATIC_STDLIB=OFF \
-    -DBUILD_TESTS=OFF \
-    -DBUILD_TESTING=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
+cmake -B ./build -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
+    -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
     ..
+
 # Build it
-cmake --build .
+cmake --build ./build
 
 # Done!
+./build/MinSizeRel/doxybook2 --help
 ```
 
 Use `-G "Visual Studio 15 2017"` when compiling for Windows/Visual Studio, or use `-G "MinGW Makefiles"` when compiling for Windows/MinGW-w64. You may need to use `cmake --build . --config MinSizeRel` when compiling with Visual Studio. The generated executable will be located in `build/src/DoxydownCli`.
@@ -516,6 +518,8 @@ Got any questions or found a bug? Feel free to submit them to the GitHub issues 
 ## License
 
 ```
+The MIT License
+
 Copyright (c) 2019-2020 Matus Novak email@matusnovak.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

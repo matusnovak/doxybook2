@@ -1,0 +1,339 @@
+name: build
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: 'Windows x64'
+            os: windows-latest
+            triplet: x64-windows
+            vcpkg_dir: 'C:\vcpkg'
+            suffix: 'windows-win32'
+            generator: 'Visual Studio 16 2019'
+            arch: '-A x64'
+          - name: 'Windows x86'
+            os: windows-latest
+            triplet: x86-windows
+            vcpkg_dir: 'C:\vcpkg'
+            suffix: 'windows-win64'
+            generator: 'Visual Studio 16 2019'
+            arch: '-A Win32'
+          - name: 'Linux x64'
+            os: ubuntu-latest
+            triplet: x64-linux
+            suffix: 'linux-amd64'
+            vcpkg_dir: '/usr/local/share/vcpkg'
+            generator: 'Unix Makefiles'
+            arch: ''
+          - name: 'Mac OSX x64'
+            os: macos-latest
+            triplet: x64-osx
+            suffix: 'osx-amd64'
+            vcpkg_dir: '/usr/local/share/vcpkg'
+            generator: 'Unix Makefiles'
+            arch: ''
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Configure Vcpkg
+        shell: bash
+        run: |
+          cd ${{ matrix.vcpkg_dir }}
+          git fetch origin --tags
+          git reset --hard 2020.06
+          if [ "${{ matrix.triplet }}" == "x64-windows" ] || [ "${{ matrix.triplet }}" == "x86-windows" ]; then
+            ./bootstrap-vcpkg.bat
+          else
+            ./bootstrap-vcpkg.sh
+          fi
+
+      - name: Cache vcpkg
+        uses: actions/cache@v2
+        with:
+          path: '${{ matrix.vcpkg_dir }}/installed'
+          key: deps-${{ matrix.triplet }}-${{ hashFiles('vcpkg.txt') }}
+          restore-keys: |
+            deps-${{ matrix.triplet }}-
+
+      - name: Install vcpkg packages
+        shell: bash
+        run: |
+          vcpkg install --triplet ${{ matrix.triplet }} $(cat vcpkg.txt)
+
+      - name: Configure
+        shell: bash
+        run: |
+          mkdir build
+          mkdir install
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            cmake \
+              -B ./build \
+              -G "${{ matrix.generator }}" ${{ matrix.arch }} \
+              -DCMAKE_INSTALL_PREFIX=./install \
+              -DCMAKE_BUILD_TYPE=MinSizeRel \
+              -DDOXYBOOK_TESTS=ON \
+              -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
+              .
+          else
+            if [ "$RUNNER_OS" == "Linux" ]; then
+              export CC=/usr/bin/gcc-9
+              export CXX=/usr/bin/g++-9
+            fi
+            cmake \
+              -B ./build \
+              -G "${{ matrix.generator }}" \
+              -DCMAKE_INSTALL_PREFIX=./install \
+              -DCMAKE_BUILD_TYPE=MinSizeRel \
+              -DDOXYBOOK_TESTS=ON \
+              -DVCPKG_TARGET_TRIPLET=${{ matrix.triplet }} \
+              -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
+              .
+          fi
+
+      - name: Compile
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            cmake --build ./build --target INSTALL --config MinSizeRel
+          else
+            cmake --build ./build --target install --config MinSizeRel
+          fi
+
+      - name: List runtime dependencies
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            ldd ./install/bin/doxybook2
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            otool -L ./install/bin/doxybook2
+          fi
+
+      - name: Package
+        id: create_artifact
+        shell: bash
+        run: |
+          mkdir release
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            ls ./install
+            7z a -r doxybook2.zip ./install/*
+          else
+            cd ./install
+            zip -r ./../doxybook2.zip *
+            cd ..
+          fi
+          name=doxybook2-${{ matrix.suffix }}-$(git describe --always).zip
+          mv -v ./doxybook2.zip release/${name}
+          echo "::set-output name=name::${name}"
+          echo "::set-output name=path::release/${name}"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: Release
+          path: release
+
+      - name: Changelog
+        id: create_changelog
+        shell: bash
+        run: |
+          last_tag=$(git describe --tags --abbrev=0 @^ || true)
+          if [ -z "$last_tag" ]; then
+            git log --oneline --format="%C(auto) %h %s" > changelog.txt
+          else
+            git log --oneline --format="%C(auto) %h %s" ${last_tag}..@ > changelog.txt
+          fi
+          cat changelog.txt
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          artifacts: ${{ steps.create_artifact.outputs.path }}
+          allowUpdates: true
+          artifactContentType: application/zip
+          bodyFile: changelog.txt
+          draft: false
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+  
+  pages:
+    name: Pages
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Dependencies
+        shell: bash
+        run: |
+          sudo apt-get install zip unzip python3-setuptools -y
+          mkdir -p ${{ github.workspace }}/public
+
+      - name: Download Hugo
+        shell: bash
+        run: |
+          wget https://github.com/gohugoio/hugo/releases/download/v0.74.1/hugo_extended_0.74.1_Linux-64bit.tar.gz
+          tar xvf hugo_extended_0.74.1_Linux-64bit.tar.gz
+          sudo mv ./hugo /usr/local/bin/hugo
+          sudo chmod +x /usr/local/bin/hugo
+          hugo version
+
+      - name: Download MkDocs
+        shell: bash
+        run: |
+          sudo python3 -m pip install mkdocs mkdocs-material mkdocs-bootswatch
+
+      - name: Download VuePress
+        shell: bash
+        run: |
+          sudo npm install vuepress -g
+
+      - name: Download GitBook CLI
+        shell: bash
+        run: |
+          sudo npm install gitbook-cli -g
+
+      - name: Download Doxygen
+        shell: bash
+        run: |
+          wget https://netcologne.dl.sourceforge.net/project/doxygen/rel-1.8.17/doxygen-1.8.17.linux.bin.tar.gz
+          tar -xvzf doxygen-1.8.17.linux.bin.tar.gz
+          sudo cp ./doxygen-1.8.17/bin/doxygen /usr/local/bin/doxygen
+          sudo chmod +x /usr/local/bin/doxygen
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: Release
+          path: /tmp/release
+
+      - name: Install Doxybook2
+        shell: bash
+        run: |
+          file=$(ls /tmp/release | grep linux)
+          unzip "/tmp/release/$file" -d /tmp/doxybook2
+          sudo cp /tmp/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
+          sudo chmod +x /usr/local/bin/doxybook2
+          doxybook2 --version
+
+      - name: Run Doxygen
+        shell: bash
+        run: |
+          cd example
+          doxygen
+
+      - name: MkDocs - ReadTheDocs
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/mkdocs-readthedocs/docs \
+            --config ./example/mkdocs-readthedocs/.doxybook/config.json
+          cd ./example/mkdocs-readthedocs
+          mkdocs build
+          cp -r ./site ${{ github.workspace }}/public/mkdocs-readthedocs
+
+      - name: MkDocs - Material
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/mkdocs-material/docs \
+            --config ./example/mkdocs-material/.doxybook/config.json
+          cd ./example/mkdocs-material
+          mkdocs build
+          cp -r ./site ${{ github.workspace }}/public/mkdocs-material
+
+      - name: MkDocs - Bootswatch
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/mkdocs-bootswatch/docs \
+            --config ./example/mkdocs-bootswatch/.doxybook/config.json
+          cd ./example/mkdocs-bootswatch
+          mkdocs build
+          cp -r ./site ${{ github.workspace }}/public/mkdocs-bootswatch
+
+      - name: Hugo - Learn
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/hugo-learn/content \
+            --config ./example/hugo-learn/.doxybook/config.json \
+            --templates ./example/hugo-learn/.doxybook/templates
+          cd ./example/hugo-learn
+          hugo
+          cp -r ./public ${{ github.workspace }}/public/hugo-learn
+
+      - name: Hugo - Book
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/hugo-book/content \
+            --config ./example/hugo-book/.doxybook/config.json \
+            --templates ./example/hugo-book/.doxybook/templates
+          cd ./example/hugo-book
+          hugo
+          cp -r ./public ${{ github.workspace }}/public/hugo-book
+
+      - name: VuePress - Default
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/vuepress \
+            --config ./example/vuepress/.doxybook/config.json
+          cd ./example/vuepress
+          sudo vuepress build
+          cp -r ./.vuepress/dist ${{ github.workspace }}/public/vuepress
+
+      - name: GitBook - Default
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/gitbook \
+            --config ./example/gitbook/.doxybook/config.json \
+            --summary-input ./example/gitbook/SUMMARY.md.tmpl \
+            --summary-output ./example/gitbook/SUMMARY.md
+          cd ./example/gitbook
+          gitbook build
+          cp -r ./_book ${{ github.workspace }}/public/gitbook
+
+      - name: Additional files
+        shell: bash
+        run: |
+          cp ./example/index.html ${{ github.workspace }}/public/index.html
+          cp -r ./example/doxygen/html ${{ github.workspace }}/public/original
+          stat ${{ github.workspace }}/public
+
+      - name: Deploy
+        if: startsWith(github.ref, 'refs/heads/master')
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /public

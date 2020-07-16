@@ -152,8 +152,8 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
         }
         return str;
     });
-    env->set_trim_blocks(false);
-    env->set_lstrip_blocks(false);
+    // env->set_trim_blocks(false);
+    // env->set_lstrip_blocks(false);
 
     // These are the templates we will be using.
     // So we don't load other templates that will never get used!
