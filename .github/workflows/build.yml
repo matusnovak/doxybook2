@@ -38,19 +38,31 @@ jobs:
             vcpkg_dir: '/usr/local/share/vcpkg'
             generator: 'Unix Makefiles'
             arch: ''
-#          - name: 'Mac OSX x64'
-#            os: macos-latest
-#            triplet: x64-osx
-#            suffix: 'osx-x86_64'
-#            vcpkg_dir: '/usr/local/share/vcpkg'
-#            generator: 'Unix Makefiles'
-#            arch: ''
+          - name: 'Mac OSX x64'
+            os: macos-latest
+            triplet: x64-osx
+            suffix: 'osx-x86_64'
+            vcpkg_dir: '/usr/local/share/vcpkg'
+            generator: 'Unix Makefiles'
+            arch: ''
 
     steps:
       - name: Checkout
         uses: actions/checkout@v1
         with:
           submodules: true
+
+      - name: Configure Vcpkg
+        shell: bash
+        run: |
+          cd ${{ matrix.vcpkg_dir }}
+          git fetch origin --tags
+          git reset --hard 2020.06
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            ./bootstrap-vcpkg.bat
+          else
+            ./bootstrap-vcpkg.sh
+          fi
 
       - name: Cache vcpkg
         uses: actions/cache@v2
@@ -309,6 +321,7 @@ jobs:
             --config ./example/gitbook/.doxybook/config.json \
             --summary-input ./example/gitbook/SUMMARY.md.tmpl \
             --summary-output ./example/gitbook/SUMMARY.md
+          cd ./example/gitbook
           gitbook build
           cp -r ./_book /tmp/public/gitbook
 
@@ -323,7 +336,7 @@ jobs:
         with:
           name: Pages
           path: /tmp/public
-          
+
       - name: Deploy
         if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v3
