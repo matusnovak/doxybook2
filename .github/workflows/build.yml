@@ -68,9 +68,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: '${{ matrix.vcpkg_dir }}/installed'
-          key: vcpkg-${{ matrix.triplet }}-${{ hashFiles('vcpkg.txt') }}
+          key: deps-${{ matrix.triplet }}-${{ hashFiles('vcpkg.txt') }}
           restore-keys: |
-            vcpkg-${{ matrix.triplet }}-
+            deps-${{ matrix.triplet }}-
 
       - name: Install vcpkg packages
         shell: bash
