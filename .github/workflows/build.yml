@@ -194,7 +194,7 @@ jobs:
       - name: Download VuePress
         shell: bash
         run: |
-          sudo npm install vuepress -g
+          sudo npm install vuepress@1.2.0 -g
 
       - name: Download GitBook CLI
         shell: bash
