@@ -175,23 +175,148 @@ jobs:
       - name: Dependencies
         shell: bash
         run: |
-          sudo apt-get install doxygen zip unzip -y
+          sudo apt-get install zip unzip -y
+
+      - name: Download Hugo
+        shell: bash
+        run: |
           wget https://github.com/gohugoio/hugo/releases/download/v0.74.1/hugo_extended_0.74.1_Linux-64bit.tar.gz
           tar xvf hugo_extended_0.74.1_Linux-64bit.tar.gz
           sudo mv ./hugo /usr/local/bin/hugo
           sudo chmod +x /usr/local/bin/hugo
           hugo version
-          mkdir /tmp/public
+
+      - name: Download MkDocs
+        shell: bash
+        run: |
+          sudo pip install mkdocs mkdocs-material mkdocs-bootswatch
+
+      - name: Download VuePress
+        shell: bash
+        run: |
+          sudo npm install vuepress -g
+
+      - name: Download GitBook CLI
+        shell: bash
+        run: |
+          sudo npm install gitbook-cli -g
+
+      - name: Download Doxygen
+        shell: bash
+        run: |
+          wget https://netcologne.dl.sourceforge.net/project/doxygen/rel-1.8.17/doxygen-1.8.17.linux.bin.tar.gz
+          tar -xvzf doxygen-1.8.17.linux.bin.tar.gz
+          sudo cp ./doxygen-1.8.17/bin/doxygen /usr/local/bin/doxygen
+          sudo chmod +x /usr/local/bin/doxygen
 
       - uses: actions/download-artifact@v2
         with:
           name: Release
           path: /tmp/release
 
-      - name: Display structure of downloaded files
+      - name: Install Doxybook2
+        shell: bash
         run: |
-          ls -R /tmp/release
-      
+          file=$(ls /tmp/release | grep linux)
+          unzip "/tmp/release/$file" -d /tmp/doxybook2
+          sudo cp /tmp/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
+          sudo chmod +x
+          doxybook2 --version
+
+      - name: Run Doxygen
+        shell: bash
+        run: |
+          cd example
+          doxygen
+
+      - name: MkDocs - ReadTheDocs
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/mkdocs-readthedocs/docs \
+            --config ./example/mkdocs-readthedocs/.doxybook/config.json
+          cd ./example/mkdocs-readthedocs
+          mkdocs build
+          mkdir -p /tmp/public
+          cp -r ./site /tmp/public/mkdocs-readthedocs
+
+      - name: MkDocs - Material
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/mkdocs-material/docs \
+            --config ./example/mkdocs-material/.doxybook/config.json
+          cd ./example/mkdocs-material
+          mkdocs build
+          mkdir -p /tmp/public
+          cp -r ./site /tmp/public/mkdocs-material
+
+      - name: MkDocs - Bootswatch
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/mkdocs-bootswatch/docs \
+            --config ./example/mkdocs-bootswatch/.doxybook/config.json
+          cd ./example/mkdocs-bootswatch
+          mkdocs build
+          mkdir -p /tmp/public
+          cp -r ./site /tmp/public/mkdocs-bootswatch
+
+      - name: Hugo - Learn
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/hugo-learn/content \
+            --config ./example/hugo-learn/.doxybook/config.json \
+            --templates ./example/hugo-learn/.doxybook/templates
+          cd ./example/hugo-learn
+          hugo
+          cp -r ./public /tmp/public/hugo-learn
+
+      - name: Hugo - Book
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/hugo-book/content \
+            --config ./example/hugo-book/.doxybook/config.json \
+            --templates ./example/hugo-book/.doxybook/templates
+          cd ./example/hugo-book
+          hugo
+          cp -r ./public /tmp/public/hugo-book
+
+      - name: VuePress - Default
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/vuepress \
+            --config ./example/vuepress/.doxybook/config.json
+          sudo vuepress build
+          cp -r ./.vuepress/dist /tmp/public/vuepress
+
+      - name: GitBook - Default
+        shell: bash
+        run: |
+          doxybook2 \
+            --input ./example/doxygen/xml \
+            --output ./example/gitbook \
+            --config ./example/gitbook/.doxybook/config.json \
+            --summary-input ./example/gitbook/SUMMARY.md.tmpl \
+            --summary-output ./example/gitbook/SUMMARY.md
+          gitbook build
+          cp -r ./_book /tmp/public/gitbook
+
+      - name: Additional files
+        shell: bash
+        run: |
+          cp ./example/index.html /tmp/public/index.html
+          ls /tmp/public
+          
       - name: Deploy
         if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v3
