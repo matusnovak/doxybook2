@@ -175,7 +175,7 @@ jobs:
       - name: Dependencies
         shell: bash
         run: |
-          sudo apt-get install zip unzip -y
+          sudo apt-get install zip unzip python3-setuptools -y
 
       - name: Download Hugo
         shell: bash
