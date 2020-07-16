@@ -100,13 +100,16 @@ This tool has been compiled and tested on Windows (win32 and win64), Linux (amd6
 
 ## Install
 
-Go to https://github.com/matusnovak/doxybook2/releases and download the precompiled binary in the zip file for your target platform. `doxybook2-linux-arm64` should work out of the box on Raspberry Pi, and the windows version needs [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). The binary file `doxybook2.exe` is located in the `bin` folder in the zip file. Put it somewhere in your system and add it to the `PATH`. That's it. 
+Go to https://github.com/matusnovak/doxybook2/releases and download the precompiled binary in the zip file for your target platform. The windows release needs [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads). The binary file `doxybook2.exe` is located in the `bin` folder in the zip file, put it somewhere in your system and add it to the OS `PATH` environment variable.
 
 ## Install from source
 
-You will need [CMake](https://cmake.org/) at least version 3.0 and a C++17 compiler. The recommended setup is to use GCC 8.1.0 either amd64 or arm64 (for Linux or Raspberry Pi), XCode xcode10.2 or newer (for Mac OSX), Visual Studio 2015 or newer either Win32 or Win64 (for Windows), or MinGW-w64 8.1.0 or newer either i686 or x86_64 (for Wndows).
+To install from source, simply clone the repository, install the dependencies listed in the `vcpkg.txt` file, and use CMake + vcpkg toolchain to build it. No extra steps required.
 
-You will also need to install [vcpkg](https://github.com/microsoft/vcpkg).
+**Requirements:**
+
+ * [vcpkg](https://github.com/microsoft/vcpkg)
+ * C++17 compiler (for example: GCC-9 or Visual Studio 2017)
 
 ```bash
 # Clone the project
@@ -125,13 +128,13 @@ cmake -B ./build -G "Unix Makefiles" \
     ..
 
 # Build it
-cmake --build ./build
+cmake --build ./build --config MinSizeRel
 
 # Done!
 ./build/MinSizeRel/doxybook2 --help
 ```
 
-Use `-G "Visual Studio 15 2017"` when compiling for Windows/Visual Studio, or use `-G "MinGW Makefiles"` when compiling for Windows/MinGW-w64. You may need to use `cmake --build . --config MinSizeRel` when compiling with Visual Studio. The generated executable will be located in `build/src/DoxydownCli`.
+The generated executable will be located in `build/src/DoxybookCli`.
 
 ## Usage
 
@@ -222,7 +225,7 @@ doxybook2 \
 The `path/to/SUMMARY.md` will be generated and `{{doxygen}}` will be overwritten with a nested list. It will look like this:
 
 ```
-# Doxydown Example
+# Doxybook Example
 
 * [Introduction](README.md)
   * [Classes](Classes/README.md)
@@ -232,7 +235,7 @@ The `path/to/SUMMARY.md` will be generated and `{{doxygen}}` will be overwritten
   * [Namespaces](Namespaces/README.md)
     * [Engine](Namespaces/namespace_engine.md)
     [...]
-* [GitHub](https://github.com/matusnovak/doxydown)
+* [GitHub](https://github.com/matusnovak/doxybook)
 ```
 
 There is a sample config and summary template file located in the `example/gitbook` folder in this repository.
