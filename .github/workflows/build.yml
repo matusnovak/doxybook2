@@ -62,9 +62,6 @@ jobs:
       - name: Configure Vcpkg
         shell: bash
         run: |
-          if [ ! -d "${{ matrix.vcpkg_dir }}" ]; then
-            git clone https://github.com/microsoft/vcpkg.git ${{ matrix.vcpkg_dir }}
-          fi
           cd ${{ matrix.vcpkg_dir }}
           git fetch origin --tags
           git reset --hard 2020.06
@@ -72,10 +69,6 @@ jobs:
             ./bootstrap-vcpkg.bat
           elif [ "${{ matrix.triplet }}" == "arm64-linux" ]; then
             ./bootstrap-vcpkg.sh -useSystemBinaries
-            echo "set(VCPKG_TARGET_ARCHITECTURE arm64)" >> ./triplets/arm64-linux.cmake
-            echo "set(VCPKG_CRT_LINKAGE dynamic)" >> ./triplets/arm64-linux.cmake
-            echo "set(VCPKG_LIBRARY_LINKAGE static)" >> ./triplets/arm64-linux.cmake
-            echo "set(VCPKG_CMAKE_SYSTEM_NAME Linux)" >> ./triplets/arm64-linux.cmake
           else
             ./bootstrap-vcpkg.sh
           fi
@@ -112,8 +105,6 @@ jobs:
               export CC=/usr/bin/gcc-9
               export CXX=/usr/bin/g++-9
             fi
-            export VCPKG_DEFAULT_TRIPLET=${{ matrix.triplet }}
-            export VCPKG_FORCE_SYSTEM_BINARIES=1
             cmake \
               -B ./build \
               -G "${{ matrix.generator }}" \
@@ -131,8 +122,6 @@ jobs:
           if [ "$RUNNER_OS" == "Windows" ]; then
             cmake --build ./build --target INSTALL --config MinSizeRel
           else
-            export VCPKG_DEFAULT_TRIPLET=${{ matrix.triplet }}
-            export VCPKG_FORCE_SYSTEM_BINARIES=1
             cmake --build ./build --target install --config MinSizeRel
           fi
 
