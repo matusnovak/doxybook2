@@ -296,6 +296,7 @@ jobs:
             --input ./example/doxygen/xml \
             --output ./example/vuepress \
             --config ./example/vuepress/.doxybook/config.json
+          cat ./example/vuepress/Examples/index.md
           sudo vuepress build
           cp -r ./.vuepress/dist /tmp/public/vuepress
 
@@ -316,6 +317,12 @@ jobs:
         run: |
           cp ./example/index.html /tmp/public/index.html
           ls /tmp/public
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: Pages
+          path: /tmp/public
           
       - name: Deploy
         if: startsWith(github.ref, 'refs/tags/v')
