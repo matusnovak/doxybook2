@@ -17,7 +17,7 @@
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/advanced/</guid>
       <description>Advanced Usage This page is for advanced users. Make sure you have first read the introduction.
-Updated on 6 July 2020 at 17:38:30 UTC</description>
+ Updated on 16 July 2020 at 23:01:49 UTC</description>
     </item>
     
     <item>
@@ -27,9 +27,8 @@ Updated on 6 July 2020 at 17:38:30 UTC</description>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/bug/</guid>
       <description>Bug List Class Engine::Audio::AudioBuffer
- Some random bug Some other random bug
-  Class Engine::Graphics::Texture
- This has some weird bug too!  Updated on 6 July 2020 at 17:38:30 UTC</description>
+ Some random bug Some other random bug  Class Engine::Graphics::Texture
+ This has some weird bug too!   Updated on 16 July 2020 at 23:01:49 UTC</description>
     </item>
     
     <item>
@@ -39,13 +38,10 @@ Updated on 6 July 2020 at 17:38:30 UTC</description>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/deprecated/</guid>
       <description>Deprecated List Member Engine::Audio::AudioBuffer::setCallback (Callback callback)
- Use the AudioBuffer::setCallback2 instead
-  Member Engine::Audio::AudioBuffer::setData (const TypedAudioData data[], size_t size)
- Use the AudioBuffer::setDataMultiple instead
-  Member Engine::Audio::Callback )(AudioBuffer &amp;amp;buffer, size_t offset)
- Use the Audio::Callback2 instead
-  Class Engine::Graphics::Texture3D
- Don&amp;rsquo;t use this texture type  Updated on 6 July 2020 at 17:38:30 UTC</description>
+ Use the AudioBuffer::setCallback2 instead  Member Engine::Audio::AudioBuffer::setData (const TypedAudioData data[], size_t size)
+ Use the AudioBuffer::setDataMultiple instead  Member Engine::Audio::Callback )(AudioBuffer &amp;amp;buffer, size_t offset)
+ Use the Audio::Callback2 instead  Class Engine::Graphics::Texture3D
+ Don&amp;rsquo;t use this texture type   Updated on 16 July 2020 at 23:01:49 UTC</description>
     </item>
     
     <item>
@@ -55,7 +51,7 @@ Updated on 6 July 2020 at 17:38:30 UTC</description>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/intro/</guid>
       <description>Introduction This page introduces the user to the topic. Now you can proceed to the advanced section.
-Updated on 6 July 2020 at 17:38:30 UTC</description>
+ Updated on 16 July 2020 at 23:01:49 UTC</description>
     </item>
     
     <item>
@@ -65,7 +61,7 @@ Updated on 6 July 2020 at 17:38:30 UTC</description>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/test/</guid>
       <description>Test List Class Engine::Audio::AudioBuffer
- Some random test description  Updated on 6 July 2020 at 17:38:30 UTC</description>
+ Some random test description   Updated on 16 July 2020 at 23:01:49 UTC</description>
     </item>
     
     <item>
@@ -75,7 +71,7 @@ Updated on 6 July 2020 at 17:38:30 UTC</description>
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-book/pages/todo/</guid>
       <description>Todo List Class Engine::Audio::AudioBuffer
- Some random todo  Updated on 6 July 2020 at 17:38:30 UTC</description>
+ Some random todo   Updated on 16 July 2020 at 23:01:49 UTC</description>
     </item>
     
   </channel>
