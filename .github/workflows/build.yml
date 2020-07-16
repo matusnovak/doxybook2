@@ -189,7 +189,7 @@ jobs:
       - name: Download MkDocs
         shell: bash
         run: |
-          sudo pip install mkdocs mkdocs-material mkdocs-bootswatch
+          sudo python3 -m pip install mkdocs mkdocs-material mkdocs-bootswatch
 
       - name: Download VuePress
         shell: bash
