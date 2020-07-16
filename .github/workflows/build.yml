@@ -38,13 +38,13 @@ jobs:
             vcpkg_dir: '/usr/local/share/vcpkg'
             generator: 'Unix Makefiles'
             arch: ''
-          - name: 'Mac OSX x64'
-            os: macos-latest
-            triplet: x64-osx
-            suffix: 'osx-x86_64'
-            vcpkg_dir: '/usr/local/share/vcpkg'
-            generator: 'Unix Makefiles'
-            arch: ''
+#          - name: 'Mac OSX x64'
+#            os: macos-latest
+#            triplet: x64-osx
+#            suffix: 'osx-x86_64'
+#            vcpkg_dir: '/usr/local/share/vcpkg'
+#            generator: 'Unix Makefiles'
+#            arch: ''
 
     steps:
       - name: Checkout
@@ -136,9 +136,8 @@ jobs:
           name: Release
           path: release
 
-      - name: Create Changelog
+      - name: Changelog
         id: create_changelog
-        if: startsWith(github.ref, 'refs/tags/v')
         shell: bash
         run: |
           last_tag=$(git describe --tags --abbrev=0 @^ || true)
