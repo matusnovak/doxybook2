@@ -62,6 +62,9 @@ jobs:
       - name: Configure Vcpkg
         shell: bash
         run: |
+          if [ ! -d "${{ matrix.vcpkg_dir }}" ]; then
+            git clone https://github.com/microsoft/vcpkg.git ${{ matrix.vcpkg_dir }}
+          fi
           cd ${{ matrix.vcpkg_dir }}
           git fetch origin --tags
           git reset --hard 2020.06
