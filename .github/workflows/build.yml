@@ -220,7 +220,7 @@ jobs:
           file=$(ls /tmp/release | grep linux)
           unzip "/tmp/release/$file" -d /tmp/doxybook2
           sudo cp /tmp/doxybook2/bin/doxybook2 /usr/local/bin/doxybook2
-          sudo chmod +x
+          sudo chmod +x /usr/local/bin/doxybook2
           doxybook2 --version
 
       - name: Run Doxygen
