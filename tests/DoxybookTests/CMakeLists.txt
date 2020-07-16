@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(Doxybook2Tests)
 
+# Dependencies
+find_package(Catch2 CONFIG REQUIRED)
+
 # Project source files
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
@@ -17,5 +20,7 @@ endif()
 # Libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE Doxybook2 Catch2::Catch2)
 
+# Testing
+enable_testing()
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 target_compile_definitions(${PROJECT_NAME} PRIVATE IMPORT_DIR="${CMAKE_SOURCE_DIR}/example/doxygen/xml")

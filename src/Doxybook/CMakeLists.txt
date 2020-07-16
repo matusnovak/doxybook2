@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
 project(Doxybook2)
 
+# Dependencies
+find_package(inja CONFIG REQUIRED)
+find_package(fmt CONFIG REQUIRED)
+find_package(nlohmann_json CONFIG REQUIRED)
+find_package(tinyxml2 CONFIG REQUIRED)
+find_package(Rang REQUIRED)
+if (MSVC)
+  find_package(Dirent REQUIRED)
+endif()
+
 # Project source files
 set(DOXYDOWN_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../include)
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
@@ -24,7 +34,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only tinyxml2::tinyxml2 pantor::inja Rang::Rang nlohmann_json nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only tinyxml2::tinyxml2 pantor::inja Rang nlohmann_json nlohmann_json::nlohmann_json)
 if(MSVC)
-  target_link_libraries(${PROJECT_NAME} PRIVATE Dirent::Dirent)
+  target_link_libraries(${PROJECT_NAME} PRIVATE Dirent)
 endif()

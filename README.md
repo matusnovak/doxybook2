@@ -516,6 +516,8 @@ Got any questions or found a bug? Feel free to submit them to the GitHub issues 
 ## License
 
 ```
+The MIT License
+
 Copyright (c) 2019-2020 Matus Novak email@matusnovak.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
