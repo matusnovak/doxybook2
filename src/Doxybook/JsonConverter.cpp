@@ -304,9 +304,13 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
     if (!node.getChildren().empty()) {
         // Find all unique groups (for example, public attributes)
         std::unordered_set<Type> uniqueTypes;
-        std::unordered_multimap<Type, NodePtr> children;
+        std::unordered_map<Type, Node::Children> children;
         for (const auto& child : node.getChildren()) {
-            children.insert(std::make_pair(child->getType(), child));
+            auto it = children.find(child->getType());
+            if (it == children.end()) {
+                it = children.insert(std::make_pair(child->getType(), Node::Children{})).first;
+            }
+            it->second.push_back(child);
             uniqueTypes.insert(child->getType());
         }
 
@@ -316,10 +320,8 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
             for (const auto& type : uniqueTypes) {
                 const auto key = toStr(visibility) + Utils::title(toStr(type));
                 auto arr = nlohmann::json::array();
-                const auto range = children.equal_range(type);
-                for (auto it = range.first; it != range.second; ++it) {
-                    const auto& child = it->second;
-
+                const auto range = children.find(type);
+                for (const auto& child : range->second) {
                     if (!child->isStructured() && child->getKind() != Kind::MODULE && child->getKind() != Kind::DIR &&
                         child->getKind() != Kind::FILE) {
 
@@ -407,12 +409,18 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
 
                 // Get unique types of this base class
                 std::unordered_set<Type> baseUniqueTypes;
-                std::unordered_multimap<Type, NodePtr> baseChildren;
+                std::unordered_map<Type, Node::Children> baseChildren;
                 for (const auto& child : baseNode->getChildren()) {
-                    if (alreadyExists(child->getName()))
+                    if (alreadyExists(child->getName())) {
                         continue;
+                    }
 
-                    baseChildren.insert(std::make_pair(child->getType(), child));
+                    auto it = baseChildren.find(child->getType());
+                    if (it == baseChildren.end()) {
+                        it = baseChildren.insert(std::make_pair(child->getType(), Node::Children{})).first;
+                    }
+
+                    it->second.push_back(child);
                     baseUniqueTypes.insert(child->getType());
                 }
 
@@ -422,10 +430,8 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
                     for (const auto& type : baseUniqueTypes) {
                         const auto key = toStr(visibility) + Utils::title(toStr(type));
                         auto arr = nlohmann::json::array();
-                        const auto range = baseChildren.equal_range(type);
-                        for (auto it = range.first; it != range.second; ++it) {
-                            const auto& child = it->second;
-
+                        const auto range = baseChildren.find(type);
+                        for (const auto& child : range->second) {
                             if (alreadyExists(child->getName()))
                                 continue;
 
