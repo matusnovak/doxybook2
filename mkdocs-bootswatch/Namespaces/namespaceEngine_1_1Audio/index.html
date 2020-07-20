@@ -121,11 +121,11 @@
 <tbody>
 <tr>
 <td>class</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">Engine::Audio::AudioManager</a></strong> <br>An audio manager that <em>accepts</em> multiple <strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a></strong> instances.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Engine::Audio::AudioBuffer</a></strong> <br><em>A simple audio buffer to hold PCM samples</em></td>
 </tr>
 <tr>
 <td>class</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Engine::Audio::AudioBuffer</a></strong> <br><em>A simple audio buffer to hold PCM samples</em></td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">Engine::Audio::AudioManager</a></strong> <br>An audio manager that <em>accepts</em> multiple <strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a></strong> instances.</td>
 </tr>
 </tbody>
 </table>
@@ -139,12 +139,12 @@
 </thead>
 <tbody>
 <tr>
-<td>using int(<em>)(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">AudioBuffer</a> &amp;buffer, size_t offset, void </em>user)</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#using-callback2">Callback2</a></strong> <br>Some callback function pointer type definition.</td>
-</tr>
-<tr>
 <td>typedef int(*)(AudioBuffer &amp;buffer, size_t offset)</td>
 <td><strong><a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Callback</a></strong> <br>Some callback function pointer type definition.</td>
+</tr>
+<tr>
+<td>using int(<em>)(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">AudioBuffer</a> &amp;buffer, size_t offset, void </em>user)</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#using-callback2">Callback2</a></strong> <br>Some callback function pointer type definition.</td>
 </tr>
 </tbody>
 </table>
@@ -164,17 +164,6 @@
 </tbody>
 </table>
 <h2 id="types-documentation">Types Documentation</h2>
-<h3 id="using-callback2">using Callback2</h3>
-<pre><code class="cpp">using Engine::Audio::Callback2 = typedef int (*)(AudioBuffer&amp; buffer, size_t offset, void* user);
-</code></pre>
-
-<p>Some callback function pointer type definition. </p>
-<p><strong>Parameters</strong>: </p>
-<ul>
-<li><strong>buffer</strong> The buffer this callback is called from </li>
-<li><strong>offset</strong> The offset of the buffer currently playing </li>
-<li><strong>user</strong> User specific data </li>
-</ul>
 <h3 id="typedef-callback">typedef Callback</h3>
 <pre><code class="cpp">typedef int(* Engine::Audio::Callback) (AudioBuffer &amp;buffer, size_t offset);
 </code></pre>
@@ -187,6 +176,17 @@
 </ul>
 <p><strong>Deprecated</strong>: </p>
 <p>Use the <a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#using-callback2">Audio::Callback2</a> instead </p>
+<h3 id="using-callback2">using Callback2</h3>
+<pre><code class="cpp">using Engine::Audio::Callback2 = typedef int (*)(AudioBuffer&amp; buffer, size_t offset, void* user);
+</code></pre>
+
+<p>Some callback function pointer type definition. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>buffer</strong> The buffer this callback is called from </li>
+<li><strong>offset</strong> The offset of the buffer currently playing </li>
+<li><strong>user</strong> User specific data </li>
+</ul>
 <h2 id="functions-documentation">Functions Documentation</h2>
 <h3 id="function-dosomething">function doSomething</h3>
 <pre><code class="cpp">void doSomething(
@@ -196,7 +196,7 @@
 
 <p>Do something with the buffer. </p>
 <hr />
-<p>Updated on 16 July 2020 at 23:29:53 UTC</p></div>
+<p>Updated on 20 July 2020 at 21:11:55 UTC</p></div>
             </div>
         </div>
 

@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.4c5cc69e1e9fe1ff3493b72dbe84aa9a7481427e3a6897695a3160e1b6c9a687.css" integrity="sha256-TFzGnh6f4f80k7ctvoSqmnSBQn46aJdpWjFg4bbJpoc=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.f07ed14602aaa5e9d82c5e26388888b148dee95a5dddadd31de74d494b61190d.js" integrity="sha256-8H7RRgKqpenYLF4mOIiIsUje6Vpd3a3THedNSUthGQ0="></script>
+<script defer src="/doxybook2/hugo-book/search.min.134d2f78cbec21da2a41dd98814fdd5d8ec2ba44c17f4bd2a30172b035ec296e.js" integrity="sha256-E00veMvsIdoqQd2YgU/dXY7CukTBf0vSowFysDXsKW4="></script>
 
 <!--
 Made with Book Theme
@@ -115,12 +115,16 @@ https://github.com/alex-shpak/hugo-book
 </thead>
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
 </tr>
 <tr>
 <td>virtual int</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getdepth">getDepth</a></strong>() const =0 <!-- raw HTML omitted -->Returns the depth of the texture in pixels.</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getwidth">getWidth</a></strong>() const =0 <!-- raw HTML omitted -->Returns the width of the texture in pixels.</td>
 </tr>
 <tr>
 <td>virtual int</td>
@@ -128,15 +132,11 @@ https://github.com/alex-shpak/hugo-book
 </tr>
 <tr>
 <td>virtual int</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getwidth">getWidth</a></strong>() const =0 <!-- raw HTML omitted -->Returns the width of the texture in pixels.</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-getdepth">getDepth</a></strong>() const =0 <!-- raw HTML omitted -->Returns the depth of the texture in pixels.</td>
 </tr>
 <tr>
-<td>virtual</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-~texture">~Texture</a></strong>() =default</td>
-</tr>
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a> type)</td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -150,12 +150,12 @@ https://github.com/alex-shpak/hugo-book
 </thead>
 <tbody>
 <tr>
-<td><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
-</tr>
-<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-loaded">loaded</a></strong></td>
+</tr>
+<tr>
+<td><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture/#variable-type">type</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -170,16 +170,16 @@ https://github.com/alex-shpak/hugo-book
 </thead>
 <tbody>
 <tr>
-<td>int</td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-gethandle">getHandle</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-~handle">~Handle</a></strong>() =default</td>
 </tr>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-handle">Handle</a></strong>() =default</td>
+<td>int</td>
+<td><strong><a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -268,38 +268,38 @@ https://github.com/alex-shpak/hugo-book
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-isloaded">function isLoaded</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> isLoaded() <span style="color:#66d9ef">const</span>
-</code></pre></div><p>Does some more things</p>
+<h3 id="function-texture">function Texture</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> Texture(
+    Type type
+)
+</code></pre></div><h3 id="function-texture-1">function ~Texture</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Texture() <span style="color:#f92672">=</span><span style="color:#66d9ef">default</span>
+</code></pre></div><h3 id="function-getwidth">function getWidth</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getWidth() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</code></pre></div><p>Returns the width of the texture in pixels.</p>
+<p><strong>Return</strong>: Width in pixels</p>
+<p><strong>Reimplemented by</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture3d/#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
+<h3 id="function-getheight">function getHeight</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getHeight() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</code></pre></div><p>Returns the height of the texture in pixels.</p>
+<p><strong>Return</strong>: Height in pixels</p>
+<p><strong>Reimplemented by</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-getheight">Engine::Graphics::Framebuffer::getHeight</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture3d/#function-getheight">Engine::Graphics::Texture3D::getHeight</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getheight">Engine::Graphics::Texture2D::getHeight</a></p>
 <h3 id="function-getdepth">function getDepth</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getDepth() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
 </code></pre></div><p>Returns the depth of the texture in pixels.</p>
 <p><strong>Return</strong>: Depth in pixels</p>
 <p><strong>Note</strong>: If this texture is 2D the depth is always 1 pixels</p>
 <p><strong>Reimplemented by</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-getdepth">Engine::Graphics::Framebuffer::getDepth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture3d/#function-getdepth">Engine::Graphics::Texture3D::getDepth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getdepth">Engine::Graphics::Texture2D::getDepth</a></p>
-<h3 id="function-getheight">function getHeight</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getHeight() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</code></pre></div><p>Returns the height of the texture in pixels.</p>
-<p><strong>Return</strong>: Height in pixels</p>
-<p><strong>Reimplemented by</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-getheight">Engine::Graphics::Framebuffer::getHeight</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture3d/#function-getheight">Engine::Graphics::Texture3D::getHeight</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getheight">Engine::Graphics::Texture2D::getHeight</a></p>
-<h3 id="function-getwidth">function getWidth</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">int</span> getWidth() <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-</code></pre></div><p>Returns the width of the texture in pixels.</p>
-<p><strong>Return</strong>: Width in pixels</p>
-<p><strong>Reimplemented by</strong>: <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1framebuffer/#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture3d/#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="/doxybook2/hugo-book/classes/classengine_1_1graphics_1_1texture2d/#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
-<h3 id="function-texture">function ~Texture</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Texture() <span style="color:#f92672">=</span><span style="color:#66d9ef">default</span>
-</code></pre></div><h3 id="function-texture-1">function Texture</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">explicit</span> Texture(
-    Type type
-)
-</code></pre></div><h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
-<h3 id="variable-type">variable type</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Type type;
-</code></pre></div><h3 id="variable-loaded">variable loaded</h3>
+<h3 id="function-isloaded">function isLoaded</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> isLoaded() <span style="color:#66d9ef">const</span>
+</code></pre></div><p>Does some more things</p>
+<h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
+<h3 id="variable-loaded">variable loaded</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">bool</span> loaded {false};
+</code></pre></div><h3 id="variable-type">variable type</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Type type;
 </code></pre></div><hr>
-<p>Updated on 16 July 2020 at 23:29:58 UTC</p>
+<p>Updated on 20 July 2020 at 21:11:58 UTC</p>
 </article>
 
       
@@ -325,18 +325,18 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#public-functions-documentation">Public Functions Documentation</a>
       <ul>
-        <li><a href="#function-isloaded">function isLoaded</a></li>
-        <li><a href="#function-getdepth">function getDepth</a></li>
-        <li><a href="#function-getheight">function getHeight</a></li>
+        <li><a href="#function-texture">function Texture</a></li>
+        <li><a href="#function-texture-1">function ~Texture</a></li>
         <li><a href="#function-getwidth">function getWidth</a></li>
-        <li><a href="#function-texture">function ~Texture</a></li>
-        <li><a href="#function-texture-1">function Texture</a></li>
+        <li><a href="#function-getheight">function getHeight</a></li>
+        <li><a href="#function-getdepth">function getDepth</a></li>
+        <li><a href="#function-isloaded">function isLoaded</a></li>
       </ul>
     </li>
     <li><a href="#protected-attributes-documentation">Protected Attributes Documentation</a>
       <ul>
-        <li><a href="#variable-type">variable type</a></li>
         <li><a href="#variable-loaded">variable loaded</a></li>
+        <li><a href="#variable-type">variable type</a></li>
       </ul>
     </li>
   </ul>

@@ -1130,12 +1130,16 @@
 </thead>
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-isloaded">isLoaded</a></strong>() const</td>
+<td></td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-texture">Texture</a></strong>(<a href="classEngine_1_1Graphics_1_1Texture.html#enum-type">Type</a> type)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-~texture">~Texture</a></strong>() =default</td>
 </tr>
 <tr>
 <td>virtual int</td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-getdepth">getDepth</a></strong>() const =0 <br>Returns the depth of the texture in pixels.</td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-getwidth">getWidth</a></strong>() const =0 <br>Returns the width of the texture in pixels.</td>
 </tr>
 <tr>
 <td>virtual int</td>
@@ -1143,15 +1147,11 @@
 </tr>
 <tr>
 <td>virtual int</td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-getwidth">getWidth</a></strong>() const =0 <br>Returns the width of the texture in pixels.</td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-getdepth">getDepth</a></strong>() const =0 <br>Returns the depth of the texture in pixels.</td>
 </tr>
 <tr>
-<td>virtual</td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-~texture">~Texture</a></strong>() =default</td>
-</tr>
-<tr>
-<td></td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-texture">Texture</a></strong>(<a href="classEngine_1_1Graphics_1_1Texture.html#enum-type">Type</a> type)</td>
+<td>bool</td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -1165,12 +1165,12 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="classEngine_1_1Graphics_1_1Texture.html#enum-type">Type</a></td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#variable-type">type</a></strong></td>
-</tr>
-<tr>
 <td>bool</td>
 <td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#variable-loaded">loaded</a></strong></td>
+</tr>
+<tr>
+<td><a href="classEngine_1_1Graphics_1_1Texture.html#enum-type">Type</a></td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Texture.html#variable-type">type</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -1185,16 +1185,16 @@
 </thead>
 <tbody>
 <tr>
-<td>int</td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Handle.html#function-gethandle">getHandle</a></strong>() const</td>
+<td></td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Handle.html#function-handle">Handle</a></strong>() =default</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="classEngine_1_1Graphics_1_1Handle.html#function-~handle">~Handle</a></strong>() =default</td>
 </tr>
 <tr>
-<td></td>
-<td><strong><a href="classEngine_1_1Graphics_1_1Handle.html#function-handle">Handle</a></strong>() =default</td>
+<td>int</td>
+<td><strong><a href="classEngine_1_1Graphics_1_1Handle.html#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -1284,10 +1284,26 @@
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-isloaded">function isLoaded</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">isLoaded</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span>
+<h3 id="function-texture">function Texture</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Texture</span><span class="hljs-params">(
+    Type type
+)</span>
 </span></code></pre>
-<p>Does some more things</p>
+<h3 id="function-texture">function ~Texture</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">virtual</span> ~Texture() =<span class="hljs-keyword">default</span>
+</code></pre>
+<h3 id="function-getwidth">function getWidth</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getWidth</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>=<span class="hljs-number">0</span>
+</code></pre>
+<p>Returns the width of the texture in pixels. </p>
+<p><strong>Return</strong>: Width in pixels </p>
+<p><strong>Reimplemented by</strong>: <a href="classEngine_1_1Graphics_1_1Framebuffer.html#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="classEngine_1_1Graphics_1_1Texture3D.html#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="classEngine_1_1Graphics_1_1Texture2D.html#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
+<h3 id="function-getheight">function getHeight</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getHeight</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>=<span class="hljs-number">0</span>
+</code></pre>
+<p>Returns the height of the texture in pixels. </p>
+<p><strong>Return</strong>: Height in pixels </p>
+<p><strong>Reimplemented by</strong>: <a href="classEngine_1_1Graphics_1_1Framebuffer.html#function-getheight">Engine::Graphics::Framebuffer::getHeight</a>, <a href="classEngine_1_1Graphics_1_1Texture3D.html#function-getheight">Engine::Graphics::Texture3D::getHeight</a>, <a href="classEngine_1_1Graphics_1_1Texture2D.html#function-getheight">Engine::Graphics::Texture2D::getHeight</a></p>
 <h3 id="function-getdepth">function getDepth</h3>
 <pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getDepth</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>=<span class="hljs-number">0</span>
 </code></pre>
@@ -1295,35 +1311,19 @@
 <p><strong>Return</strong>: Depth in pixels </p>
 <p><strong>Note</strong>: If this texture is 2D the depth is always 1 pixels </p>
 <p><strong>Reimplemented by</strong>: <a href="classEngine_1_1Graphics_1_1Framebuffer.html#function-getdepth">Engine::Graphics::Framebuffer::getDepth</a>, <a href="classEngine_1_1Graphics_1_1Texture3D.html#function-getdepth">Engine::Graphics::Texture3D::getDepth</a>, <a href="classEngine_1_1Graphics_1_1Texture2D.html#function-getdepth">Engine::Graphics::Texture2D::getDepth</a></p>
-<h3 id="function-getheight">function getHeight</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getHeight</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>=<span class="hljs-number">0</span>
-</code></pre>
-<p>Returns the height of the texture in pixels. </p>
-<p><strong>Return</strong>: Height in pixels </p>
-<p><strong>Reimplemented by</strong>: <a href="classEngine_1_1Graphics_1_1Framebuffer.html#function-getheight">Engine::Graphics::Framebuffer::getHeight</a>, <a href="classEngine_1_1Graphics_1_1Texture3D.html#function-getheight">Engine::Graphics::Texture3D::getHeight</a>, <a href="classEngine_1_1Graphics_1_1Texture2D.html#function-getheight">Engine::Graphics::Texture2D::getHeight</a></p>
-<h3 id="function-getwidth">function getWidth</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getWidth</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>=<span class="hljs-number">0</span>
-</code></pre>
-<p>Returns the width of the texture in pixels. </p>
-<p><strong>Return</strong>: Width in pixels </p>
-<p><strong>Reimplemented by</strong>: <a href="classEngine_1_1Graphics_1_1Framebuffer.html#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="classEngine_1_1Graphics_1_1Texture3D.html#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="classEngine_1_1Graphics_1_1Texture2D.html#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
-<h3 id="function-texture">function ~Texture</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">virtual</span> ~Texture() =<span class="hljs-keyword">default</span>
-</code></pre>
-<h3 id="function-texture">function Texture</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Texture</span><span class="hljs-params">(
-    Type type
-)</span>
+<h3 id="function-isloaded">function isLoaded</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">isLoaded</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span>
 </span></code></pre>
+<p>Does some more things</p>
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
-<h3 id="variable-type">variable type</h3>
-<pre><code class="lang-cpp">Type type;
-</code></pre>
 <h3 id="variable-loaded">variable loaded</h3>
 <pre><code class="lang-cpp"><span class="hljs-keyword">bool</span> loaded {<span class="hljs-literal">false</span>};
 </code></pre>
+<h3 id="variable-type">variable type</h3>
+<pre><code class="lang-cpp">Type type;
+</code></pre>
 <hr>
-<p>Updated on 16 July 2020 at 23:30:24 UTC</p>
+<p>Updated on 20 July 2020 at 21:12:24 UTC</p>
 
                                 
                                 </section>
@@ -1367,7 +1367,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Engine::Graphics::Texture","summary":"This is a base texture class that serves as a base class for other texture types.","level":"1.1.1.12","depth":3,"next":{"title":"Engine::Graphics::Texture2D","level":"1.1.1.13","depth":3,"path":"Classes/classEngine_1_1Graphics_1_1Texture2D.md","ref":"Classes/classEngine_1_1Graphics_1_1Texture2D.md","articles":[]},"previous":{"title":"Engine::Graphics::Handle","level":"1.1.1.11","depth":3,"path":"Classes/classEngine_1_1Graphics_1_1Handle.md","ref":"Classes/classEngine_1_1Graphics_1_1Handle.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Graphics_1_1Texture.md","mtime":"2020-07-16T23:30:24.676Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-16T23:30:53.781Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Engine::Graphics::Texture","summary":"This is a base texture class that serves as a base class for other texture types.","level":"1.1.1.12","depth":3,"next":{"title":"Engine::Graphics::Texture2D","level":"1.1.1.13","depth":3,"path":"Classes/classEngine_1_1Graphics_1_1Texture2D.md","ref":"Classes/classEngine_1_1Graphics_1_1Texture2D.md","articles":[]},"previous":{"title":"Engine::Graphics::Handle","level":"1.1.1.11","depth":3,"path":"Classes/classEngine_1_1Graphics_1_1Handle.md","ref":"Classes/classEngine_1_1Graphics_1_1Handle.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Graphics_1_1Texture.md","mtime":"2020-07-20T21:12:24.115Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-20T21:12:50.478Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

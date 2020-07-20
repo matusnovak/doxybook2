@@ -12,18 +12,18 @@
     <title>Engine::Utils::ArrayView :: Doxybook2 Example</title>
 
     
-    <link href="/doxybook2/hugo-learn/css/nucleus.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hybrid.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/theme.css?1594942196" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1594942196" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/nucleus.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hybrid.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/theme.css?1595279517" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1595279517" rel="stylesheet">
     
 
-    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1594942196"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1595279517"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1594942196"></script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1594942196"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1595279517"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1595279517"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/matusnovak.github.io\/doxybook2\/hugo-learn";
     
 </script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1594942196"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1595279517"></script>
 
     
   </div>
@@ -1542,10 +1542,10 @@
     <li><a href="#detailed-description">Detailed Description</a></li>
     <li><a href="#public-functions-documentation">Public Functions Documentation</a>
       <ul>
-        <li><a href="#function-size">function size</a></li>
+        <li><a href="#function-arrayview">function ArrayView</a></li>
+        <li><a href="#function-arrayview-1">function ~ArrayView</a></li>
         <li><a href="#function-data">function data</a></li>
-        <li><a href="#function-arrayview">function ~ArrayView</a></li>
-        <li><a href="#function-arrayview-1">function ArrayView</a></li>
+        <li><a href="#function-size">function size</a></li>
       </ul>
     </li>
   </ul>
@@ -1587,20 +1587,20 @@
 </thead>
 <tbody>
 <tr>
-<td>virtual size_t</td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1utils_1_1arrayview/#function-size">size</a></strong>() const</td>
-</tr>
-<tr>
-<td>virtual const T *</td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1utils_1_1arrayview/#function-data">data</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1utils_1_1arrayview/#function-arrayview">ArrayView</a></strong>(const T * src, size_t len)</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1utils_1_1arrayview/#function-~arrayview">~ArrayView</a></strong>() =default</td>
 </tr>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1utils_1_1arrayview/#function-arrayview">ArrayView</a></strong>(const T * src, size_t len)</td>
+<td>virtual const T *</td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1utils_1_1arrayview/#function-data">data</a></strong>() const</td>
+</tr>
+<tr>
+<td>virtual size_t</td>
+<td><strong><a href="/doxybook2/hugo-learn/classes/classengine_1_1utils_1_1arrayview/#function-size">size</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -1613,19 +1613,19 @@
 <li><strong>T</strong> The type of the data, for example uint8_t</li>
 </ul>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-size">function size</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#000">size_t</span> <span style="color:#000">size</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">const</span>
-</code></pre></div><h3 id="function-data">function data</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">T</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">data</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">const</span>
-</code></pre></div><h3 id="function-arrayview">function ~ArrayView</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">ArrayView</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">default</span>
-</code></pre></div><h3 id="function-arrayview-1">function ArrayView</h3>
+<h3 id="function-arrayview">function ArrayView</h3>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">ArrayView</span><span style="color:#000;font-weight:bold">(</span>
     <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">T</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">src</span><span style="color:#000;font-weight:bold">,</span>
     <span style="color:#000">size_t</span> <span style="color:#000">len</span>
 <span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><h3 id="function-arrayview-1">function ~ArrayView</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">ArrayView</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">default</span>
+</code></pre></div><h3 id="function-data">function data</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">T</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">data</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">const</span>
+</code></pre></div><h3 id="function-size">function size</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#000">size_t</span> <span style="color:#000">size</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">const</span>
 </code></pre></div><hr>
-<p>Updated on 16 July 2020 at 23:29:56 UTC</p>
+<p>Updated on 20 July 2020 at 21:11:57 UTC</p>
 
 
 <footer class=" footline" >
@@ -2793,19 +2793,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1594942196"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1594942196"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1594942196"></script>
-    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1594942196"></script>
-    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1594942196"></script>
-    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1594942196"></script>
+    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1595279517"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1595279517"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1595279517"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1595279517"></script>
+    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1595279517"></script>
+    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1595279517"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1594942196"></script>
-    <script src="/doxybook2/hugo-learn/js/learn.js?1594942196"></script>
-    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1594942196"></script>
+    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1595279517"></script>
+    <script src="/doxybook2/hugo-learn/js/learn.js?1595279517"></script>
+    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1595279517"></script>
 
-    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1594942196" rel="stylesheet" />
-    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1594942196"></script>
+    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1595279517" rel="stylesheet" />
+    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1595279517"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

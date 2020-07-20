@@ -115,8 +115,16 @@
 </thead>
 <tbody>
 <tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-framebuffer">Framebuffer</a></strong>(int width, int height)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-~framebuffer">~Framebuffer</a></strong>()</td>
+</tr>
+<tr>
 <td>virtual int</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getdepth">getDepth</a></strong>() const override <br>Returns the depth of the texture in pixels.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getwidth">getWidth</a></strong>() const override <br>Returns the width of the texture in pixels.</td>
 </tr>
 <tr>
 <td>virtual int</td>
@@ -124,15 +132,7 @@
 </tr>
 <tr>
 <td>virtual int</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getwidth">getWidth</a></strong>() const override <br>Returns the width of the texture in pixels.</td>
-</tr>
-<tr>
-<td>virtual</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-~framebuffer">~Framebuffer</a></strong>()</td>
-</tr>
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-framebuffer">Framebuffer</a></strong>(int width, int height)</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getdepth">getDepth</a></strong>() const override <br>Returns the depth of the texture in pixels.</td>
 </tr>
 </tbody>
 </table>
@@ -162,16 +162,16 @@
 </thead>
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-~texture">~Texture</a></strong>() =default</td>
 </tr>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -185,12 +185,12 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
-</tr>
-<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#variable-loaded">loaded</a></strong></td>
+</tr>
+<tr>
+<td><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -204,16 +204,16 @@
 </thead>
 <tbody>
 <tr>
-<td>int</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Handle/#function-gethandle">getHandle</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Handle/#function-~handle">~Handle</a></strong>() =default</td>
 </tr>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
+<td>int</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -233,6 +233,31 @@
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-framebuffer">function Framebuffer</h3>
+<pre><code class="cpp">Framebuffer(
+    int width,
+    int height
+)
+</code></pre>
+
+<h3 id="function-framebuffer_1">function ~Framebuffer</h3>
+<pre><code class="cpp">virtual ~Framebuffer()
+</code></pre>
+
+<h3 id="function-getwidth">function getWidth</h3>
+<pre><code class="cpp">virtual int getWidth() const override
+</code></pre>
+
+<p>Returns the width of the texture in pixels. </p>
+<p><strong>Return</strong>: Width in pixels </p>
+<p><strong>Reimplements</strong>: <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-getwidth">Engine::Graphics::Texture::getWidth</a></p>
+<h3 id="function-getheight">function getHeight</h3>
+<pre><code class="cpp">virtual int getHeight() const override
+</code></pre>
+
+<p>Returns the height of the texture in pixels. </p>
+<p><strong>Return</strong>: Height in pixels </p>
+<p><strong>Reimplements</strong>: <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-getheight">Engine::Graphics::Texture::getHeight</a></p>
 <h3 id="function-getdepth">function getDepth</h3>
 <pre><code class="cpp">virtual int getDepth() const override
 </code></pre>
@@ -241,33 +266,8 @@
 <p><strong>Return</strong>: Depth in pixels </p>
 <p><strong>Note</strong>: If this texture is 2D the depth is always 1 pixels </p>
 <p><strong>Reimplements</strong>: <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-getdepth">Engine::Graphics::Texture::getDepth</a></p>
-<h3 id="function-getheight">function getHeight</h3>
-<pre><code class="cpp">virtual int getHeight() const override
-</code></pre>
-
-<p>Returns the height of the texture in pixels. </p>
-<p><strong>Return</strong>: Height in pixels </p>
-<p><strong>Reimplements</strong>: <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-getheight">Engine::Graphics::Texture::getHeight</a></p>
-<h3 id="function-getwidth">function getWidth</h3>
-<pre><code class="cpp">virtual int getWidth() const override
-</code></pre>
-
-<p>Returns the width of the texture in pixels. </p>
-<p><strong>Return</strong>: Width in pixels </p>
-<p><strong>Reimplements</strong>: <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Graphics_1_1Texture/#function-getwidth">Engine::Graphics::Texture::getWidth</a></p>
-<h3 id="function-framebuffer">function ~Framebuffer</h3>
-<pre><code class="cpp">virtual ~Framebuffer()
-</code></pre>
-
-<h3 id="function-framebuffer_1">function Framebuffer</h3>
-<pre><code class="cpp">Framebuffer(
-    int width,
-    int height
-)
-</code></pre>
-
 <hr />
-<p>Updated on 16 July 2020 at 23:29:53 UTC</p></div>
+<p>Updated on 20 July 2020 at 21:11:55 UTC</p></div>
             </div>
         </div>
 

@@ -1128,16 +1128,16 @@
 </thead>
 <tbody>
 <tr>
-<td>typedef <a href="classEngine_1_1Audio_1_1AudioBuffer.html#using-audiodata">AudioData</a>&lt; uint8_t &gt;</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#typedef-audiodata8u">AudioData8U</a></strong></td>
+<td>enum</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }<br>Different type of audio formats.</td>
 </tr>
 <tr>
 <td>template \<typename t="" \="">&lt;/br&gt;using <a href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt; T &gt;</typename></td>
 <td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#using-audiodata">AudioData</a></strong></td>
 </tr>
 <tr>
-<td>enum</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }<br>Different type of audio formats.</td>
+<td>typedef <a href="classEngine_1_1Audio_1_1AudioBuffer.html#using-audiodata">AudioData</a>&lt; uint8_t &gt;</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#typedef-audiodata8u">AudioData8U</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -1151,28 +1151,16 @@
 </thead>
 <tbody>
 <tr>
-<td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">setCallback2</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
+<td></td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename) <br>Constructor for <a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a>.</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-~audiobuffer">~AudioBuffer</a></strong>() =default <br><a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a> destructor.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback">setCallback</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
-</tr>
-<tr>
-<td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[], size_t size) <br>Some deprecated function.</td>
-</tr>
-<tr>
-<td>template \<size_t size\="">&lt;/br&gt;void</size_t></td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdatamultiple">setDataMultiple</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[Size])</td>
-</tr>
-<tr>
-<td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> &amp; data)</td>
-</tr>
-<tr>
-<td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-loop">loop</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const <br>Loop this buffer forever.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-play">play</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const <br>Play this buffer.</td>
 </tr>
 <tr>
 <td>void</td>
@@ -1180,15 +1168,27 @@
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-play">play</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const <br>Play this buffer.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-loop">loop</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const <br>Loop this buffer forever.</td>
 </tr>
 <tr>
-<td>virtual</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-~audiobuffer">~AudioBuffer</a></strong>() =default <br><a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a> destructor.</td>
+<td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> &amp; data)</td>
 </tr>
 <tr>
-<td></td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename) <br>Constructor for <a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a>.</td>
+<td>template \<size_t size\="">&lt;/br&gt;void</size_t></td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdatamultiple">setDataMultiple</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[Size])</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[], size_t size) <br>Some deprecated function.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback">setCallback</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">setCallback2</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
 </tr>
 </tbody>
 </table>
@@ -1232,12 +1232,12 @@
 </thead>
 <tbody>
 <tr>
-<td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#friend-audiodosomething">Audio::doSomething</a></strong>(<a href="classEngine_1_1Audio_1_1AudioBuffer.html">AudioBuffer</a> &amp; buffer)</td>
-</tr>
-<tr>
 <td>class</td>
 <td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#friend-audiomanager">AudioManager</a></strong></td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#friend-audiodosomething">Audio::doSomething</a></strong>(<a href="classEngine_1_1Audio_1_1AudioBuffer.html">AudioBuffer</a> &amp; buffer)</td>
 </tr>
 </tbody>
 </table>
@@ -1273,13 +1273,6 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; buffer.play(...) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
 </code></pre>
 <h2 id="public-types-documentation">Public Types Documentation</h2>
-<h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">typedef</span> AudioData&lt;<span class="hljs-keyword">uint8_t</span>&gt; Engine::Audio::AudioBuffer::AudioData8U;
-</code></pre>
-<h3 id="using-audiodata">using AudioData</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T &gt;
-<span class="hljs-keyword">using</span> Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
-</code></pre>
 <h3 id="enum-type">enum Type</h3>
 <table>
 <thead>
@@ -1323,52 +1316,52 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 </tbody>
 </table>
 <p>Different type of audio formats. </p>
+<h3 id="using-audiodata">using AudioData</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T &gt;
+<span class="hljs-keyword">using</span> Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
+</code></pre>
+<h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">typedef</span> AudioData&lt;<span class="hljs-keyword">uint8_t</span>&gt; Engine::Audio::AudioBuffer::AudioData8U;
+</code></pre>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-setcallback2">function setCallback2</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback2</span><span class="hljs-params">(
-    Callback2 callback,
-    <span class="hljs-keyword">void</span> * user
+<h3 id="function-audiobuffer">function AudioBuffer</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">AudioBuffer</span><span class="hljs-params">(
+    <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp; filename
 )</span>
 </span></code></pre>
-<p>Set the callback function. </p>
+<p>Constructor for <a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a>. </p>
+<h3 id="function-audiobuffer">function ~AudioBuffer</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">virtual</span> ~AudioBuffer() =<span class="hljs-keyword">default</span>
+</code></pre>
+<p><a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a> destructor. </p>
+<h3 id="function-play">function play</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">play</span><span class="hljs-params">(
+    AudioManager &amp; manager
+)</span> <span class="hljs-keyword">const</span>
+</span></code></pre>
+<p>Play this buffer. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
-<li><strong>callback</strong> The callback function pointer </li>
+<li><strong>manager</strong> Which manager to play the sound with </li>
 </ul>
-<p><strong>See</strong>: <a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Audio::Callback</a></p>
-<h3 id="function-setcallback">function setCallback</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback</span><span class="hljs-params">(
-    Callback callback
-)</span>
+<p><strong>Exceptions</strong>: </p>
+<ul>
+<li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already playing </li>
+</ul>
+<h3 id="function-stop">function stop</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stop</span><span class="hljs-params">(
+    AudioManager &amp; manager
+)</span> <span class="hljs-keyword">const</span>
 </span></code></pre>
-<p>Set the callback function. </p>
+<p>Stop this buffer playing. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
-<li><strong>callback</strong> The callback function pointer </li>
+<li><strong>manager</strong> Which manager to stop the sound with </li>
 </ul>
-<p><strong>Deprecated</strong>: </p>
-<p>Use the <a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">AudioBuffer::setCallback2</a> instead </p>
-<p><strong>See</strong>: <a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Audio::Callback</a></p>
-<h3 id="function-setdata">function setData</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setData</span><span class="hljs-params">(
-    <span class="hljs-keyword">const</span> TypedAudioData data[],
-    size_t size
-)</span>
-</span></code></pre>
-<p>Some deprecated function. </p>
-<p><strong>Deprecated</strong>: </p>
-<p>Use the <a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdatamultiple">AudioBuffer::setDataMultiple</a> instead </p>
-<h3 id="function-setdatamultiple">function setDataMultiple</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">size_t</span> Size&gt;
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDataMultiple</span><span class="hljs-params">(
-    <span class="hljs-keyword">const</span> TypedAudioData data[Size]
-)</span>
-</span></code></pre>
-<h3 id="function-setdata">function setData</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setData</span><span class="hljs-params">(
-    <span class="hljs-keyword">const</span> TypedAudioData &amp; data
-)</span>
-</span></code></pre>
+<p><strong>Exceptions</strong>: </p>
+<ul>
+<li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already stopped </li>
+</ul>
 <h3 id="function-loop">function loop</h3>
 <pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">(
     AudioManager &amp; manager
@@ -1384,44 +1377,51 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 <li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already looping </li>
 </ul>
 <p><strong>Note</strong>: This will loop forever until you call stop </p>
-<h3 id="function-stop">function stop</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stop</span><span class="hljs-params">(
-    AudioManager &amp; manager
-)</span> <span class="hljs-keyword">const</span>
-</span></code></pre>
-<p>Stop this buffer playing. </p>
-<p><strong>Parameters</strong>: </p>
-<ul>
-<li><strong>manager</strong> Which manager to stop the sound with </li>
-</ul>
-<p><strong>Exceptions</strong>: </p>
-<ul>
-<li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already stopped </li>
-</ul>
-<h3 id="function-play">function play</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">play</span><span class="hljs-params">(
-    AudioManager &amp; manager
-)</span> <span class="hljs-keyword">const</span>
-</span></code></pre>
-<p>Play this buffer. </p>
-<p><strong>Parameters</strong>: </p>
-<ul>
-<li><strong>manager</strong> Which manager to play the sound with </li>
-</ul>
-<p><strong>Exceptions</strong>: </p>
-<ul>
-<li><strong><a href="classEngine_1_1Exception.html">Exception</a></strong> If this buffer is already playing </li>
-</ul>
-<h3 id="function-audiobuffer">function ~AudioBuffer</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">virtual</span> ~AudioBuffer() =<span class="hljs-keyword">default</span>
-</code></pre>
-<p><a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a> destructor. </p>
-<h3 id="function-audiobuffer">function AudioBuffer</h3>
-<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">AudioBuffer</span><span class="hljs-params">(
-    <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp; filename
+<h3 id="function-setdata">function setData</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setData</span><span class="hljs-params">(
+    <span class="hljs-keyword">const</span> TypedAudioData &amp; data
 )</span>
 </span></code></pre>
-<p>Constructor for <a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a>. </p>
+<h3 id="function-setdatamultiple">function setDataMultiple</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">size_t</span> Size&gt;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDataMultiple</span><span class="hljs-params">(
+    <span class="hljs-keyword">const</span> TypedAudioData data[Size]
+)</span>
+</span></code></pre>
+<h3 id="function-setdata">function setData</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setData</span><span class="hljs-params">(
+    <span class="hljs-keyword">const</span> TypedAudioData data[],
+    size_t size
+)</span>
+</span></code></pre>
+<p>Some deprecated function. </p>
+<p><strong>Deprecated</strong>: </p>
+<p>Use the <a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdatamultiple">AudioBuffer::setDataMultiple</a> instead </p>
+<h3 id="function-setcallback">function setCallback</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback</span><span class="hljs-params">(
+    Callback callback
+)</span>
+</span></code></pre>
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>Deprecated</strong>: </p>
+<p>Use the <a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">AudioBuffer::setCallback2</a> instead </p>
+<p><strong>See</strong>: <a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Audio::Callback</a></p>
+<h3 id="function-setcallback2">function setCallback2</h3>
+<pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCallback2</span><span class="hljs-params">(
+    Callback2 callback,
+    <span class="hljs-keyword">void</span> * user
+)</span>
+</span></code></pre>
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>See</strong>: <a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Audio::Callback</a></p>
 <h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
 <h3 id="function-getdata">function getData</h3>
 <pre><code class="lang-cpp"><span class="hljs-function"><span class="hljs-keyword">float</span> * <span class="hljs-title">getData</span><span class="hljs-params">()</span>
@@ -1431,16 +1431,16 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 <pre><code class="lang-cpp"><span class="hljs-keyword">bool</span> playing {<span class="hljs-literal">false</span>};
 </code></pre>
 <h2 id="friends">Friends</h2>
+<h3 id="friend-audiomanager">friend AudioManager</h3>
+<pre><code class="lang-cpp"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">class</span> AudioManager;
+</code></pre>
 <h3 id="friend-audiodosomething">friend Audio::doSomething</h3>
 <pre><code class="lang-cpp"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">void</span> Audio::doSomething(
     AudioBuffer &amp; buffer
 );
 </code></pre>
-<h3 id="friend-audiomanager">friend AudioManager</h3>
-<pre><code class="lang-cpp"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">class</span> AudioManager;
-</code></pre>
 <hr>
-<p>Updated on 16 July 2020 at 23:30:24 UTC</p>
+<p>Updated on 20 July 2020 at 21:12:23 UTC</p>
 
                                 
                                 </section>
@@ -1484,7 +1484,7 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2020-07-16T23:30:24.648Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-16T23:30:53.781Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2020-07-20T21:12:23.991Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-20T21:12:50.478Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

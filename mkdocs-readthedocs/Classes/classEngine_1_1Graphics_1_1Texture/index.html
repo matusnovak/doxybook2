@@ -109,25 +109,25 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#public-functions-documentation">Public Functions Documentation</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#function-isloaded">function isLoaded</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-texture">function Texture</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-getdepth">function getDepth</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-getheight">function getHeight</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-texture_1">function ~Texture</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#function-getwidth">function getWidth</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-texture">function ~Texture</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-getheight">function getHeight</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-texture_1">function Texture</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-getdepth">function getDepth</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-isloaded">function isLoaded</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#protected-attributes-documentation">Protected Attributes Documentation</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#variable-type">variable type</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#variable-loaded">variable loaded</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#variable-type">variable type</a>
     </li>
         </ul>
     </li>
@@ -328,12 +328,16 @@
 </thead>
 <tbody>
 <tr>
-<td>bool</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-~texture">~Texture</a></strong>() =default</td>
 </tr>
 <tr>
 <td>virtual int</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-getdepth">getDepth</a></strong>() const =0 <br>Returns the depth of the texture in pixels.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-getwidth">getWidth</a></strong>() const =0 <br>Returns the width of the texture in pixels.</td>
 </tr>
 <tr>
 <td>virtual int</td>
@@ -341,15 +345,11 @@
 </tr>
 <tr>
 <td>virtual int</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-getwidth">getWidth</a></strong>() const =0 <br>Returns the width of the texture in pixels.</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-getdepth">getDepth</a></strong>() const =0 <br>Returns the depth of the texture in pixels.</td>
 </tr>
 <tr>
-<td>virtual</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-~texture">~Texture</a></strong>() =default</td>
-</tr>
-<tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-texture">Texture</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a> type)</td>
+<td>bool</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#function-isloaded">isLoaded</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -363,12 +363,12 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
-</tr>
-<tr>
 <td>bool</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#variable-loaded">loaded</a></strong></td>
+</tr>
+<tr>
+<td><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#enum-type">Type</a></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture/#variable-type">type</a></strong></td>
 </tr>
 </tbody>
 </table>
@@ -383,16 +383,16 @@
 </thead>
 <tbody>
 <tr>
-<td>int</td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-gethandle">getHandle</a></strong>() const</td>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
 </tr>
 <tr>
 <td>virtual</td>
 <td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-~handle">~Handle</a></strong>() =default</td>
 </tr>
 <tr>
-<td></td>
-<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-handle">Handle</a></strong>() =default</td>
+<td>int</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Handle/#function-gethandle">getHandle</a></strong>() const</td>
 </tr>
 </tbody>
 </table>
@@ -485,11 +485,30 @@ int main() {
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-isloaded">function isLoaded</h3>
-<pre><code class="cpp">inline bool isLoaded() const
+<h3 id="function-texture">function Texture</h3>
+<pre><code class="cpp">explicit Texture(
+    Type type
+)
 </code></pre>
 
-<p>Does some more things</p>
+<h3 id="function-texture_1">function ~Texture</h3>
+<pre><code class="cpp">virtual ~Texture() =default
+</code></pre>
+
+<h3 id="function-getwidth">function getWidth</h3>
+<pre><code class="cpp">virtual int getWidth() const =0
+</code></pre>
+
+<p>Returns the width of the texture in pixels. </p>
+<p><strong>Return</strong>: Width in pixels </p>
+<p><strong>Reimplemented by</strong>: <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
+<h3 id="function-getheight">function getHeight</h3>
+<pre><code class="cpp">virtual int getHeight() const =0
+</code></pre>
+
+<p>Returns the height of the texture in pixels. </p>
+<p><strong>Return</strong>: Height in pixels </p>
+<p><strong>Reimplemented by</strong>: <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getheight">Engine::Graphics::Framebuffer::getHeight</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getheight">Engine::Graphics::Texture3D::getHeight</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-getheight">Engine::Graphics::Texture2D::getHeight</a></p>
 <h3 id="function-getdepth">function getDepth</h3>
 <pre><code class="cpp">virtual int getDepth() const =0
 </code></pre>
@@ -498,41 +517,22 @@ int main() {
 <p><strong>Return</strong>: Depth in pixels </p>
 <p><strong>Note</strong>: If this texture is 2D the depth is always 1 pixels </p>
 <p><strong>Reimplemented by</strong>: <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getdepth">Engine::Graphics::Framebuffer::getDepth</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getdepth">Engine::Graphics::Texture3D::getDepth</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-getdepth">Engine::Graphics::Texture2D::getDepth</a></p>
-<h3 id="function-getheight">function getHeight</h3>
-<pre><code class="cpp">virtual int getHeight() const =0
+<h3 id="function-isloaded">function isLoaded</h3>
+<pre><code class="cpp">inline bool isLoaded() const
 </code></pre>
 
-<p>Returns the height of the texture in pixels. </p>
-<p><strong>Return</strong>: Height in pixels </p>
-<p><strong>Reimplemented by</strong>: <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getheight">Engine::Graphics::Framebuffer::getHeight</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getheight">Engine::Graphics::Texture3D::getHeight</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-getheight">Engine::Graphics::Texture2D::getHeight</a></p>
-<h3 id="function-getwidth">function getWidth</h3>
-<pre><code class="cpp">virtual int getWidth() const =0
-</code></pre>
-
-<p>Returns the width of the texture in pixels. </p>
-<p><strong>Return</strong>: Width in pixels </p>
-<p><strong>Reimplemented by</strong>: <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Framebuffer/#function-getwidth">Engine::Graphics::Framebuffer::getWidth</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture3D/#function-getwidth">Engine::Graphics::Texture3D::getWidth</a>, <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Graphics_1_1Texture2D/#function-getwidth">Engine::Graphics::Texture2D::getWidth</a></p>
-<h3 id="function-texture">function ~Texture</h3>
-<pre><code class="cpp">virtual ~Texture() =default
-</code></pre>
-
-<h3 id="function-texture_1">function Texture</h3>
-<pre><code class="cpp">explicit Texture(
-    Type type
-)
-</code></pre>
-
+<p>Does some more things</p>
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
-<h3 id="variable-type">variable type</h3>
-<pre><code class="cpp">Type type;
-</code></pre>
-
 <h3 id="variable-loaded">variable loaded</h3>
 <pre><code class="cpp">bool loaded {false};
 </code></pre>
 
+<h3 id="variable-type">variable type</h3>
+<pre><code class="cpp">Type type;
+</code></pre>
+
 <hr />
-<p>Updated on 16 July 2020 at 23:29:49 UTC</p>
+<p>Updated on 20 July 2020 at 21:11:52 UTC</p>
               
             </div>
           </div>
