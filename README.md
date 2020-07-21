@@ -134,8 +134,6 @@ cmake --build ./build --config MinSizeRel
 ./build/MinSizeRel/doxybook2 --help
 ```
 
-The generated executable will be located in `build/src/DoxybookCli`.
-
 ## Usage
 
 You only need Doxygen, doxybook2 from this repository, and some markdown static site generator.
