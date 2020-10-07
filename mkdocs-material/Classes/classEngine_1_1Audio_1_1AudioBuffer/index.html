@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,21 +9,25 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
     
     
       
-        <title>Engine::Audio::AudioBuffer</title>
+        <title>Engine::Audio::AudioBuffer - Doxybook2 Example</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -40,9 +42,14 @@
   </head>
   
   
-    <body dir="ltr">
-  
     
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -120,8 +127,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -151,7 +156,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/doxybook2/mkdocs-material/" title="Home" class="md-nav__link">
+    <a href="/doxybook2/mkdocs-material/" class="md-nav__link">
       Home
     </a>
   </li>
@@ -163,7 +168,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/doxybook2/mkdocs-material/Classes" title="Classes" class="md-nav__link">
+    <a href="/doxybook2/mkdocs-material/Classes" class="md-nav__link">
       Classes
     </a>
   </li>
@@ -175,7 +180,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/doxybook2/mkdocs-material/Namespaces" title="Namespaces" class="md-nav__link">
+    <a href="/doxybook2/mkdocs-material/Namespaces" class="md-nav__link">
       Namespaces
     </a>
   </li>
@@ -187,7 +192,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/doxybook2/mkdocs-material/Modules" title="Modules" class="md-nav__link">
+    <a href="/doxybook2/mkdocs-material/Modules" class="md-nav__link">
       Modules
     </a>
   </li>
@@ -199,7 +204,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/doxybook2/mkdocs-material/Files" title="Files" class="md-nav__link">
+    <a href="/doxybook2/mkdocs-material/Files" class="md-nav__link">
       Files
     </a>
   </li>
@@ -211,7 +216,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/doxybook2/mkdocs-material/Pages" title="Related Pages" class="md-nav__link">
+    <a href="/doxybook2/mkdocs-material/Pages" class="md-nav__link">
       Related Pages
     </a>
   </li>
@@ -223,7 +228,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/doxybook2/mkdocs-material/Examples" title="Examples" class="md-nav__link">
+    <a href="/doxybook2/mkdocs-material/Examples" class="md-nav__link">
       Examples
     </a>
   </li>
@@ -247,9 +252,7 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -500,9 +503,6 @@
               
                 
                 
-                  
-                
-                
                 <h1 id="engineaudioaudiobuffer">Engine::Audio::AudioBuffer</h1>
 <p><strong>Module:</strong> <strong><a href="/doxybook2/mkdocs-material/Modules/group__Engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxybook2/mkdocs-material/Modules/group__Audio/">Audio buffers and devices</a></strong></p>
 <p><em>A simple audio buffer to hold PCM samples</em> <a href="#detailed-description">More...</a></p>
@@ -646,9 +646,8 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description</h2>
-<pre><code class="cpp">class Engine::Audio::AudioBuffer;
+<pre><code class="language-cpp">class Engine::Audio::AudioBuffer;
 </code></pre>
-
 <p><em>A simple audio buffer to hold PCM samples</em></p>
 <p><strong>Author</strong>: Matus Novak </p>
 <p><strong>Date</strong>: 2017-2019 </p>
@@ -664,21 +663,19 @@
 <p><strong>Warning</strong>: Some random warning </p>
 <p><strong>Precondition</strong>: First initialize the system. </p>
 <p>Lorem ipsum donor </p>
-<pre><code class="cpp">// Some random code
+<pre><code class="language-cpp">// Some random code
 using namespace Engine;
 
 Audio::AudioBuffer buffer(&quot;path/to/file.wav&quot;);
 buffer.play(audioManager);
 </code></pre>
-
 <p>More detailed description! </p>
-<pre><code class="cpp">// Another code sample
+<pre><code class="language-cpp">// Another code sample
 #include &lt;iostream&gt;
 using namespace Engine;
 Audio::AudioBuffer buffer(&quot;path/to/file.wav&quot;);
 std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 </code></pre>
-
 <h2 id="public-types-documentation">Public Types Documentation</h2>
 <h3 id="enum-type">enum Type</h3>
 <table>
@@ -724,33 +721,28 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 </table>
 <p>Different type of audio formats. </p>
 <h3 id="using-audiodata">using AudioData</h3>
-<pre><code class="cpp">template &lt;typename T &gt;
+<pre><code class="language-cpp">template &lt;typename T &gt;
 using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 </code></pre>
-
 <h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
-<pre><code class="cpp">typedef AudioData&lt;uint8_t&gt; Engine::Audio::AudioBuffer::AudioData8U;
+<pre><code class="language-cpp">typedef AudioData&lt;uint8_t&gt; Engine::Audio::AudioBuffer::AudioData8U;
 </code></pre>
-
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 <h3 id="function-audiobuffer">function AudioBuffer</h3>
-<pre><code class="cpp">explicit AudioBuffer(
+<pre><code class="language-cpp">explicit AudioBuffer(
     const std::string &amp; filename
 )
 </code></pre>
-
 <p>Constructor for <a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>. </p>
 <h3 id="function-audiobuffer_1">function ~AudioBuffer</h3>
-<pre><code class="cpp">virtual ~AudioBuffer() =default
+<pre><code class="language-cpp">virtual ~AudioBuffer() =default
 </code></pre>
-
 <p><a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor. </p>
 <h3 id="function-play">function play</h3>
-<pre><code class="cpp">void play(
+<pre><code class="language-cpp">void play(
     AudioManager &amp; manager
 ) const
 </code></pre>
-
 <p>Play this buffer. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -761,11 +753,10 @@ using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 <li><strong><a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already playing </li>
 </ul>
 <h3 id="function-stop">function stop</h3>
-<pre><code class="cpp">void stop(
+<pre><code class="language-cpp">void stop(
     AudioManager &amp; manager
 ) const
 </code></pre>
-
 <p>Stop this buffer playing. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -776,11 +767,10 @@ using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 <li><strong><a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already stopped </li>
 </ul>
 <h3 id="function-loop">function loop</h3>
-<pre><code class="cpp">void loop(
+<pre><code class="language-cpp">void loop(
     AudioManager &amp; manager
 ) const
 </code></pre>
-
 <p>Loop this buffer forever. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -792,34 +782,30 @@ using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 </ul>
 <p><strong>Note</strong>: This will loop forever until you call stop </p>
 <h3 id="function-setdata">function setData</h3>
-<pre><code class="cpp">void setData(
+<pre><code class="language-cpp">void setData(
     const TypedAudioData &amp; data
 )
 </code></pre>
-
 <h3 id="function-setdatamultiple">function setDataMultiple</h3>
-<pre><code class="cpp">template &lt;size_t Size&gt;
+<pre><code class="language-cpp">template &lt;size_t Size&gt;
 inline void setDataMultiple(
     const TypedAudioData data[Size]
 )
 </code></pre>
-
 <h3 id="function-setdata_1">function setData</h3>
-<pre><code class="cpp">void setData(
+<pre><code class="language-cpp">void setData(
     const TypedAudioData data[],
     size_t size
 )
 </code></pre>
-
 <p>Some deprecated function. </p>
 <p><strong>Deprecated</strong>: </p>
 <p>Use the <a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdatamultiple">AudioBuffer::setDataMultiple</a> instead </p>
 <h3 id="function-setcallback">function setCallback</h3>
-<pre><code class="cpp">void setCallback(
+<pre><code class="language-cpp">void setCallback(
     Callback callback
 )
 </code></pre>
-
 <p>Set the callback function. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -829,12 +815,11 @@ inline void setDataMultiple(
 <p>Use the <a href="/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">AudioBuffer::setCallback2</a> instead </p>
 <p><strong>See</strong>: <a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
 <h3 id="function-setcallback2">function setCallback2</h3>
-<pre><code class="cpp">void setCallback2(
+<pre><code class="language-cpp">void setCallback2(
     Callback2 callback,
     void * user
 )
 </code></pre>
-
 <p>Set the callback function. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -843,27 +828,23 @@ inline void setDataMultiple(
 <p><strong>See</strong>: <a href="/doxybook2/mkdocs-material/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
 <h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
 <h3 id="function-getdata">function getData</h3>
-<pre><code class="cpp">float * getData()
+<pre><code class="language-cpp">float * getData()
 </code></pre>
-
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
 <h3 id="variable-playing">variable playing</h3>
-<pre><code class="cpp">bool playing {false};
+<pre><code class="language-cpp">bool playing {false};
 </code></pre>
-
 <h2 id="friends_1">Friends</h2>
 <h3 id="friend-audiomanager">friend AudioManager</h3>
-<pre><code class="cpp">friend class AudioManager;
+<pre><code class="language-cpp">friend class AudioManager;
 </code></pre>
-
 <h3 id="friend-audiodosomething">friend Audio::doSomething</h3>
-<pre><code class="cpp">friend void Audio::doSomething(
+<pre><code class="language-cpp">friend void Audio::doSomething(
     AudioBuffer &amp; buffer
 );
 </code></pre>
-
 <hr />
-<p>Updated on 21 July 2020 at 17:29:51 UTC</p>
+<p>Updated on  7 October 2020 at 17:40:52 UTC</p>
                 
                   
                 
@@ -897,15 +878,15 @@ inline void setDataMultiple(
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

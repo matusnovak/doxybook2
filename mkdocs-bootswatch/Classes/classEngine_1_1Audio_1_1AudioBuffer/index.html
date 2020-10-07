@@ -280,9 +280,8 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description</h2>
-<pre><code class="cpp">class Engine::Audio::AudioBuffer;
+<pre><code class="language-cpp">class Engine::Audio::AudioBuffer;
 </code></pre>
-
 <p><em>A simple audio buffer to hold PCM samples</em></p>
 <p><strong>Author</strong>: Matus Novak </p>
 <p><strong>Date</strong>: 2017-2019 </p>
@@ -298,21 +297,19 @@
 <p><strong>Warning</strong>: Some random warning </p>
 <p><strong>Precondition</strong>: First initialize the system. </p>
 <p>Lorem ipsum donor </p>
-<pre><code class="cpp">// Some random code
+<pre><code class="language-cpp">// Some random code
 using namespace Engine;
 
 Audio::AudioBuffer buffer(&quot;path/to/file.wav&quot;);
 buffer.play(audioManager);
 </code></pre>
-
 <p>More detailed description! </p>
-<pre><code class="cpp">// Another code sample
+<pre><code class="language-cpp">// Another code sample
 #include &lt;iostream&gt;
 using namespace Engine;
 Audio::AudioBuffer buffer(&quot;path/to/file.wav&quot;);
 std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 </code></pre>
-
 <h2 id="public-types-documentation">Public Types Documentation</h2>
 <h3 id="enum-type">enum Type</h3>
 <table>
@@ -358,33 +355,28 @@ std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
 </table>
 <p>Different type of audio formats. </p>
 <h3 id="using-audiodata">using AudioData</h3>
-<pre><code class="cpp">template &lt;typename T &gt;
+<pre><code class="language-cpp">template &lt;typename T &gt;
 using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 </code></pre>
-
 <h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
-<pre><code class="cpp">typedef AudioData&lt;uint8_t&gt; Engine::Audio::AudioBuffer::AudioData8U;
+<pre><code class="language-cpp">typedef AudioData&lt;uint8_t&gt; Engine::Audio::AudioBuffer::AudioData8U;
 </code></pre>
-
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
 <h3 id="function-audiobuffer">function AudioBuffer</h3>
-<pre><code class="cpp">explicit AudioBuffer(
+<pre><code class="language-cpp">explicit AudioBuffer(
     const std::string &amp; filename
 )
 </code></pre>
-
 <p>Constructor for <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>. </p>
 <h3 id="function-audiobuffer_1">function ~AudioBuffer</h3>
-<pre><code class="cpp">virtual ~AudioBuffer() =default
+<pre><code class="language-cpp">virtual ~AudioBuffer() =default
 </code></pre>
-
 <p><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor. </p>
 <h3 id="function-play">function play</h3>
-<pre><code class="cpp">void play(
+<pre><code class="language-cpp">void play(
     AudioManager &amp; manager
 ) const
 </code></pre>
-
 <p>Play this buffer. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -395,11 +387,10 @@ using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 <li><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already playing </li>
 </ul>
 <h3 id="function-stop">function stop</h3>
-<pre><code class="cpp">void stop(
+<pre><code class="language-cpp">void stop(
     AudioManager &amp; manager
 ) const
 </code></pre>
-
 <p>Stop this buffer playing. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -410,11 +401,10 @@ using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 <li><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already stopped </li>
 </ul>
 <h3 id="function-loop">function loop</h3>
-<pre><code class="cpp">void loop(
+<pre><code class="language-cpp">void loop(
     AudioManager &amp; manager
 ) const
 </code></pre>
-
 <p>Loop this buffer forever. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -426,34 +416,30 @@ using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
 </ul>
 <p><strong>Note</strong>: This will loop forever until you call stop </p>
 <h3 id="function-setdata">function setData</h3>
-<pre><code class="cpp">void setData(
+<pre><code class="language-cpp">void setData(
     const TypedAudioData &amp; data
 )
 </code></pre>
-
 <h3 id="function-setdatamultiple">function setDataMultiple</h3>
-<pre><code class="cpp">template &lt;size_t Size&gt;
+<pre><code class="language-cpp">template &lt;size_t Size&gt;
 inline void setDataMultiple(
     const TypedAudioData data[Size]
 )
 </code></pre>
-
 <h3 id="function-setdata_1">function setData</h3>
-<pre><code class="cpp">void setData(
+<pre><code class="language-cpp">void setData(
     const TypedAudioData data[],
     size_t size
 )
 </code></pre>
-
 <p>Some deprecated function. </p>
 <p><strong>Deprecated</strong>: </p>
 <p>Use the <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdatamultiple">AudioBuffer::setDataMultiple</a> instead </p>
 <h3 id="function-setcallback">function setCallback</h3>
-<pre><code class="cpp">void setCallback(
+<pre><code class="language-cpp">void setCallback(
     Callback callback
 )
 </code></pre>
-
 <p>Set the callback function. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -463,12 +449,11 @@ inline void setDataMultiple(
 <p>Use the <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">AudioBuffer::setCallback2</a> instead </p>
 <p><strong>See</strong>: <a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
 <h3 id="function-setcallback2">function setCallback2</h3>
-<pre><code class="cpp">void setCallback2(
+<pre><code class="language-cpp">void setCallback2(
     Callback2 callback,
     void * user
 )
 </code></pre>
-
 <p>Set the callback function. </p>
 <p><strong>Parameters</strong>: </p>
 <ul>
@@ -477,27 +462,23 @@ inline void setDataMultiple(
 <p><strong>See</strong>: <a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
 <h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
 <h3 id="function-getdata">function getData</h3>
-<pre><code class="cpp">float * getData()
+<pre><code class="language-cpp">float * getData()
 </code></pre>
-
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
 <h3 id="variable-playing">variable playing</h3>
-<pre><code class="cpp">bool playing {false};
+<pre><code class="language-cpp">bool playing {false};
 </code></pre>
-
 <h2 id="friends_1">Friends</h2>
 <h3 id="friend-audiomanager">friend AudioManager</h3>
-<pre><code class="cpp">friend class AudioManager;
+<pre><code class="language-cpp">friend class AudioManager;
 </code></pre>
-
 <h3 id="friend-audiodosomething">friend Audio::doSomething</h3>
-<pre><code class="cpp">friend void Audio::doSomething(
+<pre><code class="language-cpp">friend void Audio::doSomething(
     AudioBuffer &amp; buffer
 );
 </code></pre>
-
 <hr />
-<p>Updated on 21 July 2020 at 17:29:52 UTC</p></div>
+<p>Updated on  7 October 2020 at 17:40:54 UTC</p></div>
             </div>
         </div>
 
