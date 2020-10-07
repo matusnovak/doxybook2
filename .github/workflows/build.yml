@@ -191,6 +191,11 @@ jobs:
           sudo apt-get install zip unzip python3-setuptools -y
           mkdir -p ${{ github.workspace }}/public
 
+      - name: Download Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 8.x
+
       - name: Download Hugo
         shell: bash
         run: |
