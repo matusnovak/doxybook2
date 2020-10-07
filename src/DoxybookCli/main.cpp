@@ -20,10 +20,11 @@ static const std::string version = xstr(VERSION);
 static const std::string version = "unknown";
 #endif
 
-static argagg::parser argparser{{{"help", {"-h", "--help"}, "Shows this help message", 0},
-    {"version", {"-v", "--version"}, "Shows the version", 0},
+static argagg::parser argparser{{{"help", {"-h", "--help"}, "Shows this help message.", 0},
+    {"version", {"-v", "--version"}, "Shows the version.", 0},
+    {"quiet", {"-q", "--quiet"}, "Run in quiet mode, no stdout, display only errors and warnings to stderr.", 0},
     {"input", {"-i", "--input"}, "Path to the generated Doxygen XML folder. Must contain index.xml!", 1},
-    {"output", {"-o", "--output"}, "Path to the target folder where to generate markdown files", 1},
+    {"output", {"-o", "--output"}, "Path to the target folder where to generate markdown files.", 1},
     {"json",
         {"-j", "--json"},
         "Generate JSON only, no markdown, into the output path. This will also generate index.json.",
@@ -48,6 +49,11 @@ static argagg::parser argparser{{{"help", {"-h", "--help"}, "Shows this help mes
 
 using namespace Doxybook2;
 
+static const std::string example = "Example usage:\n"
+                                   "    doxybook2 --generate-config doxybook.json\n"
+                                   "    doxybook2 -i ./doxygen/xml -o ./docs/content -c doxybook.json\n"
+                                   "\n";
+
 static const Generator::Filter INDEX_CLASS_FILTER = {Kind::NAMESPACE,
     Kind::CLASS,
     Kind::INTERFACE,
@@ -69,13 +75,24 @@ static const Generator::Filter INDEX_PAGES_FILTER = {Kind::PAGE};
 
 static const Generator::Filter INDEX_EXAMPLES_FILTER = {Kind::EXAMPLE};
 
+static void help() {
+    std::cerr << example;
+    std::cerr << "Options:\n";
+    std::cerr << argparser;
+}
+
 int main(const int argc, char* argv[]) {
     try {
         Config config;
 
         const auto args = argparser.parse(argc, argv);
+
+        if (args["quiet"]) {
+            Log::setQuietMode(true);
+        }
+
         if (args["help"]) {
-            std::cerr << argparser;
+            help();
             return EXIT_SUCCESS;
         }
 
@@ -181,7 +198,7 @@ int main(const int argc, char* argv[]) {
                 generator.printIndex(doxygen, FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {});
             }
         } else {
-            std::cerr << argparser;
+            help();
             return EXIT_FAILURE;
         }
 

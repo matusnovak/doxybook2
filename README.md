@@ -160,6 +160,8 @@ Debug\doxybook2.exe
         Shows this help message
     -v, --version
         Shows the version
+    -q, --quiet
+        Run in quiet mode, no stdout, display only errors and warnings to stderr
     -i, --input
         Path to the generated Doxygen XML folder. Must contain index.xml!
     -o, --output
