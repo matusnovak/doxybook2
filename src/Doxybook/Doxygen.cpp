@@ -1,4 +1,5 @@
 #include "ExceptionUtils.hpp"
+#include "tinyxml2/tinyxml2.h"
 #include <Doxybook/Config.hpp>
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Exception.hpp>
@@ -7,7 +8,6 @@
 #include <Doxybook/Xml.hpp>
 #include <cassert>
 #include <set>
-#include <tinyxml2.h>
 
 #define ASSERT_FIRST_CHILD_ELEMENT(PARENT, NAME)                                                                       \
     const auto NAME = PARENT->FirstChildElement(##NAME);                                                               \

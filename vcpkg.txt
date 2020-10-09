@@ -1,1 +1,1 @@
-argagg catch2 fmt dirent fmt inja nlohmann-json tinyxml2 rang
+argagg catch2 fmt dirent fmt inja nlohmann-json rang

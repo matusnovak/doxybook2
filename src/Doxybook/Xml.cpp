@@ -1,11 +1,9 @@
-#include <tinyxml2.h>
-#include <Doxybook/Xml.hpp>
-#include <Doxybook/Exception.hpp>
 #include "ExceptionUtils.hpp"
+#include "tinyxml2/tinyxml2.h"
+#include <Doxybook/Exception.hpp>
+#include <Doxybook/Xml.hpp>
 
-Doxybook2::Xml::Node::Node(tinyxml2::XMLNode* ptr)
-    : ptr(ptr) {
-
+Doxybook2::Xml::Node::Node(tinyxml2::XMLNode* ptr) : ptr(ptr) {
 }
 
 Doxybook2::Xml::Node Doxybook2::Xml::Node::nextSibling() const {
@@ -32,13 +30,12 @@ Doxybook2::Xml::Element Doxybook2::Xml::Node::asElement() const {
     return Element(ptr->ToElement());
 }
 
-Doxybook2::Xml::Element::Element(tinyxml2::XMLElement* ptr)
-    : ptr(ptr) {
+Doxybook2::Xml::Element::Element(tinyxml2::XMLElement* ptr) : ptr(ptr) {
 }
 
 void Doxybook2::Xml::Element::allChildElements(const std::string& name, const ElementCallback& callback) const {
     auto found = firstChildElement(name);
-    while(found) {
+    while (found) {
         callback(found);
         found = found.nextSiblingElement(name);
     }
@@ -70,13 +67,15 @@ Doxybook2::Xml::Element Doxybook2::Xml::Element::firstChildElement(const std::st
 
 std::string Doxybook2::Xml::Element::getAttr(const std::string& name) const {
     const auto str = ptr->Attribute(name.c_str());
-    if (str == nullptr) throw EXCEPTION("Attribute {} does not exist in element {}", name, ptr->Name());
+    if (str == nullptr)
+        throw EXCEPTION("Attribute {} does not exist in element {}", name, ptr->Name());
     return str;
 }
 
 std::string Doxybook2::Xml::Element::getAttr(const std::string& name, const std::string& defaultValue) const {
     const auto str = ptr->Attribute(name.c_str());
-    if (str == nullptr) return defaultValue;
+    if (str == nullptr)
+        return defaultValue;
     return str;
 }
 

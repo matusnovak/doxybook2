@@ -5,7 +5,6 @@ project(Doxybook2)
 find_package(inja CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
-find_package(tinyxml2 CONFIG REQUIRED)
 find_package(Rang REQUIRED)
 if (MSVC)
   find_package(Dirent REQUIRED)
@@ -34,7 +33,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only tinyxml2::tinyxml2 pantor::inja Rang nlohmann_json nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only pantor::inja Rang nlohmann_json nlohmann_json::nlohmann_json)
 if(MSVC)
   target_link_libraries(${PROJECT_NAME} PRIVATE Dirent)
 endif()
