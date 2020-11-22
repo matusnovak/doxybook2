@@ -13,6 +13,7 @@ static bool isFunctionType(const Doxybook2::Type type) {
         case Doxybook2::Type::FRIENDS:
         case Doxybook2::Type::SIGNALS:
         case Doxybook2::Type::SLOTS:
+        case Doxybook2::Type::EVENTS:
             return true;
         default:
             return false;

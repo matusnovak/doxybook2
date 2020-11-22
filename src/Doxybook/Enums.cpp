@@ -3,96 +3,98 @@
 #include <Doxybook/Enums.hpp>
 #include <unordered_map>
 
-Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
-    static std::unordered_map<std::string, Kind> kinds = {{"define", Kind::DEFINE},
-        {"class", Kind::CLASS},
-        {"namespace", Kind::NAMESPACE},
-        {"struct", Kind::STRUCT},
-        {"interface", Kind::INTERFACE},
-        {"function", Kind::FUNCTION},
-        {"variable", Kind::VARIABLE},
-        {"typedef", Kind::TYPEDEF},
-        {"using", Kind::USING},
-        {"enum", Kind::ENUM},
-        {"union", Kind::UNION},
-        {"enumvalue", Kind::ENUMVALUE},
-        {"dir", Kind::DIR},
-        {"file", Kind::FILE},
-        {"group", Kind::MODULE},
-        {"friend", Kind::FRIEND},
-        {"page", Kind::PAGE},
-        {"example", Kind::EXAMPLE},
-        {"signal", Kind::SIGNAL},
-        {"slot", Kind::SLOT}};
+using KindStrPair = std::pair<std::string, Doxybook2::Kind>;
+using TypeStrPair = std::pair<std::string, Doxybook2::Type>;
+using VirtualStrPair = std::pair<std::string, Doxybook2::Virtual>;
+using VisibilityStrPair = std::pair<std::string, Doxybook2::Visibility>;
 
-    const auto it = kinds.find(str);
-    if (it == kinds.end()) {
+// clang-format off
+static const std::vector<KindStrPair> KIND_STRS = {
+    {"class", Doxybook2::Kind::CLASS},
+    {"namespace", Doxybook2::Kind::NAMESPACE},
+    {"struct", Doxybook2::Kind::STRUCT},
+    {"interface", Doxybook2::Kind::INTERFACE},
+    {"function", Doxybook2::Kind::FUNCTION},
+    {"variable", Doxybook2::Kind::VARIABLE},
+    {"typedef", Doxybook2::Kind::TYPEDEF},
+    {"using", Doxybook2::Kind::USING},
+    {"enum", Doxybook2::Kind::ENUM},
+    {"union", Doxybook2::Kind::UNION},
+    {"enumvalue", Doxybook2::Kind::ENUMVALUE},
+    {"dir", Doxybook2::Kind::DIR},
+    {"file", Doxybook2::Kind::FILE},
+    {"group", Doxybook2::Kind::MODULE},
+    {"friend", Doxybook2::Kind::FRIEND},
+    {"page", Doxybook2::Kind::PAGE},
+    {"example", Doxybook2::Kind::EXAMPLE},
+    {"signal", Doxybook2::Kind::SIGNAL},
+    {"slot", Doxybook2::Kind::SLOT},
+    {"property", Doxybook2::Kind::PROPERTY},
+    {"event", Doxybook2::Kind::EVENT},
+    {"define", Doxybook2::Kind::DEFINE}
+};
+
+static const std::vector<TypeStrPair> TYPE_STRS = {
+    {"attributes", Doxybook2::Type::ATTRIBUTES},
+    {"classes", Doxybook2::Type::CLASSES},
+    {"defines", Doxybook2::Type::DEFINES},
+    {"files", Doxybook2::Type::FILES},
+    {"dirs", Doxybook2::Type::DIRS},
+    {"friends", Doxybook2::Type::FRIENDS},
+    {"functions", Doxybook2::Type::FUNCTIONS},
+    {"modules", Doxybook2::Type::MODULES},
+    {"namespaces", Doxybook2::Type::NAMESPACES},
+    {"types", Doxybook2::Type::TYPES},
+    {"pages", Doxybook2::Type::PAGES},
+    {"examples", Doxybook2::Type::EXAMPLES},
+    {"signals", Doxybook2::Type::SIGNALS},
+    {"slots", Doxybook2::Type::SLOTS},
+    {"events", Doxybook2::Type::EVENTS},
+    {"properties", Doxybook2::Type::PROPERTIES}
+};
+
+static const std::vector<VirtualStrPair> VIRTUAL_STRS = {
+    {"non-virtual", Doxybook2::Virtual::NON_VIRTUAL},
+    {"virtual", Doxybook2::Virtual::VIRTUAL},
+    {"pure", Doxybook2::Virtual::PURE_VIRTUAL},
+    {"pure-virtual", Doxybook2::Virtual::PURE_VIRTUAL}
+};
+
+static const std::vector<VisibilityStrPair> VISIBILITY_STRS = {
+    {"public", Doxybook2::Visibility::PUBLIC},
+    {"protected", Doxybook2::Visibility::PROTECTED},
+    {"private", Doxybook2::Visibility::PRIVATE},
+    {"package", Doxybook2::Visibility::PACKAGE}
+};
+// clang-format on
+
+Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
+    const auto it =
+        std::find_if(KIND_STRS.begin(), KIND_STRS.end(), [&](const KindStrPair& pair) { return pair.first == str; });
+
+    if (it == KIND_STRS.end()) {
         throw EXCEPTION("Kind {} not recognised please contact the author", str);
     }
 
     return it->second;
 }
 
-std::string Doxybook2::toStr(const Kind value) {
-    switch (value) {
-        case Kind::DEFINE:
-            return "define";
-        case Kind::CLASS:
-            return "class";
-        case Kind::DIR:
-            return "dir";
-        case Kind::ENUM:
-            return "enum";
-        case Kind::ENUMVALUE:
-            return "enumvalue";
-        case Kind::FILE:
-            return "file";
-        case Kind::FUNCTION:
-            return "function";
-        case Kind::MODULE:
-            return "module";
-        case Kind::INDEX:
-            return "index";
-        case Kind::INTERFACE:
-            return "interface";
-        case Kind::NAMESPACE:
-            return "namespace";
-        case Kind::UNION:
-            return "union";
-        case Kind::STRUCT:
-            return "struct";
-        case Kind::VARIABLE:
-            return "variable";
-        case Kind::TYPEDEF:
-            return "typedef";
-        case Kind::USING:
-            return "using";
-        case Kind::FRIEND:
-            return "friend";
-        case Kind::PAGE:
-            return "page";
-        case Kind::EXAMPLE:
-            return "example";
-        case Kind::SIGNAL:
-            return "signal";
-        case Kind::SLOT:
-            return "slot";
-        default: {
-            throw EXCEPTION("Kind {} not recognised please contact the author", int(value));
-        }
+std::string Doxybook2::toStr(const Doxybook2::Kind value) {
+    const auto it =
+        std::find_if(KIND_STRS.begin(), KIND_STRS.end(), [&](const KindStrPair& pair) { return pair.second == value; });
+
+    if (it == KIND_STRS.end()) {
+        throw EXCEPTION("Kind {} not recognised please contact the author", int(value));
     }
+
+    return it->first;
 }
 
 Doxybook2::Virtual Doxybook2::toEnumVirtual(const std::string& str) {
-    static std::unordered_map<std::string, Virtual> values = {
-        {"non-virtual", Virtual::NON_VIRTUAL},
-        {"virtual", Virtual::VIRTUAL},
-        {"pure", Virtual::PURE_VIRTUAL},
-        {"pure-virtual", Virtual::PURE_VIRTUAL},
-    };
+    const auto it = std::find_if(
+        VIRTUAL_STRS.begin(), VIRTUAL_STRS.end(), [&](const VirtualStrPair& pair) { return pair.first == str; });
 
-    const auto it = values.find(str);
-    if (it == values.end()) {
+    if (it == VIRTUAL_STRS.end()) {
         throw EXCEPTION("Virtual {} not recognised please contact the author", str);
     }
 
@@ -100,28 +102,22 @@ Doxybook2::Virtual Doxybook2::toEnumVirtual(const std::string& str) {
 }
 
 std::string Doxybook2::toStr(const Virtual value) {
-    switch (value) {
-        case Virtual::NON_VIRTUAL:
-            return "non-virtual";
-        case Virtual::VIRTUAL:
-            return "virtual";
-        case Virtual::PURE_VIRTUAL:
-            return "pure-virtual";
-        default: {
-            throw EXCEPTION("Virtual {} not recognised please contact the author", int(value));
-        }
-    };
+    const auto it = std::find_if(
+        VIRTUAL_STRS.begin(), VIRTUAL_STRS.end(), [&](const VirtualStrPair& pair) { return pair.second == value; });
+
+    if (it == VIRTUAL_STRS.end()) {
+        throw EXCEPTION("Virtual {} not recognised please contact the author", int(value));
+    }
+
+    return it->first;
 }
 
 Doxybook2::Visibility Doxybook2::toEnumVisibility(const std::string& str) {
-    static std::unordered_map<std::string, Visibility> values = {
-        {"public", Visibility::PUBLIC},
-        {"protected", Visibility::PROTECTED},
-        {"private", Visibility::PRIVATE},
-    };
+    const auto it = std::find_if(VISIBILITY_STRS.begin(), VISIBILITY_STRS.end(), [&](const VisibilityStrPair& pair) {
+        return pair.first == str;
+    });
 
-    const auto it = values.find(str);
-    if (it == values.end()) {
+    if (it == VISIBILITY_STRS.end()) {
         throw EXCEPTION("Visibility {} not recognised please contact the author", str);
     }
 
@@ -129,37 +125,22 @@ Doxybook2::Visibility Doxybook2::toEnumVisibility(const std::string& str) {
 }
 
 std::string Doxybook2::toStr(const Visibility value) {
-    switch (value) {
-        case Visibility::PUBLIC:
-            return "public";
-        case Visibility::PROTECTED:
-            return "protected";
-        case Visibility::PRIVATE:
-            return "private";
-        default: {
-            throw EXCEPTION("Visibility {} not recognised please contact the author", int(value));
-        }
-    };
+    const auto it = std::find_if(VISIBILITY_STRS.begin(), VISIBILITY_STRS.end(), [&](const VisibilityStrPair& pair) {
+        return pair.second == value;
+    });
+
+    if (it == VISIBILITY_STRS.end()) {
+        throw EXCEPTION("Visibility {} not recognised please contact the author", int(value));
+    }
+
+    return it->first;
 }
 
 Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
-    static std::unordered_map<std::string, Type> values = {{"attributes", Type::ATTRIBUTES},
-        {"classes", Type::CLASSES},
-        {"defines", Type::DEFINES},
-        {"files", Type::FILES},
-        {"dirs", Type::DIRS},
-        {"friends", Type::FRIENDS},
-        {"functions", Type::FUNCTIONS},
-        {"modules", Type::MODULES},
-        {"namespaces", Type::NAMESPACES},
-        {"types", Type::TYPES},
-        {"pages", Type::PAGES},
-        {"examples", Type::EXAMPLES},
-        {"signals", Type::SIGNALS},
-        {"slots", Type::SLOTS}};
+    const auto it =
+        std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.first == str; });
 
-    const auto it = values.find(str);
-    if (it == values.end()) {
+    if (it == TYPE_STRS.end()) {
         throw EXCEPTION("Type {} not recognised please contact the author", str);
     }
 
@@ -167,48 +148,23 @@ Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
 }
 
 std::string Doxybook2::toStr(const Type value) {
-    switch (value) {
-        case Type::DEFINES:
-            return "defines";
-        case Type::ATTRIBUTES:
-            return "attributes";
-        case Type::FUNCTIONS:
-            return "functions";
-        case Type::CLASSES:
-            return "classes";
-        case Type::NAMESPACES:
-            return "namespaces";
-        case Type::MODULES:
-            return "groups";
-        case Type::TYPES:
-            return "types";
-        case Type::FILES:
-            return "files";
-        case Type::DIRS:
-            return "dirs";
-        case Type::FRIENDS:
-            return "friends";
-        case Type::PAGES:
-            return "pages";
-        case Type::EXAMPLES:
-            return "examples";
-        case Type::SIGNALS:
-            return "signals";
-        case Type::SLOTS:
-            return "slots";
-        default: {
-            throw EXCEPTION("Type {} not recognised please contact the author", int(value));
-        }
+    const auto it =
+        std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.second == value; });
+
+    if (it == TYPE_STRS.end()) {
+        throw EXCEPTION("Type {} not recognised please contact the author", int(value));
     }
+
+    return it->first;
 }
 
 bool Doxybook2::isKindStructured(const Kind kind) {
     switch (kind) {
-        case Kind::CLASS:
-        case Kind::NAMESPACE:
-        case Kind::STRUCT:
-        case Kind::UNION:
-        case Kind::INTERFACE: {
+        case Doxybook2::Kind::CLASS:
+        case Doxybook2::Kind::NAMESPACE:
+        case Doxybook2::Kind::STRUCT:
+        case Doxybook2::Kind::UNION:
+        case Doxybook2::Kind::INTERFACE: {
             return true;
         }
         default: {
@@ -219,20 +175,22 @@ bool Doxybook2::isKindStructured(const Kind kind) {
 
 bool Doxybook2::isKindLanguage(const Kind kind) {
     switch (kind) {
-        case Kind::DEFINE:
-        case Kind::CLASS:
-        case Kind::NAMESPACE:
-        case Kind::STRUCT:
-        case Kind::UNION:
-        case Kind::INTERFACE:
-        case Kind::ENUM:
-        case Kind::FUNCTION:
-        case Kind::TYPEDEF:
-        case Kind::USING:
-        case Kind::FRIEND:
-        case Kind::VARIABLE:
-        case Kind::SIGNAL:
-        case Kind::SLOT: {
+        case Doxybook2::Kind::DEFINE:
+        case Doxybook2::Kind::CLASS:
+        case Doxybook2::Kind::NAMESPACE:
+        case Doxybook2::Kind::STRUCT:
+        case Doxybook2::Kind::UNION:
+        case Doxybook2::Kind::INTERFACE:
+        case Doxybook2::Kind::ENUM:
+        case Doxybook2::Kind::FUNCTION:
+        case Doxybook2::Kind::TYPEDEF:
+        case Doxybook2::Kind::USING:
+        case Doxybook2::Kind::FRIEND:
+        case Doxybook2::Kind::VARIABLE:
+        case Doxybook2::Kind::SIGNAL:
+        case Doxybook2::Kind::SLOT:
+        case Doxybook2::Kind::PROPERTY:
+        case Doxybook2::Kind::EVENT: {
             return true;
         }
         default: {
@@ -243,8 +201,8 @@ bool Doxybook2::isKindLanguage(const Kind kind) {
 
 bool Doxybook2::isKindFile(const Kind kind) {
     switch (kind) {
-        case Kind::DIR:
-        case Kind::FILE: {
+        case Doxybook2::Kind::DIR:
+        case Doxybook2::Kind::FILE: {
             return true;
         }
         default: {

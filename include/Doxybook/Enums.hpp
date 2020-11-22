@@ -1,4 +1,5 @@
 #pragma once
+#include <nlohmann/json.hpp>
 #include <string>
 
 namespace Doxybook2 {
@@ -25,10 +26,12 @@ namespace Doxybook2 {
         PAGE,
         EXAMPLE,
         SIGNAL,
-        SLOT
+        SLOT,
+        PROPERTY,
+        EVENT
     };
 
-    enum class Visibility { PUBLIC, PROTECTED, PRIVATE };
+    enum class Visibility { PUBLIC, PROTECTED, PRIVATE, PACKAGE };
 
     enum class Virtual { NON_VIRTUAL, VIRTUAL, PURE_VIRTUAL };
 
@@ -47,7 +50,9 @@ namespace Doxybook2 {
         PAGES,
         EXAMPLES,
         SIGNALS,
-        SLOTS
+        SLOTS,
+        EVENTS,
+        PROPERTIES
     };
 
     enum class FolderCategory { CLASSES, NAMESPACES, MODULES, PAGES, FILES, EXAMPLES };
@@ -69,4 +74,12 @@ namespace Doxybook2 {
     extern std::string typeToIndexName(const Config& config, FolderCategory type);
     extern std::string typeToIndexTemplate(const Config& config, FolderCategory type);
     extern std::string typeToIndexTitle(const Config& config, FolderCategory type);
+
+    inline void to_json(nlohmann::json& j, const Visibility& p) {
+        j = toStr(p);
+    }
+
+    inline void from_json(const nlohmann::json& j, Visibility& p) {
+        p = toEnumVisibility(j.get<std::string>());
+    }
 } // namespace Doxybook2

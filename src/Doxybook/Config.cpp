@@ -1,36 +1,21 @@
+#include "ExceptionUtils.hpp"
+#include <Doxybook/Config.hpp>
 #include <fstream>
 #include <nlohmann/json.hpp>
-#include <Doxybook/Config.hpp>
-#include "ExceptionUtils.hpp"
 
 class ConfigArg {
 public:
-    ConfigArg(std::string Doxybook2::Config::*ref, std::string key) : key(std::move(key)) {
+    template <typename T> ConfigArg(T Doxybook2::Config::*ref, const std::string& key) : key(std::move(key)) {
         loadFunc = [=](const ConfigArg& self, Doxybook2::Config& config, const nlohmann::json& json) {
             try {
                 if (json.contains(self.key)) {
-                    config.*ref = json.at(self.key).get<std::string>();
+                    config.*ref = json.at(self.key).get<T>();
                 }
             } catch (std::exception& e) {
-                throw EXCEPTION("Failed to get config string value {} error: {}", self.key, e.what());
+                throw EXCEPTION("Failed to get config value {} error: {}", self.key, e.what());
             }
         };
-        saveFunc = [=](const ConfigArg& self, const Doxybook2::Config& config,  nlohmann::json& json) {
-            json[self.key] = config.*ref;
-        };
-    }
-
-    ConfigArg(bool Doxybook2::Config::*ref, std::string key) : key(std::move(key)) {
-        loadFunc = [=](const ConfigArg& self, Doxybook2::Config& config, const nlohmann::json& json) {
-            try {
-                if (json.contains(self.key)) {
-                    config.*ref = json.at(self.key).get<bool>();
-                }
-            } catch (std::exception& e) {
-                throw EXCEPTION("Failed to get config bool value {} error: {}", self.key, e.what());
-            }
-        };
-        saveFunc = [=](const ConfigArg& self, const Doxybook2::Config& config,  nlohmann::json& json) {
+        saveFunc = [=](const ConfigArg& self, const Doxybook2::Config& config, nlohmann::json& json) {
             json[self.key] = config.*ref;
         };
     }
@@ -40,7 +25,7 @@ public:
     std::function<void(const ConfigArg&, const Doxybook2::Config& config, nlohmann::json&)> saveFunc;
 };
 
-static const std::vector<ConfigArg> configArgs = {
+static const std::vector<ConfigArg> CONFIG_ARGS = {
     ConfigArg(&Doxybook2::Config::baseUrl, "baseUrl"),
     ConfigArg(&Doxybook2::Config::fileExt, "fileExt"),
     ConfigArg(&Doxybook2::Config::linkSuffix, "linkSuffix"),
@@ -90,12 +75,15 @@ static const std::vector<ConfigArg> configArgs = {
 
 void Doxybook2::loadConfig(Config& config, const std::string& path) {
     std::ifstream file(path);
-    if (!file) throw EXCEPTION("Failed to open file {} for reading", path);
+    if (!file) {
+        throw EXCEPTION("Failed to open file {} for reading", path);
+    }
+
     std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     try {
         const auto json = nlohmann::json::parse(str);
 
-        for (const auto& arg : configArgs) {
+        for (const auto& arg : CONFIG_ARGS) {
             arg.loadFunc(arg, config, json);
         }
     } catch (std::exception& e) {
@@ -107,7 +95,7 @@ void Doxybook2::loadConfigData(Config& config, const std::string& src) {
     try {
         const auto json = nlohmann::json::parse(src);
 
-        for (const auto& arg : configArgs) {
+        for (const auto& arg : CONFIG_ARGS) {
             arg.loadFunc(arg, config, json);
         }
     } catch (std::exception& e) {
@@ -118,10 +106,12 @@ void Doxybook2::loadConfigData(Config& config, const std::string& src) {
 void Doxybook2::saveConfig(Config& config, const std::string& path) {
     Log::i("Creating default config {}", path);
     std::ofstream file(path);
-    if (!file) throw EXCEPTION("Failed to open file {} for writing", path);
+    if (!file) {
+        throw EXCEPTION("Failed to open file {} for writing", path);
+    }
 
     nlohmann::json json;
-    for (const auto& arg : configArgs) {
+    for (const auto& arg : CONFIG_ARGS) {
         arg.saveFunc(arg, config, json);
     }
 

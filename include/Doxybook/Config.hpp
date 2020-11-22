@@ -1,4 +1,5 @@
 #pragma once
+#include "Enums.hpp"
 #include <string>
 
 namespace Doxybook2 {
@@ -29,7 +30,7 @@ namespace Doxybook2 {
         bool indexInFolders{false};
 
         // If mainpage (indexpage) is present, should it be located
-        // in the outputDir folder or in outpurDir/folderRelatedPagesName folder? 
+        // in the outputDir folder or in outpurDir/folderRelatedPagesName folder?
         bool mainPageInRoot{false};
 
         // Name of the mainpage (indexpage)
@@ -92,4 +93,4 @@ namespace Doxybook2 {
     void loadConfig(Config& config, const std::string& path);
     void loadConfigData(Config& config, const std::string& src);
     void saveConfig(Config& config, const std::string& path);
-}
+} // namespace Doxybook2

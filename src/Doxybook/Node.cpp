@@ -265,6 +265,14 @@ void Doxybook2::Node::parseBaseInfo(const Xml::Element& element) {
             type = Type::SLOTS;
             break;
         }
+        case Kind::EVENT: {
+            type = Type::EVENTS;
+            break;
+        }
+        case Kind::PROPERTY: {
+            type = Type::PROPERTIES;
+            break;
+        }
         default: {
             break;
         }
