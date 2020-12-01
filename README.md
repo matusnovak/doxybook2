@@ -301,6 +301,7 @@ The following is a list of config properties, their default value, and descripti
 | `baseUrl` | `""` | A prefix to put in front of all markdown links (only links to other markdown files). See `linkLowercase` and `linkSuffix` as well. Note hat MkDocs and Hugo will need explicit baseUrl while GitBook uses no base url. VuePress needs this set to `/`. |
 | `linkSuffix` | `".md"` | The suffix to put after all of the markdown links (only links to other markdown files). If using GitBook, leave this to `".md"`, but MkDocs and Hugo needs `"/"` instead. |
 | `fileExt` | `"md"` | The file extension to use when generating markdown files. |
+| `filesFilter` | `[]` | This will filter which files are allowed to be in the output. For example, an array of `[".hpp", ".h"]` will allow only the files that have file extensions `.hpp` or `.h`. When this is empty (by default) then all files are allowed in the output. This also affects `--json` type of output. This does not filter which classes/functions/etc should be extracted from the source files! (For that, use Doxygen's [FILE_PATTERNS](https://www.doxygen.nl/manual/config.html#cfg_file_patterns)) This only affects listing of those files in the output! |
 
 The following are a list of config properties that specify the names of the folders. Each folder holds specific group of C++ stuff. Note that the `Classes` folder also holds interfaces, structs, and unions.
 

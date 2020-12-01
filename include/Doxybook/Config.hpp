@@ -88,6 +88,9 @@ namespace Doxybook2 {
         std::string indexFilesTitle{"Files"};
         std::string indexRelatedPagesTitle{"Pages"};
         std::string indexExamplesTitle{"Examples"};
+
+        // Which source files are allowed to be included in the output? (empty => all)
+        std::vector<std::string> filesFilter{};
     };
 
     void loadConfig(Config& config, const std::string& path);

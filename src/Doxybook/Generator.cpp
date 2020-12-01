@@ -5,6 +5,7 @@
 #include <Doxybook/Path.hpp>
 #include <Doxybook/Renderer.hpp>
 #include <Doxybook/Utils.hpp>
+#include <filesystem>
 #include <fstream>
 
 std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
@@ -110,7 +111,7 @@ void Doxybook2::Generator::summaryRecursive(std::stringstream& ss,
             continue;
         }
         if (filter.find(child->getKind()) != filter.end()) {
-            if (skip.find(child->getKind()) == skip.end()) {
+            if (skip.find(child->getKind()) == skip.end() && shouldInclude(*child)) {
                 ss << std::string(indent, ' ') << "* [" << child->getName() << "](" << folderName << "/"
                    << child->getRefid() << ".md)\n";
             }
@@ -122,7 +123,7 @@ void Doxybook2::Generator::summaryRecursive(std::stringstream& ss,
 void Doxybook2::Generator::printRecursively(const Node& parent, const Filter& filter, const Filter& skip) {
     for (const auto& child : parent.getChildren()) {
         if (filter.find(child->getKind()) != filter.end()) {
-            if (skip.find(child->getKind()) == skip.end()) {
+            if (skip.find(child->getKind()) == skip.end() && shouldInclude(*child)) {
                 nlohmann::json data = jsonConverter.getAsJson(*child);
 
                 std::string path;
@@ -145,7 +146,7 @@ void Doxybook2::Generator::printRecursively(const Node& parent, const Filter& fi
 void Doxybook2::Generator::jsonRecursively(const Node& parent, const Filter& filter, const Filter& skip) {
     for (const auto& child : parent.getChildren()) {
         if (filter.find(child->getKind()) != filter.end()) {
-            if (skip.find(child->getKind()) == skip.end()) {
+            if (skip.find(child->getKind()) == skip.end() && shouldInclude(*child)) {
                 nlohmann::json data = jsonConverter.getAsJson(*child);
 
                 const auto path = Path::join(config.outputDir, child->getRefid() + ".json");
@@ -185,6 +186,10 @@ void Doxybook2::Generator::manifest(const Doxygen& doxygen) {
 nlohmann::json Doxybook2::Generator::manifestRecursively(const Node& node) {
     auto ret = nlohmann::json::array();
     for (const auto& child : node.getChildren()) {
+        if (!shouldInclude(*child)) {
+            continue;
+        }
+
         nlohmann::json data;
         data["kind"] = toStr(child->getKind());
         data["name"] = child->getName();
@@ -221,7 +226,7 @@ nlohmann::json Doxybook2::Generator::buildIndexRecursively(const Node& node, con
     sorted.reserve(node.getChildren().size());
 
     for (const auto& child : node.getChildren()) {
-        if (filter.find(child->getKind()) != filter.end()) {
+        if (filter.find(child->getKind()) != filter.end() && shouldInclude(*child)) {
             sorted.push_back(child.get());
         }
     }
@@ -241,4 +246,22 @@ nlohmann::json Doxybook2::Generator::buildIndexRecursively(const Node& node, con
     }
 
     return json;
+}
+
+bool Doxybook2::Generator::shouldInclude(const Node& node) {
+    switch (node.getKind()) {
+        case Kind::FILE: {
+            if (config.filesFilter.empty()) {
+                return true;
+            }
+
+            const auto ext = std::filesystem::path(node.getName()).extension().string();
+            const auto found = std::find(config.filesFilter.begin(), config.filesFilter.end(), ext);
+
+            return found != config.filesFilter.end();
+        }
+        default: {
+            return true;
+        }
+    }
 }

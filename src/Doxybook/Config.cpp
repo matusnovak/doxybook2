@@ -71,6 +71,7 @@ static const std::vector<ConfigArg> CONFIG_ARGS = {
     ConfigArg(&Doxybook2::Config::indexRelatedPagesTitle, "indexRelatedPagesTitle"),
     ConfigArg(&Doxybook2::Config::indexFilesTitle, "indexFilesTitle"),
     ConfigArg(&Doxybook2::Config::indexExamplesTitle, "indexExamplesTitle"),
+    ConfigArg(&Doxybook2::Config::filesFilter, "filesFilter"),
 };
 
 void Doxybook2::loadConfig(Config& config, const std::string& path) {

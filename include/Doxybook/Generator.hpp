@@ -40,6 +40,7 @@ namespace Doxybook2 {
             const Node& node,
             const Filter& filter,
             const Filter& skip);
+        bool shouldInclude(const Node& node);
 
         const Config& config;
         const JsonConverter& jsonConverter;
