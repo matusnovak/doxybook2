@@ -33,6 +33,7 @@ _[Screenshot taken from here](https://matusnovak.github.io/doxybook2/hugo-learn/
 * [Use as a library](#As-a-library)
 * [Contributing](#Contributing)
 * [Issues](#Issues)
+* [Known Problems](#Known-Problems)
 * [License](#License)
 
 ## Description
@@ -518,6 +519,12 @@ Pull requests are welcome! Feel free to submit a pull requesr to the GitHub of t
 ## Issues 
 
 Got any questions or found a bug? Feel free to submit them to the GitHub issues of this repository <https://github.com/matusnovak/doxybook2/issues>.
+
+## Known Problems
+
+#### cannot use operator[] with a string argument with number
+
+This is a bug caused by the [inja](https://github.com/pantor/inja) dependency in version `3.0.0` and fixed in version `3.1.0`. At the time of writing this, vcpkg only has the broken version `3.0.0`. To fix this problem, use `--head` option when installing `inja` to get the bug-free latest version. See [issue #19](https://github.com/matusnovak/doxybook2/issues/19) for more information.
 
 ## License
 
