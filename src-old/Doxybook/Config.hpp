@@ -1,8 +1,6 @@
 #pragma once
-
-#include <filesystem>
+#include "Enums.hpp"
 #include <string>
-#include <vector>
 
 namespace Doxybook2 {
     struct Config {
@@ -95,7 +93,7 @@ namespace Doxybook2 {
         std::vector<std::string> filesFilter{};
     };
 
-    void loadConfig(Config& config, const std::filesystem::path& path);
+    void loadConfig(Config& config, const std::string& path);
     void loadConfigData(Config& config, const std::string& src);
-    void saveConfig(Config& config, const std::filesystem::path& path);
+    void saveConfig(Config& config, const std::string& path);
 } // namespace Doxybook2

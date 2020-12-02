@@ -56,11 +56,6 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
     Log::i("Loading {}", refidPath);
     Xml xml(refidPath);
 
-    if (ptr->refid == "structwrenbind17_1_1_foreign_klass_impl_1_1_foreign_getter_details_3_01_r_07_t_1_1_5_08_07_08_"
-                      "01const_00_01_fn_01_4") {
-        std::cout << "stop" << std::endl;
-    }
-
     auto root = assertChild(xml, "doxygen");
     auto compounddef = assertChild(root, "compounddef");
 
@@ -305,11 +300,7 @@ void Doxybook2::Node::finalize(const Config& config,
     const NodeCacheMap& cache) {
     // Sort children
     if (config.sort) {
-#ifdef _MSC_VER
         children.sort([](const NodePtr& a, const NodePtr& b) { return a->getName() < b->getName(); });
-#else
-        children.sort([](const NodePtr& a, const NodePtr& b) { return a->getName() > b->getName(); });
-#endif
     }
 
     static const auto anchorMaker = [](const Node& node) {

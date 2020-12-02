@@ -1,7 +1,6 @@
-#include "Macros.hpp"
+#include "ExceptionUtils.hpp"
 #include <Doxybook/Config.hpp>
 #include <Doxybook/Enums.hpp>
-#include <Doxybook/Exception.hpp>
 #include <unordered_map>
 
 using KindStrPair = std::pair<std::string, Doxybook2::Kind>;
@@ -74,7 +73,7 @@ Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
         std::find_if(KIND_STRS.begin(), KIND_STRS.end(), [&](const KindStrPair& pair) { return pair.first == str; });
 
     if (it == KIND_STRS.end()) {
-        throw Exception(LOCATION, "Kind {} not recognised please contact the author", str);
+        throw EXCEPTION("Kind {} not recognised please contact the author", str);
     }
 
     return it->second;
@@ -85,7 +84,7 @@ std::string Doxybook2::toStr(const Doxybook2::Kind value) {
         std::find_if(KIND_STRS.begin(), KIND_STRS.end(), [&](const KindStrPair& pair) { return pair.second == value; });
 
     if (it == KIND_STRS.end()) {
-        throw Exception(LOCATION, "Kind {} not recognised please contact the author", int(value));
+        throw EXCEPTION("Kind {} not recognised please contact the author", int(value));
     }
 
     return it->first;
@@ -96,7 +95,7 @@ Doxybook2::Virtual Doxybook2::toEnumVirtual(const std::string& str) {
         VIRTUAL_STRS.begin(), VIRTUAL_STRS.end(), [&](const VirtualStrPair& pair) { return pair.first == str; });
 
     if (it == VIRTUAL_STRS.end()) {
-        throw Exception(LOCATION, "Virtual {} not recognised please contact the author", str);
+        throw EXCEPTION("Virtual {} not recognised please contact the author", str);
     }
 
     return it->second;
@@ -107,7 +106,7 @@ std::string Doxybook2::toStr(const Virtual value) {
         VIRTUAL_STRS.begin(), VIRTUAL_STRS.end(), [&](const VirtualStrPair& pair) { return pair.second == value; });
 
     if (it == VIRTUAL_STRS.end()) {
-        throw Exception(LOCATION, "Virtual {} not recognised please contact the author", int(value));
+        throw EXCEPTION("Virtual {} not recognised please contact the author", int(value));
     }
 
     return it->first;
@@ -119,7 +118,7 @@ Doxybook2::Visibility Doxybook2::toEnumVisibility(const std::string& str) {
     });
 
     if (it == VISIBILITY_STRS.end()) {
-        throw Exception(LOCATION, "Visibility {} not recognised please contact the author", str);
+        throw EXCEPTION("Visibility {} not recognised please contact the author", str);
     }
 
     return it->second;
@@ -131,7 +130,7 @@ std::string Doxybook2::toStr(const Visibility value) {
     });
 
     if (it == VISIBILITY_STRS.end()) {
-        throw Exception(LOCATION, "Visibility {} not recognised please contact the author", int(value));
+        throw EXCEPTION("Visibility {} not recognised please contact the author", int(value));
     }
 
     return it->first;
@@ -142,7 +141,7 @@ Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
         std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.first == str; });
 
     if (it == TYPE_STRS.end()) {
-        throw Exception(LOCATION, "Type {} not recognised please contact the author", str);
+        throw EXCEPTION("Type {} not recognised please contact the author", str);
     }
 
     return it->second;
@@ -153,7 +152,7 @@ std::string Doxybook2::toStr(const Type value) {
         std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.second == value; });
 
     if (it == TYPE_STRS.end()) {
-        throw Exception(LOCATION, "Type {} not recognised please contact the author", int(value));
+        throw EXCEPTION("Type {} not recognised please contact the author", int(value));
     }
 
     return it->first;
@@ -237,7 +236,7 @@ std::string Doxybook2::typeToFolderName(const Config& config, const Type type) {
             return config.folderExamplesName;
         }
         default: {
-            throw Exception(LOCATION, "Type {} not recognised please contact the author!", int(type));
+            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
     }
 }
@@ -272,7 +271,7 @@ std::string Doxybook2::typeToIndexName(const Config& config, const FolderCategor
                        : config.indexExamplesName;
         }
         default: {
-            throw Exception(LOCATION, "Type {} not recognised please contact the author!", int(type));
+            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
     }
 }
@@ -298,7 +297,7 @@ std::string Doxybook2::typeToIndexTemplate(const Config& config, const FolderCat
             return config.templateIndexExamples;
         }
         default: {
-            throw Exception(LOCATION, "Type {} not recognised please contact the author!", int(type));
+            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
     }
 }
@@ -324,7 +323,7 @@ std::string Doxybook2::typeToIndexTitle(const Config& config, const FolderCatego
             return config.indexExamplesTitle;
         }
         default: {
-            throw Exception(LOCATION, "Type {} not recognised please contact the author!", int(type));
+            throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
     }
 }

@@ -8,13 +8,31 @@
 #include "Audio/Audio.hpp"
 #include "Exception.hpp"
 #include "Graphics/Graphics.hpp"
-#include "Utils/Utils.hpp"
 #include "Gui/Gui.hpp"
+#include "Utils/Utils.hpp"
 
 /*!
  * @brief Some global extern function
  */
 extern std::string someGlobalFunc();
+
+/*!
+ * @brief Some global union thingy
+ */
+union SomeUnion {
+    int a;
+    float b;
+    bool c;
+    char d[4];
+};
+
+/*!
+ * @brief Some global struct thingy
+ */
+struct SomeStruct {
+    SomeUnion data;
+    uint32_t flags;
+};
 
 /*!
  * @brief This namespace contains all of the necessary engine components

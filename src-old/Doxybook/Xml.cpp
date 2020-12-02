@@ -1,4 +1,4 @@
-#include "Macros.hpp"
+#include "ExceptionUtils.hpp"
 #include "tinyxml2/tinyxml2.h"
 #include <Doxybook/Exception.hpp>
 #include <Doxybook/Xml.hpp>
@@ -68,7 +68,7 @@ Doxybook2::Xml::Element Doxybook2::Xml::Element::firstChildElement(const std::st
 std::string Doxybook2::Xml::Element::getAttr(const std::string& name) const {
     const auto str = ptr->Attribute(name.c_str());
     if (str == nullptr)
-        throw Exception(LOCATION, "Attribute {} does not exist in element {}", name, ptr->Name());
+        throw EXCEPTION("Attribute {} does not exist in element {}", name, ptr->Name());
     return str;
 }
 
@@ -104,21 +104,16 @@ const Doxybook2::Xml& Doxybook2::Xml::Element::getDocument() const {
     return *xml;
 }
 
-Doxybook2::Xml::Xml(const std::filesystem::path& path) : doc(new tinyxml2::XMLDocument) {
-    const auto pathStr = path.string();
+Doxybook2::Xml::Xml(const std::string& path) : doc(new tinyxml2::XMLDocument) {
     this->path = path;
-    const auto err = doc->LoadFile(pathStr.c_str());
+    const auto err = doc->LoadFile(path.c_str());
     if (err != tinyxml2::XMLError::XML_SUCCESS) {
-        throw Exception(LOCATION, "{}", doc->ErrorStr());
+        throw EXCEPTION("{}", doc->ErrorStr());
     }
     doc->SetUserData(this);
 }
 
 Doxybook2::Xml::~Xml() = default;
-
-Doxybook2::Xml::Element Doxybook2::Xml::root() const {
-    return Element(doc->RootElement());
-}
 
 Doxybook2::Xml::Element Doxybook2::Xml::firstChildElement(const std::string& name) const {
     return Element(doc->FirstChildElement(name.c_str()));

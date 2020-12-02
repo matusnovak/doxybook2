@@ -1,83 +1,87 @@
-#include "ExceptionUtils.hpp"
+#include "Log.hpp"
+#include "Macros.hpp"
 #include <Doxybook/Config.hpp>
+#include <Doxybook/Exception.hpp>
 #include <fstream>
 #include <nlohmann/json.hpp>
 
+using namespace Doxybook2;
+
 class ConfigArg {
 public:
-    template <typename T> ConfigArg(T Doxybook2::Config::*ref, const std::string& key) : key(std::move(key)) {
-        loadFunc = [=](const ConfigArg& self, Doxybook2::Config& config, const nlohmann::json& json) {
+    template <typename T> ConfigArg(T Config::*ref, const std::string& key) : key(std::move(key)) {
+        loadFunc = [=](const ConfigArg& self, Config& config, const nlohmann::json& json) {
             try {
                 if (json.contains(self.key)) {
                     config.*ref = json.at(self.key).get<T>();
                 }
             } catch (std::exception& e) {
-                throw EXCEPTION("Failed to get config value {} error: {}", self.key, e.what());
+                throw Exception(LOCATION, "Failed to get config value {} error: {}", self.key, e.what());
             }
         };
-        saveFunc = [=](const ConfigArg& self, const Doxybook2::Config& config, nlohmann::json& json) {
+        saveFunc = [=](const ConfigArg& self, const Config& config, nlohmann::json& json) {
             json[self.key] = config.*ref;
         };
     }
 
     std::string key;
-    std::function<void(const ConfigArg&, Doxybook2::Config& config, const nlohmann::json&)> loadFunc;
-    std::function<void(const ConfigArg&, const Doxybook2::Config& config, nlohmann::json&)> saveFunc;
+    std::function<void(const ConfigArg&, Config& config, const nlohmann::json&)> loadFunc;
+    std::function<void(const ConfigArg&, const Config& config, nlohmann::json&)> saveFunc;
 };
 
 static const std::vector<ConfigArg> CONFIG_ARGS = {
-    ConfigArg(&Doxybook2::Config::baseUrl, "baseUrl"),
-    ConfigArg(&Doxybook2::Config::fileExt, "fileExt"),
-    ConfigArg(&Doxybook2::Config::linkSuffix, "linkSuffix"),
-    ConfigArg(&Doxybook2::Config::linkLowercase, "linkLowercase"),
-    ConfigArg(&Doxybook2::Config::copyImages, "copyImages"),
-    ConfigArg(&Doxybook2::Config::sort, "sort"),
-    ConfigArg(&Doxybook2::Config::useFolders, "useFolders"),
-    ConfigArg(&Doxybook2::Config::imagesFolder, "imagesFolder"),
-    ConfigArg(&Doxybook2::Config::mainPageName, "mainPageName"),
-    ConfigArg(&Doxybook2::Config::mainPageInRoot, "mainPageInRoot"),
-    ConfigArg(&Doxybook2::Config::folderClassesName, "folderClassesName"),
-    ConfigArg(&Doxybook2::Config::folderFilesName, "folderFilesName"),
-    ConfigArg(&Doxybook2::Config::folderGroupsName, "folderGroupsName"),
-    ConfigArg(&Doxybook2::Config::folderNamespacesName, "folderNamespacesName"),
-    ConfigArg(&Doxybook2::Config::folderRelatedPagesName, "folderRelatedPagesName"),
-    ConfigArg(&Doxybook2::Config::folderExamplesName, "folderExamplesName"),
-    ConfigArg(&Doxybook2::Config::indexInFolders, "indexInFolders"),
-    ConfigArg(&Doxybook2::Config::indexClassesName, "indexClassesName"),
-    ConfigArg(&Doxybook2::Config::indexFilesName, "indexFilesName"),
-    ConfigArg(&Doxybook2::Config::indexGroupsName, "indexGroupsName"),
-    ConfigArg(&Doxybook2::Config::indexNamespacesName, "indexNamespacesName"),
-    ConfigArg(&Doxybook2::Config::indexRelatedPagesName, "indexRelatedPagesName"),
-    ConfigArg(&Doxybook2::Config::indexExamplesName, "indexExamplesName"),
-    ConfigArg(&Doxybook2::Config::templateIndexClasses, "templateIndexClasses"),
-    ConfigArg(&Doxybook2::Config::templateIndexFiles, "templateIndexFiles"),
-    ConfigArg(&Doxybook2::Config::templateIndexGroups, "templateIndexGroups"),
-    ConfigArg(&Doxybook2::Config::templateIndexNamespaces, "templateIndexNamespaces"),
-    ConfigArg(&Doxybook2::Config::templateIndexRelatedPages, "templateIndexRelatedPages"),
-    ConfigArg(&Doxybook2::Config::templateIndexExamples, "templateIndexExamples"),
-    ConfigArg(&Doxybook2::Config::templateKindGroup, "templateKindGroup"),
-    ConfigArg(&Doxybook2::Config::templateKindClass, "templateKindClass"),
-    ConfigArg(&Doxybook2::Config::templateKindDir, "templateKindDir"),
-    ConfigArg(&Doxybook2::Config::templateKindPage, "templateKindPage"),
-    ConfigArg(&Doxybook2::Config::templateKindInterface, "templateKindInterface"),
-    ConfigArg(&Doxybook2::Config::templateKindFile, "templateKindFile"),
-    ConfigArg(&Doxybook2::Config::templateKindNamespace, "templateKindNamespace"),
-    ConfigArg(&Doxybook2::Config::templateKindStruct, "templateKindStruct"),
-    ConfigArg(&Doxybook2::Config::templateKindUnion, "templateKindUnion"),
-    ConfigArg(&Doxybook2::Config::templateKindExample, "templateKindExample"),
-    ConfigArg(&Doxybook2::Config::indexClassesTitle, "indexClassesTitle"),
-    ConfigArg(&Doxybook2::Config::indexNamespacesTitle, "indexNamespacesTitle"),
-    ConfigArg(&Doxybook2::Config::indexGroupsTitle, "indexGroupsTitle"),
-    ConfigArg(&Doxybook2::Config::indexRelatedPagesTitle, "indexRelatedPagesTitle"),
-    ConfigArg(&Doxybook2::Config::indexFilesTitle, "indexFilesTitle"),
-    ConfigArg(&Doxybook2::Config::indexExamplesTitle, "indexExamplesTitle"),
-    ConfigArg(&Doxybook2::Config::filesFilter, "filesFilter"),
+    ConfigArg(&Config::baseUrl, "baseUrl"),
+    ConfigArg(&Config::fileExt, "fileExt"),
+    ConfigArg(&Config::linkSuffix, "linkSuffix"),
+    ConfigArg(&Config::linkLowercase, "linkLowercase"),
+    ConfigArg(&Config::copyImages, "copyImages"),
+    ConfigArg(&Config::sort, "sort"),
+    ConfigArg(&Config::useFolders, "useFolders"),
+    ConfigArg(&Config::imagesFolder, "imagesFolder"),
+    ConfigArg(&Config::mainPageName, "mainPageName"),
+    ConfigArg(&Config::mainPageInRoot, "mainPageInRoot"),
+    ConfigArg(&Config::folderClassesName, "folderClassesName"),
+    ConfigArg(&Config::folderFilesName, "folderFilesName"),
+    ConfigArg(&Config::folderGroupsName, "folderGroupsName"),
+    ConfigArg(&Config::folderNamespacesName, "folderNamespacesName"),
+    ConfigArg(&Config::folderRelatedPagesName, "folderRelatedPagesName"),
+    ConfigArg(&Config::folderExamplesName, "folderExamplesName"),
+    ConfigArg(&Config::indexInFolders, "indexInFolders"),
+    ConfigArg(&Config::indexClassesName, "indexClassesName"),
+    ConfigArg(&Config::indexFilesName, "indexFilesName"),
+    ConfigArg(&Config::indexGroupsName, "indexGroupsName"),
+    ConfigArg(&Config::indexNamespacesName, "indexNamespacesName"),
+    ConfigArg(&Config::indexRelatedPagesName, "indexRelatedPagesName"),
+    ConfigArg(&Config::indexExamplesName, "indexExamplesName"),
+    ConfigArg(&Config::templateIndexClasses, "templateIndexClasses"),
+    ConfigArg(&Config::templateIndexFiles, "templateIndexFiles"),
+    ConfigArg(&Config::templateIndexGroups, "templateIndexGroups"),
+    ConfigArg(&Config::templateIndexNamespaces, "templateIndexNamespaces"),
+    ConfigArg(&Config::templateIndexRelatedPages, "templateIndexRelatedPages"),
+    ConfigArg(&Config::templateIndexExamples, "templateIndexExamples"),
+    ConfigArg(&Config::templateKindGroup, "templateKindGroup"),
+    ConfigArg(&Config::templateKindClass, "templateKindClass"),
+    ConfigArg(&Config::templateKindDir, "templateKindDir"),
+    ConfigArg(&Config::templateKindPage, "templateKindPage"),
+    ConfigArg(&Config::templateKindInterface, "templateKindInterface"),
+    ConfigArg(&Config::templateKindFile, "templateKindFile"),
+    ConfigArg(&Config::templateKindNamespace, "templateKindNamespace"),
+    ConfigArg(&Config::templateKindStruct, "templateKindStruct"),
+    ConfigArg(&Config::templateKindUnion, "templateKindUnion"),
+    ConfigArg(&Config::templateKindExample, "templateKindExample"),
+    ConfigArg(&Config::indexClassesTitle, "indexClassesTitle"),
+    ConfigArg(&Config::indexNamespacesTitle, "indexNamespacesTitle"),
+    ConfigArg(&Config::indexGroupsTitle, "indexGroupsTitle"),
+    ConfigArg(&Config::indexRelatedPagesTitle, "indexRelatedPagesTitle"),
+    ConfigArg(&Config::indexFilesTitle, "indexFilesTitle"),
+    ConfigArg(&Config::indexExamplesTitle, "indexExamplesTitle"),
+    ConfigArg(&Config::filesFilter, "filesFilter"),
 };
 
-void Doxybook2::loadConfig(Config& config, const std::string& path) {
+void Doxybook2::loadConfig(Config& config, const std::filesystem::path& path) {
     std::ifstream file(path);
     if (!file) {
-        throw EXCEPTION("Failed to open file {} for reading", path);
+        throw Exception(LOCATION, "Failed to open file {} for reading", path.string());
     }
 
     std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -88,7 +92,7 @@ void Doxybook2::loadConfig(Config& config, const std::string& path) {
             arg.loadFunc(arg, config, json);
         }
     } catch (std::exception& e) {
-        throw EXCEPTION("Failed to pase config error {}", e.what());
+        throw Exception(LOCATION, "Failed to parse config error {}", e.what());
     }
 }
 
@@ -100,15 +104,15 @@ void Doxybook2::loadConfigData(Config& config, const std::string& src) {
             arg.loadFunc(arg, config, json);
         }
     } catch (std::exception& e) {
-        throw EXCEPTION("Failed to pase config error {}", e.what());
+        throw Exception(LOCATION, "Failed to parse config error {}", e.what());
     }
 }
 
-void Doxybook2::saveConfig(Config& config, const std::string& path) {
-    Log::i("Creating default config {}", path);
+void Doxybook2::saveConfig(Config& config, const std::filesystem::path& path) {
+    Log::i("Creating default config {}", path.string());
     std::ofstream file(path);
     if (!file) {
-        throw EXCEPTION("Failed to open file {} for writing", path);
+        throw Exception(LOCATION, "Failed to open file {} for writing", path.string());
     }
 
     nlohmann::json json;

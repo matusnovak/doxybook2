@@ -1,14 +1,13 @@
 #pragma once
-#include <filesystem>
+#include <string>
 #include <functional>
 #include <memory>
-#include <string>
 
 namespace tinyxml2 {
     class XMLNode;
     class XMLElement;
     class XMLDocument;
-} // namespace tinyxml2
+}
 
 namespace Doxybook2 {
     class Xml {
@@ -72,18 +71,17 @@ namespace Doxybook2 {
             tinyxml2::XMLElement* ptr{nullptr};
         };
 
-        explicit Xml(const std::filesystem::path& path);
+        explicit Xml(const std::string& path);
         ~Xml();
 
-        Element root() const;
         Element firstChildElement(const std::string& name) const;
 
-        const std::filesystem::path& getPath() const {
+        const std::string& getPath() const {
             return path;
         }
 
     private:
         std::unique_ptr<tinyxml2::XMLDocument> doc;
-        std::filesystem::path path;
+        std::string path;
     };
-} // namespace Doxybook2
+}

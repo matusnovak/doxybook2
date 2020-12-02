@@ -1,13 +1,9 @@
-#include <Doxybook/DefaultTemplates.hpp>
-#include <Doxybook/Doxygen.hpp>
-#include <Doxybook/Generator.hpp>
+#include <Doxybook/Config.hpp>
 #include <Doxybook/Log.hpp>
-#include <Doxybook/Path.hpp>
-#include <Doxybook/TextMarkdownPrinter.hpp>
-#include <Doxybook/TextPlainPrinter.hpp>
-#include <Doxybook/Utils.hpp>
+#include <Doxybook/Parser.hpp>
 #include <argagg/argagg.hpp>
 #include <cassert>
+#include <functional>
 #include <iostream>
 #include <string>
 
@@ -15,196 +11,181 @@
 #define str(a) #a
 
 #ifdef VERSION
-static const std::string version = xstr(VERSION);
+static const std::string VERSION_STR = xstr(VERSION);
 #else
-static const std::string version = "unknown";
+static const std::string VERSION_STR = "unknown";
 #endif
 
-static argagg::parser argparser{{{"help", {"-h", "--help"}, "Shows this help message.", 0},
-    {"version", {"-v", "--version"}, "Shows the version.", 0},
-    {"quiet", {"-q", "--quiet"}, "Run in quiet mode, no stdout, display only errors and warnings to stderr.", 0},
-    {"input", {"-i", "--input"}, "Path to the generated Doxygen XML folder. Must contain index.xml!", 1},
-    {"output", {"-o", "--output"}, "Path to the target folder where to generate markdown files.", 1},
-    {"json",
+// clang-format off
+static argagg::parser argParser{{
+    {
+        "help",
+        {"-h", "--help"},
+        "Shows this help message.",
+        0
+    },
+    {
+        "version",
+        {"-v", "--version"},
+        "Shows the version.",
+        0
+    },
+    {
+        "quiet",
+        {"-q", "--quiet"},
+        "Run in quiet mode, no stdout, display only errors and warnings to stderr.",
+        0
+    },
+    {
+        "input",
+        {"-i", "--input"},
+        "Path to the generated Doxygen XML folder. Must contain index.xml!",
+        1
+    },
+    {
+        "output",
+        {"-o", "--output"},
+        "Path to the target folder where to generate markdown files.",
+        1
+    },
+    {
+        "json",
         {"-j", "--json"},
         "Generate JSON only, no markdown, into the output path. This will also generate index.json.",
-        0},
-    {"config", {"-c", "--config"}, "Optional path to a config json file.", 1},
-    {"config-data", {"--config-data"}, "Optional json data to override config.", 1},
-    {"templates", {"-t", "--templates"}, "Optional path to a folder with templates.", 1},
-    {"generate-config", {"--generate-config"}, "Generate config file given a path to the destination json file", 1},
-    {"generate-templates", {"--generate-templates"}, "Generate template files given a path to a target folder.", 1},
-    {"debug-templates",
+        0
+    },
+    {
+        "config",
+        {"-c", "--config"},
+        "Optional path to a config json file.",
+        1
+    },
+    {
+        "config-data",
+        {"--config-data"}, "Optional json data to override config.",
+        1
+    },
+    {
+        "templates",
+        {"-t", "--templates"}, "Optional path to a folder with templates.",
+        1
+    },
+    {
+        "generate-config",
+        {"--generate-config"}, "Generate config file given a path to the destination json file",
+        1
+    },
+    {
+        "generate-templates",
+        {"--generate-templates"}, "Generate template files given a path to a target folder.",
+        1
+    },
+    {
+        "debug-templates",
         {"-d", "--debug-templates"},
         "Debug templates. This will create JSON for each generated template.",
-        0},
-    {"summary-input",
+        0
+    },
+    {
+        "summary-input",
         {"--summary-input"},
         "Path to the summary input file. This file must contain \"{{doxygen}}\" string.",
-        1},
-    {"summary-output",
+        1
+    },
+    {
+        "summary-output",
         {"--summary-output"},
         "Where to generate summary file. This file will be created. Not a directory!",
-        1}}};
+        1
+    }
+}};
+// clang-format on
 
 using namespace Doxybook2;
 
-static const std::string example = "Example usage:\n"
-                                   "    doxybook2 --generate-config doxybook.json\n"
-                                   "    doxybook2 -i ./doxygen/xml -o ./docs/content -c doxybook.json\n"
-                                   "\n";
+struct State {
+    Config config;
+    std::filesystem::path inputDir;
+    std::filesystem::path outputDir;
 
-static const Generator::Filter INDEX_CLASS_FILTER = {Kind::NAMESPACE,
-    Kind::CLASS,
-    Kind::INTERFACE,
-    Kind::STRUCT,
-    Kind::UNION};
+    std::unique_ptr<Parser> parser;
+};
 
-static const Generator::Filter INDEX_CLASS_FILTER_SKIP = {Kind::NAMESPACE};
+struct Command {
+    std::string name;
+    std::function<void(State&, const argagg::option_results&)> callback;
+};
 
-static const Generator::Filter INDEX_NAMESPACES_FILTER = {Kind::NAMESPACE};
+void commandVersion(State& state, const argagg::option_results& arg) {
+    (void)state;
+    (void)arg;
 
-static const Generator::Filter INDEX_MODULES_FILTER = {Kind::MODULE};
-
-static const Generator::Filter INDEX_FILES_FILTER = {Kind::DIR, Kind::FILE};
-
-static const Generator::Filter LANGUAGE_FILTER =
-    {Kind::NAMESPACE, Kind::CLASS, Kind::INTERFACE, Kind::STRUCT, Kind::UNION, Kind::MODULE};
-
-static const Generator::Filter INDEX_PAGES_FILTER = {Kind::PAGE};
-
-static const Generator::Filter INDEX_EXAMPLES_FILTER = {Kind::EXAMPLE};
-
-static void help() {
-    std::cerr << example;
-    std::cerr << "Options:\n";
-    std::cerr << argparser;
+    std::cerr << VERSION_STR;
 }
+
+void commandHelp(State& state, const argagg::option_results& arg) {
+    (void)state;
+    (void)arg;
+
+    static const std::string EXAMPLE = "Example usage:\n"
+                                       "    doxybook2 --generate-config doxybook.json\n"
+                                       "    doxybook2 -i ./doxygen/xml -o ./docs/content -c doxybook.json\n"
+                                       "\n";
+
+    std::cerr << EXAMPLE;
+    std::cerr << "Options:\n";
+    std::cerr << argParser;
+}
+
+void commandQuiet(State& state, const argagg::option_results& arg) {
+    (void)state;
+    (void)arg;
+
+    Log::setQuietMode(true);
+}
+
+void commandConfig(State& state, const argagg::option_results& arg) {
+    const auto path = std::filesystem::path(arg.as<std::string>());
+    loadConfig(state.config, path);
+}
+
+void commandInputDir(State& state, const argagg::option_results& arg) {
+    state.inputDir = std::filesystem::path(arg.as<std::string>());
+
+    state.parser = std::make_unique<Parser>(state.inputDir);
+}
+
+void commandOutputDir(State& state, const argagg::option_results& arg) {
+    state.outputDir = std::filesystem::path(arg.as<std::string>());
+}
+
+// clang-format off
+static const std::vector<Command> COMMANDS = {
+    {"version", commandVersion},
+    {"help", commandHelp},
+    {"quiet", commandQuiet},
+    {"config", commandConfig},
+    {"input", commandInputDir},
+    {"output", commandOutputDir}
+};
+// clang-format on
 
 int main(const int argc, char* argv[]) {
     try {
-        Config config;
+        State state;
 
-        const auto args = argparser.parse(argc, argv);
+        const auto args = argParser.parse(argc, argv);
 
-        if (args["quiet"]) {
-            Log::setQuietMode(true);
-        }
-
-        if (args["help"]) {
-            help();
-            return EXIT_SUCCESS;
-        }
-
-        else if (args["version"]) {
-            std::cerr << version;
-            return EXIT_SUCCESS;
-        }
-
-        else if (args["generate-config"]) {
-            saveConfig(config, args["generate-config"].as<std::string>());
-            return EXIT_SUCCESS;
-        }
-
-        else if (args["generate-templates"]) {
-            saveDefaultTemplates(args["generate-templates"].as<std::string>());
-            return EXIT_SUCCESS;
-        }
-
-        else if (args["output"]) {
-            if (!args["input"]) {
-                std::cerr << "You need to provide input path!" << std::endl;
-                std::cerr << argparser;
-                return EXIT_FAILURE;
+        for (const auto& cmd : COMMANDS) {
+            const auto& arg = args[cmd.name];
+            if (arg) {
+                cmd.callback(state, arg);
             }
-
-            if (args["config"]) {
-                loadConfig(config, args["config"].as<std::string>());
-            }
-
-            if (args["config-data"]) {
-                loadConfigData(config, args["config-data"].as<std::string>());
-            }
-
-            if (args["debug-templates"]) {
-                config.debugTemplateJson = true;
-            }
-
-            if (args["json"]) {
-                config.useFolders = false;
-                config.imagesFolder = "";
-            }
-
-            config.outputDir = args["output"].as<std::string>();
-
-            Doxygen doxygen(config);
-            TextMarkdownPrinter markdownPrinter(config, args["input"].as<std::string>(), doxygen);
-            TextPlainPrinter plainPrinter(config, doxygen);
-            JsonConverter jsonConverter(config, doxygen, plainPrinter, markdownPrinter);
-
-            std::optional<std::string> templatesPath;
-            if (args["templates"]) {
-                templatesPath = args["templates"].as<std::string>();
-            }
-
-            Generator generator(config, jsonConverter, templatesPath);
-
-            if (config.useFolders) {
-                static const std::array<Type, 6> ALL_GROUPS = {
-                    Type::CLASSES, Type::NAMESPACES, Type::FILES, Type::MODULES, Type::PAGES, Type::EXAMPLES};
-                for (const auto& g : ALL_GROUPS) {
-                    Utils::createDirectory(Path::join(config.outputDir, typeToFolderName(config, g)));
-                }
-                if (!config.imagesFolder.empty()) {
-                    Utils::createDirectory(Path::join(config.outputDir, config.imagesFolder));
-                }
-            }
-
-            Log::i("Loading...");
-            doxygen.load(args["input"].as<std::string>());
-            Log::i("Finalizing...");
-            doxygen.finalize(plainPrinter, markdownPrinter);
-            Log::i("Rendering...");
-
-            if (args["json"]) {
-                generator.json(doxygen, LANGUAGE_FILTER, {});
-                generator.json(doxygen, INDEX_FILES_FILTER, {});
-                generator.json(doxygen, INDEX_PAGES_FILTER, {});
-
-                generator.manifest(doxygen);
-            } else {
-                if (args["summary-input"] && args["summary-output"]) {
-                    generator.summary(doxygen,
-                        args["summary-input"].as<std::string>(),
-                        args["summary-output"].as<std::string>(),
-                        {{FolderCategory::CLASSES, INDEX_CLASS_FILTER, INDEX_CLASS_FILTER_SKIP},
-                            {FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {}},
-                            {FolderCategory::MODULES, INDEX_MODULES_FILTER, {}},
-                            {FolderCategory::FILES, INDEX_FILES_FILTER, {}},
-                            {FolderCategory::PAGES, INDEX_PAGES_FILTER, {}},
-                            {FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {}}});
-                }
-
-                generator.print(doxygen, LANGUAGE_FILTER, {});
-                generator.print(doxygen, INDEX_FILES_FILTER, {});
-                generator.print(doxygen, INDEX_PAGES_FILTER, {});
-                generator.print(doxygen, INDEX_EXAMPLES_FILTER, {});
-
-                generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_PAGES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {});
-            }
-        } else {
-            help();
-            return EXIT_FAILURE;
         }
 
         return EXIT_SUCCESS;
     } catch (std::exception& e) {
-        Log::e(e.what());
+        std::cerr << e.what() << std::endl;
         return EXIT_FAILURE;
     }
 }
