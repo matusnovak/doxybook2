@@ -15,8 +15,17 @@
         throw DOXYGEN_EXCEPTION("Element {} not found in parent {} file {}", NAME, PARENT->Name(), inputDir);
 
 static bool isKindAllowedLanguage(const std::string& kind) {
-    static std::set<std::string> values = {
-        "namespace", "class", "struct", "interface", "function", "variable", "typedef", "enum", "slot", "signal"};
+    static std::set<std::string> values = {"namespace",
+        "class",
+        "struct",
+        "interface",
+        "function",
+        "variable",
+        "typedef",
+        "enum",
+        "slot",
+        "signal",
+        "union"};
     return values.find(kind) != values.end();
 }
 
