@@ -251,7 +251,7 @@ doxybook2 --input ... --output ... --json
 
 ## Config
 
-All of the GitBook, MkDocs, VuePress, Hugo, Docsify static site generators are slighlty different. For example, GitBook resolves markdown links at compile time and they have to end with `.md`, however MkDocs requires the links to end with a forward slash `/`. Using the config you can override this behavior. Only the properties you specify in this JSON file will be overwritten in the application. The properties you do not specify in this config will use the default value instead. 
+All of the GitBook, MkDocs, VuePress, Hugo, Docsify static site generators are slightly different. For example, GitBook resolves markdown links at compile time and they have to end with `.md`, however MkDocs requires the links to end with a forward slash `/`. Using the config you can override this behavior. Only the properties you specify in this JSON file will be overwritten in the application. The properties you do not specify in this config will use the default value instead. 
 
 ### Generate default config
 
