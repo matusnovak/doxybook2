@@ -22,6 +22,8 @@ namespace Doxybook2 {
             std::list<ListData> lists;
             bool eol{false};
             bool tableHeader{false};
+            bool inComputerOutput{false}; 
+            bool validLink{false}; 
         };
 
         void print(PrintData& data,
@@ -29,6 +31,7 @@ namespace Doxybook2 {
             const XmlTextParser::Node* node,
             const XmlTextParser::Node* previous,
             const XmlTextParser::Node* next) const;
+
         void programlisting(std::stringstream& ss, const XmlTextParser::Node& node) const;
 
         std::string inputDir;
