@@ -18,7 +18,7 @@ static const std::string TEMPLATE_HEADER =
 {% include "meta" %}
 ---
 
-{% if exists("title") %}# {{title}}{% else if exists("kind") and kind != "page" %}# {{name}} {{title(kind)}} Reference{% endif %}
+{% if exists("title") %}# {{title}}{% else if exists("kind") %}{% if kind != "page" %}# {{name}} {{title(kind)}} Reference{% endif %}{% endif %}
 )";
 
 static const std::string TEMPLATE_BREADCRUMBS =
