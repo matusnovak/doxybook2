@@ -109,6 +109,19 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
         const auto arg = args.at(0)->get<nlohmann::json>();
         return arg.back();
     });
+    env->add_callback("get", 2, [](inja::Arguments& args) -> nlohmann::json {
+        const auto obj = args.at(0)->get<nlohmann::json>();
+        const auto key = args.at(1)->get<std::string>();
+        return obj.at(key);
+    });
+    env->add_callback("index", 2, [](inja::Arguments& args) -> nlohmann::json {
+        const auto arr = args.at(0)->get<nlohmann::json>();
+        const auto idx = args.at(1)->get<int>();
+        if (idx >= 0)
+            return arr.at(idx);
+        else
+            return arr.at(arr.size() + idx);
+    });
     env->add_callback("countProperty", 3, [](inja::Arguments& args) -> int {
         const auto arr = args.at(0)->get<nlohmann::json>();
         const auto key = args.at(1)->get<std::string>();
