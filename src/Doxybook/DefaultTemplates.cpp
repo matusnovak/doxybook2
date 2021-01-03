@@ -266,7 +266,7 @@ static std::string createTableForTypeLike(const std::string& visibility,
     ss << "{{param.typePlain}} {{param.name}}";
     ss << "{% if existsIn(param, \"defvalPlain\") %} ={{param.defvalPlain}}{% endif %}";
     ss << "{% if not loop.is_last %},{% endif %}";
-    ss << "{% endfor %}\\></br>{% endif %}";
+    ss << "{% endfor %}\\><br>{% endif %}";
 
     ss << "{{child.kind}}{% if existsIn(child, \"type\") %} {{child.type}}{% endif %} | ";
 
@@ -363,7 +363,7 @@ static std::string createTableForFunctionLike(const std::string& visibility,
     ss << "{{param.typePlain}} {{param.name}}";
     ss << "{% if existsIn(param, \"defvalPlain\") %} ={{param.defvalPlain}}{% endif %}";
     ss << "{% if not loop.is_last %},{% endif %}";
-    ss << "{% endfor %}\\></br>{% endif %}";
+    ss << "{% endfor %}\\><br>{% endif %}";
 
     ss << "{% if child.virtual %}virtual {% endif %}";
     ss << "{% if existsIn(child, \"type\") %}{{child.type}}{% endif %} | ";
