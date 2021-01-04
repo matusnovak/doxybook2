@@ -5,85 +5,91 @@
 #include <string>
 
 namespace tinyxml2 {
-    class XMLNode;
-    class XMLElement;
-    class XMLDocument;
+class XMLNode;
+class XMLElement;
+class XMLDocument;
 } // namespace tinyxml2
 
 namespace Doxybook2 {
-    class Xml {
+class Xml {
+public:
+    class Element;
+
+    typedef std::function<void(Element&)> ElementCallback;
+
+    class Node {
     public:
-        class Element;
+        Node() = default;
+        explicit Node(tinyxml2::XMLNode* ptr);
+        ~Node() = default;
 
-        typedef std::function<void(Element&)> ElementCallback;
+        Node nextSibling() const;
+        Node firstChild() const;
 
-        class Node {
-        public:
-            Node() = default;
-            explicit Node(tinyxml2::XMLNode* ptr);
-            ~Node() = default;
+        bool hasText() const;
+        std::string getText() const;
 
-            Node nextSibling() const;
-            Node firstChild() const;
+        bool isElement() const;
+        Element asElement() const;
 
-            bool hasText() const;
-            std::string getText() const;
-
-            bool isElement() const;
-            Element asElement() const;
-
-            operator bool() const {
-                return ptr != nullptr;
-            }
-
-        private:
-            tinyxml2::XMLNode* ptr{nullptr};
-        };
-
-        class Element {
-        public:
-            Element() = default;
-            explicit Element(tinyxml2::XMLElement* ptr);
-            ~Element() = default;
-
-            void allChildElements(const std::string& name, const ElementCallback& callback) const;
-            Node asNode() const;
-            Element nextSiblingElement() const;
-            Node nextSibling() const;
-            Element nextSiblingElement(const std::string& name) const;
-            Node firstChild() const;
-            Element firstChildElement() const;
-            Element firstChildElement(const std::string& name) const;
-            int getLine() const;
-            const Xml& getDocument() const;
-
-            std::string getAttr(const std::string& name) const;
-            std::string getAttr(const std::string& name, const std::string& defaultValue) const;
-            std::string getName() const;
-
-            bool hasText() const;
-            std::string getText() const;
-
-            operator bool() const {
-                return ptr != nullptr;
-            }
-
-        private:
-            tinyxml2::XMLElement* ptr{nullptr};
-        };
-
-        explicit Xml(const std::filesystem::path& path);
-        ~Xml();
-
-        Element root() const;
-        Element firstChildElement(const std::string& name) const;
-
-        const std::filesystem::path& getPath() const {
-            return path;
+        operator bool() const {
+            return ptr != nullptr;
         }
 
     private:
-        std::unique_ptr<tinyxml2::XMLDocument> doc;
-        std::filesystem::path path;
+        tinyxml2::XMLNode* ptr{nullptr};
     };
+
+    class Element {
+    public:
+        Element() = default;
+        explicit Element(tinyxml2::XMLElement* ptr);
+        ~Element() = default;
+
+        void allChildElements(const std::string& name, const ElementCallback& callback) const;
+        Node asNode() const;
+        Element nextSiblingElement() const;
+        Node nextSibling() const;
+        Element nextSiblingElement(const std::string& name) const;
+        Node firstChild() const;
+        Element firstChildElement() const;
+        Element firstChildElement(const std::string& name) const;
+        int getLine() const;
+        const Xml& getDocument() const;
+
+        std::string getAttr(const std::string& name) const;
+        std::string getAttr(const std::string& name, const std::string& defaultValue) const;
+        std::string getName() const;
+
+        bool hasText() const;
+        std::string getText() const;
+
+        operator bool() const {
+            return ptr != nullptr;
+        }
+
+    private:
+        tinyxml2::XMLElement* ptr{nullptr};
+    };
+
+    explicit Xml(const std::filesystem::path& path);
+    explicit Xml(const std::string& source);
+    Xml(const Xml& other) = delete;
+    Xml(Xml&& other) noexcept;
+    ~Xml();
+    void swap(Xml& other) noexcept;
+    Xml& operator=(const Xml& other) = delete;
+    Xml& operator=(Xml&& other) noexcept;
+
+    Element root() const;
+    Element firstChildElement(const std::string& name) const;
+
+    const std::filesystem::path& getPath() const {
+        return path;
+    }
+
+private:
+    std::unique_ptr<tinyxml2::XMLDocument> doc;
+    std::filesystem::path path;
+};
 } // namespace Doxybook2

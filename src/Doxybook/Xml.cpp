@@ -114,6 +114,14 @@ Doxybook2::Xml::Xml(const std::filesystem::path& path) : doc(new tinyxml2::XMLDo
     doc->SetUserData(this);
 }
 
+Doxybook2::Xml::Xml(const std::string& source) : doc(new tinyxml2::XMLDocument) {
+    const auto err = doc->Parse(source.c_str());
+    if (err != tinyxml2::XMLError::XML_SUCCESS) {
+        throw Exception(LOCATION, "{}", doc->ErrorStr());
+    }
+    doc->SetUserData(this);
+}
+
 Doxybook2::Xml::~Xml() = default;
 
 Doxybook2::Xml::Element Doxybook2::Xml::root() const {
@@ -122,4 +130,19 @@ Doxybook2::Xml::Element Doxybook2::Xml::root() const {
 
 Doxybook2::Xml::Element Doxybook2::Xml::firstChildElement(const std::string& name) const {
     return Element(doc->FirstChildElement(name.c_str()));
+}
+
+Doxybook2::Xml::Xml(Xml&& other) noexcept : doc(std::move(other.doc)), path(other.path) {
+}
+
+void Doxybook2::Xml::swap(Xml& other) noexcept {
+    std::swap(doc, other.doc);
+    std::swap(path, other.path);
+}
+
+Doxybook2::Xml& Doxybook2::Xml::operator=(Xml&& other) noexcept {
+    if (this != &other) {
+        swap(other);
+    }
+    return *this;
 }

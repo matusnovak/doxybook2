@@ -43,7 +43,7 @@ struct SomeStruct {
  * @ingroup Engine
  */
 namespace Engine {
-    extern std::string getVersion();
+extern std::string getVersion();
 }
 
 /*! \mainpage Doxybook2 Example
@@ -111,7 +111,7 @@ This manual is divided in the following sections:
 ## Table:
 
 First Header  | Second Header | Third Header
-------------- | ------------- | -------------
+------------: | :-----------: | :------------
 Content Cell  | Content Cell  | Content Cell
 Content Cell  | Content Cell  | Content Cell
 

@@ -75,11 +75,19 @@ namespace Doxybook2 {
     extern std::string typeToIndexTemplate(const Config& config, FolderCategory type);
     extern std::string typeToIndexTitle(const Config& config, FolderCategory type);
 
+    inline void to_json(nlohmann::json& j, const Kind& p) {
+        j = toStr(p);
+    }
+
+    inline void to_json(nlohmann::json& j, const Type& p) {
+        j = toStr(p);
+    }
+
     inline void to_json(nlohmann::json& j, const Visibility& p) {
         j = toStr(p);
     }
 
-    inline void from_json(const nlohmann::json& j, Visibility& p) {
-        p = toEnumVisibility(j.get<std::string>());
+    inline void to_json(nlohmann::json& j, const Virtual& p) {
+        j = toStr(p);
     }
 } // namespace Doxybook2

@@ -2,6 +2,7 @@
 
 #include "Properties.hpp"
 #include <memory>
+#include <optional>
 #include <variant>
 
 namespace Doxybook2 {
@@ -19,8 +20,8 @@ namespace Doxybook2 {
     public:
         NodeRef() = default;
 
-        explicit NodeRef(BasicRef basic) {
-            value = std::move(basic);
+        explicit NodeRef(const BasicRef& basic) {
+            value = basic;
         }
 
         [[nodiscard]] bool empty() const {
@@ -32,7 +33,7 @@ namespace Doxybook2 {
         }
 
     private:
-        std::variant<std::nullptr_t, BasicRef, NodeWeakPtr> value;
+        std::variant<std::nullptr_t, BasicRef, NodeWeakPtr> value{nullptr};
     };
 
     struct Include {
@@ -43,12 +44,15 @@ namespace Doxybook2 {
     using Includes = std::vector<Include>;
 
     struct Location {
-        std::string file;
+        NodeRef file;
         int line{0};
         int column{0};
-        std::string bodyFile;
-        int bodyStart{0};
-        int bodyEnd{0};
+    };
+
+    struct BodyLocation {
+        NodeRef file;
+        int start{0};
+        int end{0};
     };
 
     struct Node {
@@ -66,6 +70,7 @@ namespace Doxybook2 {
 
         Includes includes;
         std::vector<NodeSharedPtr> children;
-        Location location;
+        std::optional<Location> location;
+        std::optional<BodyLocation> bodyLocation;
     };
 } // namespace Doxybook2

@@ -1,6 +1,6 @@
 #include <Doxybook/Config.hpp>
+#include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Log.hpp>
-#include <Doxybook/Parser.hpp>
 #include <argagg/argagg.hpp>
 #include <cassert>
 #include <functional>
@@ -108,7 +108,7 @@ struct State {
     std::filesystem::path inputDir;
     std::filesystem::path outputDir;
 
-    std::unique_ptr<Parser> parser;
+    NodeSharedPtr root;
 };
 
 struct Command {
@@ -151,8 +151,7 @@ void commandConfig(State& state, const argagg::option_results& arg) {
 
 void commandInputDir(State& state, const argagg::option_results& arg) {
     state.inputDir = std::filesystem::path(arg.as<std::string>());
-
-    state.parser = std::make_unique<Parser>(state.inputDir);
+    state.root = Doxygen::parseIndex(state.inputDir);
 }
 
 void commandOutputDir(State& state, const argagg::option_results& arg) {
