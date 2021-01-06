@@ -91,40 +91,56 @@ std::string Doxybook2::Utils::stripAnchor(const std::string& str) {
 }
 
 std::string Doxybook2::Utils::escape(std::string str) {
-    auto contains = false;
+    size_t new_size = 0;
     for (const auto& c : str) {
         switch(c) {
-            case '>':
-            case '<':
-            case '_':
-            case '*': {
-                contains = true;
+            case '<':   // "<" (1) -> "&lt;" (4)
+            case '>': { // ">" (1) -> "&gt;" (4)
+                new_size += 4;
+                break;
+            }
+            case '*':   // "*" (1) -> "&#42;" (5)
+            case '_': { // "_" (1) -> "&#95;" (5)
+                new_size += 5;
                 break;
             }
             default: {
+                new_size += 1;
                 break;
             }
         }
     }
 
-    if (!contains) return str;
+    if (new_size == str.size()) return str;
     
     std::string ret;
-    ret.resize(str.size() * 2);
-    auto* dst = &ret[0];
+    ret.reserve(new_size);
     for (const auto& c : str) {
         switch(c) {
-            case '_':
+            case '<': {
+              ret += "&lt;";
+              break;
+            }
+            case '>': {
+              ret += "&gt;";
+              break;
+            }
             case '*': {
-                *dst++ = '\\';
+              ret += "&#42;";
+              break;
+            }
+            case '_': {
+              ret += "&#95;";
+              break;
             }
             default: {
-                *dst++ = c;
+              ret += c;
+              break;
             }
         }
     }
 
-    return replaceAll(replaceAll(ret, "<", "&lt;"), ">", "&gt;");
+    return ret;
 }
 
 std::vector<std::string> Doxybook2::Utils::split(const std::string& str, const std::string& delim) {
