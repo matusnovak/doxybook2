@@ -292,6 +292,9 @@ The following is a list of config properties, their default value, and descripti
 
 | JSON Key | Default Value | Description |
 | -------- | ------------- | ----------- |
+| `outputDir` | Empty | The directory where output is placed. |
+| `debugTemplateJson` | `false` | Generate the JSON for each rendered template. |
+| `useFolders` | `true` | Organize generated files into subdirectories of `outputDir`. |
 | `copyImages` | `true` | Automatically copy images added into doxygen documentation via `@image`. These images will be copied into folder defined by `imagesFolder` |
 | `sort` | `false` | Sort everything alphabetically. If set to false, the order will stay the same as the order in the Doxygen XML files. |
 | `imagesFolder` | `"images"` | Name of the folder where to copy images. This folder will be automatically created in the output path defined by `--output`. Leave this empty string if you want all of the images to be stored in the root directory (the output directory). |

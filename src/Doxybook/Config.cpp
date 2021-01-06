@@ -26,6 +26,8 @@ public:
 };
 
 static const std::vector<ConfigArg> CONFIG_ARGS = {
+    ConfigArg(&Doxybook2::Config::outputDir, "outputDir"),
+    ConfigArg(&Doxybook2::Config::debugTemplateJson, "debugTemplateJson"),
     ConfigArg(&Doxybook2::Config::baseUrl, "baseUrl"),
     ConfigArg(&Doxybook2::Config::fileExt, "fileExt"),
     ConfigArg(&Doxybook2::Config::linkSuffix, "linkSuffix"),
