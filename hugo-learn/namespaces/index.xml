@@ -26,7 +26,7 @@
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1assets/</guid>
       <description>Engine::Assets Namespace Reference
-Classes     Name     class Engine::Assets::Asset     Updated on 3 January 2021 at 23:08:27 UTC</description>
+Classes     Name     class Engine::Assets::Asset     Updated on 11 January 2021 at 21:50:16 UTC</description>
     </item>
     
     <item>
@@ -56,7 +56,7 @@ Classes     Name     class Engine::Graphics::Framebuffer   class Engine::Graphic
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1gui/</guid>
       <description>Engine::Gui Namespace Reference
-Classes     Name     class Engine::Gui::GuiWidget Some generic gui widget class.     Updated on 3 January 2021 at 23:08:27 UTC</description>
+Classes     Name     class Engine::Gui::GuiWidget Some generic gui widget class.     Updated on 11 January 2021 at 21:50:16 UTC</description>
     </item>
     
     <item>
@@ -66,7 +66,7 @@ Classes     Name     class Engine::Gui::GuiWidget Some generic gui widget class.
       
       <guid>https://matusnovak.github.io/doxybook2/hugo-learn/namespaces/namespaceengine_1_1utils/</guid>
       <description>Engine::Utils Namespace Reference
-Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 3 January 2021 at 23:08:27 UTC</description>
+Namespaces    Name     Engine::Utils::Path Filesystem path utility functions.    Classes     Name     class Engine::Utils::ArrayView Filesystem path utility functions.    Functions     Name     void name_with_underscores(const std::string &amp;amp; arg)    Functions Documentation function name_with_underscores inline void name_with_underscores( const std::string &amp;amp; arg )  Updated on 11 January 2021 at 21:50:16 UTC</description>
     </item>
     
     <item>
