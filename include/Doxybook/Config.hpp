@@ -91,6 +91,16 @@ namespace Doxybook2 {
 
         // Which source files are allowed to be included in the output? (empty => all)
         std::vector<std::string> filesFilter{};
+
+        // Folder to generate.
+        std::vector<FolderCategory> foldersToGenerate{
+            FolderCategory::MODULES,
+            FolderCategory::CLASSES,
+            FolderCategory::FILES,
+            FolderCategory::PAGES,
+            FolderCategory::NAMESPACES,
+            FolderCategory::EXAMPLES,
+        };
     };
 
     void loadConfig(Config& config, const std::string& path);

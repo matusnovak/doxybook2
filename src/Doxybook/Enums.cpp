@@ -7,6 +7,7 @@ using KindStrPair = std::pair<std::string, Doxybook2::Kind>;
 using TypeStrPair = std::pair<std::string, Doxybook2::Type>;
 using VirtualStrPair = std::pair<std::string, Doxybook2::Virtual>;
 using VisibilityStrPair = std::pair<std::string, Doxybook2::Visibility>;
+using FolderCategoryStrPair = std::pair<std::string, Doxybook2::FolderCategory>;
 
 // clang-format off
 static const std::vector<KindStrPair> KIND_STRS = {
@@ -66,96 +67,88 @@ static const std::vector<VisibilityStrPair> VISIBILITY_STRS = {
     {"private", Doxybook2::Visibility::PRIVATE},
     {"package", Doxybook2::Visibility::PACKAGE}
 };
+
+static const std::vector<FolderCategoryStrPair> FOLDER_CATEGORY_STRS = {
+    {"modules", Doxybook2::FolderCategory::MODULES},
+    {"namespaces", Doxybook2::FolderCategory::NAMESPACES},
+    {"files", Doxybook2::FolderCategory::FILES},
+    {"examples", Doxybook2::FolderCategory::EXAMPLES},
+    {"classes", Doxybook2::FolderCategory::CLASSES},
+    {"pages", Doxybook2::FolderCategory::PAGES}
+};
 // clang-format on
 
-Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
-    const auto it =
-        std::find_if(KIND_STRS.begin(), KIND_STRS.end(), [&](const KindStrPair& pair) { return pair.first == str; });
+template <typename Enum> struct EnumName { static inline const auto name = "unknown"; };
 
-    if (it == KIND_STRS.end()) {
-        throw EXCEPTION("Kind {} not recognised please contact the author", str);
+template <> struct EnumName<Doxybook2::Kind> { static inline const auto name = "Kind"; };
+template <> struct EnumName<Doxybook2::Type> { static inline const auto name = "Type"; };
+template <> struct EnumName<Doxybook2::Virtual> { static inline const auto name = "Virtual"; };
+template <> struct EnumName<Doxybook2::Visibility> { static inline const auto name = "Visibility"; };
+template <> struct EnumName<Doxybook2::FolderCategory> { static inline const auto name = "FolderCategory"; };
+
+template <typename Enum>
+static Enum toEnum(const std::vector<std::pair<std::string, Enum>>& pairs, const std::string& str) {
+    const auto it = std::find_if(
+        pairs.begin(), pairs.end(), [&](const std::pair<std::string, Enum>& pair) { return pair.first == str; });
+
+    if (it == pairs.end()) {
+        throw EXCEPTION("String '{}' not recognised as a valid enum of '{}'", str, EnumName<Enum>::name);
     }
 
     return it->second;
 }
 
-std::string Doxybook2::toStr(const Doxybook2::Kind value) {
-    const auto it =
-        std::find_if(KIND_STRS.begin(), KIND_STRS.end(), [&](const KindStrPair& pair) { return pair.second == value; });
+template <typename Enum>
+static std::string fromEnum(const std::vector<std::pair<std::string, Enum>>& pairs, const Enum value) {
+    const auto it = std::find_if(
+        pairs.begin(), pairs.end(), [&](const std::pair<std::string, Enum>& pair) { return pair.second == value; });
 
-    if (it == KIND_STRS.end()) {
-        throw EXCEPTION("Kind {} not recognised please contact the author", int(value));
+    if (it == pairs.end()) {
+        throw EXCEPTION(
+            "Enum '{}' of value '{}' not recognised please contact the author", EnumName<Enum>::name, int(value));
     }
 
     return it->first;
+}
+
+Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
+    return toEnum<Kind>(KIND_STRS, str);
+}
+
+std::string Doxybook2::toStr(const Kind value) {
+    return fromEnum<Kind>(KIND_STRS, value);
 }
 
 Doxybook2::Virtual Doxybook2::toEnumVirtual(const std::string& str) {
-    const auto it = std::find_if(
-        VIRTUAL_STRS.begin(), VIRTUAL_STRS.end(), [&](const VirtualStrPair& pair) { return pair.first == str; });
-
-    if (it == VIRTUAL_STRS.end()) {
-        throw EXCEPTION("Virtual {} not recognised please contact the author", str);
-    }
-
-    return it->second;
+    return toEnum<Virtual>(VIRTUAL_STRS, str);
 }
 
 std::string Doxybook2::toStr(const Virtual value) {
-    const auto it = std::find_if(
-        VIRTUAL_STRS.begin(), VIRTUAL_STRS.end(), [&](const VirtualStrPair& pair) { return pair.second == value; });
-
-    if (it == VIRTUAL_STRS.end()) {
-        throw EXCEPTION("Virtual {} not recognised please contact the author", int(value));
-    }
-
-    return it->first;
+    return fromEnum<Virtual>(VIRTUAL_STRS, value);
 }
 
 Doxybook2::Visibility Doxybook2::toEnumVisibility(const std::string& str) {
-    const auto it = std::find_if(VISIBILITY_STRS.begin(), VISIBILITY_STRS.end(), [&](const VisibilityStrPair& pair) {
-        return pair.first == str;
-    });
-
-    if (it == VISIBILITY_STRS.end()) {
-        throw EXCEPTION("Visibility {} not recognised please contact the author", str);
-    }
-
-    return it->second;
+    return toEnum<Visibility>(VISIBILITY_STRS, str);
 }
 
 std::string Doxybook2::toStr(const Visibility value) {
-    const auto it = std::find_if(VISIBILITY_STRS.begin(), VISIBILITY_STRS.end(), [&](const VisibilityStrPair& pair) {
-        return pair.second == value;
-    });
-
-    if (it == VISIBILITY_STRS.end()) {
-        throw EXCEPTION("Visibility {} not recognised please contact the author", int(value));
-    }
-
-    return it->first;
+    return fromEnum<Visibility>(VISIBILITY_STRS, value);
 }
 
 Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
-    const auto it =
-        std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.first == str; });
-
-    if (it == TYPE_STRS.end()) {
-        throw EXCEPTION("Type {} not recognised please contact the author", str);
-    }
-
-    return it->second;
+    return toEnum<Type>(TYPE_STRS, str);
 }
 
 std::string Doxybook2::toStr(const Type value) {
-    const auto it =
-        std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.second == value; });
+    return fromEnum<Type>(TYPE_STRS, value);
+}
 
-    if (it == TYPE_STRS.end()) {
-        throw EXCEPTION("Type {} not recognised please contact the author", int(value));
-    }
+Doxybook2::FolderCategory Doxybook2::toEnumFolderCategory(const std::string& str) {
+    return toEnum<FolderCategory>(FOLDER_CATEGORY_STRS, str);
+}
 
-    return it->first;
+std::string Doxybook2::toStr(const FolderCategory value) {
+    return fromEnum<FolderCategory>(FOLDER_CATEGORY_STRS, value);
 }
 
 bool Doxybook2::isKindStructured(const Kind kind) {
@@ -207,6 +200,35 @@ bool Doxybook2::isKindFile(const Kind kind) {
         }
         default: {
             return false;
+        }
+    }
+}
+
+std::string Doxybook2::typeFolderCategoryToFolderName(const Config& config, FolderCategory type) {
+    if (!config.useFolders)
+        return "";
+
+    switch (type) {
+        case FolderCategory::MODULES: {
+            return config.folderGroupsName;
+        }
+        case FolderCategory::CLASSES: {
+            return config.folderClassesName;
+        }
+        case FolderCategory::NAMESPACES: {
+            return config.folderNamespacesName;
+        }
+        case FolderCategory::FILES: {
+            return config.folderFilesName;
+        }
+        case FolderCategory::PAGES: {
+            return config.folderRelatedPagesName;
+        }
+        case FolderCategory::EXAMPLES: {
+            return config.folderExamplesName;
+        }
+        default: {
+            throw EXCEPTION("FolderCategory {} not recognised please contant the author!", int(type));
         }
     }
 }
