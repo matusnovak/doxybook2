@@ -61,11 +61,13 @@ namespace Doxybook2 {
     extern Type toEnumType(const std::string& str);
     extern Visibility toEnumVisibility(const std::string& str);
     extern Virtual toEnumVirtual(const std::string& str);
+    extern FolderCategory toEnumFolderCategory(const std::string& str);
 
     extern std::string toStr(Kind value);
     extern std::string toStr(Type value);
     extern std::string toStr(Visibility value);
     extern std::string toStr(Virtual value);
+    extern std::string toStr(FolderCategory value);
 
     extern bool isKindLanguage(Kind kind);
     extern bool isKindStructured(Kind kind);
@@ -81,5 +83,13 @@ namespace Doxybook2 {
 
     inline void from_json(const nlohmann::json& j, Visibility& p) {
         p = toEnumVisibility(j.get<std::string>());
+    }
+
+    inline void to_json(nlohmann::json& j, const FolderCategory& p) {
+        j = toStr(p);
+    }
+
+    inline void from_json(const nlohmann::json& j, FolderCategory& p) {
+        p = toEnumFolderCategory(j.get<std::string>());
     }
 } // namespace Doxybook2

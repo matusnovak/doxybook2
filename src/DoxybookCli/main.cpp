@@ -173,29 +173,83 @@ int main(const int argc, char* argv[]) {
 
                 generator.manifest(doxygen);
             } else {
+                const auto shouldGenerate = [&](const FolderCategory category) {
+                    return std::find(config.foldersToGenerate.begin(), config.foldersToGenerate.end(), category) !=
+                           config.foldersToGenerate.end();
+                };
+
                 if (args["summary-input"] && args["summary-output"]) {
+                    std::vector<Generator::SummarySection> sections;
+                    if (shouldGenerate(FolderCategory::CLASSES)) {
+                        sections.push_back({FolderCategory::CLASSES, INDEX_CLASS_FILTER, INDEX_CLASS_FILTER_SKIP});
+                    }
+                    if (shouldGenerate(FolderCategory::NAMESPACES)) {
+                        sections.push_back({FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {}});
+                    }
+                    if (shouldGenerate(FolderCategory::MODULES)) {
+                        sections.push_back({FolderCategory::MODULES, INDEX_MODULES_FILTER, {}});
+                    }
+                    if (shouldGenerate(FolderCategory::FILES)) {
+                        sections.push_back({FolderCategory::FILES, INDEX_FILES_FILTER, {}});
+                    }
+                    if (shouldGenerate(FolderCategory::PAGES)) {
+                        sections.push_back({FolderCategory::PAGES, INDEX_PAGES_FILTER, {}});
+                    }
+                    if (shouldGenerate(FolderCategory::EXAMPLES)) {
+                        sections.push_back({FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {}});
+                    }
+
                     generator.summary(doxygen,
                         args["summary-input"].as<std::string>(),
                         args["summary-output"].as<std::string>(),
-                        {{FolderCategory::CLASSES, INDEX_CLASS_FILTER, INDEX_CLASS_FILTER_SKIP},
-                            {FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {}},
-                            {FolderCategory::MODULES, INDEX_MODULES_FILTER, {}},
-                            {FolderCategory::FILES, INDEX_FILES_FILTER, {}},
-                            {FolderCategory::PAGES, INDEX_PAGES_FILTER, {}},
-                            {FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {}}});
+                        sections);
                 }
 
-                generator.print(doxygen, LANGUAGE_FILTER, {});
-                generator.print(doxygen, INDEX_FILES_FILTER, {});
-                generator.print(doxygen, INDEX_PAGES_FILTER, {});
-                generator.print(doxygen, INDEX_EXAMPLES_FILTER, {});
+                Generator::Filter languageFilder;
+                if (shouldGenerate(FolderCategory::CLASSES)) {
+                    languageFilder.insert(Kind::CLASS);
+                    languageFilder.insert(Kind::STRUCT);
+                    languageFilder.insert(Kind::UNION);
+                    languageFilder.insert(Kind::INTERFACE);
+                }
+                if (shouldGenerate(FolderCategory::NAMESPACES)) {
+                    languageFilder.insert(Kind::NAMESPACE);
+                }
+                if (shouldGenerate(FolderCategory::MODULES)) {
+                    languageFilder.insert(Kind::MODULE);
+                }
+                if (!languageFilder.empty()) {
+                    generator.print(doxygen, LANGUAGE_FILTER, {});
+                }
 
-                generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_PAGES_FILTER, {});
-                generator.printIndex(doxygen, FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {});
+                if (shouldGenerate(FolderCategory::FILES)) {
+                    generator.print(doxygen, INDEX_FILES_FILTER, {});
+                }
+                if (shouldGenerate(FolderCategory::PAGES)) {
+                    generator.print(doxygen, INDEX_PAGES_FILTER, {});
+                }
+                if (shouldGenerate(FolderCategory::EXAMPLES)) {
+                    generator.print(doxygen, INDEX_EXAMPLES_FILTER, {});
+                }
+
+                if (shouldGenerate(FolderCategory::CLASSES)) {
+                    generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER, {});
+                }
+                if (shouldGenerate(FolderCategory::NAMESPACES)) {
+                    generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {});
+                }
+                if (shouldGenerate(FolderCategory::MODULES)) {
+                    generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER, {});
+                }
+                if (shouldGenerate(FolderCategory::FILES)) {
+                    generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER, {});
+                }
+                if (shouldGenerate(FolderCategory::PAGES)) {
+                    generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_PAGES_FILTER, {});
+                }
+                if (shouldGenerate(FolderCategory::EXAMPLES)) {
+                    generator.printIndex(doxygen, FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {});
+                }
             }
         } else {
             help();
