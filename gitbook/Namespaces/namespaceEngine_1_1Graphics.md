@@ -1,19 +1,9 @@
 ---
 title: Engine::Graphics
 
-
 ---
 
 # Engine::Graphics
-
-
-
-
-
-
-
-
-
 
 ## Classes
 
@@ -25,20 +15,11 @@ title: Engine::Graphics
 | class | **[Engine::Graphics::Texture2D](/Classes/classEngine_1_1Graphics_1_1Texture2D.md)**  |
 | class | **[Engine::Graphics::Texture3D](/Classes/classEngine_1_1Graphics_1_1Texture3D.md)** <br>Some deprecated class.  |
 
-
-
-
 ## Functions
 
 |                | Name           |
 | -------------- | -------------- |
-| int | **[getHandle](/Namespaces/namespaceEngine_1_1Graphics.md#function-gethandle)**([Handle](/Classes/classEngine_1_1Graphics_1_1Handle.md) & handle) <br>Some namespace inline function.  |
-
-
-
-
-
-
+| int | **[getHandle](/Namespaces/namespaceEngine_1_1Graphics.md#function-gethandle)**([Handle](/Classes/classEngine_1_1Graphics_1_1Handle.md) & handle)<br>Some namespace inline function.  |
 
 
 ## Functions Documentation
@@ -57,33 +38,6 @@ Some namespace inline function.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -------------------------------
 
-Updated on 12 January 2021 at 21:41:22 UTC
+Updated on 12 January 2021 at 23:37:34 UTC
