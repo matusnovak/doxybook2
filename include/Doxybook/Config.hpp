@@ -101,6 +101,12 @@ namespace Doxybook2 {
             FolderCategory::NAMESPACES,
             FolderCategory::EXAMPLES,
         };
+
+        // Formulas (Latex)
+        std::string formulaInlineStart{"\\("};
+        std::string formulaInlineEnd{"\\)"};
+        std::string formulaBlockStart{"\\["};
+        std::string formulaBlockEnd{"\\]"};
     };
 
     void loadConfig(Config& config, const std::string& path);

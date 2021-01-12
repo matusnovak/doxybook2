@@ -73,6 +73,10 @@ static const std::vector<ConfigArg> CONFIG_ARGS = {
     ConfigArg(&Doxybook2::Config::indexExamplesTitle, "indexExamplesTitle"),
     ConfigArg(&Doxybook2::Config::filesFilter, "filesFilter"),
     ConfigArg(&Doxybook2::Config::foldersToGenerate, "foldersToGenerate"),
+    ConfigArg(&Doxybook2::Config::formulaInlineStart, "formulaInlineStart"),
+    ConfigArg(&Doxybook2::Config::formulaInlineEnd, "formulaInlineEnd"),
+    ConfigArg(&Doxybook2::Config::formulaBlockStart, "formulaBlockStart"),
+    ConfigArg(&Doxybook2::Config::formulaBlockEnd, "formulaBlockEnd"),
 };
 
 void Doxybook2::loadConfig(Config& config, const std::string& path) {

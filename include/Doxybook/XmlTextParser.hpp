@@ -1,7 +1,7 @@
 #pragma once
+#include "Xml.hpp"
 #include <string>
 #include <vector>
-#include "Xml.hpp"
 
 namespace Doxybook2 {
     class XmlTextParser {
@@ -62,6 +62,7 @@ namespace Doxybook2 {
                 MDASH,
                 LINEBREAK,
                 ONLYFOR,
+                FORMULA,
             };
 
             Type type{Type::UNKNOWN};
@@ -73,7 +74,8 @@ namespace Doxybook2 {
         static Node parseParas(const Xml::Element& element);
         static Node parsePara(const Xml::Element& element);
         static Node::Type strToType(const std::string& str);
+
     private:
         static void traverse(std::vector<Node*> tree, const Xml::Node& element);
     };
-}
+} // namespace Doxybook2

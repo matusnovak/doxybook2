@@ -364,6 +364,42 @@ These properties define the title to use in the templates specified above.
 | `indexRelatedPagesTitle` | `"Pages"` | 
 | `indexExamplesTitle` | `"Examples"` |
 
+These properties modify how Latex formulas should be generated. 
+
+| JSON Key | Default Value | Description |
+| -------- | ------------- | ----------- |
+| `formulaInlineStart` | `"\\("` | The string to prepend the inline formula with in Markdown. |
+| `formulaInlineEnd` | `"\\)"` | The string to append the inline formula with in Markdown. |
+| `formulaBlockStart` | `"\\["` | The string to prepend the block formula with in Markdown. |
+| `formulaBlockEnd` | `"\\]"` | The string to append the block formula with in Markdown. |
+
+## Latex formulas
+
+Mkdocs can properly display these formulas for you. Read the [mathjax documentation for mkdocs](https://squidfunk.github.io/mkdocs-material/reference/mathjax/) 
+to understand how to enable it. An example of this has been provided in the `doxybook2/examples/src/Engine.hpp` 
+file at the bottom. It can be viewed online in the 
+[mkdocs-readthedocs demo](https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/) 
+(Section "Inline formula" and "Block formula").
+
+Double check you config for properties of `formulaInlineStart/End` and `formulaBlockStart/End`. 
+You may need to modify them to match the Markdown formula render you are using.
+
+For example, the following comment block:
+
+```cpp
+/**
+ *  The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is 
+ * \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$.
+ */
+```
+
+Will be generated as the following Markdown:
+
+```md
+The distance between \((x_1,y_1)\) and \((x_2,y_2)\) is 
+ \(\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\).
+```
+
 ## Templates
 
 This doxybook utility uses templates very similar to Jinja on Python. The template engine used is [inja](https://github.com/pantor/inja) for C++. There are already predefined templates stored inside of the doxybook executable file. If you do not specify an explicit template folder via `--templates` the default templates will be used. 

@@ -208,6 +208,26 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             programlisting(data.ss, *node);
             break;
         }
+        case XmlTextParser::Node::Type::FORMULA: {
+            if (node->children.empty()) {
+                break;
+            }
+            const auto& child = node->children.front();
+            const auto& formula = child.data;
+            if (formula.empty()) {
+                break;
+            }
+            if (formula[0] == '$' && formula.size() >= 3) {
+                data.ss << config.formulaInlineStart;
+                data.ss << formula.substr(1, formula.size() - 2);
+                data.ss << config.formulaInlineEnd;
+            } else if (formula.find("\\[") == 0 && formula.size() >= 5) {
+                data.ss << config.formulaBlockStart;
+                data.ss << formula.substr(2, formula.size() - 4);
+                data.ss << config.formulaBlockEnd;
+            }
+            break;
+        }
         default: {
             for (size_t i = 0; i < node->children.size(); i++) {
                 const auto childNext = i + 1 < node->children.size() ? &node->children[i + 1] : nullptr;

@@ -6,7 +6,8 @@
 #include <unordered_map>
 
 Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const std::string& str) {
-    static std::unordered_map<std::string, Node::Type> kinds = {{"para", Node::Type::PARA},
+    static std::unordered_map<std::string, Node::Type> kinds = {
+        {"para", Node::Type::PARA},
         {"bold", Node::Type::BOLD},
         {"emphasis", Node::Type::EMPHASIS},
         {"strike", Node::Type::STRIKE},
@@ -59,7 +60,8 @@ Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const s
         {"linebreak", Node::Type::LINEBREAK},
         {"ndash", Node::Type::NDASH},
         {"mdash", Node::Type::MDASH},
-        {"onlyfor", Node::Type::ONLYFOR}
+        {"onlyfor", Node::Type::ONLYFOR},
+        {"formula", Node::Type::FORMULA},
     };
 
     const auto it = kinds.find(str);
