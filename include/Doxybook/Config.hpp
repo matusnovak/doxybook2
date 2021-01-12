@@ -25,6 +25,9 @@ namespace Doxybook2 {
         // Convert all refids (including folder names) into lowercase?
         bool linkLowercase{false};
 
+        // Output links as HTML <a> tags and inline code as <code> tags instead of Markdown.
+        bool linkAndInlineCodeAsHTML{false};
+
         // Should we put the class, namespace, modules, and files indexes
         // into their respective folders? (Hugo/Learn) needs that!
         bool indexInFolders{false};

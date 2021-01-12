@@ -21,7 +21,11 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
 
     switch (node->type) {
         case XmlTextParser::Node::Type::TEXT: {
-            data.ss << node->data;
+            if (config.linkAndInlineCodeAsHTML && data.inComputerOutput) {
+                data.ss << Utils::escape(node->data);
+            } else {
+                data.ss << node->data;
+            } 
             data.eol = false;
             break;
         }
@@ -93,9 +97,28 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             data.eol = false;
             break;
         }
-        case XmlTextParser::Node::Type::ULINK:
+        case XmlTextParser::Node::Type::ULINK: {
+            if (config.linkAndInlineCodeAsHTML) {
+                if (!node->extra.empty()) {
+                    data.ss << "<a href=\"" << node->extra << "\">";
+                    data.validLink = true;
+                }
+            } else {
+                data.ss << "[";
+            }
+            data.eol = false;
+            break;
+        }
         case XmlTextParser::Node::Type::REF: {
-            data.ss << "[";
+            if (config.linkAndInlineCodeAsHTML) {
+                const auto found = doxygen.getCache().find(node->extra);
+                if (found != doxygen.getCache().end()) {
+                    data.ss << "<a href=\"" << found->second->getUrl() << "\">";
+                    data.validLink = true;
+                }
+            } else {
+                data.ss << "[";
+            }
             data.eol = false;
             break;
         }
@@ -119,7 +142,12 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::COMPUTEROUTPUT: {
-            data.ss << "`";
+            if (config.linkAndInlineCodeAsHTML) {
+                data.ss << "<code>";
+            } else {
+                data.ss << "`";
+            }
+            data.inComputerOutput = true;
             data.eol = false;
             break;
         }
@@ -259,16 +287,33 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::ULINK: {
-            data.ss << "](" << node->extra << ")";
+            if (config.linkAndInlineCodeAsHTML) {
+                if (data.validLink) {
+                    data.ss << "</a>";
+                }
+            } else {
+                data.ss << "]";
+                if (!node->extra.empty()) {
+                    data.ss << "(" << node->extra << ")";
+                }
+            }
+            data.validLink = false;
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::REF: {
-            data.ss << "]";
-            const auto found = doxygen.getCache().find(node->extra);
-            if (found != doxygen.getCache().end()) {
-                data.ss << "(" << found->second->getUrl() << ")";
+            if (config.linkAndInlineCodeAsHTML) {
+                if (data.validLink) {
+                    data.ss << "</a>";
+                }
+            } else {
+                data.ss << "]";
+                const auto found = doxygen.getCache().find(node->extra);
+                if (found != doxygen.getCache().end()) {
+                    data.ss << "(" << found->second->getUrl() << ")";
+                }
             }
+            data.validLink = false;
             data.eol = false;
             break;
         }
@@ -290,7 +335,12 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::COMPUTEROUTPUT: {
-            data.ss << "`";
+            if (config.linkAndInlineCodeAsHTML) {
+                data.ss << "</code>";
+            } else {
+                data.ss << "`";
+            }
+            data.inComputerOutput = false;
             data.eol = false;
             break;
         }
