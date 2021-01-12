@@ -244,7 +244,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
                 // The inja library will load all of the other templates
                 // that are specified by {% include "<name>" %} in the tmpl file.
                 // These includes are automatically resolved based on the provided template path (i.e. "--templates
-                // <path>") Thanks to providing the templates path to the constructor of inja::Environment
+                // <path>") thanks to providing the templates path to the constructor of inja::Environment
                 auto tmpl = env->parse_template(filename(oit->second));
                 const auto it =
                     templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl)))).first;
