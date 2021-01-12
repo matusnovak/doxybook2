@@ -690,7 +690,7 @@ static const std::string TEMPLATE_NONCLASS_MEMBERS_DETAILS =
 
 {{ render("member_details", child) }}
 {% endfor %}{% endif %}
-{% if exists("defines") %}## Macro Documentation
+{% if exists("defines") %}## Macros Documentation
 
 {% for child in defines %}### {{child.kind}} {{child.name}}
 
