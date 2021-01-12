@@ -68,6 +68,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#table">Table:</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#inline-formula">Inline formula</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#block-formula">Block formula</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -376,8 +380,13 @@ int main() {
 </tr>
 </tbody>
 </table>
+<h2 id="inline-formula">Inline formula</h2>
+<p>Please see mkdocs-readthedocs example at <a href="https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/">https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/</a> to see a working example using mkdocs + pymdownx.arithmatex</p>
+<p>The distance between <span class="arithmatex">\((x_1,y_1)\)</span> and <span class="arithmatex">\((x_2,y_2)\)</span> is <span class="arithmatex">\(\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\)</span>.</p>
+<h2 id="block-formula">Block formula</h2>
+<div class="arithmatex">\[ |I_2|=\left| \int_{0}^T \psi(t) \left\{ u(a,t)- \int_{\gamma(t)}^a \frac{d\theta}{k(\theta,t)} \int_{a}^\theta c(\xi)u_t(\xi,t)\,d\xi \right\} dt \right| \]</div>
 <hr />
-<p>Updated on 11 January 2021 at 22:17:07 UTC</p>
+<p>Updated on 12 January 2021 at 19:16:34 UTC</p>
               
             </div>
           </div>
@@ -419,6 +428,9 @@ int main() {
 </div>
     <script>var base_url = '.';</script>
     <script src="js/theme.js" defer></script>
+      <script src="javascripts/config.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="search/main.js" defer></script>
     <script defer>
         window.onload = function () {
@@ -431,5 +443,5 @@ int main() {
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-01-11 22:17:08.213482+00:00
+Build Date UTC : 2021-01-12 19:16:35.971335+00:00
 -->
