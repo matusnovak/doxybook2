@@ -1,12 +1,20 @@
 ---
 title: Engine
-summary: This namespace contains all of the necessary engine components. 
+summary: This namespace contains all of the necessary engine components.  
 
 ---
 
 # Engine
 
-**Module:** **[An example game engine](/Modules/group__Engine.md)**This namespace contains all of the necessary engine components.  [More...](#detailed-description)
+
+**Module:** **[An example game engine](/Modules/group__Engine.md)**
+
+This namespace contains all of the necessary engine components.  [More...](#detailed-description)
+
+
+
+
+
 ## Namespaces
 
 | Name           |
@@ -23,15 +31,27 @@ summary: This namespace contains all of the necessary engine components.
 | -------------- | -------------- |
 | class | **[Engine::Exception](/Classes/classEngine_1_1Exception.md)**  |
 
+
+
+
 ## Functions
 
 |                | Name           |
 | -------------- | -------------- |
-| std::string | **[getVersion](/Namespaces/namespaceEngine.md#function-getversion)**() |
+| std::string | **[getVersion](/Namespaces/namespaceEngine.md#function-getversion)**()  |
+
+
+
+
 
 ## Detailed Description
 
 This namespace contains all of the necessary engine components. 
+
+
+
+
+
 
 **See**: 
 
@@ -39,6 +59,29 @@ This namespace contains all of the necessary engine components.
   * [Engine::Audio](/Namespaces/namespaceEngine_1_1Audio.md)
   * [Engine::Graphics](/Namespaces/namespaceEngine_1_1Graphics.md)
   * [Engine::Utils](/Namespaces/namespaceEngine_1_1Utils.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Functions Documentation
@@ -54,6 +97,33 @@ std::string getVersion()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -------------------------------
 
-Updated on 12 January 2021 at 23:37:34 UTC
+Updated on 12 January 2021 at 21:41:22 UTC

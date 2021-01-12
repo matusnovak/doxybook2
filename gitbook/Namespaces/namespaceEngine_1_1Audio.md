@@ -1,9 +1,19 @@
 ---
 title: Engine::Audio
 
+
 ---
 
 # Engine::Audio
+
+
+
+
+
+
+
+
+
 
 ## Classes
 
@@ -19,11 +29,19 @@ title: Engine::Audio
 | typedef int(*)(AudioBuffer &buffer, size_t offset) | **[Callback](/Namespaces/namespaceEngine_1_1Audio.md#typedef-callback)** <br>Some callback function pointer type definition.  |
 | using int(*)([AudioBuffer](/Classes/classEngine_1_1Audio_1_1AudioBuffer.md) &buffer, size_t offset, void *user) | **[Callback2](/Namespaces/namespaceEngine_1_1Audio.md#using-callback2)** <br>Some callback function pointer type definition.  |
 
+
+
 ## Functions
 
 |                | Name           |
 | -------------- | -------------- |
-| void | **[doSomething](/Namespaces/namespaceEngine_1_1Audio.md#function-dosomething)**([AudioBuffer](/Classes/classEngine_1_1Audio_1_1AudioBuffer.md) & buffer)<br>Do something with the buffer.  |
+| void | **[doSomething](/Namespaces/namespaceEngine_1_1Audio.md#function-dosomething)**([AudioBuffer](/Classes/classEngine_1_1Audio_1_1AudioBuffer.md) & buffer) <br>Do something with the buffer.  |
+
+
+
+
+
+
 
 ## Types Documentation
 
@@ -41,9 +59,34 @@ Some callback function pointer type definition.
   * **offset** The offset of the buffer currently playing 
 
 
+
+
+
 **Deprecated**: 
 
 Use the [Audio::Callback2](/Namespaces/namespaceEngine_1_1Audio.md#using-callback2) instead 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### using Callback2
 
@@ -58,6 +101,32 @@ Some callback function pointer type definition.
   * **buffer** The buffer this callback is called from 
   * **offset** The offset of the buffer currently playing 
   * **user** User specific data 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,6 +146,33 @@ Do something with the buffer.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -------------------------------
 
-Updated on 12 January 2021 at 23:37:34 UTC
+Updated on 12 January 2021 at 21:41:22 UTC

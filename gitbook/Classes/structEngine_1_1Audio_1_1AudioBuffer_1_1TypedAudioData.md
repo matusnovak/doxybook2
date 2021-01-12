@@ -1,6 +1,6 @@
 ---
 title: Engine::Audio::AudioBuffer::TypedAudioData
-summary: Use this to populate the buffer. 
+summary: Use this to populate the buffer.  
 
 ---
 
@@ -8,7 +8,27 @@ summary: Use this to populate the buffer.
 
 
 
-Use this to populate the buffer. `#include <AudioBuffer.hpp>`
+
+Use this to populate the buffer. 
+
+`#include <AudioBuffer.hpp>`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Public Attributes
@@ -17,6 +37,26 @@ Use this to populate the buffer. `#include <AudioBuffer.hpp>`
 | -------------- | -------------- |
 | [AudioData8U](/Classes/classEngine_1_1Audio_1_1AudioBuffer.md#typedef-audiodata8u) | **[buffer](/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md#variable-buffer)**  |
 | [Type](/Classes/classEngine_1_1Audio_1_1AudioBuffer.md#enum-type) | **[type](/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md#variable-type)**  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Public Attributes Documentation
 
@@ -27,6 +67,33 @@ AudioData8U buffer;
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### variable type
 
 ```cpp
@@ -34,6 +101,37 @@ Type type;
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -------------------------------
 
-Updated on 12 January 2021 at 23:37:34 UTC
+Updated on 12 January 2021 at 21:41:22 UTC

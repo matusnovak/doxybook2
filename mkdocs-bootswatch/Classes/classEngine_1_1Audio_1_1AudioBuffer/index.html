@@ -139,8 +139,8 @@
 
 <h1 id="engineaudioaudiobuffer">Engine::Audio::AudioBuffer</h1>
 <p><strong>Module:</strong> <strong><a href="/doxybook2/mkdocs-bootswatch/Modules/group__Engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxybook2/mkdocs-bootswatch/Modules/group__Audio/">Audio buffers and devices</a></strong></p>
-<p><em>A simple audio buffer to hold PCM samples</em> <a href="#detailed-description">More...</a>
-<code>#include &lt;AudioBuffer.hpp&gt;</code></p>
+<p><em>A simple audio buffer to hold PCM samples</em> <a href="#detailed-description">More...</a></p>
+<p><code>#include &lt;AudioBuffer.hpp&gt;</code></p>
 <h2 id="public-classes">Public Classes</h2>
 <table>
 <thead>
@@ -167,7 +167,7 @@
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5}<br>Different type of audio formats.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }<br>Different type of audio formats.</td>
 </tr>
 <tr>
 <td>template \&lt;typename T ><br>using <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Utils_1_1ArrayView/">Utils::ArrayView</a>&lt; T &gt;</td>
@@ -190,23 +190,23 @@
 <tbody>
 <tr>
 <td></td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename)<br>Constructor for <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename) <br>Constructor for <a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>.</td>
 </tr>
 <tr>
 <td>virtual</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-~audiobuffer">~AudioBuffer</a></strong>() =default<br><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-~audiobuffer">~AudioBuffer</a></strong>() =default <br><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-play">play</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const<br>Play this buffer.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-play">play</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const <br>Play this buffer.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-stop">stop</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const<br>Stop this buffer playing.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-stop">stop</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const <br>Stop this buffer playing.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-loop">loop</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const<br>Loop this buffer forever.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-loop">loop</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const <br>Loop this buffer forever.</td>
 </tr>
 <tr>
 <td>void</td>
@@ -218,15 +218,15 @@
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-bootswatch/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> data[], size_t size)<br>Some deprecated function.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-bootswatch/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> data[], size_t size) <br>Some deprecated function.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback">setCallback</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Callback</a> callback)<br>Set the callback function.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback">setCallback</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">setCallback2</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#using-callback2">Callback2</a> callback, void * user)<br>Set the callback function.</td>
+<td><strong><a href="/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">setCallback2</a></strong>(<a href="/doxybook2/mkdocs-bootswatch/Namespaces/namespaceEngine_1_1Audio/#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
 </tr>
 </tbody>
 </table>
@@ -478,7 +478,7 @@ inline void setDataMultiple(
 );
 </code></pre>
 <hr />
-<p>Updated on 12 January 2021 at 23:37:11 UTC</p></div>
+<p>Updated on 12 January 2021 at 21:40:59 UTC</p></div>
             </div>
         </div>
 

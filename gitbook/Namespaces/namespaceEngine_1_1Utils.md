@@ -1,9 +1,18 @@
 ---
 title: Engine::Utils
 
+
 ---
 
 # Engine::Utils
+
+
+
+
+
+
+
+
 
 ## Namespaces
 
@@ -17,11 +26,20 @@ title: Engine::Utils
 | -------------- | -------------- |
 | class | **[Engine::Utils::ArrayView](/Classes/classEngine_1_1Utils_1_1ArrayView.md)** <br>Filesystem path utility functions.  |
 
+
+
+
 ## Functions
 
 |                | Name           |
 | -------------- | -------------- |
-| void | **[name_with_underscores](/Namespaces/namespaceEngine_1_1Utils.md#function-name_with_underscores)**(const std::string & arg) |
+| void | **[name_with_underscores](/Namespaces/namespaceEngine_1_1Utils.md#function-name_with_underscores)**(const std::string & arg)  |
+
+
+
+
+
+
 
 
 ## Functions Documentation
@@ -39,6 +57,33 @@ inline void name_with_underscores(
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -------------------------------
 
-Updated on 12 January 2021 at 23:37:34 UTC
+Updated on 12 January 2021 at 21:41:22 UTC
