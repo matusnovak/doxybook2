@@ -263,23 +263,25 @@ nlohmann::json Doxybook2::JsonConverter::getAsJson(const Node& node) const {
     nlohmann::json json = convert(node);
     nlohmann::json dataJson = convert(node, data);
     json.insert(dataJson.begin(), dataJson.end());
-    if (node.getParent()->getKind() != Kind::INDEX) {
-        std::list<const Node*> list;
-        auto parent = node.getParent();
-        while (parent != nullptr) {
-            list.push_front(parent);
-            parent = parent->getParent();
-            if (parent && parent->getKind() == Kind::INDEX)
-                parent = nullptr;
+    if (node.getParent() != nullptr) {
+        if (node.getParent()->getKind() != Kind::INDEX) {
+            std::list<const Node*> list;
+            auto parent = node.getParent();
+            while (parent != nullptr) {
+                list.push_front(parent);
+                parent = parent->getParent();
+                if (parent && parent->getKind() == Kind::INDEX)
+                    parent = nullptr;
+            }
+            nlohmann::json breadcrumbs = nlohmann::json::array();
+            for (const auto& ptr : list) {
+                breadcrumbs.push_back(convert(*ptr));
+            }
+            json["parentBreadcrumbs"] = std::move(breadcrumbs);
+            json["parent"] = convert(*node.getParent());
+        } else {
+            json["parent"] = nullptr;
         }
-        nlohmann::json breadcrumbs = nlohmann::json::array();
-        for (const auto& ptr : list) {
-            breadcrumbs.push_back(convert(*ptr));
-        }
-        json["parentBreadcrumbs"] = std::move(breadcrumbs);
-        json["parent"] = convert(*node.getParent());
-    } else {
-        json["parent"] = nullptr;
     }
 
     if (node.getGroup() != nullptr) {
