@@ -368,15 +368,29 @@ void Doxybook2::Node::finalize(const Config& config,
         if (config.linkLowercase)
             url = Utils::toLower(url);
 
+        const auto findOrNull = [&](const std::string& refId) -> const Node* {
+            const auto it = cache.find(refid);
+            if (it == cache.end()) {
+                return nullptr;
+            }
+            return it->second.get();
+        };
+
         for (auto& klass : baseClasses) {
             if (!klass.refid.empty()) {
-                klass.ptr = cache.at(klass.refid).get();
+                klass.ptr = findOrNull(klass.refid);
+                if (!klass.ptr) {
+                    klass.refid.clear();
+                }
             }
         }
 
         for (auto& klass : derivedClasses) {
             if (!klass.refid.empty()) {
-                klass.ptr = cache.at(klass.refid).get();
+                klass.ptr = findOrNull(klass.refid);
+                if (!klass.ptr) {
+                    klass.refid.clear();
+                }
             }
         }
     }
