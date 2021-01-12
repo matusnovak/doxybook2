@@ -56,11 +56,6 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
     Log::i("Loading {}", refidPath);
     Xml xml(refidPath);
 
-    if (ptr->refid == "structwrenbind17_1_1_foreign_klass_impl_1_1_foreign_getter_details_3_01_r_07_t_1_1_5_08_07_08_"
-                      "01const_00_01_fn_01_4") {
-        std::cout << "stop" << std::endl;
-    }
-
     auto root = assertChild(xml, "doxygen");
     auto compounddef = assertChild(root, "compounddef");
 
