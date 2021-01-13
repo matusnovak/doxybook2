@@ -1,6 +1,6 @@
 build*/
 temp/
-example/doxygen/
+example/doxygen*/
 install/
 .vscode/
 .vs/
