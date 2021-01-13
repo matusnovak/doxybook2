@@ -34,7 +34,9 @@ summary: {{summary}}
 static const std::string TEMPLATE_BREADCRUMBS = R"({% if exists("moduleBreadcrumbs") -%}
 **Module:** {%- for module in moduleBreadcrumbs -%}
  **[{{module.title}}]({{module.url}})**{% if not loop.is_last %} **/** {% endif -%}
-{% endfor %}{% endif -%})";
+{% endfor %}
+
+{% endif -%})";
 
 static const std::string TEMPLATE_FOOTER =
     R"(-------------------------------
@@ -332,12 +334,12 @@ static std::string createTableForTypeLike(const std::string& visibility,
     ss << "{% for child in " << (inherited ? "base." : "") << key << " -%}\n";
 
     ss << "| {% if existsIn(child, \"templateParams\") -%}\n";
-    ss << "template \\<";
+    ss << "template <";
     ss << "{% for param in child.templateParams -%}\n";
     ss << "{{param.typePlain}} {{param.name}}";
     ss << "{% if existsIn(param, \"defvalPlain\") %} ={{param.defvalPlain}}{% endif -%}\n";
     ss << "{% if not loop.is_last %},{% endif -%}\n";
-    ss << "{% endfor %}\\><br>{% endif -%}\n";
+    ss << "{% endfor %}\\> <br>{% endif -%}\n";
 
     ss << "{{child.kind}}{% if existsIn(child, \"type\") %} {{child.type}} {% endif -%}\n";
 
@@ -429,12 +431,12 @@ static std::string createTableForFunctionLike(const std::string& visibility,
     ss << "{% for child in " << (inherited ? "base." : "") << key << " -%}\n";
 
     ss << "| {% if existsIn(child, \"templateParams\") -%}\n";
-    ss << "template \\<";
+    ss << "template <";
     ss << "{% for param in child.templateParams -%}\n";
     ss << "{{param.typePlain}} {{param.name}}";
     ss << "{% if existsIn(param, \"defvalPlain\") %} ={{param.defvalPlain}}{% endif -%}\n";
     ss << "{% if not loop.is_last %},{% endif -%}\n";
-    ss << "{% endfor %}\\><br>{% endif -%}\n";
+    ss << "{% endfor %}\\> <br>{% endif -%}\n";
 
     ss << "{% if child.virtual %}virtual {% endif -%}\n";
     ss << "{% if existsIn(child, \"type\") %}{{child.type}} {% endif -%}\n";
@@ -541,8 +543,9 @@ static std::string createNonMemberTable() {
 | -------------- |
 {% for child in groups -%}
 | **[{{child.title}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
-{%- endfor %}{% endif -%})";
-    ss << "\n";
+{%- endfor %}
+{% endif -%})";
+    ss << "\n\n";
 
     ss << R"({% if exists("dirs") %}## Directories
 
@@ -550,8 +553,9 @@ static std::string createNonMemberTable() {
 | -------------- |
 {% for child in dirs -%}
 | **[{{child.title}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
-{%- endfor %}{% endif -%})";
-    ss << "\n";
+{%- endfor %}
+{% endif -%})";
+    ss << "\n\n";
 
     ss << R"({% if exists("files") %}## Files
 
@@ -559,8 +563,9 @@ static std::string createNonMemberTable() {
 | -------------- |
 {% for child in files -%}
 | **[{{child.title}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
-{%- endfor %}{% endif -%})";
-    ss << "\n";
+{%- endfor %}
+{% endif -%})";
+    ss << "\n\n";
 
     ss << createTableForNamespaceLike("public", "Namespaces", "namespaces", false);
     ss << createTableForClassLike("public", "Classes", "publicClasses", false);
@@ -804,6 +809,7 @@ static const std::string TEMPLATE_KIND_NONCLASS =
 {% include "breadcrumbs" -%}
 
 {% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
+
 {% endif -%}
 
 {% include "nonclass_members_tables" -%}
@@ -822,14 +828,19 @@ static const std::string TEMPLATE_KIND_CLASS =
 {% include "breadcrumbs" %}
 
 {% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
+
 {% endif -%}
 
-{% if exists("includes") %}`#include {{includes}}`
-{% endif %}
+{% if exists("includes") %}
+`#include {{includes}}`
+
+{% endif -%}
 
 {%- if exists("baseClasses") %}Inherits from {% for child in baseClasses %}{% if existsIn(child, "url") %}[{{child.name}}]({{child.url}}){% else %}{{child.name}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}
+
 {% endif -%}
 {%- if exists("derivedClasses") %}Inherited by {% for child in derivedClasses %}{% if existsIn(child, "url") %}[{{child.name}}]({{child.url}}){% else %}{{child.name}}{% endif %}{% if not loop.is_last %}, {% endif %}{% endfor %}
+
 {% endif -%}
 
 {%- include "class_members_tables" -%}
@@ -859,6 +870,7 @@ static const std::string TEMPLATE_KIND_GROUP =
 {% include "breadcrumbs" -%}
 
 {% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
+
 {% endif -%}
 
 {% include "nonclass_members_tables" -%}
@@ -876,6 +888,7 @@ static const std::string TEMPLATE_KIND_FILE =
     R"({% include "header" -%}
 
 {% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
+
 {% endif -%}
 
 {% include "nonclass_members_tables" -%}
