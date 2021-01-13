@@ -1129,10 +1129,10 @@
 <tbody>
 <tr>
 <td>enum</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }<br>Different type of audio formats.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5}<br>Different type of audio formats.</td>
 </tr>
 <tr>
-<td>template \<typename t="" \=""><br>using <a href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt; T &gt;</typename></td>
+<td>template <typename t="" \=""> <br>using <a href="classEngine_1_1Utils_1_1ArrayView.html">Utils::ArrayView</a>&lt; T &gt;</typename></td>
 <td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#using-audiodata">AudioData</a></strong></td>
 </tr>
 <tr>
@@ -1152,43 +1152,43 @@
 <tbody>
 <tr>
 <td></td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename) <br>Constructor for <a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a>.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename)<br>Constructor for <a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a>.</td>
 </tr>
 <tr>
 <td>virtual</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-~audiobuffer">~AudioBuffer</a></strong>() =default <br><a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a> destructor.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-~audiobuffer">~AudioBuffer</a></strong>() =default<br><a href="classEngine_1_1Audio_1_1AudioBuffer.html">Audio::AudioBuffer</a> destructor.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-play">play</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const <br>Play this buffer.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-play">play</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const<br>Play this buffer.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-stop">stop</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const <br>Stop this buffer playing.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-stop">stop</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const<br>Stop this buffer playing.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-loop">loop</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const <br>Loop this buffer forever.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-loop">loop</a></strong>(<a href="classEngine_1_1Audio_1_1AudioManager.html">AudioManager</a> &amp; manager) const<br>Loop this buffer forever.</td>
 </tr>
 <tr>
 <td>void</td>
 <td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> &amp; data)</td>
 </tr>
 <tr>
-<td>template \<size_t size\=""><br>void</size_t></td>
+<td>template <size_t size\=""> <br>void</size_t></td>
 <td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdatamultiple">setDataMultiple</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[Size])</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[], size_t size) <br>Some deprecated function.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setdata">setData</a></strong>(const <a href="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.html">TypedAudioData</a> data[], size_t size)<br>Some deprecated function.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback">setCallback</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Callback</a> callback) <br>Set the callback function.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback">setCallback</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#typedef-callback">Callback</a> callback)<br>Set the callback function.</td>
 </tr>
 <tr>
 <td>void</td>
-<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">setCallback2</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#using-callback2">Callback2</a> callback, void * user) <br>Set the callback function.</td>
+<td><strong><a href="classEngine_1_1Audio_1_1AudioBuffer.html#function-setcallback2">setCallback2</a></strong>(<a href="../Namespaces/namespaceEngine_1_1Audio.html#using-callback2">Callback2</a> callback, void * user)<br>Set the callback function.</td>
 </tr>
 </tbody>
 </table>
@@ -1440,7 +1440,7 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
 );
 </code></pre>
 <hr>
-<p>Updated on 12 January 2021 at 20:30:20 UTC</p>
+<p>Updated on 13 January 2021 at 18:04:20 UTC</p>
 
                                 
                                 </section>
@@ -1484,7 +1484,7 @@ Audio::<span class="hljs-function">AudioBuffer <span class="hljs-title">buffer</
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2021-01-12T20:30:20.005Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-12T20:30:48.646Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Engine::Audio::AudioBuffer","summary":"A simple audio buffer to hold PCM samples","level":"1.1.1.7","depth":3,"next":{"title":"Engine::Audio::AudioBuffer::TypedAudioData","level":"1.1.1.8","depth":3,"path":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","ref":"Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData.md","articles":[]},"previous":{"title":"Engine::Assets::Asset::Event::Waiting","level":"1.1.1.6","depth":3,"path":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","ref":"Classes/structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Classes/classEngine_1_1Audio_1_1AudioBuffer.md","mtime":"2021-01-13T18:04:20.942Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-13T18:04:50.748Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
