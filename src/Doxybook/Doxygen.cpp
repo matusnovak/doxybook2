@@ -9,13 +9,9 @@
 #include <cassert>
 #include <set>
 
-#define ASSERT_FIRST_CHILD_ELEMENT(PARENT, NAME)                                                                       \
-    const auto NAME = PARENT->FirstChildElement(##NAME);                                                               \
-    if (NAME == nullptr)                                                                                               \
-        throw DOXYGEN_EXCEPTION("Element {} not found in parent {} file {}", NAME, PARENT->Name(), inputDir);
-
 static bool isKindAllowedLanguage(const std::string& kind) {
-    static std::set<std::string> values = {"namespace",
+    static std::set<std::string> values = {
+        "namespace",
         "class",
         "struct",
         "interface",
@@ -25,7 +21,8 @@ static bool isKindAllowedLanguage(const std::string& kind) {
         "enum",
         "slot",
         "signal",
-        "union"};
+        "union",
+    };
     return values.find(kind) != values.end();
 }
 
@@ -66,7 +63,7 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
     // This won't load detailed documentation or other data! (we will do that later)
     const auto kindRefidMap = getIndexKinds(inputDir);
 
-    // First load all basic information from groups. 
+    /*// First load all basic information from groups.
     for (const auto& pair : kindRefidMap) {
         if (!isKindAllowedGroup(pair.first))
             continue;
@@ -83,9 +80,9 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
             WARNING("Failed to parse member {} error: {}", pair.second, e.what());
         }
     }
-    // Then load basic information from all other nodes.
+    // Then load basic information from all other nodes.*/
     for (const auto& pair : kindRefidMap) {
-        if (!isKindAllowedLanguage(pair.first) || isKindAllowedGroup(pair.first))
+        if (!isKindAllowedLanguage(pair.first) /* || isKindAllowedGroup(pair.first)*/)
             continue;
         try {
             auto found = cache.find(pair.second);

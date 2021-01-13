@@ -351,12 +351,23 @@ void Doxybook2::Node::finalize(const Config& config,
                        anchorMaker(node);
             }
             default: {
-                const auto n = node.parent;
+                auto* n = node.parent;
+                if (node.group) {
+                    n = node.group;
+                }
                 return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
                        anchorMaker(node);
             }
         }
     };
+
+    // Fix group linking
+    if (!group && refid.find("group__") == 0) {
+        const auto it = cache.find(Utils::stripAnchor(refid));
+        if (it != cache.end() && it->second->getKind() == Kind::MODULE && it->second.get() != this) {
+            group = it->second.get();
+        }
+    }
 
     if (temp) {
         brief = markdownPrinter.print(temp->brief);
@@ -364,11 +375,14 @@ void Doxybook2::Node::finalize(const Config& config,
         temp.reset();
 
         anchor = anchorMaker(*this);
+        if (name == "getVersion") {
+            std::cout << "stop" << std::endl;
+        }
         url = urlMaker(config, *this);
         if (config.linkLowercase)
             url = Utils::toLower(url);
 
-        const auto findOrNull = [&](const std::string& refId) -> const Node* {
+        const auto findOrNull = [&](const std::string& refid) -> const Node* {
             const auto it = cache.find(refid);
             if (it == cache.end()) {
                 return nullptr;

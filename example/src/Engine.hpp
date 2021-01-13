@@ -25,8 +25,12 @@ extern std::string someGlobalFunc();
  * @ingroup Engine
  */
 namespace Engine {
+    /*!
+     * @brief Returns the version string
+     * @ingroup Engine
+     */
     extern std::string getVersion();
-}
+} // namespace Engine
 
 /*! \mainpage Doxybook2 Example
 
