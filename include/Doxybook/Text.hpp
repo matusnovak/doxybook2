@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Xml.hpp"
+#include <filesystem>
 #include <nlohmann/json.hpp>
+#include <unordered_map>
 #include <variant>
 
 namespace Doxybook2 {
@@ -40,12 +42,6 @@ using Plain = std::string;
 struct Node;
 struct NodeCompound;
 
-using NodeVariant = std::variant<Plain, Node, NodeCompound>;
-
-inline void to_json(nlohmann::json& j, const NodeVariant& p);
-
-inline bool operator==(const std::vector<NodeVariant>& a, const std::vector<NodeVariant>& b);
-
 struct Node {
     Type type;
 
@@ -53,9 +49,23 @@ struct Node {
     [[nodiscard]] nlohmann::json json() const;
 };
 
+using Path = std::filesystem::path;
+using RefidResolver = std::function<std::optional<std::string>(const std::string&)>;
+
+struct MarkdownOptions {
+    Path dir = "";
+    RefidResolver resolver = [](const std::string&) -> std::optional<std::string> { return std::nullopt; };
+};
+
+using NodeVariant = std::variant<Plain, Node, NodeCompound>;
+
+inline void to_json(nlohmann::json& j, const NodeVariant& p);
+
+inline bool operator==(const std::vector<NodeVariant>& a, const std::vector<NodeVariant>& b);
+
 struct NodeCompound {
     Type type;
-    std::unordered_map<std::string, NodeVariant> properties;
+    std::map<std::string, NodeVariant> properties;
     std::vector<NodeVariant> children;
 
     bool operator==(const Text::NodeCompound& b) const;
@@ -114,7 +124,7 @@ extern NodeVariant parseTableRow(const Xml::Element& elm);
 extern NodeVariant parseTableEntry(const Xml::Element& elm);
 extern void parseRecursively(std::vector<NodeVariant>& tree, const Xml::Node& elm);
 extern void parseChildrenOf(std::vector<NodeVariant>& tree, const Xml::Element& elm);
-extern std::string printMarkdown(const NodeVariant& node);
+extern std::string printMarkdown(const NodeVariant& node, const MarkdownOptions& options = {});
 
 inline std::ostream& operator<<(std::ostream& os, const NodeCompound& value) {
     os << value.json().dump();
@@ -142,4 +152,32 @@ inline std::ostream& operator<<(std::ostream& os, const NodeVariant& value) {
 } // namespace Text
 
 using TextNode = Text::NodeVariant;
+
+inline bool operator==(const TextNode& a, const Text::Plain& b) {
+    if (a.index() != 0) {
+        return false;
+    }
+
+    return std::get<0>(a) == b;
+}
+
+inline bool operator==(const TextNode& a, const Text::Node& b) {
+    if (a.index() != 1) {
+        return false;
+    }
+
+    return std::get<1>(a) == b;
+}
+
+inline bool operator==(const TextNode& a, const Text::NodeCompound& b) {
+    if (a.index() != 2) {
+        return false;
+    }
+
+    return std::get<2>(a) == b;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const TextNode& value) {
+    return Text::operator<<(os, value);
+}
 } // namespace Doxybook2

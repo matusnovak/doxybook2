@@ -1,4 +1,4 @@
-#include "Log.hpp"
+#include <Doxybook/Log.hpp>
 #include <Doxybook/Text.hpp>
 #include <catch2/catch.hpp>
 #include <sstream>
@@ -54,66 +54,64 @@ std::string Text::toStr(const Type type) {
 
 using Callback = std::function<Text::NodeVariant(const Xml::Element&)>;
 
-const Callback& strToType(const std::string& str) {
-    // clang-format off
+Callback strToType(const std::string& str) {
     static std::unordered_map<std::string, Callback> kinds = {
-         {"para", Text::parsePara},
-         {"bold", Text::parseDecorative},
-         {"emphasis", Text::parseDecorative},
-         {"strike", Text::parseDecorative},
-         {"hruler", Text::parseHRuler},
-         {"image", Text::parseImage},
-         {"ulink", Text::parseUrlLink},
-         {"ref", Text::parseRef},
-         {"listitem", Text::parseText},
-         {"itemizedlist", Text::parseList},
-         {"variablelist", Text::parseText},
-         {"orderedlist", Text::parseList},
-         {"varlistentry", Text::parseText},
-         {"term", Text::parseText},
-         {"anchor", Text::parseText},
-         {"simplesect", Text::parseText},
-         {"computeroutput", Text::parseDecorative},
-         {"parameterdescription", Text::parseText},
-         {"parametername", Text::parseText},
-         {"parameterlist", Text::parseText},
-         {"parameteritem", Text::parseText},
-         {"parameternamelist", Text::parseText},
-         {"type", Text::parseText},
-         {"argsstring", Text::parseText},
-         {"defval", Text::parseText},
-         {"declname", Text::parseText},
-         {"xrefsect", Text::parseText},
-         {"xreftitle", Text::parseText},
-         {"xrefdescription", Text::parseText},
-         {"initializer", Text::parseText},
-         {"programlisting", Text::parseCodeListing},
-         {"codeline", Text::parseText},
-         {"sp", Text::parseText},
-         {"highlight", Text::parseText},
-         {"defname", Text::parseText},
-         {"title", Text::parseText},
-         {"sect1", Text::parseSection},
-         {"sect2", Text::parseSection},
-         {"sect3", Text::parseSection},
-         {"sect4", Text::parseSection},
-         {"sect5", Text::parseSection},
-         {"sect6", Text::parseSection},
-         {"heading", Text::parseText},
-         {"superscript", Text::parseText},
-         {"nonbreakablespace", Text::parseText},
-         {"table", Text::parseTable},
-         {"row", Text::parseTableRow},
-         {"entry", Text::parseText},
-         {"verbatim", Text::parseText},
-         {"lsquo", Text::parseText},
-         {"linebreak", Text::parseText},
-         {"ndash", Text::parseText},
-         {"mdash", Text::parseText},
-         {"onlyfor", Text::parseText}
+        {"briefdescription", Text::parseText},
+        {"para", Text::parsePara},
+        {"bold", Text::parseDecorative},
+        {"emphasis", Text::parseDecorative},
+        {"strike", Text::parseDecorative},
+        {"hruler", Text::parseHRuler},
+        {"image", Text::parseImage},
+        {"ulink", Text::parseUrlLink},
+        {"ref", Text::parseRef},
+        {"listitem", Text::parseText},
+        {"itemizedlist", Text::parseList},
+        {"variablelist", Text::parseText},
+        {"orderedlist", Text::parseList},
+        {"varlistentry", Text::parseText},
+        {"term", Text::parseText},
+        {"anchor", Text::parseText},
+        {"simplesect", Text::parseText},
+        {"computeroutput", Text::parseDecorative},
+        {"parameterdescription", Text::parseText},
+        {"parametername", Text::parseText},
+        {"parameterlist", Text::parseText},
+        {"parameteritem", Text::parseText},
+        {"parameternamelist", Text::parseText},
+        {"type", Text::parseText},
+        {"argsstring", Text::parseText},
+        {"defval", Text::parseText},
+        {"declname", Text::parseText},
+        {"xrefsect", Text::parseText},
+        {"xreftitle", Text::parseText},
+        {"xrefdescription", Text::parseText},
+        {"initializer", Text::parseText},
+        {"programlisting", Text::parseCodeListing},
+        {"codeline", Text::parseText},
+        {"sp", Text::parseText},
+        {"highlight", Text::parseText},
+        {"defname", Text::parseText},
+        {"title", Text::parseText},
+        {"sect1", Text::parseSection},
+        {"sect2", Text::parseSection},
+        {"sect3", Text::parseSection},
+        {"sect4", Text::parseSection},
+        {"sect5", Text::parseSection},
+        {"sect6", Text::parseSection},
+        {"heading", Text::parseText},
+        {"superscript", Text::parseText},
+        {"nonbreakablespace", Text::parseText},
+        {"table", Text::parseTable},
+        {"row", Text::parseTableRow},
+        {"entry", Text::parseText},
+        {"verbatim", Text::parseText},
+        {"lsquo", Text::parseText},
+        {"linebreak", Text::parseText},
+        {"ndash", Text::parseText},
+        {"mdash", Text::parseText},
+        {"onlyfor", Text::parseText},
     };
-
-    // clang-format on
 
     const auto it = kinds.find(str);
     if (it == kinds.end()) {
@@ -172,7 +170,20 @@ Text::NodeVariant Text::parse(const Xml::Element& elm) {
 
     parseRecursively(children, elm.asNode());
 
-    return children.empty() ? "" : children[0];
+    if (children.empty()) {
+        return "";
+    }
+
+    NodeVariant res;
+    std::swap(res, children.front());
+
+    if (res.index() == 2) {
+        if (const auto& c = std::get<2>(res); c.children.empty() && c.type == Type::Text) {
+            return "";
+        }
+    }
+
+    return res;
 }
 
 Text::NodeVariant Text::parsePara(const Xml::Element& elm) {
@@ -412,18 +423,26 @@ static std::string hTypeToMarkdown(const std::string& type) {
     return VALUES[idx - 1];
 }
 
-void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVariant& node) {
+static void printPlainSafe(std::stringstream& ss, const Text::Plain& node, const Text::MarkdownOptions& options) {
+    ss << node; // TODO
+}
+
+static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVariant& node,
+                                     const Text::MarkdownOptions& options) {
     using namespace Text;
 
     switch (node.index()) {
     case 0: {
-        ss << std::get<0>(node);
+        printPlainSafe(ss, std::get<0>(node), options);
         break;
     }
     case 1: {
         const auto& n = std::get<1>(node);
         switch (n.type) {
         case Type::HRuler: {
+            if (ss.tellp() != std::streampos(0)) {
+                ss << "\n\n";
+            }
             ss << "--------------------\n\n";
             break;
         }
@@ -441,8 +460,22 @@ void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVariant& no
         case Type::Section: {
             ss << hTypeToMarkdown(std::get<0>(n.properties.at("value")));
             ss << " ";
-            printMarkdownRecursively(ss, n.properties.at("title"));
+            printMarkdownRecursively(ss, n.properties.at("title"), options);
             ss << "\n\n";
+            break;
+        }
+        case Type::RefLink:
+            [[fallthrough]];
+        case Type::UrlLink: {
+            ss << "[";
+            break;
+        }
+        case Type::Italics: {
+            ss << "_";
+            break;
+        }
+        case Type::Bold: {
+            ss << "**";
             break;
         }
         default: {
@@ -452,13 +485,41 @@ void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVariant& no
 
         // Middle
         for (const auto& c : n.children) {
-            printMarkdownRecursively(ss, c);
+            printMarkdownRecursively(ss, c, options);
         }
 
         // After
         switch (n.type) {
         case Type::Paragraph: {
             ss << "\n\n";
+            break;
+        }
+        case Type::RefLink: {
+            ss << "](";
+
+            const auto& refid = std::get<Plain>(n.properties.at("refid"));
+            const auto resolved = options.resolver(refid);
+            if (resolved.has_value()) {
+                ss << resolved.value();
+            } else {
+                ss << "#";
+            }
+
+            ss << ")";
+            break;
+        }
+        case Type::UrlLink: {
+            ss << "](";
+            ss << std::get<Plain>(n.properties.at("url"));
+            ss << ")";
+            break;
+        }
+        case Type::Italics: {
+            ss << "_";
+            break;
+        }
+        case Type::Bold: {
+            ss << "**";
             break;
         }
         default: {
@@ -474,10 +535,14 @@ void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVariant& no
     }
 }
 
-std::string Text::printMarkdown(const NodeVariant& node) {
+std::string Text::printMarkdown(const NodeVariant& node, const MarkdownOptions& options) {
     std::stringstream ss;
 
-    printMarkdownRecursively(ss, node);
+    printMarkdownRecursively(ss, node, options);
 
-    return ss.str();
+    auto md = ss.str();
+    if (md.size() >= 2 && md.at(md.size() - 1) == '\n' && md.at(md.size() - 2) == '\n') {
+        md = md.substr(0, md.size() - 2);
+    }
+    return md;
 }

@@ -1,8 +1,8 @@
-#include "Log.hpp"
 #include "Macros.hpp"
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Enums.hpp>
 #include <Doxybook/Exception.hpp>
+#include <Doxybook/Log.hpp>
 #include <Doxybook/Xml.hpp>
 #include <optional>
 
@@ -28,10 +28,29 @@ static Xml::Element assertFind(const Xml::Element& elm, const std::string& name)
     const auto child = elm.firstChildElement(name);
     if (!child) {
         const auto& path = elm.getDocument().getPath();
-        throw Exception(LOCATION, "Unable to find element '{}' in file '{}'", name, path.string());
+        EXCEPTION("Unable to find element '{}' in file '{}'", name, path.string());
     }
 
     return child;
+}
+
+static void buildCache(Cache& cache, const NodeSharedPtr& node) {
+    cache.insert(std::make_pair(node->refid, node));
+    for (const auto& child : node->children) {
+        ::buildCache(cache, child);
+    }
+}
+
+template <typename T> static void concat(std::vector<T>& a, std::vector<T>&& b) {
+    a.insert(a.end(), b.begin(), b.end());
+}
+
+Cache Doxygen::buildCache(const NodeSharedPtr& index) {
+    Cache cache;
+    for (const auto& child : index->children) {
+        ::buildCache(cache, child);
+    }
+    return cache;
 }
 
 NodeSharedPtr Doxygen::parseIndex(const std::filesystem::path& path) {
@@ -67,8 +86,11 @@ NodeSharedPtr Doxygen::parse(const std::filesystem::path& path, const std::strin
     // Get the root element
     const Xml xml(filePath);
     const auto root = xml.root();
-    const auto compounddef = assertFind(root, "compounddef");
+    return parse(root);
+}
 
+NodeSharedPtr Doxygen::parse(const Xml::Element& root) {
+    const auto compounddef = assertFind(root, "compounddef");
     return parseCompound(compounddef);
 }
 
@@ -79,9 +101,16 @@ NodeSharedPtr Doxygen::parseCompound(const Xml::Element& compound) {
     node.refid = parseRefid(compound);
     node.kind = parseKind(compound);
     node.name = parseCompoundName(compound);
+    node.title = parseTitle(compound);
+    if (node.title == TextNode{}) {
+        node.title = node.name;
+    }
     node.includes = parseIncludes(compound);
     node.location = parseLocation(compound);
     node.bodyLocation = parseBodyLocation(compound);
+    node.brief = parseBrief(compound);
+    concat(node.childrenRefs, parseInnerClasses(compound));
+    concat(node.childrenRefs, parseInnerNamespaces(compound));
 
     parseProperties(compound, node.properties);
 
@@ -102,8 +131,13 @@ NodeSharedPtr Doxygen::parseMember(const Xml::Element& memberdef) {
     node.refid = parseRefid(memberdef);
     node.kind = parseKind(memberdef);
     node.name = parseName(memberdef);
+    node.title = parseTitle(memberdef);
+    if (node.title == TextNode{}) {
+        node.title = node.name;
+    }
     node.location = parseLocation(memberdef);
     node.bodyLocation = parseBodyLocation(memberdef);
+    node.brief = parseBrief(memberdef);
 
     parseProperties(memberdef, node.properties);
 
@@ -199,14 +233,14 @@ Param Doxygen::parseParam(const Xml::Element& elm) {
 
     Param param;
 
-    if (type && type.hasText()) {
-        param.type = type.getText();
+    if (type) {
+        param.type = Text::parse(type);
     }
     if (declname && declname.hasText()) {
         param.name = declname.getText();
     }
-    if (defval && defval.hasText()) {
-        param.defval = defval.getText();
+    if (defval) {
+        param.defval = Text::parse(defval);
     }
 
     return param;
@@ -220,13 +254,21 @@ std::string Doxygen::parseName(const Xml::Element& elm) {
     return "";
 }
 
+std::string Doxygen::parseTitle(const Xml::Element& elm) {
+    const auto title = elm.firstChildElement("title");
+    if (title && title.hasText()) {
+        return title.getText();
+    }
+    return "";
+}
+
 std::optional<Location> Doxygen::parseLocation(const Xml::Element& elm) {
     const auto location = elm.firstChildElement("location");
     if (!location) {
         return std::nullopt;
     }
 
-    const auto file = location.getAttr("bodyfile", "");
+    const auto file = location.getAttr("file", "");
     if (file.empty()) {
         return std::nullopt;
     }
@@ -258,6 +300,32 @@ std::optional<BodyLocation> Doxygen::parseBodyLocation(const Xml::Element& elm) 
     loc.end = std::stol(location.getAttr("bodyend", "0"));
 
     return {loc};
+}
+
+NodeRef Doxygen::parseRef(const Xml::Element& elm) {
+    const auto refid = elm.getAttr("refid", "");
+    std::string name;
+    if (elm.hasText()) {
+        name = elm.getText();
+    }
+
+    return NodeRef{BasicRef{refid, name}};
+}
+
+std::vector<NodeRef> Doxygen::parseInnerClasses(const Xml::Element& elm) {
+    std::vector<NodeRef> inner;
+
+    allOf(elm, "innerclass", [&](Xml::Element& ref) { inner.push_back(parseRef(ref)); });
+
+    return inner;
+}
+
+std::vector<NodeRef> Doxygen::parseInnerNamespaces(const Xml::Element& elm) {
+    std::vector<NodeRef> inner;
+
+    allOf(elm, "innernamespace", [&](Xml::Element& ref) { inner.push_back(parseRef(ref)); });
+
+    return inner;
 }
 
 bool Doxygen::parseBoolAttr(const Xml::Element& elm, const std::string& key) {
@@ -296,4 +364,8 @@ TextNode Doxygen::parseType(const Xml::Element& elm) {
 
 TextNode Doxygen::parseInitializer(const Xml::Element& elm) {
     return parseTextNode(elm, "initializer");
+}
+
+TextNode Doxygen::parseBrief(const Xml::Element& elm) {
+    return parseTextNode(elm, "briefdescription");
 }

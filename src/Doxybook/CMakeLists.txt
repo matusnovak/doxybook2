@@ -21,6 +21,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "doxybook2")
 target_include_directories(${PROJECT_NAME} PUBLIC ${DOXYDOWN_INCLUDE_DIR})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 
+if(DOXYBOOK_COVERAGE_ENABLED)
+  target_link_libraries(${PROJECT_NAME} PUBLIC ${PROJECT_NAME}Coverage)
+endif()
+
 # Install
 install(TARGETS ${PROJECT_NAME}
   EXPORT ${PROJECT_NAME}

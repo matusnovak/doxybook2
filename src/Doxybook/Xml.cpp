@@ -68,7 +68,7 @@ Doxybook2::Xml::Element Doxybook2::Xml::Element::firstChildElement(const std::st
 std::string Doxybook2::Xml::Element::getAttr(const std::string& name) const {
     const auto str = ptr->Attribute(name.c_str());
     if (str == nullptr)
-        throw Exception(LOCATION, "Attribute {} does not exist in element {}", name, ptr->Name());
+        EXCEPTION("Attribute {} does not exist in element {}", name, ptr->Name());
     return str;
 }
 
@@ -109,7 +109,7 @@ Doxybook2::Xml::Xml(const std::filesystem::path& path) : doc(new tinyxml2::XMLDo
     this->path = path;
     const auto err = doc->LoadFile(pathStr.c_str());
     if (err != tinyxml2::XMLError::XML_SUCCESS) {
-        throw Exception(LOCATION, "{}", doc->ErrorStr());
+        EXCEPTION("{}", doc->ErrorStr());
     }
     doc->SetUserData(this);
 }
@@ -117,7 +117,7 @@ Doxybook2::Xml::Xml(const std::filesystem::path& path) : doc(new tinyxml2::XMLDo
 Doxybook2::Xml::Xml(const std::string& source) : doc(new tinyxml2::XMLDocument) {
     const auto err = doc->Parse(source.c_str());
     if (err != tinyxml2::XMLError::XML_SUCCESS) {
-        throw Exception(LOCATION, "{}", doc->ErrorStr());
+        EXCEPTION("{}", doc->ErrorStr());
     }
     doc->SetUserData(this);
 }

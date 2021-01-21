@@ -1,6 +1,7 @@
 #include <Doxybook/Config.hpp>
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Log.hpp>
+#include <Doxybook/Utils.hpp>
 #include <argagg/argagg.hpp>
 #include <cassert>
 #include <functional>
@@ -183,8 +184,8 @@ int main(const int argc, char* argv[]) {
         }
 
         return EXIT_SUCCESS;
-    } catch (std::exception& e) {
-        std::cerr << e.what() << std::endl;
+    } catch (const std::exception& e) {
+        backtrace(e);
         return EXIT_FAILURE;
     }
 }

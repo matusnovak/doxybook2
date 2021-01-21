@@ -1,7 +1,7 @@
-#include "Log.hpp"
 #include "Macros.hpp"
 #include <Doxybook/Config.hpp>
 #include <Doxybook/Exception.hpp>
+#include <Doxybook/Log.hpp>
 #include <fstream>
 #include <nlohmann/json.hpp>
 
@@ -15,8 +15,8 @@ public:
                 if (json.contains(self.key)) {
                     config.*ref = json.at(self.key).get<T>();
                 }
-            } catch (std::exception& e) {
-                throw Exception(LOCATION, "Failed to get config value {} error: {}", self.key, e.what());
+            } catch (...) {
+                EXCEPTION_NESTED("Failed to get config property {}", self.key);
             }
         };
         saveFunc = [=](const ConfigArg& self, const Config& config, nlohmann::json& json) {
@@ -81,7 +81,7 @@ static const std::vector<ConfigArg> CONFIG_ARGS = {
 void Doxybook2::loadConfig(Config& config, const std::filesystem::path& path) {
     std::ifstream file(path);
     if (!file) {
-        throw Exception(LOCATION, "Failed to open file {} for reading", path.string());
+        EXCEPTION("Failed to open file {} for reading", path.string());
     }
 
     std::string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
@@ -91,8 +91,8 @@ void Doxybook2::loadConfig(Config& config, const std::filesystem::path& path) {
         for (const auto& arg : CONFIG_ARGS) {
             arg.loadFunc(arg, config, json);
         }
-    } catch (std::exception& e) {
-        throw Exception(LOCATION, "Failed to parse config error {}", e.what());
+    } catch (...) {
+        EXCEPTION_NESTED("Failed to parse config error");
     }
 }
 
@@ -103,8 +103,8 @@ void Doxybook2::loadConfigData(Config& config, const std::string& src) {
         for (const auto& arg : CONFIG_ARGS) {
             arg.loadFunc(arg, config, json);
         }
-    } catch (std::exception& e) {
-        throw Exception(LOCATION, "Failed to parse config error {}", e.what());
+    } catch (...) {
+        EXCEPTION_NESTED("Failed to parse config error");
     }
 }
 
@@ -112,7 +112,7 @@ void Doxybook2::saveConfig(Config& config, const std::filesystem::path& path) {
     Log::i("Creating default config {}", path.string());
     std::ofstream file(path);
     if (!file) {
-        throw Exception(LOCATION, "Failed to open file {} for writing", path.string());
+        EXCEPTION("Failed to open file {} for writing", path.string());
     }
 
     nlohmann::json json;

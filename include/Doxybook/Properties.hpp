@@ -7,9 +7,9 @@
 
 namespace Doxybook2 {
 struct Param {
-    std::string type;
+    TextNode type;
     std::string name;
-    std::string defval;
+    TextNode defval;
 };
 
 typedef std::vector<Param> Params;

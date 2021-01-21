@@ -14,17 +14,22 @@ static Xml parse(const char* src) {
 }
 
 TEST_CASE("Sanity Check", "Text") {
-    // clang-format off
-    Text::NodeCompound a{ Text::Type::Paragraph, {}, {
+    Text::NodeCompound a{
+        Text::Type::Paragraph,
+        {},
+        {
             Text::Plain{"Hello "},
-            Text::NodeCompound{Text::Type::UrlLink, {
-                {"url", "https://github.com"}
-            }, {
-                Text::Plain{"World!"}
-            }}
-        }
+            Text::NodeCompound{
+                Text::Type::UrlLink,
+                {
+                    {"url", "https://github.com"},
+                },
+                {
+                    Text::Plain{"World!"},
+                },
+            },
+        },
     };
-    // clang-format on
 
     REQUIRE(a == a);
 }
@@ -45,8 +50,9 @@ TEST_CASE("Simple plain string", "Text") {
     REQUIRE(parsed == expected);
 
     const auto md = Text::printMarkdown(parsed);
+    static const auto mde = "using AudioData = Utils::ArrayView<T>";
 
-    REQUIRE(md == "using AudioData = Utils::ArrayView<T>\n");
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Url link", "Text") {
@@ -70,7 +76,9 @@ TEST_CASE("Url link", "Text") {
     REQUIRE(parsed == expected);
 
     const auto md = Text::printMarkdown(parsed);
-    std::cout << md << std::endl;
+    static const auto mde = "[GitHub repository](https://github.com/matusnovak/doxybook2)";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Url link with prefix", "Text") {
@@ -93,6 +101,11 @@ TEST_CASE("Url link with prefix", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = "Link to: [GitHub repository](https://github.com/matusnovak/doxybook2)";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Url link with suffix", "Text") {
@@ -115,6 +128,11 @@ TEST_CASE("Url link with suffix", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = "[GitHub](https://github.com/matusnovak/doxybook2) repository";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Url link nested", "Text") {
@@ -141,6 +159,11 @@ TEST_CASE("Url link nested", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = "[_**GitHub** repository_](https://github.com/matusnovak/doxybook2)";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Horizontal ruler", "Text") {
@@ -163,6 +186,11 @@ TEST_CASE("Horizontal ruler", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = "**Hello**\n\n--------------------\n\n**World!**";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Ref", "Text") {

@@ -1,76 +1,86 @@
 #pragma once
 
 #include "Properties.hpp"
+#include "Text.hpp"
 #include <memory>
 #include <optional>
 #include <variant>
 
 namespace Doxybook2 {
-    struct Node;
+struct Node;
 
-    using NodeWeakPtr = std::weak_ptr<Node>;
-    using NodeSharedPtr = std::shared_ptr<Node>;
+using NodeWeakPtr = std::weak_ptr<Node>;
+using NodeSharedPtr = std::shared_ptr<Node>;
 
-    struct BasicRef {
-        std::string refid;
-        std::string name;
-    };
+struct BasicRef {
+    std::string refid;
+    std::string name;
+};
 
-    class NodeRef {
-    public:
-        NodeRef() = default;
+class NodeRef {
+public:
+    NodeRef() = default;
 
-        explicit NodeRef(const BasicRef& basic) {
-            value = basic;
-        }
+    explicit NodeRef(const BasicRef& basic) {
+        value = basic;
+    }
 
-        [[nodiscard]] bool empty() const {
-            return value.index() == 0;
-        }
+    [[nodiscard]] bool empty() const {
+        return value.index() == 0;
+    }
 
-        [[nodiscard]] bool resolved() const {
-            return value.index() == 2;
-        }
+    [[nodiscard]] bool resolved() const {
+        return value.index() == 2;
+    }
 
-    private:
-        std::variant<std::nullptr_t, BasicRef, NodeWeakPtr> value{nullptr};
-    };
+    [[nodiscard]] const BasicRef& asBasicRef() const {
+        return std::get<1>(value);
+    }
 
-    struct Include {
-        NodeRef node;
-        bool isLocal{false};
-    };
+    [[nodiscard]] const NodeWeakPtr& asNode() const {
+        return std::get<2>(value);
+    }
 
-    using Includes = std::vector<Include>;
+private:
+    std::variant<std::nullptr_t, BasicRef, NodeWeakPtr> value{nullptr};
+};
 
-    struct Location {
-        NodeRef file;
-        int line{0};
-        int column{0};
-    };
+struct Include {
+    NodeRef node;
+    bool isLocal{false};
+};
 
-    struct BodyLocation {
-        NodeRef file;
-        int start{0};
-        int end{0};
-    };
+using Includes = std::vector<Include>;
 
-    struct Node {
-        Kind kind;
+struct Location {
+    NodeRef file;
+    int line{0};
+    int column{0};
+};
 
-        std::string refid;
-        std::string name;
-        std::string title;
-        std::string brief;
+struct BodyLocation {
+    NodeRef file;
+    int start{0};
+    int end{0};
+};
 
-        Properties properties;
+struct Node {
+    Kind kind;
 
-        NodeWeakPtr parent;
-        NodeWeakPtr group;
+    std::string refid;
+    std::string name;
+    TextNode title;
+    TextNode brief;
 
-        Includes includes;
-        std::vector<NodeSharedPtr> children;
-        std::optional<Location> location;
-        std::optional<BodyLocation> bodyLocation;
-    };
+    Properties properties;
+
+    NodeWeakPtr parent;
+    NodeWeakPtr group;
+
+    Includes includes;
+    std::vector<NodeSharedPtr> children;
+    std::vector<NodeRef> childrenRefs;
+    std::optional<Location> location;
+    std::optional<BodyLocation> bodyLocation;
+};
 } // namespace Doxybook2
