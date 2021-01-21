@@ -101,24 +101,14 @@ jobs:
               -G "${{ matrix.generator }}" \
               -DCMAKE_INSTALL_PREFIX=./install \
               -DCMAKE_BUILD_TYPE=MinSizeRel \
-              -DDOXYBOOK_TESTS=ON \
+              -DDOXYBOOK_TESTS=OFF \
+              -DDOXYBOOK_COVERAGE=OFF \
               -DVCPKG_TARGET_TRIPLET=${{ matrix.triplet }} \
               -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
               .
           fi
 
       - name: Compile
-        shell: bash
-        run: |
-          cmake --build ./build --config MinSizeRel
-
-      - name: Tests
-        shell: bash
-        run: |
-          cd ./build/tests/DoxybookTests
-          ctest -VV --output-on-failure
-
-      - name: Install
         shell: bash
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
@@ -187,8 +177,19 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
   
   coverage:
-    name: Coverage
-    runs-on: ubuntu-latest
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: 'Tests'
+            os: ubuntu-latest
+            triplet: x64-linux
+            suffix: 'linux-amd64'
+            vcpkg_dir: '/usr/local/share/vcpkg'
+            generator: 'Unix Makefiles'
+            arch: ''
     steps:
       - name: Checkout
         uses: actions/checkout@v1
