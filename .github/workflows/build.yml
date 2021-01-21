@@ -254,13 +254,9 @@ jobs:
           ./coverage.sh
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./build/build/coverage.info
-          flags: unittests
-          fail_ci_if_error: true
-          verbose: true
+        shell: bash
+        run: |
+          bash <(curl -s https://codecov.io/bash) -f ./build/coverage.info || echo "Codecov did not collect coverage reports"
   
   pages:
     name: Pages
