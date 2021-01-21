@@ -69,7 +69,7 @@ TEST_CASE("Parse simple compound", "Doxygen") {
     REQUIRE(compound->kind == Kind::CLASS);
     REQUIRE(compound->refid == "classEngine_1_1Utils_1_1ArrayView");
     REQUIRE(compound->name == "Engine::Utils::ArrayView");
-    REQUIRE(compound->title == Text::Plain{"Engine::Utils::ArrayView"});
+    REQUIRE(compound->title == TextNode{Text::Plain{"Engine::Utils::ArrayView"}});
     REQUIRE(compound->brief == asTextPara("Filesystem path utility functions. "));
 
     REQUIRE(compound->properties.visibility == Visibility::PUBLIC);
@@ -91,9 +91,9 @@ TEST_CASE("Parse simple compound", "Doxygen") {
     REQUIRE(compound->properties.templateParams.size() == 1);
 
     const auto& tp = compound->properties.templateParams.front();
-    REQUIRE(tp.type == Text::Plain{"typename T"});
+    REQUIRE(tp.type == TextNode{Text::Plain{"typename T"}});
     REQUIRE(tp.name.empty());
-    REQUIRE(tp.defval == Text::Plain{"uint8_t"});
+    REQUIRE(tp.defval == TextNode{Text::Plain{"uint8_t"}});
 
     const auto& location = compound->location;
     REQUIRE(location.has_value());
@@ -147,7 +147,7 @@ TEST_CASE("Parse simple memberdef", "Doxygen") {
     REQUIRE(member->kind == Kind::FUNCTION);
     REQUIRE(member->refid == "classEngine_1_1Utils_1_1ArrayView_1ab73615399bbbb9fd6246fa3982f2cfec");
     REQUIRE(member->name == "ArrayView");
-    REQUIRE(member->title == Text::Plain{"ArrayView"});
+    REQUIRE(member->title == TextNode{Text::Plain{"ArrayView"}});
     REQUIRE(member->brief == TextNode{});
 
     REQUIRE(member->properties.visibility == Visibility::PUBLIC);
@@ -171,11 +171,11 @@ TEST_CASE("Parse simple memberdef", "Doxygen") {
     const auto& p0 = member->properties.params.at(0);
     const auto& p1 = member->properties.params.at(1);
 
-    REQUIRE(p0.type == "const T *");
+    REQUIRE(p0.type == TextNode{Text::Plain{"const T *"}});
     REQUIRE(p0.name == "src");
     REQUIRE(p0.defval == TextNode{});
 
-    REQUIRE(p1.type == "size_t");
+    REQUIRE(p1.type == TextNode{Text::Plain{"size_t"}});
     REQUIRE(p1.name == "len");
     REQUIRE(p1.defval == TextNode{});
 

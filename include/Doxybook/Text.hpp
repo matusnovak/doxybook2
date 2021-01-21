@@ -2,8 +2,9 @@
 
 #include "Xml.hpp"
 #include <filesystem>
+#include <map>
 #include <nlohmann/json.hpp>
-#include <unordered_map>
+#include <optional>
 #include <variant>
 
 namespace Doxybook2 {

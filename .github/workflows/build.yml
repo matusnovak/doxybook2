@@ -57,7 +57,7 @@ jobs:
         run: |
           cd ${{ matrix.vcpkg_dir }}
           git fetch origin --tags
-          git reset --hard 2020.06
+          git reset --hard 2020.11-1
           if [ "${{ matrix.triplet }}" == "x64-windows" ] || [ "${{ matrix.triplet }}" == "x86-windows" ]; then
             ./bootstrap-vcpkg.bat
           else
@@ -108,6 +108,17 @@ jobs:
           fi
 
       - name: Compile
+        shell: bash
+        run: |
+          cmake --build ./build --config MinSizeRel
+
+      - name: Tests
+        shell: bash
+        run: |
+          cd ./build/tests/DoxybookTests
+          ctest -VV --output-on-failure
+
+      - name: Install
         shell: bash
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
@@ -175,9 +186,74 @@ jobs:
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
   
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Configure Vcpkg
+        shell: bash
+        run: |
+          cd ${{ matrix.vcpkg_dir }}
+          git fetch origin --tags
+          git reset --hard 2020.11-1
+          ./bootstrap-vcpkg.sh
+
+      - name: Cache vcpkg
+        uses: actions/cache@v2
+        with:
+          path: '${{ matrix.vcpkg_dir }}/installed'
+          key: deps-${{ matrix.triplet }}-${{ hashFiles('vcpkg.txt') }}
+          restore-keys: |
+            deps-${{ matrix.triplet }}-
+
+      - name: Install vcpkg packages
+        shell: bash
+        run: |
+          vcpkg install --triplet ${{ matrix.triplet }} $(cat vcpkg.txt)
+
+      - name: Configure
+        shell: bash
+        run: |
+          mkdir build
+
+          export CC=/usr/bin/gcc-9
+          export CXX=/usr/bin/g++-9
+          cmake \
+            -B ./build \
+            -G "${{ matrix.generator }}" \
+            -DCMAKE_INSTALL_PREFIX=./install \
+            -DCMAKE_BUILD_TYPE=MinSizeRel \
+            -DDOXYBOOK_TESTS=ON \
+            -DDOXYBOOK_COVERAGE=ON \
+            -DVCPKG_TARGET_TRIPLET=${{ matrix.triplet }} \
+            -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
+            .
+
+      - name: Compile
+        shell: bash
+        run: |
+          cmake --build ./build --config MinSizeRel
+
+      - name: Tests
+        shell: bash
+        run: |
+          cd ./build/tests/DoxybookTests
+          ctest -VV --output-on-failure
+
+      - name: Coverage
+        shell: bash
+        run: |
+          ./coverage.sh
+          bash <(curl -s https://codecov.io/bash) -f build/coverage.info || echo "Codecov did not collect coverage reports"
+  
   pages:
     name: Pages
-    needs: [build]
+    needs: [build, coverage]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
