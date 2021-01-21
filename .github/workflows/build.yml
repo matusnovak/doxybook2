@@ -176,30 +176,32 @@ jobs:
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
   
-  coverage:
-    name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: 'Tests'
-            os: ubuntu-latest
-            triplet: x64-linux
-            suffix: 'linux-amd64'
-            vcpkg_dir: '/usr/local/share/vcpkg'
-            generator: 'Unix Makefiles'
-            arch: ''
+  tests:
+    name: 'Tests'
+    runs-on: ubuntu-latest
+    env:
+      name: 'Tests'
+      os: ubuntu-latest
+      triplet: x64-linux
+      suffix: 'linux-amd64'
+      vcpkg_dir: '/usr/local/share/vcpkg'
+      generator: 'Unix Makefiles'
+      arch: ''
     steps:
       - name: Checkout
         uses: actions/checkout@v1
         with:
           submodules: true
 
+      - name: System Dependencies
+        shell: bash
+        run: |
+         sudo apt-get install -y lcov
+
       - name: Configure Vcpkg
         shell: bash
         run: |
-          cd ${{ matrix.vcpkg_dir }}
+          cd ${{ env.vcpkg_dir }}
           git fetch origin --tags
           git reset --hard 2020.11-1
           ./bootstrap-vcpkg.sh
@@ -207,15 +209,15 @@ jobs:
       - name: Cache vcpkg
         uses: actions/cache@v2
         with:
-          path: '${{ matrix.vcpkg_dir }}/installed'
-          key: deps-${{ matrix.triplet }}-${{ hashFiles('vcpkg.txt') }}
+          path: '${{ env.vcpkg_dir }}/installed'
+          key: deps-${{ env.triplet }}-${{ hashFiles('vcpkg.txt') }}
           restore-keys: |
-            deps-${{ matrix.triplet }}-
+            deps-${{ env.triplet }}-
 
       - name: Install vcpkg packages
         shell: bash
         run: |
-          vcpkg install --triplet ${{ matrix.triplet }} $(cat vcpkg.txt)
+          vcpkg install --triplet ${{ env.triplet }} $(cat vcpkg.txt)
 
       - name: Configure
         shell: bash
@@ -226,13 +228,13 @@ jobs:
           export CXX=/usr/bin/g++-9
           cmake \
             -B ./build \
-            -G "${{ matrix.generator }}" \
+            -G "${{ env.generator }}" \
             -DCMAKE_INSTALL_PREFIX=./install \
             -DCMAKE_BUILD_TYPE=MinSizeRel \
             -DDOXYBOOK_TESTS=ON \
             -DDOXYBOOK_COVERAGE=ON \
-            -DVCPKG_TARGET_TRIPLET=${{ matrix.triplet }} \
-            -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
+            -DVCPKG_TARGET_TRIPLET=${{ env.triplet }} \
+            -DCMAKE_TOOLCHAIN_FILE=${{ env.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
             .
 
       - name: Compile
@@ -246,15 +248,23 @@ jobs:
           cd ./build/tests/DoxybookTests
           ctest -VV --output-on-failure
 
-      - name: Coverage
+      - name: Create coverage report
         shell: bash
         run: |
           ./coverage.sh
-          bash <(curl -s https://codecov.io/bash) -f build/coverage.info || echo "Codecov did not collect coverage reports"
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./build/build/coverage.info
+          flags: unittests
+          fail_ci_if_error: true
+          verbose: true
   
   pages:
     name: Pages
-    needs: [build, coverage]
+    needs: [build, tests]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
