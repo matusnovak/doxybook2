@@ -32,7 +32,7 @@ jobs:
             generator: 'Visual Studio 16 2019'
             arch: '-A Win32'
           - name: 'Linux x64'
-            os: ubuntu-latest
+            os: ubuntu-20.04
             triplet: x64-linux
             suffix: 'linux-amd64'
             vcpkg_dir: '/usr/local/share/vcpkg'
@@ -178,7 +178,7 @@ jobs:
   
   tests:
     name: 'Tests'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       name: 'Tests'
       os: ubuntu-latest
