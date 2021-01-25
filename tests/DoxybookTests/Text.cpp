@@ -539,4 +539,58 @@ TEST_CASE("Table", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = R"(## Table:
+
+| First Header  | Second Header  | Third Header  | 
+| Content Cell  | Content Cell  | Content Cell  | 
+| Content Cell  | Content Cell  | **Content** Cell  | 
+)";
+
+    REQUIRE(md == mde);
+}
+
+TEST_CASE("Convert to json", "Text") {
+    // clang-format off
+    const auto compound = Text::NodeCompound{ Text::Type::Paragraph, {}, {
+            Text::NodeCompound{Text::Type::UrlLink, {
+                    {"url", "https://github.com/matusnovak/doxybook2"}
+                }, {
+                Text::NodeCompound{Text::Type::Italics, {}, {
+                    Text::NodeCompound{Text::Type::Bold, {}, {
+                        Text::Plain{"GitHub"}
+                    }},
+                    Text::Plain{" repository"}
+                }},
+            }},
+        }
+    };
+    // clang-format on
+
+    const auto json = compound.json();
+
+    static const auto expected = R"({
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": "GitHub",
+                  "type": "bold"
+                },
+                " repository"
+              ],
+              "type": "italics"
+            }
+          ],
+          "type": "url",
+          "url": "https://github.com/matusnovak/doxybook2"
+        }
+      ],
+      "type": "paragraph"
+    })";
+
+    REQUIRE(json == nlohmann::json::parse(expected));
 }

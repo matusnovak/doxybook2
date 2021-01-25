@@ -150,7 +150,9 @@ bool Doxybook2::isKindStructured(const Kind kind) {
     case Doxybook2::Kind::NAMESPACE:
     case Doxybook2::Kind::STRUCT:
     case Doxybook2::Kind::UNION:
-    case Doxybook2::Kind::INTERFACE: {
+    case Doxybook2::Kind::INTERFACE:
+    case Doxybook2::Kind::FILE:
+    case Doxybook2::Kind::DIR: {
         return true;
     }
     default: {

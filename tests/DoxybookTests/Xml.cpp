@@ -25,17 +25,26 @@ TEST_CASE("Parse simple document", "Xml") {
       </book>  
     </bookstore>)";
 
-    Xml xml(raw);
+    Xml temp(raw);
+    Xml xml = std::move(temp);
 
-    const auto root = xml.root();
+    auto root = xml.root();
     REQUIRE(root.getName() == "bookstore");
     REQUIRE(root.hasText() == false);
 
-    const auto cooking = root.firstChildElement("book");
+    root = xml.firstChildElement("bookstore");
+    REQUIRE(root.getName() == "bookstore");
+    REQUIRE(root.hasText() == false);
+
+    auto cooking = root.firstChildElement("book");
     REQUIRE(!!cooking);
     REQUIRE(cooking.getName() == "book");
     REQUIRE(cooking.getAttr("category") == "COOKING");
     REQUIRE_THROWS(cooking.getAttr("unknown"));
+
+    cooking = root.firstChildElement();
+    REQUIRE(!!cooking);
+    REQUIRE(cooking.getName() == "book");
 
     const auto title = cooking.firstChildElement("title");
     REQUIRE(title.getName() == "title");

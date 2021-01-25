@@ -6,7 +6,7 @@ set(CMAKE_MODULE_PATH
 
 project(Doxybook2)
 
-if(APPLE OR MSVC)
+if(APPLE OR MSVC OR CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(DOXYBOOK_STATIC_STDLIB OFF)
 else()
   option(DOXYBOOK_STATIC_STDLIB "Use static stdlib" ON)

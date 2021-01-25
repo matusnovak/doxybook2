@@ -427,6 +427,10 @@ static void printPlainSafe(std::stringstream& ss, const Text::Plain& node, const
     ss << node; // TODO
 }
 
+static bool empty(std::stringstream& ss) {
+    return ss.tellp() == std::streampos(0);
+}
+
 static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVariant& node,
                                      const Text::MarkdownOptions& options) {
     using namespace Text;
@@ -440,7 +444,7 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
         const auto& n = std::get<1>(node);
         switch (n.type) {
         case Type::HRuler: {
-            if (ss.tellp() != std::streampos(0)) {
+            if (!empty(ss)) {
                 ss << "\n\n";
             }
             ss << "--------------------\n\n";
@@ -458,7 +462,7 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
         // Before
         switch (n.type) {
         case Type::Section: {
-            ss << hTypeToMarkdown(std::get<0>(n.properties.at("value")));
+            ss << hTypeToMarkdown(std::get<0>(n.properties.at("level")));
             ss << " ";
             printMarkdownRecursively(ss, n.properties.at("title"), options);
             ss << "\n\n";
@@ -476,6 +480,10 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
         }
         case Type::Bold: {
             ss << "**";
+            break;
+        }
+        case Type::TableRow: {
+            ss << "| ";
             break;
         }
         default: {
@@ -520,6 +528,14 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
         }
         case Type::Bold: {
             ss << "**";
+            break;
+        }
+        case Type::TableCell: {
+            ss << " | ";
+            break;
+        }
+        case Type::TableRow: {
+            ss << "\n";
             break;
         }
         default: {
