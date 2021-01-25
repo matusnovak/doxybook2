@@ -65,7 +65,7 @@ Callback strToType(const std::string& str) {
         {"image", Text::parseImage},
         {"ulink", Text::parseUrlLink},
         {"ref", Text::parseRef},
-        {"listitem", Text::parseText},
+        {"listitem", Text::parseListItem},
         {"itemizedlist", Text::parseList},
         {"variablelist", Text::parseText},
         {"orderedlist", Text::parseList},
@@ -316,17 +316,15 @@ Text::NodeVariant Text::parseList(const Xml::Element& elm) {
         node.type = Type::OrderedList;
     }
 
-    allOf(elm, "listitem", [&](const Xml::Element& item) {
-        const auto para = item.firstChildElement("para");
-        if (para) {
-            // parseRecursively(node.children, para.asNode());
-            NodeCompound child{Type::ListItem};
+    parseChildrenOf(node.children, elm);
 
-            parseChildrenOf(child.children, para);
+    return node;
+}
 
-            node.children.emplace_back(std::move(child));
-        }
-    });
+Text::NodeVariant Text::parseListItem(const Xml::Element& elm) {
+    NodeCompound node{Type::ListItem};
+
+    parseChildrenOf(node.children, elm);
 
     return node;
 }
@@ -432,7 +430,8 @@ static bool empty(std::stringstream& ss) {
 }
 
 static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVariant& node,
-                                     const Text::MarkdownOptions& options) {
+                                     const Text::MarkdownOptions& options, const std::string& indent,
+                                     const Text::NodeCompound* parent) {
     using namespace Text;
 
     switch (node.index()) {
@@ -464,7 +463,7 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
         case Type::Section: {
             ss << hTypeToMarkdown(std::get<0>(n.properties.at("level")));
             ss << " ";
-            printMarkdownRecursively(ss, n.properties.at("title"), options);
+            printMarkdownRecursively(ss, n.properties.at("title"), options, indent, &n);
             ss << "\n\n";
             break;
         }
@@ -472,6 +471,10 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
             [[fallthrough]];
         case Type::UrlLink: {
             ss << "[";
+            break;
+        }
+        case Type::ImageLink: {
+            ss << "![";
             break;
         }
         case Type::Italics: {
@@ -482,9 +485,32 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
             ss << "**";
             break;
         }
+        case Type::StrikeThrough: {
+            ss << "~~";
+            break;
+        }
+        case Type::Monospaced: {
+            ss << "`";
+            break;
+        }
         case Type::TableRow: {
             ss << "| ";
             break;
+        }
+        case Type::ItemizedList: {
+            if (!empty(ss)) {
+                ss << "\n";
+            }
+            break;
+        }
+        case Type::ListItem: {
+            ss << "* ";
+            break;
+        }
+        case Type::CodeBlock: {
+            ss << "```";
+            ss << std::get<0>(n.properties.at("lang"));
+            ss << "\n";
         }
         default: {
             break;
@@ -492,14 +518,49 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
         }
 
         // Middle
-        for (const auto& c : n.children) {
-            printMarkdownRecursively(ss, c, options);
+        if (n.type == Type::ItemizedList) {
+            const auto ind = indent + "  ";
+            for (const auto& c : n.children) {
+                ss << indent;
+                printMarkdownRecursively(ss, c, options, ind, &n);
+            }
+        } else if (n.type == Type::ListItem) {
+            auto first = true;
+            for (const auto& c : n.children) {
+                if (c.index() != 2) {
+                    continue;
+                }
+
+                const auto& cn = std::get<2>(c);
+                if (cn.type != Type::Paragraph) {
+                    continue;
+                }
+
+                if (!first) {
+                    ss << indent;
+                }
+
+                for (const auto& gcn : cn.children) {
+                    printMarkdownRecursively(ss, gcn, options, indent, &n);
+                }
+
+                ss << "\n";
+                first = false;
+            }
+        } else {
+            for (const auto& c : n.children) {
+                printMarkdownRecursively(ss, c, options, indent, &n);
+            }
         }
 
         // After
         switch (n.type) {
         case Type::Paragraph: {
-            ss << "\n\n";
+            if (!parent || (parent->type != Type::ListItem && parent->type != Type::ItemizedList)) {
+                ss << "\n\n";
+            } else {
+                ss << "\n";
+            }
             break;
         }
         case Type::RefLink: {
@@ -522,6 +583,12 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
             ss << ")";
             break;
         }
+        case Type::ImageLink: {
+            ss << "](";
+            ss << std::get<Plain>(n.properties.at("url"));
+            ss << ")";
+            break;
+        }
         case Type::Italics: {
             ss << "_";
             break;
@@ -530,12 +597,31 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
             ss << "**";
             break;
         }
+        case Type::StrikeThrough: {
+            ss << "~~";
+            break;
+        }
+        case Type::Monospaced: {
+            ss << "`";
+            break;
+        }
         case Type::TableCell: {
             ss << " | ";
             break;
         }
         case Type::TableRow: {
             ss << "\n";
+            break;
+        }
+        case Type::CodeBlock: {
+            ss << "\n```\n\n";
+            break;
+        }
+        case Type::ItemizedList: {
+            /*ss << "\n";
+            if (indent.empty()) {
+                ss << "\n";
+            }*/
             break;
         }
         default: {
@@ -554,7 +640,7 @@ static void printMarkdownRecursively(std::stringstream& ss, const Text::NodeVari
 std::string Text::printMarkdown(const NodeVariant& node, const MarkdownOptions& options) {
     std::stringstream ss;
 
-    printMarkdownRecursively(ss, node, options);
+    printMarkdownRecursively(ss, node, options, "", nullptr);
 
     auto md = ss.str();
     if (md.size() >= 2 && md.at(md.size() - 1) == '\n' && md.at(md.size() - 2) == '\n') {

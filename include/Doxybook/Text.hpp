@@ -118,6 +118,7 @@ extern NodeVariant parseRef(const Xml::Element& elm);
 extern NodeVariant parseSection(const Xml::Element& elm);
 extern NodeVariant parseMaybePlain(const Xml::Node& elm);
 extern NodeVariant parseList(const Xml::Element& elm);
+extern NodeVariant parseListItem(const Xml::Element& elm);
 extern NodeVariant parseUrlLink(const Xml::Element& elm);
 extern NodeVariant parseCodeListing(const Xml::Element& elm);
 extern NodeVariant parseTable(const Xml::Element& elm);

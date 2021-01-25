@@ -65,6 +65,9 @@ This is a mainpage of Doxybook2 example output. This file is generated from
 - list item 1
     - sub item 1
         - sub sub item 1 with __italic__
+
+          and multiple rows
+
         - sub sub item 2 with **bold**
     - sub item 2
 - list item 2

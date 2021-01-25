@@ -233,6 +233,11 @@ TEST_CASE("Image", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = R"(![Title](doxygen.png) some image)";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Section", "Text") {
@@ -262,6 +267,13 @@ TEST_CASE("Section", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = R"(## Images:
+
+![](doxygen.png))";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Section nested", "Text") {
@@ -296,6 +308,13 @@ TEST_CASE("Section nested", "Text") {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = R"(## **Images**:
+
+![](doxygen.png))";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Itemized list", "Text") {
@@ -306,8 +325,8 @@ TEST_CASE("Itemized list", "Text") {
                 <listitem>
                     <para>sub item 1<itemizedlist>
                         <listitem>
-                            <para>sub sub item 1 with <emphasis>italic</emphasis>
-                            </para>
+                            <para>sub sub item 1 with <emphasis>italic</emphasis></para>
+                            <para>and multiple rows</para>
                         </listitem>
                         <listitem>
                             <para>sub sub item 2 with <bold>bold</bold>
@@ -346,62 +365,131 @@ TEST_CASE("Itemized list", "Text") {
 
     const auto parsed = Text::parse(elm);
 
-    // clang-format off
-    const Text::NodeVariant expected = Text::NodeCompound{ Text::Type::Paragraph, {}, {
-            Text::NodeCompound{ Text::Type::ItemizedList, {}, {
-                Text::NodeCompound{Text::Type::ListItem, {}, {
-                    Text::Plain{"list item 1"},
-                    Text::NodeCompound{ Text::Type::ItemizedList, {}, {
-                        Text::NodeCompound{Text::Type::ListItem, {}, {
-                            Text::Plain{"sub item 1"},
-                            Text::NodeCompound{ Text::Type::ItemizedList, {}, {
-                                Text::NodeCompound{Text::Type::ListItem, {}, {
-                                    Text::Plain{"sub sub item 1 with "},
-                                    Text::NodeCompound{ Text::Type::Italics, {}, {
-                                        Text::Plain{"italic"}
-                                    }}
-                                }},
-                                Text::NodeCompound{Text::Type::ListItem, {}, {
-                                    Text::Plain{"sub sub item 2 with "},
-                                    Text::NodeCompound{ Text::Type::Bold, {}, {
-                                        Text::Plain{"bold"}
-                                    }}
-                                }}
-                            }}
-                        }},
-                        Text::NodeCompound{Text::Type::ListItem, {}, {
-                            Text::Plain{"sub item 2"},
-                        }}
-                    }}
-                }},
-                Text::NodeCompound{Text::Type::ListItem, {}, {
-                    Text::Plain{"list item 2"},
-                    Text::NodeCompound{ Text::Type::ItemizedList, {}, {
-                        Text::NodeCompound{Text::Type::ListItem, {}, {
-                            Text::Plain{"sub item 3"},
-                            Text::NodeCompound{ Text::Type::ItemizedList, {}, {
-                                Text::NodeCompound{Text::Type::ListItem, {}, {
-                                    Text::Plain{"sub sub item 3 with "},
-                                    Text::NodeCompound{ Text::Type::StrikeThrough, {}, {
-                                        Text::Plain{"strike through"}
-                                    }}
-                                }},
-                                Text::NodeCompound{Text::Type::ListItem, {}, {
-                                    Text::Plain{"sub sub item 4 with "},
-                                    Text::NodeCompound{ Text::Type::Monospaced, {}, {
-                                        Text::Plain{"monospaced"}
-                                    }}
-                                }}
-                            }}
-                        }}
-                    }}
-                }}
-            }}
-        }
+    const auto asPara = [](std::vector<Text::NodeVariant> children) {
+        return Text::NodeCompound{
+            Text::Type::Paragraph,
+            {},
+            {std::move(children)},
+        };
     };
-    // clang-format on
+
+    const auto asListItem = [](std::vector<Text::NodeVariant> children) {
+        return Text::NodeCompound{
+            Text::Type::ListItem,
+            {},
+            std::move(children),
+        };
+    };
+
+    const auto asList = [](std::vector<Text::NodeVariant> children) {
+        return Text::NodeCompound{
+            Text::Type::ItemizedList,
+            {},
+            std::move(children),
+        };
+    };
+
+    const Text::NodeVariant expected = asPara({
+        asList({
+            asListItem({
+                asPara({
+                    Text::Plain{"list item 1"},
+                    asList({
+                        asListItem({
+                            asPara({
+                                Text::Plain{"sub item 1"},
+                                asList({
+                                    asListItem({
+                                        asPara({
+                                            Text::Plain{"sub sub item 1 with "},
+                                            Text::NodeCompound{Text::Type::Italics,
+                                                               {},
+                                                               {
+                                                                   Text::Plain{"italic"},
+                                                               }},
+                                        }),
+                                        asPara({
+                                            Text::Plain{"and multiple rows"},
+                                        }),
+                                    }),
+                                    asListItem({
+                                        asPara({
+                                            Text::Plain{"sub sub item 2 with "},
+                                            Text::NodeCompound{Text::Type::Bold,
+                                                               {},
+                                                               {
+                                                                   Text::Plain{"bold"},
+                                                               }},
+                                        }),
+                                    }),
+                                }),
+                            }),
+                        }),
+                        asListItem({
+                            asPara({
+                                Text::Plain{"sub item 2"},
+                            }),
+                        }),
+                    }),
+                }),
+            }),
+            asListItem({
+                asPara({
+                    Text::Plain{"list item 2"},
+                    asList({
+                        asListItem({
+                            asPara({
+                                Text::Plain{"sub item 3"},
+                                asList({
+                                    asListItem({
+                                        asPara({
+                                            Text::Plain{"sub sub item 3 with "},
+                                            Text::NodeCompound{Text::Type::StrikeThrough,
+                                                               {},
+                                                               {
+                                                                   Text::Plain{"strike through"},
+                                                               }},
+                                        }),
+                                    }),
+                                    asListItem({
+                                        asPara({
+                                            Text::Plain{"sub sub item 4 with "},
+                                            Text::NodeCompound{Text::Type::Monospaced,
+                                                               {},
+                                                               {
+                                                                   Text::Plain{"monospaced"},
+                                                               }},
+                                        }),
+                                    }),
+                                }),
+                            }),
+                        }),
+                    }),
+                }),
+            }),
+        }),
+    });
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = R"(* list item 1
+  * sub item 1
+    * sub sub item 1 with _italic_
+      and multiple rows
+    * sub sub item 2 with **bold**
+
+  * sub item 2
+
+* list item 2
+  * sub item 3
+    * sub sub item 3 with ~~strike through~~
+    * sub sub item 4 with `monospaced`
+
+
+)";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Code listing", "Text") {
@@ -461,6 +549,30 @@ int main() {
     // clang-format on
 
     REQUIRE(parsed == expected);
+
+    const auto md = Text::printMarkdown(parsed);
+    static const auto mde = R"(## Snippet:
+
+```cpp
+#include "Engine.hpp"
+
+// A dummy example 
+int main() {
+    // Create pixels buffer
+    const auto pixels = std::make_unique<uint8_t[]>(new uint8_t[1024*1024*3]);
+    fillData(*pixels, "path/to/texture.png");
+
+    // Create a texture out of the pixels
+    Engine::Graphics::Texture2D texture(1024, 1024, *data);
+
+    // Done
+    return 0;
+}
+```
+
+)";
+
+    REQUIRE(md == mde);
 }
 
 TEST_CASE("Table", "Text") {
