@@ -1,5 +1,5 @@
 #include <Doxybook/Config.hpp>
-#include <Doxybook/Doxygen.hpp>
+#include <Doxybook/Doxybook.hpp>
 #include <Doxybook/Log.hpp>
 #include <Doxybook/Utils.hpp>
 #include <argagg/argagg.hpp>
@@ -109,7 +109,7 @@ struct State {
     std::filesystem::path inputDir;
     std::filesystem::path outputDir;
 
-    NodeSharedPtr root;
+    std::unique_ptr<Doxybook> doxybook;
 };
 
 struct Command {
@@ -152,7 +152,7 @@ void commandConfig(State& state, const argagg::option_results& arg) {
 
 void commandInputDir(State& state, const argagg::option_results& arg) {
     state.inputDir = std::filesystem::path(arg.as<std::string>());
-    state.root = Doxygen::parseIndex(state.inputDir);
+    state.doxybook = std::make_unique<Doxybook>(state.inputDir);
 }
 
 void commandOutputDir(State& state, const argagg::option_results& arg) {

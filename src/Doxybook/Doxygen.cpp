@@ -53,6 +53,68 @@ Cache Doxygen::buildCache(const NodeSharedPtr& index) {
     return cache;
 }
 
+static void resolve(const Cache& cache, NodeRef& ref) {
+    if (!ref.resolved() && !ref.empty() && !ref.asBasicRef().refid.empty()) {
+        const auto ptr = cache.findByRef(ref.asBasicRef().refid);
+        if (ptr) {
+            ref.resolve(ptr);
+        } else {
+            Log::w("Unable to resolve reference: {}", ref.asBasicRef().refid);
+        }
+    }
+}
+
+void Doxygen::resolveReferences(const Cache& cache, const NodeSharedPtr& node) {
+    if (node->location.has_value()) {
+        resolve(cache, node->location.value().file);
+    }
+    if (node->bodyLocation.has_value()) {
+        resolve(cache, node->bodyLocation.value().file);
+    }
+    for (auto& ref : node->inners) {
+        resolve(cache, ref);
+        if (ref.resolved()) {
+            node->children.push_back(ref.asNode().lock());
+
+            // Groups should not own their children
+            if (node->kind == Kind::MODULE) {
+                node->children.back()->group = NodeWeakPtr{node};
+
+                // Assing parent to group only if the child is a group!
+                // Otherwise we would steal the pointer from it's real parent.
+                if (node->children.back()->kind == Kind::MODULE) {
+                    node->children.back()->parent = NodeWeakPtr{node};
+                }
+            }
+            // Files should not own their nodes
+            else if (node->kind == Kind::FILE) {
+                // Skip
+            }
+            // Must be a class, namespace, etc.
+            else {
+                node->children.back()->parent = NodeWeakPtr{node};
+            }
+        }
+    }
+    node->inners.clear();
+
+    for (const auto& child : node->children) {
+        resolveReferences(cache, child);
+    }
+}
+
+void Doxygen::resolveHierarchy(const NodeSharedPtr& index) {
+    // Remove nodes from index of which parent pointer has been updated
+    std::vector<NodeSharedPtr> temp;
+    std::swap(temp, index->children);
+
+    for (auto& child : temp) {
+        if (child->parent.expired()) {
+            index->children.push_back(child);
+        }
+    }
+}
+
 NodeSharedPtr Doxygen::parseIndex(const std::filesystem::path& path) {
     const auto indexPath = path / std::filesystem::path("index.xml");
     Log::i("Loading: {}", indexPath.string());
@@ -109,8 +171,12 @@ NodeSharedPtr Doxygen::parseCompound(const Xml::Element& compound) {
     node.location = parseLocation(compound);
     node.bodyLocation = parseBodyLocation(compound);
     node.brief = parseBrief(compound);
-    concat(node.childrenRefs, parseInnerClasses(compound));
-    concat(node.childrenRefs, parseInnerNamespaces(compound));
+    concat(node.inners, parseInnerClasses(compound));
+    concat(node.inners, parseInnerNamespaces(compound));
+    concat(node.inners, parseInnerGroups(compound));
+    concat(node.inners, parseInnerFiles(compound));
+    concat(node.inners, parseInnerDirectories(compound));
+    concat(node.inners, parseInnerPages(compound));
 
     parseProperties(compound, node.properties);
 
@@ -140,6 +206,14 @@ NodeSharedPtr Doxygen::parseMember(const Xml::Element& memberdef) {
     node.brief = parseBrief(memberdef);
 
     parseProperties(memberdef, node.properties);
+
+    if (node.kind == Kind::ENUM) {
+        auto values = parseEnumValues(memberdef);
+        for (const auto& value : values) {
+            value->parent = ptr;
+        }
+        std::swap(node.children, values);
+    }
 
     return ptr;
 }
@@ -188,6 +262,24 @@ Virtual Doxygen::parseVirt(const Xml::Element& elm) {
 std::string Doxygen::parseCompoundName(const Xml::Element& elm) {
     const auto compoundname = assertFind(elm, "compoundname");
     return compoundname.getText();
+}
+
+std::vector<NodeSharedPtr> Doxygen::parseEnumValues(const Xml::Element& memberdef) {
+    std::vector<NodeSharedPtr> values;
+    allOf(memberdef, "enumvalue", [&](Xml::Element& enumvalue) { values.push_back(parseEnumValue(enumvalue)); });
+    return values;
+}
+
+NodeSharedPtr Doxygen::parseEnumValue(const Xml::Element& enumvalue) {
+    NodeSharedPtr node = std::make_shared<Node>();
+    node->kind == Kind::ENUMVALUE;
+    node->refid = parseRefid(enumvalue);
+    node->name = parseName(enumvalue);
+    node->brief = parseBrief(enumvalue);
+
+    parseProperties(enumvalue, node->properties);
+
+    return node;
 }
 
 Includes Doxygen::parseIncludes(const Xml::Element& elm) {
@@ -312,20 +404,34 @@ NodeRef Doxygen::parseRef(const Xml::Element& elm) {
     return NodeRef{BasicRef{refid, name}};
 }
 
-std::vector<NodeRef> Doxygen::parseInnerClasses(const Xml::Element& elm) {
+static std::vector<NodeRef> parseInner(const Xml::Element& elm, const std::string& name) {
     std::vector<NodeRef> inner;
-
-    allOf(elm, "innerclass", [&](Xml::Element& ref) { inner.push_back(parseRef(ref)); });
-
+    allOf(elm, name, [&](Xml::Element& ref) { inner.push_back(Doxygen::parseRef(ref)); });
     return inner;
 }
 
+std::vector<NodeRef> Doxygen::parseInnerClasses(const Xml::Element& elm) {
+    return parseInner(elm, "innerclass");
+}
+
 std::vector<NodeRef> Doxygen::parseInnerNamespaces(const Xml::Element& elm) {
-    std::vector<NodeRef> inner;
+    return parseInner(elm, "innernamespace");
+}
 
-    allOf(elm, "innernamespace", [&](Xml::Element& ref) { inner.push_back(parseRef(ref)); });
+std::vector<NodeRef> Doxygen::parseInnerFiles(const Xml::Element& elm) {
+    return parseInner(elm, "innerfile");
+}
 
-    return inner;
+std::vector<NodeRef> Doxygen::parseInnerDirectories(const Xml::Element& elm) {
+    return parseInner(elm, "innerdir");
+}
+
+std::vector<NodeRef> Doxygen::parseInnerPages(const Xml::Element& elm) {
+    return parseInner(elm, "innerpage");
+}
+
+std::vector<NodeRef> Doxygen::parseInnerGroups(const Xml::Element& elm) {
+    return parseInner(elm, "innergroup");
 }
 
 bool Doxygen::parseBoolAttr(const Xml::Element& elm, const std::string& key) {

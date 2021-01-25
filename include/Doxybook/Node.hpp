@@ -41,6 +41,10 @@ public:
         return std::get<2>(value);
     }
 
+    void resolve(const NodeSharedPtr& ptr) {
+        value = NodeWeakPtr{ptr};
+    }
+
 private:
     std::variant<std::nullptr_t, BasicRef, NodeWeakPtr> value{nullptr};
 };
@@ -79,7 +83,7 @@ struct Node {
 
     Includes includes;
     std::vector<NodeSharedPtr> children;
-    std::vector<NodeRef> childrenRefs;
+    std::vector<NodeRef> inners;
     std::optional<Location> location;
     std::optional<BodyLocation> bodyLocation;
 };

@@ -19,11 +19,15 @@ public:
 
 namespace Doxygen {
 extern Cache buildCache(const NodeSharedPtr& index);
+extern void resolveReferences(const Cache& cache, const NodeSharedPtr& node);
+extern void resolveHierarchy(const NodeSharedPtr& index);
 extern NodeSharedPtr parseIndex(const std::filesystem::path& path);
 extern NodeSharedPtr parse(const std::filesystem::path& path, const std::string& refid);
 extern NodeSharedPtr parse(const Xml::Element& root);
 extern NodeSharedPtr parseCompound(const Xml::Element& compound);
 extern NodeSharedPtr parseMember(const Xml::Element& memberdef);
+extern std::vector<NodeSharedPtr> parseEnumValues(const Xml::Element& memberdef);
+extern NodeSharedPtr parseEnumValue(const Xml::Element& enumvalue);
 extern std::string parseRefid(const Xml::Element& elm);
 extern Kind parseKind(const Xml::Element& elm);
 extern Visibility parseProt(const Xml::Element& elm);
@@ -41,6 +45,10 @@ extern std::optional<BodyLocation> parseBodyLocation(const Xml::Element& elm);
 extern NodeRef parseRef(const Xml::Element& elm);
 extern std::vector<NodeRef> parseInnerClasses(const Xml::Element& elm);
 extern std::vector<NodeRef> parseInnerNamespaces(const Xml::Element& elm);
+extern std::vector<NodeRef> parseInnerFiles(const Xml::Element& elm);
+extern std::vector<NodeRef> parseInnerDirectories(const Xml::Element& elm);
+extern std::vector<NodeRef> parseInnerPages(const Xml::Element& elm);
+extern std::vector<NodeRef> parseInnerGroups(const Xml::Element& elm);
 extern bool parseBoolAttr(const Xml::Element& elm, const std::string& key);
 extern std::string parseTextBody(const Xml::Element& elm, const std::string& key);
 extern std::string parseArgsString(const Xml::Element& elm);

@@ -309,7 +309,7 @@ TEST_CASE("Parse group", "Doxygen") {
 
     REQUIRE(Text::printMarkdown(compound->title, defaultOptons) == "Graphical related classes");
 
-    const auto& inner = compound->childrenRefs;
+    const auto& inner = compound->inners;
     REQUIRE(inner.size() == 5);
     REQUIRE(inner.front().asBasicRef().refid == "classEngine_1_1Graphics_1_1Framebuffer");
 
@@ -373,8 +373,138 @@ TEST_CASE("Parse namespace", "Doxygen") {
 
     REQUIRE(compound->kind == Kind::NAMESPACE);
 
-    const auto& inner = compound->childrenRefs;
+    const auto& inner = compound->inners;
     REQUIRE(inner.size() == 6);
     REQUIRE(inner.at(0).asBasicRef().refid == "classEngine_1_1Exception");
     REQUIRE(inner.at(1).asBasicRef().refid == "namespaceEngine_1_1Assets");
+}
+
+TEST_CASE("Parse enum", "Doxygen") {
+    const auto xml = parse(R"(<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+    <memberdef kind="enum" id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Type</name>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3" prot="public">
+          <name>UNKNOWN</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+            <para>Dont use this </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a2dea92647909a0657c5ca657d92ff0c2" prot="public">
+          <name>INT_8</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+            <para>8-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a6c4baecc05d360b290e07c50131c7fc2" prot="public">
+          <name>INT_16</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+            <para>16-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a1b20706298a204bb53fae40ad0c97bbf" prot="public">
+          <name>INT_24</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+            <para>24-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052aab97c2f5d9a173a78b47802dce7a1806" prot="public">
+          <name>INT_32</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+            <para>32-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a34429544f281bc1e40ec5525cff2a060" prot="public">
+          <name>FLOAT_32</name>
+          <initializer>= 1 &lt;&lt; 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+            <para>32-bit float </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+          <para>Different type of audio formats. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="65" column="13" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="65" bodyend="90"/>
+      </memberdef>
+    )");
+
+    const auto root = xml.root();
+
+    const NodeSharedPtr compound = Doxygen::parseMember(root);
+    REQUIRE(!!compound);
+
+    REQUIRE(compound->kind == Kind::ENUM);
+
+    const auto& inner = compound->inners;
+    REQUIRE(inner.empty());
+
+    REQUIRE(compound->children.size() == 6);
+    REQUIRE(compound->refid == "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052");
+
+    const auto& value = compound->children.front();
+    REQUIRE(value->parent.lock() == compound);
+    REQUIRE(value->name == "UNKNOWN");
+    REQUIRE(
+        value->refid ==
+        "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3");
+    REQUIRE(value->properties.visibility == Visibility::PUBLIC);
+    REQUIRE(Text::printMarkdown(value->properties.initializer) == "= 0");
+}
+
+TEST_CASE("Restructure and assign parents", "Doxygen") {
+    auto index = std::make_shared<Node>();
+    index->kind = Kind::INDEX;
+    index->refid = "index";
+
+    auto groupA = std::make_shared<Node>();
+    groupA->kind = Kind::MODULE;
+    groupA->refid = "group__a";
+    index->children.push_back(groupA);
+
+    auto groupB = std::make_shared<Node>();
+    groupB->kind = Kind::MODULE;
+    groupB->refid = "group__b";
+    index->children.push_back(groupB);
+    groupA->inners.push_back(NodeRef{BasicRef{"group__b", "GroupB"}});
+
+    auto groupC = std::make_shared<Node>();
+    groupC->kind = Kind::MODULE;
+    groupC->refid = "group__c";
+    index->children.push_back(groupC);
+    groupB->inners.push_back(NodeRef{BasicRef{"group__c", "GroupC"}});
+
+    REQUIRE(index->children.size() == 3);
+    REQUIRE(groupA->children.size() == 0);
+    REQUIRE(groupB->children.size() == 0);
+    REQUIRE(groupC->children.size() == 0);
+
+    const auto cache = Doxygen::buildCache(index);
+    Doxygen::resolveReferences(cache, index);
+    Doxygen::resolveHierarchy(index);
+
+    REQUIRE(index->children.size() == 1);
+    REQUIRE(groupA->children.size() == 1);
+    REQUIRE(groupB->children.size() == 1);
+    REQUIRE(groupC->children.size() == 0);
 }
