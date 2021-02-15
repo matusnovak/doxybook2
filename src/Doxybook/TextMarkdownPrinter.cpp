@@ -112,7 +112,7 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         case XmlTextParser::Node::Type::REF: {
             if (config.linkAndInlineCodeAsHTML) {
                 const auto found = doxygen.getCache().find(node->extra);
-                if (found != doxygen.getCache().end()) {
+                if (found != doxygen.getCache().end() && !found->second->getUrl().empty()) {
                     data.ss << "<a href=\"" << found->second->getUrl() << "\">";
                     data.validLink = true;
                 }
