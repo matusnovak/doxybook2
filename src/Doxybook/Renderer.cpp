@@ -34,6 +34,13 @@ static std::string trimPath(std::string path) {
     return path;
 }
 
+static std::string stripTmplSuffix(std::string path) {
+    if (path.size() > 4 && path.find(".tmpl") == path.size() - 5) {
+        path.erase(path.size() - 5); 
+    }
+    return path;
+}
+
 static void directoryIterator(const std::string& path, const std::function<void(const std::string&)>& callback) {
     auto dir = opendir(path.c_str());
     if (dir == nullptr) {
@@ -247,7 +254,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
                 // <path>") thanks to providing the templates path to the constructor of inja::Environment
                 auto tmpl = env->parse_template(filename(oit->second));
                 const auto it =
-                    templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl)))).first;
+                    templates.insert(std::make_pair(stripTmplSuffix(name), std::make_unique<inja::Template>(std::move(tmpl)))).first;
 
                 // Only include the dependencies.
                 // This is needed if a default template is parsed via env->parse
@@ -266,7 +273,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
                 // and therefore we have to do env->include_template(<name>, <ref>)
                 auto tmpl = env->parse(dit->second.src);
                 const auto it =
-                    templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl)))).first;
+                    templates.insert(std::make_pair(stripTmplSuffix(name), std::make_unique<inja::Template>(std::move(tmpl)))).first;
 
                 // Same as above
                 if (include) {
@@ -310,7 +317,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
         try {
             Log::i("Parsing template: '{}' from file: '{}'", name, file);
             auto tmpl = env->parse_template(name + ".tmpl");
-            templates.insert(std::make_pair(name + ".tmpl", std::make_unique<inja::Template>(std::move(tmpl))));
+            templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl))));
         } catch (std::exception& e) {
             throw EXCEPTION("Failed to load template: '{}' error: {}", name, e.what());
         }
@@ -320,7 +327,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
 Doxybook2::Renderer::~Renderer() = default;
 
 void Doxybook2::Renderer::render(const std::string& name, const std::string& path, const nlohmann::json& data) const {
-    const auto it = templates.find(name);
+    const auto it = templates.find(stripTmplSuffix(name));
     if (it == templates.end()) {
         throw EXCEPTION("Template {} not found", name);
     }
@@ -337,21 +344,21 @@ void Doxybook2::Renderer::render(const std::string& name, const std::string& pat
     }
     Log::i("Rendering {}", absPath);
     try {
-        env->render_to(file, *it->second, data);
+      env->render_to(file, *it->second, data);
     } catch (std::exception& e) {
         throw EXCEPTION("Render template '{}' error {}", name, e.what());
     }
 }
 
 std::string Doxybook2::Renderer::render(const std::string& name, const nlohmann::json& data) const {
-    const auto it = templates.find(name);
+    const auto it = templates.find(stripTmplSuffix(name));
     if (it == templates.end()) {
-        throw EXCEPTION("Template {} not found", name);
+        throw EXCEPTION("Template {} not found", stripTmplSuffix(name));
     }
 
     std::stringstream ss;
     try {
-        env->render_to(ss, *it->second, data);
+      env->render_to(ss, *it->second, data);
     } catch (std::exception& e) {
         throw EXCEPTION("Failed to render template '{}' error {}", name, e.what());
     }
