@@ -1,1 +1,1 @@
-argagg catch2 fmt dirent fmt nlohmann-json rang
+argagg catch2 fmt dirent fmt nlohmann-json rang inja
