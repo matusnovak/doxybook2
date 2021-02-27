@@ -232,7 +232,8 @@ void Doxybook2::Node::parseBaseInfo(const Xml::Element& element) {
         case Kind::UNION:
         case Kind::INTERFACE:
         case Kind::STRUCT:
-        case Kind::CLASS: {
+        case Kind::CLASS:
+        case Kind::CATEGORY: {
             type = Type::CLASSES;
             break;
         }

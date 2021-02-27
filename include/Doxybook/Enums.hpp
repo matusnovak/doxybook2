@@ -28,7 +28,8 @@ namespace Doxybook2 {
         SIGNAL,
         SLOT,
         PROPERTY,
-        EVENT
+        EVENT,
+        CATEGORY
     };
 
     enum class Visibility { PUBLIC, PROTECTED, PRIVATE, PACKAGE };
