@@ -76,9 +76,6 @@ jobs:
         shell: bash
         run: |
           vcpkg install --triplet ${{ matrix.triplet }} $(cat vcpkg.txt)
-          # Temporary fix for inja until they will release 3.1.0 to vcpkg
-          vcpkg remove --triplet ${{ matrix.triplet }} inja --recurse || true
-          vcpkg install --triplet ${{ matrix.triplet }} inja --head
 
       - name: Configure
         shell: bash
