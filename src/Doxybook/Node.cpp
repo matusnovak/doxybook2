@@ -114,20 +114,29 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
         });
     };
 
-    innerProcess(compounddef, "innerclass");
-    innerProcess(compounddef, "innerstruct");
-    innerProcess(compounddef, "innernamespace");
-    if (isGroupOrFile) {
-        innerProcess(compounddef, "innergroup");
-        innerProcess(compounddef, "innerdir");
-        innerProcess(compounddef, "innerfile");
-    }
-
     if (!isGroupOrFile) {
         ptr->parseInheritanceInfo(compounddef);
     }
 
     ptr->parseBaseInfo(compounddef);
+
+    auto parseSafely = [&](const std::string& innerName) {
+        try {
+            innerProcess(compounddef, innerName);
+        } catch (std::exception& e) {
+            WARNING("Failed to parse inner member of {} error: {}", innerName, e.what());
+        }
+    };
+
+    parseSafely("innerclass");
+    parseSafely("innerstruct");
+    parseSafely("innernamespace");
+    if (isGroupOrFile) {
+        parseSafely("innergroup");
+        parseSafely("innerdir");
+        parseSafely("innerfile");
+    }
+
     return ptr;
 }
 
