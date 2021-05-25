@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="class_engine_1_1_assets_1_1_asset" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Engine::Assets::Asset</compoundname>
+    <includes refid="_asset_8hpp" local="no">Asset.hpp</includes>
+    <innerclass refid="union_engine_1_1_assets_1_1_asset_1_1_event" prot="public">Engine::Assets::Asset::Event</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_engine_1_1_assets_1_1_asset_1af26cbe7f9237ea471f12620b0547ba39" prot="private" static="no" mutable="no">
+        <type><ref refid="union_engine_1_1_assets_1_1_asset_1_1_event" kindref="compound">Event</ref></type>
+        <definition>Event Engine::Assets::Asset::event</definition>
+        <argsstring></argsstring>
+        <name>event</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="52" column="7" bodyfile="src/Assets/Asset.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_engine_1_1_assets_1_1_asset_1acb5958d164f0b8ced1638de58b3ea0b0" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Engine::Assets::Asset::Asset</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>Asset</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="32" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_assets_1_1_asset_1aecd651b9312fa89e40d268214576839e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>virtual Engine::Assets::Asset::~Asset</definition>
+        <argsstring>()=0</argsstring>
+        <name>~Asset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="33" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_assets_1_1_asset_1a10931e97cd354bf1770b3824d0e87029" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Engine::Assets::Asset::load</definition>
+        <argsstring>()</argsstring>
+        <name>load</name>
+        <briefdescription>
+<para>Call this method to load the asset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="38" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_assets_1_1_asset_1ab25cbfe379d57b414b800c0040e7c63c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Engine::Assets::Asset::unload</definition>
+        <argsstring>()</argsstring>
+        <name>unload</name>
+        <briefdescription>
+<para>Call this method to unload the asset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="42" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_assets_1_1_asset_1a0f49f750cc898cd041d24bad216236a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="union_engine_1_1_assets_1_1_asset_1_1_event" kindref="compound">Event</ref> &amp;</type>
+        <definition>const Event&amp; Engine::Assets::Asset::getEvent</definition>
+        <argsstring>() const</argsstring>
+        <name>getEvent</name>
+        <briefdescription>
+<para>Returns the current status of the asset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use this to determine the state, for example if the assets is being loaded or unloaded. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="48" column="13" bodyfile="src/Assets/Asset.hpp" bodystart="48" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Assets/Asset.hpp" line="10" column="1" bodyfile="src/Assets/Asset.hpp" bodystart="10" bodyend="53"/>
+    <listofallmembers>
+      <member refid="class_engine_1_1_assets_1_1_asset_1acb5958d164f0b8ced1638de58b3ea0b0" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset</scope><name>Asset</name></member>
+      <member refid="class_engine_1_1_assets_1_1_asset_1af26cbe7f9237ea471f12620b0547ba39" prot="private" virt="non-virtual"><scope>Engine::Assets::Asset</scope><name>event</name></member>
+      <member refid="class_engine_1_1_assets_1_1_asset_1a0f49f750cc898cd041d24bad216236a3" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset</scope><name>getEvent</name></member>
+      <member refid="class_engine_1_1_assets_1_1_asset_1a10931e97cd354bf1770b3824d0e87029" prot="public" virt="virtual"><scope>Engine::Assets::Asset</scope><name>load</name></member>
+      <member refid="class_engine_1_1_assets_1_1_asset_1ab25cbfe379d57b414b800c0040e7c63c" prot="public" virt="virtual"><scope>Engine::Assets::Asset</scope><name>unload</name></member>
+      <member refid="class_engine_1_1_assets_1_1_asset_1aecd651b9312fa89e40d268214576839e" prot="public" virt="pure-virtual"><scope>Engine::Assets::Asset</scope><name>~Asset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

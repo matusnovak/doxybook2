@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="class_engine_1_1_graphics_1_1_texture3_d" kind="class" language="C++" prot="public">
+    <compoundname>Engine::Graphics::Texture3D</compoundname>
+    <basecompoundref refid="class_engine_1_1_graphics_1_1_texture" prot="public" virt="non-virtual">Engine::Graphics::Texture</basecompoundref>
+    <includes refid="_texture3_d_8hpp" local="no">Texture3D.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture3_d_1a2085a15a9a5a755b553652b84e8ee8ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Engine::Graphics::Texture3D::Texture3D</definition>
+        <argsstring>(int width, int height, int depth, uint8_t *data, Texture::Type type=Texture::Type::RGBA8)</argsstring>
+        <name>Texture3D</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3" kindref="member">Texture::Type</ref></type>
+          <declname>type</declname>
+          <defval>Texture::Type::RGBA8</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture3D.hpp" line="15" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture3_d_1a1c29881151b000a083509a877239403a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual Engine::Graphics::Texture3D::~Texture3D</definition>
+        <argsstring>()</argsstring>
+        <name>~Texture3D</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture3D.hpp" line="16" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture3_d_1af602dd82ea87309879808b7f8465604f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Engine::Graphics::Texture3D::getWidth</definition>
+        <argsstring>() const override</argsstring>
+        <name>getWidth</name>
+        <reimplements refid="class_engine_1_1_graphics_1_1_texture_1a6ee1abf82e30d5300ae8f0c8d922e31a">getWidth</reimplements>
+        <briefdescription>
+<para>Returns the width of the texture in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Width in pixels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture3D.hpp" line="18" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture3_d_1a8379e2913526715cdf62ce2a4a76f330" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Engine::Graphics::Texture3D::getHeight</definition>
+        <argsstring>() const override</argsstring>
+        <name>getHeight</name>
+        <reimplements refid="class_engine_1_1_graphics_1_1_texture_1a23af68344fcb00113b6ca7b3483d51d3">getHeight</reimplements>
+        <briefdescription>
+<para>Returns the height of the texture in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Height in pixels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture3D.hpp" line="19" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture3_d_1ada1260ef0cb755e4a283c617fae8b009" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Engine::Graphics::Texture3D::getDepth</definition>
+        <argsstring>() const override</argsstring>
+        <name>getDepth</name>
+        <reimplements refid="class_engine_1_1_graphics_1_1_texture_1abb2d22975c917eb2f420534c945cea97">getDepth</reimplements>
+        <briefdescription>
+<para>Returns the depth of the texture in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>If this texture is 2D the depth is always 1 pixels </para>
+</simplesect>
+<simplesect kind="return"><para>Depth in pixels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture3D.hpp" line="20" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Some deprecated class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000004"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Don&apos;t use this texture type </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Engine::Graphics::Texture</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture"/>
+        <childnode refid="3" relation="protected-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Engine::Graphics::Handle</label>
+        <link refid="class_engine_1_1_graphics_1_1_handle"/>
+      </node>
+      <node id="1">
+        <label>Engine::Graphics::Texture3D</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture3_d"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Engine::Graphics::Texture</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture"/>
+        <childnode refid="3" relation="protected-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Engine::Graphics::Handle</label>
+        <link refid="class_engine_1_1_graphics_1_1_handle"/>
+      </node>
+      <node id="1">
+        <label>Engine::Graphics::Texture3D</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture3_d"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/Graphics/Texture3D.hpp" line="13" column="9" bodyfile="src/Graphics/Texture3D.hpp" bodystart="13" bodyend="21"/>
+    <listofallmembers>
+      <member refid="class_engine_1_1_graphics_1_1_texture3_d_1ada1260ef0cb755e4a283c617fae8b009" prot="public" virt="virtual"><scope>Engine::Graphics::Texture3D</scope><name>getDepth</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1a51c68ca867d2e6520f72ff3f55e43a19" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>getHandle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture3_d_1a8379e2913526715cdf62ce2a4a76f330" prot="public" virt="virtual"><scope>Engine::Graphics::Texture3D</scope><name>getHeight</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture3_d_1af602dd82ea87309879808b7f8465604f" prot="public" virt="virtual"><scope>Engine::Graphics::Texture3D</scope><name>getWidth</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1a986328747b7527a0c01728f0ae351b28" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>handle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1aab68ea12ecb749124568f6ab3cc414bc" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>Handle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1ae0b09c21b3d9d3087cbc507ca62a01e8" prot="public" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>isLoaded</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1ac00e77b373f4de42a738b6a5f0d5d2ee" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>loaded</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a2aa720c8a39a34c503b0f9c7c589125d" prot="public" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>Texture</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture3_d_1a2085a15a9a5a755b553652b84e8ee8ab" prot="public" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>Texture3D</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3" prot="public" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>Type</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a65eb15ea929c3e09e18dec43eee8e7de" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture3D</scope><name>type</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1a44c63f895a2ed3c095dfd4a9605a9ee4" prot="protected" virt="virtual"><scope>Engine::Graphics::Texture3D</scope><name>~Handle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a7aa1cce1ae133a47d7a8f587ee666ad6" prot="public" virt="virtual"><scope>Engine::Graphics::Texture3D</scope><name>~Texture</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture3_d_1a1c29881151b000a083509a877239403a" prot="public" virt="virtual"><scope>Engine::Graphics::Texture3D</scope><name>~Texture3D</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

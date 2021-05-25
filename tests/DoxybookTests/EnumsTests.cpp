@@ -9,10 +9,6 @@ TEST_CASE("Throw if invalid enum", "Enums") {
     REQUIRE_THROWS(toEnumKind("unknown"));
     REQUIRE(toStr(Kind::FUNCTION) == "function");
 
-    REQUIRE(toEnumType("functions") == Type::FUNCTIONS);
-    REQUIRE_THROWS(toEnumType("unknown"));
-    REQUIRE(toStr(Type::FUNCTIONS) == "functions");
-
     REQUIRE(toEnumVirtual("virtual") == Virtual::VIRTUAL);
     REQUIRE_THROWS(toEnumVirtual("unknown"));
     REQUIRE(toStr(Virtual::VIRTUAL) == "virtual");
@@ -39,7 +35,7 @@ TEST_CASE("Check if enum kind is xyz", "Enums") {
 TEST_CASE("Enums with config", "Enums") {
     Config config{};
 
-    REQUIRE(typeToFolderName(config, Type::MODULES) == config.folderGroupsName);
+    REQUIRE(typeToFolderName(config, Kind::MODULE) == config.folderGroupsName);
 
     REQUIRE(typeToIndexName(config, FolderCategory::MODULES) == config.indexGroupsName);
 

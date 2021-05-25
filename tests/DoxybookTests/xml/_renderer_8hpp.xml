@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="_renderer_8hpp" kind="file" language="C++">
+    <compoundname>Renderer.hpp</compoundname>
+    <includedby refid="_graphics_8hpp" local="yes">src/Graphics/Graphics.hpp</includedby>
+    <invincdepgraph>
+      <node id="3">
+        <label>src/Engine.hpp</label>
+        <link refid="_engine_8hpp"/>
+      </node>
+      <node id="1">
+        <label>src/Graphics/Renderer.hpp</label>
+        <link refid="_renderer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>src/Graphics/Graphics.hpp</label>
+        <link refid="_graphics_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+    </programlisting>
+    <location file="src/Graphics/Renderer.hpp"/>
+  </compounddef>
+</doxygen>

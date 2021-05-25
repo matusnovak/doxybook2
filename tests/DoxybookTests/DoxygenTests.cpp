@@ -1,3 +1,4 @@
+#include <Doxybook/Doxybook.hpp>
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Exception.hpp>
 #include <catch2/catch.hpp>
@@ -76,7 +77,7 @@ TEST_CASE("Parse simple compound", "Doxygen") {
     REQUIRE(compound->properties.virt == Virtual::NON_VIRTUAL);
     REQUIRE(compound->properties.definition == "");
     REQUIRE(compound->properties.argsString == "");
-    REQUIRE(compound->properties.initializer.index() == 0);
+    REQUIRE(compound->properties.initializer.empty());
     REQUIRE(compound->properties.isAbstract == false);
     REQUIRE(compound->properties.isStatic == false);
     REQUIRE(compound->properties.isConst == false);
@@ -191,6 +192,8 @@ TEST_CASE("Parse simple memberdef", "Doxygen") {
 
 static const Text::MarkdownOptions defaultOptons{
     "",
+    "",
+    false,
     [](const std::string& refid) -> std::optional<std::string> { return "some_link.md"; },
 };
 
@@ -223,7 +226,7 @@ TEST_CASE("Params with refs", "Doxygen") {
     REQUIRE(member->properties.params.size() == 1);
     const auto& param = member->properties.params.front();
 
-    REQUIRE(Text::printMarkdown(param.type, defaultOptons) == "[AudioBuffer](some_link.md) &");
+    REQUIRE(Text::printMarkdown(param.type.node, defaultOptons) == "[AudioBuffer](some_link.md) &");
 }
 
 TEST_CASE("Explicit constructor with brief", "Doxygen") {
@@ -255,7 +258,7 @@ TEST_CASE("Explicit constructor with brief", "Doxygen") {
 
     REQUIRE(member->properties.isExplicit == true);
 
-    const auto brief = Text::printMarkdown(member->brief, defaultOptons);
+    const auto brief = Text::printMarkdown(member->brief.node, defaultOptons);
     REQUIRE(brief == "Constructor for [Audio::AudioBuffer](some_link.md). ");
 }
 
@@ -307,18 +310,15 @@ TEST_CASE("Parse group", "Doxygen") {
 
     REQUIRE(compound->kind == Kind::MODULE);
 
-    REQUIRE(Text::printMarkdown(compound->title, defaultOptons) == "Graphical related classes");
+    REQUIRE(Text::printMarkdown(compound->title.node, defaultOptons) == "Graphical related classes");
 
     const auto& inner = compound->inners;
-    REQUIRE(inner.size() == 5);
+    REQUIRE(inner.size() == 6);
     REQUIRE(inner.front().asBasicRef().refid == "classEngine_1_1Graphics_1_1Framebuffer");
+    REQUIRE(inner.back().asBasicRef().refid == "group__Graphics_1gae5b9a93609bed06adb3ce5902791df8a");
 
     const auto& children = compound->children;
-    REQUIRE(children.size() == 1);
-
-    const auto& func = children.front();
-    REQUIRE(func->kind == Kind::FUNCTION);
-    REQUIRE(func->refid == "group__Graphics_1gae5b9a93609bed06adb3ce5902791df8a");
+    REQUIRE(children.size() == 0);
 }
 
 TEST_CASE("Parse namespace", "Doxygen") {
@@ -464,47 +464,127 @@ TEST_CASE("Parse enum", "Doxygen") {
 
     const auto& value = compound->children.front();
     REQUIRE(value->parent.lock() == compound);
+    REQUIRE(value->kind == Kind::ENUMVALUE);
     REQUIRE(value->name == "UNKNOWN");
     REQUIRE(
         value->refid ==
         "class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3");
     REQUIRE(value->properties.visibility == Visibility::PUBLIC);
-    REQUIRE(Text::printMarkdown(value->properties.initializer) == "= 0");
+    REQUIRE(Text::printMarkdown(value->properties.initializer.node) == "= 0");
+}
+
+static NodeSharedPtr createFunction(const NodeSharedPtr& parent, const std::string& hash, const std::string& name) {
+    auto node = std::make_shared<Node>();
+    node->refid = parent->refid + "_" + hash;
+    node->kind = Kind::FUNCTION;
+    node->name = name;
+    node->title = name;
+    node->parent = parent;
+
+    Param param;
+    param.name = "foo";
+    param.type = Text::Plain{"Foo"};
+
+    node->properties.params.push_back(param);
+
+    return node;
+}
+
+static NodeSharedPtr createClass(const std::string& name) {
+    auto node = std::make_shared<Node>();
+    node->refid = "class__" + name;
+    node->kind = Kind::CLASS;
+    node->name = name;
+    node->title = name;
+
+    return node;
+}
+
+static NodeSharedPtr createGroup(const std::string& name) {
+    auto node = std::make_shared<Node>();
+    node->refid = "group__" + name;
+    node->kind = Kind::MODULE;
+    node->name = name;
+    node->title = name;
+
+    return node;
+}
+
+static NodeSharedPtr createFile(const std::string& name) {
+    auto node = std::make_shared<Node>();
+    node->refid = "file__" + name;
+    node->kind = Kind::FILE;
+    node->name = name;
+    node->title = name;
+
+    return node;
+}
+
+static NodeSharedPtr createIndex() {
+    auto node = std::make_shared<Node>();
+    node->kind = Kind::INDEX;
+    node->refid = "index";
+
+    return node;
+}
+
+static NodeSharedPtr createSampleStructure() {
+    auto index = createIndex();
+
+    auto file = createFile("source");
+    index->children.push_back(file);
+
+    auto groupA = createGroup("A");
+    auto groupB = createGroup("B");
+    auto groupC = createGroup("C");
+
+    index->children.push_back(groupA);
+    index->children.push_back(groupB);
+    index->children.push_back(groupC);
+
+    groupA->inners.push_back(NodeRef{BasicRef{"group__B", "B"}});
+    groupB->inners.push_back(NodeRef{BasicRef{"group__C", "C"}});
+
+    auto func = createFunction(file, "1ae52df0e81924b99e45d515f595659628", "some_global_func");
+    file->children.push_back(func);
+    groupC->children.push_back(func);
+
+    return index;
+}
+
+static NodeSharedPtr find(const NodeSharedPtr& node, const std::string& refid) {
+    for (const auto& child : node->children) {
+        if (child->refid == refid) {
+            return child;
+        }
+        auto found = find(child, refid);
+        if (found) {
+            return found;
+        }
+    }
+
+    if (node->kind == Kind::INDEX) {
+        FAIL("Unable to find refid: " + refid);
+    }
+
+    return nullptr;
 }
 
 TEST_CASE("Restructure and assign parents", "Doxygen") {
-    auto index = std::make_shared<Node>();
-    index->kind = Kind::INDEX;
-    index->refid = "index";
+    auto index = createSampleStructure();
 
-    auto groupA = std::make_shared<Node>();
-    groupA->kind = Kind::MODULE;
-    groupA->refid = "group__a";
-    index->children.push_back(groupA);
-
-    auto groupB = std::make_shared<Node>();
-    groupB->kind = Kind::MODULE;
-    groupB->refid = "group__b";
-    index->children.push_back(groupB);
-    groupA->inners.push_back(NodeRef{BasicRef{"group__b", "GroupB"}});
-
-    auto groupC = std::make_shared<Node>();
-    groupC->kind = Kind::MODULE;
-    groupC->refid = "group__c";
-    index->children.push_back(groupC);
-    groupB->inners.push_back(NodeRef{BasicRef{"group__c", "GroupC"}});
-
-    REQUIRE(index->children.size() == 3);
-    REQUIRE(groupA->children.size() == 0);
-    REQUIRE(groupB->children.size() == 0);
-    REQUIRE(groupC->children.size() == 0);
+    REQUIRE(index->children.size() == 4);
+    REQUIRE(find(index, "group__A")->children.size() == 0);
+    REQUIRE(find(index, "group__B")->children.size() == 0);
+    REQUIRE(find(index, "group__C")->children.size() == 1);
 
     const auto cache = Doxygen::buildCache(index);
     Doxygen::resolveReferences(cache, index);
     Doxygen::resolveHierarchy(index);
 
-    REQUIRE(index->children.size() == 1);
-    REQUIRE(groupA->children.size() == 1);
-    REQUIRE(groupB->children.size() == 1);
-    REQUIRE(groupC->children.size() == 0);
+    REQUIRE(index->children.size() == 2);
+    REQUIRE(find(index, "file__source")->children.size() == 1);
+    REQUIRE(find(index, "group__A")->children.size() == 1);
+    REQUIRE(find(index, "group__B")->children.size() == 1);
+    REQUIRE(find(index, "group__C")->children.size() == 1);
 }

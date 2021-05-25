@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="union_some_union" kind="union" language="C++" prot="public">
+    <compoundname>SomeUnion</compoundname>
+    <includes refid="_engine_8hpp" local="no">Engine.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="union_some_union_1a3360cf876be0268217618cfa7aea9ad3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SomeUnion::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="23" column="9" bodyfile="src/Engine.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_some_union_1ac6db9b6e14506339abf522a6c499c6d5" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SomeUnion::b</definition>
+        <argsstring></argsstring>
+        <name>b</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="24" column="11" bodyfile="src/Engine.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_some_union_1a517bde83f08a526d43a44d150a02968b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SomeUnion::c</definition>
+        <argsstring></argsstring>
+        <name>c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="25" column="10" bodyfile="src/Engine.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_some_union_1a45f11e46a440d29aca5d1da2161c5071" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char SomeUnion::d[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="26" column="10" bodyfile="src/Engine.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Some global union thingy. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Engine.hpp" line="22" column="1" bodyfile="src/Engine.hpp" bodystart="22" bodyend="27"/>
+    <listofallmembers>
+      <member refid="union_some_union_1a3360cf876be0268217618cfa7aea9ad3" prot="public" virt="non-virtual"><scope>SomeUnion</scope><name>a</name></member>
+      <member refid="union_some_union_1ac6db9b6e14506339abf522a6c499c6d5" prot="public" virt="non-virtual"><scope>SomeUnion</scope><name>b</name></member>
+      <member refid="union_some_union_1a517bde83f08a526d43a44d150a02968b" prot="public" virt="non-virtual"><scope>SomeUnion</scope><name>c</name></member>
+      <member refid="union_some_union_1a45f11e46a440d29aca5d1da2161c5071" prot="public" virt="non-virtual"><scope>SomeUnion</scope><name>d</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

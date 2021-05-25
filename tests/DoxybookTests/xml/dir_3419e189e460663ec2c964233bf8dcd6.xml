@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="dir_3419e189e460663ec2c964233bf8dcd6" kind="dir">
+    <compoundname>src/Graphics</compoundname>
+    <innerfile refid="_framebuffer_8hpp">Framebuffer.hpp</innerfile>
+    <innerfile refid="_graphics_8hpp">Graphics.hpp</innerfile>
+    <innerfile refid="_handle_8hpp">Handle.hpp</innerfile>
+    <innerfile refid="_renderer_8hpp">Renderer.hpp</innerfile>
+    <innerfile refid="_texture_8hpp">Texture.hpp</innerfile>
+    <innerfile refid="_texture2_d_8hpp">Texture2D.hpp</innerfile>
+    <innerfile refid="_texture3_d_8hpp">Texture3D.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Graphics/"/>
+  </compounddef>
+</doxygen>

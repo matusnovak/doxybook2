@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="namespace_engine_1_1_utils" kind="namespace" language="C++">
+    <compoundname>Engine::Utils</compoundname>
+    <innerclass refid="class_engine_1_1_utils_1_1_array_view" prot="public">Engine::Utils::ArrayView</innerclass>
+    <innernamespace refid="namespace_engine_1_1_utils_1_1_path">Engine::Utils::Path</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___utils_1gaef03bfdf7ea06e105903c76f06f22deb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Utils::name_with_underscores</definition>
+        <argsstring>(const std::string &amp;arg)</argsstring>
+        <name>name_with_underscores</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Utils/Utils.hpp" line="20" column="13" bodyfile="src/Utils/Utils.hpp" bodystart="20" bodyend="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Utils/ArrayView.hpp" line="4" column="1"/>
+  </compounddef>
+</doxygen>

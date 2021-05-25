@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="class_engine_1_1_audio_1_1_audio_buffer" kind="class" language="C++" prot="public">
+    <compoundname>Engine::Audio::AudioBuffer</compoundname>
+    <includes refid="_audio_buffer_8hpp" local="no">AudioBuffer.hpp</includes>
+    <innerclass refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data" prot="public">Engine::Audio::AudioBuffer::TypedAudioData</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Type</name>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3" prot="public">
+          <name>UNKNOWN</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Dont use this </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a2dea92647909a0657c5ca657d92ff0c2" prot="public">
+          <name>INT_8</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>8-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a6c4baecc05d360b290e07c50131c7fc2" prot="public">
+          <name>INT_16</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>16-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a1b20706298a204bb53fae40ad0c97bbf" prot="public">
+          <name>INT_24</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>24-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052aab97c2f5d9a173a78b47802dce7a1806" prot="public">
+          <name>INT_32</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>32-bit signed integer </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a34429544f281bc1e40ec5525cff2a060" prot="public">
+          <name>FLOAT_32</name>
+          <initializer>= 1 &lt;&lt; 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>32-bit float </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Different type of audio formats. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="65" column="13" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="65" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_engine_1_1_audio_1_1_audio_buffer_1a443d235077d5716d4b2b4f013052adf4" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_engine_1_1_utils_1_1_array_view" kindref="compound">Utils::ArrayView</ref>&lt; T &gt;</type>
+        <definition>using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;</definition>
+        <argsstring></argsstring>
+        <name>AudioData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="91" column="25" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_engine_1_1_audio_1_1_audio_buffer_1a7b215df4d151a7e92de8b5a6abdbe8a0" prot="public" static="no">
+        <type><ref refid="class_engine_1_1_audio_1_1_audio_buffer_1a443d235077d5716d4b2b4f013052adf4" kindref="member">AudioData</ref>&lt; uint8_t &gt;</type>
+        <definition>typedef AudioData&lt;uint8_t&gt; Engine::Audio::AudioBuffer::AudioData8U</definition>
+        <argsstring></argsstring>
+        <name>AudioData8U</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="92" column="31" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_engine_1_1_audio_1_1_audio_buffer_1a85edaa7e5c3ae68dabadd5373890591e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class AudioManager</definition>
+        <argsstring></argsstring>
+        <name>AudioManager</name>
+        <param>
+          <type><ref refid="class_engine_1_1_audio_1_1_audio_manager" kindref="compound">AudioManager</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="138" column="13" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Audio::doSomething</definition>
+        <argsstring>(AudioBuffer &amp;buffer)</argsstring>
+        <name>Audio::doSomething</name>
+        <param>
+          <type><ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">AudioBuffer</ref> &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="139" column="25"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_engine_1_1_audio_1_1_audio_buffer_1ae7ef7f8f4cecc7f19bbe01319f8aa37d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Engine::Audio::AudioBuffer::playing</definition>
+        <argsstring></argsstring>
+        <name>playing</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="158" column="18" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1ab3f8002fc80d9bff50cfb6095e10a721" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Engine::Audio::AudioBuffer::AudioBuffer</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>AudioBuffer</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">Audio::AudioBuffer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="103" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1aa89013946a6eb2907227ed4c26f052b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual Engine::Audio::AudioBuffer::~AudioBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>~AudioBuffer</name>
+        <briefdescription>
+<para><ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">Audio::AudioBuffer</ref> destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="107" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a801f334ffcb3d943f1804ea73e1516ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::play</definition>
+        <argsstring>(AudioManager &amp;manager) const</argsstring>
+        <name>play</name>
+        <param>
+          <type><ref refid="class_engine_1_1_audio_1_1_audio_manager" kindref="compound">AudioManager</ref> &amp;</type>
+          <declname>manager</declname>
+        </param>
+        <briefdescription>
+<para>Play this buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>manager</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Which manager to play the sound with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername><ref refid="class_engine_1_1_exception" kindref="compound">Exception</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If this buffer is already playing </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="113" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a387243170ec71207123ae326c7dabd1a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::stop</definition>
+        <argsstring>(AudioManager &amp;manager) const</argsstring>
+        <name>stop</name>
+        <param>
+          <type><ref refid="class_engine_1_1_audio_1_1_audio_manager" kindref="compound">AudioManager</ref> &amp;</type>
+          <declname>manager</declname>
+        </param>
+        <briefdescription>
+<para>Stop this buffer playing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>manager</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Which manager to stop the sound with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername><ref refid="class_engine_1_1_exception" kindref="compound">Exception</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If this buffer is already stopped </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="119" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a821933214a00331f80c1c58cee859eec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::loop</definition>
+        <argsstring>(AudioManager &amp;manager) const</argsstring>
+        <name>loop</name>
+        <param>
+          <type><ref refid="class_engine_1_1_audio_1_1_audio_manager" kindref="compound">AudioManager</ref> &amp;</type>
+          <declname>manager</declname>
+        </param>
+        <briefdescription>
+<para>Loop this buffer forever. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>manager</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Which manager to loop the sound with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This will loop forever until you call stop </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername><ref refid="class_engine_1_1_exception" kindref="compound">Exception</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If this buffer is already looping </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="126" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a560600772af8cde2fd5dc45e1780789c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::setData</definition>
+        <argsstring>(const TypedAudioData &amp;data)</argsstring>
+        <name>setData</name>
+        <param>
+          <type>const <ref refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data" kindref="compound">TypedAudioData</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="127" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a51ef075612af06edcb53d3c9b6c4fc7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>Size</declname>
+            <defname>Size</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::setDataMultiple</definition>
+        <argsstring>(const TypedAudioData data[Size])</argsstring>
+        <name>setDataMultiple</name>
+        <param>
+          <type>const <ref refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data" kindref="compound">TypedAudioData</ref></type>
+          <declname>data</declname>
+          <array>[Size]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="129" column="30" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="129" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a5a9f408cc4d73ea1956277e0e189f8f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::setData</definition>
+        <argsstring>(const TypedAudioData data[], size_t size)</argsstring>
+        <name>setData</name>
+        <param>
+          <type>const <ref refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data" kindref="compound">TypedAudioData</ref></type>
+          <declname>data</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Some deprecated function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000002"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use the <ref refid="class_engine_1_1_audio_1_1_audio_buffer_1a51ef075612af06edcb53d3c9b6c4fc7c" kindref="member">AudioBuffer::setDataMultiple</ref> instead </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="136" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a9e2d6ba7577091ff59e68f2d520e9174" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::setCallback</definition>
+        <argsstring>(Callback callback)</argsstring>
+        <name>setCallback</name>
+        <param>
+          <type><ref refid="namespace_engine_1_1_audio_1a9527f056637d57771ee8025589fd596d" kindref="member">Callback</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Set the callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="namespace_engine_1_1_audio_1a9527f056637d57771ee8025589fd596d" kindref="member">Audio::Callback</ref> </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The callback function pointer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<xrefsect id="deprecated_1_deprecated000003"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use the <ref refid="class_engine_1_1_audio_1_1_audio_buffer_1aa86b2b3bdc3ff9825d4e273f855adabe" kindref="member">AudioBuffer::setCallback2</ref> instead </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="147" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1aa86b2b3bdc3ff9825d4e273f855adabe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioBuffer::setCallback2</definition>
+        <argsstring>(Callback2 callback, void *user)</argsstring>
+        <name>setCallback2</name>
+        <param>
+          <type><ref refid="namespace_engine_1_1_audio_1a5f46c6af857ddc9892c13089da27f7f5" kindref="member">Callback2</ref></type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Set the callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="namespace_engine_1_1_audio_1a9527f056637d57771ee8025589fd596d" kindref="member">Audio::Callback</ref> </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The callback function pointer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="154" column="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_buffer_1a93722a1dc8b7340e2c9b5e78d50151f5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float *</type>
+        <definition>float* Engine::Audio::AudioBuffer::getData</definition>
+        <argsstring>()</argsstring>
+        <name>getData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="157" column="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><emphasis>A simple audio buffer to hold PCM samples</emphasis> </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Matus Novak </para>
+</simplesect>
+<simplesect kind="date"><para>2017-2019 </para>
+</simplesect>
+<simplesect kind="pre"><para>First initialize the system. </para>
+</simplesect>
+<xrefsect id="test_1_test000001"><xreftitle>Test</xreftitle><xrefdescription><para>Some random test description </para>
+</xrefdescription></xrefsect><simplesect kind="warning"><para>Some random warning </para>
+</simplesect>
+<simplesect kind="note"><para>Some random note </para>
+</simplesect>
+<simplesect kind="note"><para>Some second random note </para>
+</simplesect>
+<xrefsect id="bug_1_bug000001"><xreftitle>Bug</xreftitle><xrefdescription><para>Some random bug </para>
+<para>Some other random bug </para>
+</xrefdescription></xrefsect></para>
+<para>Lorem ipsum donor <programlisting><codeline><highlight class="normal">//<sp/>Some<sp/>random<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">using<sp/>namespace<sp/>Engine;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Audio::AudioBuffer<sp/>buffer(&quot;path/to/file.wav&quot;);</highlight></codeline>
+<codeline><highlight class="normal">buffer.play(audioManager);</highlight></codeline>
+</programlisting> More detailed description! <programlisting><codeline><highlight class="normal">//<sp/>Another<sp/>code<sp/>sample</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;iostream&gt;</highlight></codeline>
+<codeline><highlight class="normal">using<sp/>namespace<sp/>Engine;</highlight></codeline>
+<codeline><highlight class="normal">Audio::AudioBuffer<sp/>buffer(&quot;path/to/file.wav&quot;);</highlight></codeline>
+<codeline><highlight class="normal">std::cout<sp/>&lt;&lt;<sp/>buffer.play(...)<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+</programlisting> <xrefsect id="todo_1_todo000001"><xreftitle>Todo</xreftitle><xrefdescription><para>Some random todo </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <location file="src/Audio/AudioBuffer.hpp" line="60" column="9" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="60" bodyend="159"/>
+    <listofallmembers>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>Audio::doSomething</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ab3f8002fc80d9bff50cfb6095e10a721" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>AudioBuffer</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a443d235077d5716d4b2b4f013052adf4" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>AudioData</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a7b215df4d151a7e92de8b5a6abdbe8a0" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>AudioData8U</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a85edaa7e5c3ae68dabadd5373890591e" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>AudioManager</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a93722a1dc8b7340e2c9b5e78d50151f5" prot="protected" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>getData</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a821933214a00331f80c1c58cee859eec" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>loop</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a801f334ffcb3d943f1804ea73e1516ea" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>play</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ae7ef7f8f4cecc7f19bbe01319f8aa37d" prot="protected" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>playing</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a9e2d6ba7577091ff59e68f2d520e9174" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>setCallback</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1aa86b2b3bdc3ff9825d4e273f855adabe" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>setCallback2</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a560600772af8cde2fd5dc45e1780789c" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>setData</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a5a9f408cc4d73ea1956277e0e189f8f0" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>setData</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a51ef075612af06edcb53d3c9b6c4fc7c" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>setDataMultiple</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a387243170ec71207123ae326c7dabd1a" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>stop</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer</scope><name>Type</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_buffer_1aa89013946a6eb2907227ed4c26f052b9" prot="public" virt="virtual"><scope>Engine::Audio::AudioBuffer</scope><name>~AudioBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

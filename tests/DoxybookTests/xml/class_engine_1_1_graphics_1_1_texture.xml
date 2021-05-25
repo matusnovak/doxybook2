@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="class_engine_1_1_graphics_1_1_texture" kind="interface" language="C++" prot="public" abstract="yes">
+    <compoundname>Engine::Graphics::Texture</compoundname>
+    <basecompoundref refid="class_engine_1_1_graphics_1_1_handle" prot="protected" virt="non-virtual">Engine::Graphics::Handle</basecompoundref>
+    <derivedcompoundref refid="class_engine_1_1_graphics_1_1_framebuffer" prot="public" virt="non-virtual">Engine::Graphics::Framebuffer</derivedcompoundref>
+    <derivedcompoundref refid="class_engine_1_1_graphics_1_1_texture2_d" prot="public" virt="non-virtual">Engine::Graphics::Texture2D</derivedcompoundref>
+    <derivedcompoundref refid="class_engine_1_1_graphics_1_1_texture3_d" prot="public" virt="non-virtual">Engine::Graphics::Texture3D</derivedcompoundref>
+    <includes refid="_texture_8hpp" local="no">Texture.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Type</name>
+        <enumvalue id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a696b031073e74bf2cb98e5ef201d4aa3" prot="public">
+          <name>UNKNOWN</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para><simplesect kind="note"><para>This should probably never occur </para>
+</simplesect>
+</para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ac0182f4ea7c5e9b625c36eae16149ccc" prot="public">
+          <name>RGBA_8</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para><simplesect kind="note"><para>Use primarly this for the best performance! </para>
+</simplesect>
+</para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3aa23cde681dadb7db981dc69ef3b1eb5b" prot="public">
+          <name>RGB_8</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ac6324250e415ea439a02714b399179a6" prot="public">
+          <name>RGBA_16</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a33ba5e65ee977da3cbdbdca56a054a01" prot="public">
+          <name>RGB_16</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3aab36754052ec07e2737b63f43cc214f1" prot="public">
+          <name>RGBA_32</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a542b7a8cf84322d8b6d6ce98a6d86d84" prot="public">
+          <name>RGB_32</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="17" column="13" bodyfile="src/Graphics/Texture.hpp" bodystart="17" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_engine_1_1_graphics_1_1_texture_1ac00e77b373f4de42a738b6a5f0d5d2ee" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Engine::Graphics::Texture::loaded</definition>
+        <argsstring></argsstring>
+        <name>loaded</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="59" column="18" bodyfile="src/Graphics/Texture.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_engine_1_1_graphics_1_1_texture_1a65eb15ea929c3e09e18dec43eee8e7de" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3" kindref="member">Type</ref></type>
+        <definition>Type Engine::Graphics::Texture::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="60" column="18" bodyfile="src/Graphics/Texture.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture_1a2aa720c8a39a34c503b0f9c7c589125d" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Engine::Graphics::Texture::Texture</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>Texture</name>
+        <param>
+          <type><ref refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3" kindref="member">Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="33" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture_1a7aa1cce1ae133a47d7a8f587ee666ad6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual Engine::Graphics::Texture::~Texture</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Texture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="34" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture_1a6ee1abf82e30d5300ae8f0c8d922e31a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int Engine::Graphics::Texture::getWidth</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getWidth</name>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_framebuffer_1a97a83fdba1f33cee37553b370be4762c">getWidth</reimplementedby>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_texture2_d_1a33f483de6390f42c9f50770eb0dea0ee">getWidth</reimplementedby>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_texture3_d_1af602dd82ea87309879808b7f8465604f">getWidth</reimplementedby>
+        <briefdescription>
+<para>Returns the width of the texture in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Width in pixels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="39" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture_1a23af68344fcb00113b6ca7b3483d51d3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int Engine::Graphics::Texture::getHeight</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getHeight</name>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_framebuffer_1a41ad5c8ee63a4efabecc26f931300656">getHeight</reimplementedby>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_texture2_d_1a01bc9c7d79de56ee427850505326c48c">getHeight</reimplementedby>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_texture3_d_1a8379e2913526715cdf62ce2a4a76f330">getHeight</reimplementedby>
+        <briefdescription>
+<para>Returns the height of the texture in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Height in pixels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="44" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture_1abb2d22975c917eb2f420534c945cea97" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int Engine::Graphics::Texture::getDepth</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getDepth</name>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_framebuffer_1a10930c6d923758bc05c1e0958747958e">getDepth</reimplementedby>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_texture2_d_1aca9fcc8dbbda1fc56be5b1f07afc1aba">getDepth</reimplementedby>
+        <reimplementedby refid="class_engine_1_1_graphics_1_1_texture3_d_1ada1260ef0cb755e4a283c617fae8b009">getDepth</reimplementedby>
+        <briefdescription>
+<para>Returns the depth of the texture in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>If this texture is 2D the depth is always 1 pixels </para>
+</simplesect>
+<simplesect kind="return"><para>Depth in pixels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="50" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_graphics_1_1_texture_1ae0b09c21b3d9d3087cbc507ca62a01e8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Engine::Graphics::Texture::isLoaded</definition>
+        <argsstring>() const</argsstring>
+        <name>isLoaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Does some more things</para>
+        </inbodydescription>
+        <location file="src/Graphics/Texture.hpp" line="51" column="25" bodyfile="src/Graphics/Texture.hpp" bodystart="51" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This is a base texture class that serves as a base class for other texture types. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="bug_1_bug000002"><xreftitle>Bug</xreftitle><xrefdescription><para>This has some <bold>weird</bold> bug too! </para>
+</xrefdescription></xrefsect><programlisting filename="example-1.cpp"><codeline><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight></codeline>
+<codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_engine_8hpp" kindref="compound">Engine.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>dummy<sp/>example<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>pixels<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>pixels<sp/>=<sp/>std::make_unique&lt;uint8_t[]&gt;(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>uint8_t[1024*1024*3]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fillData(*pixels,<sp/></highlight><highlight class="stringliteral">&quot;path/to/texture.png&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>texture<sp/>out<sp/>of<sp/>the<sp/>pixels</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_engine_1_1_graphics_1_1_texture2_d" kindref="compound">Engine::Graphics::Texture2D</ref><sp/>texture(1024,<sp/>1024,<sp/>*data);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Done</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Engine::Graphics::Texture</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture"/>
+        <childnode refid="2" relation="protected-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Engine::Graphics::Handle</label>
+        <link refid="class_engine_1_1_graphics_1_1_handle"/>
+      </node>
+      <node id="5">
+        <label>Engine::Graphics::Texture3D</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture3_d"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Engine::Graphics::Texture2D</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture2_d"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Engine::Graphics::Framebuffer</label>
+        <link refid="class_engine_1_1_graphics_1_1_framebuffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Engine::Graphics::Texture</label>
+        <link refid="class_engine_1_1_graphics_1_1_texture"/>
+        <childnode refid="2" relation="protected-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Engine::Graphics::Handle</label>
+        <link refid="class_engine_1_1_graphics_1_1_handle"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/Graphics/Texture.hpp" line="15" column="9" bodyfile="src/Graphics/Texture.hpp" bodystart="15" bodyend="61"/>
+    <listofallmembers>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1abb2d22975c917eb2f420534c945cea97" prot="public" virt="pure-virtual"><scope>Engine::Graphics::Texture</scope><name>getDepth</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1a51c68ca867d2e6520f72ff3f55e43a19" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>getHandle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a23af68344fcb00113b6ca7b3483d51d3" prot="public" virt="pure-virtual"><scope>Engine::Graphics::Texture</scope><name>getHeight</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a6ee1abf82e30d5300ae8f0c8d922e31a" prot="public" virt="pure-virtual"><scope>Engine::Graphics::Texture</scope><name>getWidth</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1a986328747b7527a0c01728f0ae351b28" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>handle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1aab68ea12ecb749124568f6ab3cc414bc" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>Handle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1ae0b09c21b3d9d3087cbc507ca62a01e8" prot="public" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>isLoaded</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1ac00e77b373f4de42a738b6a5f0d5d2ee" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>loaded</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a2aa720c8a39a34c503b0f9c7c589125d" prot="public" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>Texture</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3" prot="public" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>Type</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a65eb15ea929c3e09e18dec43eee8e7de" prot="protected" virt="non-virtual"><scope>Engine::Graphics::Texture</scope><name>type</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_handle_1a44c63f895a2ed3c095dfd4a9605a9ee4" prot="protected" virt="virtual"><scope>Engine::Graphics::Texture</scope><name>~Handle</name></member>
+      <member refid="class_engine_1_1_graphics_1_1_texture_1a7aa1cce1ae133a47d7a8f587ee666ad6" prot="public" virt="virtual"><scope>Engine::Graphics::Texture</scope><name>~Texture</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

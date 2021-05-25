@@ -98,7 +98,7 @@ static argagg::parser argParser{{
         {"--summary-output"},
         "Where to generate summary file. This file will be created. Not a directory!",
         1
-    }
+    },
 }};
 // clang-format on
 
@@ -152,21 +152,25 @@ void commandConfig(State& state, const argagg::option_results& arg) {
 
 void commandInputDir(State& state, const argagg::option_results& arg) {
     state.inputDir = std::filesystem::path(arg.as<std::string>());
-    state.doxybook = std::make_unique<Doxybook>(state.inputDir);
+    state.doxybook = std::make_unique<Doxybook>(state.config, state.inputDir);
 }
 
 void commandOutputDir(State& state, const argagg::option_results& arg) {
+    if (!state.doxybook) {
+        throw std::runtime_error("You need to provide --input");
+    }
     state.outputDir = std::filesystem::path(arg.as<std::string>());
 }
 
 // clang-format off
+// The order of these commands does matter!
 static const std::vector<Command> COMMANDS = {
     {"version", commandVersion},
     {"help", commandHelp},
     {"quiet", commandQuiet},
     {"config", commandConfig},
     {"input", commandInputDir},
-    {"output", commandOutputDir}
+    {"output", commandOutputDir},
 };
 // clang-format on
 

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="class_engine_1_1_audio_1_1_audio_manager" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>Engine::Audio::AudioManager</compoundname>
+    <includes refid="_audio_manager_8hpp" local="no">AudioManager.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_manager_1a6ddfa33f548bda24e5968f448dd88728" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Engine::Audio::AudioManager::AudioManager</definition>
+        <argsstring>(int numOfChannels=128)</argsstring>
+        <name>AudioManager</name>
+        <param>
+          <type>int</type>
+          <declname>numOfChannels</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioManager.hpp" line="19" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_manager_1aadcf89776de4c18aa2f227628e8a6186" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Engine::Audio::AudioManager::~AudioManager</definition>
+        <argsstring>()</argsstring>
+        <name>~AudioManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioManager.hpp" line="20" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_engine_1_1_audio_1_1_audio_manager_1ab518e57bc7c039b0ac985c74244ed027" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::AudioManager::enque</definition>
+        <argsstring>(const AudioBuffer &amp;buffer)</argsstring>
+        <name>enque</name>
+        <param>
+          <type>const <ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">AudioBuffer</ref> &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioManager.hpp" line="22" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An audio manager that <emphasis>accepts</emphasis> multiple <bold><ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">Audio::AudioBuffer</ref></bold> instances. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Lorem Ipsum Donor. Some <ulink url="http://github.com">Random link with <bold>bold</bold> and <emphasis>italics</emphasis></ulink> And the following is a <computeroutput>typewritter</computeroutput> font. And here is some list items:<itemizedlist>
+<listitem><para>First item</para>
+</listitem><listitem><para>Second item</para>
+</listitem><listitem><para>Third item <bold>with bold text</bold></para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="see"><para><ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">Audio::AudioBuffer</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="src/Audio/AudioManager.hpp" line="17" column="9" bodyfile="src/Audio/AudioManager.hpp" bodystart="17" bodyend="23"/>
+    <listofallmembers>
+      <member refid="class_engine_1_1_audio_1_1_audio_manager_1a6ddfa33f548bda24e5968f448dd88728" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioManager</scope><name>AudioManager</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_manager_1ab518e57bc7c039b0ac985c74244ed027" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioManager</scope><name>enque</name></member>
+      <member refid="class_engine_1_1_audio_1_1_audio_manager_1aadcf89776de4c18aa2f227628e8a6186" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioManager</scope><name>~AudioManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

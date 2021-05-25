@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="group___gui" kind="group">
+    <compoundname>Gui</compoundname>
+    <title>Some gui related stuff and whatever</title>
+    <innerclass refid="class_engine_1_1_gui_1_1_gui_widget" prot="public">Engine::Gui::GuiWidget</innerclass>
+    <briefdescription>
+<para>This is a brief description to the gui group. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Some detailed description here </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

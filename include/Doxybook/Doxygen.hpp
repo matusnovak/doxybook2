@@ -21,6 +21,8 @@ namespace Doxygen {
 extern Cache buildCache(const NodeSharedPtr& index);
 extern void resolveReferences(const Cache& cache, const NodeSharedPtr& node);
 extern void resolveHierarchy(const NodeSharedPtr& index);
+extern std::string makeUrl(const Config& config, const Node& node);
+extern void finalize(const Config& config, const Cache& cache, const NodeSharedPtr& index);
 extern NodeSharedPtr parseIndex(const std::filesystem::path& path);
 extern NodeSharedPtr parse(const std::filesystem::path& path, const std::string& refid);
 extern NodeSharedPtr parse(const Xml::Element& root);
@@ -49,6 +51,8 @@ extern std::vector<NodeRef> parseInnerFiles(const Xml::Element& elm);
 extern std::vector<NodeRef> parseInnerDirectories(const Xml::Element& elm);
 extern std::vector<NodeRef> parseInnerPages(const Xml::Element& elm);
 extern std::vector<NodeRef> parseInnerGroups(const Xml::Element& elm);
+extern std::vector<NodeRef> parseBaseCompound(const Xml::Element& elm);
+extern std::vector<NodeRef> parseDerivedCompound(const Xml::Element& elm);
 extern bool parseBoolAttr(const Xml::Element& elm, const std::string& key);
 extern std::string parseTextBody(const Xml::Element& elm, const std::string& key);
 extern std::string parseArgsString(const Xml::Element& elm);

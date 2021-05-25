@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="struct_some_struct" kind="struct" language="C++" prot="public">
+    <compoundname>SomeStruct</compoundname>
+    <includes refid="_engine_8hpp" local="no">Engine.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_some_struct_1a8049974246bff50f9be7569ab2ebbb42" prot="public" static="no" mutable="no">
+        <type><ref refid="union_some_union" kindref="compound">SomeUnion</ref></type>
+        <definition>SomeUnion SomeStruct::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="33" column="15" bodyfile="src/Engine.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_some_struct_1a956930df1e6c379bb19f6d0ffb3b314e" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t SomeStruct::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="34" column="14" bodyfile="src/Engine.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Some global struct thingy. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>SomeStruct</label>
+        <link refid="struct_some_struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SomeUnion</label>
+        <link refid="union_some_union"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/Engine.hpp" line="32" column="1" bodyfile="src/Engine.hpp" bodystart="32" bodyend="35"/>
+    <listofallmembers>
+      <member refid="struct_some_struct_1a8049974246bff50f9be7569ab2ebbb42" prot="public" virt="non-virtual"><scope>SomeStruct</scope><name>data</name></member>
+      <member refid="struct_some_struct_1a956930df1e6c379bb19f6d0ffb3b314e" prot="public" virt="non-virtual"><scope>SomeStruct</scope><name>flags</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

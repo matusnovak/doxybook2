@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="dir_b5ac5e964c12a6b13a9d28feb9f3d3ed" kind="dir">
+    <compoundname>src/Gui</compoundname>
+    <innerfile refid="_gui_8hpp">Gui.hpp</innerfile>
+    <innerfile refid="_gui_widget_8hpp">GuiWidget.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Gui/"/>
+  </compounddef>
+</doxygen>

@@ -55,6 +55,8 @@ using RefidResolver = std::function<std::optional<std::string>(const std::string
 
 struct MarkdownOptions {
     Path dir = "";
+    std::string escapeChars = "";
+    bool escapeAsHtml = false;
     RefidResolver resolver = [](const std::string&) -> std::optional<std::string> { return std::nullopt; };
 };
 

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="namespace_engine_1_1_audio" kind="namespace" language="C++">
+    <compoundname>Engine::Audio</compoundname>
+    <innerclass refid="class_engine_1_1_audio_1_1_audio_buffer" prot="public">Engine::Audio::AudioBuffer</innerclass>
+    <innerclass refid="class_engine_1_1_audio_1_1_audio_manager" prot="public">Engine::Audio::AudioManager</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespace_engine_1_1_audio_1a9527f056637d57771ee8025589fd596d" prot="public" static="no">
+        <type>int(*</type>
+        <definition>typedef int(* Engine::Audio::Callback) (AudioBuffer &amp;buffer, size_t offset)</definition>
+        <argsstring>)(AudioBuffer &amp;buffer, size_t offset)</argsstring>
+        <name>Callback</name>
+        <briefdescription>
+<para>Some callback function pointer type definition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer this callback is called from </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The offset of the buffer currently playing </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<xrefsect id="deprecated_1_deprecated000001"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use the <ref refid="namespace_engine_1_1_audio_1a5f46c6af857ddc9892c13089da27f7f5" kindref="member">Audio::Callback2</ref> instead </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="15" column="17" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespace_engine_1_1_audio_1a5f46c6af857ddc9892c13089da27f7f5" prot="public" static="no">
+        <type>int(*)(<ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">AudioBuffer</ref> &amp;buffer, size_t offset, void *user)</type>
+        <definition>using Engine::Audio::Callback2 = typedef int (*)(AudioBuffer&amp; buffer, size_t offset, void* user)</definition>
+        <argsstring></argsstring>
+        <name>Callback2</name>
+        <briefdescription>
+<para>Some callback function pointer type definition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer this callback is called from </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The offset of the buffer currently playing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>User specific data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="23" column="9" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_engine_1_1_audio_1afd879d300eefd81460d53b2dd486fdc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Engine::Audio::doSomething</definition>
+        <argsstring>(AudioBuffer &amp;buffer)</argsstring>
+        <name>doSomething</name>
+        <param>
+          <type><ref refid="class_engine_1_1_audio_1_1_audio_buffer" kindref="compound">AudioBuffer</ref> &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+<para>Do something with the buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="28" column="21" declfile="src/Audio/AudioBuffer.hpp" declline="28" declcolumn="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Audio/AudioBuffer.hpp" line="5" column="5"/>
+  </compounddef>
+</doxygen>

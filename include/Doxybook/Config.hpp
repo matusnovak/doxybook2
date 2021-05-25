@@ -9,9 +9,11 @@
 namespace Doxybook2 {
 struct Config {
     // Where to store the output files?
+    // Internal only
     std::string outputDir;
 
     // Generate extra JSON for each rendered template
+    // Internal only
     bool debugTemplateJson{false};
 
     // Put all stuff into categorized folders or everything into destination folder?
@@ -39,6 +41,10 @@ struct Config {
 
     // What characters should be escaped in markdown?
     std::string markdownEscape{"_*#`\\[{<"};
+
+    // Should we escape characters in "markdownEscape" as HTML tags?
+    // For example: '<' becomes '&lt;'
+    bool escapeAsHtml{false};
 
     // Name of the mainpage (indexpage)
     std::string mainPageName{"indexpage"};
@@ -99,7 +105,7 @@ struct Config {
     // Which source files are allowed to be included in the output? (empty => all)
     std::vector<std::string> filesFilter{};
 
-    // Folder to generate.
+    // Folders to generate
     std::vector<FolderCategory> foldersToGenerate{
         FolderCategory::MODULES, FolderCategory::CLASSES,    FolderCategory::FILES,
         FolderCategory::PAGES,   FolderCategory::NAMESPACES, FolderCategory::EXAMPLES,

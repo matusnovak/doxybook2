@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="_graphics_8hpp" kind="file" language="C++">
+    <compoundname>Graphics.hpp</compoundname>
+    <includes refid="_framebuffer_8hpp" local="yes">Framebuffer.hpp</includes>
+    <includes refid="_handle_8hpp" local="yes">Handle.hpp</includes>
+    <includes refid="_renderer_8hpp" local="yes">Renderer.hpp</includes>
+    <includes refid="_texture_8hpp" local="yes">Texture.hpp</includes>
+    <includes refid="_texture2_d_8hpp" local="yes">Texture2D.hpp</includes>
+    <includes refid="_texture3_d_8hpp" local="yes">Texture3D.hpp</includes>
+    <includedby refid="_engine_8hpp" local="yes">src/Engine.hpp</includedby>
+    <incdepgraph>
+      <node id="7">
+        <label>Texture3D.hpp</label>
+        <link refid="_texture3_d_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Renderer.hpp</label>
+        <link refid="_renderer_8hpp"/>
+      </node>
+      <node id="6">
+        <label>Texture2D.hpp</label>
+        <link refid="_texture2_d_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Texture.hpp</label>
+        <link refid="_texture_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Handle.hpp</label>
+        <link refid="_handle_8hpp"/>
+      </node>
+      <node id="2">
+        <label>Framebuffer.hpp</label>
+        <link refid="_framebuffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/Graphics/Graphics.hpp</label>
+        <link refid="_graphics_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/Engine.hpp</label>
+        <link refid="_engine_8hpp"/>
+      </node>
+      <node id="1">
+        <label>src/Graphics/Graphics.hpp</label>
+        <link refid="_graphics_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_framebuffer_8hpp" kindref="compound">Framebuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_handle_8hpp" kindref="compound">Handle.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_renderer_8hpp" kindref="compound">Renderer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_texture_8hpp" kindref="compound">Texture.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_texture2_d_8hpp" kindref="compound">Texture2D.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_texture3_d_8hpp" kindref="compound">Texture3D.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="src/Graphics/Graphics.hpp"/>
+  </compounddef>
+</doxygen>

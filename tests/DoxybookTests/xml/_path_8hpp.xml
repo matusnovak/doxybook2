@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="_path_8hpp" kind="file" language="C++">
+    <compoundname>Path.hpp</compoundname>
+    <includes local="no">string</includes>
+    <includedby refid="_utils_8hpp" local="yes">src/Utils/Utils.hpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>src/Utils/Path.hpp</label>
+        <link refid="_path_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>src/Engine.hpp</label>
+        <link refid="_engine_8hpp"/>
+      </node>
+      <node id="2">
+        <label>src/Utils/Utils.hpp</label>
+        <link refid="_utils_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/Utils/Path.hpp</label>
+        <link refid="_path_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespace_engine">Engine</innernamespace>
+    <innernamespace refid="namespace_engine_1_1_utils">Engine::Utils</innernamespace>
+    <innernamespace refid="namespace_engine_1_1_utils_1_1_path">Engine::Utils::Path</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_engine" kindref="compound">Engine</ref><sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Utils<sp/>{</highlight></codeline>
+<codeline lineno="10" refid="namespace_engine_1_1_utils_1_1_path" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Path<sp/>{</highlight></codeline>
+<codeline lineno="11" refid="namespace_engine_1_1_utils_1_1_path_1a20779c0c7023ad09e23ae3ce81f36f1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="namespace_engine_1_1_utils_1_1_path_1a20779c0c7023ad09e23ae3ce81f36f1f" kindref="member">getFilename</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path);</highlight></codeline>
+<codeline lineno="12" refid="namespace_engine_1_1_utils_1_1_path_1ae52df0e81924b99e45d515f595659628" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="namespace_engine_1_1_utils_1_1_path_1ae52df0e81924b99e45d515f595659628" kindref="member">getExtension</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/Utils/Path.hpp"/>
+  </compounddef>
+</doxygen>

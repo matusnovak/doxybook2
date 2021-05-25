@@ -5,7 +5,6 @@
 #include <unordered_map>
 
 using KindStrPair = std::pair<std::string, Doxybook2::Kind>;
-using TypeStrPair = std::pair<std::string, Doxybook2::Type>;
 using VirtualStrPair = std::pair<std::string, Doxybook2::Virtual>;
 using VisibilityStrPair = std::pair<std::string, Doxybook2::Visibility>;
 
@@ -21,25 +20,6 @@ static const std::vector<KindStrPair> KIND_STRS = {
     {"example", Doxybook2::Kind::EXAMPLE},     {"signal", Doxybook2::Kind::SIGNAL},
     {"slot", Doxybook2::Kind::SLOT},           {"property", Doxybook2::Kind::PROPERTY},
     {"event", Doxybook2::Kind::EVENT},         {"define", Doxybook2::Kind::DEFINE},
-};
-
-static const std::vector<TypeStrPair> TYPE_STRS = {
-    {"attributes", Doxybook2::Type::ATTRIBUTES},
-    {"classes", Doxybook2::Type::CLASSES},
-    {"defines", Doxybook2::Type::DEFINES},
-    {"files", Doxybook2::Type::FILES},
-    {"dirs", Doxybook2::Type::DIRS},
-    {"friends", Doxybook2::Type::FRIENDS},
-    {"functions", Doxybook2::Type::FUNCTIONS},
-    {"modules", Doxybook2::Type::MODULES},
-    {"namespaces", Doxybook2::Type::NAMESPACES},
-    {"types", Doxybook2::Type::TYPES},
-    {"pages", Doxybook2::Type::PAGES},
-    {"examples", Doxybook2::Type::EXAMPLES},
-    {"signals", Doxybook2::Type::SIGNALS},
-    {"slots", Doxybook2::Type::SLOTS},
-    {"events", Doxybook2::Type::EVENTS},
-    {"properties", Doxybook2::Type::PROPERTIES},
 };
 
 static const std::vector<VirtualStrPair> VIRTUAL_STRS = {
@@ -122,28 +102,6 @@ std::string Doxybook2::toStr(const Visibility value) {
     return it->first;
 }
 
-Doxybook2::Type Doxybook2::toEnumType(const std::string& str) {
-    const auto it =
-        std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.first == str; });
-
-    if (it == TYPE_STRS.end()) {
-        EXCEPTION("Type {} not recognised please contact the author", str);
-    }
-
-    return it->second;
-}
-
-std::string Doxybook2::toStr(const Type value) {
-    const auto it =
-        std::find_if(TYPE_STRS.begin(), TYPE_STRS.end(), [&](const TypeStrPair& pair) { return pair.second == value; });
-
-    if (it == TYPE_STRS.end()) {
-        EXCEPTION("Type {} not recognised please contact the author", int(value));
-    }
-
-    return it->first;
-}
-
 bool Doxybook2::isKindStructured(const Kind kind) {
     switch (kind) {
     case Doxybook2::Kind::CLASS:
@@ -199,32 +157,35 @@ bool Doxybook2::isKindFile(const Kind kind) {
     }
 }
 
-std::string Doxybook2::typeToFolderName(const Config& config, const Type type) {
+std::string Doxybook2::typeToFolderName(const Config& config, const Kind kind) {
     if (!config.useFolders)
         return "";
 
-    switch (type) {
-    case Type::MODULES: {
+    switch (kind) {
+    case Kind::MODULE: {
         return config.folderGroupsName;
     }
-    case Type::CLASSES: {
-        return config.folderClassesName;
-    }
-    case Type::NAMESPACES: {
+    case Kind::NAMESPACE: {
         return config.folderNamespacesName;
     }
-    case Type::DIRS:
-    case Type::FILES: {
+    case Kind::UNION:
+    case Kind::INTERFACE:
+    case Kind::STRUCT:
+    case Kind::CLASS: {
+        return config.folderClassesName;
+    }
+    case Kind::FILE:
+    case Kind::DIR: {
         return config.folderFilesName;
     }
-    case Type::PAGES: {
+    case Kind::PAGE: {
         return config.folderRelatedPagesName;
     }
-    case Type::EXAMPLES: {
+    case Kind::EXAMPLE: {
         return config.folderExamplesName;
     }
     default: {
-        EXCEPTION("Type {} not recognised please contact the author!", int(type));
+        EXCEPTION("Cannot convert kind '{}' to a folder name please contact the author!", int(kind));
     }
     }
 }

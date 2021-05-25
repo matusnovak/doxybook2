@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="union_engine_1_1_assets_1_1_asset_1_1_event" kind="union" language="C++" prot="public">
+    <compoundname>Engine::Assets::Asset::Event</compoundname>
+    <includes refid="_asset_8hpp" local="no">Asset.hpp</includes>
+    <innerclass refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded" prot="public">Engine::Assets::Asset::Event::Loaded</innerclass>
+    <innerclass refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded" prot="public">Engine::Assets::Asset::Event::Unloaded</innerclass>
+    <innerclass refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting" prot="public">Engine::Assets::Asset::Event::Waiting</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="union_engine_1_1_assets_1_1_asset_1_1_event_1ad231f75a131be36a5c508d12da8aa3ec" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded" kindref="compound">Engine::Assets::Asset::Event::Loaded</ref></type>
+        <definition>struct Engine::Assets::Asset::Event::Loaded Engine::Assets::Asset::Event::loaded</definition>
+        <argsstring></argsstring>
+        <name>loaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="19" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_engine_1_1_assets_1_1_asset_1_1_event_1ab339f3dfd552be24b4b2bd8df74ef771" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded" kindref="compound">Engine::Assets::Asset::Event::Unloaded</ref></type>
+        <definition>struct Engine::Assets::Asset::Event::Unloaded Engine::Assets::Asset::Event::unloaded</definition>
+        <argsstring></argsstring>
+        <name>unloaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="22" column="10"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_engine_1_1_assets_1_1_asset_1_1_event_1aa4f616e6024eaa8cf672ddb3a7d7d74a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting" kindref="compound">Engine::Assets::Asset::Event::Waiting</ref></type>
+        <definition>struct Engine::Assets::Asset::Event::Waiting Engine::Assets::Asset::Event::waiting</definition>
+        <argsstring></argsstring>
+        <name>waiting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="29" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>Engine::Assets::Asset</label>
+        <link refid="class_engine_1_1_assets_1_1_asset"/>
+      </node>
+      <node id="2">
+        <label>Engine::Assets::Asset::Event::Unloaded</label>
+        <link refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded"/>
+      </node>
+      <node id="1">
+        <label>Engine::Assets::Asset::Event</label>
+        <link refid="union_engine_1_1_assets_1_1_asset_1_1_event"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>unloaded</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>loaded</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>waiting</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Engine::Assets::Asset::Event::Waiting</label>
+        <link refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>other</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Engine::Assets::Asset::Event::Loaded</label>
+        <link refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/Assets/Asset.hpp" line="15" column="1" bodyfile="src/Assets/Asset.hpp" bodystart="15" bodyend="30"/>
+    <listofallmembers>
+      <member refid="union_engine_1_1_assets_1_1_asset_1_1_event_1ad231f75a131be36a5c508d12da8aa3ec" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset::Event</scope><name>loaded</name></member>
+      <member refid="union_engine_1_1_assets_1_1_asset_1_1_event_1ab339f3dfd552be24b4b2bd8df74ef771" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset::Event</scope><name>unloaded</name></member>
+      <member refid="union_engine_1_1_assets_1_1_asset_1_1_event_1aa4f616e6024eaa8cf672ddb3a7d7d74a" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset::Event</scope><name>waiting</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

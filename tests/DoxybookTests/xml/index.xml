@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.0" xml:lang="en-US">
+  <compound refid="class_engine_1_1_utils_1_1_array_view" kind="class"><name>Engine::Utils::ArrayView</name>
+    <member refid="class_engine_1_1_utils_1_1_array_view_1ab73615399bbbb9fd6246fa3982f2cfec" kind="function"><name>ArrayView</name></member>
+    <member refid="class_engine_1_1_utils_1_1_array_view_1a5a726545dac6e3345a746b9f23e7a088" kind="function"><name>~ArrayView</name></member>
+    <member refid="class_engine_1_1_utils_1_1_array_view_1a934fde6ed35c2a3c051b11b549214cd6" kind="function"><name>data</name></member>
+    <member refid="class_engine_1_1_utils_1_1_array_view_1a3079597de87ffeffe28d3cbf144ea8d3" kind="function"><name>size</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_assets_1_1_asset" kind="class"><name>Engine::Assets::Asset</name>
+    <member refid="class_engine_1_1_assets_1_1_asset_1af26cbe7f9237ea471f12620b0547ba39" kind="variable"><name>event</name></member>
+    <member refid="class_engine_1_1_assets_1_1_asset_1acb5958d164f0b8ced1638de58b3ea0b0" kind="function"><name>Asset</name></member>
+    <member refid="class_engine_1_1_assets_1_1_asset_1aecd651b9312fa89e40d268214576839e" kind="function"><name>~Asset</name></member>
+    <member refid="class_engine_1_1_assets_1_1_asset_1a10931e97cd354bf1770b3824d0e87029" kind="function"><name>load</name></member>
+    <member refid="class_engine_1_1_assets_1_1_asset_1ab25cbfe379d57b414b800c0040e7c63c" kind="function"><name>unload</name></member>
+    <member refid="class_engine_1_1_assets_1_1_asset_1a0f49f750cc898cd041d24bad216236a3" kind="function"><name>getEvent</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_audio_1_1_audio_buffer" kind="class"><name>Engine::Audio::AudioBuffer</name>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052" kind="enum"><name>Type</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a696b031073e74bf2cb98e5ef201d4aa3" kind="enumvalue"><name>UNKNOWN</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a2dea92647909a0657c5ca657d92ff0c2" kind="enumvalue"><name>INT_8</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a6c4baecc05d360b290e07c50131c7fc2" kind="enumvalue"><name>INT_16</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a1b20706298a204bb53fae40ad0c97bbf" kind="enumvalue"><name>INT_24</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052aab97c2f5d9a173a78b47802dce7a1806" kind="enumvalue"><name>INT_32</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052a34429544f281bc1e40ec5525cff2a060" kind="enumvalue"><name>FLOAT_32</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a443d235077d5716d4b2b4f013052adf4" kind="typedef"><name>AudioData</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a7b215df4d151a7e92de8b5a6abdbe8a0" kind="typedef"><name>AudioData8U</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a85edaa7e5c3ae68dabadd5373890591e" kind="friend"><name>AudioManager</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a8a93ebadfbe0508d87d2605f062b4b7f" kind="friend"><name>Audio::doSomething</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ae7ef7f8f4cecc7f19bbe01319f8aa37d" kind="variable"><name>playing</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1ab3f8002fc80d9bff50cfb6095e10a721" kind="function"><name>AudioBuffer</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1aa89013946a6eb2907227ed4c26f052b9" kind="function"><name>~AudioBuffer</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a801f334ffcb3d943f1804ea73e1516ea" kind="function"><name>play</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a387243170ec71207123ae326c7dabd1a" kind="function"><name>stop</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a821933214a00331f80c1c58cee859eec" kind="function"><name>loop</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a560600772af8cde2fd5dc45e1780789c" kind="function"><name>setData</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a51ef075612af06edcb53d3c9b6c4fc7c" kind="function"><name>setDataMultiple</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a5a9f408cc4d73ea1956277e0e189f8f0" kind="function"><name>setData</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a9e2d6ba7577091ff59e68f2d520e9174" kind="function"><name>setCallback</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1aa86b2b3bdc3ff9825d4e273f855adabe" kind="function"><name>setCallback2</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_buffer_1a93722a1dc8b7340e2c9b5e78d50151f5" kind="function"><name>getData</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_audio_1_1_audio_manager" kind="class"><name>Engine::Audio::AudioManager</name>
+    <member refid="class_engine_1_1_audio_1_1_audio_manager_1a6ddfa33f548bda24e5968f448dd88728" kind="function"><name>AudioManager</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_manager_1aadcf89776de4c18aa2f227628e8a6186" kind="function"><name>~AudioManager</name></member>
+    <member refid="class_engine_1_1_audio_1_1_audio_manager_1ab518e57bc7c039b0ac985c74244ed027" kind="function"><name>enque</name></member>
+  </compound>
+  <compound refid="union_engine_1_1_assets_1_1_asset_1_1_event" kind="union"><name>Engine::Assets::Asset::Event</name>
+    <member refid="union_engine_1_1_assets_1_1_asset_1_1_event_1ad231f75a131be36a5c508d12da8aa3ec" kind="variable"><name>loaded</name></member>
+    <member refid="union_engine_1_1_assets_1_1_asset_1_1_event_1ab339f3dfd552be24b4b2bd8df74ef771" kind="variable"><name>unloaded</name></member>
+    <member refid="union_engine_1_1_assets_1_1_asset_1_1_event_1aa4f616e6024eaa8cf672ddb3a7d7d74a" kind="variable"><name>waiting</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_exception" kind="class"><name>Engine::Exception</name>
+    <member refid="class_engine_1_1_exception_1ace265added7ec74ac0fe09b30d442621" kind="variable"><name>msg</name></member>
+    <member refid="class_engine_1_1_exception_1a697748d2c21a434b4742910b8d4e53d4" kind="function"><name>Exception</name></member>
+    <member refid="class_engine_1_1_exception_1a4f566b63e5d447cb468d0f89b46bb75c" kind="function"><name>Exception</name></member>
+    <member refid="class_engine_1_1_exception_1ac25e87274c89524b026998678500dd29" kind="function"><name>what</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_graphics_1_1_framebuffer" kind="class"><name>Engine::Graphics::Framebuffer</name>
+    <member refid="class_engine_1_1_graphics_1_1_framebuffer_1ab66e3d8f549898f3f393cedd8f5ac1ad" kind="function"><name>Framebuffer</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_framebuffer_1a19316bb17e8c78c8272053a1494f9ce8" kind="function"><name>~Framebuffer</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_framebuffer_1a97a83fdba1f33cee37553b370be4762c" kind="function"><name>getWidth</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_framebuffer_1a41ad5c8ee63a4efabecc26f931300656" kind="function"><name>getHeight</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_framebuffer_1a10930c6d923758bc05c1e0958747958e" kind="function"><name>getDepth</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_gui_1_1_gui_widget" kind="class"><name>Engine::Gui::GuiWidget</name>
+    <member refid="class_engine_1_1_gui_1_1_gui_widget_1aa5b64a4072215fe77b2ce99d455d1caf" kind="variable"><name>parent</name></member>
+    <member refid="class_engine_1_1_gui_1_1_gui_widget_1a72c75252185bae7a0ff3fc9a87a649bc" kind="function"><name>GuiWidget</name></member>
+    <member refid="class_engine_1_1_gui_1_1_gui_widget_1a1e570f01e52136363e67ffc401f7fd20" kind="function"><name>~GuiWidget</name></member>
+    <member refid="class_engine_1_1_gui_1_1_gui_widget_1a3892bd2dd4c241f2f9bf33d80185e41c" kind="signal"><name>mySignal</name></member>
+    <member refid="class_engine_1_1_gui_1_1_gui_widget_1a0619a3b202561d1777f1fd9860b1e1da" kind="slot"><name>mySlot</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_graphics_1_1_handle" kind="class"><name>Engine::Graphics::Handle</name>
+    <member refid="class_engine_1_1_graphics_1_1_handle_1a986328747b7527a0c01728f0ae351b28" kind="variable"><name>handle</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_handle_1aab68ea12ecb749124568f6ab3cc414bc" kind="function"><name>Handle</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_handle_1a44c63f895a2ed3c095dfd4a9605a9ee4" kind="function"><name>~Handle</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_handle_1a51c68ca867d2e6520f72ff3f55e43a19" kind="function"><name>getHandle</name></member>
+  </compound>
+  <compound refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded" kind="struct"><name>Engine::Assets::Asset::Event::Loaded</name>
+    <member refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a6df474ccd46caeb0e7ffb2214bb795d3" kind="variable"><name>success</name></member>
+    <member refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a4560959655f932a372e0f9cee598ed1c" kind="variable"><name>usage</name></member>
+  </compound>
+  <compound refid="struct_some_struct" kind="struct"><name>SomeStruct</name>
+    <member refid="struct_some_struct_1a8049974246bff50f9be7569ab2ebbb42" kind="variable"><name>data</name></member>
+    <member refid="struct_some_struct_1a956930df1e6c379bb19f6d0ffb3b314e" kind="variable"><name>flags</name></member>
+  </compound>
+  <compound refid="union_some_union" kind="union"><name>SomeUnion</name>
+    <member refid="union_some_union_1a3360cf876be0268217618cfa7aea9ad3" kind="variable"><name>a</name></member>
+    <member refid="union_some_union_1ac6db9b6e14506339abf522a6c499c6d5" kind="variable"><name>b</name></member>
+    <member refid="union_some_union_1a517bde83f08a526d43a44d150a02968b" kind="variable"><name>c</name></member>
+    <member refid="union_some_union_1a45f11e46a440d29aca5d1da2161c5071" kind="variable"><name>d</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_graphics_1_1_texture" kind="interface"><name>Engine::Graphics::Texture</name>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3" kind="enum"><name>Type</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a696b031073e74bf2cb98e5ef201d4aa3" kind="enumvalue"><name>UNKNOWN</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ac0182f4ea7c5e9b625c36eae16149ccc" kind="enumvalue"><name>RGBA_8</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3aa23cde681dadb7db981dc69ef3b1eb5b" kind="enumvalue"><name>RGB_8</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3ac6324250e415ea439a02714b399179a6" kind="enumvalue"><name>RGBA_16</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a33ba5e65ee977da3cbdbdca56a054a01" kind="enumvalue"><name>RGB_16</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3aab36754052ec07e2737b63f43cc214f1" kind="enumvalue"><name>RGBA_32</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a31280bb4ea2ce7bb099d8291ebb41bf3a542b7a8cf84322d8b6d6ce98a6d86d84" kind="enumvalue"><name>RGB_32</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1ac00e77b373f4de42a738b6a5f0d5d2ee" kind="variable"><name>loaded</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a65eb15ea929c3e09e18dec43eee8e7de" kind="variable"><name>type</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a2aa720c8a39a34c503b0f9c7c589125d" kind="function"><name>Texture</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a7aa1cce1ae133a47d7a8f587ee666ad6" kind="function"><name>~Texture</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a6ee1abf82e30d5300ae8f0c8d922e31a" kind="function"><name>getWidth</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1a23af68344fcb00113b6ca7b3483d51d3" kind="function"><name>getHeight</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1abb2d22975c917eb2f420534c945cea97" kind="function"><name>getDepth</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture_1ae0b09c21b3d9d3087cbc507ca62a01e8" kind="function"><name>isLoaded</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_graphics_1_1_texture2_d" kind="class"><name>Engine::Graphics::Texture2D</name>
+    <member refid="class_engine_1_1_graphics_1_1_texture2_d_1a629378d74ba090e1c803ac407cb4fea5" kind="function"><name>Texture2D</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture2_d_1a9c3792d370059e1597226b6718065767" kind="function"><name>~Texture2D</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture2_d_1a33f483de6390f42c9f50770eb0dea0ee" kind="function"><name>getWidth</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture2_d_1a01bc9c7d79de56ee427850505326c48c" kind="function"><name>getHeight</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture2_d_1aca9fcc8dbbda1fc56be5b1f07afc1aba" kind="function"><name>getDepth</name></member>
+  </compound>
+  <compound refid="class_engine_1_1_graphics_1_1_texture3_d" kind="class"><name>Engine::Graphics::Texture3D</name>
+    <member refid="class_engine_1_1_graphics_1_1_texture3_d_1a2085a15a9a5a755b553652b84e8ee8ab" kind="function"><name>Texture3D</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture3_d_1a1c29881151b000a083509a877239403a" kind="function"><name>~Texture3D</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture3_d_1af602dd82ea87309879808b7f8465604f" kind="function"><name>getWidth</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture3_d_1a8379e2913526715cdf62ce2a4a76f330" kind="function"><name>getHeight</name></member>
+    <member refid="class_engine_1_1_graphics_1_1_texture3_d_1ada1260ef0cb755e4a283c617fae8b009" kind="function"><name>getDepth</name></member>
+  </compound>
+  <compound refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data" kind="struct"><name>Engine::Audio::AudioBuffer::TypedAudioData</name>
+    <member refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ac2888bb4791f726f8b9908758a97a06d" kind="variable"><name>buffer</name></member>
+    <member refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ab67e24ae6f8654c77d3fc3060a319e29" kind="variable"><name>type</name></member>
+  </compound>
+  <compound refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded" kind="struct"><name>Engine::Assets::Asset::Event::Unloaded</name>
+    <member refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_unloaded_1a2bd5af73d6bccab761fc36bc699512f5" kind="variable"><name>success</name></member>
+  </compound>
+  <compound refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting" kind="struct"><name>Engine::Assets::Asset::Event::Waiting</name>
+    <member refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_waiting_1acbeca9e79efb323226a26b82977d36ec" kind="variable"><name>other</name></member>
+  </compound>
+  <compound refid="namespace_engine" kind="namespace"><name>Engine</name>
+    <member refid="namespace_engine_1ae3918a7bd8220f317f339ebda3295fa7" kind="function"><name>getVersion</name></member>
+  </compound>
+  <compound refid="namespace_engine_1_1_assets" kind="namespace"><name>Engine::Assets</name>
+  </compound>
+  <compound refid="namespace_engine_1_1_audio" kind="namespace"><name>Engine::Audio</name>
+    <member refid="namespace_engine_1_1_audio_1a9527f056637d57771ee8025589fd596d" kind="typedef"><name>Callback</name></member>
+    <member refid="namespace_engine_1_1_audio_1a5f46c6af857ddc9892c13089da27f7f5" kind="typedef"><name>Callback2</name></member>
+    <member refid="namespace_engine_1_1_audio_1afd879d300eefd81460d53b2dd486fdc3" kind="function"><name>doSomething</name></member>
+  </compound>
+  <compound refid="namespace_engine_1_1_graphics" kind="namespace"><name>Engine::Graphics</name>
+    <member refid="group___graphics_1gae5b9a93609bed06adb3ce5902791df8a" kind="function"><name>getHandle</name></member>
+  </compound>
+  <compound refid="namespace_engine_1_1_gui" kind="namespace"><name>Engine::Gui</name>
+  </compound>
+  <compound refid="namespace_engine_1_1_utils" kind="namespace"><name>Engine::Utils</name>
+    <member refid="group___utils_1gaef03bfdf7ea06e105903c76f06f22deb" kind="function"><name>name_with_underscores</name></member>
+  </compound>
+  <compound refid="namespace_engine_1_1_utils_1_1_path" kind="namespace"><name>Engine::Utils::Path</name>
+    <member refid="namespace_engine_1_1_utils_1_1_path_1a20779c0c7023ad09e23ae3ce81f36f1f" kind="function"><name>getFilename</name></member>
+    <member refid="namespace_engine_1_1_utils_1_1_path_1ae52df0e81924b99e45d515f595659628" kind="function"><name>getExtension</name></member>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="_asset_8hpp" kind="file"><name>Asset.hpp</name>
+  </compound>
+  <compound refid="_assets_8hpp" kind="file"><name>Assets.hpp</name>
+  </compound>
+  <compound refid="_audio_8hpp" kind="file"><name>Audio.hpp</name>
+  </compound>
+  <compound refid="_audio_buffer_8hpp" kind="file"><name>AudioBuffer.hpp</name>
+  </compound>
+  <compound refid="_audio_manager_8hpp" kind="file"><name>AudioManager.hpp</name>
+  </compound>
+  <compound refid="_engine_8hpp" kind="file"><name>Engine.hpp</name>
+    <member refid="_engine_8hpp_1ae7d52a33d99eaf0d779f82301ce5432f" kind="function"><name>someGlobalFunc</name></member>
+  </compound>
+  <compound refid="_exception_8hpp" kind="file"><name>Exception.hpp</name>
+  </compound>
+  <compound refid="_framebuffer_8hpp" kind="file"><name>Framebuffer.hpp</name>
+  </compound>
+  <compound refid="_graphics_8hpp" kind="file"><name>Graphics.hpp</name>
+  </compound>
+  <compound refid="_handle_8hpp" kind="file"><name>Handle.hpp</name>
+  </compound>
+  <compound refid="_renderer_8hpp" kind="file"><name>Renderer.hpp</name>
+  </compound>
+  <compound refid="_texture_8hpp" kind="file"><name>Texture.hpp</name>
+  </compound>
+  <compound refid="_texture2_d_8hpp" kind="file"><name>Texture2D.hpp</name>
+  </compound>
+  <compound refid="_texture3_d_8hpp" kind="file"><name>Texture3D.hpp</name>
+  </compound>
+  <compound refid="_gui_8hpp" kind="file"><name>Gui.hpp</name>
+  </compound>
+  <compound refid="_gui_widget_8hpp" kind="file"><name>GuiWidget.hpp</name>
+  </compound>
+  <compound refid="_array_view_8hpp" kind="file"><name>ArrayView.hpp</name>
+  </compound>
+  <compound refid="_config_8hpp" kind="file"><name>Config.hpp</name>
+    <member refid="group___utils_1ga175f00127b5cd4fc673a52180eb80eb5" kind="define"><name>ENGINE_VERSION</name></member>
+    <member refid="_config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0" kind="define"><name>ENGINE_ARCH</name></member>
+  </compound>
+  <compound refid="_log_8hpp" kind="file"><name>Log.hpp</name>
+    <member refid="group___utils_1gac7c70714c30c998f33d7cb5639cec5fc" kind="define"><name>LOG_DEBUG</name></member>
+  </compound>
+  <compound refid="_path_8hpp" kind="file"><name>Path.hpp</name>
+  </compound>
+  <compound refid="_utils_8hpp" kind="file"><name>Utils.hpp</name>
+  </compound>
+  <compound refid="group___assets" kind="group"><name>Assets</name>
+  </compound>
+  <compound refid="group___audio" kind="group"><name>Audio</name>
+  </compound>
+  <compound refid="group___engine" kind="group"><name>Engine</name>
+  </compound>
+  <compound refid="group___graphics" kind="group"><name>Graphics</name>
+    <member refid="group___graphics_1gae5b9a93609bed06adb3ce5902791df8a" kind="function"><name>getHandle</name></member>
+  </compound>
+  <compound refid="group___gui" kind="group"><name>Gui</name>
+  </compound>
+  <compound refid="group___utils" kind="group"><name>Utils</name>
+    <member refid="group___utils_1gaef03bfdf7ea06e105903c76f06f22deb" kind="function"><name>name_with_underscores</name></member>
+    <member refid="group___utils_1ga175f00127b5cd4fc673a52180eb80eb5" kind="define"><name>ENGINE_VERSION</name></member>
+    <member refid="group___utils_1gac7c70714c30c998f33d7cb5639cec5fc" kind="define"><name>LOG_DEBUG</name></member>
+  </compound>
+  <compound refid="intro" kind="page"><name>intro</name>
+  </compound>
+  <compound refid="advanced" kind="page"><name>advanced</name>
+  </compound>
+  <compound refid="deprecated" kind="page"><name>deprecated</name>
+  </compound>
+  <compound refid="test" kind="page"><name>test</name>
+  </compound>
+  <compound refid="bug" kind="page"><name>bug</name>
+  </compound>
+  <compound refid="todo" kind="page"><name>todo</name>
+  </compound>
+  <compound refid="dir_e0c1ede47f21c4a643a1257f949f98e0" kind="dir"><name>src/Assets</name>
+  </compound>
+  <compound refid="dir_c64386e93f356b78d4612c7b7741707c" kind="dir"><name>src/Audio</name>
+  </compound>
+  <compound refid="dir_3419e189e460663ec2c964233bf8dcd6" kind="dir"><name>src/Graphics</name>
+  </compound>
+  <compound refid="dir_b5ac5e964c12a6b13a9d28feb9f3d3ed" kind="dir"><name>src/Gui</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_a7363e98f9e0bdd87618633653859815" kind="dir"><name>src/Utils</name>
+  </compound>
+  <compound refid="example-1_8cpp-example" kind="example"><name>example-1.cpp</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

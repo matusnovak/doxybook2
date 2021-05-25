@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded" kind="struct" language="C++" prot="public">
+    <compoundname>Engine::Assets::Asset::Event::Loaded</compoundname>
+    <includes refid="_asset_8hpp" local="no">Asset.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a6df474ccd46caeb0e7ffb2214bb795d3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Engine::Assets::Asset::Event::Loaded::success</definition>
+        <argsstring></argsstring>
+        <name>success</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="17" column="6" bodyfile="src/Assets/Asset.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a4560959655f932a372e0f9cee598ed1c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Engine::Assets::Asset::Event::Loaded::usage</definition>
+        <argsstring></argsstring>
+        <name>usage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="18" column="5" bodyfile="src/Assets/Asset.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Assets/Asset.hpp" line="16" column="1" bodyfile="src/Assets/Asset.hpp" bodystart="16" bodyend="19"/>
+    <listofallmembers>
+      <member refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a6df474ccd46caeb0e7ffb2214bb795d3" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset::Event::Loaded</scope><name>success</name></member>
+      <member refid="struct_engine_1_1_assets_1_1_asset_1_1_event_1_1_loaded_1a4560959655f932a372e0f9cee598ed1c" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset::Event::Loaded</scope><name>usage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

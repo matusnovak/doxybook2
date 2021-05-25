@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="_audio_8hpp" kind="file" language="C++">
+    <compoundname>Audio.hpp</compoundname>
+    <includes refid="_audio_buffer_8hpp" local="yes">AudioBuffer.hpp</includes>
+    <includes refid="_audio_manager_8hpp" local="yes">AudioManager.hpp</includes>
+    <includedby refid="_engine_8hpp" local="yes">src/Engine.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>src/Audio/Audio.hpp</label>
+        <link refid="_audio_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>AudioBuffer.hpp</label>
+        <link refid="_audio_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>AudioManager.hpp</label>
+        <link refid="_audio_manager_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>../Utils/ArrayView.hpp</label>
+        <link refid="_array_view_8hpp"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/Engine.hpp</label>
+        <link refid="_engine_8hpp"/>
+      </node>
+      <node id="1">
+        <label>src/Audio/Audio.hpp</label>
+        <link refid="_audio_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_audio_buffer_8hpp" kindref="compound">AudioBuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_audio_manager_8hpp" kindref="compound">AudioManager.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="src/Audio/Audio.hpp"/>
+  </compounddef>
+</doxygen>

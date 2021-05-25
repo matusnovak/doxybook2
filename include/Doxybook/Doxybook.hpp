@@ -5,7 +5,7 @@
 namespace Doxybook2 {
 class Doxybook {
 public:
-    explicit Doxybook(const std::filesystem::path& path);
+    explicit Doxybook(const Config& config, const std::filesystem::path& path);
     ~Doxybook() = default;
 
     const NodeSharedPtr& getIndex() const {
@@ -13,6 +13,7 @@ public:
     }
 
 private:
+    const Config& config;
     NodeSharedPtr index;
     Cache cache;
 };

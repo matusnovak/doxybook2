@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="namespace_engine_1_1_gui" kind="namespace" language="C++">
+    <compoundname>Engine::Gui</compoundname>
+    <innerclass refid="class_engine_1_1_gui_1_1_gui_widget" prot="public">Engine::Gui::GuiWidget</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Gui/GuiWidget.hpp" line="6" column="5"/>
+  </compounddef>
+</doxygen>

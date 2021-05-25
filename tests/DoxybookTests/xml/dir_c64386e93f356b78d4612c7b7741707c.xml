@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="dir_c64386e93f356b78d4612c7b7741707c" kind="dir">
+    <compoundname>src/Audio</compoundname>
+    <innerfile refid="_audio_8hpp">Audio.hpp</innerfile>
+    <innerfile refid="_audio_buffer_8hpp">AudioBuffer.hpp</innerfile>
+    <innerfile refid="_audio_manager_8hpp">AudioManager.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Audio/"/>
+  </compounddef>
+</doxygen>

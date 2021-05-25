@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="namespace_engine" kind="namespace" language="C++">
+    <compoundname>Engine</compoundname>
+    <innerclass refid="class_engine_1_1_exception" prot="public">Engine::Exception</innerclass>
+    <innernamespace refid="namespace_engine_1_1_assets">Engine::Assets</innernamespace>
+    <innernamespace refid="namespace_engine_1_1_audio">Engine::Audio</innernamespace>
+    <innernamespace refid="namespace_engine_1_1_graphics">Engine::Graphics</innernamespace>
+    <innernamespace refid="namespace_engine_1_1_gui">Engine::Gui</innernamespace>
+    <innernamespace refid="namespace_engine_1_1_utils">Engine::Utils</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_engine_1ae3918a7bd8220f317f339ebda3295fa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Engine::getVersion</definition>
+        <argsstring>()</argsstring>
+        <name>getVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="46" column="20" declfile="src/Engine.hpp" declline="46" declcolumn="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This namespace contains all of the necessary engine components. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="namespace_engine_1_1_assets" kindref="compound">Engine::Assets</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="namespace_engine_1_1_audio" kindref="compound">Engine::Audio</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="namespace_engine_1_1_graphics" kindref="compound">Engine::Graphics</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="namespace_engine_1_1_utils" kindref="compound">Engine::Utils</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="src/Assets/Asset.hpp" line="5" column="1"/>
+  </compounddef>
+</doxygen>

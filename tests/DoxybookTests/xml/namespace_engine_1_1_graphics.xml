@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="namespace_engine_1_1_graphics" kind="namespace" language="C++">
+    <compoundname>Engine::Graphics</compoundname>
+    <innerclass refid="class_engine_1_1_graphics_1_1_framebuffer" prot="public">Engine::Graphics::Framebuffer</innerclass>
+    <innerclass refid="class_engine_1_1_graphics_1_1_handle" prot="public">Engine::Graphics::Handle</innerclass>
+    <innerclass refid="class_engine_1_1_graphics_1_1_texture" prot="public">Engine::Graphics::Texture</innerclass>
+    <innerclass refid="class_engine_1_1_graphics_1_1_texture2_d" prot="public">Engine::Graphics::Texture2D</innerclass>
+    <innerclass refid="class_engine_1_1_graphics_1_1_texture3_d" prot="public">Engine::Graphics::Texture3D</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___graphics_1gae5b9a93609bed06adb3ce5902791df8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Engine::Graphics::getHandle</definition>
+        <argsstring>(Handle &amp;handle)</argsstring>
+        <name>getHandle</name>
+        <param>
+          <type><ref refid="class_engine_1_1_graphics_1_1_handle" kindref="compound">Handle</ref> &amp;</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Some namespace inline function. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Graphics/Handle.hpp" line="26" column="20" bodyfile="src/Graphics/Handle.hpp" bodystart="26" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Graphics/Framebuffer.hpp" line="6" column="5"/>
+  </compounddef>
+</doxygen>

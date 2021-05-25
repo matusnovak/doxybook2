@@ -1,4 +1,8 @@
 #include "Macros.hpp"
+
+#include <Doxybook/Utils.hpp>
+#include <iostream>
+
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Enums.hpp>
 #include <Doxybook/Exception.hpp>
@@ -13,14 +17,6 @@ template <typename Fn> void allOf(const Xml::Element& elm, const std::string& na
     while (child) {
         fn(child);
         child = child.nextSiblingElement(name);
-    }
-}
-
-static std::optional<Kind> tryKind(const std::string& str) {
-    try {
-        return {toEnumKind(str)};
-    } catch (std::exception& e) {
-        return std::nullopt;
     }
 }
 
@@ -68,9 +64,19 @@ void Doxygen::resolveReferences(const Cache& cache, const NodeSharedPtr& node) {
     if (node->location.has_value()) {
         resolve(cache, node->location.value().file);
     }
+
     if (node->bodyLocation.has_value()) {
         resolve(cache, node->bodyLocation.value().file);
     }
+
+    for (auto& ref : node->baseClasses) {
+        resolve(cache, ref);
+    }
+
+    for (auto& ref : node->derivedClasses) {
+        resolve(cache, ref);
+    }
+
     for (auto& ref : node->inners) {
         resolve(cache, ref);
         if (ref.resolved()) {
@@ -115,6 +121,133 @@ void Doxygen::resolveHierarchy(const NodeSharedPtr& index) {
     }
 }
 
+static std::string anchorMaker(const Node& node) {
+    if (!isKindStructured(node.kind) && node.kind != Kind::MODULE) {
+        return "#" + toLower(toStr(node.kind)) + "-" + safeAnchorId(node.name);
+    }
+    return std::string("");
+}
+
+static const auto urlFolderMaker(const Config& config, const Node& node) {
+    if (config.useFolders) {
+        return config.baseUrl + typeToFolderName(config, node.kind) + "/";
+    }
+    return config.baseUrl;
+};
+
+std::string Doxygen::makeUrl(const Config& config, const Node& node) {
+    switch (node.kind) {
+    case Kind::INDEX: {
+        return "";
+    }
+    case Kind::STRUCT:
+    case Kind::CLASS:
+    case Kind::NAMESPACE:
+    case Kind::MODULE:
+    case Kind::DIR:
+    case Kind::FILE:
+    case Kind::PAGE:
+    case Kind::INTERFACE:
+    case Kind::EXAMPLE:
+    case Kind::UNION: {
+        if (node.refid == config.mainPageName) {
+            if (config.mainPageInRoot) {
+                return config.baseUrl;
+            } else {
+                return urlFolderMaker(config, node);
+            }
+        }
+        return urlFolderMaker(config, node) + stripAnchor(node.refid) + config.linkSuffix + anchorMaker(node);
+    }
+    case Kind::ENUMVALUE: {
+        const auto n = node.parent.lock();
+        if (!n) {
+            EXCEPTION("Enum value '{}' does not have a parent, this should not happen!", node.name);
+        }
+        const auto np = n->parent.lock();
+        if (!np) {
+            EXCEPTION("Enum '{}' does not have a parent, this should not happen!", n->name);
+        }
+        return urlFolderMaker(config, *np) + stripAnchor(np->refid) + config.linkSuffix + anchorMaker(node);
+    }
+    default: {
+        auto n = node.parent.lock();
+        if (!n) {
+            EXCEPTION("Node '{}' does not have a parent, this should not happen!", node.name);
+        }
+        if (!node.group.expired()) {
+            n = node.group.lock();
+        }
+        return urlFolderMaker(config, *n) + stripAnchor(n->refid) + config.linkSuffix + anchorMaker(node);
+    }
+    }
+}
+
+static void resolveUrl(const Config& config, const NodeSharedPtr& node) {
+    node->url = Doxygen::makeUrl(config, *node);
+    for (const auto& child : node->children) {
+        if (child->parent.lock() == node) {
+            resolveUrl(config, child);
+        }
+    }
+}
+
+// See definition of TextPair struct for more info
+static void resolveText(const Text::MarkdownOptions& options, TextPair& pair) {
+    if (!pair.markdown.empty()) {
+        return;
+    }
+    pair.markdown = Text::printMarkdown(pair.node);
+}
+
+static void resolveText(const Text::MarkdownOptions& options, const NodeSharedPtr& node) {
+    resolveText(options, node->brief);
+    resolveText(options, node->title);
+    resolveText(options, node->properties.type);
+    resolveText(options, node->properties.initializer);
+    for (auto& param : node->properties.params) {
+        resolveText(options, param.defval);
+        resolveText(options, param.type);
+    }
+    for (auto& param : node->properties.templateParams) {
+        resolveText(options, param.defval);
+        resolveText(options, param.type);
+    }
+
+    for (const auto& child : node->children) {
+        if (child->parent.lock() == node) {
+            resolveText(options, child);
+        }
+    }
+}
+
+static Text::MarkdownOptions getMarkdownOptions(const Config& config, const Cache& cache) {
+    Text::MarkdownOptions options;
+    options.dir = config.outputDir;
+    options.resolver = [&cache](const std::string& refid) -> std::optional<std::string> {
+        const auto found = cache.findByRef(refid);
+        if (found) {
+            return found->url;
+        }
+        return std::nullopt;
+    };
+    return options;
+}
+
+void Doxygen::finalize(const Config& config, const Cache& cache, const NodeSharedPtr& node) {
+    Log::i("Finalizing...");
+
+    const auto markdownOptions = getMarkdownOptions(config, cache);
+    for (const auto& child : node->children) {
+        resolveUrl(config, child);
+    }
+
+    Log::i("Resolving text...");
+    for (const auto& child : node->children) {
+        resolveText(markdownOptions, child);
+    }
+}
+
 NodeSharedPtr Doxygen::parseIndex(const std::filesystem::path& path) {
     const auto indexPath = path / std::filesystem::path("index.xml");
     Log::i("Loading: {}", indexPath.string());
@@ -129,11 +262,7 @@ NodeSharedPtr Doxygen::parseIndex(const std::filesystem::path& path) {
     // Find all compound nodes from the root
     allOf(root, "compound", [&](Xml::Element& compound) {
         // Only allow compound nodes that we can recognize
-        const auto kind = tryKind(compound.getAttr("kind", "unknown"));
-        if (!kind.has_value()) {
-            return;
-        }
-
+        const auto kind = toEnumKind(compound.getAttr("kind", "unknown"));
         const auto refid = compound.getAttr("refid");
         index->children.push_back(parse(path, refid));
     });
@@ -148,7 +277,12 @@ NodeSharedPtr Doxygen::parse(const std::filesystem::path& path, const std::strin
     // Get the root element
     const Xml xml(filePath);
     const auto root = xml.root();
-    return parse(root);
+    auto compound = parse(root);
+
+    for (auto& child : compound->children) {
+        child->parent = compound;
+    }
+    return compound;
 }
 
 NodeSharedPtr Doxygen::parse(const Xml::Element& root) {
@@ -177,11 +311,24 @@ NodeSharedPtr Doxygen::parseCompound(const Xml::Element& compound) {
     concat(node.inners, parseInnerFiles(compound));
     concat(node.inners, parseInnerDirectories(compound));
     concat(node.inners, parseInnerPages(compound));
+    node.baseClasses = parseBaseCompound(compound);
+    node.derivedClasses = parseDerivedCompound(compound);
 
     parseProperties(compound, node.properties);
 
     allOf(compound, "sectiondef", [&](Xml::Element& section) {
         allOf(section, "memberdef", [&](Xml::Element& memberdef) {
+            // Groups should not own their nodes
+            // nor they shall create copies!
+            // We will save it as a reference, then solve this reference later.
+            // By doing this, groups will have children which in reality belong
+            // to a different parent. This will solve URL issues and duplicates issues!
+            if (node.kind == Kind::MODULE) {
+                const auto refid = parseRefid(memberdef);
+                node.inners.push_back(NodeRef{BasicRef{refid, ""}});
+                return;
+            }
+
             auto child = parseMember(memberdef);
             node.children.push_back(std::move(child));
         });
@@ -272,7 +419,7 @@ std::vector<NodeSharedPtr> Doxygen::parseEnumValues(const Xml::Element& memberde
 
 NodeSharedPtr Doxygen::parseEnumValue(const Xml::Element& enumvalue) {
     NodeSharedPtr node = std::make_shared<Node>();
-    node->kind == Kind::ENUMVALUE;
+    node->kind = Kind::ENUMVALUE;
     node->refid = parseRefid(enumvalue);
     node->name = parseName(enumvalue);
     node->brief = parseBrief(enumvalue);
@@ -322,14 +469,19 @@ Param Doxygen::parseParam(const Xml::Element& elm) {
     const auto type = elm.firstChildElement("type");
     const auto declname = elm.firstChildElement("declname");
     const auto defval = elm.firstChildElement("defval");
+    const auto arr = elm.firstChildElement("array");
 
     Param param;
+    param.name = "";
 
     if (type) {
         param.type = Text::parse(type);
     }
     if (declname && declname.hasText()) {
         param.name = declname.getText();
+    }
+    if (arr && arr.hasText()) {
+        param.name += arr.getText();
     }
     if (defval) {
         param.defval = Text::parse(defval);
@@ -432,6 +584,14 @@ std::vector<NodeRef> Doxygen::parseInnerPages(const Xml::Element& elm) {
 
 std::vector<NodeRef> Doxygen::parseInnerGroups(const Xml::Element& elm) {
     return parseInner(elm, "innergroup");
+}
+
+std::vector<NodeRef> Doxygen::parseBaseCompound(const Xml::Element& elm) {
+    return parseInner(elm, "basecompoundref");
+}
+
+std::vector<NodeRef> Doxygen::parseDerivedCompound(const Xml::Element& elm) {
+    return parseInner(elm, "derivedcompoundref");
 }
 
 bool Doxygen::parseBoolAttr(const Xml::Element& elm, const std::string& key) {

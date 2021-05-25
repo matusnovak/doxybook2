@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir">
+    <compoundname>src</compoundname>
+    <innerdir refid="dir_e0c1ede47f21c4a643a1257f949f98e0">src/Assets</innerdir>
+    <innerdir refid="dir_c64386e93f356b78d4612c7b7741707c">src/Audio</innerdir>
+    <innerdir refid="dir_3419e189e460663ec2c964233bf8dcd6">src/Graphics</innerdir>
+    <innerdir refid="dir_b5ac5e964c12a6b13a9d28feb9f3d3ed">src/Gui</innerdir>
+    <innerdir refid="dir_a7363e98f9e0bdd87618633653859815">src/Utils</innerdir>
+    <innerfile refid="_engine_8hpp">Engine.hpp</innerfile>
+    <innerfile refid="_exception_8hpp">Exception.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/"/>
+  </compounddef>
+</doxygen>

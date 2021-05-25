@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data" kind="struct" language="C++" prot="public">
+    <compoundname>Engine::Audio::AudioBuffer::TypedAudioData</compoundname>
+    <includes refid="_audio_buffer_8hpp" local="no">AudioBuffer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ac2888bb4791f726f8b9908758a97a06d" prot="public" static="no" mutable="no">
+        <type><ref refid="class_engine_1_1_audio_1_1_audio_buffer_1a7b215df4d151a7e92de8b5a6abdbe8a0" kindref="member">AudioData8U</ref></type>
+        <definition>AudioData8U Engine::Audio::AudioBuffer::TypedAudioData::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="97" column="29" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ab67e24ae6f8654c77d3fc3060a319e29" prot="public" static="no" mutable="no">
+        <type><ref refid="class_engine_1_1_audio_1_1_audio_buffer_1ad6d10d04bef7fa259cdd5029697cf052" kindref="member">Type</ref></type>
+        <definition>Type Engine::Audio::AudioBuffer::TypedAudioData::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Audio/AudioBuffer.hpp" line="98" column="22" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Use this to populate the buffer. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>Engine::Utils::ArrayView&lt; uint8_t &gt;</label>
+        <link refid="class_engine_1_1_utils_1_1_array_view"/>
+      </node>
+      <node id="1">
+        <label>Engine::Audio::AudioBuffer::TypedAudioData</label>
+        <link refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/Audio/AudioBuffer.hpp" line="96" column="13" bodyfile="src/Audio/AudioBuffer.hpp" bodystart="96" bodyend="99"/>
+    <listofallmembers>
+      <member refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ac2888bb4791f726f8b9908758a97a06d" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer::TypedAudioData</scope><name>buffer</name></member>
+      <member refid="struct_engine_1_1_audio_1_1_audio_buffer_1_1_typed_audio_data_1ab67e24ae6f8654c77d3fc3060a319e29" prot="public" virt="non-virtual"><scope>Engine::Audio::AudioBuffer::TypedAudioData</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

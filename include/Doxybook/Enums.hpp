@@ -44,26 +44,6 @@ enum class Virtual {
     PURE_VIRTUAL,
 };
 
-enum class Type {
-    NONE,
-    DEFINES,
-    FUNCTIONS,
-    NAMESPACES,
-    CLASSES,
-    ATTRIBUTES,
-    TYPES,
-    DIRS,
-    FILES,
-    MODULES,
-    FRIENDS,
-    PAGES,
-    EXAMPLES,
-    SIGNALS,
-    SLOTS,
-    EVENTS,
-    PROPERTIES,
-};
-
 enum class FolderCategory {
     CLASSES,
     NAMESPACES,
@@ -74,28 +54,22 @@ enum class FolderCategory {
 };
 
 extern Kind toEnumKind(const std::string& str);
-extern Type toEnumType(const std::string& str);
 extern Visibility toEnumVisibility(const std::string& str);
 extern Virtual toEnumVirtual(const std::string& str);
 
 extern std::string toStr(Kind value);
-extern std::string toStr(Type value);
 extern std::string toStr(Visibility value);
 extern std::string toStr(Virtual value);
 
 extern bool isKindLanguage(Kind kind);
 extern bool isKindStructured(Kind kind);
 extern bool isKindFile(Kind kind);
-extern std::string typeToFolderName(const Config& config, Type type);
+extern std::string typeToFolderName(const Config& config, Kind kind);
 extern std::string typeToIndexName(const Config& config, FolderCategory type);
 extern std::string typeToIndexTemplate(const Config& config, FolderCategory type);
 extern std::string typeToIndexTitle(const Config& config, FolderCategory type);
 
 inline void to_json(nlohmann::json& j, const Kind& p) {
-    j = toStr(p);
-}
-
-inline void to_json(nlohmann::json& j, const Type& p) {
     j = toStr(p);
 }
 

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="group___assets" kind="group">
+    <compoundname>Assets</compoundname>
+    <title>Generic assets</title>
+    <innerclass refid="class_engine_1_1_assets_1_1_asset" prot="public">Engine::Assets::Asset</innerclass>
+    <innerclass refid="union_engine_1_1_assets_1_1_asset_1_1_event" prot="public">Engine::Assets::Asset::Event</innerclass>
+    <briefdescription>
+<para>This is a brief description to the assets group. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Some detailed description here </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

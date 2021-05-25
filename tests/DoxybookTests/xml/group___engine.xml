@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="group___engine" kind="group">
+    <compoundname>Engine</compoundname>
+    <title>An example game engine</title>
+    <innerclass refid="class_engine_1_1_exception" prot="public">Engine::Exception</innerclass>
+    <innergroup refid="group___assets">Generic assets</innergroup>
+    <innergroup refid="group___audio">Audio buffers and devices</innergroup>
+    <innergroup refid="group___graphics">Graphical related classes</innergroup>
+    <innergroup refid="group___gui">Some gui related stuff and whatever</innergroup>
+    <innergroup refid="group___utils">Some useful utilities</innergroup>
+    <briefdescription>
+<para>This is a brief description to the engine group. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Some detailed description here </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
