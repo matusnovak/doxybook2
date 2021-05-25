@@ -342,6 +342,11 @@ NodeSharedPtr Doxygen::parseMember(const Xml::Element& memberdef) {
     auto& node = *ptr;
 
     node.refid = parseRefid(memberdef);
+
+    if (node.refid == "namespace_engine_1_1_audio_1a9527f056637d57771ee8025589fd596d") {
+        Log::i("break");
+    }
+
     node.kind = parseKind(memberdef);
     node.name = parseName(memberdef);
     node.title = parseTitle(memberdef);
@@ -353,6 +358,7 @@ NodeSharedPtr Doxygen::parseMember(const Xml::Element& memberdef) {
     node.brief = parseBrief(memberdef);
 
     parseProperties(memberdef, node.properties);
+    parseDetailsNoText(memberdef, node.properties);
 
     if (node.kind == Kind::ENUM) {
         auto values = parseEnumValues(memberdef);
@@ -360,6 +366,10 @@ NodeSharedPtr Doxygen::parseMember(const Xml::Element& memberdef) {
             value->parent = ptr;
         }
         std::swap(node.children, values);
+    }
+
+    if (node.kind == Kind::TYPEDEF) {
+        node.properties.type.node += node.properties.argsString;
     }
 
     return ptr;
@@ -388,6 +398,25 @@ void Doxygen::parseProperties(const Xml::Element& elm, Properties& properties) {
     properties.isOverride = properties.argsString.find(" override") != std::string::npos;
     properties.isFinal = parseBoolAttr(elm, "final");
     properties.isSealed = parseBoolAttr(elm, "sealed");
+}
+
+void Doxygen::parseDetailsNoText(const Xml::Element& memberdef, Properties& properties) {
+    const auto details = memberdef.firstChildElement("detaileddescription");
+    if (details) {
+        allOf(details, "para", [&](Xml::Element& para) {
+            allOf(para, "xrefsect", [&](Xml::Element& xrefsect) {
+                const auto id = xrefsect.getAttr("id", "");
+                const auto pos = id.find('_');
+                if (pos != std::string::npos) {
+                    const auto sectionType = id.substr(0, pos);
+
+                    if (sectionType == "deprecated") {
+                        properties.isDeprecated = true;
+                    }
+                }
+            });
+        });
+    }
 }
 
 std::string Doxygen::parseRefid(const Xml::Element& elm) {

@@ -153,6 +153,24 @@ inline std::ostream& operator<<(std::ostream& os, const NodeVariant& value) {
     return os;
 }
 
+inline NodeVariant& operator+=(NodeVariant& node, const std::string& value) {
+    switch (node.index()) {
+    case 0: {
+        std::get<Plain>(node) += value;
+        break;
+    }
+    case 2: {
+        std::get<NodeCompound>(node).children.push_back(Plain{value});
+        break;
+    }
+    default: {
+        break;
+    }
+    }
+
+    return node;
+}
+
 } // namespace Text
 
 using TextNode = Text::NodeVariant;

@@ -38,6 +38,7 @@ extern std::string parseCompoundName(const Xml::Element& elm);
 extern Includes parseIncludes(const Xml::Element& elm);
 extern Params parseTemplateParams(const Xml::Element& elm);
 extern void parseProperties(const Xml::Element& elm, Properties& properties);
+extern void parseDetailsNoText(const Xml::Element& memberdef, Properties& properties);
 extern Params parseParams(const Xml::Element& elm);
 extern Param parseParam(const Xml::Element& elm);
 extern std::string parseName(const Xml::Element& elm);

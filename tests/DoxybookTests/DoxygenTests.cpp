@@ -473,6 +473,151 @@ TEST_CASE("Parse enum", "Doxygen") {
     REQUIRE(Text::printMarkdown(value->properties.initializer.node) == "= 0");
 }
 
+TEST_CASE("Parse signals", "Doxygen") {
+    const auto xml = parse(R"(
+        <memberdef kind="signal" id="classPressableLabel_1a70e5724a77a27c81cd8e324b427dfe90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+            <type>void</type>
+            <definition>void PressableLabel::pressed</definition>
+            <argsstring>()</argsstring>
+            <name>pressed</name>
+            <briefdescription>
+            </briefdescription>
+            <detaileddescription> <para>image has been pressed on with mouse </para> </detaileddescription>
+            <inbodydescription>
+            </inbodydescription>
+            <location file="pressablelabel.h" line="17" column="1"/>
+        </memberdef>
+    )");
+
+    const auto root = xml.root();
+
+    const NodeSharedPtr compound = Doxygen::parseMember(root);
+    REQUIRE(!!compound);
+
+    REQUIRE(compound->kind == Kind::SIGNAL);
+    REQUIRE(compound->refid == "classPressableLabel_1a70e5724a77a27c81cd8e324b427dfe90");
+
+    REQUIRE(compound->properties.argsString == "()");
+    REQUIRE(compound->properties.definition == "void PressableLabel::pressed");
+}
+
+TEST_CASE("Parse slots", "Doxygen") {
+    const auto xml = parse(R"(
+        <memberdef kind="slot" id="classMainWindow_1a20e17289a70704d7f2afefb65c9d889c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+            <type>void</type>
+            <definition>void MainWindow::toggleFullscreen</definition>
+            <argsstring>()</argsstring>
+            <name>toggleFullscreen</name>
+            <briefdescription>
+            </briefdescription>
+            <detaileddescription> <para>toggle window fullscreen flag </para>        </detaileddescription>
+            <inbodydescription>
+            </inbodydescription>
+            <location file="mainwindow.h" line="56" column="1" bodyfile="mainwindow.cpp" bodystart="119" bodyend="122"/>
+        </memberdef>
+    )");
+
+    const auto root = xml.root();
+
+    const NodeSharedPtr compound = Doxygen::parseMember(root);
+    REQUIRE(!!compound);
+
+    REQUIRE(compound->kind == Kind::SLOT);
+    REQUIRE(compound->refid == "classMainWindow_1a20e17289a70704d7f2afefb65c9d889c");
+
+    REQUIRE(compound->properties.argsString == "()");
+    REQUIRE(compound->properties.definition == "void MainWindow::toggleFullscreen");
+}
+
+TEST_CASE("C# Properties", "Doxygen") {
+    const auto xml = parse(R"(
+        <memberdef kind="property" id="some_random_property" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+            <type>int</type>
+            <definition>int MainWindow::myProperty</definition>
+            <argsstring>()</argsstring>
+            <name>myProperty</name>
+            <briefdescription>
+            </briefdescription>
+            <detaileddescription>
+            </detaileddescription>
+            <inbodydescription>
+            </inbodydescription>
+            <location file="mainwindow.h" line="1" column="1" bodyfile="mainwindow.cs" bodystart="1" bodyend="1"/>
+        </memberdef>
+    )");
+
+    const auto root = xml.root();
+
+    const NodeSharedPtr compound = Doxygen::parseMember(root);
+    REQUIRE(!!compound);
+
+    REQUIRE(compound->kind == Kind::PROPERTY);
+    REQUIRE(compound->refid == "some_random_property");
+}
+
+TEST_CASE("C# Events", "Doxygen") {
+    const auto xml = parse(R"(
+        <memberdef kind="event" id="some_random_event" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+            <type>void</type>
+            <definition>void MainWindow::myEvent</definition>
+            <argsstring>()</argsstring>
+            <name>myEvent</name>
+            <briefdescription>
+            </briefdescription>
+            <detaileddescription>
+            </detaileddescription>
+            <inbodydescription>
+            </inbodydescription>
+            <location file="mainwindow.h" line="1" column="1" bodyfile="mainwindow.cs" bodystart="1" bodyend="1"/>
+        </memberdef>
+    )");
+
+    const auto root = xml.root();
+
+    const NodeSharedPtr compound = Doxygen::parseMember(root);
+    REQUIRE(!!compound);
+
+    REQUIRE(compound->kind == Kind::EVENT);
+    REQUIRE(compound->refid == "some_random_event");
+}
+
+TEST_CASE("C++ operator bool class member should not break linking", "Doxygen") {
+    const auto xml = parse(R"(
+        <memberdef kind="function" id="class_box_1ad051f61bcb0be65272632ee39578e3a3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+            <type></type>
+            <definition>Box::operator bool</definition>
+            <argsstring>() const</argsstring>
+            <name>operator bool</name>
+            <briefdescription>
+            </briefdescription>
+            <detaileddescription>
+            </detaileddescription>
+            <inbodydescription>
+            </inbodydescription>
+            <location file="Core/Types/Box.hpp" line="52" column="9"/>
+        </memberdef>
+    )");
+
+    const auto root = xml.root();
+
+    const NodeSharedPtr compound = Doxygen::parseMember(root);
+    REQUIRE(!!compound);
+
+    const auto klass = std::make_shared<Node>();
+    klass->kind = Kind::CLASS;
+    klass->name = "SomeClass";
+    klass->refid = "class__someclass";
+    klass->children.push_back(compound);
+    compound->parent = klass;
+
+    Doxygen::finalize(Config{}, Cache{}, klass);
+
+    REQUIRE(compound->kind == Kind::FUNCTION);
+    REQUIRE(compound->refid == "class_box_1ad051f61bcb0be65272632ee39578e3a3");
+
+    REQUIRE(compound->url == "Classes/class__someclass.md#function-operator-bool");
+}
+
 static NodeSharedPtr createFunction(const NodeSharedPtr& parent, const std::string& hash, const std::string& name) {
     auto node = std::make_shared<Node>();
     node->refid = parent->refid + "_" + hash;
