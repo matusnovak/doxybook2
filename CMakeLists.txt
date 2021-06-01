@@ -6,6 +6,29 @@ set(CMAKE_MODULE_PATH
 
 project(Doxybook2)
 
+include(cmake/CPM.cmake)
+
+CPMAddPackage(
+  NAME Catch2
+  GITHUB_REPOSITORY catchorg/Catch2
+  VERSION 2.13.6
+  OPTIONS
+    "CATCH_BUILD_TESTING OFF"
+    "CATCH_BUILD_EXAMPLES OFF"
+    "CATCH_BUILD_EXTRA_TESTS OFF"
+    "CATCH_BUILD_FUZZERS OFF")
+CPMAddPackage("gh:fmtlib/fmt#7.1.3")
+CPMAddPackage("gh:pantor/inja#v3.2.0")
+CPMAddPackage(
+  NAME nlohmann_json
+  GITHUB_REPOSITORY nlohmann/json
+  VERSION 3.9.1
+  OPTIONS 
+    "JSON_BuildTests OFF"
+)
+CPMAddPackage("gh:agauniyal/rang#v3.1.0")
+CPMAddPackage("gh:vietjtnguyen/argagg#0.4.6")
+
 if(APPLE OR MSVC OR CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(DOXYBOOK_STATIC_STDLIB OFF)
 else()
