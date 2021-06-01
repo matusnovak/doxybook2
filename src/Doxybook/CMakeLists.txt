@@ -7,6 +7,7 @@ find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(Rang REQUIRED)
 if (MSVC)
+  CPMAddPackage("gh:tronkko/dirent#1.23.2")
   find_package(Dirent REQUIRED)
 endif()
 
