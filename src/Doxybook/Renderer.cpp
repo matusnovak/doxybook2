@@ -92,6 +92,10 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
         const auto arg = args.at(0)->get<std::string>();
         return Utils::stripNamespace(arg);
     });
+    env->add_callback("extractQualifiedNameFromFunctionDefinition", 1, [](inja::Arguments& args) -> std::string {
+        const auto arg = args.at(0)->get<std::string>();
+        return Utils::extractQualifiedNameFromFunctionDefinition(arg);
+    });
     env->add_callback("split", 2, [](inja::Arguments& args) -> nlohmann::json {
         const auto arg0 = args.at(0)->get<std::string>();
         const auto arg1 = args.at(1)->get<std::string>();

@@ -48,6 +48,7 @@ namespace Doxybook2 {
         extern std::string date(const std::string& format);
         extern std::string stripNamespace(const std::string& format);
         extern std::string stripAnchor(const std::string& str);
+        extern std::string extractQualifiedNameFromFunctionDefinition(const std::string& str);
         extern std::vector<std::string> split(const std::string& str, const std::string& delim);
         extern void createDirectory(const std::string& path);
     } // namespace Utils
