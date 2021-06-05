@@ -400,7 +400,7 @@ static std::string createTableForFriendLike(const std::string& title, const std:
 
     ss << "| {% if existsIn(child, \"type\") %}{{child.type}} {% endif -%}\n";
     ss << "| **[{{child.name}}]({{child.url}})**";
-    ss << "{% if child.type != \"class\" -%}\n";
+    ss << "{% if child.type != \"class\" and child.type != \"struct\" -%}\n";
     ss << "({% for param in child.params -%}\n";
     ss << "{{param.type}} {{param.name}}";
     ss << "{% if existsIn(param, \"defval\") %} ={{param.defval}}{% endif -%}\n";
