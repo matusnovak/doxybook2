@@ -151,6 +151,69 @@ std::string Doxybook2::toStr(const FolderCategory value) {
     return fromEnum<FolderCategory>(FOLDER_CATEGORY_STRS, value);
 }
 
+Doxybook2::Type Doxybook2::kindToType(const Doxybook2::Kind kind) {
+    switch (kind) {
+        case Kind::DEFINE: {
+            return Type::DEFINES;
+        }
+        case Kind::FRIEND: {
+            return Type::FRIENDS;
+        }
+        case Kind::VARIABLE: {
+            return Type::ATTRIBUTES;
+        }
+        case Kind::FUNCTION: {
+            return Type::FUNCTIONS;
+        }
+        case Kind::ENUMVALUE:
+        case Kind::ENUM:
+        case Kind::USING:
+        case Kind::TYPEDEF: {
+            return Type::TYPES;
+        }
+        case Kind::MODULE: {
+            return Type::MODULES;
+        }
+        case Kind::NAMESPACE: {
+            return Type::NAMESPACES;
+        }
+        case Kind::UNION:
+        case Kind::INTERFACE:
+        case Kind::STRUCT:
+        case Kind::CLASS: {
+            return Type::CLASSES;
+        }
+        case Kind::FILE: {
+            return Type::FILES;
+        }
+        case Kind::DIR: {
+            return Type::DIRS;
+        }
+        case Kind::PAGE: {
+            return Type::PAGES;
+        }
+        case Kind::EXAMPLE: {
+            return Type::EXAMPLES;
+        }
+        case Kind::SIGNAL: {
+            return Type::SIGNALS;
+        }
+        case Kind::SLOT: {
+            return Type::SLOTS;
+        }
+        case Kind::EVENT: {
+            return Type::EVENTS;
+        }
+        case Kind::PROPERTY: {
+            return Type::PROPERTIES;
+        }
+        default: {
+            break;
+        }
+    }
+    return Type::NONE;
+}
+
 bool Doxybook2::isKindStructured(const Kind kind) {
     switch (kind) {
         case Doxybook2::Kind::CLASS:
