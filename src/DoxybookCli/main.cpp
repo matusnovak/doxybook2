@@ -147,7 +147,7 @@ int main(const int argc, char* argv[]) {
                 templatesPath = args["templates"].as<std::string>();
             }
 
-            Generator generator(config, jsonConverter, templatesPath);
+            Generator generator(config, doxygen, jsonConverter, templatesPath);
 
             const auto shouldGenerate = [&](const FolderCategory category) {
                 return std::find(config.foldersToGenerate.begin(), config.foldersToGenerate.end(), category) !=
@@ -180,11 +180,11 @@ int main(const int argc, char* argv[]) {
             Log::i("Rendering...");
 
             if (args["json"]) {
-                generator.json(doxygen, LANGUAGE_FILTER, {});
-                generator.json(doxygen, INDEX_FILES_FILTER, {});
-                generator.json(doxygen, INDEX_PAGES_FILTER, {});
+                generator.json(LANGUAGE_FILTER, {});
+                generator.json(INDEX_FILES_FILTER, {});
+                generator.json(INDEX_PAGES_FILTER, {});
 
-                generator.manifest(doxygen);
+                generator.manifest();
             } else {
                 if (args["summary-input"] && args["summary-output"]) {
                     std::vector<Generator::SummarySection> sections;
@@ -207,8 +207,7 @@ int main(const int argc, char* argv[]) {
                         sections.push_back({FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {}});
                     }
 
-                    generator.summary(doxygen,
-                        args["summary-input"].as<std::string>(),
+                    generator.summary(args["summary-input"].as<std::string>(),
                         args["summary-output"].as<std::string>(),
                         sections);
                 }
@@ -227,36 +226,36 @@ int main(const int argc, char* argv[]) {
                     languageFilder.insert(Kind::MODULE);
                 }
                 if (!languageFilder.empty()) {
-                    generator.print(doxygen, languageFilder, {});
+                    generator.print(languageFilder, {});
                 }
 
                 if (shouldGenerate(FolderCategory::FILES)) {
-                    generator.print(doxygen, INDEX_FILES_FILTER, {});
+                    generator.print(INDEX_FILES_FILTER, {});
                 }
                 if (shouldGenerate(FolderCategory::PAGES)) {
-                    generator.print(doxygen, INDEX_PAGES_FILTER, {});
+                    generator.print(INDEX_PAGES_FILTER, {});
                 }
                 if (shouldGenerate(FolderCategory::EXAMPLES)) {
-                    generator.print(doxygen, INDEX_EXAMPLES_FILTER, {});
+                    generator.print(INDEX_EXAMPLES_FILTER, {});
                 }
 
                 if (shouldGenerate(FolderCategory::CLASSES)) {
-                    generator.printIndex(doxygen, FolderCategory::CLASSES, INDEX_CLASS_FILTER, {});
+                    generator.printIndex(FolderCategory::CLASSES, INDEX_CLASS_FILTER, {});
                 }
                 if (shouldGenerate(FolderCategory::NAMESPACES)) {
-                    generator.printIndex(doxygen, FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {});
+                    generator.printIndex(FolderCategory::NAMESPACES, INDEX_NAMESPACES_FILTER, {});
                 }
                 if (shouldGenerate(FolderCategory::MODULES)) {
-                    generator.printIndex(doxygen, FolderCategory::MODULES, INDEX_MODULES_FILTER, {});
+                    generator.printIndex(FolderCategory::MODULES, INDEX_MODULES_FILTER, {});
                 }
                 if (shouldGenerate(FolderCategory::FILES)) {
-                    generator.printIndex(doxygen, FolderCategory::FILES, INDEX_FILES_FILTER, {});
+                    generator.printIndex(FolderCategory::FILES, INDEX_FILES_FILTER, {});
                 }
                 if (shouldGenerate(FolderCategory::PAGES)) {
-                    generator.printIndex(doxygen, FolderCategory::PAGES, INDEX_PAGES_FILTER, {});
+                    generator.printIndex(FolderCategory::PAGES, INDEX_PAGES_FILTER, {});
                 }
                 if (shouldGenerate(FolderCategory::EXAMPLES)) {
-                    generator.printIndex(doxygen, FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {});
+                    generator.printIndex(FolderCategory::EXAMPLES, INDEX_EXAMPLES_FILTER, {});
                 }
             }
         } else {
