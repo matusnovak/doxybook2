@@ -13,8 +13,6 @@
 #include <Doxybook/Utils.hpp>
 #include "ExceptionUtils.hpp"
 
-static const std::regex ANCHOR_REGEX("_[a-z0-9]{34,67}$");
-
 static std::string replaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t pos = 0;
     while ((pos = str.find(from, pos)) != std::string::npos) {
@@ -84,10 +82,24 @@ std::string Doxybook2::Utils::stripNamespace(const std::string& str) {
     }
 }
 
+static const std::regex ANCHOR_REGEX(R"(_[a-z0-9]{34,67}$)");
+
 std::string Doxybook2::Utils::stripAnchor(const std::string& str) {
     std::stringstream ss;
     std::regex_replace(std::ostreambuf_iterator<char>(ss), str.begin(), str.end(), ANCHOR_REGEX, "");
     return ss.str();
+}
+
+static const std::regex FUNCTION_DEFINITION_REGEX(R"(^.* ([a-zA-Z0-9_::+*/%^&|~!=<>()\[\],-]+)$)");
+
+std::string Doxybook2::Utils::extractQualifiedNameFromFunctionDefinition(const std::string& str) {
+    std::smatch matches;
+    if (std::regex_match(str, matches, FUNCTION_DEFINITION_REGEX)) {
+        if (matches.size() == 2) {
+            return matches[1].str();
+        }
+    }
+    return str;
 }
 
 std::string Doxybook2::Utils::escape(std::string str) {
