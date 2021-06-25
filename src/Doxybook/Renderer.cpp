@@ -75,9 +75,13 @@ static std::string basename(const std::string& path) {
     return str.substr(0, found);
 }
 
-Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::string>& templatesPath)
-    : config(config), env(std::make_unique<inja::Environment>(
-                          templatesPath.has_value() ? trimPath(*templatesPath) + SEPARATOR : "./")) {
+Doxybook2::Renderer::Renderer(const Config& config,
+    const Doxygen& doxygen,
+    const JsonConverter& jsonConverter,
+    const std::optional<std::string>& templatesPath)
+    : config(config), doxygen(doxygen), jsonConverter(jsonConverter),
+      env(std::make_unique<inja::Environment>(
+          templatesPath.has_value() ? trimPath(*templatesPath) + SEPARATOR : "./")) {
 
     env->add_callback("isEmpty", 1, [](inja::Arguments& args) -> bool {
         const auto arg = args.at(0)->get<std::string>();
@@ -163,6 +167,10 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
         const auto name = args.at(0)->get<std::string>();
         const auto data = args.at(1)->get<nlohmann::json>();
         return this->render(name, data);
+    });
+    env->add_callback("load", 1, [&](inja::Arguments& args) -> nlohmann::json {
+        const auto refid = args.at(0)->get<std::string>();
+        return jsonConverter.getAsJson(*doxygen.find(refid));
     });
     env->add_callback("replace", 3, [](inja::Arguments& args) -> nlohmann::json {
         auto str = args.at(0)->get<std::string>();
@@ -369,3 +377,4 @@ std::string Doxybook2::Renderer::render(const std::string& name, const nlohmann:
     }
     return ss.str();
 }
+

@@ -1,5 +1,6 @@
 #pragma once
 #include "JsonConverter.hpp"
+#include "Doxygen.hpp"
 #include "Renderer.hpp"
 #include <string>
 #include <unordered_set>
@@ -16,15 +17,15 @@ namespace Doxybook2 {
         };
 
         explicit Generator(const Config& config,
+            const Doxygen& doxygen,
             const JsonConverter& jsonConverter,
             const std::optional<std::string>& templatesPath);
 
-        void print(const Doxygen& doxygen, const Filter& filter, const Filter& skip);
-        void json(const Doxygen& doxygen, const Filter& filter, const Filter& skip);
-        void manifest(const Doxygen& doxygen);
-        void printIndex(const Doxygen& doxygen, FolderCategory type, const Filter& filter, const Filter& skip);
-        void summary(const Doxygen& doxygen,
-            const std::string& inputFile,
+        void print(const Filter& filter, const Filter& skip);
+        void json(const Filter& filter, const Filter& skip);
+        void manifest();
+        void printIndex(FolderCategory type, const Filter& filter, const Filter& skip);
+        void summary(const std::string& inputFile,
             const std::string& outputFile,
             const std::vector<SummarySection>& sections);
 
@@ -43,6 +44,7 @@ namespace Doxybook2 {
         bool shouldInclude(const Node& node);
 
         const Config& config;
+        const Doxygen& doxygen;
         const JsonConverter& jsonConverter;
         Renderer renderer;
     };

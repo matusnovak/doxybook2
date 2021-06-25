@@ -5,6 +5,7 @@
 #include <Doxybook/Path.hpp>
 #include <Doxybook/Renderer.hpp>
 #include <Doxybook/Utils.hpp>
+#include <inja/inja.hpp>
 #include <filesystem>
 #include <fstream>
 
@@ -38,13 +39,14 @@ std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
 }
 
 Doxybook2::Generator::Generator(const Config& config,
+    const Doxygen& doxygen,
     const JsonConverter& jsonConverter,
     const std::optional<std::string>& templatesPath)
-    : config(config), jsonConverter(jsonConverter), renderer(config, templatesPath) {
+    : config(config), doxygen(doxygen), jsonConverter(jsonConverter),
+      renderer(config, doxygen, jsonConverter, templatesPath) {
 }
 
-void Doxybook2::Generator::summary(const Doxygen& doxygen,
-    const std::string& inputFile,
+void Doxybook2::Generator::summary(const std::string& inputFile,
     const std::string& outputFile,
     const std::vector<SummarySection>& sections) {
 
@@ -163,15 +165,15 @@ void Doxybook2::Generator::jsonRecursively(const Node& parent, const Filter& fil
     }
 }
 
-void Doxybook2::Generator::print(const Doxygen& doxygen, const Filter& filter, const Filter& skip) {
+void Doxybook2::Generator::print(const Filter& filter, const Filter& skip) {
     printRecursively(doxygen.getIndex(), filter, skip);
 }
 
-void Doxybook2::Generator::json(const Doxygen& doxygen, const Filter& filter, const Filter& skip) {
+void Doxybook2::Generator::json(const Filter& filter, const Filter& skip) {
     jsonRecursively(doxygen.getIndex(), filter, skip);
 }
 
-void Doxybook2::Generator::manifest(const Doxygen& doxygen) {
+void Doxybook2::Generator::manifest() {
     auto data = manifestRecursively(doxygen.getIndex());
     const auto path = Path::join(config.outputDir, "manifest.json");
 
@@ -207,8 +209,7 @@ nlohmann::json Doxybook2::Generator::manifestRecursively(const Node& node) {
     return ret;
 }
 
-void Doxybook2::Generator::printIndex(const Doxygen& doxygen,
-    const FolderCategory type,
+void Doxybook2::Generator::printIndex(const FolderCategory type,
     const Filter& filter,
     const Filter& skip) {
     const auto path = typeToIndexName(config, type) + "." + config.fileExt;
