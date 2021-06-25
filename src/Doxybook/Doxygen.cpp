@@ -63,26 +63,9 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
     // This won't load detailed documentation or other data! (we will do that later)
     const auto kindRefidMap = getIndexKinds(inputDir);
 
-    /*// First load all basic information from groups.
+    // Then load basic information from all other nodes.
     for (const auto& pair : kindRefidMap) {
-        if (!isKindAllowedGroup(pair.first))
-            continue;
-        try {
-            auto found = cache.find(pair.second);
-            if (found == cache.end()) {
-                index->children.push_back(Node::parse(cache, inputDir, pair.second, true));
-                auto child = index->children.back();
-                if (child->parent == nullptr) {
-                    child->parent = index.get();
-                }
-            }
-        } catch (std::exception& e) {
-            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
-        }
-    }
-    // Then load basic information from all other nodes.*/
-    for (const auto& pair : kindRefidMap) {
-        if (!isKindAllowedLanguage(pair.first) /* || isKindAllowedGroup(pair.first)*/)
+        if (!isKindAllowedLanguage(pair.first))
             continue;
         try {
             auto found = cache.find(pair.second);
