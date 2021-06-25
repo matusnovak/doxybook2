@@ -172,6 +172,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
         }
         return str;
     });
+    env->add_void_callback("noop", 0, [](inja::Arguments& args) {});
     // env->set_trim_blocks(false);
     // env->set_lstrip_blocks(false);
 
