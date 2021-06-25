@@ -13,8 +13,6 @@
 #include <Doxybook/Utils.hpp>
 #include "ExceptionUtils.hpp"
 
-static const std::regex ANCHOR_REGEX("_[a-z0-9]{34,67}$");
-
 static std::string replaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t pos = 0;
     while ((pos = str.find(from, pos)) != std::string::npos) {
@@ -84,47 +82,77 @@ std::string Doxybook2::Utils::stripNamespace(const std::string& str) {
     }
 }
 
+static const std::regex ANCHOR_REGEX(R"(_[a-z0-9]{34,67}$)");
+
 std::string Doxybook2::Utils::stripAnchor(const std::string& str) {
     std::stringstream ss;
     std::regex_replace(std::ostreambuf_iterator<char>(ss), str.begin(), str.end(), ANCHOR_REGEX, "");
     return ss.str();
 }
 
+static const std::regex FUNCTION_DEFINITION_REGEX(R"(^.* ([a-zA-Z0-9_::+*/%^&|~!=<>()\[\],-]+)$)");
+
+std::string Doxybook2::Utils::extractQualifiedNameFromFunctionDefinition(const std::string& str) {
+    std::smatch matches;
+    if (std::regex_match(str, matches, FUNCTION_DEFINITION_REGEX)) {
+        if (matches.size() == 2) {
+            return matches[1].str();
+        }
+    }
+    return str;
+}
+
 std::string Doxybook2::Utils::escape(std::string str) {
-    auto contains = false;
+    size_t new_size = 0;
     for (const auto& c : str) {
         switch(c) {
-            case '>':
-            case '<':
-            case '_':
-            case '*': {
-                contains = true;
+            case '<':   // "<" (1) -> "&lt;" (4)
+            case '>': { // ">" (1) -> "&gt;" (4)
+                new_size += 4;
+                break;
+            }
+            case '*':   // "*" (1) -> "&#42;" (5)
+            case '_': { // "_" (1) -> "&#95;" (5)
+                new_size += 5;
                 break;
             }
             default: {
+                new_size += 1;
                 break;
             }
         }
     }
 
-    if (!contains) return str;
+    if (new_size == str.size()) return str;
     
     std::string ret;
-    ret.resize(str.size() * 2);
-    auto* dst = &ret[0];
+    ret.reserve(new_size);
     for (const auto& c : str) {
         switch(c) {
-            case '_':
+            case '<': {
+              ret += "&lt;";
+              break;
+            }
+            case '>': {
+              ret += "&gt;";
+              break;
+            }
             case '*': {
-                *dst++ = '\\';
+              ret += "&#42;";
+              break;
+            }
+            case '_': {
+              ret += "&#95;";
+              break;
             }
             default: {
-                *dst++ = c;
+              ret += c;
+              break;
             }
         }
     }
 
-    return replaceAll(replaceAll(ret, "<", "&lt;"), ">", "&gt;");
+    return ret;
 }
 
 std::vector<std::string> Doxybook2::Utils::split(const std::string& str, const std::string& delim) {

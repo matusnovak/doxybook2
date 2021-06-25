@@ -341,7 +341,8 @@ static std::string createTableForTypeLike(const std::string& visibility,
     ss << "{% if not loop.is_last %},{% endif -%}\n";
     ss << "{% endfor %}\\> <br>{% endif -%}\n";
 
-    ss << "{{child.kind}}{% if existsIn(child, \"type\") %} {{child.type}} {% endif -%}\n";
+    ss << "{{child.kind}}{% if child.kind == \"enum\" and child.strong %} class{% endif %}";
+    ss << "{% if existsIn(child, \"type\") %} {{child.type}} {% endif -%}";
 
     ss << "| **[{{child.name}}]({{child.url}})** ";
     ss << "{% if child.kind == \"enum\" %}{ ";
@@ -400,7 +401,7 @@ static std::string createTableForFriendLike(const std::string& title, const std:
 
     ss << "| {% if existsIn(child, \"type\") %}{{child.type}} {% endif -%}\n";
     ss << "| **[{{child.name}}]({{child.url}})**";
-    ss << "{% if child.type != \"class\" -%}\n";
+    ss << "{% if child.type != \"class\" and child.type != \"struct\" -%}\n";
     ss << "({% for param in child.params -%}\n";
     ss << "{{param.type}} {{param.name}}";
     ss << "{% if existsIn(param, \"defval\") %} ={{param.defval}}{% endif -%}\n";
@@ -690,7 +691,7 @@ static const std::string TEMPLATE_NONCLASS_MEMBERS_DETAILS =
 
 {{ render("member_details", child) }}
 {% endfor %}{% endif %}
-{% if exists("defines") %}## Macro Documentation
+{% if exists("defines") %}## Macros Documentation
 
 {% for child in defines %}### {{child.kind}} {{child.name}}
 
