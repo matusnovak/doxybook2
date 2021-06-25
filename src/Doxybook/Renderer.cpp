@@ -160,7 +160,7 @@ Doxybook2::Renderer::Renderer(const Config& config, const std::optional<std::str
         const auto data = args.at(1)->get<nlohmann::json>();
         return this->render(name, data);
     });
-    env->add_callback("replace", 3, [=](inja::Arguments& args) -> nlohmann::json {
+    env->add_callback("replace", 3, [](inja::Arguments& args) -> nlohmann::json {
         auto str = args.at(0)->get<std::string>();
         const auto what = args.at(1)->get<std::string>();
         const auto sub = args.at(2)->get<std::string>();
