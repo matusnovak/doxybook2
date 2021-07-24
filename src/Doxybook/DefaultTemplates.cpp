@@ -809,9 +809,7 @@ static const std::string TEMPLATE_KIND_NONCLASS =
 
 {% include "breadcrumbs" -%}
 
-{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
-
-{% endif -%}
+{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description){% endif %}
 
 {% include "nonclass_members_tables" -%}
 
@@ -828,9 +826,7 @@ static const std::string TEMPLATE_KIND_CLASS =
 
 {% include "breadcrumbs" %}
 
-{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
-
-{% endif -%}
+{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description){% endif %}
 
 {% if exists("includes") %}
 `#include {{includes}}`
@@ -870,9 +866,7 @@ static const std::string TEMPLATE_KIND_GROUP =
 
 {% include "breadcrumbs" -%}
 
-{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
-
-{% endif -%}
+{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description){% endif %}
 
 {% include "nonclass_members_tables" -%}
 
@@ -888,9 +882,7 @@ static const std::string TEMPLATE_KIND_GROUP =
 static const std::string TEMPLATE_KIND_FILE =
     R"({% include "header" -%}
 
-{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description)
-
-{% endif -%}
+{% if exists("brief") %}{{brief}}{% endif %}{% if hasDetails %} [More...](#detailed-description){% endif %}
 
 {% include "nonclass_members_tables" -%}
 
