@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Engine::Audio::AudioBuffer - Doxybook2 Example</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Engine::Audio::AudioBuffer";
+    var mkdocs_page_input_path = "Classes/classEngine_1_1Audio_1_1AudioBuffer.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Doxybook2 Example</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Doxybook2 Example</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../index_classes/">Classes</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../index_examples/">Examples</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../index_files/">Files</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../index_groups/">Modules</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../index_namespaces/">Namespaces</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../index_pages/">Pages</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Classes</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Assets_1_1Asset/">Engine::Assets::Asset</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Engine::Audio::AudioBuffer</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#public-classes">Public Classes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#public-types">Public Types</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#public-functions">Public Functions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#protected-functions">Protected Functions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#protected-attributes">Protected Attributes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#friends">Friends</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#detailed-description">Detailed Description</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#public-types-documentation">Public Types Documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-type">enum Type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-audiodata">using AudioData</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#typedef-audiodata8u">typedef AudioData8U</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#public-functions-documentation">Public Functions Documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#function-audiobuffer">function AudioBuffer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-audiobuffer_1">function ~AudioBuffer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-play">function play</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-stop">function stop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-loop">function loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-setdata">function setData</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-setdatamultiple">function setDataMultiple</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-setdata_1">function setData</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-setcallback">function setCallback</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-setcallback2">function setCallback2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#protected-functions-documentation">Protected Functions Documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#function-getdata">function getData</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#protected-attributes-documentation">Protected Attributes Documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#variable-playing">variable playing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#friends_1">Friends</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#friend-audiomanager">friend AudioManager</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#friend-audiodosomething">friend Audio::doSomething</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Audio_1_1AudioManager/">Engine::Audio::AudioManager</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Exception/">Engine::Exception</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Graphics_1_1Framebuffer/">Engine::Graphics::Framebuffer</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Graphics_1_1Handle/">Engine::Graphics::Handle</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Graphics_1_1Texture/">Engine::Graphics::Texture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Graphics_1_1Texture2D/">Engine::Graphics::Texture2D</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Graphics_1_1Texture3D/">Engine::Graphics::Texture3D</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Gui_1_1GuiWidget/">Engine::Gui::GuiWidget</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../classEngine_1_1Utils_1_1ArrayView/">Engine::Utils::ArrayView</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded/">Engine::Assets::Asset::Event::Loaded</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded/">Engine::Assets::Asset::Event::Unloaded</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting/">Engine::Assets::Asset::Event::Waiting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">Engine::Audio::AudioBuffer::TypedAudioData</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../unionEngine_1_1Assets_1_1Asset_1_1Event/">Engine::Assets::Asset::Event</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Examples</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Examples/example-1_8cpp-example/">example-1.cpp</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Files</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/ArrayView_8hpp/">src/Utils/ArrayView.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Asset_8hpp/">src/Assets/Asset.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Assets_8hpp/">src/Assets/Assets.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/AudioBuffer_8hpp/">src/Audio/AudioBuffer.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/AudioManager_8hpp/">src/Audio/AudioManager.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Audio_8hpp/">src/Audio/Audio.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Config_8hpp/">src/Utils/Config.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Engine_8hpp/">src/Engine.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Exception_8hpp/">src/Exception.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Framebuffer_8hpp/">src/Graphics/Framebuffer.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Graphics_8hpp/">src/Graphics/Graphics.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/GuiWidget_8hpp/">src/Gui/GuiWidget.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Gui_8hpp/">src/Gui/Gui.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Handle_8hpp/">src/Graphics/Handle.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Log_8hpp/">src/Utils/Log.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Path_8hpp/">src/Utils/Path.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Renderer_8hpp/">src/Graphics/Renderer.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Texture2D_8hpp/">src/Graphics/Texture2D.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Texture3D_8hpp/">src/Graphics/Texture3D.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Texture_8hpp/">src/Graphics/Texture.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/Utils_8hpp/">src/Utils/Utils.hpp</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/dir_3419e189e460663ec2c964233bf8dcd6/">src/Graphics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/dir_68267d1309a1af8e8297ef4c3efbcdba/">src</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/dir_a7363e98f9e0bdd87618633653859815/">src/Utils</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/dir_b5ac5e964c12a6b13a9d28feb9f3d3ed/">src/Gui</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/dir_c64386e93f356b78d4612c7b7741707c/">src/Audio</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Files/dir_e0c1ede47f21c4a643a1257f949f98e0/">src/Assets</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modules</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Modules/group__Assets/">Generic assets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Modules/group__Audio/">Audio buffers and devices</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Modules/group__Engine/">An example game engine</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Modules/group__Graphics/">Graphical related classes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Modules/group__Gui/">Some gui related stuff and whatever</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Modules/group__Utils/">Some useful utilities</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Namespaces</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Namespaces/namespaceEngine/">Engine</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Namespaces/namespaceEngine_1_1Assets/">Engine::Assets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Namespaces/namespaceEngine_1_1Audio/">Engine::Audio</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Namespaces/namespaceEngine_1_1Graphics/">Engine::Graphics</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Namespaces/namespaceEngine_1_1Gui/">Engine::Gui</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Namespaces/namespaceEngine_1_1Utils/">Engine::Utils</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Namespaces/namespaceEngine_1_1Utils_1_1Path/">Engine::Utils::Path</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Pages</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Pages/advanced/">Advanced Usage</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Pages/bug/">Bug List</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Pages/deprecated/">Deprecated List</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Pages/intro/">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Pages/test/">Test List</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Pages/todo/">Todo List</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Doxybook2 Example</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Classes &raquo;</li>
+        
+      
+    
+    <li>Engine::Audio::AudioBuffer</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="engineaudioaudiobuffer">Engine::Audio::AudioBuffer</h1>
+<p><strong>Module:</strong> <strong><a href="/doxybook2/mkdocs-readthedocs/Modules/group__Engine/">An example game engine</a></strong> <strong>/</strong> <strong><a href="/doxybook2/mkdocs-readthedocs/Modules/group__Audio/">Audio buffers and devices</a></strong></p>
+<p><em>A simple audio buffer to hold PCM samples</em> <a href="#detailed-description">More...</a></p>
+<p><code>#include &lt;AudioBuffer.hpp&gt;</code></p>
+<h2 id="public-classes">Public Classes</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>struct</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a></strong> <br>Use this to populate the buffer.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enum class</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#enum-type">Type</a></strong> { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5}<br>Different type of audio formats.</td>
+</tr>
+<tr>
+<td>template &lt;typename T > <br>using <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Utils_1_1ArrayView/">Utils::ArrayView</a>&lt; T &gt;</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#using-audiodata">AudioData</a></strong></td>
+</tr>
+<tr>
+<td>typedef <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#using-audiodata">AudioData</a>&lt; uint8_t &gt;</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#typedef-audiodata8u">AudioData8U</a></strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-audiobuffer">AudioBuffer</a></strong>(const std::string &amp; filename)<br>Constructor for <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>.</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-~audiobuffer">~AudioBuffer</a></strong>() =default<br><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-play">play</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const<br>Play this buffer.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-stop">stop</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const<br>Stop this buffer playing.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-loop">loop</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioManager/">AudioManager</a> &amp; manager) const<br>Loop this buffer forever.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> &amp; data)</td>
+</tr>
+<tr>
+<td>template &lt;size_t Size> <br>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdatamultiple">setDataMultiple</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> data[Size])</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdata">setData</a></strong>(const <a href="/doxybook2/mkdocs-readthedocs/Classes/structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData/">TypedAudioData</a> data[], size_t size)<br>Some deprecated function.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback">setCallback</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Callback</a> callback)<br>Set the callback function.</td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">setCallback2</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Audio/#using-callback2">Callback2</a> callback, void * user)<br>Set the callback function.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions">Protected Functions</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float *</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-getdata">getData</a></strong>()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes">Protected Attributes</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#variable-playing">playing</a></strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="friends">Friends</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>class</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#friend-audiomanager">AudioManager</a></strong></td>
+</tr>
+<tr>
+<td>void</td>
+<td><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#friend-audiodosomething">Audio::doSomething</a></strong>(<a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">AudioBuffer</a> &amp; buffer)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description</h2>
+<pre><code class="language-cpp">class Engine::Audio::AudioBuffer;
+</code></pre>
+<p><em>A simple audio buffer to hold PCM samples</em></p>
+<p><strong>Author</strong>: Matus Novak </p>
+<p><strong>Date</strong>: 2017-2019 </p>
+<p><strong>Note</strong>: </p>
+<ul>
+<li>Some random note </li>
+<li>Some second random note </li>
+</ul>
+<p><strong>Bug</strong>: Some random bug </p>
+<p>Some other random bug </p>
+<p><strong>Test</strong>: Some random test description </p>
+<p><strong>Todo</strong>: Some random todo </p>
+<p><strong>Warning</strong>: Some random warning </p>
+<p><strong>Precondition</strong>: First initialize the system. </p>
+<p>Lorem ipsum donor </p>
+<pre><code class="language-cpp">// Some random code
+using namespace Engine;
+
+Audio::AudioBuffer buffer(&quot;path/to/file.wav&quot;);
+buffer.play(audioManager);
+</code></pre>
+<p>More detailed description! </p>
+<pre><code class="language-cpp">// Another code sample
+#include &lt;iostream&gt;
+using namespace Engine;
+Audio::AudioBuffer buffer(&quot;path/to/file.wav&quot;);
+std::cout &lt;&lt; buffer.play(...) &lt;&lt; std::endl;
+</code></pre>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-type">enum Type</h3>
+<table>
+<thead>
+<tr>
+<th>Enumerator</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNKNOWN</td>
+<td>0</td>
+<td>Dont use this</td>
+</tr>
+<tr>
+<td>INT_8</td>
+<td>1 &lt;&lt; 1</td>
+<td>8-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_16</td>
+<td>1 &lt;&lt; 2</td>
+<td>16-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_24</td>
+<td>1 &lt;&lt; 3</td>
+<td>24-bit signed integer</td>
+</tr>
+<tr>
+<td>INT_32</td>
+<td>1 &lt;&lt; 4</td>
+<td>32-bit signed integer</td>
+</tr>
+<tr>
+<td>FLOAT_32</td>
+<td>1 &lt;&lt; 5</td>
+<td>32-bit float</td>
+</tr>
+</tbody>
+</table>
+<p>Different type of audio formats. </p>
+<h3 id="using-audiodata">using AudioData</h3>
+<pre><code class="language-cpp">template &lt;typename T &gt;
+using Engine::Audio::AudioBuffer::AudioData =  Utils::ArrayView&lt;T&gt;;
+</code></pre>
+<h3 id="typedef-audiodata8u">typedef AudioData8U</h3>
+<pre><code class="language-cpp">typedef AudioData&lt;uint8_t&gt; Engine::Audio::AudioBuffer::AudioData8U;
+</code></pre>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-audiobuffer">function AudioBuffer</h3>
+<pre><code class="language-cpp">explicit AudioBuffer(
+    const std::string &amp; filename
+)
+</code></pre>
+<p>Constructor for <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a>. </p>
+<h3 id="function-audiobuffer_1">function ~AudioBuffer</h3>
+<pre><code class="language-cpp">virtual ~AudioBuffer() =default
+</code></pre>
+<p><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/">Audio::AudioBuffer</a> destructor. </p>
+<h3 id="function-play">function play</h3>
+<pre><code class="language-cpp">void play(
+    AudioManager &amp; manager
+) const
+</code></pre>
+<p>Play this buffer. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to play the sound with </li>
+</ul>
+<p><strong>Exceptions</strong>: </p>
+<ul>
+<li><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already playing </li>
+</ul>
+<h3 id="function-stop">function stop</h3>
+<pre><code class="language-cpp">void stop(
+    AudioManager &amp; manager
+) const
+</code></pre>
+<p>Stop this buffer playing. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to stop the sound with </li>
+</ul>
+<p><strong>Exceptions</strong>: </p>
+<ul>
+<li><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already stopped </li>
+</ul>
+<h3 id="function-loop">function loop</h3>
+<pre><code class="language-cpp">void loop(
+    AudioManager &amp; manager
+) const
+</code></pre>
+<p>Loop this buffer forever. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>manager</strong> Which manager to loop the sound with </li>
+</ul>
+<p><strong>Exceptions</strong>: </p>
+<ul>
+<li><strong><a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Exception/">Exception</a></strong> If this buffer is already looping </li>
+</ul>
+<p><strong>Note</strong>: This will loop forever until you call stop </p>
+<h3 id="function-setdata">function setData</h3>
+<pre><code class="language-cpp">void setData(
+    const TypedAudioData &amp; data
+)
+</code></pre>
+<h3 id="function-setdatamultiple">function setDataMultiple</h3>
+<pre><code class="language-cpp">template &lt;size_t Size&gt;
+inline void setDataMultiple(
+    const TypedAudioData data[Size]
+)
+</code></pre>
+<h3 id="function-setdata_1">function setData</h3>
+<pre><code class="language-cpp">void setData(
+    const TypedAudioData data[],
+    size_t size
+)
+</code></pre>
+<p>Some deprecated function. </p>
+<p><strong>Deprecated</strong>: </p>
+<p>Use the <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setdatamultiple">AudioBuffer::setDataMultiple</a> instead </p>
+<h3 id="function-setcallback">function setCallback</h3>
+<pre><code class="language-cpp">void setCallback(
+    Callback callback
+)
+</code></pre>
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>Deprecated</strong>: </p>
+<p>Use the <a href="/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/#function-setcallback2">AudioBuffer::setCallback2</a> instead </p>
+<p><strong>See</strong>: <a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
+<h3 id="function-setcallback2">function setCallback2</h3>
+<pre><code class="language-cpp">void setCallback2(
+    Callback2 callback,
+    void * user
+)
+</code></pre>
+<p>Set the callback function. </p>
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li><strong>callback</strong> The callback function pointer </li>
+</ul>
+<p><strong>See</strong>: <a href="/doxybook2/mkdocs-readthedocs/Namespaces/namespaceEngine_1_1Audio/#typedef-callback">Audio::Callback</a></p>
+<h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
+<h3 id="function-getdata">function getData</h3>
+<pre><code class="language-cpp">float * getData()
+</code></pre>
+<h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
+<h3 id="variable-playing">variable playing</h3>
+<pre><code class="language-cpp">bool playing {false};
+</code></pre>
+<h2 id="friends_1">Friends</h2>
+<h3 id="friend-audiomanager">friend AudioManager</h3>
+<pre><code class="language-cpp">friend class AudioManager;
+</code></pre>
+<h3 id="friend-audiodosomething">friend Audio::doSomething</h3>
+<pre><code class="language-cpp">friend void Audio::doSomething(
+    AudioBuffer &amp; buffer
+);
+</code></pre>
+<hr />
+<p>Updated on 26 July 2021 at 21:10:44 UTC</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../classEngine_1_1Audio_1_1AudioManager/" class="btn btn-neutral float-right" title="Engine::Audio::AudioManager">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../classEngine_1_1Assets_1_1Asset/" class="btn btn-neutral" title="Engine::Assets::Asset"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../classEngine_1_1Assets_1_1Asset/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../classEngine_1_1Audio_1_1AudioManager/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../javascripts/config.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
