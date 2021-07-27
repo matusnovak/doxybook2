@@ -10,11 +10,11 @@ file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 
 # Get the version string based on the git tags
 execute_process(
-  COMMAND git describe --always 
+  COMMAND git describe --always
   OUTPUT_VARIABLE VERSION
   ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-message("-- Setting Doxybook version to: ${VERSION}")
+message(STATUS "-- Setting Doxybook version to: ${VERSION}")
 
 # Add the project source files
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
