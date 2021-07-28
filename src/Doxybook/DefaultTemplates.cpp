@@ -453,7 +453,7 @@ static std::string createTableForFunctionLike(const std::string& visibility,
     ss << "{% if child.const %} const{% endif -%}\n";
     ss << "{% if child.override %} override{% endif -%}\n";
     ss << "{% if child.default %} =default{% endif -%}\n";
-    ss << "{% if child.deleted %} =deleted{% endif -%}\n";
+    ss << "{% if child.deleted %} =delete{% endif -%}\n";
     ss << "{% if child.pureVirtual %} =0{% endif -%}\n";
 
     ss << " {% if existsIn(child, \"brief\") %}<br>{{child.brief}}{% endif %} |\n";
@@ -610,7 +610,7 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 {% if const %} const{% endif -%}
 {% if override %} override{% endif -%}
 {% if default %} =default{% endif -%}
-{% if deleted %} =deleted{% endif -%}
+{% if deleted %} =delete{% endif -%}
 {% if pureVirtual %} =0{% endif %}
 ```{% endif -%}
 

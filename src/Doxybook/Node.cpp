@@ -436,7 +436,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
     if (argsstring) {
         data.argsString = markdownPrinter.print(XmlTextParser::parsePara(argsstring));
         data.isDefault = data.argsString.find("=default") != std::string::npos;
-        data.isDeleted = data.argsString.find("=deleted") != std::string::npos;
+        data.isDeleted = data.argsString.find("=delete") != std::string::npos;
         data.isOverride = data.argsString.find(" override") != std::string::npos;
     }
 
