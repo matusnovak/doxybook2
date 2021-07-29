@@ -69,6 +69,8 @@ namespace Doxybook2 {
     extern std::string toStr(Virtual value);
     extern std::string toStr(FolderCategory value);
 
+    extern Type kindToType(Kind kind);
+
     extern bool isKindLanguage(Kind kind);
     extern bool isKindStructured(Kind kind);
     extern bool isKindFile(Kind kind);
