@@ -27,7 +27,7 @@ CPMAddPackage(
     "JSON_BuildTests OFF"
 )
 CPMAddPackage("gh:agauniyal/rang#v3.1.0")
-CPMAddPackage("gh:vietjtnguyen/argagg#0.4.6")
+CPMAddPackage("gh:jarro2783/cxxopts#v2.2.1")
 
 if(APPLE OR MSVC OR CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(DOXYBOOK_STATIC_STDLIB OFF)

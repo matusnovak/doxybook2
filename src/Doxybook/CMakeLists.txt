@@ -34,7 +34,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only pantor::inja Rang nlohmann_json nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only pantor::inja nlohmann_json nlohmann_json::nlohmann_json)
 if(MSVC)
   target_link_libraries(${PROJECT_NAME} PRIVATE Dirent)
 endif()
