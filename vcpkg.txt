@@ -1,1 +1,1 @@
-catch2 fmt dirent fmt nlohmann-json rang inja cxxopts
+catch2 fmt dirent fmt nlohmann-json inja cxxopts spdlog

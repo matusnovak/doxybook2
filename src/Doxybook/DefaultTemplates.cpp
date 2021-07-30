@@ -2,6 +2,7 @@
 #include <Doxybook/DefaultTemplates.hpp>
 #include <Doxybook/Utils.hpp>
 #include <fstream>
+#include <spdlog/spdlog.h>
 
 // clang-format off
 static const std::vector<std::string> ALL_VISIBILITIES = {
@@ -1107,7 +1108,7 @@ std::unordered_map<std::string, Doxybook2::DefaultTemplate> Doxybook2::defaultTe
 void Doxybook2::saveDefaultTemplates(const std::string& path) {
     for (const auto& tmpl : defaultTemplates) {
         const auto tmplPath = Utils::join(path, tmpl.first + ".tmpl");
-        Log::i("Creating default template {}", tmplPath);
+        spdlog::info("Creating default template {}", tmplPath);
         std::ofstream file(tmplPath);
         if (!file)
             throw EXCEPTION("Failed to open file {} for writing", tmplPath);

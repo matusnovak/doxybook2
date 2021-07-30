@@ -1,6 +1,5 @@
 #include "ExceptionUtils.hpp"
 #include <Doxybook/Exception.hpp>
-#include <Doxybook/Log.hpp>
 #include <Doxybook/Node.hpp>
 #include <Doxybook/TextPrinter.hpp>
 #include <Doxybook/Utils.hpp>
@@ -10,6 +9,7 @@
 #include <functional>
 #include <iostream>
 #include <unordered_map>
+#include <spdlog/spdlog.h>
 
 class Doxybook2::Node::Temp {
 public:
@@ -53,7 +53,7 @@ Doxybook2::NodePtr Doxybook2::Node::parse(NodeCacheMap& cache,
 Doxybook2::NodePtr
 Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const NodePtr& ptr, const bool isGroupOrFile) {
     const auto refidPath = Utils::join(inputDir, ptr->refid + ".xml");
-    Log::i("Loading {}", refidPath);
+    spdlog::info("Loading {}", refidPath);
     Xml xml(refidPath);
 
     auto root = assertChild(xml, "doxygen");
@@ -124,7 +124,7 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
         try {
             innerProcess(compounddef, innerName);
         } catch (std::exception& e) {
-            WARNING("Failed to parse inner member of {} error: {}", innerName, e.what());
+            spdlog::warn("Failed to parse inner member of {} error: {}", innerName, e.what());
         }
     };
 
@@ -352,7 +352,7 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
     const TextPrinter& markdownPrinter,
     const NodeCacheMap& cache) const {
 
-    Log::i("Parsing {}", xmlPath);
+    spdlog::info("Parsing {}", xmlPath);
     Xml xml(xmlPath);
 
     auto root = assertChild(xml, "doxygen");

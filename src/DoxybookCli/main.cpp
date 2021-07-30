@@ -1,7 +1,7 @@
 #include <Doxybook/DefaultTemplates.hpp>
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Generator.hpp>
-#include <Doxybook/Log.hpp>
+#include <spdlog/spdlog.h>
 #include <Doxybook/Path.hpp>
 #include <Doxybook/TextMarkdownPrinter.hpp>
 #include <Doxybook/TextPlainPrinter.hpp>
@@ -19,7 +19,7 @@ static const std::string version = xstr(VERSION);
 #else
 static const std::string version = "unknown";
 #endif
-
+ 
 using namespace Doxybook2;
 
 static const Generator::Filter INDEX_CLASS_FILTER = {Kind::NAMESPACE,
@@ -45,7 +45,7 @@ static const Generator::Filter INDEX_EXAMPLES_FILTER = {Kind::EXAMPLE};
 
 int main(int argc, char* argv[]) {
 
-    std::cout << "Hello";
+    spdlog::set_pattern("%^[%l]%$ %v");
 
     cxxopts::Options options("Doxybook", "Doxygen XML to Markdown (or JSON)");
 
@@ -78,7 +78,7 @@ int main(int argc, char* argv[]) {
         auto args = options.parse(argc, argv);
 
         if (args["quiet"].as<bool>()) {
-            Log::setQuietMode(true);
+            spdlog::set_level(spdlog::level::off);
         }
 
         if (args["help"].as<bool>()) {
@@ -163,11 +163,11 @@ int main(int argc, char* argv[]) {
                 }
             }
 
-            Log::i("Loading...");
+            spdlog::info("Loading...");
             doxygen.load(args["input"].as<std::string>());
-            Log::i("Finalizing...");
+            spdlog::info("Finalizing...");
             doxygen.finalize(plainPrinter, markdownPrinter);
-            Log::i("Rendering...");
+            spdlog::info("Rendering...");
 
             if (args.count("json")) {
                 generator.json(LANGUAGE_FILTER, {});
@@ -255,7 +255,7 @@ int main(int argc, char* argv[]) {
 
         return EXIT_SUCCESS;
     } catch (std::exception& e) {
-        Log::e(e.what());
+        spdlog::error(e.what());
         return EXIT_FAILURE;
     }
 }
