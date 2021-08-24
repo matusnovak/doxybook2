@@ -190,13 +190,6 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
                 data.ss << "```" << normalizeLanguage(language);
                 newline();
             } else {
-                auto i = node->extra.find_last_of('.');
-                if (i != 0) {
-                    // If it's not only the extension name, output the filename
-                    data.ss << "_Filename: " << node->extra << "_";
-                    newline();
-                    newline();
-                }
                 if (i != std::string::npos) {
                     data.ss << "```" << normalizeLanguage(node->extra.substr(i + 1));
                     newline();
@@ -435,6 +428,12 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             data.ss << "```";
             newline();
             newline();
+            if (!node->extra.empty() && node->extra.find_last_of('.') != 0) {
+                // If it's not only the extension name, output the filename
+                data.ss << "_Filename: " << node->extra << "_";
+                newline();
+                newline();
+            }
             data.eol = true;
             break;
         }
