@@ -431,7 +431,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
         data.definition = definition.getText();
     auto initializer = element.firstChildElement("initializer");
     if (initializer) {
-        data.initializer = markdownPrinter.print(XmlTextParser::parsePara(initializer));
+        data.initializer = plainPrinter.print(XmlTextParser::parsePara(initializer));
     }
 
     const auto argsstring = element.firstChildElement("argsstring");
