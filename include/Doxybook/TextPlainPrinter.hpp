@@ -9,7 +9,8 @@ namespace Doxybook2 {
 
         }
 
-        std::string print(const XmlTextParser::Node& node) const override;
+        std::string print(const XmlTextParser::Node& node, const std::string& language) const override;
+
     private:
         void print(std::stringstream& ss, const XmlTextParser::Node& node) const;
     };

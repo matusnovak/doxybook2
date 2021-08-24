@@ -62,6 +62,7 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
     ptr->xmlPath = refidPath;
     ptr->name = assertChild(compounddef, "compoundname").getText();
     ptr->kind = toEnumKind(compounddef.getAttr("kind"));
+    ptr->language = compounddef.getAttr("language", "");
     ptr->empty = false;
     cache.insert(std::make_pair(ptr->refid, ptr));
 
@@ -640,7 +641,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
     }
 
     if (const auto programlisting = element.firstChildElement("programlisting")) {
-        data.programlisting = plainPrinter.print(XmlTextParser::parseParas(programlisting));
+        data.programlisting = plainPrinter.print(XmlTextParser::parseParas(programlisting), language);
     }
 
     return data;

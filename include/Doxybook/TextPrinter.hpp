@@ -16,7 +16,7 @@ namespace Doxybook2 {
         }
         virtual ~TextPrinter() = default;
 
-        virtual std::string print(const XmlTextParser::Node& node) const = 0;
+        virtual std::string print(const XmlTextParser::Node& node, const std::string& language = "cpp") const = 0;
 
     protected:
         const Config& config;
