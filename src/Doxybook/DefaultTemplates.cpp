@@ -594,7 +594,7 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 {% endif -%}
 
 {% if static %}static {% endif -%}
-{% if inline %}inline {% endif -%}
+{% if inline and language != "csharp" %}inline {% endif -%}
 {% if explicit %}explicit {% endif -%}
 {% if virtual %}virtual {% endif -%}
 
