@@ -39,6 +39,15 @@ std::string Doxybook2::Utils::normalizeLanguage(const std::string& language) {
     return res;
 }
 
+std::string Doxybook2::Utils::replaceNewline(std::string str) {
+    std::transform(str.begin(), str.end(), str.begin(), [](char ch) {
+        if (ch == '\n')
+            return ' ';
+        return ch;
+    });
+    return str;
+}
+
 std::string Doxybook2::Utils::title(std::string str) {
     if (!str.empty()) str[0] = ::toupper(str[0]);
     return str;
