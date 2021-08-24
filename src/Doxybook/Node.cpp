@@ -62,7 +62,7 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
     ptr->xmlPath = refidPath;
     ptr->name = assertChild(compounddef, "compoundname").getText();
     ptr->kind = toEnumKind(compounddef.getAttr("kind"));
-    ptr->language = compounddef.getAttr("language", "");
+    ptr->language = Utils::normalizeLanguage(compounddef.getAttr("language", ""));
     ptr->empty = false;
     cache.insert(std::make_pair(ptr->refid, ptr));
 
@@ -82,6 +82,7 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
                     child->kind = Kind::USING;
                 }
             }
+            child->language = ptr->language;
             ptr->children.push_back(child);
 
             if (isGroupOrFile) {

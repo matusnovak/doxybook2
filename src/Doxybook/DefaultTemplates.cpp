@@ -586,7 +586,7 @@ static const std::string TEMPLATE_NONCLASS_MEMBERS_TABLES = createNonMemberTable
 
 static const std::string TEMPLATE_MEMBER_DETAILS =
     R"({% if kind in ["function", "slot", "signal", "event"] -%}
-```cpp
+```{{language}}
 {% if exists("templateParams") -%}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif -%}
 {% if not loop.is_last %},
@@ -623,18 +623,18 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 {% endif -%}
 
 {% if kind in ["variable", "property"] -%}
-```cpp
+```{{language}}
 {% if static %}static {% endif -%}
 {% if exists("typePlain") %}{{typePlain}} {% endif -%}{{name}}{% if exists("initializer") %} {{initializer}}{% endif %};
 ```{% endif -%}
 
 {% if kind == "typedef" -%}
-```cpp
+```{{language}}
 {{definition}};
 ```{% endif -%}
 
 {% if kind == "using" -%}
-```cpp
+```{{language}}
 {% if exists("templateParams") -%}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif -%}
 {% if not loop.is_last %},
@@ -644,7 +644,7 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 ```{% endif -%}
 
 {% if kind == "friend" -%}
-```cpp
+```{{language}}
 friend {% if exists("typePlain") %}{{typePlain}} {% endif -%}
 {{name}}{% if exists("params") %}{% endif -%}
 {% if length(params) > 0 -%}
@@ -658,7 +658,7 @@ friend {% if exists("typePlain") %}{{typePlain}} {% endif -%}
 ```{% endif -%}
 
 {% if kind == "define" -%}
-```cpp
+```{{language}}
 #define {{name}}{% if exists("params") -%}
 (
 {% for param in params %}    {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif -%}
@@ -849,7 +849,7 @@ static const std::string TEMPLATE_KIND_CLASS =
 
 {% if hasDetails %}## Detailed Description
 
-```cpp{% if exists("templateParams") %}
+```{{language}}{% if exists("templateParams") %}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif %}{% if not loop.is_last %},
 {% endif %}{% endfor %}>{% endif %}
 {% if kind == "interface" %}class{% else %}{{kind}}{% endif %} {{name}};
@@ -894,7 +894,7 @@ static const std::string TEMPLATE_KIND_FILE =
 
 {% if exists("programlisting")%}## Source code
 
-```cpp
+```{{language}}
 {{programlisting}}
 ```
 {% endif %}

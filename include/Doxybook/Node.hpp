@@ -139,6 +139,10 @@ namespace Doxybook2 {
             return kind;
         }
 
+        std::string getLanguage() const {
+            return language;
+        }
+
         Type getType() const {
             return type;
         }

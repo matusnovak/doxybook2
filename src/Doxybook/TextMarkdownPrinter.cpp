@@ -1,26 +1,8 @@
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/TextMarkdownPrinter.hpp>
 #include <Doxybook/Utils.hpp>
-#include <algorithm>
 #include <fstream>
 #include <sstream>
-#include <unordered_map>
-
-static std::string normalizeLanguage(const std::string& language) {
-    auto res = language;
-    std::transform(res.begin(), res.end(), res.begin(), tolower);
-    static std::unordered_map<std::string, std::string> lang_map{
-        {"h", "cpp"},
-        {"c++", "cpp"},
-        {"cs", "csharp"},
-        {"c#", "csharp"},
-    };
-
-    if (auto it = lang_map.find(res); it != lang_map.end()) {
-        res = it->second;
-    }
-    return res;
-}
 
 std::string Doxybook2::TextMarkdownPrinter::print(const XmlTextParser::Node& node, const std::string& language) const {
     PrintData data;
@@ -187,11 +169,12 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             if (node->extra.empty()) {
                 newline();
                 newline();
-                data.ss << "```" << normalizeLanguage(language);
+                data.ss << "```" << language;
                 newline();
             } else {
+                auto i = node->extra.find_last_of('.');
                 if (i != std::string::npos) {
-                    data.ss << "```" << normalizeLanguage(node->extra.substr(i + 1));
+                    data.ss << "```" << Utils::normalizeLanguage(node->extra.substr(i + 1));
                     newline();
                     newline();
                 }
