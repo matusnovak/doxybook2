@@ -28,7 +28,9 @@ namespace Doxybook2 {
         SIGNAL,
         SLOT,
         PROPERTY,
-        EVENT
+        EVENT,
+        JAVAENUM,
+        JAVAENUMCONSTANT
     };
 
     enum class Visibility { PUBLIC, PROTECTED, PRIVATE, PACKAGE };
@@ -52,7 +54,8 @@ namespace Doxybook2 {
         SIGNALS,
         SLOTS,
         EVENTS,
-        PROPERTIES
+        PROPERTIES,
+        JAVAENUMCONSTANTS
     };
 
     enum class FolderCategory { CLASSES, NAMESPACES, MODULES, PAGES, FILES, EXAMPLES };
@@ -68,6 +71,7 @@ namespace Doxybook2 {
     extern std::string toStr(Visibility value);
     extern std::string toStr(Virtual value);
     extern std::string toStr(FolderCategory value);
+
 
     extern Type kindToType(Kind kind);
 
