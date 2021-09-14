@@ -372,15 +372,30 @@ static std::string createTableForAttributeLike(const std::string& visibility,
     ss << "| -------------- | -------------- |\n";
 
     ss << "{% for child in " << (inherited ? "base." : "") << key << " -%}\n";
-
     ss << "| {% if existsIn(child, \"type\") %}{{child.type}} {% endif -%}\n";
     ss << "| **[{{child.name}}]({{child.url}})**";
     ss << " {% if existsIn(child, \"brief\") %}<br>{{child.brief}}{% endif %} |\n";
-
     ss << "{% endfor %}\n{% endif -%}\n";
 
     return ss.str();
 }
+
+static std::string createTableForJavaEnumConstants(const std::string& title,
+    const std::string& key) {
+    std::stringstream ss;
+    ss << "{%- if exists(\"" << key << "\") %}";
+    ss << "## " << title << "\n";
+    ss << "\n";
+    ss << "| Enum constants | Description    |\n";
+    ss << "| -------------- | -------------- |\n";
+    ss << "{% for child in " << key << " -%}\n";
+    ss << "| **[{{child.name}}]({{child.url}})**";
+    ss << "| {% if existsIn(child, \"brief\") %}{{child.brief}}{% endif %} |\n";
+    ss << "{% endfor %}\n{% endif -%}\n";
+
+    return ss.str();
+}
+
 
 static std::string createTableForFriendLike(const std::string& title, const std::string& key, const bool inherited) {
     std::stringstream ss;
@@ -528,6 +543,7 @@ static std::string createMemberTable() {
     ss << createForVisibilities(createTableForFunctionLike, "Slots", "slots", false);
     ss << createForVisibilities(createTableForFunctionLike, "Signals", "signals", false);
     ss << createForVisibilities(createTableForFunctionLike, "Events", "events", false);
+    ss << createTableForJavaEnumConstants("Enum Constants", "publicJavaenumconstants");
     ss << createForVisibilities(createTableForFunctionLike, "Functions", "functions", false);
     ss << createForVisibilities(createTableForAttributeLike, "Properties", "properties", false);
     ss << createForVisibilities(createTableForAttributeLike, "Attributes", "attributes", false);
@@ -569,7 +585,7 @@ static std::string createNonMemberTable() {
 {% endif -%})";
     ss << "\n\n";
 
-    ss << createTableForNamespaceLike("public", "Namespaces", "namespaces", false);
+    ss << createTableForNamespaceLike("public", R"({% if language == "java" %}Packages{% else %}Namespaces{% endif %})", "namespaces", false);
     ss << createTableForClassLike("public", "Classes", "publicClasses", false);
     ss << createTableForTypeLike("public", "Types", "publicTypes", false);
     ss << createTableForFunctionLike("public", "Slots", "publicSlots", false);
@@ -594,8 +610,9 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 {% endif %}{% endfor %}>
 {% endif -%}
 
+{% if language == "java" %}{{visibility}} {% endif -%}
 {% if static %}static {% endif -%}
-{% if inline and language != "csharp" %}inline {% endif -%}
+{% if inline and language != "csharp" and language != "java" %}inline {% endif -%}
 {% if explicit %}explicit {% endif -%}
 {% if virtual %}virtual {% endif -%}
 
@@ -623,7 +640,7 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 {% endfor %}
 {% endif -%}
 
-{% if kind in ["variable", "property"] -%}
+{% if kind in ["variable", "property", "enum constant"] -%}
 ```{{language}}
 {% if static %}static {% endif -%}
 {% if exists("typePlain") %}{{typePlain}} {% endif -%}{{name}}{% if exists("initializer") %} {{initializer}}{% endif %};
@@ -756,6 +773,13 @@ static const std::string TEMPLATE_CLASS_MEMBERS_DETAILS =
 {{ render("member_details", child) }}
 {% endfor %}{% endif -%}
 
+{% if exists("publicJavaenumconstants") %}## Enum Constants Documentation
+
+{% for child in publicJavaenumconstants %}### {{child.kind}} {{child.name}}
+
+{{ render("member_details", child) }}
+{% endfor %}{% endif -%}
+
 {% if exists("publicFunctions") %}## Public Functions Documentation
 
 {% for child in publicFunctions %}### {{child.kind}} {{child.name}}
@@ -853,7 +877,8 @@ static const std::string TEMPLATE_KIND_CLASS =
 ```{{language}}{% if exists("templateParams") %}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif %}{% if not loop.is_last %},
 {% endif %}{% endfor %}>{% endif %}
-{% if kind == "interface" %}class{% else %}{{kind}}{% endif %} {{name}};
+{% if language == "java" %}{{visibility}} {% endif -%}
+{% if kind == "interface" and language != "java" %}class{% else %}{{kind}}{% endif %} {{name}};
 ```
 
 {% include "details" %}{% endif -%}

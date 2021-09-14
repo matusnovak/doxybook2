@@ -61,8 +61,10 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
 
     ptr->xmlPath = refidPath;
     ptr->name = assertChild(compounddef, "compoundname").getText();
-    ptr->kind = toEnumKind(compounddef.getAttr("kind"));
     ptr->language = Utils::normalizeLanguage(compounddef.getAttr("language", ""));
+    auto kind = toEnumKind(compounddef.getAttr("kind"));
+    ptr->kind = (ptr->language == "java" && kind == Kind::ENUM) ? Kind::JAVAENUM
+                                                                : kind;
     ptr->empty = false;
     cache.insert(std::make_pair(ptr->refid, ptr));
 
@@ -83,6 +85,16 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
                 }
             }
             child->language = ptr->language;
+
+            // Doxygen outputs Java enum values as variables with empty <type>
+            auto typeElement = memberdef.firstChildElement("type");
+            bool hasTypeDefined = typeElement ? typeElement.hasText() : false;
+            if (ptr->kind == Kind::JAVAENUM && child->kind == Kind::VARIABLE && !hasTypeDefined)
+            {
+                child->kind = Kind::JAVAENUMCONSTANT;
+                child->type = Type::JAVAENUMCONSTANTS;
+            }
+
             ptr->children.push_back(child);
 
             if (isGroupOrFile) {
@@ -279,7 +291,8 @@ void Doxybook2::Node::finalize(const Config& config,
             case Kind::PAGE:
             case Kind::INTERFACE:
             case Kind::EXAMPLE:
-            case Kind::UNION: {
+            case Kind::UNION:
+            case Kind::JAVAENUM: {
                 if (node.refid == config.mainPageName) {
                     if (config.mainPageInRoot) {
                         return config.baseUrl;
@@ -404,7 +417,7 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
     return {data, childrenData};
 }
 
-Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
+Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& /*config*/,
     const TextPrinter& plainPrinter,
     const TextPrinter& markdownPrinter,
     const NodeCacheMap& cache,

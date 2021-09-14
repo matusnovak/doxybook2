@@ -120,6 +120,7 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node) const {
         json["brief"] = Utils::replaceNewline(node.getBrief());
     if (!node.getSummary().empty())
         json["summary"] = node.getSummary();
+    json["language"] = node.getLanguage();
     json["kind"] = toStr(node.getKind());
     json["language"] = node.getLanguage();
     json["category"] = toStr(node.getType());
@@ -127,6 +128,18 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node) const {
         json["baseClasses"] = convert(node.getBaseClasses());
     if (!node.getDerivedClasses().empty())
         json["derivedClasses"] = convert(node.getDerivedClasses());
+
+    // language specific fixups
+    if (node.getLanguage() == "java")
+    {
+        json["name"] = Utils::namespaceToPackage(json["name"]);
+        json["fullname"] = Utils::namespaceToPackage(json["fullname"]);
+        json["title"] = Utils::namespaceToPackage(json["title"]);
+
+        if (node.getKind() == Kind::NAMESPACE)
+            json["kind"] = "package";
+    }
+
     return json;
 }
 
