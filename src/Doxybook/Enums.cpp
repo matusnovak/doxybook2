@@ -32,7 +32,9 @@ static const std::vector<KindStrPair> KIND_STRS = {
     {"slot", Doxybook2::Kind::SLOT},
     {"property", Doxybook2::Kind::PROPERTY},
     {"event", Doxybook2::Kind::EVENT},
-    {"define", Doxybook2::Kind::DEFINE}
+    {"define", Doxybook2::Kind::DEFINE},
+    {"enum", Doxybook2::Kind::JAVAENUM},                  // only for enum->string conversion
+    {"enum constant", Doxybook2::Kind::JAVAENUMCONSTANT}  // only for enum->string conversion
 };
 
 static const std::vector<TypeStrPair> TYPE_STRS = {
@@ -51,7 +53,8 @@ static const std::vector<TypeStrPair> TYPE_STRS = {
     {"signals", Doxybook2::Type::SIGNALS},
     {"slots", Doxybook2::Type::SLOTS},
     {"events", Doxybook2::Type::EVENTS},
-    {"properties", Doxybook2::Type::PROPERTIES}
+    {"properties", Doxybook2::Type::PROPERTIES},
+    {"javaenumconstants", Doxybook2::Type::JAVAENUMCONSTANTS}
 };
 
 static const std::vector<VirtualStrPair> VIRTUAL_STRS = {
@@ -180,7 +183,8 @@ Doxybook2::Type Doxybook2::kindToType(const Doxybook2::Kind kind) {
         case Kind::UNION:
         case Kind::INTERFACE:
         case Kind::STRUCT:
-        case Kind::CLASS: {
+        case Kind::CLASS:
+        case Kind::JAVAENUM: {
             return Type::CLASSES;
         }
         case Kind::FILE: {
@@ -220,6 +224,7 @@ bool Doxybook2::isKindStructured(const Kind kind) {
         case Doxybook2::Kind::NAMESPACE:
         case Doxybook2::Kind::STRUCT:
         case Doxybook2::Kind::UNION:
+        case Doxybook2::Kind::JAVAENUM:
         case Doxybook2::Kind::INTERFACE: {
             return true;
         }
@@ -246,7 +251,9 @@ bool Doxybook2::isKindLanguage(const Kind kind) {
         case Doxybook2::Kind::SIGNAL:
         case Doxybook2::Kind::SLOT:
         case Doxybook2::Kind::PROPERTY:
-        case Doxybook2::Kind::EVENT: {
+        case Doxybook2::Kind::EVENT:
+        case Doxybook2::Kind::JAVAENUM:
+        case Doxybook2::Kind::JAVAENUMCONSTANT: {
             return true;
         }
         default: {

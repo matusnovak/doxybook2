@@ -33,6 +33,8 @@ std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
             return config.templateKindPage;
         case Kind::EXAMPLE:
             return config.templateKindExample;
+        case Kind::JAVAENUM:
+            return config.templateKindJavaEnum;
         default: {
             throw EXCEPTION("Unrecognised kind {} please contant the author!", int(kind));
         }

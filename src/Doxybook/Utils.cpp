@@ -67,6 +67,10 @@ std::string Doxybook2::Utils::safeAnchorId(std::string str) {
     return replaceAll(str, "_", "-");
 }
 
+std::string Doxybook2::Utils::namespaceToPackage(std::string str) {
+    return replaceAll(std::move(str), "::", ".");
+}
+
 std::string Doxybook2::Utils::date(const std::string& format) {
     const auto t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     char mbstr[100];
@@ -92,6 +96,7 @@ std::string Doxybook2::Utils::stripNamespace(const std::string& str) {
                 inside--;
                 break;
             }
+            case '.':
             case ':': {
                 if (inside == 0) {
                     offset = count + 1;

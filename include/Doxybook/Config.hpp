@@ -69,6 +69,7 @@ namespace Doxybook2 {
         std::string templateKindStruct{"kind_class"};
         std::string templateKindUnion{"kind_class"};
         std::string templateKindInterface{"kind_class"};
+        std::string templateKindJavaEnum{"kind_class"};
         std::string templateKindNamespace{"kind_nonclass"};
         std::string templateKindGroup{"kind_nonclass"};
         std::string templateKindFile{"kind_file"};
