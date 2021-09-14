@@ -8,6 +8,7 @@ using TypeStrPair = std::pair<std::string, Doxybook2::Type>;
 using VirtualStrPair = std::pair<std::string, Doxybook2::Virtual>;
 using VisibilityStrPair = std::pair<std::string, Doxybook2::Visibility>;
 using FolderCategoryStrPair = std::pair<std::string, Doxybook2::FolderCategory>;
+using LanguageStrPair = std::pair<std::string, Doxybook2::Language>;
 
 // clang-format off
 static const std::vector<KindStrPair> KIND_STRS = {
@@ -32,7 +33,9 @@ static const std::vector<KindStrPair> KIND_STRS = {
     {"slot", Doxybook2::Kind::SLOT},
     {"property", Doxybook2::Kind::PROPERTY},
     {"event", Doxybook2::Kind::EVENT},
-    {"define", Doxybook2::Kind::DEFINE}
+    {"define", Doxybook2::Kind::DEFINE},
+    {"enum", Doxybook2::Kind::JAVAENUM},                  // only for enum->string conversion
+    {"enum constant", Doxybook2::Kind::JAVAENUMCONSTANT}  // only for enum->string conversion
 };
 
 static const std::vector<TypeStrPair> TYPE_STRS = {
@@ -51,7 +54,8 @@ static const std::vector<TypeStrPair> TYPE_STRS = {
     {"signals", Doxybook2::Type::SIGNALS},
     {"slots", Doxybook2::Type::SLOTS},
     {"events", Doxybook2::Type::EVENTS},
-    {"properties", Doxybook2::Type::PROPERTIES}
+    {"properties", Doxybook2::Type::PROPERTIES},
+    {"javaenumconstants", Doxybook2::Type::JAVAENUMCONSTANTS}
 };
 
 static const std::vector<VirtualStrPair> VIRTUAL_STRS = {
@@ -75,6 +79,16 @@ static const std::vector<FolderCategoryStrPair> FOLDER_CATEGORY_STRS = {
     {"examples", Doxybook2::FolderCategory::EXAMPLES},
     {"classes", Doxybook2::FolderCategory::CLASSES},
     {"pages", Doxybook2::FolderCategory::PAGES}
+};
+
+static const std::vector<LanguageStrPair> LANGUAGE_STRS = { //as appears in Doxygen XML
+    {"C++", Doxybook2::Language::CPP},
+    {"Java", Doxybook2::Language::JAVA}
+};
+
+static const std::vector<LanguageStrPair> LANGUAGE_MD_STRS = { //as in markdown fenced code block language spec
+    {"cpp", Doxybook2::Language::CPP},
+    {"java", Doxybook2::Language::JAVA}
 };
 // clang-format on
 
@@ -115,6 +129,17 @@ Doxybook2::Kind Doxybook2::toEnumKind(const std::string& str) {
     return toEnum<Kind>(KIND_STRS, str);
 }
 
+Doxybook2::Language Doxybook2::toEnumLanguage(const std::string& str) {
+    const auto it = std::find_if(
+        LANGUAGE_STRS.begin(), LANGUAGE_STRS.end(), [&str](const auto& pair) { return pair.first == str; });
+
+    if (it == LANGUAGE_STRS.end()) {
+        return Language::CPP; // fallback to CPP for unknown languages
+    }
+
+    return it->second;
+}
+
 std::string Doxybook2::toStr(const Kind value) {
     return fromEnum<Kind>(KIND_STRS, value);
 }
@@ -151,6 +176,10 @@ std::string Doxybook2::toStr(const FolderCategory value) {
     return fromEnum<FolderCategory>(FOLDER_CATEGORY_STRS, value);
 }
 
+std::string Doxybook2::toStr(const Language value) {
+    return fromEnum<Language>(LANGUAGE_MD_STRS, value);
+}
+
 Doxybook2::Type Doxybook2::kindToType(const Doxybook2::Kind kind) {
     switch (kind) {
         case Kind::DEFINE: {
@@ -180,7 +209,8 @@ Doxybook2::Type Doxybook2::kindToType(const Doxybook2::Kind kind) {
         case Kind::UNION:
         case Kind::INTERFACE:
         case Kind::STRUCT:
-        case Kind::CLASS: {
+        case Kind::CLASS:
+        case Kind::JAVAENUM: {
             return Type::CLASSES;
         }
         case Kind::FILE: {
@@ -220,6 +250,7 @@ bool Doxybook2::isKindStructured(const Kind kind) {
         case Doxybook2::Kind::NAMESPACE:
         case Doxybook2::Kind::STRUCT:
         case Doxybook2::Kind::UNION:
+        case Doxybook2::Kind::JAVAENUM:
         case Doxybook2::Kind::INTERFACE: {
             return true;
         }
@@ -246,7 +277,9 @@ bool Doxybook2::isKindLanguage(const Kind kind) {
         case Doxybook2::Kind::SIGNAL:
         case Doxybook2::Kind::SLOT:
         case Doxybook2::Kind::PROPERTY:
-        case Doxybook2::Kind::EVENT: {
+        case Doxybook2::Kind::EVENT:
+        case Doxybook2::Kind::JAVAENUM:
+        case Doxybook2::Kind::JAVAENUMCONSTANT: {
             return true;
         }
         default: {

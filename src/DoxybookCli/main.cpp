@@ -58,7 +58,8 @@ static const Generator::Filter INDEX_CLASS_FILTER = {Kind::NAMESPACE,
     Kind::CLASS,
     Kind::INTERFACE,
     Kind::STRUCT,
-    Kind::UNION};
+    Kind::UNION,
+    Kind::JAVAENUM};
 
 static const Generator::Filter INDEX_CLASS_FILTER_SKIP = {Kind::NAMESPACE};
 
@@ -69,7 +70,7 @@ static const Generator::Filter INDEX_MODULES_FILTER = {Kind::MODULE};
 static const Generator::Filter INDEX_FILES_FILTER = {Kind::DIR, Kind::FILE};
 
 static const Generator::Filter LANGUAGE_FILTER =
-    {Kind::NAMESPACE, Kind::CLASS, Kind::INTERFACE, Kind::STRUCT, Kind::UNION, Kind::MODULE};
+    {Kind::NAMESPACE, Kind::CLASS, Kind::INTERFACE, Kind::STRUCT, Kind::UNION, Kind::MODULE, Kind::JAVAENUM};
 
 static const Generator::Filter INDEX_PAGES_FILTER = {Kind::PAGE};
 
@@ -218,6 +219,7 @@ int main(const int argc, char* argv[]) {
                     languageFilder.insert(Kind::STRUCT);
                     languageFilder.insert(Kind::UNION);
                     languageFilder.insert(Kind::INTERFACE);
+                    languageFilder.insert(Kind::JAVAENUM);
                 }
                 if (shouldGenerate(FolderCategory::NAMESPACES)) {
                     languageFilder.insert(Kind::NAMESPACE);

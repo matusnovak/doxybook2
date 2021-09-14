@@ -371,15 +371,30 @@ static std::string createTableForAttributeLike(const std::string& visibility,
     ss << "| -------------- | -------------- |\n";
 
     ss << "{% for child in " << (inherited ? "base." : "") << key << " -%}\n";
-
     ss << "| {% if existsIn(child, \"type\") %}{{child.type}} {% endif -%}\n";
     ss << "| **[{{child.name}}]({{child.url}})**";
     ss << " {% if existsIn(child, \"brief\") %}<br>{{child.brief}}{% endif %} |\n";
-
     ss << "{% endfor %}\n{% endif -%}\n";
 
     return ss.str();
 }
+
+static std::string createTableForJavaEnumConstants(const std::string& title,
+    const std::string& key) {
+    std::stringstream ss;
+    ss << "{%- if exists(\"" << key << "\") %}";
+    ss << "## " << title << "\n";
+    ss << "\n";
+    ss << "| Enum constants | Description    |\n";
+    ss << "| -------------- | -------------- |\n";
+    ss << "{% for child in " << key << " -%}\n";
+    ss << "| **[{{child.name}}]({{child.url}})**";
+    ss << "| {% if existsIn(child, \"brief\") %}{{child.brief}}{% endif %} |\n";
+    ss << "{% endfor %}\n{% endif -%}\n";
+
+    return ss.str();
+}
+
 
 static std::string createTableForFriendLike(const std::string& title, const std::string& key, const bool inherited) {
     std::stringstream ss;
@@ -527,6 +542,7 @@ static std::string createMemberTable() {
     ss << createForVisibilities(createTableForFunctionLike, "Slots", "slots", false);
     ss << createForVisibilities(createTableForFunctionLike, "Signals", "signals", false);
     ss << createForVisibilities(createTableForFunctionLike, "Events", "events", false);
+    ss << createTableForJavaEnumConstants("Enum Constants", "publicJavaenumconstants");
     ss << createForVisibilities(createTableForFunctionLike, "Functions", "functions", false);
     ss << createForVisibilities(createTableForAttributeLike, "Properties", "properties", false);
     ss << createForVisibilities(createTableForAttributeLike, "Attributes", "attributes", false);
@@ -568,7 +584,7 @@ static std::string createNonMemberTable() {
 {% endif -%})";
     ss << "\n\n";
 
-    ss << createTableForNamespaceLike("public", "Namespaces", "namespaces", false);
+    ss << createTableForNamespaceLike("public", R"({% if language == "java" %}Packages{% else %}Namespaces{% endif %})", "namespaces", false);
     ss << createTableForClassLike("public", "Classes", "publicClasses", false);
     ss << createTableForTypeLike("public", "Types", "publicTypes", false);
     ss << createTableForFunctionLike("public", "Slots", "publicSlots", false);
@@ -586,13 +602,14 @@ static const std::string TEMPLATE_NONCLASS_MEMBERS_TABLES = createNonMemberTable
 
 static const std::string TEMPLATE_MEMBER_DETAILS =
     R"({% if kind in ["function", "slot", "signal", "event"] -%}
-```cpp
+```{{language}}
 {% if exists("templateParams") -%}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif -%}
 {% if not loop.is_last %},
 {% endif %}{% endfor %}>
 {% endif -%}
 
+{% if language == "java" %}{{visibility}} {% endif -%}
 {% if static %}static {% endif -%}
 {% if inline %}inline {% endif -%}
 {% if explicit %}explicit {% endif -%}
@@ -622,19 +639,19 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 {% endfor %}
 {% endif -%}
 
-{% if kind in ["variable", "property"] -%}
-```cpp
+{% if kind in ["variable", "property", "enum constant"] -%}
+```{{language}}
 {% if static %}static {% endif -%}
 {% if exists("typePlain") %}{{typePlain}} {% endif -%}{{name}}{% if exists("initializer") %} {{initializer}}{% endif %};
 ```{% endif -%}
 
 {% if kind == "typedef" -%}
-```cpp
+```{{language}}
 {{definition}};
 ```{% endif -%}
 
 {% if kind == "using" -%}
-```cpp
+```{{language}}
 {% if exists("templateParams") -%}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif -%}
 {% if not loop.is_last %},
@@ -644,7 +661,7 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 ```{% endif -%}
 
 {% if kind == "friend" -%}
-```cpp
+```{{language}}
 friend {% if exists("typePlain") %}{{typePlain}} {% endif -%}
 {{name}}{% if exists("params") %}{% endif -%}
 {% if length(params) > 0 -%}
@@ -658,7 +675,7 @@ friend {% if exists("typePlain") %}{{typePlain}} {% endif -%}
 ```{% endif -%}
 
 {% if kind == "define" -%}
-```cpp
+```{{language}}
 #define {{name}}{% if exists("params") -%}
 (
 {% for param in params %}    {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif -%}
@@ -751,6 +768,13 @@ static const std::string TEMPLATE_CLASS_MEMBERS_DETAILS =
 {% if exists("protectedEvents") %}## Protected Events Documentation
 
 {% for child in protectedEvents %}### {{child.kind}} {{child.name}}
+
+{{ render("member_details", child) }}
+{% endfor %}{% endif -%}
+
+{% if exists("publicJavaenumconstants") %}## Enum Constants Documentation
+
+{% for child in publicJavaenumconstants %}### {{child.kind}} {{child.name}}
 
 {{ render("member_details", child) }}
 {% endfor %}{% endif -%}
@@ -849,10 +873,11 @@ static const std::string TEMPLATE_KIND_CLASS =
 
 {% if hasDetails %}## Detailed Description
 
-```cpp{% if exists("templateParams") %}
+```{{language}}{% if exists("templateParams") %}
 template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif %}{% if not loop.is_last %},
 {% endif %}{% endfor %}>{% endif %}
-{% if kind == "interface" %}class{% else %}{{kind}}{% endif %} {{name}};
+{% if language == "java" %}{{visibility}} {% endif -%}
+{% if kind == "interface" and language != "java" %}class{% else %}{{kind}}{% endif %} {{name}};
 ```
 
 {% include "details" %}{% endif -%}
@@ -894,7 +919,7 @@ static const std::string TEMPLATE_KIND_FILE =
 
 {% if exists("programlisting")%}## Source code
 
-```cpp
+```{{language}}
 {{programlisting}}
 ```
 {% endif %}

@@ -143,6 +143,10 @@ namespace Doxybook2 {
             return type;
         }
 
+        Language getLanguage() const {
+            return language;
+        }
+
         const std::string& getRefid() const {
             return refid;
         }
@@ -231,6 +235,7 @@ namespace Doxybook2 {
         std::unique_ptr<Temp> temp;
         Kind kind{Kind::INDEX};
         Type type{Type::NONE};
+        Language language{Language::CPP};
         std::string refid;
         std::string name;
         std::string brief;

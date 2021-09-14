@@ -28,7 +28,9 @@ namespace Doxybook2 {
         SIGNAL,
         SLOT,
         PROPERTY,
-        EVENT
+        EVENT,
+        JAVAENUM,
+        JAVAENUMCONSTANT
     };
 
     enum class Visibility { PUBLIC, PROTECTED, PRIVATE, PACKAGE };
@@ -52,22 +54,28 @@ namespace Doxybook2 {
         SIGNALS,
         SLOTS,
         EVENTS,
-        PROPERTIES
+        PROPERTIES,
+        JAVAENUMCONSTANTS
     };
 
     enum class FolderCategory { CLASSES, NAMESPACES, MODULES, PAGES, FILES, EXAMPLES };
+
+    enum class Language { CPP, JAVA };
 
     extern Kind toEnumKind(const std::string& str);
     extern Type toEnumType(const std::string& str);
     extern Visibility toEnumVisibility(const std::string& str);
     extern Virtual toEnumVirtual(const std::string& str);
     extern FolderCategory toEnumFolderCategory(const std::string& str);
+    extern Language toEnumLanguage(const std::string& str);
 
     extern std::string toStr(Kind value);
     extern std::string toStr(Type value);
     extern std::string toStr(Visibility value);
     extern std::string toStr(Virtual value);
     extern std::string toStr(FolderCategory value);
+    extern std::string toStr(const Language value);
+
 
     extern Type kindToType(Kind kind);
 
