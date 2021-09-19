@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta property="og:title" content="src/Audio/AudioBuffer.hpp" />
-<meta property="og:description" content="src/Audio/AudioBuffer.hpp Namespaces    Name     Engine This namespace contains all of the necessary engine components.   Engine::Audio    Classes     Name     class Engine::Audio::AudioBuffer _A simple audio buffer to hold PCM samples_   struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.    Source code #pragma once #include &#34;../Utils/ArrayView.hpp&#34; namespace Engine { namespace Audio { class AudioManager; class AudioBuffer; typedef int (*Callback)(AudioBuffer&amp; buffer, size_t offset); using Callback2 = int (*)(AudioBuffer&amp; buffer, size_t offset, void* user); extern void doSomething(AudioBuffer&amp; buffer); class AudioBuffer { public: enum class Type { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }; template &lt;typename T&gt; using AudioData = Utils::ArrayView&lt;T&gt;; typedef AudioData&lt;uint8_t&gt; AudioData8U; struct TypedAudioData { AudioData8U buffer; Type type; }; explicit AudioBuffer(const std::string&amp; filename); virtual ~AudioBuffer() = default; void play(AudioManager&amp; manager) const; void stop(AudioManager&amp; manager) const; void loop(AudioManager&amp; manager) const; void setData(const TypedAudioData&amp; data); template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData data[Size]) { } void setData(const TypedAudioData data[], size_t size); friend class AudioManager; friend void Audio::doSomething(AudioBuffer&amp; buffer); void setCallback(Callback callback); void setCallback2(Callback2 callback, void* user); protected: float* getData(); bool playing{false}; }; } // namespace Audio } // namespace Engine  Updated on 26 July 2021 at 21:10:48 UTC" />
+<meta property="og:description" content="src/Audio/AudioBuffer.hpp Namespaces    Name     Engine This namespace contains all of the necessary engine components.   Engine::Audio    Classes     Name     class Engine::Audio::AudioBuffer _A simple audio buffer to hold PCM samples_   struct Engine::Audio::AudioBuffer::TypedAudioData Use this to populate the buffer.    Source code #pragma once #include &#34;../Utils/ArrayView.hpp&#34; namespace Engine { namespace Audio { class AudioManager; class AudioBuffer; typedef int (*Callback)(AudioBuffer&amp; buffer, size_t offset); using Callback2 = int (*)(AudioBuffer&amp; buffer, size_t offset, void* user); extern void doSomething(AudioBuffer&amp; buffer); class AudioBuffer { public: enum class Type { UNKNOWN = 0, INT_8 = 1 &lt;&lt; 1, INT_16 = 1 &lt;&lt; 2, INT_24 = 1 &lt;&lt; 3, INT_32 = 1 &lt;&lt; 4, FLOAT_32 = 1 &lt;&lt; 5 }; template &lt;typename T&gt; using AudioData = Utils::ArrayView&lt;T&gt;; typedef AudioData&lt;uint8_t&gt; AudioData8U; struct TypedAudioData { AudioData8U buffer; Type type; }; explicit AudioBuffer(const std::string&amp; filename); virtual ~AudioBuffer() = default; void play(AudioManager&amp; manager) const; void stop(AudioManager&amp; manager) const; void loop(AudioManager&amp; manager) const; void setData(const TypedAudioData&amp; data); template &lt;size_t Size&gt; void setDataMultiple(const TypedAudioData data[Size]) { } void setData(const TypedAudioData data[], size_t size); friend class AudioManager; friend void Audio::doSomething(AudioBuffer&amp; buffer); void setCallback(Callback callback); void setCallback2(Callback2 callback, void* user); protected: float* getData(); bool playing{false}; }; } // namespace Audio } // namespace Engine  Updated on 19 September 2021 at 21:43:51 UTC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://matusnovak.github.io/doxybook2/hugo-book/files/audiobuffer_8hpp/" />
 
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.4c5cc69e1e9fe1ff3493b72dbe84aa9a7481427e3a6897695a3160e1b6c9a687.css" integrity="sha256-TFzGnh6f4f80k7ctvoSqmnSBQn46aJdpWjFg4bbJpoc=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.59ca3fb9052db790de4ac84579daaef311a91601e80d395d022f57826aa45291.js" integrity="sha256-Wco/uQUtt5DeSshFedqu8xGpFgHoDTldAi9XgmqkUpE="></script>
+<script defer src="/doxybook2/hugo-book/search.min.6f29dbc78567f3aaf5eb83ea044f9b8e06e669b5c2cdc5b0d6c11c5e96eef6ba.js" integrity="sha256-bynbx4Vn86r164PqBE&#43;bjgbmabXCzcWw1sEcXpbu9ro="></script>
 
 <!--
 Made with Book Theme
@@ -177,7 +177,7 @@ https://github.com/alex-shpak/hugo-book
     } <span style="color:#75715e">// namespace Audio
 </span><span style="color:#75715e"></span>} <span style="color:#75715e">// namespace Engine
 </span></code></pre></div><hr>
-<p>Updated on 26 July 2021 at 21:10:48 UTC</p>
+<p>Updated on 19 September 2021 at 21:43:51 UTC</p>
 </article>
 
       
