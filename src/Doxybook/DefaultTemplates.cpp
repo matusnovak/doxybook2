@@ -42,7 +42,7 @@ static const std::string TEMPLATE_BREADCRUMBS = R"({% if exists("moduleBreadcrum
 static const std::string TEMPLATE_FOOTER =
     R"(-------------------------------
 
-Updated on {{date("%e %B %Y at %H:%M:%S %Z")}})";
+Updated on {{date("%F at %H:%M:%S %z")}})";
 
 static const std::string TEMPLATE_DETAILS =
     R"({% if exists("brief") %}{{brief}}
