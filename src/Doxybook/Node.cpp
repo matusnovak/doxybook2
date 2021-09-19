@@ -310,9 +310,6 @@ void Doxybook2::Node::finalize(const Config& config,
         temp.reset();
 
         anchor = anchorMaker(*this);
-        if (name == "getVersion") {
-            std::cout << "stop" << std::endl;
-        }
         url = urlMaker(config, *this);
         if (config.linkLowercase)
             url = Utils::toLower(url);
