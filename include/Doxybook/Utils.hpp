@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <sstream>
 #include <string>
+#include <vector>
 
 namespace Doxybook2 {
     namespace Utils {

@@ -2,6 +2,7 @@
 #include <Doxybook/DefaultTemplates.hpp>
 #include <Doxybook/Utils.hpp>
 #include <fstream>
+#include <spdlog/spdlog.h>
 
 // clang-format off
 static const std::vector<std::string> ALL_VISIBILITIES = {
@@ -41,7 +42,7 @@ static const std::string TEMPLATE_BREADCRUMBS = R"({% if exists("moduleBreadcrum
 static const std::string TEMPLATE_FOOTER =
     R"(-------------------------------
 
-Updated on {{date("%e %B %Y at %H:%M:%S %Z")}})";
+Updated on {{date("%F at %H:%M:%S %z")}})";
 
 static const std::string TEMPLATE_DETAILS =
     R"({% if exists("brief") %}{{brief}}
@@ -1107,7 +1108,7 @@ std::unordered_map<std::string, Doxybook2::DefaultTemplate> Doxybook2::defaultTe
 void Doxybook2::saveDefaultTemplates(const std::string& path) {
     for (const auto& tmpl : defaultTemplates) {
         const auto tmplPath = Utils::join(path, tmpl.first + ".tmpl");
-        Log::i("Creating default template {}", tmplPath);
+        spdlog::info("Creating default template {}", tmplPath);
         std::ofstream file(tmplPath);
         if (!file)
             throw EXCEPTION("Failed to open file {} for writing", tmplPath);

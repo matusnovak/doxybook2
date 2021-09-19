@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(Doxybook2Cli)
 
-# Dependencies
-find_package(ArgAgg REQUIRED)
-
 # Project source files
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
@@ -34,4 +31,4 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC Doxybook2 ArgAgg)
+target_link_libraries(${PROJECT_NAME} PUBLIC Doxybook2)

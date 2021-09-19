@@ -1,6 +1,6 @@
 #include "ExceptionUtils.hpp"
 #include <Doxybook/Exception.hpp>
-#include <Doxybook/Log.hpp>
+#include <spdlog/spdlog.h>
 #include <Doxybook/XmlTextParser.hpp>
 #include <functional>
 #include <unordered_map>
@@ -67,7 +67,7 @@ Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const s
 
     const auto it = kinds.find(str);
     if (it == kinds.end()) {
-        WARNING("Text tag \"{}\" not recognised, please contact the author", str);
+        spdlog::warn("Text tag \"{}\" not recognised, please contact the author", str);
         return Node::Type::UNKNOWN;
     }
 

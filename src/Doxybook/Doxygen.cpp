@@ -8,6 +8,7 @@
 #include <Doxybook/Xml.hpp>
 #include <cassert>
 #include <set>
+#include <spdlog/spdlog.h>
 
 static bool isKindAllowedLanguage(const std::string& kind) {
     static std::set<std::string> values = {
@@ -77,7 +78,7 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
                 }
             }
         } catch (std::exception& e) {
-            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
+            spdlog::warn("Failed to parse member {} error: {}", pair.second, e.what());
         }
     }
     cleanup(index);
@@ -96,7 +97,7 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
                 }
             }
         } catch (std::exception& e) {
-            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
+            spdlog::warn("Failed to parse member {} error: {}", pair.second, e.what());
         }
     }
     cleanup(index);
@@ -115,7 +116,7 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
                 }
             }
         } catch (std::exception& e) {
-            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
+            spdlog::warn("Failed to parse member {} error: {}", pair.second, e.what());
         }
     }
     cleanup(index);
@@ -137,7 +138,7 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
                 }
             }
         } catch (std::exception& e) {
-            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
+            spdlog::warn("Failed to parse member {} error: {}", pair.second, e.what());
         }
     }
     cleanup(index);
@@ -156,7 +157,7 @@ void Doxybook2::Doxygen::load(const std::string& inputDir) {
                 }
             }
         } catch (std::exception& e) {
-            WARNING("Failed to parse member {} error: {}", pair.second, e.what());
+            spdlog::warn("Failed to parse member {} error: {}", pair.second, e.what());
         }
     }
 
@@ -215,7 +216,7 @@ Doxybook2::Doxygen::KindRefidMap Doxybook2::Doxygen::getIndexKinds(const std::st
             map.insert(std::make_pair(kind, refid));
 
         } catch (std::exception& e) {
-            WARNING("compound error {}", e.what());
+            spdlog::warn("compound error {}", e.what());
         }
         compound = compound.nextSiblingElement("compound");
     }

@@ -2,6 +2,7 @@
 #include <Doxybook/Config.hpp>
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include <spdlog/spdlog.h>
 
 class ConfigArg {
 public:
@@ -111,7 +112,7 @@ void Doxybook2::loadConfigData(Config& config, const std::string& src) {
 }
 
 void Doxybook2::saveConfig(Config& config, const std::string& path) {
-    Log::i("Creating default config {}", path);
+    spdlog::info("Creating default config {}", path);
     std::ofstream file(path);
     if (!file) {
         throw EXCEPTION("Failed to open file {} for writing", path);
