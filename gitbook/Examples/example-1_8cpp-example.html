@@ -1098,27 +1098,25 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="example-1cpp">example-1.cpp</h1>
-<p>This is an example This is detailed docummentation </p>
-<pre><code class="lang-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;Engine.hpp&quot;</span></span>
+<p>This is an example This is detailed docummentation ```cpp</p>
+<h1 id="include-">include <iostream></iostream></h1>
+<h1 id="include-">include <memory></memory></h1>
+<h1 id="include-enginehpp">include &quot;Engine.hpp&quot;</h1>
+<p>// A dummy example 
+int main() {
+    // Create pixels buffer
+    const auto pixels = std::make_unique<uint8_t[]>(new uint8_t[1024<em>1024</em>3]);
+    fillData(*pixels, &quot;path/to/texture.png&quot;);</uint8_t[]></p>
+<pre><code>// Create a texture out of the pixels
+Engine::Graphics::Texture2D texture(1024, 1024, *data);
 
-<span class="hljs-comment">// A dummy example </span>
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-comment">// Create pixels buffer</span>
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> pixels = <span class="hljs-built_in">std</span>::make_unique&lt;<span class="hljs-keyword">uint8_t</span>[]&gt;(<span class="hljs-keyword">new</span> <span class="hljs-keyword">uint8_t</span>[<span class="hljs-number">1024</span>*<span class="hljs-number">1024</span>*<span class="hljs-number">3</span>]);
-    fillData(*pixels, <span class="hljs-string">&quot;path/to/texture.png&quot;</span>);
-
-    <span class="hljs-comment">// Create a texture out of the pixels</span>
-    Engine::Graphics::<span class="hljs-function">Texture2D <span class="hljs-title">texture</span><span class="hljs-params">(<span class="hljs-number">1024</span>, <span class="hljs-number">1024</span>, *data)</span></span>;
-
-    <span class="hljs-comment">// Done</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}
-</code></pre>
+// Done
+return 0;
+</code></pre><p>}
+```</p>
 <p><em>Filename: example-1.cpp</em></p>
 <hr>
-<p>Updated on 2021-09-19 at 22:30:35 +0000</p>
+<p>Updated on 2021-09-19 at 23:09:08 +0000</p>
 
                                 
                                 </section>
@@ -1158,7 +1156,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"example-1.cpp","summary":"This is an example.","level":"1.1.6.1","depth":3,"next":{"title":"GitHub","level":"1.2","depth":1,"url":"https://github.com/matusnovak/doxybook2","ref":"https://github.com/matusnovak/doxybook2","articles":[]},"previous":{"title":"Examples","level":"1.1.6","depth":2,"path":"Examples/README.md","ref":"Examples/README.md","articles":[{"title":"example-1.cpp","level":"1.1.6.1","depth":3,"path":"Examples/example-1_8cpp-example.md","ref":"Examples/example-1_8cpp-example.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Examples/example-1_8cpp-example.md","mtime":"2021-09-19T22:30:35.795Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-09-19T22:31:01.491Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"example-1.cpp","summary":"This is an example.","level":"1.1.6.1","depth":3,"next":{"title":"GitHub","level":"1.2","depth":1,"url":"https://github.com/matusnovak/doxybook2","ref":"https://github.com/matusnovak/doxybook2","articles":[]},"previous":{"title":"Examples","level":"1.1.6","depth":2,"path":"Examples/README.md","ref":"Examples/README.md","articles":[{"title":"example-1.cpp","level":"1.1.6.1","depth":3,"path":"Examples/example-1_8cpp-example.md","ref":"Examples/example-1_8cpp-example.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Doxybook2 Example","gitbook":"*"},"file":{"path":"Examples/example-1_8cpp-example.md","mtime":"2021-09-19T23:09:08.485Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-09-19T23:09:42.647Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

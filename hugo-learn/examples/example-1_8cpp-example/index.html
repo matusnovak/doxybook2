@@ -12,18 +12,18 @@
     <title>example-1.cpp :: Doxybook2 Example</title>
 
     
-    <link href="/doxybook2/hugo-learn/css/nucleus.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hybrid.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/theme.css?1632090615" rel="stylesheet">
-    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1632090615" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/nucleus.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/fontawesome-all.min.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hybrid.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/featherlight.min.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/perfect-scrollbar.min.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/auto-complete.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/atom-one-dark-reasonable.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/theme.css?1632092923" rel="stylesheet">
+    <link href="/doxybook2/hugo-learn/css/hugo-theme.css?1632092923" rel="stylesheet">
     
 
-    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1632090615"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery-3.3.1.min.js?1632092923"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1632090615"></script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1632090615"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/lunr.min.js?1632092923"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/auto-complete.js?1632092923"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/matusnovak.github.io\/doxybook2\/hugo-learn";
     
 </script>
-<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1632090615"></script>
+<script type="text/javascript" src="/doxybook2/hugo-learn/js/search.js?1632092923"></script>
 
     
   </div>
@@ -1561,27 +1561,29 @@
 
 
 <p><strong>example-1.cpp Example Reference</strong></p>
-<p>This is an example This is detailed docummentation</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;memory&gt;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&#34;Engine.hpp&#34;</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic"></span>
-<span style="color:#8f5902;font-style:italic">// A dummy example 
-</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#8f5902;font-style:italic">// Create pixels buffer
-</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#204a87;font-weight:bold">auto</span> <span style="color:#000">pixels</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">std</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">make_unique</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">uint8_t</span><span style="color:#000;font-weight:bold">[]</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">new</span> <span style="color:#204a87;font-weight:bold">uint8_t</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1024</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#0000cf;font-weight:bold">1024</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">]);</span>
-    <span style="color:#000">fillData</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pixels</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;path/to/texture.png&#34;</span><span style="color:#000;font-weight:bold">);</span>
+<p>This is an example This is detailed docummentation ```cpp</p>
+<p>#include <!-- raw HTML omitted -->
+#include <!-- raw HTML omitted -->
+#include &ldquo;Engine.hpp&rdquo;</p>
+<p>// A dummy example
+int main() {
+// Create pixels buffer
+const auto pixels = std::make_unique&lt;uint8_t[]&gt;(new uint8_t[1024<em>1024</em>3]);
+fillData(*pixels, &ldquo;path/to/texture.png&rdquo;);</p>
+<pre><code>// Create a texture out of the pixels
+Engine::Graphics::Texture2D texture(1024, 1024, *data);
 
-    <span style="color:#8f5902;font-style:italic">// Create a texture out of the pixels
-</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">Engine</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Graphics</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Texture2D</span> <span style="color:#000">texture</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1024</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1024</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">data</span><span style="color:#000;font-weight:bold">);</span>
+// Done
+return 0;
+</code></pre>
+<p>}</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+_Filename: example-1.cpp_
 
-    <span style="color:#8f5902;font-style:italic">// Done
-</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p><em>Filename: example-1.cpp</em></p>
-<hr>
-<p>Updated on 2021-09-19 at 22:30:15 +0000</p>
+-------------------------------
 
+Updated on 2021-09-19 at 23:08:43 +0000
+</code></pre></div>
 
 <footer class=" footline" >
 	
@@ -2748,19 +2750,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1632090615"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1632090615"></script>
-    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1632090615"></script>
-    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1632090615"></script>
-    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1632090615"></script>
-    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1632090615"></script>
+    <script src="/doxybook2/hugo-learn/js/clipboard.min.js?1632092923"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.min.js?1632092923"></script>
+    <script src="/doxybook2/hugo-learn/js/perfect-scrollbar.jquery.min.js?1632092923"></script>
+    <script src="/doxybook2/hugo-learn/js/jquery.sticky.js?1632092923"></script>
+    <script src="/doxybook2/hugo-learn/js/featherlight.min.js?1632092923"></script>
+    <script src="/doxybook2/hugo-learn/js/highlight.pack.js?1632092923"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1632090615"></script>
-    <script src="/doxybook2/hugo-learn/js/learn.js?1632090615"></script>
-    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1632090615"></script>
+    <script src="/doxybook2/hugo-learn/js/modernizr.custom-3.6.0.js?1632092923"></script>
+    <script src="/doxybook2/hugo-learn/js/learn.js?1632092923"></script>
+    <script src="/doxybook2/hugo-learn/js/hugo-learn.js?1632092923"></script>
 
-    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1632090615" rel="stylesheet" />
-    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1632090615"></script>
+    <link href="/doxybook2/hugo-learn/mermaid/mermaid.css?1632092923" rel="stylesheet" />
+    <script src="/doxybook2/hugo-learn/mermaid/mermaid.js?1632092923"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

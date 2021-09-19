@@ -303,27 +303,26 @@
                 
                 
                 <h1 id="example-1cpp">example-1.cpp</h1>
-<p>This is an example This is detailed docummentation </p>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;memory&gt;
-#include &quot;Engine.hpp&quot;
-
-// A dummy example 
+<p>This is an example This is detailed docummentation ```cpp</p>
+<h1 id="include">include <iostream></h1>
+<h1 id="include_1">include <memory></h1>
+<h1 id="include-enginehpp">include "Engine.hpp"</h1>
+<p>// A dummy example 
 int main() {
     // Create pixels buffer
-    const auto pixels = std::make_unique&lt;uint8_t[]&gt;(new uint8_t[1024*1024*3]);
-    fillData(*pixels, &quot;path/to/texture.png&quot;);
+    const auto pixels = std::make_unique<uint8_t[]>(new uint8_t[1024<em>1024</em>3]);
+    fillData(*pixels, "path/to/texture.png");</p>
+<pre><code>// Create a texture out of the pixels
+Engine::Graphics::Texture2D texture(1024, 1024, *data);
 
-    // Create a texture out of the pixels
-    Engine::Graphics::Texture2D texture(1024, 1024, *data);
-
-    // Done
-    return 0;
-}
+// Done
+return 0;
 </code></pre>
+<p>}
+```</p>
 <p><em>Filename: example-1.cpp</em></p>
 <hr />
-<p>Updated on 2021-09-19 at 22:30:13 +0000</p>
+<p>Updated on 2021-09-19 at 23:08:41 +0000</p>
                 
                   
                 

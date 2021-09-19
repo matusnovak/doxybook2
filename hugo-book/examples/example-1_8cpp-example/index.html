@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/doxybook2/hugo-book/book.min.4c5cc69e1e9fe1ff3493b72dbe84aa9a7481427e3a6897695a3160e1b6c9a687.css" integrity="sha256-TFzGnh6f4f80k7ctvoSqmnSBQn46aJdpWjFg4bbJpoc=">
 
 
-<script defer src="/doxybook2/hugo-book/search.min.c4c99c35a338b82573e15ff9c59e0300f741d9789aeb2f0bb9212568c192ace0.js" integrity="sha256-xMmcNaM4uCVz4V/5xZ4DAPdB2Xia6y8LuSElaMGSrOA="></script>
+<script defer src="/doxybook2/hugo-book/search.min.e91abdd449543be6f3f16bf1d31a495db4557c934b45940c3ac3c2ca01e5319b.js" integrity="sha256-6Rq91ElUO&#43;bz8Wvx0xpJXbRVfJNLRZQMOsPCygHlMZs="></script>
 
 <!--
 Made with Book Theme
@@ -85,27 +85,29 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="example-1cpp">example-1.cpp</h1>
-<p>This is an example This is detailed docummentation</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Engine.hpp&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// A dummy example 
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-    <span style="color:#75715e">// Create pixels buffer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> pixels <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>make_unique<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span>[]<span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">new</span> <span style="color:#66d9ef">uint8_t</span>[<span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">3</span>]);
-    fillData(<span style="color:#f92672">*</span>pixels, <span style="color:#e6db74">&#34;path/to/texture.png&#34;</span>);
+<p>This is an example This is detailed docummentation ```cpp</p>
+<p>#include <!-- raw HTML omitted -->
+#include <!-- raw HTML omitted -->
+#include &ldquo;Engine.hpp&rdquo;</p>
+<p>// A dummy example
+int main() {
+// Create pixels buffer
+const auto pixels = std::make_unique&lt;uint8_t[]&gt;(new uint8_t[1024<em>1024</em>3]);
+fillData(*pixels, &ldquo;path/to/texture.png&rdquo;);</p>
+<pre><code>// Create a texture out of the pixels
+Engine::Graphics::Texture2D texture(1024, 1024, *data);
 
-    <span style="color:#75715e">// Create a texture out of the pixels
-</span><span style="color:#75715e"></span>    Engine<span style="color:#f92672">::</span>Graphics<span style="color:#f92672">::</span>Texture2D texture(<span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">1024</span>, <span style="color:#f92672">*</span>data);
+// Done
+return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+_Filename: example-1.cpp_
 
-    <span style="color:#75715e">// Done
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p><em>Filename: example-1.cpp</em></p>
-<hr>
-<p>Updated on 2021-09-19 at 22:30:16 +0000</p>
-</article>
+-------------------------------
+
+Updated on 2021-09-19 at 23:08:44 +0000
+</code></pre></article>
 
       
 
