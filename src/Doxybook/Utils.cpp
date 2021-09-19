@@ -5,13 +5,13 @@
 #include <sys/stat.h>
 #endif
 
-#include <locale>
+#include "ExceptionUtils.hpp"
+#include <Doxybook/Utils.hpp>
 #include <chrono>
+#include <dirent.h>
+#include <locale>
 #include <regex>
 #include <sstream>
-#include <dirent.h>
-#include <Doxybook/Utils.hpp>
-#include "ExceptionUtils.hpp"
 
 static std::string replaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t pos = 0;
@@ -23,7 +23,8 @@ static std::string replaceAll(std::string str, const std::string& from, const st
 }
 
 std::string Doxybook2::Utils::title(std::string str) {
-    if (!str.empty()) str[0] = ::toupper(str[0]);
+    if (!str.empty())
+        str[0] = ::toupper(str[0]);
     return str;
 }
 
@@ -35,7 +36,9 @@ extern std::string Doxybook2::Utils::toLower(std::string str) {
 }
 
 std::string Doxybook2::Utils::safeAnchorId(std::string str) {
-    return replaceAll(replaceAll(toLower(std::move(str)), "::", ""), " ", "-");
+    str = replaceAll(toLower(std::move(str)), "::", "");
+    str = replaceAll(str, " ", "-");
+    return replaceAll(str, "_", "-");
 }
 
 std::string Doxybook2::Utils::date(const std::string& format) {
@@ -105,7 +108,7 @@ std::string Doxybook2::Utils::extractQualifiedNameFromFunctionDefinition(const s
 std::string Doxybook2::Utils::escape(std::string str) {
     size_t new_size = 0;
     for (const auto& c : str) {
-        switch(c) {
+        switch (c) {
             case '<':   // "<" (1) -> "&lt;" (4)
             case '>': { // ">" (1) -> "&gt;" (4)
                 new_size += 4;
@@ -123,31 +126,32 @@ std::string Doxybook2::Utils::escape(std::string str) {
         }
     }
 
-    if (new_size == str.size()) return str;
-    
+    if (new_size == str.size())
+        return str;
+
     std::string ret;
     ret.reserve(new_size);
     for (const auto& c : str) {
-        switch(c) {
+        switch (c) {
             case '<': {
-              ret += "&lt;";
-              break;
+                ret += "&lt;";
+                break;
             }
             case '>': {
-              ret += "&gt;";
-              break;
+                ret += "&gt;";
+                break;
             }
             case '*': {
-              ret += "&#42;";
-              break;
+                ret += "&#42;";
+                break;
             }
             case '_': {
-              ret += "&#95;";
-              break;
+                ret += "&#95;";
+                break;
             }
             default: {
-              ret += c;
-              break;
+                ret += c;
+                break;
             }
         }
     }
