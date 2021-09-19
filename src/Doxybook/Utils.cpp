@@ -12,6 +12,7 @@
 #include <locale>
 #include <regex>
 #include <sstream>
+#include <unordered_map>
 
 static std::string replaceAll(std::string str, const std::string& from, const std::string& to) {
     size_t pos = 0;
@@ -19,6 +20,31 @@ static std::string replaceAll(std::string str, const std::string& from, const st
         str.replace(pos, from.length(), to);
         pos += to.length();
     }
+    return str;
+}
+
+std::string Doxybook2::Utils::normalizeLanguage(const std::string& language) {
+    auto res = language;
+    std::transform(res.begin(), res.end(), res.begin(), tolower);
+    static std::unordered_map<std::string, std::string> lang_map{
+        {"h", "cpp"},
+        {"c++", "cpp"},
+        {"cs", "csharp"},
+        {"c#", "csharp"},
+    };
+
+    if (auto it = lang_map.find(res); it != lang_map.end()) {
+        res = it->second;
+    }
+    return res;
+}
+
+std::string Doxybook2::Utils::replaceNewline(std::string str) {
+    std::transform(str.begin(), str.end(), str.begin(), [](char ch) {
+        if (ch == '\n')
+            return ' ';
+        return ch;
+    });
     return str;
 }
 

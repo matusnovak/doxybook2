@@ -62,6 +62,7 @@ Doxybook2::XmlTextParser::Node::Type Doxybook2::XmlTextParser::strToType(const s
         {"mdash", Node::Type::MDASH},
         {"onlyfor", Node::Type::ONLYFOR},
         {"formula", Node::Type::FORMULA},
+        {"blockquote", Node::Type::BLOCKQUOTE},
     };
 
     const auto it = kinds.find(str);

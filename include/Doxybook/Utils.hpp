@@ -52,5 +52,7 @@ namespace Doxybook2 {
         extern std::string extractQualifiedNameFromFunctionDefinition(const std::string& str);
         extern std::vector<std::string> split(const std::string& str, const std::string& delim);
         extern void createDirectory(const std::string& path);
+        extern std::string normalizeLanguage(const std::string& language);
+        extern std::string replaceNewline(std::string str);
     } // namespace Utils
 } // namespace Doxybook2

@@ -112,10 +112,11 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node) const {
         json["pureVirtual"] = node.getVirtual() == Virtual::PURE_VIRTUAL;
     }
     if (!node.getBrief().empty())
-        json["brief"] = node.getBrief();
+        json["brief"] = Utils::replaceNewline(node.getBrief());
     if (!node.getSummary().empty())
         json["summary"] = node.getSummary();
     json["kind"] = toStr(node.getKind());
+    json["language"] = node.getLanguage();
     json["category"] = toStr(node.getType());
     if (!node.getBaseClasses().empty())
         json["baseClasses"] = convert(node.getBaseClasses());

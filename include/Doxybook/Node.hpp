@@ -139,6 +139,10 @@ namespace Doxybook2 {
             return kind;
         }
 
+        std::string getLanguage() const {
+            return language;
+        }
+
         Type getType() const {
             return type;
         }
@@ -231,6 +235,7 @@ namespace Doxybook2 {
         std::unique_ptr<Temp> temp;
         Kind kind{Kind::INDEX};
         Type type{Type::NONE};
+        std::string language;
         std::string refid;
         std::string name;
         std::string brief;

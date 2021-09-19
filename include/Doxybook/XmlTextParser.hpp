@@ -63,6 +63,7 @@ namespace Doxybook2 {
                 LINEBREAK,
                 ONLYFOR,
                 FORMULA,
+                BLOCKQUOTE,
             };
 
             Type type{Type::UNKNOWN};

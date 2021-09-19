@@ -4,9 +4,9 @@
 #include <fstream>
 #include <sstream>
 
-std::string Doxybook2::TextMarkdownPrinter::print(const XmlTextParser::Node& node) const {
+std::string Doxybook2::TextMarkdownPrinter::print(const XmlTextParser::Node& node, const std::string& language) const {
     PrintData data;
-    print(data, nullptr, &node, nullptr, nullptr);
+    print(data, nullptr, &node, nullptr, nullptr, language);
     auto str = data.ss.str();
     while (!str.empty() && str.back() == '\n')
         str.pop_back();
@@ -17,7 +17,15 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
     const XmlTextParser::Node* parent,
     const XmlTextParser::Node* node,
     const XmlTextParser::Node* previous,
-    const XmlTextParser::Node* next) const {
+    const XmlTextParser::Node* next,
+    const std::string& language) const {
+
+    auto newline = [&] {
+        data.ss << "\n";
+        if (data.quote) {
+            data.ss << "> ";
+        }
+    };
 
     switch (node->type) {
         case XmlTextParser::Node::Type::TEXT: {
@@ -25,37 +33,43 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
                 data.ss << Utils::escape(node->data);
             } else {
                 data.ss << node->data;
-            } 
+            }
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT1: {
-            data.ss << "\n# ";
+            newline();
+            data.ss << "# ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT2: {
-            data.ss << "\n## ";
+            newline();
+            data.ss << "## ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT3: {
-            data.ss << "\n### ";
+            newline();
+            data.ss << "### ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT4: {
-            data.ss << "\n#### ";
+            newline();
+            data.ss << "#### ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT5: {
-            data.ss << "\n##### ";
+            newline();
+            data.ss << "##### ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT6: {
-            data.ss << "\n###### ";
+            newline();
+            data.ss << "###### ";
             data.eol = false;
             break;
         }
@@ -78,8 +92,8 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         case XmlTextParser::Node::Type::ORDEREDLIST:
         case XmlTextParser::Node::Type::ITEMIZEDLIST: {
             if (data.lists.empty())
-                data.ss << "\n";
-            data.ss << "\n";
+                newline();
+            newline();
             data.eol = true;
             data.lists.push_back({0, node->type == XmlTextParser::Node::Type::ORDEREDLIST});
             break;
@@ -152,13 +166,35 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::PROGRAMLISTING: {
-            data.ss << "\n\n```cpp\n";
+            if (node->extra.empty()) {
+                newline();
+                newline();
+                data.ss << "```" << language;
+                newline();
+            } else {
+                auto i = node->extra.find_last_of('.');
+                if (i != std::string::npos) {
+                    data.ss << "```" << Utils::normalizeLanguage(node->extra.substr(i + 1));
+                    newline();
+                    newline();
+                }
+            }
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::VERBATIM: {
-            data.ss << "\n\n```\n";
+            newline();
+            newline();
+            data.ss << "```";
+            newline();
             data.eol = false;
+            break;
+        }
+        case XmlTextParser::Node::Type::BLOCKQUOTE: {
+            newline();
+            data.quote = true;
+            newline();
+            data.eol = true;
             break;
         }
         case XmlTextParser::Node::Type::SP: {
@@ -167,12 +203,16 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::HRULER: {
-            data.ss << "\n\n------------------\n\n";
+            newline();
+            newline();
+            data.ss << "------------------";
+            newline();
+            newline();
             data.eol = true;
             break;
         }
         case XmlTextParser::Node::Type::VARLISTENTRY: {
-            data.ss << "\n";
+            newline();
             data.eol = true;
             break;
         }
@@ -187,7 +227,7 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::TABLE: {
-            data.ss << "\n";
+            newline();
             data.eol = true;
             break;
         }
@@ -217,7 +257,7 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::LINEBREAK: {
-            data.ss << "\n";
+            newline();
             data.eol = true;
             break;
         }
@@ -233,7 +273,7 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
 
     switch (node->type) {
         case XmlTextParser::Node::Type::PROGRAMLISTING: {
-            programlisting(data.ss, *node);
+            programlisting(data, *node);
             break;
         }
         case XmlTextParser::Node::Type::FORMULA: {
@@ -260,14 +300,15 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             for (size_t i = 0; i < node->children.size(); i++) {
                 const auto childNext = i + 1 < node->children.size() ? &node->children[i + 1] : nullptr;
                 const auto childPrevious = i > 0 ? &node->children[i - 1] : nullptr;
-                print(data, node, &node->children[i], childPrevious, childNext);
+                print(data, node, &node->children[i], childPrevious, childNext, language);
             }
         }
     }
 
     switch (node->type) {
         case XmlTextParser::Node::Type::TITLE: {
-            data.ss << "\n\n";
+            newline();
+            newline();
             data.eol = true;
             break;
         }
@@ -317,18 +358,26 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             data.eol = false;
             break;
         }
+        case XmlTextParser::Node::Type::BLOCKQUOTE: {
+            data.quote = false;
+            newline();
+            newline();
+            data.eol = true;
+            break;
+        }
         case XmlTextParser::Node::Type::PARA: {
             if (parent && parent->type == XmlTextParser::Node::Type::TABLE_CELL) {
                 break;
             }
             if (parent && parent->type == XmlTextParser::Node::Type::LISTITEM) {
                 if (!data.eol) {
-                    data.ss << "\n";
+                    newline();
                     data.eol = true;
                 }
             } else {
                 if (!data.eol) {
-                    data.ss << "\n\n";
+                    newline();
+                    newline();
                     data.eol = true;
                 }
             }
@@ -354,25 +403,33 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::CODELINE: {
-            data.ss << "\n";
+            newline();
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::PROGRAMLISTING: {
-            data.ss << "```\n\n";
-            if (!node->extra.empty()) {
-                data.ss << "_Filename: " << node->extra << "_\n\n";
+            data.ss << "```";
+            newline();
+            newline();
+            if (!node->extra.empty() && node->extra.find_last_of('.') != 0) {
+                // If it's not only the extension name, output the filename
+                data.ss << "_Filename: " << node->extra << "_";
+                newline();
+                newline();
             }
             data.eol = true;
             break;
         }
         case XmlTextParser::Node::Type::VERBATIM: {
-            data.ss << "```\n\n";
+            data.ss << "```";
+            newline();
+            newline();
             data.eol = true;
             break;
         }
         case XmlTextParser::Node::Type::VARLISTENTRY: {
-            data.ss << "\n\n";
+            newline();
+            newline();
             data.eol = true;
             break;
         }
@@ -382,20 +439,22 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
             break;
         }
         case XmlTextParser::Node::Type::TABLE: {
-            data.ss << "\n\n";
+            newline();
+            newline();
             data.eol = true;
             data.tableHeader = false;
             break;
         }
         case XmlTextParser::Node::Type::TABLE_ROW: {
             if (!data.tableHeader) {
-                data.ss << "\n| ";
+                newline();
+                data.ss << "| ";
                 for (size_t i = 0; i < node->children.size(); i++) {
                     data.ss << " -------- |";
                 }
                 data.tableHeader = true;
             }
-            data.ss << "\n";
+            newline();
             data.eol = true;
             break;
         }
@@ -415,10 +474,10 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
     }
 }
 
-void Doxybook2::TextMarkdownPrinter::programlisting(std::stringstream& ss, const XmlTextParser::Node& node) const {
+void Doxybook2::TextMarkdownPrinter::programlisting(PrintData& data, const XmlTextParser::Node& node) const {
     switch (node.type) {
         case XmlTextParser::Node::Type::TEXT: {
-            ss << node.data;
+            data.ss << node.data;
             break;
         }
         default: {
@@ -426,17 +485,24 @@ void Doxybook2::TextMarkdownPrinter::programlisting(std::stringstream& ss, const
         }
     }
 
+    auto newline = [&] {
+        data.ss << "\n";
+        if (data.quote) {
+            data.ss << ">> ";
+        }
+    };
+
     for (const auto& child : node.children) {
-        programlisting(ss, child);
+        programlisting(data, child);
     }
 
     switch (node.type) {
         case XmlTextParser::Node::Type::CODELINE: {
-            ss << "\n";
+            newline();
             break;
         }
         case XmlTextParser::Node::Type::SP: {
-            ss << " ";
+            data.ss << " ";
             break;
         }
         default: {

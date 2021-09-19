@@ -8,7 +8,7 @@ namespace Doxybook2 {
             : TextPrinter(config, doxygen), inputDir(std::move(inputDir)) {
         }
 
-        std::string print(const XmlTextParser::Node& node) const override;
+        std::string print(const XmlTextParser::Node& node, const std::string& language) const override;
 
       private:
         struct ListData {
@@ -20,19 +20,21 @@ namespace Doxybook2 {
             std::stringstream ss;
             int indent{0};
             std::list<ListData> lists;
+            bool quote{false};
             bool eol{false};
             bool tableHeader{false};
-            bool inComputerOutput{false}; 
-            bool validLink{false}; 
+            bool inComputerOutput{false};
+            bool validLink{false};
         };
 
         void print(PrintData& data,
             const XmlTextParser::Node* parent,
             const XmlTextParser::Node* node,
             const XmlTextParser::Node* previous,
-            const XmlTextParser::Node* next) const;
+            const XmlTextParser::Node* next,
+            const std::string& language) const;
 
-        void programlisting(std::stringstream& ss, const XmlTextParser::Node& node) const;
+        void programlisting(PrintData& data, const XmlTextParser::Node& node) const;
 
         std::string inputDir;
     };

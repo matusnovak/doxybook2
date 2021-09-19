@@ -2,7 +2,7 @@
 #include <Doxybook/TextPlainPrinter.hpp>
 #include <Doxybook/Utils.hpp>
 
-std::string Doxybook2::TextPlainPrinter::print(const XmlTextParser::Node& node) const {
+std::string Doxybook2::TextPlainPrinter::print(const XmlTextParser::Node& node, const std::string& language) const {
     std::stringstream ss;
     print(ss, node);
     auto str = ss.str();
