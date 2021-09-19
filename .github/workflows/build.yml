@@ -155,9 +155,9 @@ jobs:
         run: |
           last_tag=$(git describe --tags --abbrev=0 @^ || true)
           if [ -z "$last_tag" ]; then
-            git log --oneline --format="%C(auto) %h %s" > changelog.txt
+            git log --oneline --no-merges --format="%C(auto) %h %s" > changelog.txt
           else
-            git log --oneline --format="%C(auto) %h %s" ${last_tag}..@ > changelog.txt
+            git log --oneline --no-merges --format="%C(auto) %h %s" ${last_tag}..@ > changelog.txt
           fi
           cat changelog.txt
 
