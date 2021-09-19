@@ -98,8 +98,8 @@ This manual is divided in the following sections:
 
 First Header  | Second Header | Third Header
 ------------- | ------------- | -------------
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell with ref Engine::Audio::AudioBuffer
+Content Cell  | Content Cell  | Content Cell [with link](https://github.com/matusnovak/doxybook2)
 
 ## Inline formula
 
