@@ -8,6 +8,7 @@
 #include <inja/inja.hpp>
 #include <filesystem>
 #include <fstream>
+#include <spdlog/spdlog.h>
 
 std::string Doxybook2::Generator::kindToTemplateName(const Kind kind) {
     using namespace Doxybook2;
@@ -153,7 +154,7 @@ void Doxybook2::Generator::jsonRecursively(const Node& parent, const Filter& fil
 
                 const auto path = Path::join(config.outputDir, child->getRefid() + ".json");
 
-                Log::i("Rendering {}", path);
+                spdlog::info("Rendering {}", path);
                 std::ofstream file(path);
                 if (!file)
                     throw EXCEPTION("File {} failed to open for writing", path);
@@ -177,7 +178,7 @@ void Doxybook2::Generator::manifest() {
     auto data = manifestRecursively(doxygen.getIndex());
     const auto path = Path::join(config.outputDir, "manifest.json");
 
-    Log::i("Rendering {}", path);
+    spdlog::info("Rendering {}", path);
     std::ofstream file(path);
     if (!file)
         throw EXCEPTION("File {} failed to open for writing", path);

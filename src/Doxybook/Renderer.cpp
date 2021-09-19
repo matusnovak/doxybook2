@@ -2,7 +2,7 @@
 #include "ExceptionUtils.hpp"
 #include <Doxybook/DefaultTemplates.hpp>
 #include <Doxybook/Exception.hpp>
-#include <Doxybook/Log.hpp>
+#include <spdlog/spdlog.h>
 #include <Doxybook/Renderer.hpp>
 #include <Doxybook/Utils.hpp>
 #include <chrono>
@@ -220,7 +220,7 @@ Doxybook2::Renderer::Renderer(const Config& config,
         });
     }
 
-    Log::i("Using lookup template path: '{}'", includePrefix);
+    spdlog::info("Using lookup template path: '{}'", includePrefix);
 
     // Recursive template loader with dependencies.
     // Thanks to C++17 we can use recursive lambdas.
@@ -258,7 +258,7 @@ Doxybook2::Renderer::Renderer(const Config& config,
 
             // The template has been found in the provided template path (i.e. "--templates <path>")
             if (oit != otherTemplates.end()) {
-                Log::i("Parsing template: '{}' from file: '{}'", name, oit->second);
+                spdlog::info("Parsing template: '{}' from file: '{}'", name, oit->second);
 
                 // Parse the template.
                 // The inja library will load all of the other templates
@@ -279,7 +279,7 @@ Doxybook2::Renderer::Renderer(const Config& config,
                 }
 
             } else if (dit != defaultTemplates.end()) {
-                Log::i("Parsing template: '{}' from default", name);
+                spdlog::info("Parsing template: '{}' from default", name);
 
                 // Parse the template from the list of default templates.
                 // This won't do any automatic resolving of {% include "<name>" %}
@@ -328,7 +328,7 @@ Doxybook2::Renderer::Renderer(const Config& config,
         }
 
         try {
-            Log::i("Parsing template: '{}' from file: '{}'", name, file);
+            spdlog::info("Parsing template: '{}' from file: '{}'", name, file);
             auto tmpl = env->parse_template(name + ".tmpl");
             templates.insert(std::make_pair(name, std::make_unique<inja::Template>(std::move(tmpl))));
         } catch (std::exception& e) {
@@ -355,7 +355,7 @@ void Doxybook2::Renderer::render(const std::string& name, const std::string& pat
     if (!file) {
         throw EXCEPTION("Failed to open file for writing {}", absPath);
     }
-    Log::i("Rendering {}", absPath);
+    spdlog::info("Rendering {}", absPath);
     try {
       env->render_to(file, *it->second, data);
     } catch (std::exception& e) {
