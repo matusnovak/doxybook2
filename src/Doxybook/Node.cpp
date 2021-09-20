@@ -87,7 +87,8 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
             child->language = ptr->language;
 
             // Doxygen outputs Java enum values as variables with empty <type>
-            bool hasTypeDefined = memberdef.firstChildElement("type").hasText();
+            auto typeElement = memberdef.firstChildElement("type");
+            bool hasTypeDefined = typeElement ? typeElement.hasText() : false;
             if (ptr->kind == Kind::JAVAENUM && child->kind == Kind::VARIABLE && !hasTypeDefined)
             {
                 child->kind = Kind::JAVAENUMCONSTANT;
