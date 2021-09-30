@@ -84,7 +84,7 @@ This project is not perfect and I will never claim it will be. It does its job a
 | [Link](https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [ReadTheDocs](https://mkdocs.readthedocs.io/en/stable/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-readthedocs/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Material](https://squidfunk.github.io/mkdocs-material/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-material/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Bootswatch](http://mkdocs.github.io/mkdocs-bootswatch/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-bootswatch/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/vuepress/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [VuePress](https://vuepress.vuejs.org/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) | 
+| [Link](https://matusnovak.github.io/doxybook2/vuepress/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [VuePress](https://vuepress.vuejs.org/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/gitbook/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [GitBook](https://github.com/GitbookIO/gitbook) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) |
 | N/A | [Docsify](https://docsify.js.org/#/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/docsify/.doxybook) |
 | [Link](https://matusnovak.github.io/doxybook2/original/classEngine_1_1Audio_1_1AudioBuffer.html) | Original Doxygen | N/A | N/A |
@@ -151,7 +151,7 @@ You only need Doxygen, doxybook2 from this repository, and some markdown static 
 doxybook2 --input path/to/doxygen/xml --output path/to/destination
 ```
 
-I highly suggest reading through the [Config](#config) or looking into `example/xyz/.doxybook/config.json` files, and then using the config as `--config path/to/config.json`. 
+I highly suggest reading through the [Config](#config) or looking into `example/xyz/.doxybook/config.json` files, and then using the config as `--config path/to/config.json`.
 
 ### Command line arguments
 
@@ -191,13 +191,13 @@ Debug\doxybook2.exe
 Note, `--config-data` can be used on top of `--config` to overwrite config properties. Example on Windows terminal (double `""` escapes the double quote):
 
 ```cmd
-doxybook2 ... --config-data "{""linkSuffix:"" """"}"
+doxybook2 ... --config-data "{""linkSuffix"": """"}"
 ```
 
 Or Linux bash:
 
 ```bash
-doxybook2 ... --config-data '{"linkSuffix": ""}`
+doxybook2 ... --config-data '{"linkSuffix": ""}'
 ```
 
 ### GitBook specific usage
@@ -251,7 +251,7 @@ doxybook2 --input ... --output ... --json
 
 ## Config
 
-All of the GitBook, MkDocs, VuePress, Hugo, Docsify static site generators are slightly different. For example, GitBook resolves markdown links at compile time and they have to end with `.md`, however MkDocs requires the links to end with a forward slash `/`. Using the config you can override this behavior. Only the properties you specify in this JSON file will be overwritten in the application. The properties you do not specify in this config will use the default value instead. 
+All of the GitBook, MkDocs, VuePress, Hugo, Docsify static site generators are slightly different. For example, GitBook resolves markdown links at compile time and they have to end with `.md`, however MkDocs requires the links to end with a forward slash `/`. Using the config you can override this behavior. Only the properties you specify in this JSON file will be overwritten in the application. The properties you do not specify in this config will use the default value instead.
 
 ### Generate default config
 
@@ -297,7 +297,7 @@ The following is a list of config properties, their default value, and descripti
 | `imagesFolder` | `"images"` | Name of the folder where to copy images. This folder will be automatically created in the output path defined by `--output`. Leave this empty string if you want all of the images to be stored in the root directory (the output directory). |
 | `linkLowercase` | `false` | Convert all markdown links (only links to other markdown files, the C++ related stuff) into lowercase format. Hugo need this to set to `true`. |
 | `linkAndInlineCodeAsHTML` | `false` | Output links as HTML <a> tags and inline code as <code> tags instead of Markdown. If your generated Markdown has links inside of inline code, set this to `true` to correctly render the links. |
-| `indexInFolders` | `false` | Part of the generated markdown output are extra index files. These are more of a list of classes, namespaces, modules, etc. By default these are stored in the root directory (the output diectory). Set to true if you want them to be generated in their respective folders (i.e. class index in Classes folder, etc.) | 
+| `indexInFolders` | `false` | Part of the generated markdown output are extra index files. These are more of a list of classes, namespaces, modules, etc. By default these are stored in the root directory (the output diectory). Set to true if you want them to be generated in their respective folders (i.e. class index in Classes folder, etc.) |
 | `mainPageInRoot` | `false` | If a mainpage is defined by Doxygen, then this file will be generated in `Pages/mainpage.md` path. If you want to make it into `index.md` as the root of your website, then set this to true with `mainPageName` set to `"index"`. |
 | `mainPageName` | `"indexpage"` | If a mainpage is defined by Doxygen, then this file will be saved as `indexpage`. |
 | `baseUrl` | `""` | A prefix to put in front of all markdown links (only links to other markdown files). See `linkLowercase` and `linkSuffix` as well. Note hat MkDocs and Hugo will need explicit baseUrl while GitBook uses no base url. VuePress needs this set to `/`. |
@@ -310,36 +310,36 @@ The following are a list of config properties that specify the names of the fold
 
 | JSON Key | Default Value |
 | -------- | ------------- |
-| `folderGroupsName` | `"Modules"` | 
-| `folderClassesName` | `"Classes"` | 
-| `folderFilesName` | `"Files"` | 
-| `folderRelatedPagesName` | `"Pages"` | 
-| `folderNamespacesName` | `"Namespaces"` | 
-| `folderExamplesName` | `"Examples"` | 
+| `folderGroupsName` | `"Modules"` |
+| `folderClassesName` | `"Classes"` |
+| `folderFilesName` | `"Files"` |
+| `folderRelatedPagesName` | `"Pages"` |
+| `folderNamespacesName` | `"Namespaces"` |
+| `folderExamplesName` | `"Examples"` |
 
 The following is a list of config properties that specify the filenames of the indexes. For example, an index/list of all classes will use `index_classes` filename followed by `fileExt` extension name.
 
 | JSON Key | Default Value |
 | -------- | ------------- |
-| `indexGroupsName` | `"index_groups"` | 
-| `indexClassesName` | `"index_classes"` | 
-| `indexFilesName` | `"index_files"` | 
-| `indexRelatedPagesName` | `"index_pages"` | 
-| `indexNamespacesName` | `"index_namespaces"` | 
-| `indexExamplesName` | `"index_examples"` | 
+| `indexGroupsName` | `"index_groups"` |
+| `indexClassesName` | `"index_classes"` |
+| `indexFilesName` | `"index_files"` |
+| `indexRelatedPagesName` | `"index_pages"` |
+| `indexNamespacesName` | `"index_namespaces"` |
+| `indexExamplesName` | `"index_examples"` |
 
 The following are config properties that specify what template to use for each specific C++ kind. A kind is just a type of the C++ thing (class, namespace, etc.). This also includes properties for files, directories, pages, and modules (alias groups). These templates can be overwritten via `--templates /path/to/templates-folder`.
 
 | JSON Key | Default Value |
 | -------- | ------------- |
-| `templateKindClass` | `"kind_class"` | 
-| `templateKindStruct` | `"kind_class"` | 
-| `templateKindUnion` | `"kind_class"` | 
-| `templateKindInterface` | `"kind_class"` | 
-| `templateKindNamespace` | `"kind_nonclass"` | 
-| `templateKindGroup` | `"kind_nonclass"` | 
-| `templateKindFile` | `"kind_file"` | 
-| `templateKindDir` | `"kind_file"` | 
+| `templateKindClass` | `"kind_class"` |
+| `templateKindStruct` | `"kind_class"` |
+| `templateKindUnion` | `"kind_class"` |
+| `templateKindInterface` | `"kind_class"` |
+| `templateKindNamespace` | `"kind_nonclass"` |
+| `templateKindGroup` | `"kind_nonclass"` |
+| `templateKindFile` | `"kind_file"` |
+| `templateKindDir` | `"kind_file"` |
 | `templateKindPage` | `"kind_page"` |
 | `templateKindExample` | `"kind_example"` |
 
@@ -347,25 +347,25 @@ Same as above, but these are related to the index/list files.
 
 | JSON Key | Default Value |
 | -------- | ------------- |
-| `templateIndexClasses` | `"index_classes"` | 
-| `templateIndexNamespaces` | `"index_namespaces"` | 
-| `templateIndexGroups` | `"index_groups"` | 
-| `templateIndexFiles` | `"index_files"` | 
-| `templateIndexRelatedPages` | `"index_pages"` | 
-| `templateIndexExamples` | `"index_examples"` | 
+| `templateIndexClasses` | `"index_classes"` |
+| `templateIndexNamespaces` | `"index_namespaces"` |
+| `templateIndexGroups` | `"index_groups"` |
+| `templateIndexFiles` | `"index_files"` |
+| `templateIndexRelatedPages` | `"index_pages"` |
+| `templateIndexExamples` | `"index_examples"` |
 
 These properties define the title to use in the templates specified above.
 
 | JSON Key | Default Value |
 | -------- | ------------- |
-| `indexClassesTitle` | `"Classes"` | 
-| `indexNamespacesTitle` | `"Namespaces"` | 
-| `indexGroupsTitle` | `"Modules"` | 
-| `indexFilesTitle` | `"Files"` | 
-| `indexRelatedPagesTitle` | `"Pages"` | 
+| `indexClassesTitle` | `"Classes"` |
+| `indexNamespacesTitle` | `"Namespaces"` |
+| `indexGroupsTitle` | `"Modules"` |
+| `indexFilesTitle` | `"Files"` |
+| `indexRelatedPagesTitle` | `"Pages"` |
 | `indexExamplesTitle` | `"Examples"` |
 
-These properties modify how Latex formulas should be generated. 
+These properties modify how Latex formulas should be generated.
 
 | JSON Key | Default Value | Description |
 | -------- | ------------- | ----------- |
@@ -376,20 +376,20 @@ These properties modify how Latex formulas should be generated.
 
 ## Latex formulas
 
-Mkdocs can properly display these formulas for you. Read the [mathjax documentation for mkdocs](https://squidfunk.github.io/mkdocs-material/reference/mathjax/) 
-to understand how to enable it. An example of this has been provided in the `doxybook2/examples/src/Engine.hpp` 
-file at the bottom. It can be viewed online in the 
-[mkdocs-readthedocs demo](https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/) 
+Mkdocs can properly display these formulas for you. Read the [mathjax documentation for mkdocs](https://squidfunk.github.io/mkdocs-material/reference/mathjax/)
+to understand how to enable it. An example of this has been provided in the `doxybook2/examples/src/Engine.hpp`
+file at the bottom. It can be viewed online in the
+[mkdocs-readthedocs demo](https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/)
 (Section "Inline formula" and "Block formula").
 
-Double check you config for properties of `formulaInlineStart/End` and `formulaBlockStart/End`. 
+Double check you config for properties of `formulaInlineStart/End` and `formulaBlockStart/End`.
 You may need to modify them to match the Markdown formula render you are using.
 
 For example, the following comment block:
 
 ```cpp
 /**
- *  The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is 
+ *  The distance between \f$(x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is
  * \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$.
  */
 ```
@@ -397,13 +397,13 @@ For example, the following comment block:
 Will be generated as the following Markdown:
 
 ```md
-The distance between \((x_1,y_1)\) and \((x_2,y_2)\) is 
+The distance between \((x_1,y_1)\) and \((x_2,y_2)\) is
  \(\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\).
 ```
 
 ## Templates
 
-This doxybook utility uses templates very similar to Jinja on Python. The template engine used is [inja](https://github.com/pantor/inja) for C++. There are already predefined templates stored inside of the doxybook executable file. If you do not specify an explicit template folder via `--templates` the default templates will be used. 
+This doxybook utility uses templates very similar to Jinja on Python. The template engine used is [inja](https://github.com/pantor/inja) for C++. There are already predefined templates stored inside of the doxybook executable file. If you do not specify an explicit template folder via `--templates` the default templates will be used.
 
 ### Generate default templates
 
@@ -460,7 +460,7 @@ To use custom templates, simply add them to to the directory specified by the `-
 
 ### Custom templates detailed example
 
-First, generate the default templates (this simply copies them from the executable file to the destination directory) by running `doxybook --generate-templates <dir>`. Let's say you want to override the fooder with some custom markdown. Find the `footer.tmpl` file and change the contents with whatever you want. You can delete the rest of the templates that you have not modified. Now run the executable with the `--templates <dir>` option. This will use your custom `footer.tmpl`. 
+First, generate the default templates (this simply copies them from the executable file to the destination directory) by running `doxybook --generate-templates <dir>`. Let's say you want to override the fooder with some custom markdown. Find the `footer.tmpl` file and change the contents with whatever you want. You can delete the rest of the templates that you have not modified. Now run the executable with the `--templates <dir>` option. This will use your custom `footer.tmpl`.
 
 When the doxybook runs, the list of templates that are loaded is printed to the terminal right at the beginning. For example, if the template is loaded from your folder, it will print `Parsing template: 'footer' from file: '/path/to/templates/footer.tmpl`. If the template is loaded from the executable file itself (the default templates), it will print the following: `Parsing template: 'footer' from default` instead.
 
@@ -476,7 +476,7 @@ Why `render` instead of `include`? The `include` is a keyword from the inja temp
 
 That will simply loop over the public types and renders the child by passing the array element of `publicTypes` to the render function. The render function will render the template which global context (all of the accessible data) is going to be the `child` object.
 
-To see what does the JSON (the global data/context in the template) looks like, simply add `--debug-templates` to the command line. This will generate `*.md.json` files. Imagine that this JSON is passed into `render(..., json)` when generating, for example, `group__audio.md` (or any other markdown file except the GitBook summary file). 
+To see what does the JSON (the global data/context in the template) looks like, simply add `--debug-templates` to the command line. This will generate `*.md.json` files. Imagine that this JSON is passed into `render(..., json)` when generating, for example, `group__audio.md` (or any other markdown file except the GitBook summary file).
 
 ### Changes to templates since 1.1.0
 
@@ -488,7 +488,7 @@ Including or rendering templates by their name with no extension is only possibl
 
 You can add `--debug-templates` into the command line (with no arguments) and a JSON file will be created alongside each of the markdown file. For example, if a markdown file `group___engine.md` will be created, the JSON will be created as `group___engine.md.json`.
 
-Why is this useful and why JSON? The JSON is the container between C++ data and the [inja](https://github.com/pantor/inja) template engine. So inside the template you may find something as this: `{% for param in params %}...{% endfor %}`. This `params` variable is extracted from the JSON. This is also the exact same JSON generated in the JSON-only output. The JSON is simply put into the render function of the inja template engine. 
+Why is this useful and why JSON? The JSON is the container between C++ data and the [inja](https://github.com/pantor/inja) template engine. So inside the template you may find something as this: `{% for param in params %}...{% endfor %}`. This `params` variable is extracted from the JSON. This is also the exact same JSON generated in the JSON-only output. The JSON is simply put into the render function of the inja template engine.
 
 ## Use as a library
 
@@ -528,7 +528,7 @@ int main() {
     doxygen.load(inputDir);
     doxygen.finalize(plainPrinter, markdownPrinter);
 
-    // Get the index, this holds hierarchical data. 
+    // Get the index, this holds hierarchical data.
     // If a class belongs to a namespace, the index will hold the namespace object,
     // but the namespace object will hold the class, not the index.
     const Node& index = doxygen.getIndex();
@@ -554,7 +554,7 @@ int main() {
 
 Pull requests are welcome! Feel free to submit a pull requesr to the GitHub of this repository <https://github.com/matusnovak/doxybook2/pulls>.
 
-## Issues 
+## Issues
 
 Got any questions or found a bug? Feel free to submit them to the GitHub issues of this repository <https://github.com/matusnovak/doxybook2/issues>.
 
