@@ -372,7 +372,7 @@ Doxybook2::Node::LoadDataResult Doxybook2::Node::loadData(const Config& config,
                                     loadData(config, plainPrinter, markdownPrinter, cache, memberdef)))
                                 .first;
 
-            if (childPtr->kind == Kind::TYPEDEF) {
+            if (childPtr->kind == Kind::TYPEDEF || childPtr->kind == Kind::VARIABLE) {
                 it->second.type += it->second.argsString;
                 it->second.typePlain += it->second.argsString;
             }
@@ -585,7 +585,7 @@ Doxybook2::Node::Data Doxybook2::Node::loadData(const Config& config,
             data.typePlain = data.typePlain.substr(7);
         }
 
-        if (this->kind == Kind::TYPEDEF) {
+        if (this->kind == Kind::TYPEDEF || this->kind == Kind::VARIABLE) {
             data.type += data.argsString;
             data.typePlain += data.argsString;
         }
