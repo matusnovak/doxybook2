@@ -372,6 +372,7 @@ static std::string createTableForAttributeLike(const std::string& visibility,
     ss << "| -------------- | -------------- |\n";
 
     ss << "{% for child in " << (inherited ? "base." : "") << key << " -%}\n";
+
     ss << "| {% if existsIn(child, \"type\") %}{{child.type}} {% endif -%}\n";
     ss << "| **[{{child.name}}]({{child.url}})**";
     ss << " {% if existsIn(child, \"brief\") %}<br>{{child.brief}}{% endif %} |\n";
