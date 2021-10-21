@@ -117,6 +117,11 @@ To install from source, simply clone the repository, install the dependencies li
 git clone https://github.com/matusnovak/doxybook2.git
 cd doxybook2
 
+# ensure you are using C++17 compiler
+# Linux:
+export CC=/usr/bin/gcc-9
+epxort CXX=/usr/bin/g++-9
+
 # Install dependencies via vcpkg
 # The 'vcpkg.txt' file contains the list of dependencies to install
 vcpkg install --triplet x64-linux $(cat vcpkg.txt)
@@ -124,15 +129,18 @@ vcpkg install --triplet x64-linux $(cat vcpkg.txt)
 # Configure the project and use vcpkg toolchain
 mkdir build
 cmake -B ./build -G "Unix Makefiles" \
+    -DCMAKE_INSTALL_PREFIX=./install \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
+    -DDOXYBOOK_TESTS=ON \
+    -DVCPKG_TARGET_TRIPLET=x64-linux \
     -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
-    ..
+    .
 
-# Build it
-cmake --build ./build --config MinSizeRel
+# Build and Install it
+cmake --build ./build --target install --config MinSizeRel
 
 # Done!
-./build/MinSizeRel/doxybook2 --help
+./install/bin/doxybook2 --help
 ```
 
 ## Usage
