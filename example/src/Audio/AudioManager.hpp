@@ -1,5 +1,8 @@
 #pragma once
 
+#include <array>
+#include <cstdint>
+
 #include "AudioBuffer.hpp"
 
 namespace Engine {
@@ -19,7 +22,7 @@ namespace Engine {
             AudioManager(int numOfChannels = 128);
             ~AudioManager();
 
-            void enque(const AudioBuffer& buffer);
+            void enqueue(const AudioBuffer& buffer);
         };
     } // namespace Audio
 } // namespace Engine
