@@ -8,7 +8,7 @@ GENERATE_XML = YES
 XML_OUTPUT = xml
 INPUT = src
 RECURSIVE = YES
-FILE_PATTERNS = *.h *.hpp *.md
+FILE_PATTERNS = *.h *.hpp *.md *.dox
 EXAMPLE_PATH = src-other
 EXAMPLE_PATTERNS = *.cpp
 
