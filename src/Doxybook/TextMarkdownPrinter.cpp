@@ -39,37 +39,37 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         }
         case XmlTextParser::Node::Type::SECT1: {
             newline();
-            data.ss << "# ";
+            data.ss << "## ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT2: {
             newline();
-            data.ss << "## ";
+            data.ss << "### ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT3: {
             newline();
-            data.ss << "### ";
+            data.ss << "#### ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT4: {
             newline();
-            data.ss << "#### ";
+            data.ss << "##### ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT5: {
             newline();
-            data.ss << "##### ";
+            data.ss << "###### ";
             data.eol = false;
             break;
         }
         case XmlTextParser::Node::Type::SECT6: {
             newline();
-            data.ss << "###### ";
+            data.ss << "####### ";
             data.eol = false;
             break;
         }
