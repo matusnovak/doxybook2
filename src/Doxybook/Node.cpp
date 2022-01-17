@@ -279,12 +279,12 @@ void Doxybook2::Node::finalize(const Config& config,
                         return urlFolderMaker(config, node);
                     }
                 }
-                return urlFolderMaker(config, node) + Utils::stripAnchor(node.refid) + config.linkSuffix +
+                return urlFolderMaker(config, node) + node.refid + config.linkSuffix +
                        anchorMaker(node);
             }
             case Kind::ENUMVALUE: {
                 const auto n = node.parent->parent;
-                return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
+                return urlFolderMaker(config, *n) + n->refid + config.linkSuffix +
                        anchorMaker(node);
             }
             default: {
@@ -292,7 +292,7 @@ void Doxybook2::Node::finalize(const Config& config,
                 if (node.group) {
                     n = node.group;
                 }
-                return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
+                return urlFolderMaker(config, *n) + n->refid + config.linkSuffix +
                        anchorMaker(node);
             }
         }
