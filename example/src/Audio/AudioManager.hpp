@@ -11,6 +11,10 @@ namespace Engine {
          * * First item
          * * Second item
          * * Third item **with bold text**
+         * 
+         * Followed by some more text and another list:
+         * * First item
+         * * Second item
          * @ingroup Audio
          * @see Audio::AudioBuffer
          */
