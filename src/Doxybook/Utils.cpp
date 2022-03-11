@@ -61,10 +61,13 @@ extern std::string Doxybook2::Utils::toLower(std::string str) {
     return str;
 }
 
-std::string Doxybook2::Utils::safeAnchorId(std::string str) {
+std::string Doxybook2::Utils::safeAnchorId(std::string str, bool replaceUnderscores) {
     str = replaceAll(toLower(std::move(str)), "::", "");
     str = replaceAll(str, " ", "-");
-    return replaceAll(str, "_", "-");
+    if (replaceUnderscores) {
+        str = replaceAll(str, "_", "-");
+    }
+    return str;
 }
 
 std::string Doxybook2::Utils::date(const std::string& format) {

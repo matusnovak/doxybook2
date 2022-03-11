@@ -244,9 +244,9 @@ void Doxybook2::Node::finalize(const Config& config,
 #endif
     }
 
-    static const auto anchorMaker = [](const Node& node) {
+    static const auto anchorMaker = [](const Config& config, const Node& node) {
         if (!node.isStructured() && node.kind != Kind::MODULE) {
-            return "#" + Utils::toLower(toStr(node.kind)) + "-" + Utils::safeAnchorId(node.name);
+            return "#" + Utils::toLower(toStr(node.kind)) + "-" + Utils::safeAnchorId(node.name, config.replaceUnderscoresInAnchors);
         } else {
             return std::string("");
         }
@@ -280,12 +280,12 @@ void Doxybook2::Node::finalize(const Config& config,
                     }
                 }
                 return urlFolderMaker(config, node) + Utils::stripAnchor(node.refid) + config.linkSuffix +
-                       anchorMaker(node);
+                       anchorMaker(config, node);
             }
             case Kind::ENUMVALUE: {
                 const auto n = node.parent->parent;
                 return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
-                       anchorMaker(node);
+                       anchorMaker(config, node);
             }
             default: {
                 auto* n = node.parent;
@@ -293,7 +293,7 @@ void Doxybook2::Node::finalize(const Config& config,
                     n = node.group;
                 }
                 return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
-                       anchorMaker(node);
+                       anchorMaker(config, node);
             }
         }
     };
@@ -311,7 +311,7 @@ void Doxybook2::Node::finalize(const Config& config,
         summary = plainPrinter.print(temp->brief);
         temp.reset();
 
-        anchor = anchorMaker(*this);
+        anchor = anchorMaker(config, *this);
         url = urlMaker(config, *this);
         if (config.linkLowercase)
             url = Utils::toLower(url);
