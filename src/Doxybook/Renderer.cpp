@@ -91,9 +91,9 @@ Doxybook2::Renderer::Renderer(const Config& config,
         const auto arg = args.at(0)->get<std::string>();
         return Utils::escape(arg);
     });
-    env->add_callback("safeAnchorId", 1, [](inja::Arguments& args) -> std::string {
+    env->add_callback("safeAnchorId", 1, [&config](inja::Arguments& args) -> std::string {
         const auto arg = args.at(0)->get<std::string>();
-        return Utils::safeAnchorId(arg);
+        return Utils::safeAnchorId(arg, config.replaceUnderscoresInAnchors);
     });
     env->add_callback("title", 1, [](inja::Arguments& args) {
         const auto arg = args.at(0)->get<std::string>();
