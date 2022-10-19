@@ -1,0 +1,9 @@
+{
+  "name": "doxybook2",
+  "version-string": "1.5.0",
+  "builtin-baseline": "1085a57da0725c19e19586025438e8c16f34c890",
+  "dependencies": [ "catch2", "fmt", "dirent", "fmt", "nlohmann-json", "inja", "cxxopts", "spdlog" ],
+  "overrides": [
+    { "name": "catch2", "version": "2.13.8" }
+  ]
+}
