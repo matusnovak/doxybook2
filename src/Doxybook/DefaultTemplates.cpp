@@ -618,7 +618,7 @@ template <{% for param in templateParams %}{{param.typePlain}} {{param.name}}{% 
 | Enumerator | Value | Description |
 | ---------- | ----- | ----------- |
 {% for enumvalue in enumvalues %}| {{enumvalue.name}} | {% if existsIn(enumvalue, "initializer") -%}
-{{replace(enumvalue.initializer, "= ", "")}}{% endif -%}
+{{replace(replace(enumvalue.initializer, "= ", ""), "|", "\\|"))}}{% endif -%}
 | {% if existsIn(enumvalue, "brief") %}{{enumvalue.brief}}{% endif %} {% if existsIn(enumvalue, "details") %}{{enumvalue.details}}{% endif %} |
 {% endfor %}
 {% endif -%}
