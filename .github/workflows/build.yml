@@ -197,10 +197,11 @@ jobs:
         run: |
           sudo python3 -m pip install mkdocs mkdocs-material mkdocs-bootswatch
 
-      - name: Download VuePress
-        shell: bash
-        run: |
-          sudo npm install vuepress -g
+# Disabled due to VuePress not supporting Vue 3.x
+#      - name: Download VuePress
+#        shell: bash
+#        run: |
+#          sudo npm install vuepress vue-template-compiler -g
 
       - name: Download GitBook CLI
         shell: bash
@@ -292,16 +293,17 @@ jobs:
           hugo
           cp -r ./public ${{ github.workspace }}/public/hugo-book
 
-      - name: VuePress - Default
-        shell: bash
-        run: |
-          doxybook2 \
-            --input ./example/doxygen/xml \
-            --output ./example/vuepress \
-            --config ./example/vuepress/.doxybook/config.json
-          cd ./example/vuepress
-          sudo vuepress build
-          cp -r ./.vuepress/dist ${{ github.workspace }}/public/vuepress
+# Disabled due to VuePress not supporting Vue 3.x
+#      - name: VuePress - Default
+#        shell: bash
+#        run: |
+#          doxybook2 \
+#            --input ./example/doxygen/xml \
+#            --output ./example/vuepress \
+#            --config ./example/vuepress/.doxybook/config.json
+#          cd ./example/vuepress
+#          sudo vuepress build
+#          cp -r ./.vuepress/dist ${{ github.workspace }}/public/vuepress
 
       - name: GitBook - Default
         shell: bash
