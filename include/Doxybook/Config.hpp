@@ -110,6 +110,9 @@ namespace Doxybook2 {
         std::string formulaInlineEnd{"\\)"};
         std::string formulaBlockStart{"\\["};
         std::string formulaBlockEnd{"\\]"};
+
+        // Replace underscores with hyphens in anchors?
+        bool replaceUnderscoresInAnchors{true};
     };
 
     void loadConfig(Config& config, const std::string& path);
