@@ -397,6 +397,9 @@ void Doxybook2::TextMarkdownPrinter::print(PrintData& data,
         case XmlTextParser::Node::Type::VARIABLELIST:
         case XmlTextParser::Node::Type::ORDEREDLIST: {
             data.lists.pop_back();
+            if (data.lists.empty()) {
+                newline();
+            }
             break;
         }
         case XmlTextParser::Node::Type::LISTITEM: {
