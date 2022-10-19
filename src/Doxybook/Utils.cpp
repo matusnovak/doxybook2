@@ -122,18 +122,6 @@ std::string Doxybook2::Utils::stripAnchor(const std::string& str) {
     return ss.str();
 }
 
-static const std::regex FUNCTION_DEFINITION_REGEX(R"(^.* ([a-zA-Z0-9_::+*/%^&|~!=<>()\[\],-]+)$)");
-
-std::string Doxybook2::Utils::extractQualifiedNameFromFunctionDefinition(const std::string& str) {
-    std::smatch matches;
-    if (std::regex_match(str, matches, FUNCTION_DEFINITION_REGEX)) {
-        if (matches.size() == 2) {
-            return matches[1].str();
-        }
-    }
-    return str;
-}
-
 std::string Doxybook2::Utils::escape(std::string str) {
     size_t new_size = 0;
     for (const auto& c : str) {

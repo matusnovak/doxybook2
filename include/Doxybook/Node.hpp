@@ -151,6 +151,10 @@ namespace Doxybook2 {
             return refid;
         }
 
+        const std::string& getQualifiedName() const {
+            return qualifiedName;
+        }
+
         const std::string& getName() const {
             return name;
         }
@@ -238,6 +242,7 @@ namespace Doxybook2 {
         std::string language;
         std::string refid;
         std::string name;
+        std::string qualifiedName;
         std::string brief;
         std::string summary;
         std::string title;

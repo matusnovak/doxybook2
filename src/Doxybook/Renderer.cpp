@@ -36,7 +36,7 @@ static std::string trimPath(std::string path) {
 
 static std::string stripTmplSuffix(std::string path) {
     if (path.size() > 4 && path.find(".tmpl") == path.size() - 5) {
-        path.erase(path.size() - 5); 
+        path.erase(path.size() - 5);
     }
     return path;
 }
@@ -102,10 +102,6 @@ Doxybook2::Renderer::Renderer(const Config& config,
     env->add_callback("stripNamespace", 1, [](inja::Arguments& args) -> std::string {
         const auto arg = args.at(0)->get<std::string>();
         return Utils::stripNamespace(arg);
-    });
-    env->add_callback("extractQualifiedNameFromFunctionDefinition", 1, [](inja::Arguments& args) -> std::string {
-        const auto arg = args.at(0)->get<std::string>();
-        return Utils::extractQualifiedNameFromFunctionDefinition(arg);
     });
     env->add_callback("split", 2, [](inja::Arguments& args) -> nlohmann::json {
         const auto arg0 = args.at(0)->get<std::string>();

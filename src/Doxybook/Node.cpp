@@ -147,6 +147,14 @@ Doxybook2::NodePtr Doxybook2::Node::parse(Xml::Element& memberdef, const std::st
 
     auto ptr = std::make_shared<Node>(refid);
     ptr->name = assertChild(memberdef, "name").getText();
+
+    auto childQualifiedName = memberdef.firstChildElement("qualifiedname");
+    if (childQualifiedName) {
+        ptr->qualifiedName = childQualifiedName.getText();
+    } else {
+        ptr->qualifiedName = ptr->name;
+    }
+
     ptr->kind = toEnumKind(memberdef.getAttr("kind"));
     ptr->empty = true;
     ptr->parseBaseInfo(memberdef);
