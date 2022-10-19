@@ -1,5 +1,16 @@
 # Doxybook2
 
+## Attention! Project has been archived!
+
+I have decided to archive this repository. This has been a great experience and it makes me happy that many of you have found this tool useful. I wish that I did a better job with the quality of the code, and mainly with maintaining it. This project was started as a toy and I never expected it to become popular. **I am archiving this repository because I want to focus on other things in my life, and my free time has been occupied by other events.** Moreover, I have started to have a burnout programming. If anyone wishes to continue working on this project, please fork it and feel free to contact me (see my GitHub bio for contact details).
+
+**Please also consider using the following alternatives:**
+* [m.css](https://mcss.mosra.cz/documentation/doxygen/) - A modern, mobile-friendly drop-in replacement for the stock Doxygen HTML output
+* [standardese](https://github.com/standardese/standardese) - Standardese aims to be a nextgen Doxygen.
+* [HDoc](https://hdoc.io/) - The modern documentation tool for C++
+
+### Farewell and **thank you to all contributors for fixing bugs and contributing with new functionality!**
+
 [![build](https://github.com/matusnovak/doxybook2/workflows/build/badge.svg)](https://github.com/matusnovak/doxybook2/actions) [![downloads](https://img.shields.io/github/downloads/matusnovak/doxybook2/total)](https://github.com/matusnovak/doxybook2/releases) [![release](https://img.shields.io/github/v/release/matusnovak/doxybook2)](https://github.com/matusnovak/doxybook2/releases)
 
 Doxygen XML to Markdown (or JSON) converter. Generate beautiful C++ documentation by converting Doxygen XML output into markdown pages via [MkDocs](https://www.mkdocs.org/), [Hugo](https://gohugo.io/), [VuePress](https://vuepress.vuejs.org/), [GitBook](https://github.com/GitbookIO/gitbook), [Docsify](https://docsify.js.org/#/), or your custom generator. Also comes with an optional templating mechanism and extensive configuration file.
