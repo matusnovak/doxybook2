@@ -1,8 +1,11 @@
 build*/
+cmake-*/
 temp/
 example/doxygen*/
 install/
 .vscode/
+.idea/
+vcpkg_installed/
 .vs/
 *.kdev4
 *~

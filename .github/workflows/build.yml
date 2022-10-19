@@ -22,14 +22,14 @@ jobs:
             triplet: x64-windows
             vcpkg_dir: 'C:\vcpkg'
             suffix: 'windows-win64'
-            generator: 'Visual Studio 16 2019'
+            generator: 'Visual Studio 17 2022'
             arch: '-A x64'
           - name: 'Windows x86'
             os: windows-latest
             triplet: x86-windows
             vcpkg_dir: 'C:\vcpkg'
             suffix: 'windows-win32'
-            generator: 'Visual Studio 16 2019'
+            generator: 'Visual Studio 17 2022'
             arch: '-A Win32'
           - name: 'Linux x64'
             os: ubuntu-latest
@@ -63,19 +63,6 @@ jobs:
           else
             ./bootstrap-vcpkg.sh
           fi
-
-      - name: Cache vcpkg
-        uses: actions/cache@v2
-        with:
-          path: '${{ matrix.vcpkg_dir }}/installed'
-          key: deps-${{ matrix.triplet }}-${{ hashFiles('vcpkg.txt') }}
-          restore-keys: |
-            deps-${{ matrix.triplet }}-
-
-      - name: Install vcpkg packages
-        shell: bash
-        run: |
-          vcpkg install --triplet ${{ matrix.triplet }} $(cat vcpkg.txt)
 
       - name: Configure
         shell: bash
